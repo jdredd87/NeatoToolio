@@ -13,10 +13,10 @@ type
     fDescription: String; // command description
     fError: string;
     fResponse: string;
-    function ParseText(data: tstringlist): boolean; virtual; abstract;
   public
-    constructor create;
-    destructor destroy; override;
+    function ParseText(data: tstringlist): boolean; virtual; abstract;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; virtual; // reset error/response/ect
     function execute: boolean;
     property Error: String read fError;
@@ -25,13 +25,13 @@ type
 
 implementation
 
-Constructor tNeatoBaseCommand.create;
+Constructor tNeatoBaseCommand.Create;
 begin
   inherited;
   Reset;
 end;
 
-Destructor tNeatoBaseCommand.destroy;
+Destructor tNeatoBaseCommand.Destroy;
 begin
   Reset;
   inherited;

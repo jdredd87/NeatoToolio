@@ -28,27 +28,26 @@ type
     fGetLDSScanRecords: tGetLDSScanRecords;
     fRotation_Speed: double;
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: TStringList): Boolean;
+    function ParseText(data: TStringList): Boolean; override;
     property GetLDSScanRecords: tGetLDSScanRecords read fGetLDSScanRecords;
     property Rotation_Speed: double read fRotation_Speed;
   end;
 
 implementation
 
-Constructor tGetLDSScan.create;
+Constructor tGetLDSScan.Create;
 begin
   inherited;
-//  fCommand := sGetErr;
+  // fCommand := sGetErr;
   fDescription := 'Get Error Messages';
 
 end;
 
-Destructor tGetLDSScan.destroy;
+Destructor tGetLDSScan.Destroy;
 begin
-
   inherited;
 end;
 
@@ -58,19 +57,16 @@ begin
 end;
 
 function tGetLDSScan.ParseText(data: TStringList): Boolean;
-// this is a 3 field wide data set so things are differently done
-var
-  IDX: Integer;
-  name, value: string;
 begin
   Reset;
   result := false;
 
   if NOT assigned(data) then
     exit;
+
+  // needs finished
   try
     result := true;
-
   except
     on e: exception do
     begin

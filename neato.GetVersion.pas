@@ -134,10 +134,11 @@ type
     fWheelPodType: tGetVersionFields;
 
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: TStringList): boolean;
+    function ParseText(data: TStringList): boolean; override;
+
     property BaseID: tGetVersionFields Read fBaseID;
     property Beehive_URL: tGetVersionFields Read fBeehive_URL;
     property BlowerType: tGetVersionFields Read fBlowerType;
@@ -204,9 +205,8 @@ Function tGetVersionFields.ParseText(data: TStringList; lookFor: string): boolea
 var
   parse: TStringList;
 begin
-  result := false;
   try
-    parse := TStringList.create;
+    parse := TStringList.Create;
     Reset;
     parse.CaseSensitive := false;
     parse.Delimiter := ',';
@@ -244,7 +244,7 @@ begin
   end;
 end;
 
-Constructor tGetVersion.create;
+Constructor tGetVersion.Create;
 begin
   inherited;
   fCommand := sGetVersion;
@@ -252,7 +252,7 @@ begin
   Reset;
 end;
 
-Destructor tGetVersion.destroy;
+Destructor tGetVersion.Destroy;
 begin
   inherited;
 end;
@@ -314,7 +314,6 @@ function tGetVersion.ParseText(data: TStringList): boolean;
 var
   lineData: TStringList;
   IDX: integer;
-  cIDX: integer;
 
 begin
   Reset;
@@ -324,7 +323,7 @@ begin
   if NOT assigned(data) then
     exit;
 
-  lineData := TStringList.create;
+  lineData := TStringList.Create;
   lineData.Delimiter := ',';
   lineData.DelimitedText := data.Strings[1]; // grab header row
 

@@ -70,10 +70,10 @@ type
     fDropSensorRight: tNeatoNameValuePair;
 
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: tstringlist): Boolean;
+    function ParseText(data: tstringlist): Boolean; override;
 
     property BatteryVoltage: tNeatoNameValuePair read fBatteryVoltage;
     property BatteryCurrent: tNeatoNameValuePair read fBatteryCurrent;
@@ -149,7 +149,6 @@ var
   lineData: tstringlist;
   subData: tstringlist;
   IDX: integer;
-  cIDX: integer;
 
 begin
   Reset;

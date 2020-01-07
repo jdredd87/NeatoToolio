@@ -582,9 +582,10 @@ end;
 
 procedure TfrmMain.timer_GetAccelTimer(Sender: TObject);
 var
-  a: tGetAccel;
-  t: TStringList;
+  pGetAccel: tGetAccel;
+  pReadData: TStringList;
   v: double;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetAccel) then
@@ -593,47 +594,52 @@ begin
     exit;
   end;
 
-  a := tGetAccel.Create;
+  pGetAccel := tGetAccel.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetAccel);
-  t.Text := stringreplace(t.Text, ',', '=', [rfreplaceall]);
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetAccel);
+  pReadData.Text := stringreplace(pReadData.Text, ',', '=', [rfreplaceall]);
 
-  a.ParseText(t);
+  r := pGetAccel.ParseText(pReadData);
 
-  lbl_PitchInDegreesValue.Text := a.PitchInDegrees.ToString;
-  lbl_RollInDegreesValue.Text := a.RollInDegrees.ToString;
-  lbl_XInGValue.Text := a.XInG.ToString;
-  lbl_YInGValue.Text := a.YInG.ToString;
-  lbl_ZInGValue.Text := a.ZInG.ToString;
-  lbl_SumInGValue.Text := a.SumInG.ToString;
+  if r then
+  begin
+    lbl_PitchInDegreesValue.Text := pGetAccel.PitchInDegrees.ToString;
+    lbl_RollInDegreesValue.Text := pGetAccel.RollInDegrees.ToString;
+    lbl_XInGValue.Text := pGetAccel.XInG.ToString;
+    lbl_YInGValue.Text := pGetAccel.YInG.ToString;
+    lbl_ZInGValue.Text := pGetAccel.ZInG.ToString;
+    lbl_SumInGValue.Text := pGetAccel.SumInG.ToString;
 
-  v := a.RollInDegrees;
+    v := pGetAccel.RollInDegrees;
 
-  if v > 0 then
-    v := -abs(v)
-  else
-    v := abs(v);
+    if v > 0 then
+      v := -abs(v)
+    else
+      v := abs(v);
 
-  _3DGetAccel.RotationAngle.Z := 90 + v;
+    _3DGetAccel.RotationAngle.Z := 90 + v;
 
-  v := a.PitchInDegrees;
+    v := pGetAccel.PitchInDegrees;
 
-  if v > 0 then
-    v := -abs(v)
-  else
-    v := abs(v);
+    if v > 0 then
+      v := -abs(v)
+    else
+      v := abs(v);
 
-  _3DGetAccel.RotationAngle.Y := v;
+    _3DGetAccel.RotationAngle.Y := v;
 
-  t.Free;
-  a.Free;
+  end;
+
+  pReadData.Free;
+  pGetAccel.Free;
 end;
 
 procedure TfrmMain.timer_GetChargerTimer(Sender: TObject);
 var
-  c: tGetCharger;
-  t: TStringList;
+  pGetCharger: tGetCharger;
+  pReadData: TStringList;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetCharger) then
@@ -642,46 +648,51 @@ begin
     exit;
   end;
 
-  c := tGetCharger.Create;
+  pGetCharger := tGetCharger.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetCharger);
-  t.Text := stringreplace(t.Text, ',', '=', [rfreplaceall]);
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetCharger);
+  pReadData.Text := stringreplace(pReadData.Text, ',', '=', [rfreplaceall]);
 
-  c.ParseText(t);
+  r := pGetCharger.ParseText(pReadData);
 
-  pb_FuelPercent.Value := c.FuelPercent;
-  pb_BattTempCAvg.Value := c.BattTempCAvg;
-  pb_VBattV.Value := c.VBattV;
-  pb_VextV.Value := c.VExtV;
-  pb_ChargermAH.Value := c.Charger_mAH;
-  pb_DischargermAH.Value := c.Discharge_mAH;
+  if r then
+  begin
 
-  lbl_FuelPercent.Text := c.FuelPercent.ToString + ' %';
-  lbl_BattTempCAvg.Text := c.BattTempCAvg.ToString + ' *';
-  lbl_VbattV.Text := c.VBattV.ToString + ' v';
-  lbl_VextV.Text := c.VExtV.ToString + ' v';
-  lbl_ChargermAH.Text := c.Charger_mAH.ToString;
-  lbl_DischargermAH.Text := c.Discharge_mAH.ToString;
+    pb_FuelPercent.Value := pGetCharger.FuelPercent;
+    pb_BattTempCAvg.Value := pGetCharger.BattTempCAvg;
+    pb_VBattV.Value := pGetCharger.VBattV;
+    pb_VextV.Value := pGetCharger.VExtV;
+    pb_ChargermAH.Value := pGetCharger.Charger_mAH;
+    pb_DischargermAH.Value := pGetCharger.Discharge_mAH;
 
-  sw_BatteryOverTemp.IsChecked := c.BatteryOverTemp;
-  sw_ChargingActive.IsChecked := c.ChargingActive;
-  sw_ChargingEnabled.IsChecked := c.ChargingEnabled;
-  sw_ConfidentOnFuel.IsChecked := c.ConfidentOnFuel;
-  sw_OnReservedFuel.IsChecked := c.OnReservedFuel;
-  sw_EmptyFuel.IsChecked := c.EmptyFuel;
-  sw_BatteryFailure.IsChecked := c.BatteryFailure;
-  sw_ExtPwrPresent.IsChecked := c.ExtPwrPresent;
-  sw_ThermistorPresent.IsChecked := c.ThermistorPresent;
+    lbl_FuelPercent.Text := pGetCharger.FuelPercent.ToString + ' %';
+    lbl_BattTempCAvg.Text := pGetCharger.BattTempCAvg.ToString + ' *';
+    lbl_VbattV.Text := pGetCharger.VBattV.ToString + ' v';
+    lbl_VextV.Text := pGetCharger.VExtV.ToString + ' v';
+    lbl_ChargermAH.Text := pGetCharger.Charger_mAH.ToString;
+    lbl_DischargermAH.Text := pGetCharger.Discharge_mAH.ToString;
 
-  t.Free;
-  c.Free;
+    sw_BatteryOverTemp.IsChecked := pGetCharger.BatteryOverTemp;
+    sw_ChargingActive.IsChecked := pGetCharger.ChargingActive;
+    sw_ChargingEnabled.IsChecked := pGetCharger.ChargingEnabled;
+    sw_ConfidentOnFuel.IsChecked := pGetCharger.ConfidentOnFuel;
+    sw_OnReservedFuel.IsChecked := pGetCharger.OnReservedFuel;
+    sw_EmptyFuel.IsChecked := pGetCharger.EmptyFuel;
+    sw_BatteryFailure.IsChecked := pGetCharger.BatteryFailure;
+    sw_ExtPwrPresent.IsChecked := pGetCharger.ExtPwrPresent;
+    sw_ThermistorPresent.IsChecked := pGetCharger.ThermistorPresent;
+  end;
+
+  pReadData.Free;
+  pGetCharger.Free;
 end;
 
 procedure TfrmMain.timer_getWarrantyTimer(Sender: TObject);
 var
-  w: tGetWarranty;
-  t: TStringList;
+  pGetWarranty: tGetWarranty;
+  pReadData: TStringList;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabsInfoOptions.ActiveTab <> tabGetWarranty) then
@@ -690,32 +701,33 @@ begin
     exit;
   end;
 
-  w := tGetWarranty.Create;
+  pGetWarranty := tGetWarranty.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetWarranty);
-  t.Text := stringreplace(t.Text, ',', '=', [rfreplaceall]);
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetWarranty);
+  pReadData.Text := stringreplace(pReadData.Text, ',', '=', [rfreplaceall]);
 
-  w.ParseText(t);
+  r := pGetWarranty.ParseText(pReadData);
 
-  lbl_CumulativeCleaningTimeInSecsValue.Text := strtoint('$' + w.CumulativeCleaningTimeInSecs).ToString + ' seconds as '
-    + w.CumulativeCleaningTimeInSecsAsHours.ToString + ' hours';
+  if r then
+  begin
+    lbl_CumulativeCleaningTimeInSecsValue.Text := strtoint('$' + pGetWarranty.CumulativeCleaningTimeInSecs).ToString +
+      ' seconds as ' + pGetWarranty.CumulativeCleaningTimeInSecsAsHours.ToString + ' hours';
+    lbl_CumulativeBatteryCyclesValue.Text := inttostr(strtoint('$' + pGetWarranty.CumulativeBatteryCycles));
+    lbl_ValidationCodeValue.Text := strtoint('$' + pGetWarranty.ValidationCode).ToString;
+  end;
 
-  lbl_CumulativeBatteryCyclesValue.Text := inttostr(strtoint('$' + w.CumulativeBatteryCycles));
-
-  lbl_ValidationCodeValue.Text := strtoint('$' + w.ValidationCode).ToString;
-
-  t.Free;
-  w.Free;
+  pReadData.Free;
+  pGetWarranty.Free;
 end;
 
 procedure TfrmMain.timer_PlaySoundTimer(Sender: TObject);
-VAR
+{ VAR
   idx: byte;
   r: string;
+}
 begin
   {
-
     idx := timer_PlaySound.Tag;
 
     r := com.SendCommand('PLAYSOUND SOUNDID ' + idx.ToString);
@@ -740,8 +752,9 @@ end;
 
 procedure TfrmMain.timer_GetAnalogSensorsTimer(Sender: TObject);
 var
-  a: tGetAnalogSensors;
-  t: TStringList;
+  pGetAnalogSensors: tGetAnalogSensors;
+  pReadData: TStringList;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetAnalogSensors) then
@@ -750,59 +763,85 @@ begin
     exit;
   end;
 
-  a := tGetAnalogSensors.Create;
+  pGetAnalogSensors := tGetAnalogSensors.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetAnalogSensors);
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetAnalogSensors);
 
-  memoDebug.Lines.Text := t.Text;
-  a.ParseText(t);
+  memoDebug.Lines.Text := pReadData.Text;
 
-  pb_BatteryVoltage.Value := a.BatteryVoltage.ValueDouble;
+  r := pGetAnalogSensors.ParseText(pReadData);
 
-  lblBatteryVoltageValue.Text := a.BatteryVoltage.ValueDouble.ToString + ' ' + a.BatteryVoltage._Unit;
+  if r then
+  begin
 
-  pb_BatteryCurrent.Value := a.BatteryCurrent.ValueDouble;
-  lblBatteryCurrentValue.Text := a.BatteryCurrent.ValueDouble.ToString + ' ' + a.BatteryCurrent._Unit;
+    pb_BatteryVoltage.Value := pGetAnalogSensors.BatteryVoltage.ValueDouble;
 
-  pb_BatteryTemperature.Value := a.BatteryTemperature.ValueDouble;
-  lblBatteryTemperatureValue.Text := a.BatteryTemperature.ValueDouble.ToString + ' ' + a.BatteryTemperature._Unit;
+    lblBatteryVoltageValue.Text := pGetAnalogSensors.BatteryVoltage.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.BatteryVoltage._Unit;
 
-  pb_ExternalVoltage.Value := a.ExternalVoltage.ValueDouble;
-  lblExternalVoltageValue.Text := a.ExternalVoltage.ValueDouble.ToString + ' ' + a.ExternalVoltage._Unit;
+    pb_BatteryCurrent.Value := pGetAnalogSensors.BatteryCurrent.ValueDouble;
+    lblBatteryCurrentValue.Text := pGetAnalogSensors.BatteryCurrent.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.BatteryCurrent._Unit;
 
-  lblAccelerometerXValue.Text := a.AccelerometerX.ValueDouble.ToString + ' ' + a.AccelerometerX._Unit;
-  lblAccelerometerYValue.Text := a.AccelerometerY.ValueDouble.ToString + ' ' + a.AccelerometerY._Unit;
-  lblAccelerometerZValue.Text := a.AccelerometerZ.ValueDouble.ToString + ' ' + a.AccelerometerZ._Unit;
+    pb_BatteryTemperature.Value := pGetAnalogSensors.BatteryTemperature.ValueDouble;
+    lblBatteryTemperatureValue.Text := pGetAnalogSensors.BatteryTemperature.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.BatteryTemperature._Unit;
 
-  lblCompassmeterXValue.Text := a.CompassmeterX.ValueDouble.ToString + ' ' + a.CompassmeterX._Unit;
-  lblCompassmeterYValue.Text := a.CompassmeterY.ValueDouble.ToString + ' ' + a.CompassmeterY._Unit;
-  lblCompassmeterZValue.Text := a.CompassmeterZ.ValueDouble.ToString + ' ' + a.CompassmeterZ._Unit;
+    pb_ExternalVoltage.Value := pGetAnalogSensors.ExternalVoltage.ValueDouble;
+    lblExternalVoltageValue.Text := pGetAnalogSensors.ExternalVoltage.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.ExternalVoltage._Unit;
 
-  lblGyroscopeXValue.Text := a.GyroscopeX.ValueDouble.ToString + ' ' + a.GyroscopeX._Unit;
-  lblGyroscopeYValue.Text := a.GyroscopeY.ValueDouble.ToString + ' ' + a.GyroscopeY._Unit;
-  lblGyroscopeZValue.Text := a.GyroscopeZ.ValueDouble.ToString + ' ' + a.GyroscopeZ._Unit;
+    lblAccelerometerXValue.Text := pGetAnalogSensors.AccelerometerX.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.AccelerometerX._Unit;
+    lblAccelerometerYValue.Text := pGetAnalogSensors.AccelerometerY.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.AccelerometerY._Unit;
+    lblAccelerometerZValue.Text := pGetAnalogSensors.AccelerometerZ.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.AccelerometerZ._Unit;
 
-  lblIMUAccelerometerXValue.Text := a.IMUAccelerometerX.ValueDouble.ToString + ' ' + a.IMUAccelerometerX._Unit;
-  lblIMUAccelerometerYValue.Text := a.IMUAccelerometerY.ValueDouble.ToString + ' ' + a.IMUAccelerometerY._Unit;
-  lblIMUAccelerometerZValue.Text := a.IMUAccelerometerZ.ValueDouble.ToString + ' ' + a.IMUAccelerometerZ._Unit;
+    lblCompassmeterXValue.Text := pGetAnalogSensors.CompassmeterX.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.CompassmeterX._Unit;
+    lblCompassmeterYValue.Text := pGetAnalogSensors.CompassmeterY.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.CompassmeterY._Unit;
+    lblCompassmeterZValue.Text := pGetAnalogSensors.CompassmeterZ.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.CompassmeterZ._Unit;
 
-  lblVacuumCurrentValue.Text := a.VacuumCurrent.ValueDouble.ToString + ' ' + a.VacuumCurrent._Unit;
-  lblWallSensorValue.Text := a.WallSensor.ValueDouble.ToString + ' ' + a.WallSensor._Unit;
-  lblDropSensorLeftValue.Text := a.DropSensorLeft.ValueDouble.ToString + ' ' + a.DropSensorLeft._Unit;
-  lblDropSensorRightValue.Text := a.DropSensorRight.ValueDouble.ToString + ' ' + a.DropSensorRight._Unit;
+    lblGyroscopeXValue.Text := pGetAnalogSensors.GyroscopeX.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.GyroscopeX._Unit;
+    lblGyroscopeYValue.Text := pGetAnalogSensors.GyroscopeY.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.GyroscopeY._Unit;
+    lblGyroscopeZValue.Text := pGetAnalogSensors.GyroscopeZ.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.GyroscopeZ._Unit;
 
-  swMagSensorLeft.IsChecked := a.MagSensorLeft.ValueBoolean;
-  swMagSensorRight.IsChecked := a.MagSensorRight.ValueBoolean;
+    lblIMUAccelerometerXValue.Text := pGetAnalogSensors.IMUAccelerometerX.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.IMUAccelerometerX._Unit;
+    lblIMUAccelerometerYValue.Text := pGetAnalogSensors.IMUAccelerometerY.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.IMUAccelerometerY._Unit;
+    lblIMUAccelerometerZValue.Text := pGetAnalogSensors.IMUAccelerometerZ.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.IMUAccelerometerZ._Unit;
 
-  t.Free;
-  a.Free;
+    lblVacuumCurrentValue.Text := pGetAnalogSensors.VacuumCurrent.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.VacuumCurrent._Unit;
+    lblWallSensorValue.Text := pGetAnalogSensors.WallSensor.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.WallSensor._Unit;
+    lblDropSensorLeftValue.Text := pGetAnalogSensors.DropSensorLeft.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.DropSensorLeft._Unit;
+    lblDropSensorRightValue.Text := pGetAnalogSensors.DropSensorRight.ValueDouble.ToString + ' ' +
+      pGetAnalogSensors.DropSensorRight._Unit;
+
+    swMagSensorLeft.IsChecked := pGetAnalogSensors.MagSensorLeft.ValueBoolean;
+    swMagSensorRight.IsChecked := pGetAnalogSensors.MagSensorRight.ValueBoolean;
+
+  end;
+  pReadData.Free;
+  pGetAnalogSensors.Free;
 end;
 
 procedure TfrmMain.timer_GetDigitalSensorsTimer(Sender: TObject);
 var
-  d: tGetDigitalSensors;
-  t: TStringList;
+  pGetDigitalSensors: tGetDigitalSensors;
+  pReadData: TStringList;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetDigitalSensors) then
@@ -811,32 +850,37 @@ begin
     exit;
   end;
 
-  d := tGetDigitalSensors.Create;
+  pGetDigitalSensors := tGetDigitalSensors.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetDigitalSensors);
-  memoDebug.Lines.Text := t.Text;
-  d.ParseText(t);
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetDigitalSensors);
+  memoDebug.Lines.Text := pReadData.Text;
 
-  swSNSR_DC_JACK_IS_IN.IsChecked := d.SNSR_DC_JACK_IS_IN.ValueBoolean;
-  swSNSR_DUSTBIN_IS_IN.IsChecked := d.SNSR_DUSTBIN_IS_IN.ValueBoolean;
-  swSNSR_LEFT_WHEEL_EXTENDED.IsChecked := d.SNSR_LEFT_WHEEL_EXTENDED.ValueBoolean;
-  swSNSR_RIGHT_WHEEL_EXTENDED.IsChecked := d.SNSR_RIGHT_WHEEL_EXTENDED.ValueBoolean;
+  r := pGetDigitalSensors.ParseText(pReadData);
 
-  swLSIDEBIT.IsChecked := d.LSIDEBIT.ValueBoolean;
-  swLFRONTBIT.IsChecked := d.LFRONTBIT.ValueBoolean;
-  swLLDSBIT.IsChecked := d.LLDSBIT.ValueBoolean;
-  swRSIDEBIT.IsChecked := d.RSIDEBIT.ValueBoolean;
+  if r then
+  begin
+    swSNSR_DC_JACK_IS_IN.IsChecked := pGetDigitalSensors.SNSR_DC_JACK_IS_IN.ValueBoolean;
+    swSNSR_DUSTBIN_IS_IN.IsChecked := pGetDigitalSensors.SNSR_DUSTBIN_IS_IN.ValueBoolean;
+    swSNSR_LEFT_WHEEL_EXTENDED.IsChecked := pGetDigitalSensors.SNSR_LEFT_WHEEL_EXTENDED.ValueBoolean;
+    swSNSR_RIGHT_WHEEL_EXTENDED.IsChecked := pGetDigitalSensors.SNSR_RIGHT_WHEEL_EXTENDED.ValueBoolean;
 
-  t.Free;
-  d.Free;
+    swLSIDEBIT.IsChecked := pGetDigitalSensors.LSIDEBIT.ValueBoolean;
+    swLFRONTBIT.IsChecked := pGetDigitalSensors.LFRONTBIT.ValueBoolean;
+    swLLDSBIT.IsChecked := pGetDigitalSensors.LLDSBIT.ValueBoolean;
+    swRSIDEBIT.IsChecked := pGetDigitalSensors.RSIDEBIT.ValueBoolean;
+  end;
+
+  pReadData.Free;
+  pGetDigitalSensors.Free;
 end;
 
 procedure TfrmMain.timer_GetErrTimer(Sender: TObject);
 var
-  g: tGetErr;
-  t: TStringList;
+  pGetErr: tGetErr;
+  pReadData: TStringList;
   idx: integer;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabsInfoOptions.ActiveTab <> tabGetErr) then
@@ -845,30 +889,33 @@ begin
     exit;
   end;
 
-  g := tGetErr.Create;
+  pGetErr := tGetErr.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetErr);
-  memoDebug.Lines.Text := t.Text;
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetErr);
+  memoDebug.Lines.Text := pReadData.Text;
 
-  g.ParseText(t);
+  r := pGetErr.ParseText(pReadData);
 
-  sgGetErr.RowCount := g.ErrorList.Count;
-
-  for idx := 0 to g.ErrorList.Count - 1 do
+  if r then
   begin
-    sgGetErr.Cells[0, idx] := g.ErrorList.Names[idx];
-    sgGetErr.Cells[1, idx] := g.ErrorList.ValueFromIndex[idx];
+    sgGetErr.RowCount := pGetErr.ErrorList.Count;
+    for idx := 0 to pGetErr.ErrorList.Count - 1 do
+    begin
+      sgGetErr.Cells[0, idx] := pGetErr.ErrorList.Names[idx];
+      sgGetErr.Cells[1, idx] := pGetErr.ErrorList.ValueFromIndex[idx];
+    end;
   end;
 
-  t.Free;
-  g.Free;
+  pReadData.Free;
+  pGetErr.Free;
 end;
 
 procedure TfrmMain.timer_GetUsageTimer(Sender: TObject);
 var
-  u: tGetUsage;
-  t: TStringList;
+  pGetUsage: tGetUsage;
+  pReadData: TStringList;
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabsInfoOptions.ActiveTab <> tabGetUsage) then
@@ -877,23 +924,26 @@ begin
     exit;
   end;
 
-  u := tGetUsage.Create;
+  pGetUsage := tGetUsage.Create;
 
-  t := TStringList.Create;
-  t.Text := com.SendCommand(sGetUsage);
-  memoDebug.Lines.Text := t.Text;
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetUsage);
+  memoDebug.Lines.Text := pReadData.Text;
 
-  u.ParseText(t);
+  r := pGetUsage.ParseText(pReadData);
 
-  lblTotalCleaningTimeValue.Text := u.Total_Cleaning_Time.ToString;
-  lblTotalCleanedAreaValue.Text := u.Total_Cleaned_Area.ToString;
-  lblMainBrushRunTimeinSecValue.Text := u.MainBrushRunTimeinSec.ToString;
-  lblSideBrushRunTimeinSecValue.Text := u.SideBrushRunTimeinSec.ToString;
-  lblDirtbinRunTimeinSecValue.Text := u.DirtbinRunTimeinSec.ToString;
-  lblFilterTimeinSecValue.Text := u.FilterTimeinSec.ToString;
+  if r then
+  begin
+    lblTotalCleaningTimeValue.Text := pGetUsage.Total_Cleaning_Time.ToString;
+    lblTotalCleanedAreaValue.Text := pGetUsage.Total_Cleaned_Area.ToString;
+    lblMainBrushRunTimeinSecValue.Text := pGetUsage.MainBrushRunTimeinSec.ToString;
+    lblSideBrushRunTimeinSecValue.Text := pGetUsage.SideBrushRunTimeinSec.ToString;
+    lblDirtbinRunTimeinSecValue.Text := pGetUsage.DirtbinRunTimeinSec.ToString;
+    lblFilterTimeinSecValue.Text := pGetUsage.FilterTimeinSec.ToString;
+  end;
 
-  t.Free;
-  u.Free;
+  pReadData.Free;
+  pGetUsage.Free;
 end;
 
 procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
@@ -1143,7 +1193,7 @@ begin
     exit;
   end;
 
-  pReadData := TStringList.Create;
+  pReadData := TStringList.Create; // LIDAR will just use a simple TStringList name/Value pair to work by
 
   pReadData.Text := trim(com.SendCommand('GetLDSScan'));
   memoDebug.Lines.Text := pReadData.Text;
@@ -1187,7 +1237,7 @@ procedure TfrmMain.timer_GetVersionTimer(Sender: TObject);
 var
   pGetVersion: tGetVersion;
   pReadData: TStringList;
-
+  r: Boolean;
 begin
 
   if (com.com.Active = false) or (tabsInfoOptions.ActiveTab <> tabGetVersion) then
@@ -1202,57 +1252,60 @@ begin
   pReadData.Text := com.SendCommand(sGetVersion);
   memoDebug.Lines.Text := pReadData.Text;
 
-  pGetVersion.ParseText(pReadData);
+  r := pGetVersion.ParseText(pReadData);
 
-  sgGetVersion.RowCount := neato.GetVersion.iGetVersionRowCount;
+  if r then
+  begin
+    sgGetVersion.RowCount := neato.GetVersion.iGetVersionRowCount;
 
-  PopulateRow(0, pGetVersion.BaseID);
-  PopulateRow(1, pGetVersion.Beehive_URL);
-  PopulateRow(2, pGetVersion.BlowerType);
-  PopulateRow(3, pGetVersion.Bootloader_Version);
-  PopulateRow(4, pGetVersion.BrushMotorResistorPowerRating);
-  PopulateRow(5, pGetVersion.BrushMotorResistorResistance);
-  PopulateRow(6, pGetVersion.BrushMotorType);
-  PopulateRow(7, pGetVersion.BrushSpeed);
-  PopulateRow(8, pGetVersion.BrushSpeedEco);
-  PopulateRow(9, pGetVersion.ChassisRev);
-  PopulateRow(10, pGetVersion.DropSensorType);
-  PopulateRow(11, pGetVersion.LCD_Panel);
-  PopulateRow(12, pGetVersion.LDS_CPU);
-  PopulateRow(13, pGetVersion.LDS_Serial);
-  PopulateRow(14, pGetVersion.LDS_Software);
-  PopulateRow(15, pGetVersion.LDSMotorType);
-  PopulateRow(16, pGetVersion.Locale);
-  PopulateRow(17, pGetVersion.MagSensorType);
-  PopulateRow(18, pGetVersion.MainBoard_Serial_Number);
-  PopulateRow(19, pGetVersion.MainBoard_Version);
-  PopulateRow(20, pGetVersion.Model);
-  PopulateRow(21, pGetVersion.NTP_URL);
-  PopulateRow(22, pGetVersion.Nucleo_URL);
-  PopulateRow(23, pGetVersion.QAState);
-  PopulateRow(24, pGetVersion.Serial_Number);
-  PopulateRow(25, pGetVersion.SideBrushPower);
-  PopulateRow(26, pGetVersion.SideBrushType);
-  PopulateRow(27, pGetVersion.SmartBatt_Authorization);
-  PopulateRow(28, pGetVersion.SmartBatt_Data_Version);
-  PopulateRow(29, pGetVersion.SmartBatt_Device_Chemistry);
-  PopulateRow(30, pGetVersion.SmartBatt_Device_Name);
-  PopulateRow(31, pGetVersion.SmartBatt_Manufacturer_Name);
-  PopulateRow(32, pGetVersion.SmartBatt_Mfg_Year_Month_Day);
-  PopulateRow(33, pGetVersion.SmartBatt_Serial_Number);
-  PopulateRow(34, pGetVersion.SmartBatt_Software_Version);
-  PopulateRow(35, pGetVersion.Software_Git_SHA);
-  PopulateRow(36, pGetVersion.Software);
-  PopulateRow(37, pGetVersion.Time_Local);
-  PopulateRow(38, pGetVersion.Time_UTC);
-  PopulateRow(39, pGetVersion.UI_Board_Hardware);
-  PopulateRow(40, pGetVersion.UI_Board_Software);
-  PopulateRow(41, pGetVersion.UI_Name);
-  PopulateRow(42, pGetVersion.UI_Version);
-  PopulateRow(43, pGetVersion.VacuumPwr);
-  PopulateRow(44, pGetVersion.VacuumPwrEco);
-  PopulateRow(45, pGetVersion.WallSensorType);
-  PopulateRow(46, pGetVersion.WheelPodType);
+    PopulateRow(0, pGetVersion.BaseID);
+    PopulateRow(1, pGetVersion.Beehive_URL);
+    PopulateRow(2, pGetVersion.BlowerType);
+    PopulateRow(3, pGetVersion.Bootloader_Version);
+    PopulateRow(4, pGetVersion.BrushMotorResistorPowerRating);
+    PopulateRow(5, pGetVersion.BrushMotorResistorResistance);
+    PopulateRow(6, pGetVersion.BrushMotorType);
+    PopulateRow(7, pGetVersion.BrushSpeed);
+    PopulateRow(8, pGetVersion.BrushSpeedEco);
+    PopulateRow(9, pGetVersion.ChassisRev);
+    PopulateRow(10, pGetVersion.DropSensorType);
+    PopulateRow(11, pGetVersion.LCD_Panel);
+    PopulateRow(12, pGetVersion.LDS_CPU);
+    PopulateRow(13, pGetVersion.LDS_Serial);
+    PopulateRow(14, pGetVersion.LDS_Software);
+    PopulateRow(15, pGetVersion.LDSMotorType);
+    PopulateRow(16, pGetVersion.Locale);
+    PopulateRow(17, pGetVersion.MagSensorType);
+    PopulateRow(18, pGetVersion.MainBoard_Serial_Number);
+    PopulateRow(19, pGetVersion.MainBoard_Version);
+    PopulateRow(20, pGetVersion.Model);
+    PopulateRow(21, pGetVersion.NTP_URL);
+    PopulateRow(22, pGetVersion.Nucleo_URL);
+    PopulateRow(23, pGetVersion.QAState);
+    PopulateRow(24, pGetVersion.Serial_Number);
+    PopulateRow(25, pGetVersion.SideBrushPower);
+    PopulateRow(26, pGetVersion.SideBrushType);
+    PopulateRow(27, pGetVersion.SmartBatt_Authorization);
+    PopulateRow(28, pGetVersion.SmartBatt_Data_Version);
+    PopulateRow(29, pGetVersion.SmartBatt_Device_Chemistry);
+    PopulateRow(30, pGetVersion.SmartBatt_Device_Name);
+    PopulateRow(31, pGetVersion.SmartBatt_Manufacturer_Name);
+    PopulateRow(32, pGetVersion.SmartBatt_Mfg_Year_Month_Day);
+    PopulateRow(33, pGetVersion.SmartBatt_Serial_Number);
+    PopulateRow(34, pGetVersion.SmartBatt_Software_Version);
+    PopulateRow(35, pGetVersion.Software_Git_SHA);
+    PopulateRow(36, pGetVersion.Software);
+    PopulateRow(37, pGetVersion.Time_Local);
+    PopulateRow(38, pGetVersion.Time_UTC);
+    PopulateRow(39, pGetVersion.UI_Board_Hardware);
+    PopulateRow(40, pGetVersion.UI_Board_Software);
+    PopulateRow(41, pGetVersion.UI_Name);
+    PopulateRow(42, pGetVersion.UI_Version);
+    PopulateRow(43, pGetVersion.VacuumPwr);
+    PopulateRow(44, pGetVersion.VacuumPwrEco);
+    PopulateRow(45, pGetVersion.WallSensorType);
+    PopulateRow(46, pGetVersion.WheelPodType);
+  end;
 
   pReadData.Free;
   pGetVersion.Free;

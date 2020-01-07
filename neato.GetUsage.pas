@@ -51,10 +51,10 @@ type
     fFilterTimeinSec: longint;
 
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: tstringlist): boolean;
+    function ParseText(data: tstringlist): boolean; override;
 
     property Total_Cleaning_Time: longint read fTotal_cleaning_time;
     property Total_Cleaned_Area: longint read fTotal_cleaned_area;

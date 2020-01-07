@@ -12542,8 +12542,8 @@ object frmMain: TfrmMain
           0B4E6F726D616C436F6C6F720708636C61426C61636B0C50726573736564436F
           6C6F720708636C615768697465000000}
       end>
-    Left = 600
-    Top = 384
+    Left = 744
+    Top = 88
   end
   object timer_getWarranty: TTimer
     Enabled = False
@@ -12572,8 +12572,8 @@ object frmMain: TfrmMain
     Emissive = claBlack
     Specular = claYellow
     Shininess = 30
-    Left = 744
-    Top = 416
+    Left = 136
+    Top = 536
   end
   object timer_GetDigitalSensors: TTimer
     Enabled = False
@@ -23192,21 +23192,21 @@ object frmMain: TfrmMain
     Enabled = False
     Interval = 2000
     OnTimer = timer_PlaySoundTimer
-    Left = 600
-    Top = 464
+    Left = 608
+    Top = 432
   end
   object timer_LIDAR: TTimer
     Enabled = False
     Interval = 250
     OnTimer = timer_LIDARTimer
-    Left = 432
-    Top = 352
+    Left = 608
+    Top = 376
   end
   object timer_GetUsage: TTimer
     Enabled = False
     Interval = 500
     OnTimer = timer_GetUsageTimer
-    Left = 432
-    Top = 432
+    Left = 744
+    Top = 400
   end
 end

@@ -72,14 +72,14 @@ end;
 function TdmSerial.SendCommand(cmd: string): string;
 begin
   result := '';
-  com.WriteAnsiString(cmd + #13);
+  com.WriteAnsiString(ansistring(cmd) + #13);
   com.Timeouts.ReadInterval := 500;
 
   repeat
     sleep(100);
   until (not com.ReadPending);
 
-  result := com.ReadAnsiString;
+  result := string(com.ReadAnsiString);
 end;
 
 end.

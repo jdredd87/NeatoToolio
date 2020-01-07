@@ -2,7 +2,7 @@ unit neato.GetWarranty;
 
 interface
 
-uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
+uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers;
 
 const
   // labels of text to look / parse for
@@ -25,10 +25,10 @@ type
 
     function CumulativeCleaningTimeInSecs_asHours: double;
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: tstringlist): boolean;
+    function ParseText(data: tstringlist): boolean; override;
 
     property CumulativeCleaningTimeInSecs: string read fCumulativeCleaningTimeInSecs;
     property CumulativeBatteryCycles: string read fCumulativeBatteryCycles;
@@ -86,13 +86,8 @@ begin
 end;
 
 function tGetWarranty.CumulativeCleaningTimeInSecs_asHours: double;
-var
-  value: longint;
 begin
-  value := 0;
-  trystrtoint('$' + fCumulativeCleaningTimeInSecs, value);
-  value := (value div 60) div 60;
-  result := value;
+  result := HEX_TimeInSecs_asHours(fCumulativeCleaningTimeInSecs);
 end;
 
 end.

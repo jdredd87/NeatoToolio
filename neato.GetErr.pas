@@ -17,10 +17,10 @@ type
   private
     fErrorList: TStringList;
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: TStringList): Boolean;
+    function ParseText(data: TStringList): Boolean; override;
 
     property ErrorList: TStringList read fErrorList;
   end;

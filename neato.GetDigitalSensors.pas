@@ -42,10 +42,10 @@ type
     fRLDSBIT: tNeatoNameValuePair;
 
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: tstringlist): Boolean;
+    function ParseText(data: tstringlist): Boolean; override;
     property SNSR_DC_JACK_IS_IN: tNeatoNameValuePair read fSNSR_DC_JACK_IS_IN;
     property SNSR_DUSTBIN_IS_IN: tNeatoNameValuePair read fSNSR_DUSTBIN_IS_IN;
     property SNSR_LEFT_WHEEL_EXTENDED: tNeatoNameValuePair read fSNSR_LEFT_WHEEL_EXTENDED;
@@ -60,7 +60,7 @@ type
 
 implementation
 
-Constructor tGetDigitalSensors.create;
+Constructor tGetDigitalSensors.Create;
 begin
   inherited;
   fCommand := sGetDigitalSensors;
@@ -68,7 +68,7 @@ begin
   Reset;
 end;
 
-Destructor tGetDigitalSensors.destroy;
+Destructor tGetDigitalSensors.Destroy;
 begin
   inherited;
 end;
@@ -92,9 +92,6 @@ function tGetDigitalSensors.ParseText(data: tstringlist): Boolean;
 // this is a 3 field wide data set so things are differently done
 var
   lineData: tstringlist;
-  IDX: integer;
-  cIDX: integer;
-
 begin
   Reset;
 
@@ -105,7 +102,7 @@ begin
 
   data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
 
-  lineData := tstringlist.create;
+  lineData := tstringlist.Create;
   lineData.Text := data.Text;
 
   // Simple test to make sure we got data

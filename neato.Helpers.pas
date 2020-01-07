@@ -27,13 +27,15 @@ var
   value: longint;
 begin
   try
-   value := 0;
-   value := hexvalue.ToInteger;
-   value := (value div 60) div 60;
+    value := HexValue.ToInteger;
+    value := (value div 60) div 60;
   except
-   value := 0; // oops
+    on e: exception do
+    begin
+      value := 0; // oops this is bad if this happens
+    end;
   end;
-   result := value;
+  result := value;
 end;
 
 function HEX_TimeInSecs_asHours(HexValue: string): Double; // some values have HEX to represent time

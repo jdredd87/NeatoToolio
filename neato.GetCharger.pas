@@ -48,10 +48,10 @@ type
     fCharger_mAH: double;
     fDischarge_mAH: double;
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: tstringlist): boolean;
+    function ParseText(data: tstringlist): boolean; override;
     property FuelPercent: double read fFuelPercent;
     property BatteryOverTemp: boolean read fBatteryOverTemp;
     property ChargingActive: boolean read fChargingActive;
@@ -71,7 +71,7 @@ type
 
 implementation
 
-Constructor tGetCharger.create;
+Constructor tGetCharger.Create;
 begin
   inherited;
   fCommand := sGetCharger;
@@ -79,7 +79,7 @@ begin
   Reset;
 end;
 
-Destructor tGetCharger.destroy;
+Destructor tGetCharger.Destroy;
 begin
   inherited;
 end;

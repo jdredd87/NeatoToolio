@@ -31,10 +31,10 @@ type
     fZInG: double;
     fSumInG: double;
   public
-    constructor create;
-    destructor destroy; override;
+    constructor Create;
+    destructor Destroy; override;
     procedure Reset; override;
-    function ParseText(data: tstringlist): boolean;
+    function ParseText(data: tstringlist): boolean; override;
 
     property PitchInDegrees: double read fPitchInDegrees;
     property RollInDegrees: double read fRollInDegrees;
@@ -46,7 +46,7 @@ type
 
 implementation
 
-Constructor tGetAccel.create;
+Constructor tGetAccel.Create;
 begin
   inherited;
   fCommand := sGetAccel;
@@ -54,7 +54,7 @@ begin
   Reset;
 end;
 
-Destructor tGetAccel.destroy;
+Destructor tGetAccel.Destroy;
 begin
   inherited;
 end;
