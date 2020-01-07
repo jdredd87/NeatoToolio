@@ -17,7 +17,34 @@ function GetSubData(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: S
 function GetSubDataNameValuePair(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String;
   _Type: TVarType): Boolean;
 
+function HEX_TimeInSecs_asHours(HexValue: string): Double; // some values have HEX to represent time
+function String_TimeInSecs_asHours(HexValue: string): Double; // some values have string number to represent time
+
 implementation
+
+function String_TimeInSecs_asHours(HexValue: string): Double; // some values have HEX to represent time
+var
+  value: longint;
+begin
+  try
+   value := 0;
+   value := hexvalue.ToInteger;
+   value := (value div 60) div 60;
+  except
+   value := 0; // oops
+  end;
+   result := value;
+end;
+
+function HEX_TimeInSecs_asHours(HexValue: string): Double; // some values have HEX to represent time
+var
+  value: longint;
+begin
+  value := 0;
+  trystrtoint('$' + HexValue, value);
+  value := (value div 60) div 60;
+  result := value;
+end;
 
 function GetSubData(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String; _Type: TVarType): Boolean;
 var

@@ -405,15 +405,20 @@
         <DCCReference Include="formMain.pas">
             <Form>frmMain</Form>
         </DCCReference>
-        <DCCReference Include="neato.Settings.pas"/>
-        <DCCReference Include="neato.Commands.pas"/>
-        <DCCReference Include="neato.errors.pas"/>
-        <DCCReference Include="neato.GetLDSScan.pas"/>
-        <DCCReference Include="neato.GetCharger.pas"/>
-        <DCCReference Include="neato.GetWarranty.pas"/>
-        <DCCReference Include="neato.Helpers.pas"/>
         <DCCReference Include="XSuperJSON\XSuperJSON.pas"/>
         <DCCReference Include="XSuperJSON\XSuperObject.pas"/>
+        <DCCReference Include="neato.Commands.pas"/>
+        <DCCReference Include="neato.errors.pas"/>
+        <DCCReference Include="neato.GetAccel.pas"/>
+        <DCCReference Include="neato.GetAnalogSensors.pas"/>
+        <DCCReference Include="neato.GetCharger.pas"/>
+        <DCCReference Include="neato.GetDigitalSensors.pas"/>
+        <DCCReference Include="neato.GetErr.pas"/>
+        <DCCReference Include="neato.GetLDSScan.pas"/>
+        <DCCReference Include="neato.GetVersion.pas"/>
+        <DCCReference Include="neato.GetUsage.pas"/>
+        <DCCReference Include="neato.Helpers.pas"/>
+        <DCCReference Include="neato.Settings.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
