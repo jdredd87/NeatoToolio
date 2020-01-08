@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Neato Toolio'
-  ClientHeight = 620
+  ClientHeight = 628
   ClientWidth = 896
   Position = ScreenCenter
   Quality = HighQuality
@@ -12572,8 +12572,8 @@ object frmMain: TfrmMain
     Emissive = claBlack
     Specular = claYellow
     Shininess = 30
-    Left = 136
-    Top = 536
+    Left = 64
+    Top = 88
   end
   object timer_GetDigitalSensors: TTimer
     Enabled = False
@@ -12594,32 +12594,32 @@ object frmMain: TfrmMain
     OriginalWidth = 896.000000000000000000
     OriginalHeight = 620.000000000000000000
     Size.Width = 896.000000000000000000
-    Size.Height = 620.000000000000000000
+    Size.Height = 628.000000000000000000
     Size.PlatformDefault = False
     object tabsMain: TTabControl
       Align = Client
       Size.Width = 896.000000000000000000
-      Size.Height = 620.000000000000000000
+      Size.Height = 628.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 2
+      TabIndex = 6
       TabOrder = 0
       TabPosition = PlatformDefault
       OnChange = tabsMainChange
       Sizes = (
         896s
-        590s
+        598s
         896s
-        590s
+        598s
         896s
-        590s
+        598s
         896s
-        590s
+        598s
         896s
-        590s
+        598s
         896s
-        590s
+        598s
         896s
-        590s)
+        598s)
       object tabSetup: TTabItem
         CustomIcon = <
           item
@@ -12731,7 +12731,7 @@ object frmMain: TfrmMain
         object tabSensorsOptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 590.000000000000000000
+          Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 1
@@ -12739,13 +12739,13 @@ object frmMain: TfrmMain
           OnChange = tabSensorsOptionsChange
           Sizes = (
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s)
+            568s)
           object tabGetCharger: TTabItem
             CustomIcon = <
               item
@@ -13189,7 +13189,7 @@ object frmMain: TfrmMain
               Margins.Right = 25.000000000000000000
               Margins.Bottom = 25.000000000000000000
               Size.Width = 846.000000000000000000
-              Size.Height = 301.000000000000000000
+              Size.Height = 309.000000000000000000
               Size.PlatformDefault = False
               object _3DGetAccel: TModel3D
                 Scale.X = 10.000000000000000000
@@ -22510,7 +22510,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 50.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -22522,23 +22522,23 @@ object frmMain: TfrmMain
         object tabsInfoOptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 590.000000000000000000
+          Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 3
+          TabIndex = 4
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsInfoOptionsChange
           Sizes = (
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s)
+            568s)
           object tabGetWarranty: TTabItem
             CustomIcon = <
               item
@@ -22645,14 +22645,14 @@ object frmMain: TfrmMain
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
               Size.Width = 886.000000000000000000
-              Size.Height = 550.000000000000000000
+              Size.Height = 558.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TabOrder = 0
               RowCount = 6
               Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 882.000000000000000000
-              Viewport.Height = 525.000000000000000000
+              Viewport.Height = 533.000000000000000000
               object scGetErrName: TStringColumn
                 Header = 'Code'
                 Size.Width = 200.000000000000000000
@@ -22685,14 +22685,14 @@ object frmMain: TfrmMain
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
               Size.Width = 886.000000000000000000
-              Size.Height = 550.000000000000000000
+              Size.Height = 558.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TabOrder = 0
               RowCount = 6
               Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 882.000000000000000000
-              Viewport.Height = 525.000000000000000000
+              Viewport.Height = 533.000000000000000000
               object scGetVersionComponent: TStringColumn
                 Header = 'Component'
                 Size.Width = 241.000000000000000000
@@ -22723,7 +22723,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 90.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -22870,7 +22870,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 135.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -22879,6 +22879,369 @@ object frmMain: TfrmMain
             Text = 'GetUserSettings'
             ExplicitSize.cx = 135.000000000000000000
             ExplicitSize.cy = 30.000000000000000000
+            object lblGetUserSettingsLanguage: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 32.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Language'
+              TabOrder = 28
+            end
+            object lblGetUserSettingsLanguageValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 424.000000000000000000
+              Position.Y = 34.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 22
+            end
+            object lblGetUserSettingsClickSounds: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 56.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'ClickSounds'
+              TabOrder = 25
+            end
+            object lblGetUserSettingsLED: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 80.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'LED'
+              TabOrder = 20
+            end
+            object lblGetUserSettingsWallEnable: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 104.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wall Enable'
+              TabOrder = 26
+            end
+            object lblGetUserSettingsEcoMode: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 128.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Eco Mode'
+              TabOrder = 23
+            end
+            object lblGetUserSettingsIntenseClean: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 152.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IntenseClean'
+              TabOrder = 10
+            end
+            object lblGetUserSettingsWiFi: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 176.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'WiFi'
+              TabOrder = 27
+            end
+            object lblGetUserSettingsMelodySounds: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 200.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Melody Sounds'
+              TabOrder = 24
+            end
+            object lblGetUserSettingsWarningSounds: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 224.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Warning Sounds'
+              TabOrder = 18
+            end
+            object lblGetUserSettingsBinFullDetect: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 248.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Bin Full Detect'
+              TabOrder = 21
+            end
+            object lblGetUserSettingsFilterChnageTimeseconds: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 272.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Filter Change Time (seconds)'
+              TabOrder = 19
+            end
+            object lblGetUserSettingsFilterChnageTimesecondsValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 424.000000000000000000
+              Position.Y = 274.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 0
+            end
+            object lblGetUserSettingsBrushChangeTimeseconds: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 296.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Brush Change Time (seconds)'
+              TabOrder = 7
+            end
+            object lblGetUserSettingsBrushChangeTimesecondsValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 424.000000000000000000
+              Position.Y = 298.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 9
+            end
+            object ShadowEffect10: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object lblGetUserSettingsDirtBinAlertReminderIntervalminutes: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 320.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Dirt Bin Alert Reminder Interval (minutes)'
+              TabOrder = 5
+            end
+            object lblGetUserSettingsDirtBinAlertReminderIntervalminutesValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 424.000000000000000000
+              Position.Y = 322.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 8
+            end
+            object lblGetUserSettingsCurrentDirtBinRuntimeis: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 344.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Current Dirt Bin Alert Time is'
+              TabOrder = 3
+            end
+            object lblGetUserSettingsCurrentDirtBinRuntimeisValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 424.000000000000000000
+              Position.Y = 346.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 6
+            end
+            object lblGetUserSettingsNumberofCleaningwhereDustBinWasFullis: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 368.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Number of Cleanings where Dust Bin was full is'
+              TabOrder = 2
+            end
+            object lblGetUserSettingsNumberofCleaningwhereDustBinWasFullisValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 424.000000000000000000
+              Position.Y = 370.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 4
+            end
+            object lblGetUserSettingsScheduleis: TLabel
+              Position.X = 32.000000000000000000
+              Position.Y = 392.000000000000000000
+              Size.Width = 370.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Schedule is'
+              TabOrder = 1
+            end
+            object CheckBox2: TCheckBox
+              Enabled = False
+              Position.X = 120.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 89.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 17
+              Text = 'Monday'
+            end
+            object CheckBox3: TCheckBox
+              Enabled = False
+              Position.X = 216.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 89.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 16
+              Text = 'Tuesday'
+            end
+            object CheckBox4: TCheckBox
+              Enabled = False
+              Position.X = 312.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 115.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 15
+              Text = 'Wednesday'
+            end
+            object CheckBox5: TCheckBox
+              Enabled = False
+              Position.X = 432.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 97.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 14
+              Text = 'Thursday'
+            end
+            object CheckBox6: TCheckBox
+              Enabled = False
+              Position.X = 536.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 73.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 13
+              Text = 'Friday'
+            end
+            object CheckBox7: TCheckBox
+              Enabled = False
+              Position.X = 616.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 89.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 12
+              Text = 'Saturday'
+            end
+            object CheckBox1: TCheckBox
+              Enabled = False
+              Position.X = 32.000000000000000000
+              Position.Y = 430.000000000000000000
+              Size.Width = 81.000000000000000000
+              Size.Height = 19.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 11
+              Text = 'Sunday'
+            end
+            object swGetUserSettingsClickSoundsValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 56.000000000000000000
+              TabOrder = 38
+            end
+            object swGetUserSettingsLEDValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 80.000000000000000000
+              TabOrder = 37
+            end
+            object swGetUserSettingsWallEnableValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 104.000000000000000000
+              TabOrder = 36
+            end
+            object swGetUserSettingsEcoModeValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 128.000000000000000000
+              TabOrder = 35
+            end
+            object swGetUserSettingsIntenseCleanValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 152.000000000000000000
+              TabOrder = 34
+            end
+            object swGetUserSettingsWiFiValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 176.000000000000000000
+              TabOrder = 33
+            end
+            object swGetUserSettingsMelodySoundsValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 200.000000000000000000
+              TabOrder = 32
+            end
+            object swGetUserSettingsWarningSoundsValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 224.000000000000000000
+              TabOrder = 31
+            end
+            object swGetUserSettingsBinFullDetectValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 248.000000000000000000
+              TabOrder = 30
+            end
+            object swGetUserSettingsScheduleisValue: TSwitch
+              IsChecked = False
+              Position.X = 424.000000000000000000
+              Position.Y = 392.000000000000000000
+              TabOrder = 29
+            end
           end
           object ShadowEffect8: TShadowEffect
             Distance = 3.000000000000000000
@@ -22905,7 +23268,7 @@ object frmMain: TfrmMain
         object tabsLIDAROptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 590.000000000000000000
+          Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
@@ -22913,7 +23276,7 @@ object frmMain: TfrmMain
           OnChange = tabsLIDAROptionsChange
           Sizes = (
             896s
-            560s)
+            568s)
           object tabLidar: TTabItem
             CustomIcon = <
               item
@@ -23055,20 +23418,20 @@ object frmMain: TfrmMain
         object tabsWifiOptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 590.000000000000000000
+          Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
           Sizes = (
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s
+            568s
             896s
-            560s)
+            568s)
           object TabItem5: TTabItem
             CustomIcon = <
               item
@@ -23145,7 +23508,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 69.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -23154,29 +23517,126 @@ object frmMain: TfrmMain
         Text = 'Debug'
         ExplicitSize.cx = 86.000000000000000000
         ExplicitSize.cy = 30.000000000000000000
-        object memoDebug: TMemo
-          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-          DataDetectorTypes = []
+        object TabControl1: TTabControl
           Align = Client
-          Margins.Left = 5.000000000000000000
-          Margins.Top = 5.000000000000000000
-          Margins.Right = 5.000000000000000000
-          Margins.Bottom = 5.000000000000000000
-          Size.Width = 886.000000000000000000
-          Size.Height = 558.000000000000000000
-          Size.PlatformDefault = False
-          TabOrder = 0
-          Viewport.Width = 882.000000000000000000
-          Viewport.Height = 554.000000000000000000
-        end
-        object Label1: TLabel
-          Align = Top
           Size.Width = 896.000000000000000000
-          Size.Height = 22.000000000000000000
+          Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TextSettings.HorzAlign = Center
-          Text = 'Raw Data Response'
-          TabOrder = 1
+          TabIndex = 1
+          TabOrder = 0
+          TabPosition = PlatformDefault
+          Sizes = (
+            896s
+            568s
+            896s
+            568s)
+          object tabDebugRawData: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 88.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Raw Data'
+            object memoDebug: TMemo
+              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+              DataDetectorTypes = []
+              Align = Client
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Size.Width = 876.000000000000000000
+              Size.Height = 548.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Viewport.Width = 872.000000000000000000
+              Viewport.Height = 544.000000000000000000
+            end
+          end
+          object tabDebugTerminal: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = True
+            Size.Width = 81.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Terminal'
+            object memoDebugTerminal: TMemo
+              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+              DataDetectorTypes = []
+              StyledSettings = [Family, Style, FontColor]
+              TextSettings.Font.Size = 10.000000000000000000
+              Align = Client
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 100.000000000000000000
+              Size.Width = 876.000000000000000000
+              Size.Height = 409.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Viewport.Width = 872.000000000000000000
+              Viewport.Height = 405.000000000000000000
+            end
+            object edDebugTerminalSend: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              TabOrder = 2
+              Position.X = 96.000000000000000000
+              Position.Y = 472.000000000000000000
+              Size.Width = 681.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+              OnKeyDown = edDebugTerminalSendKeyDown
+            end
+            object lblDebugTerminalCMD: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 480.000000000000000000
+              Size.Width = 81.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              Text = 'Command'
+              TabOrder = 3
+            end
+            object btnDebugTerminalSend: TButton
+              Position.X = 792.000000000000000000
+              Position.Y = 472.000000000000000000
+              Size.Width = 97.000000000000000000
+              Size.Height = 33.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 4
+              Text = 'Send'
+              OnClick = btnDebugTerminalSendClick
+            end
+            object Panel3: TPanel
+              Align = Top
+              Size.Width = 896.000000000000000000
+              Size.Height = 49.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object btnDebugTerminalClear: TButton
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 5.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 5.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 80.000000000000000000
+                Size.Height = 39.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 5
+                Text = 'Clear'
+                OnClick = btnDebugTerminalClearClick
+              end
+            end
+          end
         end
       end
     end
@@ -23208,5 +23668,12 @@ object frmMain: TfrmMain
     OnTimer = timer_GetUsageTimer
     Left = 744
     Top = 400
+  end
+  object timer_GetUserSettings: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetUserSettingsTimer
+    Left = 744
+    Top = 456
   end
 end

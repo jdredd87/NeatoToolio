@@ -17,6 +17,7 @@ uses
   neato.Settings,
   neato.GetVersion,
   neato.GetUsage,
+  neato.GetUserSettings,
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
@@ -46,8 +47,6 @@ type
     timer_GetAccel: TTimer;
     timer_GetAnalogSensors: TTimer;
     tabDebug: TTabItem;
-    memoDebug: TMemo;
-    Label1: TLabel;
     Model3D1Mat01: TLightMaterialSource;
     ckTestMode: TCheckBox;
     timer_GetDigitalSensors: TTimer;
@@ -249,6 +248,58 @@ type
     ShadowEffect8: TShadowEffect;
     ShadowEffect9: TShadowEffect;
     timer_GetUsage: TTimer;
+    timer_GetUserSettings: TTimer;
+    ShadowEffect10: TShadowEffect;
+
+    lblGetUserSettingsLanguage: TLabel;
+    lblGetUserSettingsLanguageValue: TLabel;
+    lblGetUserSettingsClickSounds: TLabel;
+    lblGetUserSettingsLED: TLabel;
+    lblGetUserSettingsWallEnable: TLabel;
+    lblGetUserSettingsEcoMode: TLabel;
+    lblGetUserSettingsIntenseClean: TLabel;
+    lblGetUserSettingsWiFi: TLabel;
+    lblGetUserSettingsMelodySounds: TLabel;
+    lblGetUserSettingsWarningSounds: TLabel;
+    lblGetUserSettingsBinFullDetect: TLabel;
+    lblGetUserSettingsFilterChnageTimeseconds: TLabel;
+    lblGetUserSettingsFilterChnageTimesecondsValue: TLabel;
+    lblGetUserSettingsBrushChangeTimeseconds: TLabel;
+    lblGetUserSettingsBrushChangeTimesecondsValue: TLabel;
+    lblGetUserSettingsDirtBinAlertReminderIntervalminutes: TLabel;
+    lblGetUserSettingsDirtBinAlertReminderIntervalminutesValue: TLabel;
+    lblGetUserSettingsCurrentDirtBinRuntimeis: TLabel;
+    lblGetUserSettingsCurrentDirtBinRuntimeisValue: TLabel;
+    lblGetUserSettingsNumberofCleaningwhereDustBinWasFullis: TLabel;
+    lblGetUserSettingsNumberofCleaningwhereDustBinWasFullisValue: TLabel;
+    lblGetUserSettingsScheduleis: TLabel;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
+    CheckBox7: TCheckBox;
+    CheckBox1: TCheckBox;
+    swGetUserSettingsClickSoundsValue: TSwitch;
+    swGetUserSettingsLEDValue: TSwitch;
+    swGetUserSettingsWallEnableValue: TSwitch;
+    swGetUserSettingsEcoModeValue: TSwitch;
+    swGetUserSettingsIntenseCleanValue: TSwitch;
+    swGetUserSettingsWiFiValue: TSwitch;
+    swGetUserSettingsMelodySoundsValue: TSwitch;
+    swGetUserSettingsWarningSoundsValue: TSwitch;
+    swGetUserSettingsBinFullDetectValue: TSwitch;
+    swGetUserSettingsScheduleisValue: TSwitch;
+    TabControl1: TTabControl;
+    tabDebugRawData: TTabItem;
+    tabDebugTerminal: TTabItem;
+    memoDebugTerminal: TMemo;
+    edDebugTerminalSend: TEdit;
+    lblDebugTerminalCMD: TLabel;
+    btnDebugTerminalSend: TButton;
+    memoDebug: TMemo;
+    Panel3: TPanel;
+    btnDebugTerminalClear: TButton;
     procedure FormCreate(Sender: TObject);
     procedure swConnectSwitch(Sender: TObject);
     procedure cbCOMChange(Sender: TObject);
@@ -271,6 +322,10 @@ type
     procedure tabsLIDAROptionsChange(Sender: TObject);
     procedure ckShowIntensityLinesChange(Sender: TObject);
     procedure timer_GetUsageTimer(Sender: TObject);
+    procedure timer_GetUserSettingsTimer(Sender: TObject);
+    procedure btnDebugTerminalSendClick(Sender: TObject);
+    procedure edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+    procedure btnDebugTerminalClearClick(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
@@ -519,6 +574,14 @@ begin
             // setGetErr;
             timer_GetUsage.Enabled := true;
             fCurrentTimer := timer_GetUsage;
+            exit;
+          end;
+
+          if tabsInfoOptions.ActiveTab = tabGetUserSettings then
+          begin
+            // setGetErr;
+            timer_GetUserSettings.Enabled := true;
+            fCurrentTimer := timer_GetUserSettings;
             exit;
           end;
 
@@ -946,13 +1009,62 @@ begin
   pGetUsage.Free;
 end;
 
+procedure TfrmMain.timer_GetUserSettingsTimer(Sender: TObject);
+var
+  pGetUserSettings: tGetUserSettings;
+  pReadData: TStringList;
+  r: Boolean;
+begin
+
+  if (com.com.Active = false) or (tabsInfoOptions.ActiveTab <> tabGetUserSettings) then
+  begin
+    timer_GetUserSettings.Enabled := false;
+    exit;
+  end;
+
+  pGetUserSettings := tGetUserSettings.Create;
+
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetUserSettings);
+  memoDebug.Lines.Text := pReadData.Text;
+
+  r := pGetUserSettings.ParseText(pReadData);
+
+  if r then
+  begin
+    lblGetUserSettingsLanguageValue.Text := pGetUserSettings.Language;
+    lblGetUserSettingsFilterChnageTimesecondsValue.Text := pGetUserSettings.Filter_Change_Time_seconds.ToString;
+    lblGetUserSettingsBrushChangeTimesecondsValue.Text := pGetUserSettings.Brush_Change_Time_seconds.ToString;
+    lblGetUserSettingsDirtBinAlertReminderIntervalminutesValue.Text :=
+      pGetUserSettings.Dirt_Bin_Alert_Reminder_Interval_minutes.ToString;
+    lblGetUserSettingsCurrentDirtBinRuntimeisValue.Text := pGetUserSettings.Current_Dirt_Bin_Runtime_is.ToString;
+    lblGetUserSettingsNumberofCleaningwhereDustBinWasFullisValue.Text :=
+      pGetUserSettings.Number_of_Cleanings_where_Dust_Bin_was_Full_is.ToString;
+
+    swGetUserSettingsClickSoundsValue.IsChecked := pGetUserSettings.ClickSounds;
+    swGetUserSettingsLEDValue.IsChecked := pGetUserSettings.LED;
+    swGetUserSettingsWallEnableValue.IsChecked := pGetUserSettings.Wall_Enable;
+    swGetUserSettingsEcoModeValue.IsChecked := pGetUserSettings.Eco_Mode;
+    swGetUserSettingsIntenseCleanValue.IsChecked := pGetUserSettings.IntenseClean;
+    swGetUserSettingsWiFiValue.IsChecked := pGetUserSettings.WiFi;
+    swGetUserSettingsMelodySoundsValue.IsChecked := pGetUserSettings.Melody_Sounds;
+    swGetUserSettingsWarningSoundsValue.IsChecked := pGetUserSettings.Warning_Sounds;
+    swGetUserSettingsBinFullDetectValue.IsChecked := pGetUserSettings.Bin_Full_Detect;
+    swGetUserSettingsScheduleisValue.IsChecked := pGetUserSettings.Schedule_is;
+
+  end;
+
+  pReadData.Free;
+  pGetUserSettings.Free;
+end;
+
 procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
 
   procedure LoadCSV(ScanData: String; sg: TStringGrid);
   var
     i, j, Position, Count, edt1: integer;
     temp, tempField: string;
-    FieldDel: char;
+    FieldDel: Char;
     Data: TStringList;
   begin
     Data := TStringList.Create;
@@ -1072,6 +1184,10 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
     p: TPointF;
 
   begin
+
+
+    // Plot -6000 +6000 X, -6000 +6000 Y reminder
+    // Set a fixed PLOT?
 
     scaleByValue := 0.08; // don't know what to do here
     plotSpotSize := 4; // this guy too
@@ -1376,6 +1492,38 @@ begin
   swConnect.IsChecked := false;
   pnlComSetup.Enabled := true;
   showmessage(com.Error);
+end;
+
+procedure TfrmMain.btnDebugTerminalClearClick(Sender: TObject);
+begin
+  memoDebugTerminal.Text := '';
+  edDebugTerminalSend.SetFocus;
+end;
+
+procedure TfrmMain.btnDebugTerminalSendClick(Sender: TObject);
+var
+  r: String;
+  Value: string;
+begin
+  Value := edDebugTerminalSend.Text;
+  r := com.SendCommand(Value);
+  r := stringreplace(r, #10#13, #13, [rfreplaceall]);
+  memoDebugTerminal.Lines.Add('');
+  memoDebugTerminal.Lines.Add(r);
+  memoDebugTerminal.GoToTextEnd;
+  edDebugTerminalSend.Text := '';
+  edDebugTerminalSend.SetFocus;
+end;
+
+procedure TfrmMain.edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+begin
+  if Key = vkReturn then
+  begin
+    btnDebugTerminalSendClick(Sender);
+    Key := 0;
+    KeyChar := #0;
+  end;
+
 end;
 
 end.

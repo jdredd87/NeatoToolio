@@ -416,7 +416,7 @@
         <DCCReference Include="neato.GetErr.pas"/>
         <DCCReference Include="neato.GetLDSScan.pas"/>
         <DCCReference Include="neato.GetVersion.pas"/>
-        <DCCReference Include="neato.GetUsage.pas"/>
+        <DCCReference Include="neato.TestLDS.pas"/>
         <DCCReference Include="neato.Helpers.pas"/>
         <DCCReference Include="neato.Settings.pas"/>
         <BuildConfiguration Include="Release">

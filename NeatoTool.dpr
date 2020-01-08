@@ -21,7 +21,7 @@ uses
   neato.GetErr in 'neato.GetErr.pas',
   neato.GetLDSScan in 'neato.GetLDSScan.pas',
   neato.GetVersion in 'neato.GetVersion.pas',
-  neato.GetUsage in 'neato.GetUsage.pas',
+  neato.TestLDS in 'neato.TestLDS.pas',
   neato.Helpers in 'neato.Helpers.pas',
   neato.Settings in 'neato.Settings.pas';
 
