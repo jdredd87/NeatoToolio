@@ -1,11 +1,13 @@
 program NeatoTool;
 
 uses
-  madExcept,
   madLinkDisAsm,
   madListHardware,
   madListProcesses,
   madListModules,
+  {$ifdef windows}
+  madExcept,
+  {$endif }
   System.StartUpCopy,
   FMX.Forms,
   dmSerial.Windows in 'dmSerial.Windows.pas' {dmSerial: TDataModule},
@@ -16,7 +18,7 @@ uses
   neato.errors in 'neato.errors.pas',
   neato.GetAccel in 'neato.GetAccel.pas',
   neato.GetAnalogSensors in 'neato.GetAnalogSensors.pas',
-  neato.GetCharger in 'neato.GetCharger.pas',
+  neato.GetMotors in 'neato.GetMotors.pas',
   neato.GetDigitalSensors in 'neato.GetDigitalSensors.pas',
   neato.GetErr in 'neato.GetErr.pas',
   neato.GetLDSScan in 'neato.GetLDSScan.pas',

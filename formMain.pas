@@ -18,6 +18,9 @@ uses
   neato.GetVersion,
   neato.GetUsage,
   neato.GetUserSettings,
+  neato.GetSensor,
+  neato.PlaySound,
+  neato.GetMotors,
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
@@ -26,7 +29,7 @@ uses
   FMX.ListView, FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Effects,
   System.Math.Vectors, FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D,
   FMX.MaterialSources, FMX.Types3D, FMX.Filter.Effects, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ExtCtrls, FMX.Edit,
-  FMX.EditBox, FMX.SpinBox;
+  FMX.EditBox, FMX.SpinBox, FMX.NumberBox;
 
 type
   TfrmMain = class(TForm)
@@ -300,6 +303,86 @@ type
     memoDebug: TMemo;
     Panel3: TPanel;
     btnDebugTerminalClear: TButton;
+    timer_GetSensor: TTimer;
+    tabGetSensor: TTabItem;
+    ShadowEffect11: TShadowEffect;
+
+    lblGetSensorWallFollower: TLabel;
+    lblGetSensorUltraSound: TLabel;
+    swGetSensorUltraSoundValue: TSwitch;
+    swGetSensorWallFollowerValue: TSwitch;
+    lblGetSensorDropSensors: TLabel;
+    swGetSensorDropSensorsValue: TSwitch;
+    lblGetSensorsensorsStatus: TLabel;
+    lblGetSensorsensorsStatusValue: TLabel;
+    lblGetSensorleftdropStatus: TLabel;
+    lblGetSensorleftdropStatusValue: TLabel;
+    lblGetSensorRightDropStatus: TLabel;
+    lblGetSensorWallRightStatus: TLabel;
+    lblGetSensorRightDropStatusValue: TLabel;
+    lblGetSensorWallRightStatusValue: TLabel;
+    lblGetSensorWheelDropStatus: TLabel;
+    lblGetSensorLeftDropmm: TLabel;
+    lblGetSensorWheelDropStatusValue: TLabel;
+    lblGetSensorLeftDropmmValue: TLabel;
+    lblGetSensorWallRightmm: TLabel;
+    lblGetSensorWallRightmmValue: TLabel;
+    lblGetSensorRightDropmmValue: TLabel;
+    lblGetSensorRightDropmm: TLabel;
+    lblGetSensorWheelDropmm: TLabel;
+    lblGetSensorWheelDropmmValue: TLabel;
+    lblGetSensorIMUAccelX: TLabel;
+    lblGetSensorIMUAccelXValue: TLabel;
+    lblGetSensorIMUAccelY: TLabel;
+    lblGetSensorIMUAccelYValue: TLabel;
+    lblGetSensorIMUAccelZ: TLabel;
+    lblGetSensorIMUAccelZValue: TLabel;
+    tabPlaySound: TTabItem;
+    sgPlaysound: TStringGrid;
+    Label1: TLabel;
+    ShadowEffect12: TShadowEffect;
+    nbPlaySoundID: TNumberBox;
+    btnPlaySoundTest: TButton;
+    sgPlaysoundID: TStringColumn;
+    sgPlaySoundResponse: TStringColumn;
+    btnSoundPlayTestAll: TButton;
+    lblPlaysoundIDX: TLabel;
+    btnPlaySoundAbort: TButton;
+    btnDebugTerminalHelp: TButton;
+    tabGetMotors: TTabItem;
+    lblGetMotorsBrush_RPM: TLabel;
+    lblGetMotorsBrush_RPMValue: TLabel;
+    lblGetMotorsBrush_mA: TLabel;
+    lblGetMotorsBrush_mAValue: TLabel;
+    lblGetMotorsVacuum_RPM: TLabel;
+    lblGetMotorsVacuum_RPMValue: TLabel;
+    lblGetMotorsVacuum_mA: TLabel;
+    lblGetMotorsVacuum_mAValue: TLabel;
+    lblGetMotorsLeftWheel_RPM: TLabel;
+    lblGetMotorsLeftWheel_RPMValue: TLabel;
+    lblGetMotorsLeftWheel_Load: TLabel;
+    lblGetMotorsLeftWheel_LoadValue: TLabel;
+    lblGetMotorsLeftWheel_PositionInMM: TLabel;
+    lblGetMotorsLeftWheel_PositionInMMValue: TLabel;
+    lblGetMotorsLeftWheel_Speed: TLabel;
+    lblGetMotorsLeftWheel_SpeedValue: TLabel;
+    lblGetMotorsLeftWheel_direction: TLabel;
+    lblGetMotorsLeftWheel_directionValue: TLabel;
+    lblGetMotorsRightWheel_RPM: TLabel;
+    lblGetMotorsRightWheel_RPMValue: TLabel;
+    lblGetMotorsRightWheel_Load: TLabel;
+    lblGetMotorsRightWheel_LoadValue: TLabel;
+    lblGetMotorsRightWheel_PositionInMM: TLabel;
+    lblGetMotorsRightWheel_PositionInMMValue: TLabel;
+    lblGetMotorsRightWheel_Speed: TLabel;
+    lblGetMotorsRightWheel_SpeedValue: TLabel;
+    lblGetMotorsRightWheel_direction: TLabel;
+    lblGetMotorsRightWheel_directionValue: TLabel;
+    lblGetMotorsROTATION_SPEED: TLabel;
+    lblGetMotorsROTATION_SPEEDValue: TLabel;
+    lblGetMotorsSideBrush_mA: TLabel;
+    lblGetMotorsSideBrush_mAValue: TLabel;
+    timer_GetMotors: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure swConnectSwitch(Sender: TObject);
     procedure cbCOMChange(Sender: TObject);
@@ -326,9 +409,17 @@ type
     procedure btnDebugTerminalSendClick(Sender: TObject);
     procedure edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
     procedure btnDebugTerminalClearClick(Sender: TObject);
+    procedure timer_GetSensorTimer(Sender: TObject);
+    procedure btnPlaySoundTestClick(Sender: TObject);
+    procedure btnSoundPlayTestAllClick(Sender: TObject);
+    procedure btnPlaySoundAbortClick(Sender: TObject);
+    procedure btnDebugTerminalHelpClick(Sender: TObject);
+    procedure timer_GetMotorsTimer(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
+
+    fPlaySoundAborted: Boolean;
     procedure toggleComs(disable: Boolean);
     procedure comConnect;
     procedure comDisconnect;
@@ -463,6 +554,21 @@ begin
             exit;
           end;
 
+          if tabSensorsOptions.ActiveTab = self.tabGetSensor then
+          begin
+            // ResetGetDigitalSensors;
+            timer_GetSensor.Enabled := true;
+            fCurrentTimer := timer_GetSensor;
+            exit;
+          end;
+
+          if tabSensorsOptions.ActiveTab = self.tabGetMotors then
+          begin
+            timer_GetMotors.Enabled := true;
+            fCurrentTimer := timer_GetMotors;
+            exit;
+          end;
+
         end);
     end).Start;
 
@@ -508,6 +614,15 @@ begin
         procedure
         begin
 
+          if tabsMain.ActiveTab <> tabInfo then
+            self.fPlaySoundAborted := true;
+
+          if tabsMain.ActiveTab = tabSetup then
+          begin
+            if NOT com.com.Active then
+              swConnect.IsChecked := false;
+          end;
+
           if tabsMain.ActiveTab = tabSensors then
           begin
             tabSensorsOptions.TabIndex := 0;
@@ -545,6 +660,12 @@ begin
       tthread.Synchronize(tthread.CurrentThread,
         procedure
         begin
+
+          if tabsInfoOptions.ActiveTab = tabPlaySound then
+            fPlaySoundAborted := false;
+
+          if (tabsInfoOptions.ActiveTab <> tabPlaySound) then
+            fPlaySoundAborted := true;
 
           if tabsInfoOptions.ActiveTab = tabGetWarranty then
           begin
@@ -974,6 +1095,55 @@ begin
   pGetErr.Free;
 end;
 
+procedure TfrmMain.timer_GetMotorsTimer(Sender: TObject);
+var
+  pGetMotors: tGetMotors;
+  pReadData: TStringList;
+  r: Boolean;
+begin
+
+  if (com.com.Active = false) or (self.tabSensorsOptions.ActiveTab <> tabGetMotors) then
+  begin
+    timer_GetMotors.Enabled := false;
+    exit;
+  end;
+
+  pGetMotors := tGetMotors.Create;
+
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetMotors);
+  memoDebug.Lines.Text := pReadData.Text;
+
+  r := pGetMotors.ParseText(pReadData);
+
+  if r then
+  begin
+    lblGetMotorsBrush_RPMValue.Text := pgetmotors.Brush_RPM.ToString;
+    lblGetMotorsBrush_mAValue.Text := pgetmotors.Brush_mA.ToString;
+
+    lblGetMotorsVacuum_RPMValue.Text := pgetmotors.Vacuum_RPM.ToString;
+    lblGetMotorsVacuum_mAValue.Text := pgetmotors.Vacuum_mA.ToString;
+
+    lblGetMotorsLeftWheel_RPMValue.Text := pgetmotors.LeftWheel_RPM.ToString;
+    lblGetMotorsLeftWheel_LoadValue.Text := pgetmotors.LeftWheel_Load.ToString;
+    lblGetMotorsLeftWheel_PositionInMMValue.Text := pgetmotors.LeftWheel_PositionInMM.ToString;
+    lblGetMotorsLeftWheel_SpeedValue.Text := pgetmotors.LeftWheel_Speed.ToString;
+    lblGetMotorsLeftWheel_directionValue.Text := pgetmotors.LeftWheel_direction.ToString;
+
+    lblGetMotorsRightWheel_RPMValue.Text := pgetmotors.RightWheel_RPM.ToString;
+    lblGetMotorsRightWheel_LoadValue.Text := pgetmotors.RightWheel_Load.ToString;
+    lblGetMotorsRightWheel_PositionInMMValue.Text := pgetmotors.RightWheel_PositionInMM.ToString;
+    lblGetMotorsRightWheel_SpeedValue.Text := pgetmotors.RightWheel_Speed.ToString;
+    lblGetMotorsRightWheel_directionValue.Text := pgetmotors.RightWheel_direction.ToString;
+
+    lblGetMotorsROTATION_SPEEDValue.Text := pgetmotors.ROTATION_SPEED.ToString;
+    lblGetMotorsSideBrush_mAValue.Text := pgetmotors.SideBrush_mA.ToString;
+  end;
+
+  pReadData.Free;
+  pGetMotors.Free;
+end;
+
 procedure TfrmMain.timer_GetUsageTimer(Sender: TObject);
 var
   pGetUsage: tGetUsage;
@@ -1056,6 +1226,50 @@ begin
 
   pReadData.Free;
   pGetUserSettings.Free;
+end;
+
+procedure TfrmMain.timer_GetSensorTimer(Sender: TObject);
+var
+  pGetSensor: tGetSensor;
+  pReadData: TStringList;
+  r: Boolean;
+begin
+
+  if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetSensor) then
+  begin
+    timer_GetSensor.Enabled := false;
+    exit;
+  end;
+
+  pGetSensor := tGetSensor.Create;
+
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetSensor);
+  memoDebug.Lines.Text := pReadData.Text;
+
+  r := pGetSensor.ParseText(pReadData);
+
+  if r then
+  begin
+    swGetSensorWallFollowerValue.IsChecked := pGetSensor.Wall_Follower;
+    swGetSensorUltraSoundValue.IsChecked := pGetSensor.Ultra_Sound;
+    swGetSensorDropSensorsValue.IsChecked := pGetSensor.Drop_Sensors;
+
+    lblGetSensorsensorsStatusValue.Text := pGetSensor.sensor_Status.ToString;
+    lblGetSensorleftdropStatusValue.Text := pGetSensor.left_drop_Status.ToString;
+    lblGetSensorRightDropStatusValue.Text := pGetSensor.right_drop_Status.ToString;
+    lblGetSensorWallRightStatusValue.Text := pGetSensor.wall_right_Status.ToString;
+    lblGetSensorWheelDropStatusValue.Text := pGetSensor.wheel_drop_Status.ToString;
+    lblGetSensorWallRightmmValue.Text := pGetSensor.wall_right_mm.ToString;
+    lblGetSensorRightDropmmValue.Text := pGetSensor.right_drop_mm.ToString;
+    lblGetSensorWheelDropmmValue.Text := pGetSensor.wheel_drop_mm.ToString;
+    lblGetSensorIMUAccelXValue.Text := pGetSensor.IMU_accel_x.ToString;
+    lblGetSensorIMUAccelYValue.Text := pGetSensor.IMU_accel_y.ToString;
+    lblGetSensorIMUAccelZValue.Text := pGetSensor.IMU_accel_z.ToString;
+  end;
+
+  pReadData.Free;
+  pGetSensor.Free;
 end;
 
 procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
@@ -1488,16 +1702,23 @@ end;
 
 procedure TfrmMain.comError(Sender: TObject);
 begin
+  showmessage('COM Issue #' + com.errorcode.ToString + ' : ' + com.Error);
   swConnect.Enabled := true;
   swConnect.IsChecked := false;
   pnlComSetup.Enabled := true;
-  showmessage(com.Error);
 end;
 
 procedure TfrmMain.btnDebugTerminalClearClick(Sender: TObject);
 begin
   memoDebugTerminal.Text := '';
   edDebugTerminalSend.SetFocus;
+end;
+
+procedure TfrmMain.btnDebugTerminalHelpClick(Sender: TObject);
+begin
+  edDebugTerminalSend.Text := 'HELP';
+  btnDebugTerminalSendClick(Sender);
+
 end;
 
 procedure TfrmMain.btnDebugTerminalSendClick(Sender: TObject);
@@ -1513,6 +1734,110 @@ begin
   memoDebugTerminal.GoToTextEnd;
   edDebugTerminalSend.Text := '';
   edDebugTerminalSend.SetFocus;
+end;
+
+procedure TfrmMain.btnPlaySoundTestClick(Sender: TObject);
+var
+  pReadData: TStringList;
+  gPlaySound: tPlaySound;
+  r: Boolean;
+begin
+  pReadData := TStringList.Create;
+
+  pReadData.Text := com.SendCommand(sPlaysoundSoundID + ' ' + nbPlaySoundID.Value.ToString);
+  gPlaySound := tPlaySound.Create;
+
+  r := gPlaySound.ParseText(pReadData);
+
+  sgPlaysound.RowCount := 0;
+  sgPlaysound.RowCount := 1;
+
+  sgPlaysound.Cells[0, 0] := nbPlaySoundID.Value.ToString;
+
+  case r of
+    true:
+      sgPlaysound.Cells[1, 0] := 'Supported';
+    false:
+      sgPlaysound.Cells[1, 0] := 'Not Supported';
+  end;
+
+  freeandnil(pReadData);
+  freeandnil(gPlaySound);
+end;
+
+procedure TfrmMain.btnPlaySoundAbortClick(Sender: TObject);
+begin
+  fPlaySoundAborted := true;
+  sgPlaysound.SetFocus;
+  btnSoundPlayTestAll.Enabled := true;
+  btnPlaySoundTest.Enabled := true;
+  btnPlaySoundAbort.Enabled := false;
+  nbPlaySoundID.Enabled := true;
+end;
+
+procedure TfrmMain.btnSoundPlayTestAllClick(Sender: TObject);
+begin
+  sgPlaysound.SetFocus;
+  fPlaySoundAborted := false;
+
+  btnSoundPlayTestAll.Enabled := false;
+  btnPlaySoundTest.Enabled := false;
+  btnPlaySoundAbort.Enabled := true;
+  nbPlaySoundID.Enabled := false;
+
+  sgPlaysound.RowCount := 0;
+  sgPlaysound.RowCount := 64;
+
+  tthread.CreateAnonymousThread(
+    procedure
+    var
+      idx: byte;
+      pReadData: TStringList;
+      gPlaySound: tPlaySound;
+      r: Boolean;
+    begin
+      sleep(1000);
+
+      pReadData := TStringList.Create;
+      for idx := 0 to sSoundIDMax - 1 do
+      begin
+        if fPlaySoundAborted then
+          break;
+
+        pReadData.Text := com.SendCommand(sPlaysoundSoundID + ' ' + idx.ToString);
+        gPlaySound := tPlaySound.Create;
+
+        r := gPlaySound.ParseText(pReadData);
+
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            sgPlaysound.Cells[0, idx] := idx.ToString;
+
+            case r of
+              true:
+                sgPlaysound.Cells[1, idx] := 'Supported';
+              false:
+                sgPlaysound.Cells[1, idx] := 'Not Supported';
+            end;
+          end);
+        sleep(2000);
+      end;
+      freeandnil(pReadData);
+      freeandnil(gPlaySound);
+
+      tthread.Synchronize(tthread.CurrentThread,
+        procedure
+        begin
+          fPlaySoundAborted := true;
+          sgPlaysound.SetFocus;
+          btnSoundPlayTestAll.Enabled := true;
+          btnPlaySoundTest.Enabled := true;
+          btnPlaySoundAbort.Enabled := false;
+          nbPlaySoundID.Enabled := true;
+        end);
+    end).Start;
+
 end;
 
 procedure TfrmMain.edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);

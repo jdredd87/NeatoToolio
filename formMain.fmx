@@ -12572,8 +12572,8 @@ object frmMain: TfrmMain
     Emissive = claBlack
     Specular = claYellow
     Shininess = 30
-    Left = 64
-    Top = 88
+    Left = 752
+    Top = 512
   end
   object timer_GetDigitalSensors: TTimer
     Enabled = False
@@ -12592,7 +12592,7 @@ object frmMain: TfrmMain
   object ScaledLayout1: TScaledLayout
     Align = Client
     OriginalWidth = 896.000000000000000000
-    OriginalHeight = 620.000000000000000000
+    OriginalHeight = 628.000000000000000000
     Size.Width = 896.000000000000000000
     Size.Height = 628.000000000000000000
     Size.PlatformDefault = False
@@ -12601,7 +12601,7 @@ object frmMain: TfrmMain
       Size.Width = 896.000000000000000000
       Size.Height = 628.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 6
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       OnChange = tabsMainChange
@@ -12640,6 +12640,7 @@ object frmMain: TfrmMain
           Size.PlatformDefault = False
           TabOrder = 0
           object swConnect: TSwitch
+            ControlType = Platform
             Enabled = False
             IsChecked = False
             Position.X = 152.000000000000000000
@@ -12719,7 +12720,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 76.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -12733,11 +12734,15 @@ object frmMain: TfrmMain
           Size.Width = 896.000000000000000000
           Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 0
+          TabIndex = 5
           TabOrder = 1
           TabPosition = Top
           OnChange = tabSensorsOptionsChange
           Sizes = (
+            896s
+            568s
+            896s
+            568s
             896s
             568s
             896s
@@ -12750,7 +12755,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 103.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -13188,8 +13193,8 @@ object frmMain: TfrmMain
               Margins.Top = 25.000000000000000000
               Margins.Right = 25.000000000000000000
               Margins.Bottom = 25.000000000000000000
-              Size.Width = 846.000000000000000000
-              Size.Height = 309.000000000000000000
+              Size.Width = 533.000000000000000000
+              Size.Height = 518.000000000000000000
               Size.PlatformDefault = False
               object _3DGetAccel: TModel3D
                 Scale.X = 10.000000000000000000
@@ -21631,75 +21636,75 @@ object frmMain: TfrmMain
               end
             end
             object Panel2: TPanel
-              Align = Top
-              Size.Width = 896.000000000000000000
-              Size.Height = 209.000000000000000000
+              Align = Left
+              Size.Width = 313.000000000000000000
+              Size.Height = 568.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
               object lbl_PitchInDegrees: TLabel
                 Position.X = 8.000000000000000000
                 Position.Y = 16.000000000000000000
-                Size.Width = 225.000000000000000000
+                Size.Width = 120.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.HorzAlign = Center
+                TextSettings.HorzAlign = Trailing
                 Text = 'PitchInDegrees'
                 TabOrder = 11
               end
               object lbl_RollInDegrees: TLabel
                 Position.X = 8.000000000000000000
                 Position.Y = 40.000000000000000000
-                Size.Width = 225.000000000000000000
+                Size.Width = 120.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.HorzAlign = Center
+                TextSettings.HorzAlign = Trailing
                 Text = 'RollInDegrees'
                 TabOrder = 9
               end
               object lbl_XInG: TLabel
                 Position.X = 8.000000000000000000
                 Position.Y = 82.000000000000000000
-                Size.Width = 225.000000000000000000
+                Size.Width = 120.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.HorzAlign = Center
+                TextSettings.HorzAlign = Trailing
                 Text = 'XInG'
                 TabOrder = 4
               end
               object lbl_YInG: TLabel
                 Position.X = 8.000000000000000000
                 Position.Y = 106.000000000000000000
-                Size.Width = 225.000000000000000000
+                Size.Width = 120.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.HorzAlign = Center
+                TextSettings.HorzAlign = Trailing
                 Text = 'YInG'
                 TabOrder = 10
               end
               object lbl_ZInG: TLabel
                 Position.X = 8.000000000000000000
                 Position.Y = 130.000000000000000000
-                Size.Width = 225.000000000000000000
+                Size.Width = 120.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.HorzAlign = Center
+                TextSettings.HorzAlign = Trailing
                 Text = 'ZInG'
                 TabOrder = 7
               end
               object lbl_SumInG: TLabel
                 Position.X = 8.000000000000000000
                 Position.Y = 170.000000000000000000
-                Size.Width = 225.000000000000000000
+                Size.Width = 120.000000000000000000
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
-                TextSettings.HorzAlign = Center
+                TextSettings.HorzAlign = Trailing
                 Text = 'SumInG'
                 TabOrder = 1
               end
               object lbl_SumInGValue: TLabel
                 AutoSize = True
                 Margins.Left = 5.000000000000000000
-                Position.X = 237.000000000000000000
+                Position.X = 141.000000000000000000
                 Position.Y = 170.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 22.000000000000000000
@@ -21710,7 +21715,7 @@ object frmMain: TfrmMain
               object lbl_ZInGValue: TLabel
                 AutoSize = True
                 Margins.Left = 5.000000000000000000
-                Position.X = 237.000000000000000000
+                Position.X = 141.000000000000000000
                 Position.Y = 130.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 22.000000000000000000
@@ -21721,7 +21726,7 @@ object frmMain: TfrmMain
               object lbl_YInGValue: TLabel
                 AutoSize = True
                 Margins.Left = 5.000000000000000000
-                Position.X = 237.000000000000000000
+                Position.X = 141.000000000000000000
                 Position.Y = 106.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 22.000000000000000000
@@ -21732,7 +21737,7 @@ object frmMain: TfrmMain
               object lbl_XInGValue: TLabel
                 AutoSize = True
                 Margins.Left = 5.000000000000000000
-                Position.X = 237.000000000000000000
+                Position.X = 141.000000000000000000
                 Position.Y = 82.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 22.000000000000000000
@@ -21743,7 +21748,7 @@ object frmMain: TfrmMain
               object lbl_RollInDegreesValue: TLabel
                 AutoSize = True
                 Margins.Left = 5.000000000000000000
-                Position.X = 237.000000000000000000
+                Position.X = 141.000000000000000000
                 Position.Y = 40.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 22.000000000000000000
@@ -21754,7 +21759,7 @@ object frmMain: TfrmMain
               object lbl_PitchInDegreesValue: TLabel
                 AutoSize = True
                 Margins.Left = 5.000000000000000000
-                Position.X = 237.000000000000000000
+                Position.X = 141.000000000000000000
                 Position.Y = 16.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 22.000000000000000000
@@ -22497,6 +22502,675 @@ object frmMain: TfrmMain
               TabOrder = 33
             end
           end
+          object tabGetSensor: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 94.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'GetSensor'
+            ExplicitSize.cx = 94.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
+            object ShadowEffect11: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object lblGetSensorWallFollower: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 8.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wall Follower'
+              TabOrder = 46
+            end
+            object lblGetSensorUltraSound: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 32.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Ultra Sound'
+              TabOrder = 43
+            end
+            object swGetSensorUltraSoundValue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 32.000000000000000000
+              TabOrder = 58
+            end
+            object swGetSensorWallFollowerValue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 8.000000000000000000
+              TabOrder = 57
+            end
+            object lblGetSensorDropSensors: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 56.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Drop Sensors'
+              TabOrder = 42
+            end
+            object swGetSensorDropSensorsValue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 56.000000000000000000
+              TabOrder = 56
+            end
+            object lblGetSensorsensorsStatus: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 80.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Sensors Status'
+              TabOrder = 37
+            end
+            object lblGetSensorsensorsStatusValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 82.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 11
+            end
+            object lblGetSensorleftdropStatus: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 104.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Left Drop Status'
+              TabOrder = 35
+            end
+            object lblGetSensorleftdropStatusValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 106.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 9
+            end
+            object lblGetSensorRightDropStatus: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 128.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Right Drop Status'
+              TabOrder = 36
+            end
+            object lblGetSensorWallRightStatus: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 152.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wall Right Status'
+              TabOrder = 34
+            end
+            object lblGetSensorRightDropStatusValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 130.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 10
+            end
+            object lblGetSensorWallRightStatusValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 154.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 7
+            end
+            object lblGetSensorWheelDropStatus: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 176.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wheel Drop Status'
+              TabOrder = 31
+            end
+            object lblGetSensorLeftDropmm: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 200.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Left Drop mm'
+              TabOrder = 27
+            end
+            object lblGetSensorWheelDropStatusValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 178.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 8
+            end
+            object lblGetSensorLeftDropmmValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 202.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 5
+            end
+            object lblGetSensorWallRightmm: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 248.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wall Right mm'
+              TabOrder = 33
+            end
+            object lblGetSensorWallRightmmValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 250.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 4
+            end
+            object lblGetSensorRightDropmmValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 226.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 6
+            end
+            object lblGetSensorRightDropmm: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 224.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Right Drop mm'
+              TabOrder = 29
+            end
+            object lblGetSensorWheelDropmm: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 272.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wheel Drop mm'
+              TabOrder = 32
+            end
+            object lblGetSensorWheelDropmmValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 274.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 3
+            end
+            object lblGetSensorIMUAccelX: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 296.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IMU Accel X'
+              TabOrder = 30
+            end
+            object lblGetSensorIMUAccelXValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 298.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 2
+            end
+            object lblGetSensorIMUAccelY: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 320.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IMU Accel Y'
+              TabOrder = 28
+            end
+            object lblGetSensorIMUAccelYValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 322.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 1
+            end
+            object lblGetSensorIMUAccelZ: TLabel
+              Position.X = 8.000000000000000000
+              Position.Y = 344.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IMU Accel Z'
+              TabOrder = 26
+            end
+            object lblGetSensorIMUAccelZValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 176.000000000000000000
+              Position.Y = 346.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 0
+            end
+          end
+          object tabGetMotors: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = True
+            Size.Width = 97.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'GetMotors'
+            object lblGetMotorsBrush_RPM: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 24.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Brush_RPM'
+              TabOrder = 27
+            end
+            object lblGetMotorsBrush_RPMValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 24.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 20
+            end
+            object lblGetMotorsBrush_mA: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 48.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Brush_mA'
+              TabOrder = 24
+            end
+            object lblGetMotorsBrush_mAValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 48.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 13
+            end
+            object lblGetMotorsVacuum_RPM: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 90.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Vacuum_RPM'
+              TabOrder = 15
+            end
+            object lblGetMotorsVacuum_RPMValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 90.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 23
+            end
+            object lblGetMotorsVacuum_mA: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 114.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Vacuum_mA'
+              TabOrder = 25
+            end
+            object lblGetMotorsVacuum_mAValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 114.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 17
+            end
+            object lblGetMotorsLeftWheel_RPM: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 162.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'LeftWheel_RPM'
+              TabOrder = 22
+            end
+            object lblGetMotorsLeftWheel_RPMValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 162.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 9
+            end
+            object lblGetMotorsLeftWheel_Load: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 186.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'LeftWheel_Load'
+              TabOrder = 12
+            end
+            object lblGetMotorsLeftWheel_LoadValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 186.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 14
+            end
+            object lblGetMotorsLeftWheel_PositionInMM: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 208.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'LeftWheel_PositionInMM'
+              TabOrder = 38
+            end
+            object lblGetMotorsLeftWheel_PositionInMMValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 208.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 30
+            end
+            object lblGetMotorsLeftWheel_Speed: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 232.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'LeftWheel_Speed'
+              TabOrder = 34
+            end
+            object lblGetMotorsLeftWheel_SpeedValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 240.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 16
+            end
+            object lblGetMotorsLeftWheel_direction: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 258.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'LeftWheel_direction'
+              TabOrder = 18
+            end
+            object lblGetMotorsLeftWheel_directionValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 258.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 26
+            end
+            object lblGetMotorsRightWheel_RPM: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 298.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'RightWheel_RPM'
+              TabOrder = 28
+            end
+            object lblGetMotorsRightWheel_RPMValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 298.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 19
+            end
+            object lblGetMotorsRightWheel_Load: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 322.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'RightWheel_Load%'
+              TabOrder = 21
+            end
+            object lblGetMotorsRightWheel_LoadValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 322.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 0
+            end
+            object lblGetMotorsRightWheel_PositionInMM: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 346.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'RightWheel_PositionInMM'
+              TabOrder = 5
+            end
+            object lblGetMotorsRightWheel_PositionInMMValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 346.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 10
+            end
+            object lblGetMotorsRightWheel_Speed: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 370.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'RightWheel_Speed'
+              TabOrder = 2
+            end
+            object lblGetMotorsRightWheel_SpeedValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 370.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 6
+            end
+            object lblGetMotorsRightWheel_direction: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 394.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'RightWheel_direction'
+              TabOrder = 8
+            end
+            object lblGetMotorsRightWheel_directionValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 394.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 11
+            end
+            object lblGetMotorsROTATION_SPEED: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 434.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'ROTATION_SPEED'
+              TabOrder = 4
+            end
+            object lblGetMotorsROTATION_SPEEDValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 434.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 7
+            end
+            object lblGetMotorsSideBrush_mA: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 458.000000000000000000
+              Size.Width = 190.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'SideBrush_mA'
+              TabOrder = 1
+            end
+            object lblGetMotorsSideBrush_mAValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 221.000000000000000000
+              Position.Y = 458.000000000000000000
+              Size.Width = 100.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 3
+            end
+          end
           object ShadowEffect4: TShadowEffect
             Distance = 3.000000000000000000
             Direction = 45.000000000000000000
@@ -22524,11 +23198,13 @@ object frmMain: TfrmMain
           Size.Width = 896.000000000000000000
           Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 4
+          TabIndex = 5
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsInfoOptionsChange
           Sizes = (
+            896s
+            568s
             896s
             568s
             896s
@@ -22870,7 +23546,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 135.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -23243,6 +23919,101 @@ object frmMain: TfrmMain
               TabOrder = 29
             end
           end
+          object tabPlaySound: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = True
+            Size.Width = 96.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'PlaySound'
+            ExplicitSize.cx = 96.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
+            object sgPlaysound: TStringGrid
+              CanFocus = True
+              ClipChildren = True
+              Position.X = 24.000000000000000000
+              Position.Y = 56.000000000000000000
+              Size.Width = 329.000000000000000000
+              Size.Height = 489.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Viewport.Width = 309.000000000000000000
+              Viewport.Height = 464.000000000000000000
+              object sgPlaysoundID: TStringColumn
+                Header = 'ID'
+                Size.Width = 57.000000000000000000
+              end
+              object sgPlaySoundResponse: TStringColumn
+                Header = 'Response'
+                Size.Width = 239.000000000000000000
+              end
+            end
+            object Label1: TLabel
+              Position.X = 24.000000000000000000
+              Position.Y = 16.000000000000000000
+              Text = 'PlaySound ID #'
+              TabOrder = 1
+            end
+            object ShadowEffect12: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object nbPlaySoundID: TNumberBox
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              TabOrder = 2
+              Cursor = crIBeam
+              DecimalDigits = 0
+              Max = 64.000000000000000000
+              Position.X = 144.000000000000000000
+              Position.Y = 8.000000000000000000
+              Size.Width = 57.000000000000000000
+              Size.Height = 32.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object btnPlaySoundTest: TButton
+              Position.X = 216.000000000000000000
+              Position.Y = 10.000000000000000000
+              Size.Width = 137.000000000000000000
+              Size.Height = 31.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 4
+              Text = 'Test Sound ID'
+              OnClick = btnPlaySoundTestClick
+            end
+            object btnSoundPlayTestAll: TButton
+              Position.X = 384.000000000000000000
+              Position.Y = 58.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 31.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 3
+              Text = 'Test all Sound ID Codes'
+              OnClick = btnSoundPlayTestAllClick
+            end
+            object lblPlaysoundIDX: TLabel
+              Position.X = 480.000000000000000000
+              Position.Y = 104.000000000000000000
+              TabOrder = 5
+            end
+            object btnPlaySoundAbort: TButton
+              Enabled = False
+              Position.X = 384.000000000000000000
+              Position.Y = 114.000000000000000000
+              Size.Width = 193.000000000000000000
+              Size.Height = 31.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 6
+              Text = 'Abort'
+              OnClick = btnPlaySoundAbortClick
+            end
+          end
           object ShadowEffect8: TShadowEffect
             Distance = 3.000000000000000000
             Direction = 45.000000000000000000
@@ -23508,7 +24279,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 69.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -23541,6 +24312,8 @@ object frmMain: TfrmMain
             StyleLookup = ''
             TabOrder = 0
             Text = 'Raw Data'
+            ExplicitSize.cx = 88.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
             object memoDebug: TMemo
               Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
               DataDetectorTypes = []
@@ -23568,6 +24341,8 @@ object frmMain: TfrmMain
             StyleLookup = ''
             TabOrder = 0
             Text = 'Terminal'
+            ExplicitSize.cx = 81.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
             object memoDebugTerminal: TMemo
               Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
               DataDetectorTypes = []
@@ -23631,9 +24406,24 @@ object frmMain: TfrmMain
                 Size.Width = 80.000000000000000000
                 Size.Height = 39.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 5
+                TabOrder = 6
                 Text = 'Clear'
                 OnClick = btnDebugTerminalClearClick
+              end
+              object btnDebugTerminalHelp: TButton
+                Align = Left
+                Margins.Left = 5.000000000000000000
+                Margins.Top = 5.000000000000000000
+                Margins.Right = 5.000000000000000000
+                Margins.Bottom = 5.000000000000000000
+                Position.X = 95.000000000000000000
+                Position.Y = 5.000000000000000000
+                Size.Width = 80.000000000000000000
+                Size.Height = 39.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 5
+                Text = 'Help'
+                OnClick = btnDebugTerminalHelpClick
               end
             end
           end
@@ -23675,5 +24465,19 @@ object frmMain: TfrmMain
     OnTimer = timer_GetUserSettingsTimer
     Left = 744
     Top = 456
+  end
+  object timer_GetSensor: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetSensorTimer
+    Left = 608
+    Top = 496
+  end
+  object timer_GetMotors: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetMotorsTimer
+    Left = 608
+    Top = 88
   end
 end

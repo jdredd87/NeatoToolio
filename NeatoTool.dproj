@@ -411,7 +411,7 @@
         <DCCReference Include="neato.errors.pas"/>
         <DCCReference Include="neato.GetAccel.pas"/>
         <DCCReference Include="neato.GetAnalogSensors.pas"/>
-        <DCCReference Include="neato.GetCharger.pas"/>
+        <DCCReference Include="neato.GetMotors.pas"/>
         <DCCReference Include="neato.GetDigitalSensors.pas"/>
         <DCCReference Include="neato.GetErr.pas"/>
         <DCCReference Include="neato.GetLDSScan.pas"/>
