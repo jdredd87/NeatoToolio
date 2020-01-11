@@ -32,9 +32,13 @@ type
     onError: TNotifyEvent;
     Function Open(ComPort: String): boolean;
     procedure Close;
-    function SendCommand(cmd: string): string;
+
+    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
+    function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
+      const waitfor: string = ''): string;
+
     property Error: String read fError;
-    property ErrorCode : Longint read fErrorCode;
+    property ErrorCode: longint read fErrorCode;
     property Failure: boolean read fComFailure;
   end;
 
@@ -51,6 +55,7 @@ begin
 {$IFDEF win32}
   com := TFComPort.Create(nil);
   com.onError := FComPort1Error;
+  com.LogFile := 'neato.toolio.log';
 {$ENDIF}
 {$IFDEF android}
   com := TUsbSerial.Create;
@@ -68,7 +73,7 @@ begin
   if E.ErrorCode = 22 then // when loose connection
   begin
     fError := E.Message;
-    fErrorCode := e.ErrorCode;
+    fErrorCode := E.ErrorCode;
     Action := caabort;
     com.Close;
     if assigned(onError) then
@@ -81,9 +86,9 @@ Function TdmSerial.Open(ComPort: String): boolean;
 
 begin
   try
-    ferror := '';
-    ferrorcode := 0;
-    fcomfailure := false;
+    fError := '';
+    fErrorCode := 0;
+    fComFailure := false;
     try
       com.Close;
     except
@@ -122,17 +127,63 @@ begin
   end;
 end;
 
-function TdmSerial.SendCommand(cmd: string): string;
+function TdmSerial.SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
 begin
-  result := '';
-  com.WriteAnsiString(ansistring(cmd) + #13);
-  com.Timeouts.ReadInterval := 500;
 
-  repeat
-    sleep(100);
-  until (not com.ReadPending);
+  try
+    result := '';
+    com.WriteAnsiString(ansistring(cmd) + #13);
+    com.Timeouts.ReadInterval := readtimeout;
 
-  result := string(com.ReadAnsiString);
+    repeat
+      sleep(waitfor);
+    until (not com.ReadPending) or (not com.Active);
+
+    result := string(com.ReadAnsiString);
+
+  except
+    on E: Exception do
+    begin
+      tthread.Queue(nil, // Queue Syncronize
+        procedure
+        begin
+          fError := E.Message;
+          fErrorCode := E.HelpContext;
+          onError(self);
+        end);
+    end;
+  end;
+end;
+
+function TdmSerial.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
+const waitfor: string = ''): string;
+begin
+
+  try
+    result := '';
+    com.WriteAnsiString(ansistring(cmd) + #13);
+    com.Timeouts.ReadInterval := readtimeout;
+
+    repeat
+      sleep(100);
+    until (not com.ReadPending) or (not com.Active);
+
+    result := string(com.ReadAnsiUntil(^z));
+
+    // result := string(com.ReadAnsiString);
+
+  except
+    on E: Exception do
+    begin
+      tthread.Queue(nil, // Queue Syncronize
+        procedure
+        begin
+          fError := E.Message;
+          fErrorCode := E.HelpContext;
+          onError(self);
+        end);
+    end;
+  end;
 end;
 
 end.

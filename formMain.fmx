@@ -12601,7 +12601,7 @@ object frmMain: TfrmMain
       Size.Width = 896.000000000000000000
       Size.Height = 628.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       OnChange = tabsMainChange
@@ -12624,7 +12624,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 121.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -12640,7 +12640,6 @@ object frmMain: TfrmMain
           Size.PlatformDefault = False
           TabOrder = 0
           object swConnect: TSwitch
-            ControlType = Platform
             Enabled = False
             IsChecked = False
             Position.X = 152.000000000000000000
@@ -12720,7 +12719,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 76.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -12734,7 +12733,7 @@ object frmMain: TfrmMain
           Size.Width = 896.000000000000000000
           Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 5
+          TabIndex = 0
           TabOrder = 1
           TabPosition = Top
           OnChange = tabSensorsOptionsChange
@@ -12755,7 +12754,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 103.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -22827,13 +22826,15 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 97.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
             StyleLookup = ''
             TabOrder = 0
             Text = 'GetMotors'
+            ExplicitSize.cx = 97.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
             object lblGetMotorsBrush_RPM: TLabel
               Position.X = 16.000000000000000000
               Position.Y = 24.000000000000000000
@@ -23198,7 +23199,7 @@ object frmMain: TfrmMain
           Size.Width = 896.000000000000000000
           Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 5
+          TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsInfoOptionsChange
@@ -23219,7 +23220,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 111.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -23923,7 +23924,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 96.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -23940,7 +23941,9 @@ object frmMain: TfrmMain
               Size.Width = 329.000000000000000000
               Size.Height = 489.000000000000000000
               Size.PlatformDefault = False
+              StyleLookup = 'gridstyle'
               TabOrder = 0
+              Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 309.000000000000000000
               Viewport.Height = 464.000000000000000000
               object sgPlaysoundID: TStringColumn
@@ -24074,9 +24077,11 @@ object frmMain: TfrmMain
               Size.Width = 886.000000000000000000
               Size.Height = 236.000000000000000000
               Size.PlatformDefault = False
+              StyleLookup = 'gridstyle'
               TextSettings.Font.Size = 10.000000000000000000
               StyledSettings = [Family, Style, FontColor]
               TabOrder = 0
+              Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 866.000000000000000000
               Viewport.Height = 211.000000000000000000
               object StringColumn1: TStringColumn
@@ -24194,6 +24199,7 @@ object frmMain: TfrmMain
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
+          OnChange = tabsWifiOptionsChange
           Sizes = (
             896s
             568s
@@ -24216,6 +24222,57 @@ object frmMain: TfrmMain
             Text = 'GetWifiInfo'
             ExplicitSize.cx = 102.000000000000000000
             ExplicitSize.cy = 30.000000000000000000
+            object btnGetWifiInfoScan: TButton
+              Position.X = 16.000000000000000000
+              Position.Y = 34.000000000000000000
+              Size.Width = 177.000000000000000000
+              Size.Height = 39.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Text = 'Scan WiFi Networks'
+              OnClick = btnGetWifiInfoScanClick
+            end
+            object sgGetWifiInfo: TStringGrid
+              CanFocus = True
+              ClipChildren = True
+              Position.X = 16.000000000000000000
+              Position.Y = 88.000000000000000000
+              Size.Width = 865.000000000000000000
+              Size.Height = 465.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'gridstyle'
+              TabOrder = 0
+              RowCount = 10
+              Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+              Viewport.Width = 861.000000000000000000
+              Viewport.Height = 440.000000000000000000
+              object sgGetWifiInfoSSID: TStringColumn
+                Header = 'SSID'
+                Size.Width = 401.000000000000000000
+              end
+              object sgGetWifiInfoSignal: TStringColumn
+                Header = 'Signal'
+                Size.Width = 90.000000000000000000
+              end
+              object sgGetWifiInfoFrequency: TStringColumn
+                Header = 'Frequency'
+                Size.Width = 90.000000000000000000
+              end
+              object sgGetWifiInfoBSSID: TStringColumn
+                Header = 'BSSID ( MAC Address )'
+                Size.Width = 250.000000000000000000
+              end
+            end
+            object aniGetWifiInfo: TAniIndicator
+              Enabled = True
+              StyleLookup = 'aniindicatorstyle'
+              Position.X = 224.000000000000000000
+              Position.Y = 8.000000000000000000
+              Size.Width = 97.000000000000000000
+              Size.Height = 73.000000000000000000
+              Size.PlatformDefault = False
+              Style = Circular
+            end
           end
           object TabItem6: TTabItem
             CustomIcon = <
@@ -24293,9 +24350,10 @@ object frmMain: TfrmMain
           Size.Width = 896.000000000000000000
           Size.Height = 598.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
+          OnChange = TabControl1Change
           Sizes = (
             896s
             568s
@@ -24305,7 +24363,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 88.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24334,7 +24392,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 81.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24360,16 +24418,6 @@ object frmMain: TfrmMain
               Viewport.Width = 872.000000000000000000
               Viewport.Height = 405.000000000000000000
             end
-            object edDebugTerminalSend: TEdit
-              Touch.InteractiveGestures = [LongTap, DoubleTap]
-              TabOrder = 2
-              Position.X = 96.000000000000000000
-              Position.Y = 472.000000000000000000
-              Size.Width = 681.000000000000000000
-              Size.Height = 32.000000000000000000
-              Size.PlatformDefault = False
-              OnKeyDown = edDebugTerminalSendKeyDown
-            end
             object lblDebugTerminalCMD: TLabel
               Position.X = 8.000000000000000000
               Position.Y = 480.000000000000000000
@@ -24377,15 +24425,16 @@ object frmMain: TfrmMain
               Size.Height = 17.000000000000000000
               Size.PlatformDefault = False
               Text = 'Command'
-              TabOrder = 3
+              TabOrder = 2
             end
             object btnDebugTerminalSend: TButton
+              Enabled = False
               Position.X = 792.000000000000000000
               Position.Y = 472.000000000000000000
               Size.Width = 97.000000000000000000
               Size.Height = 33.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 4
+              TabOrder = 3
               Text = 'Send'
               OnClick = btnDebugTerminalSendClick
             end
@@ -24424,6 +24473,18 @@ object frmMain: TfrmMain
                 TabOrder = 5
                 Text = 'Help'
                 OnClick = btnDebugTerminalHelpClick
+              end
+              object edDebugTerminalSend: TComboEdit
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                TabOrder = 7
+                ItemHeight = 19.000000000000000000
+                ItemIndex = -1
+                Position.X = 104.000000000000000000
+                Position.Y = 472.000000000000000000
+                Size.Width = 673.000000000000000000
+                Size.Height = 32.000000000000000000
+                Size.PlatformDefault = False
+                OnKeyDown = edDebugTerminalSendKeyDown
               end
             end
           end

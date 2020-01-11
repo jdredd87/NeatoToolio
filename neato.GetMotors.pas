@@ -113,22 +113,22 @@ begin
 
   if data.Values[sParameter] = sValue then
   begin
-    trystrtofloat(data.Values[sBrush_RPM],fBrush_RPM);
-    trystrtofloat(data.Values[sBrush_mA],fBrush_mA);
-    trystrtofloat(data.Values[sVacuum_RPM],fVacuum_RPM);
-    trystrtofloat(data.Values[sVacuum_mA],fVacuum_mA);
-    trystrtofloat(data.Values[sLeftWheel_RPM],fLeftWheel_RPM);
-    trystrtofloat(data.Values[sLeftWheel_Load],fLeftWheel_Load);
-    trystrtofloat(data.Values[sLeftWheel_PositionInMM],fLeftWheel_PositionInMM);
-    trystrtofloat(data.Values[sLeftWheel_Speed],fLeftWheel_Speed);
-    trystrtofloat(data.Values[sLeftWheel_direction],fLeftWheel_direction);
-    trystrtofloat(data.Values[sRightWheel_RPM],fRightWheel_RPM);
-    trystrtofloat(data.Values[sRightWheel_Load],fRightWheel_Load);
-    trystrtofloat(data.Values[sRightWheel_PositionInMM],fRightWheel_PositionInMM);
-    trystrtofloat(data.Values[sRightWheel_Speed],fRightWheel_Speed);
-    trystrtofloat(data.Values[sRightWheel_direction],fRightWheel_direction);
-    trystrtofloat(data.Values[sROTATION_SPEED],fROTATION_SPEED);
-    trystrtofloat(data.Values[sSideBrush_mA],fSideBrush_mA);
+    trystrtofloat(data.Values[sBrush_RPM], fBrush_RPM);
+    trystrtofloat(data.Values[sBrush_mA], fBrush_mA);
+    trystrtofloat(data.Values[sVacuum_RPM], fVacuum_RPM);
+    trystrtofloat(data.Values[sVacuum_mA], fVacuum_mA);
+    trystrtofloat(data.Values[sLeftWheel_RPM], fLeftWheel_RPM);
+    trystrtofloat(data.Values[sLeftWheel_Load], fLeftWheel_Load);
+    trystrtofloat(data.Values[sLeftWheel_PositionInMM], fLeftWheel_PositionInMM);
+    trystrtofloat(data.Values[sLeftWheel_Speed], fLeftWheel_Speed);
+    trystrtofloat(data.Values[sLeftWheel_direction], fLeftWheel_direction);
+    trystrtofloat(data.Values[sRightWheel_RPM], fRightWheel_RPM);
+    trystrtofloat(data.Values[sRightWheel_Load], fRightWheel_Load);
+    trystrtofloat(data.Values[sRightWheel_PositionInMM], fRightWheel_PositionInMM);
+    trystrtofloat(data.Values[sRightWheel_Speed], fRightWheel_Speed);
+    trystrtofloat(data.Values[sRightWheel_direction], fRightWheel_direction);
+    trystrtofloat(data.Values[sROTATION_SPEED], fROTATION_SPEED);
+    trystrtofloat(data.Values[sSideBrush_mA], fSideBrush_mA);
     result := true;
   end
   else

@@ -21,6 +21,7 @@ uses
   neato.GetSensor,
   neato.PlaySound,
   neato.GetMotors,
+  neato.GetWifiInfo,
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
@@ -29,7 +30,7 @@ uses
   FMX.ListView, FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Effects,
   System.Math.Vectors, FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D,
   FMX.MaterialSources, FMX.Types3D, FMX.Filter.Effects, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ExtCtrls, FMX.Edit,
-  FMX.EditBox, FMX.SpinBox, FMX.NumberBox;
+  FMX.EditBox, FMX.SpinBox, FMX.NumberBox, FMX.ComboEdit;
 
 type
   TfrmMain = class(TForm)
@@ -297,7 +298,6 @@ type
     tabDebugRawData: TTabItem;
     tabDebugTerminal: TTabItem;
     memoDebugTerminal: TMemo;
-    edDebugTerminalSend: TEdit;
     lblDebugTerminalCMD: TLabel;
     btnDebugTerminalSend: TButton;
     memoDebug: TMemo;
@@ -383,6 +383,14 @@ type
     lblGetMotorsSideBrush_mA: TLabel;
     lblGetMotorsSideBrush_mAValue: TLabel;
     timer_GetMotors: TTimer;
+    edDebugTerminalSend: TComboEdit;
+    btnGetWifiInfoScan: TButton;
+    sgGetWifiInfo: TStringGrid;
+    sgGetWifiInfoSSID: TStringColumn;
+    sgGetWifiInfoSignal: TStringColumn;
+    sgGetWifiInfoFrequency: TStringColumn;
+    sgGetWifiInfoBSSID: TStringColumn;
+    aniGetWifiInfo: TAniIndicator;
     procedure FormCreate(Sender: TObject);
     procedure swConnectSwitch(Sender: TObject);
     procedure cbCOMChange(Sender: TObject);
@@ -415,6 +423,9 @@ type
     procedure btnPlaySoundAbortClick(Sender: TObject);
     procedure btnDebugTerminalHelpClick(Sender: TObject);
     procedure timer_GetMotorsTimer(Sender: TObject);
+    procedure btnGetWifiInfoScanClick(Sender: TObject);
+    procedure tabsWifiOptionsChange(Sender: TObject);
+    procedure TabControl1Change(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
@@ -427,7 +438,10 @@ type
     procedure ResetGetAccel;
     procedure ResetGetDigitalSensors;
     procedure ResetGetErr;
+    procedure onIDLE(Sender: TObject; var done: Boolean);
     // when connected, disable controls or the reverse
+
+    procedure StopTimers;
   public
     com: TdmSerial;
   end;
@@ -438,6 +452,63 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  try
+    deletefile('neato.toolio.log');
+  except
+  end;
+
+
+  application.onIDLE := self.onIDLE;
+  tabsMain.TabIndex := 0;
+  tabSensorsOptions.TabIndex := 0;
+  tabsInfoOptions.TabIndex := 0;
+  tabsWifiOptions.TabIndex := 0;
+
+  chkAutoDetect.IsChecked := neatoSettings.AutoDetectNeato;
+
+  aniGetWifiInfo.Visible := false;
+  aniGetWifiInfo.Enabled := false;
+
+  fCurrentTimer := nil;
+  com := TdmSerial.Create(self);
+  com.onError := comError;
+  tabsMain.Enabled := false;
+
+  tthread.CreateAnonymousThread(
+    procedure
+    var
+      comList: TStringList;
+    begin
+      comList := TStringList.Create;
+      com.com.EnumComDevices(comList);
+      tthread.Synchronize(tthread.CurrentThread,
+        procedure
+        begin
+          cbCOM.Items.Assign(comList);
+          comList.Free;
+          tabsMain.Enabled := true;
+        end);
+    end).Start;
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  freeandnil(com);
+end;
+
+// can use this event that when IDLE happens, which is very often and fast
+// to enable/disable things , such as send buttons when com is open or not
+// quick and easy way to keep UI up to date depending on com status
+
+procedure TfrmMain.onIDLE(Sender: TObject; var done: Boolean);
+begin
+  btnDebugTerminalSend.Enabled := com.com.Active;
+  btnDebugTerminalHelp.Enabled := com.com.Active;
+  btnGetWifiInfoScan.Enabled := com.com.Active;
+end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
@@ -470,50 +541,30 @@ begin
   CanClose := true;
 end;
 
-procedure TfrmMain.FormCreate(Sender: TObject);
+procedure TfrmMain.StopTimers;
+var
+  idx: integer;
 begin
-  tabsMain.TabIndex := 0;
-  tabSensorsOptions.TabIndex := 0;
-  tabsInfoOptions.TabIndex := 0;
-  tabsWifiOptions.TabIndex := 0;
-
-  chkAutoDetect.IsChecked := neatoSettings.AutoDetectNeato;
-
+  for idx := 0 to self.ComponentCount - 1 do
+    if Components[idx] is TTimer then
+      (Components[idx] as TTimer).Enabled := false;
   fCurrentTimer := nil;
-  com := TdmSerial.Create(self);
-  com.onError := comError;
-  tabsMain.Enabled := false;
-
-  tthread.CreateAnonymousThread(
-    procedure
-    var
-      comList: TStringList;
-    begin
-      comList := TStringList.Create;
-      com.com.EnumComDevices(comList);
-      tthread.Synchronize(tthread.CurrentThread,
-        procedure
-        begin
-          cbCOM.Items.Assign(comList);
-          comList.Free;
-          tabsMain.Enabled := true;
-        end);
-    end).Start;
-end;
-
-procedure TfrmMain.FormDestroy(Sender: TObject);
-begin
-  freeandnil(com);
 end;
 
 procedure TfrmMain.swConnectSwitch(Sender: TObject);
 begin
+  StopTimers;
   toggleComs(swConnect.IsChecked);
+end;
+
+procedure TfrmMain.TabControl1Change(Sender: TObject);
+begin
+  StopTimers;
 end;
 
 procedure TfrmMain.tabSensorsOptionsChange(Sender: TObject);
 begin
-
+  StopTimers;
   tthread.CreateAnonymousThread(
     procedure
     begin
@@ -576,7 +627,7 @@ end;
 
 procedure TfrmMain.tabsLIDAROptionsChange(Sender: TObject);
 begin
-
+  StopTimers;
   tthread.CreateAnonymousThread(
     procedure
     begin
@@ -603,7 +654,7 @@ end;
 
 procedure TfrmMain.tabsMainChange(Sender: TObject);
 begin
-
+  StopTimers;
   tthread.CreateAnonymousThread(
     procedure
     begin
@@ -649,8 +700,14 @@ begin
 
 end;
 
+procedure TfrmMain.tabsWifiOptionsChange(Sender: TObject);
+begin
+  StopTimers;
+end;
+
 procedure TfrmMain.tabsInfoOptionsChange(Sender: TObject);
 begin
+  StopTimers;
   tthread.CreateAnonymousThread(
     procedure
     begin
@@ -1118,26 +1175,26 @@ begin
 
   if r then
   begin
-    lblGetMotorsBrush_RPMValue.Text := pgetmotors.Brush_RPM.ToString;
-    lblGetMotorsBrush_mAValue.Text := pgetmotors.Brush_mA.ToString;
+    lblGetMotorsBrush_RPMValue.Text := pGetMotors.Brush_RPM.ToString;
+    lblGetMotorsBrush_mAValue.Text := pGetMotors.Brush_mA.ToString;
 
-    lblGetMotorsVacuum_RPMValue.Text := pgetmotors.Vacuum_RPM.ToString;
-    lblGetMotorsVacuum_mAValue.Text := pgetmotors.Vacuum_mA.ToString;
+    lblGetMotorsVacuum_RPMValue.Text := pGetMotors.Vacuum_RPM.ToString;
+    lblGetMotorsVacuum_mAValue.Text := pGetMotors.Vacuum_mA.ToString;
 
-    lblGetMotorsLeftWheel_RPMValue.Text := pgetmotors.LeftWheel_RPM.ToString;
-    lblGetMotorsLeftWheel_LoadValue.Text := pgetmotors.LeftWheel_Load.ToString;
-    lblGetMotorsLeftWheel_PositionInMMValue.Text := pgetmotors.LeftWheel_PositionInMM.ToString;
-    lblGetMotorsLeftWheel_SpeedValue.Text := pgetmotors.LeftWheel_Speed.ToString;
-    lblGetMotorsLeftWheel_directionValue.Text := pgetmotors.LeftWheel_direction.ToString;
+    lblGetMotorsLeftWheel_RPMValue.Text := pGetMotors.LeftWheel_RPM.ToString;
+    lblGetMotorsLeftWheel_LoadValue.Text := pGetMotors.LeftWheel_Load.ToString;
+    lblGetMotorsLeftWheel_PositionInMMValue.Text := pGetMotors.LeftWheel_PositionInMM.ToString;
+    lblGetMotorsLeftWheel_SpeedValue.Text := pGetMotors.LeftWheel_Speed.ToString;
+    lblGetMotorsLeftWheel_directionValue.Text := pGetMotors.LeftWheel_direction.ToString;
 
-    lblGetMotorsRightWheel_RPMValue.Text := pgetmotors.RightWheel_RPM.ToString;
-    lblGetMotorsRightWheel_LoadValue.Text := pgetmotors.RightWheel_Load.ToString;
-    lblGetMotorsRightWheel_PositionInMMValue.Text := pgetmotors.RightWheel_PositionInMM.ToString;
-    lblGetMotorsRightWheel_SpeedValue.Text := pgetmotors.RightWheel_Speed.ToString;
-    lblGetMotorsRightWheel_directionValue.Text := pgetmotors.RightWheel_direction.ToString;
+    lblGetMotorsRightWheel_RPMValue.Text := pGetMotors.RightWheel_RPM.ToString;
+    lblGetMotorsRightWheel_LoadValue.Text := pGetMotors.RightWheel_Load.ToString;
+    lblGetMotorsRightWheel_PositionInMMValue.Text := pGetMotors.RightWheel_PositionInMM.ToString;
+    lblGetMotorsRightWheel_SpeedValue.Text := pGetMotors.RightWheel_Speed.ToString;
+    lblGetMotorsRightWheel_directionValue.Text := pGetMotors.RightWheel_direction.ToString;
 
-    lblGetMotorsROTATION_SPEEDValue.Text := pgetmotors.ROTATION_SPEED.ToString;
-    lblGetMotorsSideBrush_mAValue.Text := pgetmotors.SideBrush_mA.ToString;
+    lblGetMotorsROTATION_SPEEDValue.Text := pGetMotors.ROTATION_SPEED.ToString;
+    lblGetMotorsSideBrush_mAValue.Text := pGetMotors.SideBrush_mA.ToString;
   end;
 
   pReadData.Free;
@@ -1688,8 +1745,8 @@ begin
   else
   begin
     com.open(cbCOM.Items[cbCOM.ItemIndex]);
-    tabsMain.TabIndex := 0;
-    tabSensorsOptions.TabIndex := 0;
+    tabsMain.ActiveTab := tabSensors;
+    tabSensorsOptions.ActiveTab := tabGetCharger;
     tabSensorsOptionsChange(nil);
     ckTestMode.Enabled := true;
   end;
@@ -1727,6 +1784,10 @@ var
   Value: string;
 begin
   Value := edDebugTerminalSend.Text;
+
+  if edDebugTerminalSend.Items.IndexOf(edDebugTerminalSend.Text) = -1 then
+    edDebugTerminalSend.Items.Insert(0, edDebugTerminalSend.Text);
+
   r := com.SendCommand(Value);
   r := stringreplace(r, #10#13, #13, [rfreplaceall]);
   memoDebugTerminal.Lines.Add('');
@@ -1734,6 +1795,60 @@ begin
   memoDebugTerminal.GoToTextEnd;
   edDebugTerminalSend.Text := '';
   edDebugTerminalSend.SetFocus;
+end;
+
+procedure TfrmMain.btnGetWifiInfoScanClick(Sender: TObject);
+begin
+
+  aniGetWifiInfo.Enabled := true;
+  aniGetWifiInfo.Visible := true;
+  btnGetWifiInfoScan.Enabled := false;
+
+  tthread.CreateAnonymousThread(
+    procedure
+    var
+      pReadData: TStringList;
+      gGetWifiInfo: tGetWifiInfo;
+      r: Boolean;
+    begin
+      pReadData := TStringList.Create;
+      // request wifi info.. wait max 16 seconds, wait for ^Z
+      pReadData.Text := com.SendCommandAndWaitForValue(sgetwifiinfo, 16000, ^Z);
+      gGetWifiInfo := tGetWifiInfo.Create;
+
+      sgGetWifiInfo.RowCount := 0;
+      sgGetWifiInfo.RowCount := 1;
+
+      tthread.Synchronize(tthread.CurrentThread,
+        procedure
+        var
+          idx: integer;
+        begin
+          try
+            r := gGetWifiInfo.ParseText(pReadData);
+            if r then
+            begin
+              sgGetWifiInfo.RowCount := gGetWifiInfo.GetWifiInfoItems.Count;
+              for idx := 0 to gGetWifiInfo.GetWifiInfoItems.Count - 1 do
+              begin
+                sgGetWifiInfo.Cells[0, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].SSID;
+                sgGetWifiInfo.Cells[1, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].Signal.ToString;
+                sgGetWifiInfo.Cells[2, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].Frequency.ToString;
+                sgGetWifiInfo.Cells[3, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].BSSID;
+              end;
+            end;
+          finally
+            btnGetWifiInfoScan.Enabled := true;
+            aniGetWifiInfo.Enabled := false;
+            aniGetWifiInfo.Visible := false;
+          end;
+        end);
+
+      freeandnil(pReadData);
+      freeandnil(gGetWifiInfo);
+
+    end).Start;
+
 end;
 
 procedure TfrmMain.btnPlaySoundTestClick(Sender: TObject);
