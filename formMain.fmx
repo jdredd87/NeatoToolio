@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Neato Toolio'
-  ClientHeight = 628
+  ClientHeight = 596
   ClientWidth = 896
   Position = ScreenCenter
   Quality = HighQuality
@@ -12592,39 +12592,39 @@ object frmMain: TfrmMain
   object ScaledLayout1: TScaledLayout
     Align = Client
     OriginalWidth = 896.000000000000000000
-    OriginalHeight = 628.000000000000000000
+    OriginalHeight = 596.000000000000000000
     Size.Width = 896.000000000000000000
-    Size.Height = 628.000000000000000000
+    Size.Height = 596.000000000000000000
     Size.PlatformDefault = False
     object tabsMain: TTabControl
       Align = Client
       Size.Width = 896.000000000000000000
-      Size.Height = 628.000000000000000000
+      Size.Height = 571.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 0
+      TabIndex = 6
       TabOrder = 0
       TabPosition = PlatformDefault
       OnChange = tabsMainChange
       Sizes = (
         896s
-        598s
+        541s
         896s
-        598s
+        541s
         896s
-        598s
+        541s
         896s
-        598s
+        541s
         896s
-        598s
+        541s
         896s
-        598s
+        541s
         896s
-        598s)
+        541s)
       object tabSetup: TTabItem
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 121.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -12731,7 +12731,7 @@ object frmMain: TfrmMain
         object tabSensorsOptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 598.000000000000000000
+          Size.Height = 541.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 1
@@ -12739,17 +12739,17 @@ object frmMain: TfrmMain
           OnChange = tabSensorsOptionsChange
           Sizes = (
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s)
+            511s)
           object tabGetCharger: TTabItem
             CustomIcon = <
               item
@@ -13193,7 +13193,7 @@ object frmMain: TfrmMain
               Margins.Right = 25.000000000000000000
               Margins.Bottom = 25.000000000000000000
               Size.Width = 533.000000000000000000
-              Size.Height = 518.000000000000000000
+              Size.Height = 461.000000000000000000
               Size.PlatformDefault = False
               object _3DGetAccel: TModel3D
                 Scale.X = 10.000000000000000000
@@ -21637,7 +21637,7 @@ object frmMain: TfrmMain
             object Panel2: TPanel
               Align = Left
               Size.Width = 313.000000000000000000
-              Size.Height = 568.000000000000000000
+              Size.Height = 511.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
               object lbl_PitchInDegrees: TLabel
@@ -23197,7 +23197,7 @@ object frmMain: TfrmMain
         object tabsInfoOptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 598.000000000000000000
+          Size.Height = 541.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
@@ -23205,17 +23205,17 @@ object frmMain: TfrmMain
           OnChange = tabsInfoOptionsChange
           Sizes = (
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s)
+            511s)
           object tabGetWarranty: TTabItem
             CustomIcon = <
               item
@@ -23322,14 +23322,14 @@ object frmMain: TfrmMain
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
               Size.Width = 886.000000000000000000
-              Size.Height = 558.000000000000000000
+              Size.Height = 501.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TabOrder = 0
               RowCount = 6
               Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 882.000000000000000000
-              Viewport.Height = 533.000000000000000000
+              Viewport.Height = 476.000000000000000000
               object scGetErrName: TStringColumn
                 Header = 'Code'
                 Size.Width = 200.000000000000000000
@@ -23362,14 +23362,14 @@ object frmMain: TfrmMain
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
               Size.Width = 886.000000000000000000
-              Size.Height = 558.000000000000000000
+              Size.Height = 501.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TabOrder = 0
               RowCount = 6
               Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 882.000000000000000000
-              Viewport.Height = 533.000000000000000000
+              Viewport.Height = 476.000000000000000000
               object scGetVersionComponent: TStringColumn
                 Header = 'Component'
                 Size.Width = 241.000000000000000000
@@ -24042,7 +24042,7 @@ object frmMain: TfrmMain
         object tabsLIDAROptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 598.000000000000000000
+          Size.Height = 541.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
@@ -24050,7 +24050,7 @@ object frmMain: TfrmMain
           OnChange = tabsLIDAROptionsChange
           Sizes = (
             896s
-            568s)
+            511s)
           object tabLidar: TTabItem
             CustomIcon = <
               item
@@ -24194,7 +24194,7 @@ object frmMain: TfrmMain
         object tabsWifiOptions: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 598.000000000000000000
+          Size.Height = 541.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
@@ -24202,13 +24202,13 @@ object frmMain: TfrmMain
           OnChange = tabsWifiOptionsChange
           Sizes = (
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s
+            511s
             896s
-            568s)
+            511s)
           object TabItem5: TTabItem
             CustomIcon = <
               item
@@ -24336,7 +24336,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 69.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -24345,54 +24345,25 @@ object frmMain: TfrmMain
         Text = 'Debug'
         ExplicitSize.cx = 86.000000000000000000
         ExplicitSize.cy = 30.000000000000000000
-        object TabControl1: TTabControl
+        object TabDebugger: TTabControl
           Align = Client
           Size.Width = 896.000000000000000000
-          Size.Height = 598.000000000000000000
+          Size.Height = 541.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
-          OnChange = TabControl1Change
+          OnChange = TabDebuggerChange
           Sizes = (
             896s
-            568s
+            511s
             896s
-            568s)
-          object tabDebugRawData: TTabItem
-            CustomIcon = <
-              item
-              end>
-            IsSelected = True
-            Size.Width = 88.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = ''
-            TabOrder = 0
-            Text = 'Raw Data'
-            ExplicitSize.cx = 88.000000000000000000
-            ExplicitSize.cy = 30.000000000000000000
-            object memoDebug: TMemo
-              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-              DataDetectorTypes = []
-              Align = Client
-              Margins.Left = 10.000000000000000000
-              Margins.Top = 10.000000000000000000
-              Margins.Right = 10.000000000000000000
-              Margins.Bottom = 10.000000000000000000
-              Size.Width = 876.000000000000000000
-              Size.Height = 548.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 0
-              Viewport.Width = 872.000000000000000000
-              Viewport.Height = 544.000000000000000000
-            end
-          end
+            511s)
           object tabDebugTerminal: TTabItem
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 81.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24412,11 +24383,11 @@ object frmMain: TfrmMain
               Margins.Right = 10.000000000000000000
               Margins.Bottom = 100.000000000000000000
               Size.Width = 876.000000000000000000
-              Size.Height = 409.000000000000000000
+              Size.Height = 352.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
               Viewport.Width = 872.000000000000000000
-              Viewport.Height = 405.000000000000000000
+              Viewport.Height = 348.000000000000000000
             end
             object lblDebugTerminalCMD: TLabel
               Position.X = 8.000000000000000000
@@ -24488,6 +24459,196 @@ object frmMain: TfrmMain
               end
             end
           end
+          object tabDebugRawData: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 88.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Raw Data'
+            ExplicitSize.cx = 88.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
+            object memoDebug: TMemo
+              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+              DataDetectorTypes = []
+              Align = Client
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Size.Width = 876.000000000000000000
+              Size.Height = 491.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Viewport.Width = 872.000000000000000000
+              Viewport.Height = 487.000000000000000000
+            end
+          end
+        end
+      end
+    end
+    object Panel4: TPanel
+      Align = Bottom
+      Position.Y = 571.000000000000000000
+      Size.Width = 896.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object ColorBoxRX: TColorBox
+        Align = Left
+        Color = claMaroon
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Margins.Bottom = 1.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 11
+        object LabelRX: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Size.Width = 48.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          Text = 'RX'
+        end
+      end
+      object ColorBoxTX: TColorBox
+        Align = Left
+        Color = claGreen
+        Margins.Left = 1.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Margins.Bottom = 1.000000000000000000
+        Position.X = 60.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        object LabelTX: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Margins.Left = 1.000000000000000000
+          Margins.Top = 1.000000000000000000
+          Margins.Right = 1.000000000000000000
+          Margins.Bottom = 1.000000000000000000
+          Size.Width = 46.000000000000000000
+          Size.Height = 21.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          Text = 'TX'
+        end
+      end
+      object ColorBoxCTS: TColorBox
+        Align = Left
+        Color = claOlive
+        Margins.Left = 25.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Margins.Bottom = 1.000000000000000000
+        Position.X = 134.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        object LabelCTS: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Size.Width = 48.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Text = 'CTS'
+        end
+      end
+      object ColorBoxDSR: TColorBox
+        Align = Left
+        Color = claOlive
+        Margins.Left = 1.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Margins.Bottom = 1.000000000000000000
+        Position.X = 184.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 8
+        object LabelDSR: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Size.Width = 48.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Center
+          Text = 'DSR'
+        end
+      end
+      object ColorBoxRLSD: TColorBox
+        Align = Left
+        Color = claMaroon
+        Margins.Left = 25.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Margins.Bottom = 1.000000000000000000
+        Position.X = 258.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        object LabelRLSD: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Size.Width = 48.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          Text = 'RLSD'
+        end
+      end
+      object ColorBoxBreak: TColorBox
+        Align = Left
+        Color = claNavy
+        HitTest = False
+        Margins.Left = 1.000000000000000000
+        Margins.Top = 1.000000000000000000
+        Margins.Right = 1.000000000000000000
+        Margins.Bottom = 1.000000000000000000
+        Position.X = 308.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 48.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 9
+        object LabelBreak: TLabel
+          Align = Client
+          StyledSettings = [Family, Size]
+          Size.Width = 48.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          Text = 'Break'
         end
       end
     end

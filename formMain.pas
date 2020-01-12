@@ -7,7 +7,9 @@ unit formMain;
 interface
 
 uses
-  dmSerial.Windows,
+{$IFDEF MSWINDOWS}
+  Winsoft.FireMonkey.FComPort, dmSerial.Windows,
+{$ENDIF}
   neato.GetCharger,
   neato.GetWarranty,
   neato.GetAccel,
@@ -30,7 +32,7 @@ uses
   FMX.ListView, FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Effects,
   System.Math.Vectors, FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D,
   FMX.MaterialSources, FMX.Types3D, FMX.Filter.Effects, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ExtCtrls, FMX.Edit,
-  FMX.EditBox, FMX.SpinBox, FMX.NumberBox, FMX.ComboEdit;
+  FMX.EditBox, FMX.SpinBox, FMX.NumberBox, FMX.ComboEdit, FMX.Colors;
 
 type
   TfrmMain = class(TForm)
@@ -294,7 +296,7 @@ type
     swGetUserSettingsWarningSoundsValue: TSwitch;
     swGetUserSettingsBinFullDetectValue: TSwitch;
     swGetUserSettingsScheduleisValue: TSwitch;
-    TabControl1: TTabControl;
+    TabDebugger: TTabControl;
     tabDebugRawData: TTabItem;
     tabDebugTerminal: TTabItem;
     memoDebugTerminal: TMemo;
@@ -391,6 +393,19 @@ type
     sgGetWifiInfoFrequency: TStringColumn;
     sgGetWifiInfoBSSID: TStringColumn;
     aniGetWifiInfo: TAniIndicator;
+    Panel4: TPanel;
+    ColorBoxRX: TColorBox;
+    LabelRX: TLabel;
+    ColorBoxTX: TColorBox;
+    LabelTX: TLabel;
+    ColorBoxCTS: TColorBox;
+    LabelCTS: TLabel;
+    ColorBoxDSR: TColorBox;
+    LabelDSR: TLabel;
+    ColorBoxRLSD: TColorBox;
+    LabelRLSD: TLabel;
+    ColorBoxBreak: TColorBox;
+    LabelBreak: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure swConnectSwitch(Sender: TObject);
     procedure cbCOMChange(Sender: TObject);
@@ -425,23 +440,30 @@ type
     procedure timer_GetMotorsTimer(Sender: TObject);
     procedure btnGetWifiInfoScanClick(Sender: TObject);
     procedure tabsWifiOptionsChange(Sender: TObject);
-    procedure TabControl1Change(Sender: TObject);
+    procedure TabDebuggerChange(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
-
     fPlaySoundAborted: Boolean;
     procedure toggleComs(disable: Boolean);
     procedure comConnect;
     procedure comDisconnect;
-    procedure comError(Sender: TObject);
     procedure ResetGetAccel;
     procedure ResetGetDigitalSensors;
     procedure ResetGetErr;
     procedure onIDLE(Sender: TObject; var done: Boolean);
-    // when connected, disable controls or the reverse
+
+    procedure FComPortAfterClose(Sender: TObject);
+    procedure FComPortAfterOpen(Sender: TObject);
+    procedure FComPortLineError(Sender: TObject; LineErrors: TLineErrors);
+    procedure FComPortRxChar(Sender: TObject);
+    procedure FComPortError(Sender: TObject); // mine not winsofts
+    procedure FComPortEOL(Sender: TObject); // mine not winsofts, used to know when ^Z (char 26, hex $1A received)
 
     procedure StopTimers;
+
+    procedure updatecominfo;
+
   public
     com: TdmSerial;
   end;
@@ -460,8 +482,8 @@ begin
   except
   end;
 
-
   application.onIDLE := self.onIDLE;
+
   tabsMain.TabIndex := 0;
   tabSensorsOptions.TabIndex := 0;
   tabsInfoOptions.TabIndex := 0;
@@ -474,7 +496,15 @@ begin
 
   fCurrentTimer := nil;
   com := TdmSerial.Create(self);
-  com.onError := comError;
+  com.onError := FComPortError;
+
+  com.FComSignalRX.ColorBox := self.ColorBoxRX;
+  com.FComSignalCTS.ColorBox := self.ColorBoxCTS;
+  // com.FComSignalRing.ColorBox := self.ColorBoxRing;
+  com.FComSignalBreak.ColorBox := self.ColorBoxBreak;
+  com.FComSignalRLSD.ColorBox := self.ColorBoxRLSD;
+  com.FComSignalDSR.ColorBox := self.ColorBoxDSR;
+  com.FComSignalTX.ColorBox := self.ColorBoxTX;
   tabsMain.Enabled := false;
 
   tthread.CreateAnonymousThread(
@@ -541,6 +571,87 @@ begin
   CanClose := true;
 end;
 
+procedure TfrmMain.updatecominfo;
+begin
+  // not used yet
+end;
+
+procedure TfrmMain.FComPortAfterClose(Sender: TObject);
+begin
+  StopTimers;
+end;
+
+procedure TfrmMain.FComPortAfterOpen(Sender: TObject);
+begin
+  StopTimers;
+end;
+
+procedure TfrmMain.FComPortLineError(Sender: TObject; LineErrors: TLineErrors);
+begin
+  StopTimers;
+
+  if leBreak in LineErrors then
+    MessageDlg('Break detected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leDeviceNotSelected in LineErrors then
+    MessageDlg('Device not selected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leFrame in LineErrors then
+    MessageDlg('Frame error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leIO in LineErrors then
+    MessageDlg('IO error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leMode in LineErrors then
+    MessageDlg('Mode error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leOutOfPaper in LineErrors then
+    MessageDlg('Out of paper', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leOverrun in LineErrors then
+    MessageDlg('Overrun error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leDeviceTimeOut in LineErrors then
+    MessageDlg('Device timeout', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leRxOverflow in LineErrors then
+    MessageDlg('Receiver overflow', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leParity in LineErrors then
+    MessageDlg('Parity error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+  if leTxFull in LineErrors then
+    MessageDlg('Transmitter full', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+end;
+
+procedure TfrmMain.FComPortError(Sender: TObject);
+begin
+  StopTimers;
+  try
+    com.com.Active := false;
+  finally
+  end;
+  showmessage('COM Issue #' + com.errorcode.ToString + ' : ' + com.Error);
+  swConnect.Enabled := true;
+  swConnect.IsChecked := false;
+  pnlComSetup.Enabled := true;
+end;
+
+procedure TfrmMain.FComPortRxChar(Sender: TObject);
+var
+  Text: AnsiString;
+begin
+
+  // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
+
+  memoDebugTerminal.BeginUpdate;
+  Text := com.com.ReadAnsiString;
+
+  if pos(^Z, Text) > 0 then
+    FComPortEOL(Sender);
+
+  memoDebugTerminal.Text := memoDebugTerminal.Text + string(Text);
+  memoDebugTerminal.GoToTextEnd;
+
+  memoDebugTerminal.EndUpdate;
+end;
+
+procedure TfrmMain.FComPortEOL(Sender: TObject);
+begin
+  // showmessage('^z found');
+  // needs logic in here eventually to signal something waiting for data
+end;
+
 procedure TfrmMain.StopTimers;
 var
   idx: integer;
@@ -557,9 +668,13 @@ begin
   toggleComs(swConnect.IsChecked);
 end;
 
-procedure TfrmMain.TabControl1Change(Sender: TObject);
+procedure TfrmMain.TabDebuggerChange(Sender: TObject);
 begin
   StopTimers;
+  if TabDebugger.ActiveTab = tabDebugTerminal then
+  begin
+    edDebugTerminalSend.SetFocus;
+  end;
 end;
 
 procedure TfrmMain.tabSensorsOptionsChange(Sender: TObject);
@@ -692,6 +807,13 @@ begin
           begin
             self.tabsLIDAROptions.TabIndex := 0;
             self.tabsLIDAROptionsChange(nil);
+            exit;
+          end;
+
+        if tabsMain.ActiveTab = self.tabDebug then
+          begin
+            self.TabDebugger.TabIndex := 0;
+            self.TabDebuggerChange(nil);
             exit;
           end;
 
@@ -883,7 +1005,8 @@ var
   r: Boolean;
 begin
 
-  if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetCharger) then
+  if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetCharger) or (tabsMain.ActiveTab <> tabSensors)
+  then
   begin
     timer_GetCharger.Enabled := false;
     exit;
@@ -1358,13 +1481,13 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       temp := Data[i];
       if copy(temp, length(temp), 1) <> FieldDel then
         temp := temp + FieldDel;
-      while Pos('"', temp) > 0 do
+      while pos('"', temp) > 0 do
       begin
-        Delete(temp, Pos('"', temp), 1);
+        Delete(temp, pos('"', temp), 1);
       end;
       for j := 1 to edt1 do
       begin
-        Position := Pos(FieldDel, temp);
+        Position := pos(FieldDel, temp);
         tempField := copy(temp, 0, Position - 1);
 
         sg.Cells[j - 1, i] := tempField;
@@ -1730,14 +1853,14 @@ begin
         continue;
 
       r := com.SendCommand('HELP');
-      if Pos('Help', r) > 0 then
+      if pos('Help', r) > 0 then
       begin
         com.Close;
         cbCOM.ItemIndex := idx;
         break;
       end;
     end;
-    com.onError := comError;
+    com.onError := FComPortError;
   end;
 
   if cbCOM.ItemIndex = -1 then
@@ -1757,14 +1880,6 @@ begin
   com.Close;
 end;
 
-procedure TfrmMain.comError(Sender: TObject);
-begin
-  showmessage('COM Issue #' + com.errorcode.ToString + ' : ' + com.Error);
-  swConnect.Enabled := true;
-  swConnect.IsChecked := false;
-  pnlComSetup.Enabled := true;
-end;
-
 procedure TfrmMain.btnDebugTerminalClearClick(Sender: TObject);
 begin
   memoDebugTerminal.Text := '';
@@ -1782,23 +1897,34 @@ procedure TfrmMain.btnDebugTerminalSendClick(Sender: TObject);
 var
   r: String;
   Value: string;
+  timeout: byte;
 begin
+  StopTimers; // JUST IN CASE
+  com.com.OnRxChar := FComPortRxChar;
+
   Value := edDebugTerminalSend.Text;
 
   if edDebugTerminalSend.Items.IndexOf(edDebugTerminalSend.Text) = -1 then
     edDebugTerminalSend.Items.Insert(0, edDebugTerminalSend.Text);
 
-  r := com.SendCommand(Value);
-  r := stringreplace(r, #10#13, #13, [rfreplaceall]);
-  memoDebugTerminal.Lines.Add('');
-  memoDebugTerminal.Lines.Add(r);
+  memoDebugTerminal.Lines.add('');
   memoDebugTerminal.GoToTextEnd;
+
   edDebugTerminalSend.Text := '';
   edDebugTerminalSend.SetFocus;
+
+  com.SendCommandOnly(Value);
+
+  // r := stringreplace(r, #10#13, #13, [rfreplaceall]);
+
+  // memoDebugTerminal.Lines.Add('');
+  // memoDebugTerminal.Lines.Add(r);
+
 end;
 
 procedure TfrmMain.btnGetWifiInfoScanClick(Sender: TObject);
 begin
+  self.tabsMain.Enabled := false;
 
   aniGetWifiInfo.Enabled := true;
   aniGetWifiInfo.Visible := true;
@@ -1841,6 +1967,7 @@ begin
             btnGetWifiInfoScan.Enabled := true;
             aniGetWifiInfo.Enabled := false;
             aniGetWifiInfo.Visible := false;
+            tabsMain.Enabled := true;
           end;
         end);
 
