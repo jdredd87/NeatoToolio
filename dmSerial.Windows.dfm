@@ -6,8 +6,9 @@ object dmSerial: TdmSerial
   Width = 474
   object COM: TFComPort
     Active = False
+    BufferSizes.Output = 4096
     DeviceName = 'COM1'
-    Options = []
+    Options = [opAbortOnError]
     Left = 192
     Top = 208
   end
@@ -24,7 +25,7 @@ object dmSerial: TdmSerial
     ColorOff = claOlive
     ColorOn = claYellow
     ComPort = COM
-    Delay = 100
+    Delay = 500
     Signal = siCTS
     Left = 96
     Top = 80
@@ -33,7 +34,7 @@ object dmSerial: TdmSerial
     ColorOff = claMaroon
     ColorOn = claRed
     ComPort = COM
-    Delay = 100
+    Delay = 500
     Signal = siRing
     Left = 96
     Top = 144
@@ -42,7 +43,7 @@ object dmSerial: TdmSerial
     ColorOff = claNavy
     ColorOn = claBlue
     ComPort = COM
-    Delay = 100
+    Delay = 500
     Signal = siBreak
     Left = 96
     Top = 208
@@ -51,7 +52,7 @@ object dmSerial: TdmSerial
     ColorOff = claMaroon
     ColorOn = claRed
     ComPort = COM
-    Delay = 100
+    Delay = 500
     Signal = siRLSD
     Left = 192
     Top = 144
@@ -60,14 +61,14 @@ object dmSerial: TdmSerial
     ColorOff = claOlive
     ColorOn = claYellow
     ComPort = COM
-    Delay = 100
+    Delay = 500
     Signal = siDSR
     Left = 192
     Top = 80
   end
   object FComSignalTX: TFComSignal
     ComPort = COM
-    Delay = 100
+    Delay = 500
     Signal = siTxChar
     Left = 192
     Top = 24

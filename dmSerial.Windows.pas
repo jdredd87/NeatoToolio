@@ -5,14 +5,17 @@ interface
 uses
   diagnostics,
   FMX.Dialogs,
+  system.classes,
 {$IFDEF win32}
   Winsoft.FireMonkey.FComPort,
+  Winsoft.FireMonkey.FComSignal,
 {$ENDIF}
 {$IFDEF android}
   Winsoft.Android.UsbSerial,
   Winsoft.Android.Usb,
 {$ENDIF}
-  System.SysUtils, System.Classes, Winsoft.FireMonkey.FComSignal;
+  neato.helpers,
+  System.SysUtils;
 
 type
   TdmSerial = class(TDataModule)
@@ -42,12 +45,12 @@ type
     Function Open(ComPort: String): boolean;
     procedure Close;
 
-    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100):string;
+    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
 
     function SendCommandOnly(cmd: string): String; // Just send command and move on
 
-    function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
-      const waitfor: string = ''): string;
+    function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
+      const count: byte = 1): string;
 
     property Error: String read fError;
     property ErrorCode: longint read fErrorCode;
@@ -71,7 +74,7 @@ begin
 {$IFDEF win32}
   // com := TFComPort.Create(nil);
   // com.onError := FComPort1Error;
-  COM.LogFile := 'neato.toolio.log';
+  // COM.LogFile := 'neato.toolio.log';
 {$ENDIF}
 {$IFDEF android}
   COM := TUsbSerial.Create;
@@ -206,35 +209,30 @@ begin
   end;
 end;
 
-function TdmSerial.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
-const waitfor: string = ''): string;
+function TdmSerial.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
+const count: byte = 1): string;
+
 var
+  idx: integer;
+  timeout: boolean;
   sw: tstopwatch;
 begin
-
   try
-    sw := tstopwatch.Create;
-
     result := '';
-
-    COM.Timeouts.ReadInterval := readtimeout;
     COM.WriteAnsiString(ansistring(cmd) + #13);
+    COM.Timeouts.ReadInterval := readtimeout;
+    idx := 0;
+    timeout := false;
 
-    {
-      repeat
-      sleep(100);
-      until (not com.ReadPending) or (not com.Active);
-
-      result := string(com.ReadAnsiUntil(^Z));
-
-      // result := string(com.ReadAnsiString);
-    }
-
+    sw := tstopwatch.Create;
+    sw.Start;
     repeat
-      sleep(100);
-      if COM.ReadPending then
-        result := result + string(COM.ReadAnsiString);
-    until (Pos(waitfor, result) > 0) or (sw.ElapsedMilliseconds > readtimeout) or (COM.Active = false);
+      result := result + COM.ReadAnsiString;
+      if sw.ElapsedMilliseconds > readtimeout then
+        timeout := true;
+    until (not COM.Active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
+
+    result := trim(result);
 
   except
     on E: Exception do

@@ -24,18 +24,43 @@ function GetSubDataNameValuePair(dStr: tstringlist; var item: tNeatoNameValuePai
 function HEX_TimeInSecs_asHours(HexValue: string): Double; // some values have HEX to represent time
 function String_TimeInSecs_asHours(HexValue: string): Double; // some values have string number to represent time
 function splitString(const Str: string; const delims: TCharSet; RemoveBlanks: Boolean = false): tstringlist;
+function OccurrencesOfChar(const S: string; const C: Char): Integer;
+function Hex2String(const Buffer: string): AnsiString;
+function String2Hex(const Buffer: AnsiString): string;
 
 implementation
+
+function String2Hex(const Buffer: AnsiString): string;
+begin
+  SetLength(Result, Length(Buffer) * 2);
+  BinToHex(PAnsiChar(Buffer), PChar(Result), Length(Buffer));
+end;
+
+function Hex2String(const Buffer: string): AnsiString;
+begin
+  SetLength(Result, Length(Buffer) div 2);
+  HexToBin(PChar(Buffer), PAnsiChar(Result), Length(Result));
+end;
+
+function OccurrencesOfChar(const S: string; const C: Char): Integer;
+var
+  i: Integer;
+begin
+  Result := 0;
+  for i := 1 to Length(S) do
+    if S[i] = C then
+      inc(Result);
+end;
 
 function splitString(const Str: string; const delims: TCharSet; RemoveBlanks: Boolean = false): tstringlist;
 var
   SepPos: TIntegerArray;
-  i, c: Integer;
+  i, C: Integer;
   tq: Boolean;
   value: String;
 
 begin
-  result := tstringlist.Create;
+  Result := tstringlist.Create;
 
   SetLength(SepPos, 1);
   SepPos[0] := 0;
@@ -57,9 +82,9 @@ begin
   // SetLength(Result, High(SepPos));
 
   for i := 1 to High(SepPos) do
-    result.Add(''); // and some dummy data for storage
+    Result.Add(''); // and some dummy data for storage
 
-  c := 0;
+  C := 0;
   for i := 0 to High(SepPos) - 1 do
   begin
     value := Trim(Copy(Str, SepPos[i] + 1, SepPos[i + 1] - SepPos[i] - 1));
@@ -67,22 +92,21 @@ begin
     begin
       if value <> '' then
       begin
-        result[c] := Trim(Copy(Str, SepPos[i] + 1, SepPos[i + 1] - SepPos[i] - 1));
-        inc(c);
+        Result[C] := Trim(Copy(Str, SepPos[i] + 1, SepPos[i + 1] - SepPos[i] - 1));
+        inc(C);
       end;
     end
     else
     begin
-      result[c] := Trim(Copy(Str, SepPos[i] + 1, SepPos[i + 1] - SepPos[i] - 1));
-      inc(c);
+      Result[C] := Trim(Copy(Str, SepPos[i] + 1, SepPos[i + 1] - SepPos[i] - 1));
+      inc(C);
     end;
   end;
 
+  for i := Result.Count - 1 downto C do
+    Result.Delete(i);
 
-  for i := result.Count-1 downto c do
-     result.Delete(i);
-
-//  SetLength(result, c);
+  // SetLength(result, c);
 
 end;
 
@@ -99,7 +123,7 @@ begin
       value := 0; // oops this is bad if this happens
     end;
   end;
-  result := value;
+  Result := value;
 end;
 
 function HEX_TimeInSecs_asHours(HexValue: string): Double; // some values have HEX to represent time
@@ -109,14 +133,14 @@ begin
   value := 0;
   trystrtoint('$' + HexValue, value);
   value := (value div 60) div 60;
-  result := value;
+  Result := value;
 end;
 
 function GetSubData(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String; _Type: TVarType): Boolean;
 var
   subData: tstringlist;
 begin
-  result := false;
+  Result := false;
   item._Unit := '';
   item.ValueString := '';
   item.ValueDouble := 0;
@@ -143,7 +167,7 @@ begin
       item.ValueString := '';
       item.ValueDouble := 0;
       item.ValueBoolean := false;
-      result := false;
+      Result := false;
     end;
   end;
 
@@ -153,7 +177,7 @@ end;
 function GetSubDataNameValuePair(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String;
   _Type: TVarType): Boolean;
 begin
-  result := false;
+  Result := false;
   item._Unit := '';
   item.ValueString := '';
   item.ValueDouble := 0;
@@ -176,7 +200,7 @@ begin
       item.ValueString := '';
       item.ValueDouble := 0;
       item.ValueBoolean := false;
-      result := false;
+      Result := false;
     end;
   end;
 

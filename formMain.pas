@@ -8,6 +8,7 @@ interface
 
 uses
 {$IFDEF MSWINDOWS}
+  Madexcept,
   Winsoft.FireMonkey.FComPort, dmSerial.Windows,
 {$ENDIF}
   neato.GetCharger,
@@ -24,6 +25,10 @@ uses
   neato.PlaySound,
   neato.GetMotors,
   neato.GetWifiInfo,
+  neato.GetWifiStatus,
+  neato.GetButtons,
+
+  neato.Helpers,
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
@@ -193,10 +198,8 @@ type
     tabGetVersion: TTabItem;
     tabWiFi: TTabItem;
     tabsWifiOptions: TTabControl;
-    TabItem5: TTabItem;
-    TabItem6: TTabItem;
-    GetConfiguredWifiNetworks: TTabItem;
-    SetWifi: TTabItem;
+    tabGetWifiInfo: TTabItem;
+    tabGetWifiStatus: TTabItem;
     tabGetWarranty: TTabItem;
     lbl_CumulativeCleaningTimeInSecs: TLabel;
     lbl_CumulativeBatteryCycles: TLabel;
@@ -299,9 +302,6 @@ type
     TabDebugger: TTabControl;
     tabDebugRawData: TTabItem;
     tabDebugTerminal: TTabItem;
-    memoDebugTerminal: TMemo;
-    lblDebugTerminalCMD: TLabel;
-    btnDebugTerminalSend: TButton;
     memoDebug: TMemo;
     Panel3: TPanel;
     btnDebugTerminalClear: TButton;
@@ -385,7 +385,6 @@ type
     lblGetMotorsSideBrush_mA: TLabel;
     lblGetMotorsSideBrush_mAValue: TLabel;
     timer_GetMotors: TTimer;
-    edDebugTerminalSend: TComboEdit;
     btnGetWifiInfoScan: TButton;
     sgGetWifiInfo: TStringGrid;
     sgGetWifiInfoSSID: TStringColumn;
@@ -406,6 +405,89 @@ type
     LabelRLSD: TLabel;
     ColorBoxBreak: TColorBox;
     LabelBreak: TLabel;
+    timer_GetWifiStatus: TTimer;
+    ShadowEffect13: TShadowEffect;
+    ShadowEffect14: TShadowEffect;
+
+    lblGetWifiStatusIPADDR: TLabel;
+    lblGetWifiStatusIPADDRValue: TLabel;
+    lblGetWifiStatusEnabled: TLabel;
+    swGetWifiStatusEnabledValue: TSwitch;
+    lblGetWifiStatusWifiMode: TLabel;
+    lblGetWifiStatusWifiModeValue: TLabel;
+    lblGetWifiStatusWifiOnInit: TLabel;
+    swGetWifiStatusWifiOnInitValue: TSwitch;
+    lblGetWifiStatusAPShutoffin: TLabel;
+    lblGetWifiStatusAPShutoffinValue: TLabel;
+    lblGetWifiStatusAPDesired: TLabel;
+    swGetWifiStatusAPDesiredValue: TSwitch;
+    lblGetWifiStatusLinkToBeehive: TLabel;
+    swGetWifiStatusLinkToBeehiveValue: TSwitch;
+    lblGetWifiStatusNucleoConnected: TLabel;
+    swGetWifiStatusNucleoConnectedValue: TSwitch;
+    lblGetWifiStatusEZConnectMessage: TLabel;
+    lblGetWifiStatusEZConnectMessageValue: TLabel;
+    lblGetWifiStatusRobotName: TLabel;
+    lblGetWifiStatusSSID: TLabel;
+    lblGetWifiStatusScanning: TLabel;
+    lblGetWifiStatusSignalStrength: TLabel;
+    lblGetWifiStatusBeehiveURL: TLabel;
+    lblGetWifiStatusBSSID: TLabel;
+    lblGetWifiStatusRobotNameValue: TLabel;
+    lblGetWifiStatusSSIDValue: TLabel;
+    lblGetWifiStatusScanningValue: TLabel;
+    lblGetWifiStatusSignalStrengthValue: TLabel;
+    lblGetWifiStatusBSSIDValue: TLabel;
+    lblGetWifiStatusBeehiveURLValue: TLabel;
+    lblGetWifiStatusNucleoURL: TLabel;
+    lblGetWifiStatusNTPURL: TLabel;
+    lblGetWifiStatusUTCOffset: TLabel;
+    lblGetWifiStatusTimeZone: TLabel;
+    lblGetWifiStatusNucleoURLValue: TLabel;
+    lblGetWifiStatusNTPURLValue: TLabel;
+    lblGetWifiStatusUTCOffsetValue: TLabel;
+    lblGetWifiStatusTimeZoneValue: TLabel;
+    Panel5: TPanel;
+    lblDebugTerminalCMD: TLabel;
+    edDebugTerminalSend: TComboEdit;
+    btnDebugTerminalSend: TButton;
+    Panel6: TPanel;
+    memoDebugTerminal: TMemo;
+    btnDebugTerminalSendHex: TButton;
+    tabGetButtons: TTabItem;
+    lblGetButtonsBTN_SOFT_KEY: TLabel;
+    swGetButtonsBTN_SOFT_KEYvalue: TSwitch;
+    lblGetButtonsBTN_SCROLL_UP: TLabel;
+    swGetButtonsBTN_SCROLL_UPvalue: TSwitch;
+    lblGetButtonsBTN_START: TLabel;
+    swGetButtonsBTN_STARTvalue: TSwitch;
+    lblGetButtonsBTN_BACK: TLabel;
+    swGetButtonsBTN_BACKvalue: TSwitch;
+    lblGetButtonsBTN_SCROLL_DOWN: TLabel;
+    swGetButtonsBTN_SCROLL_DOWNvalue: TSwitch;
+    lblGetButtonsBTN_SPOT: TLabel;
+    swGetButtonsBTN_SPOTvalue: TSwitch;
+    lblGetButtonsIR_BTN_HOME: TLabel;
+    swGetButtonsIR_BTN_HOMEvalue: TSwitch;
+    lblGetButtonsIR_BTN_SPOT: TLabel;
+    swGetButtonsIR_BTN_SPOTvalue: TSwitch;
+    lblGetButtonsIR_BTN_ECO: TLabel;
+    swGetButtonsIR_BTN_ECOvalue: TSwitch;
+    lblGetButtonsIR_BTN_UP: TLabel;
+    swGetButtonsIR_BTN_UPvalue: TSwitch;
+    lblGetButtonsIR_BTN_DOWN: TLabel;
+    swGetButtonsIR_BTN_DOWNvalue: TSwitch;
+    lblGetButtonsIR_BTN_RIGHT: TLabel;
+    swGetButtonsIR_BTN_RIGHTvalue: TSwitch;
+    lblGetButtonsIR_BTN_LEFT: TLabel;
+    swGetButtonsIR_BTN_LEFTvalue: TSwitch;
+    lblGetButtonsIR_BTN_START: TLabel;
+    swGetButtonsIR_BTN_STARTvalue: TSwitch;
+    lblGetButtonsIR_BTN_LEFT_ARC: TLabel;
+    swGetButtonsIR_BTN_LEFT_ARCvalue: TSwitch;
+    lblGetButtonsIR_BTN_RIGHT_ARC: TLabel;
+    swGetButtonsIR_BTN_RIGHT_ARCvalue: TSwitch;
+    timer_GetButtons: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure swConnectSwitch(Sender: TObject);
     procedure cbCOMChange(Sender: TObject);
@@ -441,6 +523,10 @@ type
     procedure btnGetWifiInfoScanClick(Sender: TObject);
     procedure tabsWifiOptionsChange(Sender: TObject);
     procedure TabDebuggerChange(Sender: TObject);
+    procedure Label37Click(Sender: TObject);
+    procedure timer_GetWifiStatusTimer(Sender: TObject);
+    procedure timer_GetWifiInfoTimer(Sender: TObject);
+    procedure timer_GetButtonsTimer(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
@@ -451,7 +537,9 @@ type
     procedure ResetGetAccel;
     procedure ResetGetDigitalSensors;
     procedure ResetGetErr;
-    procedure onIDLE(Sender: TObject; var done: Boolean);
+
+    procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
+    procedure onException(Sender: TObject; E: Exception); // our exception catcher code
 
     procedure FComPortAfterClose(Sender: TObject);
     procedure FComPortAfterOpen(Sender: TObject);
@@ -484,6 +572,14 @@ begin
 
   application.onIDLE := self.onIDLE;
 
+{$IFDEF ANDORID}
+  application.onException := self.onException;
+{$ENDIF}
+{$IFDEF MSWINDOWS}
+  // I use MADEXCEPT for windows , so must use that event instead.
+  // I lied - this eComError is handled via the MadExcept project settings
+  // but if becomes an issues, can possibly deal with it here
+{$ENDIF}
   tabsMain.TabIndex := 0;
   tabSensorsOptions.TabIndex := 0;
   tabsInfoOptions.TabIndex := 0;
@@ -529,15 +625,38 @@ begin
   freeandnil(com);
 end;
 
+procedure TfrmMain.Label37Click(Sender: TObject);
+begin
+
+end;
+
 // can use this event that when IDLE happens, which is very often and fast
 // to enable/disable things , such as send buttons when com is open or not
 // quick and easy way to keep UI up to date depending on com status
 
 procedure TfrmMain.onIDLE(Sender: TObject; var done: Boolean);
+var
+  isActive: Boolean;
 begin
-  btnDebugTerminalSend.Enabled := com.com.Active;
-  btnDebugTerminalHelp.Enabled := com.com.Active;
-  btnGetWifiInfoScan.Enabled := com.com.Active;
+  try
+    isActive := com.com.Active;
+  except
+    isActive := false;
+  end;
+
+  btnDebugTerminalSend.Enabled := isActive;
+  btnDebugTerminalSendHex.Enabled := isActive;
+  btnDebugTerminalHelp.Enabled := isActive;
+  btnGetWifiInfoScan.Enabled := isActive;
+end;
+
+// our exception handler for things like ecommerror
+procedure TfrmMain.onException(Sender: TObject; E: Exception);
+begin
+  if E is ecomerror then
+  begin
+    //
+  end;
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -635,7 +754,15 @@ begin
   // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
 
   memoDebugTerminal.BeginUpdate;
-  Text := com.com.ReadAnsiString;
+  try
+    Text := com.com.ReadAnsiString;
+  except
+    on E: Exception do
+    begin
+      Text := #10#13 + #10#13 + E.Message + #10#13 + #1013;
+    end;
+
+  end;
 
   if pos(^Z, Text) > 0 then
     FComPortEOL(Sender);
@@ -679,6 +806,7 @@ end;
 
 procedure TfrmMain.tabSensorsOptionsChange(Sender: TObject);
 begin
+
   StopTimers;
   tthread.CreateAnonymousThread(
     procedure
@@ -732,6 +860,13 @@ begin
           begin
             timer_GetMotors.Enabled := true;
             fCurrentTimer := timer_GetMotors;
+            exit;
+          end;
+
+          if tabSensorsOptions.ActiveTab = self.tabGetButtons then
+          begin
+            timer_GetButtons.Enabled := true;
+            fCurrentTimer := timer_GetButtons;
             exit;
           end;
 
@@ -810,7 +945,7 @@ begin
             exit;
           end;
 
-        if tabsMain.ActiveTab = self.tabDebug then
+          if tabsMain.ActiveTab = self.tabDebug then
           begin
             self.TabDebugger.TabIndex := 0;
             self.TabDebuggerChange(nil);
@@ -825,6 +960,33 @@ end;
 procedure TfrmMain.tabsWifiOptionsChange(Sender: TObject);
 begin
   StopTimers;
+  tthread.CreateAnonymousThread(
+    procedure
+    begin
+      sleep(250); // allows the UI a few momments of drawing time
+      // ran into an awkward issue that this seemed to fix
+
+      tthread.Synchronize(tthread.CurrentThread,
+        procedure
+        begin
+
+          if tabsWifiOptions.ActiveTab = tabGetWifiStatus then
+          begin
+            timer_GetWifiStatus.Enabled := true;
+            fCurrentTimer := timer_GetWifiStatus;
+            exit;
+          end;
+
+          if tabsWifiOptions.ActiveTab = tabGetWifiInfo then
+          begin
+            // tab has no timer
+            fCurrentTimer := nil;
+            exit;
+          end;
+
+        end);
+
+    end).Start;
 end;
 
 procedure TfrmMain.tabsInfoOptionsChange(Sender: TObject);
@@ -1085,6 +1247,60 @@ begin
   pGetWarranty.Free;
 end;
 
+procedure TfrmMain.timer_GetWifiInfoTimer(Sender: TObject);
+begin
+  //
+end;
+
+procedure TfrmMain.timer_GetWifiStatusTimer(Sender: TObject);
+var
+  pGetWifiStatus: tGetWifiStatus;
+  pReadData: TStringList;
+  r: Boolean;
+begin
+
+  if (com.com.Active = false) or (tabsWifiOptions.ActiveTab <> tabGetWifiStatus) then
+  begin
+    timer_GetWifiStatus.Enabled := false;
+    exit;
+  end;
+
+  pGetWifiStatus := tGetWifiStatus.Create;
+
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetWifiStatus);
+  pReadData.Text := stringreplace(pReadData.Text, ',', '=', [rfreplaceall]);
+
+  r := pGetWifiStatus.ParseText(pReadData);
+
+  if r then
+  begin
+
+    lblGetWifiStatusIPADDRValue.Text := pGetWifiStatus.IPADDR;
+    swGetWifiStatusEnabledValue.IsChecked := pGetWifiStatus.Enabled;
+    lblGetWifiStatusWifiModeValue.Text := pGetWifiStatus.Wifi_Mode;
+    swGetWifiStatusWifiOnInitValue.IsChecked := pGetWifiStatus.Wifi_On_Init;
+    lblGetWifiStatusAPShutoffinValue.Text := pGetWifiStatus.AP_Shutoff_in;
+    swGetWifiStatusAPDesiredValue.IsChecked := pGetWifiStatus.AP_Desired;
+    swGetWifiStatusLinkToBeehiveValue.IsChecked := pGetWifiStatus.Linked_to_Beehive;
+    swGetWifiStatusNucleoConnectedValue.IsChecked := pGetWifiStatus.Nucleo_Connected;
+    lblGetWifiStatusEZConnectMessageValue.Text := pGetWifiStatus.EZ_Connect_Message;
+    lblGetWifiStatusRobotNameValue.Text := pGetWifiStatus.Robot_Name;
+    lblGetWifiStatusSSIDValue.Text := pGetWifiStatus.SSID;
+    lblGetWifiStatusScanningValue.Text := pGetWifiStatus.Scanning;
+    lblGetWifiStatusSignalStrengthValue.Text := pGetWifiStatus.SignalStrength.ToString;
+    lblGetWifiStatusBSSIDValue.Text := pGetWifiStatus.BSSID;
+    lblGetWifiStatusBeehiveURLValue.Text := pGetWifiStatus.Beehive_URL;
+    lblGetWifiStatusNucleoURLValue.Text := pGetWifiStatus.Nucleo_URL;
+    lblGetWifiStatusNTPURLValue.Text := pGetWifiStatus.NTP_URL;
+    lblGetWifiStatusUTCOffsetValue.Text := pGetWifiStatus.UTC_Offset;
+    lblGetWifiStatusTimeZoneValue.Text := pGetWifiStatus.Time_Zone;
+  end;
+
+  pReadData.Free;
+  pGetWifiStatus.Free;
+end;
+
 procedure TfrmMain.timer_PlaySoundTimer(Sender: TObject);
 { VAR
   idx: byte;
@@ -1199,6 +1415,51 @@ begin
   end;
   pReadData.Free;
   pGetAnalogSensors.Free;
+end;
+
+procedure TfrmMain.timer_GetButtonsTimer(Sender: TObject);
+var
+  pGetButtons: tGetButtons;
+  pReadData: TStringList;
+  r: Boolean;
+begin
+
+  if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetButtons) then
+  begin
+    timer_GetButtons.Enabled := false;
+    exit;
+  end;
+
+  pGetButtons := tGetButtons.Create;
+
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetButtons);
+  memoDebug.Lines.Text := pReadData.Text;
+
+  r := pGetButtons.ParseText(pReadData);
+
+  if r then
+  begin
+    swGetButtonsBTN_SOFT_KEYvalue.IsChecked := pGetButtons.BTN_SOFT_KEY;
+    swGetButtonsBTN_SCROLL_UPvalue.IsChecked := pGetButtons.BTN_SCROLL_UP;
+    swGetButtonsBTN_STARTvalue.IsChecked := pGetButtons.BTN_START;
+    swGetButtonsBTN_BACKvalue.IsChecked := pGetButtons.BTN_BACK;
+    swGetButtonsBTN_SCROLL_DOWNvalue.IsChecked := pGetButtons.BTN_SCROLL_DOWN;
+    swGetButtonsBTN_SPOTvalue.IsChecked := pGetButtons.BTN_SPOT;
+    swGetButtonsIR_BTN_HOMEvalue.IsChecked := pGetButtons.IR_BTN_HOME;
+    swGetButtonsIR_BTN_SPOTvalue.IsChecked := pGetButtons.IR_BTN_SPOT;
+    swGetButtonsIR_BTN_ECOvalue.IsChecked := pGetButtons.IR_BTN_ECO;
+    swGetButtonsIR_BTN_UPvalue.IsChecked := pGetButtons.IR_BTN_UP;
+    swGetButtonsIR_BTN_DOWNvalue.IsChecked := pGetButtons.IR_BTN_DOWN;
+    swGetButtonsIR_BTN_RIGHTvalue.IsChecked := pGetButtons.IR_BTN_RIGHT;
+    swGetButtonsIR_BTN_LEFTvalue.IsChecked := pGetButtons.IR_BTN_LEFT;
+    swGetButtonsIR_BTN_STARTvalue.IsChecked := pGetButtons.IR_BTN_START;
+    swGetButtonsIR_BTN_LEFT_ARCvalue.IsChecked := pGetButtons.IR_BTN_LEFT;
+    swGetButtonsIR_BTN_RIGHT_ARCvalue.IsChecked := pGetButtons.IR_BTN_RIGHT_ARC;
+  end;
+
+  pReadData.Free;
+  pGetButtons.Free;
 end;
 
 procedure TfrmMain.timer_GetDigitalSensorsTimer(Sender: TObject);
@@ -1890,7 +2151,6 @@ procedure TfrmMain.btnDebugTerminalHelpClick(Sender: TObject);
 begin
   edDebugTerminalSend.Text := 'HELP';
   btnDebugTerminalSendClick(Sender);
-
 end;
 
 procedure TfrmMain.btnDebugTerminalSendClick(Sender: TObject);
@@ -1899,13 +2159,22 @@ var
   Value: string;
   timeout: byte;
 begin
+
   StopTimers; // JUST IN CASE
   com.com.OnRxChar := FComPortRxChar;
 
-  Value := edDebugTerminalSend.Text;
+  Value := trim(uppercase(edDebugTerminalSend.Text));
+
+  if Sender = btnDebugTerminalSendHex then
+  begin
+    Value := uppercase(stringreplace(Value, ' ', '', [rfreplaceall]));
+    Value := Hex2String(Value);
+  end;
 
   if edDebugTerminalSend.Items.IndexOf(edDebugTerminalSend.Text) = -1 then
-    edDebugTerminalSend.Items.Insert(0, edDebugTerminalSend.Text);
+    if trim(edDebugTerminalSend.Text) <> '' then
+
+      edDebugTerminalSend.Items.Insert(0, edDebugTerminalSend.Text);
 
   memoDebugTerminal.Lines.add('');
   memoDebugTerminal.GoToTextEnd;
@@ -1914,11 +2183,6 @@ begin
   edDebugTerminalSend.SetFocus;
 
   com.SendCommandOnly(Value);
-
-  // r := stringreplace(r, #10#13, #13, [rfreplaceall]);
-
-  // memoDebugTerminal.Lines.Add('');
-  // memoDebugTerminal.Lines.Add(r);
 
 end;
 
@@ -1937,13 +2201,19 @@ begin
       gGetWifiInfo: tGetWifiInfo;
       r: Boolean;
     begin
-      pReadData := TStringList.Create;
-      // request wifi info.. wait max 16 seconds, wait for ^Z
-      pReadData.Text := com.SendCommandAndWaitForValue(sgetwifiinfo, 16000, ^Z);
-      gGetWifiInfo := tGetWifiInfo.Create;
+      // make sure to have it ready
+      com.com.PurgeInput;
+      com.com.PurgeOutput;
+      com.com.WaitForReadCompletion;
 
-      sgGetWifiInfo.RowCount := 0;
-      sgGetWifiInfo.RowCount := 1;
+      com.SendCommandOnly('');
+      com.SendCommandOnly('');
+
+      pReadData := TStringList.Create;
+
+      pReadData.Text := com.SendCommandAndWaitForValue(sgetwifiinfo, 16000, ^Z, iGetWifiInfoHeaderBreaks);
+
+      gGetWifiInfo := tGetWifiInfo.Create;
 
       tthread.Synchronize(tthread.CurrentThread,
         procedure
@@ -1951,16 +2221,25 @@ begin
           idx: integer;
         begin
           try
+
             r := gGetWifiInfo.ParseText(pReadData);
             if r then
             begin
-              sgGetWifiInfo.RowCount := gGetWifiInfo.GetWifiInfoItems.Count;
-              for idx := 0 to gGetWifiInfo.GetWifiInfoItems.Count - 1 do
+              sgGetWifiInfo.BeginUpdate;
+              sgGetWifiInfo.RowCount := 0;
+              sgGetWifiInfo.RowCount := 10;
+              if gGetWifiInfo.GetWifiInfoItems.Count > 0 then
               begin
-                sgGetWifiInfo.Cells[0, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].SSID;
-                sgGetWifiInfo.Cells[1, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].Signal.ToString;
-                sgGetWifiInfo.Cells[2, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].Frequency.ToString;
-                sgGetWifiInfo.Cells[3, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].BSSID;
+
+                sgGetWifiInfo.RowCount := gGetWifiInfo.GetWifiInfoItems.Count;
+                for idx := 0 to gGetWifiInfo.GetWifiInfoItems.Count - 1 do
+                begin
+                  sgGetWifiInfo.Cells[0, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].SSID;
+                  sgGetWifiInfo.Cells[1, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].Signal.ToString;
+                  sgGetWifiInfo.Cells[2, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].Frequency.ToString;
+                  sgGetWifiInfo.Cells[3, idx] := gGetWifiInfo.GetWifiInfoItems.item[idx].BSSID;
+                end;
+                sgGetWifiInfo.EndUpdate;
               end;
             end;
           finally

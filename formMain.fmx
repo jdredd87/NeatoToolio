@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Neato Toolio'
-  ClientHeight = 596
-  ClientWidth = 896
+  ClientHeight = 700
+  ClientWidth = 900
   Position = ScreenCenter
   Quality = HighQuality
   StyleBook = StyleBook
@@ -12591,35 +12591,35 @@ object frmMain: TfrmMain
   end
   object ScaledLayout1: TScaledLayout
     Align = Client
-    OriginalWidth = 896.000000000000000000
-    OriginalHeight = 596.000000000000000000
-    Size.Width = 896.000000000000000000
-    Size.Height = 596.000000000000000000
+    OriginalWidth = 900.000000000000000000
+    OriginalHeight = 700.000000000000000000
+    Size.Width = 900.000000000000000000
+    Size.Height = 700.000000000000000000
     Size.PlatformDefault = False
     object tabsMain: TTabControl
       Align = Client
-      Size.Width = 896.000000000000000000
-      Size.Height = 571.000000000000000000
+      Size.Width = 900.000000000000000000
+      Size.Height = 675.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 6
+      TabIndex = 1
       TabOrder = 0
       TabPosition = PlatformDefault
       OnChange = tabsMainChange
       Sizes = (
-        896s
-        541s
-        896s
-        541s
-        896s
-        541s
-        896s
-        541s
-        896s
-        541s
-        896s
-        541s
-        896s
-        541s)
+        900s
+        645s
+        900s
+        645s
+        900s
+        645s
+        900s
+        645s
+        900s
+        645s
+        900s
+        645s
+        900s
+        645s)
       object tabSetup: TTabItem
         CustomIcon = <
           item
@@ -12635,7 +12635,7 @@ object frmMain: TfrmMain
         ExplicitSize.cy = 30.000000000000000000
         object Panel1: TPanel
           Align = Top
-          Size.Width = 896.000000000000000000
+          Size.Width = 900.000000000000000000
           Size.Height = 105.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
@@ -12653,7 +12653,7 @@ object frmMain: TfrmMain
           end
           object pnlComSetup: TPanel
             Align = Top
-            Size.Width = 896.000000000000000000
+            Size.Width = 900.000000000000000000
             Size.Height = 49.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 3
@@ -12719,7 +12719,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 76.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -12730,31 +12730,33 @@ object frmMain: TfrmMain
         ExplicitSize.cy = 30.000000000000000000
         object tabSensorsOptions: TTabControl
           Align = Client
-          Size.Width = 896.000000000000000000
-          Size.Height = 541.000000000000000000
+          Size.Width = 900.000000000000000000
+          Size.Height = 645.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 0
+          TabIndex = 6
           TabOrder = 1
           TabPosition = Top
           OnChange = tabSensorsOptionsChange
           Sizes = (
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s)
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s)
           object tabGetCharger: TTabItem
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 103.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -13192,8 +13194,8 @@ object frmMain: TfrmMain
               Margins.Top = 25.000000000000000000
               Margins.Right = 25.000000000000000000
               Margins.Bottom = 25.000000000000000000
-              Size.Width = 533.000000000000000000
-              Size.Height = 461.000000000000000000
+              Size.Width = 537.000000000000000000
+              Size.Height = 565.000000000000000000
               Size.PlatformDefault = False
               object _3DGetAccel: TModel3D
                 Scale.X = 10.000000000000000000
@@ -21637,7 +21639,7 @@ object frmMain: TfrmMain
             object Panel2: TPanel
               Align = Left
               Size.Width = 313.000000000000000000
-              Size.Height = 511.000000000000000000
+              Size.Height = 615.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
               object lbl_PitchInDegrees: TLabel
@@ -23172,6 +23174,274 @@ object frmMain: TfrmMain
               TabOrder = 3
             end
           end
+          object tabGetButtons: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = True
+            Size.Width = 101.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'GetButtons'
+            object lblGetButtonsBTN_SOFT_KEY: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 8.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BTN_SOFT_KEY'
+              TabOrder = 59
+            end
+            object swGetButtonsBTN_SOFT_KEYvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 8.000000000000000000
+              TabOrder = 77
+            end
+            object lblGetButtonsBTN_SCROLL_UP: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 32.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BTN_SCROLL_UP'
+              TabOrder = 54
+            end
+            object swGetButtonsBTN_SCROLL_UPvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 32.000000000000000000
+              TabOrder = 78
+            end
+            object lblGetButtonsBTN_START: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 56.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BTN_START'
+              TabOrder = 51
+            end
+            object swGetButtonsBTN_STARTvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 56.000000000000000000
+              TabOrder = 76
+            end
+            object lblGetButtonsBTN_BACK: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 80.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BTN_BACK'
+              TabOrder = 58
+            end
+            object swGetButtonsBTN_BACKvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 80.000000000000000000
+              TabOrder = 75
+            end
+            object lblGetButtonsBTN_SCROLL_DOWN: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 104.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BTN_SCROLL_DOWN'
+              TabOrder = 53
+            end
+            object swGetButtonsBTN_SCROLL_DOWNvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 104.000000000000000000
+              TabOrder = 74
+            end
+            object lblGetButtonsBTN_SPOT: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 128.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BTN_SPOT'
+              TabOrder = 48
+            end
+            object swGetButtonsBTN_SPOTvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 128.000000000000000000
+              TabOrder = 70
+            end
+            object lblGetButtonsIR_BTN_HOME: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 152.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_HOME'
+              TabOrder = 55
+            end
+            object swGetButtonsIR_BTN_HOMEvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 152.000000000000000000
+              TabOrder = 72
+            end
+            object lblGetButtonsIR_BTN_SPOT: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 176.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_SPOT'
+              TabOrder = 50
+            end
+            object swGetButtonsIR_BTN_SPOTvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 176.000000000000000000
+              TabOrder = 71
+            end
+            object lblGetButtonsIR_BTN_ECO: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 200.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_ECO'
+              TabOrder = 46
+            end
+            object swGetButtonsIR_BTN_ECOvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 200.000000000000000000
+              TabOrder = 68
+            end
+            object lblGetButtonsIR_BTN_UP: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 224.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_UP'
+              TabOrder = 52
+            end
+            object swGetButtonsIR_BTN_UPvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 224.000000000000000000
+              TabOrder = 67
+            end
+            object lblGetButtonsIR_BTN_DOWN: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 248.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_DOWN'
+              TabOrder = 47
+            end
+            object swGetButtonsIR_BTN_DOWNvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 248.000000000000000000
+              TabOrder = 66
+            end
+            object lblGetButtonsIR_BTN_RIGHT: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 272.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_RIGHT'
+              TabOrder = 44
+            end
+            object swGetButtonsIR_BTN_RIGHTvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 272.000000000000000000
+              TabOrder = 63
+            end
+            object lblGetButtonsIR_BTN_LEFT: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 296.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_LEFT'
+              TabOrder = 49
+            end
+            object swGetButtonsIR_BTN_LEFTvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 296.000000000000000000
+              TabOrder = 62
+            end
+            object lblGetButtonsIR_BTN_START: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 320.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_START'
+              TabOrder = 45
+            end
+            object swGetButtonsIR_BTN_STARTvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 320.000000000000000000
+              TabOrder = 61
+            end
+            object lblGetButtonsIR_BTN_LEFT_ARC: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 344.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_LEFT_ARC'
+              TabOrder = 43
+            end
+            object swGetButtonsIR_BTN_LEFT_ARCvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 344.000000000000000000
+              TabOrder = 57
+            end
+            object lblGetButtonsIR_BTN_RIGHT_ARC: TLabel
+              Position.X = 16.000000000000000000
+              Position.Y = 368.000000000000000000
+              Size.Width = 150.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IR_BTN_RIGHT_ARC'
+              TabOrder = 42
+            end
+            object swGetButtonsIR_BTN_RIGHT_ARCvalue: TSwitch
+              IsChecked = False
+              Position.X = 176.000000000000000000
+              Position.Y = 368.000000000000000000
+              TabOrder = 56
+            end
+          end
           object ShadowEffect4: TShadowEffect
             Distance = 3.000000000000000000
             Direction = 45.000000000000000000
@@ -23196,31 +23466,31 @@ object frmMain: TfrmMain
         ExplicitSize.cy = 30.000000000000000000
         object tabsInfoOptions: TTabControl
           Align = Client
-          Size.Width = 896.000000000000000000
-          Size.Height = 541.000000000000000000
+          Size.Width = 900.000000000000000000
+          Size.Height = 645.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 0
+          TabIndex = 4
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsInfoOptionsChange
           Sizes = (
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s)
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s
+            900s
+            615s)
           object tabGetWarranty: TTabItem
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 111.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -23321,15 +23591,15 @@ object frmMain: TfrmMain
               Margins.Top = 5.000000000000000000
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
-              Size.Width = 886.000000000000000000
-              Size.Height = 501.000000000000000000
+              Size.Width = 890.000000000000000000
+              Size.Height = 605.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TabOrder = 0
               RowCount = 6
               Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 882.000000000000000000
-              Viewport.Height = 476.000000000000000000
+              Viewport.Width = 886.000000000000000000
+              Viewport.Height = 580.000000000000000000
               object scGetErrName: TStringColumn
                 Header = 'Code'
                 Size.Width = 200.000000000000000000
@@ -23361,15 +23631,15 @@ object frmMain: TfrmMain
               Margins.Top = 5.000000000000000000
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
-              Size.Width = 886.000000000000000000
-              Size.Height = 501.000000000000000000
+              Size.Width = 890.000000000000000000
+              Size.Height = 605.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TabOrder = 0
               RowCount = 6
               Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 882.000000000000000000
-              Viewport.Height = 476.000000000000000000
+              Viewport.Width = 886.000000000000000000
+              Viewport.Height = 580.000000000000000000
               object scGetVersionComponent: TStringColumn
                 Header = 'Component'
                 Size.Width = 241.000000000000000000
@@ -23547,7 +23817,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 135.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24041,16 +24311,16 @@ object frmMain: TfrmMain
         ExplicitSize.cy = 30.000000000000000000
         object tabsLIDAROptions: TTabControl
           Align = Client
-          Size.Width = 896.000000000000000000
-          Size.Height = 541.000000000000000000
+          Size.Width = 900.000000000000000000
+          Size.Height = 645.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsLIDAROptionsChange
           Sizes = (
-            896s
-            511s)
+            900s
+            615s)
           object tabLidar: TTabItem
             CustomIcon = <
               item
@@ -24074,7 +24344,7 @@ object frmMain: TfrmMain
               Margins.Bottom = 5.000000000000000000
               Position.X = 5.000000000000000000
               Position.Y = 5.000000000000000000
-              Size.Width = 886.000000000000000000
+              Size.Width = 890.000000000000000000
               Size.Height = 236.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
@@ -24082,7 +24352,7 @@ object frmMain: TfrmMain
               StyledSettings = [Family, Style, FontColor]
               TabOrder = 0
               Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-              Viewport.Width = 866.000000000000000000
+              Viewport.Width = 870.000000000000000000
               Viewport.Height = 211.000000000000000000
               object StringColumn1: TStringColumn
                 Header = 'AngleDegree'
@@ -24193,23 +24463,19 @@ object frmMain: TfrmMain
         ExplicitSize.cy = 30.000000000000000000
         object tabsWifiOptions: TTabControl
           Align = Client
-          Size.Width = 896.000000000000000000
-          Size.Height = 541.000000000000000000
+          Size.Width = 900.000000000000000000
+          Size.Height = 645.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsWifiOptionsChange
           Sizes = (
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s
-            896s
-            511s)
-          object TabItem5: TTabItem
+            900s
+            615s
+            900s
+            615s)
+          object tabGetWifiInfo: TTabItem
             CustomIcon = <
               item
               end>
@@ -24273,8 +24539,15 @@ object frmMain: TfrmMain
               Size.PlatformDefault = False
               Style = Circular
             end
+            object ShadowEffect13: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
           end
-          object TabItem6: TTabItem
+          object tabGetWifiStatus: TTabItem
             CustomIcon = <
               item
               end>
@@ -24287,34 +24560,387 @@ object frmMain: TfrmMain
             Text = 'GetWifiStatus'
             ExplicitSize.cx = 117.000000000000000000
             ExplicitSize.cy = 30.000000000000000000
-          end
-          object GetConfiguredWifiNetworks: TTabItem
-            CustomIcon = <
-              item
-              end>
-            IsSelected = False
-            Size.Width = 220.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = ''
-            TabOrder = 0
-            Text = 'GetConfiguredWifiNetworks'
-            ExplicitSize.cx = 220.000000000000000000
-            ExplicitSize.cy = 30.000000000000000000
-          end
-          object SetWifi: TTabItem
-            CustomIcon = <
-              item
-              end>
-            IsSelected = False
-            Size.Width = 72.000000000000000000
-            Size.Height = 30.000000000000000000
-            Size.PlatformDefault = False
-            StyleLookup = ''
-            TabOrder = 0
-            Text = 'SetWifi'
-            ExplicitSize.cx = 72.000000000000000000
-            ExplicitSize.cy = 30.000000000000000000
+            object ShadowEffect14: TShadowEffect
+              Distance = 3.000000000000000000
+              Direction = 45.000000000000000000
+              Softness = 0.300000011920929000
+              Opacity = 0.600000023841857900
+              ShadowColor = claBlack
+            end
+            object lblGetWifiStatusIPADDR: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 41.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'IPADDR'
+              TabOrder = 39
+            end
+            object lblGetWifiStatusIPADDRValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 41.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 30
+            end
+            object lblGetWifiStatusEnabled: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 16.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Enabled'
+              TabOrder = 35
+            end
+            object swGetWifiStatusEnabledValue: TSwitch
+              IsChecked = False
+              Position.X = 250.000000000000000000
+              Position.Y = 16.000000000000000000
+              TabOrder = 49
+            end
+            object lblGetWifiStatusWifiMode: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 66.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wifi Mode'
+              TabOrder = 38
+            end
+            object lblGetWifiStatusWifiModeValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 67.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 29
+            end
+            object lblGetWifiStatusWifiOnInit: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 91.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Wifi On Init'
+              TabOrder = 34
+            end
+            object swGetWifiStatusWifiOnInitValue: TSwitch
+              IsChecked = False
+              Position.X = 250.000000000000000000
+              Position.Y = 92.000000000000000000
+              TabOrder = 47
+            end
+            object lblGetWifiStatusAPShutoffin: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 116.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'AP Shutoff in'
+              TabOrder = 37
+            end
+            object lblGetWifiStatusAPShutoffinValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 114.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 28
+            end
+            object lblGetWifiStatusAPDesired: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 142.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'AP Desired'
+              TabOrder = 33
+            end
+            object swGetWifiStatusAPDesiredValue: TSwitch
+              IsChecked = False
+              Position.X = 250.000000000000000000
+              Position.Y = 144.000000000000000000
+              TabOrder = 46
+            end
+            object lblGetWifiStatusLinkToBeehive: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 167.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Linked to Beehive'
+              TabOrder = 32
+            end
+            object swGetWifiStatusLinkToBeehiveValue: TSwitch
+              IsChecked = False
+              Position.X = 250.000000000000000000
+              Position.Y = 169.000000000000000000
+              TabOrder = 45
+            end
+            object lblGetWifiStatusNucleoConnected: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 192.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Nucleo Connected'
+              TabOrder = 31
+            end
+            object swGetWifiStatusNucleoConnectedValue: TSwitch
+              IsChecked = False
+              Position.X = 250.000000000000000000
+              Position.Y = 195.000000000000000000
+              TabOrder = 44
+            end
+            object lblGetWifiStatusEZConnectMessage: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 217.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'EZ-Connect Message'
+              TabOrder = 36
+            end
+            object lblGetWifiStatusEZConnectMessageValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 220.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 27
+            end
+            object lblGetWifiStatusRobotName: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 243.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Robot Name'
+              TabOrder = 15
+            end
+            object lblGetWifiStatusSSID: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 268.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'SSID'
+              TabOrder = 20
+            end
+            object lblGetWifiStatusScanning: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 293.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Scanning'
+              TabOrder = 19
+            end
+            object lblGetWifiStatusSignalStrength: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 318.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Signal Strength'
+              TabOrder = 12
+            end
+            object lblGetWifiStatusBeehiveURL: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 369.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Beehive URL'
+              TabOrder = 10
+            end
+            object lblGetWifiStatusBSSID: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 343.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'BSSID'
+              TabOrder = 9
+            end
+            object lblGetWifiStatusRobotNameValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 244.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 25
+            end
+            object lblGetWifiStatusSSIDValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 268.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 26
+            end
+            object lblGetWifiStatusScanningValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 293.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 23
+            end
+            object lblGetWifiStatusSignalStrengthValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 318.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 24
+            end
+            object lblGetWifiStatusBSSIDValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 343.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 21
+            end
+            object lblGetWifiStatusBeehiveURLValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 369.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 22
+            end
+            object lblGetWifiStatusNucleoURL: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 394.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Nucleo URL'
+              TabOrder = 16
+            end
+            object lblGetWifiStatusNTPURL: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 419.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'NTP URL'
+              TabOrder = 11
+            end
+            object lblGetWifiStatusUTCOffset: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 444.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'UTC Offset'
+              TabOrder = 7
+            end
+            object lblGetWifiStatusTimeZone: TLabel
+              Position.X = 48.000000000000000000
+              Position.Y = 470.000000000000000000
+              Size.Width = 185.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              Text = 'Time Zone'
+              TabOrder = 8
+            end
+            object lblGetWifiStatusNucleoURLValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 394.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 17
+            end
+            object lblGetWifiStatusNTPURLValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 419.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 18
+            end
+            object lblGetWifiStatusUTCOffsetValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 444.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 13
+            end
+            object lblGetWifiStatusTimeZoneValue: TLabel
+              AutoSize = True
+              Margins.Left = 5.000000000000000000
+              Position.X = 250.000000000000000000
+              Position.Y = 470.000000000000000000
+              Size.Width = 265.000000000000000000
+              Size.Height = 22.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0'
+              TabOrder = 14
+            end
           end
         end
       end
@@ -24336,7 +24962,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 69.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -24347,18 +24973,18 @@ object frmMain: TfrmMain
         ExplicitSize.cy = 30.000000000000000000
         object TabDebugger: TTabControl
           Align = Client
-          Size.Width = 896.000000000000000000
-          Size.Height = 541.000000000000000000
+          Size.Width = 900.000000000000000000
+          Size.Height = 645.000000000000000000
           Size.PlatformDefault = False
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = TabDebuggerChange
           Sizes = (
-            896s
-            511s
-            896s
-            511s)
+            900s
+            615s
+            900s
+            615s)
           object tabDebugTerminal: TTabItem
             CustomIcon = <
               item
@@ -24372,49 +24998,12 @@ object frmMain: TfrmMain
             Text = 'Terminal'
             ExplicitSize.cx = 81.000000000000000000
             ExplicitSize.cy = 30.000000000000000000
-            object memoDebugTerminal: TMemo
-              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-              DataDetectorTypes = []
-              StyledSettings = [Family, Style, FontColor]
-              TextSettings.Font.Size = 10.000000000000000000
-              Align = Client
-              Margins.Left = 10.000000000000000000
-              Margins.Top = 10.000000000000000000
-              Margins.Right = 10.000000000000000000
-              Margins.Bottom = 100.000000000000000000
-              Size.Width = 876.000000000000000000
-              Size.Height = 352.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 0
-              Viewport.Width = 872.000000000000000000
-              Viewport.Height = 348.000000000000000000
-            end
-            object lblDebugTerminalCMD: TLabel
-              Position.X = 8.000000000000000000
-              Position.Y = 480.000000000000000000
-              Size.Width = 81.000000000000000000
-              Size.Height = 17.000000000000000000
-              Size.PlatformDefault = False
-              Text = 'Command'
-              TabOrder = 2
-            end
-            object btnDebugTerminalSend: TButton
-              Enabled = False
-              Position.X = 792.000000000000000000
-              Position.Y = 472.000000000000000000
-              Size.Width = 97.000000000000000000
-              Size.Height = 33.000000000000000000
-              Size.PlatformDefault = False
-              TabOrder = 3
-              Text = 'Send'
-              OnClick = btnDebugTerminalSendClick
-            end
             object Panel3: TPanel
               Align = Top
-              Size.Width = 896.000000000000000000
+              Size.Width = 900.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
-              TabOrder = 1
+              TabOrder = 0
               object btnDebugTerminalClear: TButton
                 Align = Left
                 Margins.Left = 5.000000000000000000
@@ -24445,17 +25034,82 @@ object frmMain: TfrmMain
                 Text = 'Help'
                 OnClick = btnDebugTerminalHelpClick
               end
+            end
+            object Panel5: TPanel
+              Align = Bottom
+              Position.Y = 560.000000000000000000
+              Size.Width = 900.000000000000000000
+              Size.Height = 55.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object lblDebugTerminalCMD: TLabel
+                Position.X = 8.000000000000000000
+                Position.Y = 14.000000000000000000
+                Size.Width = 81.000000000000000000
+                Size.Height = 17.000000000000000000
+                Size.PlatformDefault = False
+                Text = 'Command'
+                TabOrder = 3
+              end
               object edDebugTerminalSend: TComboEdit
                 Touch.InteractiveGestures = [LongTap, DoubleTap]
-                TabOrder = 7
+                TabOrder = 8
                 ItemHeight = 19.000000000000000000
                 ItemIndex = -1
                 Position.X = 104.000000000000000000
-                Position.Y = 472.000000000000000000
-                Size.Width = 673.000000000000000000
+                Position.Y = 7.000000000000000000
+                Size.Width = 521.000000000000000000
                 Size.Height = 32.000000000000000000
                 Size.PlatformDefault = False
                 OnKeyDown = edDebugTerminalSendKeyDown
+              end
+              object btnDebugTerminalSend: TButton
+                Enabled = False
+                Hint = 'Send command as it is typed'
+                Position.X = 632.000000000000000000
+                Position.Y = 6.000000000000000000
+                Size.Width = 97.000000000000000000
+                Size.Height = 33.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 2
+                Text = 'Send'
+                OnClick = btnDebugTerminalSendClick
+              end
+              object btnDebugTerminalSendHex: TButton
+                Enabled = False
+                Hint = 'Assumes command is in HEX and will convert it before sending'
+                Position.X = 744.000000000000000000
+                Position.Y = 6.000000000000000000
+                Size.Width = 97.000000000000000000
+                Size.Height = 33.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                Text = 'HEX Send'
+                OnClick = btnDebugTerminalSendClick
+              end
+            end
+            object Panel6: TPanel
+              Align = Client
+              Size.Width = 900.000000000000000000
+              Size.Height = 511.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              object memoDebugTerminal: TMemo
+                Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+                DataDetectorTypes = []
+                StyledSettings = [Family, Style, FontColor]
+                TextSettings.Font.Size = 10.000000000000000000
+                Align = Client
+                Margins.Left = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Size.Width = 880.000000000000000000
+                Size.Height = 491.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Viewport.Width = 876.000000000000000000
+                Viewport.Height = 487.000000000000000000
               end
             end
           end
@@ -24480,12 +25134,12 @@ object frmMain: TfrmMain
               Margins.Top = 10.000000000000000000
               Margins.Right = 10.000000000000000000
               Margins.Bottom = 10.000000000000000000
-              Size.Width = 876.000000000000000000
-              Size.Height = 491.000000000000000000
+              Size.Width = 880.000000000000000000
+              Size.Height = 595.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 872.000000000000000000
-              Viewport.Height = 487.000000000000000000
+              Viewport.Width = 876.000000000000000000
+              Viewport.Height = 591.000000000000000000
             end
           end
         end
@@ -24493,8 +25147,8 @@ object frmMain: TfrmMain
     end
     object Panel4: TPanel
       Align = Bottom
-      Position.Y = 571.000000000000000000
-      Size.Width = 896.000000000000000000
+      Position.Y = 675.000000000000000000
+      Size.Width = 900.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
@@ -24701,5 +25355,19 @@ object frmMain: TfrmMain
     OnTimer = timer_GetMotorsTimer
     Left = 608
     Top = 88
+  end
+  object timer_GetWifiStatus: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetWifiStatusTimer
+    Left = 608
+    Top = 552
+  end
+  object timer_GetButtons: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetButtonsTimer
+    Left = 608
+    Top = 616
   end
 end

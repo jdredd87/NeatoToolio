@@ -1,4 +1,4 @@
-unit neato.getwifiinfo;
+unit neato.GetWiFiInfo;
 
 interface
 
@@ -9,6 +9,9 @@ const
   // Command to send
   sGetWifiInfo = 'GetWifiInfo';
   sscanResultsReady = 'scan results ready'; // check for this
+
+
+  iGetWifiInfoHeaderBreaks = 3; // number of ^Z to consider it finished reading
 
 type
 
