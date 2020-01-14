@@ -323,8 +323,13 @@ begin
   if NOT assigned(data) then
     exit;
 
+  if data.count<2 then
+   exit;
+
   lineData := TStringList.Create;
   lineData.Delimiter := ',';
+
+
   lineData.DelimitedText := data.Strings[1]; // grab header row
 
   // Simple test to make sure we got data

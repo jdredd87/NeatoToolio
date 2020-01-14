@@ -1,6 +1,18 @@
-// reminder to self
-// move all code out of the timers into their own routines.
+// reminders to futures self
+
+// move all code out of the timers into their own routines...
 // use timers to call them!
+
+// possibly split up each Tab. Turn each tab to populate from a TFrame for each type?
+// would help clean up this form, and modulize each tab/call. already 400+ components on one form... yikes.
+
+// possibly swXXXXXXYYYYYYYvalue object names.. its a switch... so drop "value" off the end, getting wordy
+
+// Cant find neato on com, get like 4 popups. derp.
+
+// Possibly remove timers off form, and manually create one.
+// Then can just stop the timer. unassign event, reassign it to new one.. and move on.
+// Or set Tag # to define which event to use... who knows right now.
 
 unit formMain;
 
@@ -10,6 +22,8 @@ uses
 {$IFDEF MSWINDOWS}
   Madexcept,
   Winsoft.FireMonkey.FComPort, dmSerial.Windows,
+  WinAPI.Windows,
+  FMX.Platform.WIN,
 {$ENDIF}
   neato.GetCharger,
   neato.GetWarranty,
@@ -27,7 +41,7 @@ uses
   neato.GetWifiInfo,
   neato.GetWifiStatus,
   neato.GetButtons,
-
+  neato.GetCalInfo,
   neato.Helpers,
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
@@ -46,151 +60,139 @@ type
     tabSetup: TTabItem;
     tabSensors: TTabItem;
     tabAbout: TTabItem;
-    Panel1: TPanel;
-    swConnect: TSwitch;
-    pnlComSetup: TPanel;
-    chkAutoDetect: TCheckBox;
-    Label2: TLabel;
-    cbCOM: TComboBox;
-    lblConnect: TLabel;
+    pnlSerialTop: TPanel;
     timer_GetCharger: TTimer;
     timer_getWarranty: TTimer;
     timer_GetAccel: TTimer;
     timer_GetAnalogSensors: TTimer;
     tabDebug: TTabItem;
     Model3D1Mat01: TLightMaterialSource;
-    ckTestMode: TCheckBox;
     timer_GetDigitalSensors: TTimer;
     timer_GetErr: TTimer;
-    ScaledLayout1: TScaledLayout;
+    ScaledLayoutMain: TScaledLayout;
     tabSensorsOptions: TTabControl;
     tabGetCharger: TTabItem;
-    pb_FuelPercent: TProgressBar;
-    lbl_FuelPercent: TLabel;
-    lblFuelPercent: TLabel;
-    pb_BattTempCAvg: TProgressBar;
-    lbl_BattTempCAvg: TLabel;
-    pb_VBattV: TProgressBar;
-    lbl_VbattV: TLabel;
-    pb_VextV: TProgressBar;
-    lbl_VextV: TLabel;
-    pb_ChargermAH: TProgressBar;
-    lbl_ChargermAH: TLabel;
-    pb_DischargermAH: TProgressBar;
-    lbl_DischargermAH: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    sw_BatteryOverTemp: TSwitch;
-    sw_ChargingActive: TSwitch;
-    sw_ChargingEnabled: TSwitch;
-    lbl_BatteryOverTemp: TLabel;
-    lbl_ChargingActive: TLabel;
-    lbl_ChargingEnabled: TLabel;
-    lbl_ConfidentOnFuel: TLabel;
-    sw_ConfidentOnFuel: TSwitch;
-    lbl_OnReservedFuel: TLabel;
-    sw_OnReservedFuel: TSwitch;
-    lbl_EmptyFuel: TLabel;
-    sw_EmptyFuel: TSwitch;
-    lbl_BatteryFailure: TLabel;
-    sw_BatteryFailure: TSwitch;
-    lbl_ExtPwrPresent: TLabel;
-    sw_ExtPwrPresent: TSwitch;
-    lbl_ThermistorPresent: TLabel;
-    sw_ThermistorPresent: TSwitch;
-    ShadowEffect2: TShadowEffect;
+    pbGetChargerFuelPercentValue: TProgressBar;
+    lblGetChargerFuelPercentValue: TLabel;
+    lblGetChargerFuelPercent: TLabel;
+    pbGetChargerBattTempCAvgValue: TProgressBar;
+    lblGetChargerBattTempCAvgValue: TLabel;
+    pbGetChargerVBattVValue: TProgressBar;
+    lblGetChargerVbattVValue: TLabel;
+    pbGetChargerVextVValue: TProgressBar;
+    lblGetChargerVextVValue: TLabel;
+    pbGetChargerChargermAHValue: TProgressBar;
+    lblGetChargerChargermAHValue: TLabel;
+    pbGetChargerDischargermAHValue: TProgressBar;
+    lblGetChargerDischargermAHValue: TLabel;
+    lblGetChargerBattTempCAvg: TLabel;
+    lblGetChargerVBattV: TLabel;
+    lblGetChargerVExtV: TLabel;
+    lblGetChargerChargermAH: TLabel;
+    lblGetChargerDischargermAH: TLabel;
+    swGetChargerBatteryOverTempValue: TSwitch;
+    swGetChargerChargingActiveValue: TSwitch;
+    swGetChargerChargingEnabledValue: TSwitch;
+    lblGetChargerBatteryOverTemp: TLabel;
+    lblGetChargerChargingActive: TLabel;
+    lblGetChargerChargingEnabled: TLabel;
+    lblGetChargerConfidentOnFuel: TLabel;
+    swGetChargerConfidentOnFuelValue: TSwitch;
+    lblGetChargerOnReservedFuel: TLabel;
+    swGetChargerOnReservedFuelValue: TSwitch;
+    lblGetChargerEmptyFuel: TLabel;
+    swGetChargerEmptyFuelValue: TSwitch;
+    lblGetChargerBatteryFailure: TLabel;
+    swGetChargerBatteryFailureValue: TSwitch;
+    lblGetChargerExtPwrPresent: TLabel;
+    swGetChargerExtPwrPresentValue: TSwitch;
+    lblGetChargerThermistorPresent: TLabel;
+    swGetChargerThermistorPresentValue: TSwitch;
     tabGetAccel: TTabItem;
-    Viewport3D1: TViewport3D;
+    view3dGetAccelValue: TViewport3D;
     _3DGetAccel: TModel3D;
     Light1: TLight;
-    ShadowEffect3: TShadowEffect;
-    Panel2: TPanel;
-    lbl_PitchInDegrees: TLabel;
-    lbl_RollInDegrees: TLabel;
-    lbl_XInG: TLabel;
-    lbl_YInG: TLabel;
-    lbl_ZInG: TLabel;
-    lbl_SumInG: TLabel;
-    lbl_SumInGValue: TLabel;
-    lbl_ZInGValue: TLabel;
-    lbl_YInGValue: TLabel;
-    lbl_XInGValue: TLabel;
-    lbl_RollInDegreesValue: TLabel;
-    lbl_PitchInDegreesValue: TLabel;
+    pnlGetAccelLeft: TPanel;
+    lblGetAccelPitchInDegrees: TLabel;
+    lblGetAccelRollInDegrees: TLabel;
+    lblGetAccelXInG: TLabel;
+    lblGetAccelYInG: TLabel;
+    lblGetAccelZInG: TLabel;
+    lblGetAccelSumInG: TLabel;
+    lblGetAccelSumInGValue: TLabel;
+    lblGetAccelZInGValue: TLabel;
+    lblGetAccelYInGValue: TLabel;
+    lblGetAccelXInGValue: TLabel;
+    lblGetAccelRollInDegreesValue: TLabel;
+    lblGetAccelPitchInDegreesValue: TLabel;
     tabGetAnalogSensors: TTabItem;
-    lblBatteryVoltage: TLabel;
-    pb_BatteryVoltage: TProgressBar;
-    lblBatteryVoltageValue: TLabel;
-    pb_BatteryCurrent: TProgressBar;
-    lblBatteryCurrentValue: TLabel;
-    pb_BatteryTemperature: TProgressBar;
-    lblBatteryTemperatureValue: TLabel;
-    pb_ExternalVoltage: TProgressBar;
-    lblExternalVoltageValue: TLabel;
-    lblBatteryCurrent: TLabel;
-    lblBatteryTemperature: TLabel;
-    lblExternalVoltage: TLabel;
-    lblAccelerometerX: TLabel;
-    lblAccelerometerXValue: TLabel;
-    lblAccelerometerY: TLabel;
-    lblAccelerometerYValue: TLabel;
-    lblAccelerometerZ: TLabel;
-    lblAccelerometerZValue: TLabel;
-    lblCompassmeterX: TLabel;
-    lblCompassmeterXValue: TLabel;
-    lblCompassmeterY: TLabel;
-    lblCompassmeterYValue: TLabel;
-    lblCompassmeterZ: TLabel;
-    lblCompassmeterZValue: TLabel;
-    lblGyroscopeX: TLabel;
-    lblGyroscopeXValue: TLabel;
-    lblGyroscopeY: TLabel;
-    lblGyroscopeYValue: TLabel;
-    lblGyroscopeZ: TLabel;
-    lblGyroscopeZValue: TLabel;
-    ShadowEffect5: TShadowEffect;
-    lblMagSensorLeft: TLabel;
-    lblIMUAccelerometerXValue: TLabel;
-    lblIMUAccelerometerY: TLabel;
-    lblIMUAccelerometerYValue: TLabel;
-    lblIMUAccelerometerZ: TLabel;
-    lblIMUAccelerometerZValue: TLabel;
-    lblVacuumCurrent: TLabel;
-    lblVacuumCurrentValue: TLabel;
-    lblSideBrushCurrent: TLabel;
-    lblSideBrushCurrentValue: TLabel;
-    lblWallSensor: TLabel;
-    lblWallSensorValue: TLabel;
-    lblDropSensorLeft: TLabel;
-    lblDropSensorLeftValue: TLabel;
-    lblDropSensorRight: TLabel;
-    lblDropSensorRightValue: TLabel;
-    swMagSensorLeft: TSwitch;
-    swMagSensorRight: TSwitch;
-    lblIMUAccelerometerX: TLabel;
-    lblMagSensorRight: TLabel;
+    lblGetAnalogSensorsBatteryVoltage: TLabel;
+    pbGetAnalogSensorsBatteryVoltageValue: TProgressBar;
+    lblGetAnalogSensorsBatteryVoltageValue: TLabel;
+    pbGetAnalogSensorsBatteryCurrentValue: TProgressBar;
+    lblGetAnalogSensorsBatteryCurrentValue: TLabel;
+    pbGetAnalogSensorsBatteryTemperatureValue: TProgressBar;
+    lblGetAnalogSensorsBatteryTemperatureValue: TLabel;
+    pbGetAnalogSensorsExternalVoltageValue: TProgressBar;
+    lblGetAnalogSensorsExternalVoltageValue: TLabel;
+    lblGetAnalogSensorsBatteryCurrent: TLabel;
+    lblGetAnalogSensorsBatteryTemperature: TLabel;
+    lblGetAnalogSensorsExternalVoltage: TLabel;
+    lblGetAnalogSensorsAccelerometerX: TLabel;
+    lblGetAnalogSensorsAccelerometerXValue: TLabel;
+    lblGetAnalogSensorsAccelerometerY: TLabel;
+    lblGetAnalogSensorsAccelerometerYValue: TLabel;
+    lblGetAnalogSensorsAccelerometerZ: TLabel;
+    lblGetAnalogSensorsAccelerometerZValue: TLabel;
+    lblGetAnalogSensorsCompassmeterX: TLabel;
+    lblGetAnalogSensorsCompassmeterXValue: TLabel;
+    lblGetAnalogSensorsCompassmeterY: TLabel;
+    lblGetAnalogSensorsCompassmeterYValue: TLabel;
+    lblGetAnalogSensorsCompassmeterZ: TLabel;
+    lblGetAnalogSensorsCompassmeterZValue: TLabel;
+    lblGetAnalogSensorsGyroscopeX: TLabel;
+    lblGetAnalogSensorsGyroscopeXValue: TLabel;
+    lblGetAnalogSensorsGyroscopeY: TLabel;
+    lblGetAnalogSensorsGyroscopeYValue: TLabel;
+    lblGetAnalogSensorsGyroscopeZ: TLabel;
+    lblGetAnalogSensorsGyroscopeZValue: TLabel;
+    lblGetAnalogSensorsMagSensorLeft: TLabel;
+    lblGetAnalogSensorsIMUAccelerometerXValue: TLabel;
+    lblGetAnalogSensorsIMUAccelerometerY: TLabel;
+    lblGetAnalogSensorsIMUAccelerometerYValue: TLabel;
+    lblGetAnalogSensorsIMUAccelerometerZ: TLabel;
+    lblGetAnalogSensorsIMUAccelerometerZValue: TLabel;
+    lblGetAnalogSensorsVacuumCurrent: TLabel;
+    lblGetAnalogSensorsVacuumCurrentValue: TLabel;
+    lblGetAnalogSensorsSideBrushCurrent: TLabel;
+    lblGetAnalogSensorsSideBrushCurrentValue: TLabel;
+    lblGetAnalogSensorsWallSensor: TLabel;
+    lblGetAnalogSensorsWallSensorValue: TLabel;
+    lblGetAnalogSensorsDropSensorLeft: TLabel;
+    lblGetAnalogSensorsDropSensorLeftValue: TLabel;
+    lblGetAnalogSensorsDropSensorRight: TLabel;
+    lblGetAnalogSensorsDropSensorRightValue: TLabel;
+    swGetAnalogSensorsMagSensorLeftValue: TSwitch;
+    swGetAnalogSensorsMagSensorRightValue: TSwitch;
+    lblGetAnalogSensorsIMUAccelerometerX: TLabel;
+    lblGetAnalogSensorsMagSensorRight: TLabel;
     tabGetDigitalSensors: TTabItem;
-    swSNSR_DC_JACK_IS_IN: TSwitch;
-    lblSNSR_DC_JACK_IS_IN: TLabel;
-    ShadowEffect6: TShadowEffect;
-    lblSNSR_DUSTBIN_IS_IN: TLabel;
-    swSNSR_DUSTBIN_IS_IN: TSwitch;
-    lblSNSR_LEFT_WHEEL_EXTENDED: TLabel;
-    swSNSR_LEFT_WHEEL_EXTENDED: TSwitch;
-    lblSNSR_RIGHT_WHEEL_EXTENDED: TLabel;
-    swSNSR_RIGHT_WHEEL_EXTENDED: TSwitch;
-    lblRSIDEBIT: TLabel;
-    swRSIDEBIT: TSwitch;
-    lblLLDSBIT: TLabel;
-    swLLDSBIT: TSwitch;
-    swLFRONTBIT: TSwitch;
-    lblLFRONTBIT: TLabel;
-    swLSIDEBIT: TSwitch;
-    lblLSIDEBIT: TLabel;
-    ShadowEffect4: TShadowEffect;
+    swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch;
+    lblGetDigitalSensorsSNSR_DC_JACK_IS_IN: TLabel;
+    lblGetDigitalSensorsSNSR_DUSTBIN_IS_IN: TLabel;
+    swGetDigitalSensorsSNSR_DUSTBIN_IS_INValue: TSwitch;
+    lblGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDED: TLabel;
+    swGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDEDValue: TSwitch;
+    lblGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDED: TLabel;
+    swGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDEDValue: TSwitch;
+    lblGetDigitalSensorsRSIDEBIT: TLabel;
+    swGetDigitalSensorsRSIDEBITValue: TSwitch;
+    lblGetDigitalSensorsLLDSBIT: TLabel;
+    swGetDigitalSensorsLLDSBITValue: TSwitch;
+    swGetDigitalSensorsLFRONTBITValue: TSwitch;
+    lblGetDigitalSensorsLFRONTBIT: TLabel;
+    swGetDigitalSensorsLSIDEBITValue: TSwitch;
+    lblGetDigitalSensorsLSIDEBIT: TLabel;
     tabInfo: TTabItem;
     tabsInfoOptions: TTabControl;
     tabGetUsage: TTabItem;
@@ -204,7 +206,6 @@ type
     lbl_CumulativeCleaningTimeInSecs: TLabel;
     lbl_CumulativeBatteryCycles: TLabel;
     lbl_ValidationCode: TLabel;
-    ShadowEffect1: TShadowEffect;
     lbl_CumulativeCleaningTimeInSecsValue: TLabel;
     lbl_ValidationCodeValue: TLabel;
     lbl_CumulativeBatteryCyclesValue: TLabel;
@@ -236,7 +237,6 @@ type
     StringColumn9: TStringColumn;
     StringColumn10: TStringColumn;
     timer_LIDAR: TTimer;
-    ShadowEffect7: TShadowEffect;
     Rectangle1: TRectangle;
     plotLIDAR: TPlotGrid;
     ckShowIntensityLines: TCheckBox;
@@ -254,11 +254,8 @@ type
     lblDirtbinRunTimeinSecValue: TLabel;
     lblFilterTimeinSec: TLabel;
     lblFilterTimeinSecValue: TLabel;
-    ShadowEffect8: TShadowEffect;
-    ShadowEffect9: TShadowEffect;
     timer_GetUsage: TTimer;
     timer_GetUserSettings: TTimer;
-    ShadowEffect10: TShadowEffect;
 
     lblGetUserSettingsLanguage: TLabel;
     lblGetUserSettingsLanguageValue: TLabel;
@@ -303,11 +300,10 @@ type
     tabDebugRawData: TTabItem;
     tabDebugTerminal: TTabItem;
     memoDebug: TMemo;
-    Panel3: TPanel;
+    pnlDebugTerminalTop: TPanel;
     btnDebugTerminalClear: TButton;
     timer_GetSensor: TTimer;
     tabGetSensor: TTabItem;
-    ShadowEffect11: TShadowEffect;
 
     lblGetSensorWallFollower: TLabel;
     lblGetSensorUltraSound: TLabel;
@@ -341,15 +337,9 @@ type
     lblGetSensorIMUAccelZValue: TLabel;
     tabPlaySound: TTabItem;
     sgPlaysound: TStringGrid;
-    Label1: TLabel;
-    ShadowEffect12: TShadowEffect;
-    nbPlaySoundID: TNumberBox;
-    btnPlaySoundTest: TButton;
     sgPlaysoundID: TStringColumn;
     sgPlaySoundResponse: TStringColumn;
-    btnSoundPlayTestAll: TButton;
     lblPlaysoundIDX: TLabel;
-    btnPlaySoundAbort: TButton;
     btnDebugTerminalHelp: TButton;
     tabGetMotors: TTabItem;
     lblGetMotorsBrush_RPM: TLabel;
@@ -385,14 +375,13 @@ type
     lblGetMotorsSideBrush_mA: TLabel;
     lblGetMotorsSideBrush_mAValue: TLabel;
     timer_GetMotors: TTimer;
-    btnGetWifiInfoScan: TButton;
     sgGetWifiInfo: TStringGrid;
     sgGetWifiInfoSSID: TStringColumn;
     sgGetWifiInfoSignal: TStringColumn;
     sgGetWifiInfoFrequency: TStringColumn;
     sgGetWifiInfoBSSID: TStringColumn;
     aniGetWifiInfo: TAniIndicator;
-    Panel4: TPanel;
+    pnlStatusBar: TPanel;
     ColorBoxRX: TColorBox;
     LabelRX: TLabel;
     ColorBoxTX: TColorBox;
@@ -406,8 +395,6 @@ type
     ColorBoxBreak: TColorBox;
     LabelBreak: TLabel;
     timer_GetWifiStatus: TTimer;
-    ShadowEffect13: TShadowEffect;
-    ShadowEffect14: TShadowEffect;
 
     lblGetWifiStatusIPADDR: TLabel;
     lblGetWifiStatusIPADDRValue: TLabel;
@@ -447,11 +434,11 @@ type
     lblGetWifiStatusNTPURLValue: TLabel;
     lblGetWifiStatusUTCOffsetValue: TLabel;
     lblGetWifiStatusTimeZoneValue: TLabel;
-    Panel5: TPanel;
+    pnlDebugTerminalBottom: TPanel;
     lblDebugTerminalCMD: TLabel;
     edDebugTerminalSend: TComboEdit;
     btnDebugTerminalSend: TButton;
-    Panel6: TPanel;
+    pnlDebugTerminalMemo: TPanel;
     memoDebugTerminal: TMemo;
     btnDebugTerminalSendHex: TButton;
     tabGetButtons: TTabItem;
@@ -488,9 +475,60 @@ type
     lblGetButtonsIR_BTN_RIGHT_ARC: TLabel;
     swGetButtonsIR_BTN_RIGHT_ARCvalue: TSwitch;
     timer_GetButtons: TTimer;
+    pnlGetWifiInfoTop: TPanel;
+    btnGetWifiInfoScan: TButton;
+    Panel7: TPanel;
+    lblPlaySoundID: TLabel;
+    nbPlaySoundIDValue: TNumberBox;
+    btnPlaySoundTest: TButton;
+    btnSoundPlayTestAll: TButton;
+    btnPlaySoundAbort: TButton;
+    ckTestMode: TCheckBox;
+    lblConnect: TLabel;
+    lblSetupComPort: TLabel;
+    cbCOM: TComboBox;
+    chkAutoDetect: TCheckBox;
+    timer_GetCalInfo: TTimer;
+    tabGetCalInfo: TTabItem;
+    lblGetCalInfoLDSOffset: TLabel;
+    lblGetCalInfoLDSOffsetValue: TLabel;
+    lblGetCalInfoXAccel: TLabel;
+    lblGetCalInfoXAccelValue: TLabel;
+    lblGetCalInfoYAccel: TLabel;
+    lblGetCalInfoYAccelValue: TLabel;
+    lblGetCalInfoZAccel: TLabel;
+    lblGetCalInfoZAccelValue: TLabel;
+    lblGetCalInfoRTCOffset: TLabel;
+    lblGetCalInfoRTCOffsetValue: TLabel;
+    lblGetCalInfoCleaningTestSurface: TLabel;
+    lblGetCalInfoCleaningTestSurfaceValue: TLabel;
+    lblGetCalInfoCleaningTestHardSpeed: TLabel;
+    lblGetCalInfoCleaningTestHardSpeedValue: TLabel;
+    lblGetCalInfoCleaningTestCarpetSpeed: TLabel;
+    lblGetCalInfoCleaningTestCarpetSpeedValue: TLabel;
+    lblGetCalInfoCleaningTestHardDistance: TLabel;
+    lblGetCalInfoCleaningTestHardDistanceValue: TLabel;
+    lblGetCalInfoCleaningTestCarpetDistance: TLabel;
+    lblGetCalInfoCleaningTestCarpetDistanceValue: TLabel;
+    lblGetCalInfoCleaningTestMode: TLabel;
+    lblGetCalInfoCleaningTestModeValue: TLabel;
+    lblGetCalInfoQAState: TLabel;
+    lblGetCalInfoQAStateValue: TLabel;
+    lblGetCalInfoLeftDropSensor_CalibrationData: TLabel;
+    lblGetCalInfoLeftDropSensor_CalibrationDataValue: TLabel;
+    lblGetCalInfoRightDropSensor_CalibrationData: TLabel;
+    lblGetCalInfoRightDropSensor_CalibrationDataValue: TLabel;
+    lblGetCalInfoWheelDropSensor_CalibrationData: TLabel;
+    lblGetCalInfoWheelDropSensor_CalibrationDataValue: TLabel;
+    lblGetCalInfoWallSensor_CalibrationData: TLabel;
+    lblGetCalInfoWallSensor_CalibrationDataValue: TLabel;
+    swConnect: TCheckBox;
+    timer_StupidFix: TTimer;
+    pnlSetupDetails: TPanel;
+    lblSetupRobotName: TLabel;
+    lblRobotModel: TLabel;
+    imgRobot: TImage;
     procedure FormCreate(Sender: TObject);
-    procedure swConnectSwitch(Sender: TObject);
-    procedure cbCOMChange(Sender: TObject);
     procedure chkAutoDetectChange(Sender: TObject);
     procedure timer_GetChargerTimer(Sender: TObject);
     procedure timer_getWarrantyTimer(Sender: TObject);
@@ -523,14 +561,18 @@ type
     procedure btnGetWifiInfoScanClick(Sender: TObject);
     procedure tabsWifiOptionsChange(Sender: TObject);
     procedure TabDebuggerChange(Sender: TObject);
-    procedure Label37Click(Sender: TObject);
     procedure timer_GetWifiStatusTimer(Sender: TObject);
     procedure timer_GetWifiInfoTimer(Sender: TObject);
     procedure timer_GetButtonsTimer(Sender: TObject);
+    procedure timer_GetCalInfoTimer(Sender: TObject);
+    procedure swConnectChange(Sender: TObject);
+    procedure timer_StupidFixTimer(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
     fPlaySoundAborted: Boolean;
+
+    procedure PopulateCOMPorts;
     procedure toggleComs(disable: Boolean);
     procedure comConnect;
     procedure comDisconnect;
@@ -539,18 +581,16 @@ type
     procedure ResetGetErr;
 
     procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
-    procedure onException(Sender: TObject; E: Exception); // our exception catcher code
 
-    procedure FComPortAfterClose(Sender: TObject);
-    procedure FComPortAfterOpen(Sender: TObject);
+    procedure FComPortAfterOpen(ComPort: TFComPort);
+    procedure FComPortAfterClose(ComPort: TFComPort);
     procedure FComPortLineError(Sender: TObject; LineErrors: TLineErrors);
     procedure FComPortRxChar(Sender: TObject);
     procedure FComPortError(Sender: TObject); // mine not winsofts
     procedure FComPortEOL(Sender: TObject); // mine not winsofts, used to know when ^Z (char 26, hex $1A received)
+    procedure FComPortDeviceUpdate(Sender: TObject; const DeviceName: string);
 
     procedure StopTimers;
-
-    procedure updatecominfo;
 
   public
     com: TdmSerial;
@@ -586,38 +626,55 @@ begin
   tabsWifiOptions.TabIndex := 0;
 
   chkAutoDetect.IsChecked := neatoSettings.AutoDetectNeato;
+  chkAutoDetectChange(nil);
 
   aniGetWifiInfo.Visible := false;
   aniGetWifiInfo.Enabled := false;
 
   fCurrentTimer := nil;
   com := TdmSerial.Create(self);
+
   com.onError := FComPortError;
+  com.com.OnLineError := FComPortLineError;
+  com.com.afterclose := FComPortAfterClose;
+  com.com.afteropen := FComPortAfterOpen;
+  com.com.OnDeviceArrival := FComPortDeviceUpdate;
+  com.com.OnDeviceRemoved := FComPortDeviceUpdate;
 
   com.FComSignalRX.ColorBox := self.ColorBoxRX;
   com.FComSignalCTS.ColorBox := self.ColorBoxCTS;
-  // com.FComSignalRing.ColorBox := self.ColorBoxRing;
   com.FComSignalBreak.ColorBox := self.ColorBoxBreak;
   com.FComSignalRLSD.ColorBox := self.ColorBoxRLSD;
   com.FComSignalDSR.ColorBox := self.ColorBoxDSR;
   com.FComSignalTX.ColorBox := self.ColorBoxTX;
+
   tabsMain.Enabled := false;
 
   tthread.CreateAnonymousThread(
     procedure
-    var
-      comList: TStringList;
     begin
-      comList := TStringList.Create;
-      com.com.EnumComDevices(comList);
+      sleep(500); // wait a second before populating comports
+
       tthread.Synchronize(tthread.CurrentThread,
         procedure
         begin
-          cbCOM.Items.Assign(comList);
-          comList.Free;
-          tabsMain.Enabled := true;
+          PopulateCOMPorts;
         end);
-    end).Start;
+
+    end).start;
+end;
+
+procedure TfrmMain.PopulateCOMPorts;
+var
+  comList: TStringList;
+begin
+  comList := TStringList.Create;
+  com.com.EnumComDevices(comList);
+  cbCOM.BeginUpdate;
+  cbCOM.Items.Assign(comList);
+  cbCOM.EndUpdate;
+  comList.Free;
+  tabsMain.Enabled := true;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -625,10 +682,6 @@ begin
   freeandnil(com);
 end;
 
-procedure TfrmMain.Label37Click(Sender: TObject);
-begin
-
-end;
 
 // can use this event that when IDLE happens, which is very often and fast
 // to enable/disable things , such as send buttons when com is open or not
@@ -648,15 +701,6 @@ begin
   btnDebugTerminalSendHex.Enabled := isActive;
   btnDebugTerminalHelp.Enabled := isActive;
   btnGetWifiInfoScan.Enabled := isActive;
-end;
-
-// our exception handler for things like ecommerror
-procedure TfrmMain.onException(Sender: TObject; E: Exception);
-begin
-  if E is ecomerror then
-  begin
-    //
-  end;
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -690,17 +734,12 @@ begin
   CanClose := true;
 end;
 
-procedure TfrmMain.updatecominfo;
-begin
-  // not used yet
-end;
-
-procedure TfrmMain.FComPortAfterClose(Sender: TObject);
+procedure TfrmMain.FComPortAfterClose(ComPort: TFComPort);
 begin
   StopTimers;
 end;
 
-procedure TfrmMain.FComPortAfterOpen(Sender: TObject);
+procedure TfrmMain.FComPortAfterOpen(ComPort: TFComPort);
 begin
   StopTimers;
 end;
@@ -710,27 +749,27 @@ begin
   StopTimers;
 
   if leBreak in LineErrors then
-    MessageDlg('Break detected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Break detected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leDeviceNotSelected in LineErrors then
-    MessageDlg('Device not selected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Device not selected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leFrame in LineErrors then
-    MessageDlg('Frame error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Frame error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leIO in LineErrors then
-    MessageDlg('IO error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('IO error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leMode in LineErrors then
-    MessageDlg('Mode error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Mode error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leOutOfPaper in LineErrors then
-    MessageDlg('Out of paper', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Out of paper', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leOverrun in LineErrors then
-    MessageDlg('Overrun error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Overrun error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leDeviceTimeOut in LineErrors then
-    MessageDlg('Device timeout', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Device timeout', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leRxOverflow in LineErrors then
-    MessageDlg('Receiver overflow', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Receiver overflow', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leParity in LineErrors then
-    MessageDlg('Parity error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Parity error', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
   if leTxFull in LineErrors then
-    MessageDlg('Transmitter full', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
+    FMX.Dialogs.MessageDlg('Transmitter full', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
 end;
 
 procedure TfrmMain.FComPortError(Sender: TObject);
@@ -741,9 +780,10 @@ begin
   finally
   end;
   showmessage('COM Issue #' + com.errorcode.ToString + ' : ' + com.Error);
-  swConnect.Enabled := true;
+
   swConnect.IsChecked := false;
-  pnlComSetup.Enabled := true;
+  chkAutoDetect.Enabled := true;
+  cbCOM.Enabled := true;
 end;
 
 procedure TfrmMain.FComPortRxChar(Sender: TObject);
@@ -759,12 +799,12 @@ begin
   except
     on E: Exception do
     begin
-      Text := #10#13 + #10#13 + E.Message + #10#13 + #1013;
+      Text := #10#13 + #10#13 + AnsiString(E.Message) + #10#13 + #1013;
     end;
 
   end;
 
-  if pos(^Z, Text) > 0 then
+  if pos(^Z, string(Text)) > 0 then
     FComPortEOL(Sender);
 
   memoDebugTerminal.Text := memoDebugTerminal.Text + string(Text);
@@ -779,6 +819,14 @@ begin
   // needs logic in here eventually to signal something waiting for data
 end;
 
+procedure TfrmMain.FComPortDeviceUpdate(Sender: TObject; const DeviceName: string);
+begin
+  if cbCOM.DroppedDown then
+    cbCOM.DropDown;
+  cbCOM.ItemIndex := -1;
+  PopulateCOMPorts;
+end;
+
 procedure TfrmMain.StopTimers;
 var
   idx: integer;
@@ -789,7 +837,7 @@ begin
   fCurrentTimer := nil;
 end;
 
-procedure TfrmMain.swConnectSwitch(Sender: TObject);
+procedure TfrmMain.swConnectChange(Sender: TObject);
 begin
   StopTimers;
   toggleComs(swConnect.IsChecked);
@@ -870,8 +918,15 @@ begin
             exit;
           end;
 
+          if tabSensorsOptions.ActiveTab = self.tabGetCalInfo then
+          begin
+            timer_GetCalInfo.Enabled := true;
+            fCurrentTimer := timer_GetCalInfo;
+            exit;
+          end;
+
         end);
-    end).Start;
+    end).start;
 
 end;
 
@@ -898,7 +953,7 @@ begin
           end;
 
         end);
-    end).Start;
+    end).start;
 
 end;
 
@@ -953,7 +1008,7 @@ begin
           end;
 
         end);
-    end).Start;
+    end).start;
 
 end;
 
@@ -986,7 +1041,7 @@ begin
 
         end);
 
-    end).Start;
+    end).start;
 end;
 
 procedure TfrmMain.tabsInfoOptionsChange(Sender: TObject);
@@ -1049,20 +1104,12 @@ begin
 
         end);
 
-    end).Start;
-end;
-
-procedure TfrmMain.cbCOMChange(Sender: TObject);
-begin
-  swConnect.Enabled := cbCOM.ItemIndex > -1;
-  if swConnect.Enabled then
-    swConnect.IsChecked := false;
+    end).start;
 end;
 
 procedure TfrmMain.chkAutoDetectChange(Sender: TObject);
 begin
   cbCOM.Enabled := NOT chkAutoDetect.IsChecked;
-  swConnect.Enabled := true;
   swConnect.IsChecked := false;
   neatoSettings.AutoDetectNeato := chkAutoDetect.IsChecked;
 end;
@@ -1129,12 +1176,12 @@ begin
 
   if r then
   begin
-    lbl_PitchInDegreesValue.Text := pGetAccel.PitchInDegrees.ToString;
-    lbl_RollInDegreesValue.Text := pGetAccel.RollInDegrees.ToString;
-    lbl_XInGValue.Text := pGetAccel.XInG.ToString;
-    lbl_YInGValue.Text := pGetAccel.YInG.ToString;
-    lbl_ZInGValue.Text := pGetAccel.ZInG.ToString;
-    lbl_SumInGValue.Text := pGetAccel.SumInG.ToString;
+    lblGetAccelPitchInDegreesValue.Text := pGetAccel.PitchInDegrees.ToString;
+    lblGetAccelRollInDegreesValue.Text := pGetAccel.RollInDegrees.ToString;
+    lblGetAccelXInGValue.Text := pGetAccel.XInG.ToString;
+    lblGetAccelYInGValue.Text := pGetAccel.YInG.ToString;
+    lblGetAccelZInGValue.Text := pGetAccel.ZInG.ToString;
+    lblGetAccelSumInGValue.Text := pGetAccel.SumInG.ToString;
 
     v := pGetAccel.RollInDegrees;
 
@@ -1184,30 +1231,29 @@ begin
 
   if r then
   begin
+    pbGetChargerFuelPercentValue.Value := pGetCharger.FuelPercent;
+    pbGetChargerBattTempCAvgValue.Value := pGetCharger.BattTempCAvg;
+    pbGetChargerVBattVValue.Value := pGetCharger.VBattV;
+    pbGetChargerVextVValue.Value := pGetCharger.VExtV;
+    pbGetChargerChargermAHValue.Value := pGetCharger.Charger_mAH;
+    pbGetChargerDischargermAHValue.Value := pGetCharger.Discharge_mAH;
 
-    pb_FuelPercent.Value := pGetCharger.FuelPercent;
-    pb_BattTempCAvg.Value := pGetCharger.BattTempCAvg;
-    pb_VBattV.Value := pGetCharger.VBattV;
-    pb_VextV.Value := pGetCharger.VExtV;
-    pb_ChargermAH.Value := pGetCharger.Charger_mAH;
-    pb_DischargermAH.Value := pGetCharger.Discharge_mAH;
+    lblGetChargerFuelPercentValue.Text := pGetCharger.FuelPercent.ToString + ' %';
+    lblGetChargerBattTempCAvgValue.Text := pGetCharger.BattTempCAvg.ToString + ' *';
+    lblGetChargerVbattVValue.Text := pGetCharger.VBattV.ToString + ' v';
+    lblGetChargerVextVValue.Text := pGetCharger.VExtV.ToString + ' v';
+    lblGetChargerChargermAHValue.Text := pGetCharger.Charger_mAH.ToString;
+    lblGetChargerDischargermAHValue.Text := pGetCharger.Discharge_mAH.ToString;
 
-    lbl_FuelPercent.Text := pGetCharger.FuelPercent.ToString + ' %';
-    lbl_BattTempCAvg.Text := pGetCharger.BattTempCAvg.ToString + ' *';
-    lbl_VbattV.Text := pGetCharger.VBattV.ToString + ' v';
-    lbl_VextV.Text := pGetCharger.VExtV.ToString + ' v';
-    lbl_ChargermAH.Text := pGetCharger.Charger_mAH.ToString;
-    lbl_DischargermAH.Text := pGetCharger.Discharge_mAH.ToString;
-
-    sw_BatteryOverTemp.IsChecked := pGetCharger.BatteryOverTemp;
-    sw_ChargingActive.IsChecked := pGetCharger.ChargingActive;
-    sw_ChargingEnabled.IsChecked := pGetCharger.ChargingEnabled;
-    sw_ConfidentOnFuel.IsChecked := pGetCharger.ConfidentOnFuel;
-    sw_OnReservedFuel.IsChecked := pGetCharger.OnReservedFuel;
-    sw_EmptyFuel.IsChecked := pGetCharger.EmptyFuel;
-    sw_BatteryFailure.IsChecked := pGetCharger.BatteryFailure;
-    sw_ExtPwrPresent.IsChecked := pGetCharger.ExtPwrPresent;
-    sw_ThermistorPresent.IsChecked := pGetCharger.ThermistorPresent;
+    swGetChargerBatteryOverTempValue.IsChecked := pGetCharger.BatteryOverTemp;
+    swGetChargerChargingActiveValue.IsChecked := pGetCharger.ChargingActive;
+    swGetChargerChargingEnabledValue.IsChecked := pGetCharger.ChargingEnabled;
+    swGetChargerConfidentOnFuelValue.IsChecked := pGetCharger.ConfidentOnFuel;
+    swGetChargerOnReservedFuelValue.IsChecked := pGetCharger.OnReservedFuel;
+    swGetChargerEmptyFuelValue.IsChecked := pGetCharger.EmptyFuel;
+    swGetChargerBatteryFailureValue.IsChecked := pGetCharger.BatteryFailure;
+    swGetChargerExtPwrPresentValue.IsChecked := pGetCharger.ExtPwrPresent;
+    swGetChargerThermistorPresentValue.IsChecked := pGetCharger.ThermistorPresent;
   end;
 
   pReadData.Free;
@@ -1355,66 +1401,111 @@ begin
   if r then
   begin
 
-    pb_BatteryVoltage.Value := pGetAnalogSensors.BatteryVoltage.ValueDouble;
+    pbGetAnalogSensorsBatteryVoltageValue.Value := pGetAnalogSensors.BatteryVoltage.ValueDouble;
 
-    lblBatteryVoltageValue.Text := pGetAnalogSensors.BatteryVoltage.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsBatteryVoltageValue.Text := pGetAnalogSensors.BatteryVoltage.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.BatteryVoltage._Unit;
 
-    pb_BatteryCurrent.Value := pGetAnalogSensors.BatteryCurrent.ValueDouble;
-    lblBatteryCurrentValue.Text := pGetAnalogSensors.BatteryCurrent.ValueDouble.ToString + ' ' +
+    pbGetAnalogSensorsBatteryCurrentValue.Value := pGetAnalogSensors.BatteryCurrent.ValueDouble;
+    lblGetAnalogSensorsBatteryCurrentValue.Text := pGetAnalogSensors.BatteryCurrent.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.BatteryCurrent._Unit;
 
-    pb_BatteryTemperature.Value := pGetAnalogSensors.BatteryTemperature.ValueDouble;
-    lblBatteryTemperatureValue.Text := pGetAnalogSensors.BatteryTemperature.ValueDouble.ToString + ' ' +
+    pbGetAnalogSensorsBatteryTemperatureValue.Value := pGetAnalogSensors.BatteryTemperature.ValueDouble;
+    lblGetAnalogSensorsBatteryTemperatureValue.Text := pGetAnalogSensors.BatteryTemperature.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.BatteryTemperature._Unit;
 
-    pb_ExternalVoltage.Value := pGetAnalogSensors.ExternalVoltage.ValueDouble;
-    lblExternalVoltageValue.Text := pGetAnalogSensors.ExternalVoltage.ValueDouble.ToString + ' ' +
+    pbGetAnalogSensorsExternalVoltageValue.Value := pGetAnalogSensors.ExternalVoltage.ValueDouble;
+    lblGetAnalogSensorsExternalVoltageValue.Text := pGetAnalogSensors.ExternalVoltage.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.ExternalVoltage._Unit;
 
-    lblAccelerometerXValue.Text := pGetAnalogSensors.AccelerometerX.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsAccelerometerXValue.Text := pGetAnalogSensors.AccelerometerX.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.AccelerometerX._Unit;
-    lblAccelerometerYValue.Text := pGetAnalogSensors.AccelerometerY.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsAccelerometerYValue.Text := pGetAnalogSensors.AccelerometerY.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.AccelerometerY._Unit;
-    lblAccelerometerZValue.Text := pGetAnalogSensors.AccelerometerZ.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsAccelerometerZValue.Text := pGetAnalogSensors.AccelerometerZ.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.AccelerometerZ._Unit;
 
-    lblCompassmeterXValue.Text := pGetAnalogSensors.CompassmeterX.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsCompassmeterXValue.Text := pGetAnalogSensors.CompassmeterX.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.CompassmeterX._Unit;
-    lblCompassmeterYValue.Text := pGetAnalogSensors.CompassmeterY.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsCompassmeterYValue.Text := pGetAnalogSensors.CompassmeterY.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.CompassmeterY._Unit;
-    lblCompassmeterZValue.Text := pGetAnalogSensors.CompassmeterZ.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsCompassmeterZValue.Text := pGetAnalogSensors.CompassmeterZ.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.CompassmeterZ._Unit;
 
-    lblGyroscopeXValue.Text := pGetAnalogSensors.GyroscopeX.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsGyroscopeXValue.Text := pGetAnalogSensors.GyroscopeX.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.GyroscopeX._Unit;
-    lblGyroscopeYValue.Text := pGetAnalogSensors.GyroscopeY.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsGyroscopeYValue.Text := pGetAnalogSensors.GyroscopeY.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.GyroscopeY._Unit;
-    lblGyroscopeZValue.Text := pGetAnalogSensors.GyroscopeZ.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsGyroscopeZValue.Text := pGetAnalogSensors.GyroscopeZ.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.GyroscopeZ._Unit;
 
-    lblIMUAccelerometerXValue.Text := pGetAnalogSensors.IMUAccelerometerX.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsIMUAccelerometerXValue.Text := pGetAnalogSensors.IMUAccelerometerX.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.IMUAccelerometerX._Unit;
-    lblIMUAccelerometerYValue.Text := pGetAnalogSensors.IMUAccelerometerY.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsIMUAccelerometerYValue.Text := pGetAnalogSensors.IMUAccelerometerY.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.IMUAccelerometerY._Unit;
-    lblIMUAccelerometerZValue.Text := pGetAnalogSensors.IMUAccelerometerZ.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsIMUAccelerometerZValue.Text := pGetAnalogSensors.IMUAccelerometerZ.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.IMUAccelerometerZ._Unit;
 
-    lblVacuumCurrentValue.Text := pGetAnalogSensors.VacuumCurrent.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsVacuumCurrentValue.Text := pGetAnalogSensors.VacuumCurrent.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.VacuumCurrent._Unit;
-    lblWallSensorValue.Text := pGetAnalogSensors.WallSensor.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsWallSensorValue.Text := pGetAnalogSensors.WallSensor.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.WallSensor._Unit;
-    lblDropSensorLeftValue.Text := pGetAnalogSensors.DropSensorLeft.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsDropSensorLeftValue.Text := pGetAnalogSensors.DropSensorLeft.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.DropSensorLeft._Unit;
-    lblDropSensorRightValue.Text := pGetAnalogSensors.DropSensorRight.ValueDouble.ToString + ' ' +
+    lblGetAnalogSensorsDropSensorRightValue.Text := pGetAnalogSensors.DropSensorRight.ValueDouble.ToString + ' ' +
       pGetAnalogSensors.DropSensorRight._Unit;
 
-    swMagSensorLeft.IsChecked := pGetAnalogSensors.MagSensorLeft.ValueBoolean;
-    swMagSensorRight.IsChecked := pGetAnalogSensors.MagSensorRight.ValueBoolean;
+    swGetAnalogSensorsMagSensorLeftValue.IsChecked := pGetAnalogSensors.MagSensorLeft.ValueBoolean;
+    swGetAnalogSensorsMagSensorRightValue.IsChecked := pGetAnalogSensors.MagSensorRight.ValueBoolean;
 
   end;
   pReadData.Free;
   pGetAnalogSensors.Free;
+end;
+
+procedure TfrmMain.timer_GetCalInfoTimer(Sender: TObject);
+var
+  pGetCalInfo: tGetCalInfo;
+  pReadData: TStringList;
+  r: Boolean;
+begin
+
+  if (com.com.Active = false) or (tabSensorsOptions.ActiveTab <> tabGetCalInfo) then
+  begin
+    timer_GetButtons.Enabled := false;
+    exit;
+  end;
+
+  pGetCalInfo := tGetCalInfo.Create;
+
+  pReadData := TStringList.Create;
+  pReadData.Text := com.SendCommand(sGetCalInfo);
+  memoDebug.Lines.Text := pReadData.Text;
+
+  r := pGetCalInfo.ParseText(pReadData);
+
+  if r then
+  begin
+    lblGetCalInfoLDSOffsetValue.Text := pGetCalInfo.LDSOffset.ToString;
+    lblGetCalInfoXAccelValue.Text := pGetCalInfo.XAccel.ToString;
+    lblGetCalInfoYAccelValue.Text := pGetCalInfo.YAccel.ToString;
+    lblGetCalInfoZAccelValue.Text := pGetCalInfo.ZAccel.ToString;
+    lblGetCalInfoRTCOffsetValue.Text := pGetCalInfo.RTCOffset.ToString;
+    lblGetCalInfoCleaningTestSurfaceValue.Text := pGetCalInfo.CleaningTestSurface;
+    lblGetCalInfoCleaningTestHardSpeedValue.Text := pGetCalInfo.CleaningTestHardSpeed.ToString;
+    lblGetCalInfoCleaningTestCarpetSpeedValue.Text := pGetCalInfo.CleaningTestCarpetSpeed.ToString;
+    lblGetCalInfoCleaningTestHardDistanceValue.Text := pGetCalInfo.CleaningTestHardDistance.ToString;
+    lblGetCalInfoCleaningTestCarpetDistanceValue.Text := pGetCalInfo.CleaningTestCarpetDistance.ToString;
+    lblGetCalInfoCleaningTestModeValue.Text := pGetCalInfo.CleaningTestMode.ToString;
+    lblGetCalInfoQAStateValue.Text := pGetCalInfo.QAState;
+    lblGetCalInfoLeftDropSensor_CalibrationDataValue.Text := pGetCalInfo.LeftDropSensor_CalibrationData.ToString;
+    lblGetCalInfoRightDropSensor_CalibrationDataValue.Text := pGetCalInfo.RightDropSensor_CalibrationData.ToString;
+    lblGetCalInfoWheelDropSensor_CalibrationDataValue.Text := pGetCalInfo.WheelDropSensor_CalibrationData.ToString;
+    lblGetCalInfoWallSensor_CalibrationDataValue.Text := pGetCalInfo.WallSensor_CalibrationData.ToString;
+  end;
+
+  pReadData.Free;
+  pGetCalInfo.Free;
 end;
 
 procedure TfrmMain.timer_GetButtonsTimer(Sender: TObject);
@@ -1485,15 +1576,16 @@ begin
 
   if r then
   begin
-    swSNSR_DC_JACK_IS_IN.IsChecked := pGetDigitalSensors.SNSR_DC_JACK_IS_IN.ValueBoolean;
-    swSNSR_DUSTBIN_IS_IN.IsChecked := pGetDigitalSensors.SNSR_DUSTBIN_IS_IN.ValueBoolean;
-    swSNSR_LEFT_WHEEL_EXTENDED.IsChecked := pGetDigitalSensors.SNSR_LEFT_WHEEL_EXTENDED.ValueBoolean;
-    swSNSR_RIGHT_WHEEL_EXTENDED.IsChecked := pGetDigitalSensors.SNSR_RIGHT_WHEEL_EXTENDED.ValueBoolean;
-
-    swLSIDEBIT.IsChecked := pGetDigitalSensors.LSIDEBIT.ValueBoolean;
-    swLFRONTBIT.IsChecked := pGetDigitalSensors.LFRONTBIT.ValueBoolean;
-    swLLDSBIT.IsChecked := pGetDigitalSensors.LLDSBIT.ValueBoolean;
-    swRSIDEBIT.IsChecked := pGetDigitalSensors.RSIDEBIT.ValueBoolean;
+    swGetDigitalSensorsSNSR_DC_JACK_IS_INValue.IsChecked := pGetDigitalSensors.SNSR_DC_JACK_IS_IN.ValueBoolean;
+    swGetDigitalSensorsSNSR_DUSTBIN_IS_INValue.IsChecked := pGetDigitalSensors.SNSR_DUSTBIN_IS_IN.ValueBoolean;
+    swGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDEDValue.IsChecked :=
+      pGetDigitalSensors.SNSR_LEFT_WHEEL_EXTENDED.ValueBoolean;
+    swGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDEDValue.IsChecked :=
+      pGetDigitalSensors.SNSR_RIGHT_WHEEL_EXTENDED.ValueBoolean;
+    swGetDigitalSensorsLSIDEBITValue.IsChecked := pGetDigitalSensors.LSIDEBIT.ValueBoolean;
+    swGetDigitalSensorsLFRONTBITValue.IsChecked := pGetDigitalSensors.LFRONTBIT.ValueBoolean;
+    swGetDigitalSensorsLLDSBITValue.IsChecked := pGetDigitalSensors.LLDSBIT.ValueBoolean;
+    swGetDigitalSensorsRSIDEBITValue.IsChecked := pGetDigitalSensors.RSIDEBIT.ValueBoolean;
   end;
 
   pReadData.Free;
@@ -1762,7 +1854,8 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
   procedure MapLIDAR;
 
   Const
-    D2R = 0.017453293; // PI divided by 180 degrees, multiply by this to get angle in degrees expressed in radians
+    D2R = 0.017453293;
+    // PI divided by 180 degrees, multiply by this to get angle in degrees expressed in radians
     betaDegree = 82;
     // (degree) angle (for geometric correction) between laser beam and line parallel to the image plane
     bmm = 25; // (mm) distance (for geometric correction) between the rotation center and laser source along line parallel to the image plane
@@ -2088,7 +2181,10 @@ end;
 
 procedure TfrmMain.toggleComs(disable: Boolean);
 begin
-  pnlComSetup.Enabled := not disable;
+
+  chkAutoDetect.Enabled := not disable;
+  cbCOM.Enabled := not disable;
+
   ckTestMode.Enabled := false;
   ckTestMode.IsChecked := false;
   if disable then
@@ -2101,7 +2197,12 @@ procedure TfrmMain.comConnect;
 var
   idx: integer;
   r: string;
+  gGetWifiStatus: tGetWifiStatus;
+  gGetVersion: tGetVersion;
+  readData: TStringList;
+  InStream: TResourceStream;
 begin
+  InStream := nil;
 
   if chkAutoDetect.IsChecked then
   begin
@@ -2125,20 +2226,110 @@ begin
   end;
 
   if cbCOM.ItemIndex = -1 then
-    showmessage('No COM Port set')
+  begin
+    swConnect.IsChecked := false;
+    swConnectChange(nil);
+    showmessage('No COM Port selected');
+  end
   else
   begin
+    lblSetupRobotName.Text := '';
+
+    {
+      Note - getwifistatus takes to long?
+      So it bleeds over the response into getversion
+      Need to fix it so getwifistatus compeltes and if its good
+      then do the getversion call
+    }
+
     com.open(cbCOM.Items[cbCOM.ItemIndex]);
-    tabsMain.ActiveTab := tabSensors;
+    r := com.SendCommand(sGetWifiStatus);
+    gGetWifiStatus := tGetWifiStatus.Create;
+    readData := TStringList.Create;
+    readData.Text := r;
+
+    if gGetWifiStatus.ParseText(readData) then
+      lblSetupRobotName.Text := gGetWifiStatus.Robot_Name;
+
+    freeandnil(gGetWifiStatus);
+
+    r := com.SendCommand(sGetVersion);
+
+    if r <> '' then
+    begin
+      gGetVersion := tGetVersion.Create;
+      readData.Text := r;
+
+      if gGetVersion.ParseText(readData) then
+      begin
+        lblRobotModel.Text := gGetVersion.Model.Major;
+
+        if pos('BotVacD3', gGetVersion.Model.Major) > 0 then
+          InStream := TResourceStream.Create(HInstance, 'NeatoD3', RT_RCDATA);
+
+        if pos('BotVacD4', gGetVersion.Model.Major) > 0 then
+          InStream := TResourceStream.Create(HInstance, 'NeatoD4', RT_RCDATA);
+
+        if pos('BotVacD5', gGetVersion.Model.Major) > 0 then
+          InStream := TResourceStream.Create(HInstance, 'NeatoD5', RT_RCDATA);
+
+        if pos('BotVacD6', gGetVersion.Model.Major) > 0 then
+          InStream := TResourceStream.Create(HInstance, 'NeatoD6', RT_RCDATA);
+
+        if pos('BotVacD7', gGetVersion.Model.Major) > 0 then
+          InStream := TResourceStream.Create(HInstance, 'NeatoD7', RT_RCDATA);
+
+        if pos('BotVacConnected', gGetVersion.Model.Major) > 0 then
+          InStream := TResourceStream.Create(HInstance, 'NeatoBotVac', RT_RCDATA);
+
+        if assigned(InStream) then
+        begin
+          try
+            imgRobot.Bitmap.LoadFromStream(InStream);
+            imgRobot.Visible := true;
+          finally
+            InStream.Free;
+          end;
+        end
+        else
+        begin
+          imgRobot.Visible := false;
+        end;
+      end;
+
+      freeandnil(gGetVersion);
+      pnlSetupDetails.Visible := true;
+    end
+    else
+    begin
+      showmessage('No Neato Found on this COM Port');
+      swConnect.IsChecked := false;
+      chkAutoDetect.Enabled := true;
+      cbCOM.Enabled := true;
+    end;
+
+  end;
+
+  { tabsMain.ActiveTab := tabSensors;
     tabSensorsOptions.ActiveTab := tabGetCharger;
     tabSensorsOptionsChange(nil);
-    ckTestMode.Enabled := true;
-  end;
+  }
+  ckTestMode.Enabled := true;
 end;
 
 procedure TfrmMain.comDisconnect;
 begin
-  com.Close;
+  try
+    com.Close;
+  finally
+    timer_StupidFix.Enabled := true;
+  end;
+end;
+
+procedure TfrmMain.timer_StupidFixTimer(Sender: TObject);
+begin
+  timer_StupidFix.Enabled := false;
+  self.pnlSetupDetails.Visible := false;
 end;
 
 procedure TfrmMain.btnDebugTerminalClearClick(Sender: TObject);
@@ -2155,9 +2346,7 @@ end;
 
 procedure TfrmMain.btnDebugTerminalSendClick(Sender: TObject);
 var
-  r: String;
   Value: string;
-  timeout: byte;
 begin
 
   StopTimers; // JUST IN CASE
@@ -2168,7 +2357,7 @@ begin
   if Sender = btnDebugTerminalSendHex then
   begin
     Value := uppercase(stringreplace(Value, ' ', '', [rfreplaceall]));
-    Value := Hex2String(Value);
+    Value := string(Hex2String(Value));
   end;
 
   if edDebugTerminalSend.Items.IndexOf(edDebugTerminalSend.Text) = -1 then
@@ -2176,7 +2365,7 @@ begin
 
       edDebugTerminalSend.Items.Insert(0, edDebugTerminalSend.Text);
 
-  memoDebugTerminal.Lines.add('');
+  memoDebugTerminal.Lines.Add('');
   memoDebugTerminal.GoToTextEnd;
 
   edDebugTerminalSend.Text := '';
@@ -2253,7 +2442,7 @@ begin
       freeandnil(pReadData);
       freeandnil(gGetWifiInfo);
 
-    end).Start;
+    end).start;
 
 end;
 
@@ -2265,7 +2454,7 @@ var
 begin
   pReadData := TStringList.Create;
 
-  pReadData.Text := com.SendCommand(sPlaysoundSoundID + ' ' + nbPlaySoundID.Value.ToString);
+  pReadData.Text := com.SendCommand(sPlaysoundSoundID + ' ' + nbPlaySoundIDValue.Value.ToString);
   gPlaySound := tPlaySound.Create;
 
   r := gPlaySound.ParseText(pReadData);
@@ -2273,7 +2462,7 @@ begin
   sgPlaysound.RowCount := 0;
   sgPlaysound.RowCount := 1;
 
-  sgPlaysound.Cells[0, 0] := nbPlaySoundID.Value.ToString;
+  sgPlaysound.Cells[0, 0] := nbPlaySoundIDValue.Value.ToString;
 
   case r of
     true:
@@ -2293,7 +2482,7 @@ begin
   btnSoundPlayTestAll.Enabled := true;
   btnPlaySoundTest.Enabled := true;
   btnPlaySoundAbort.Enabled := false;
-  nbPlaySoundID.Enabled := true;
+  nbPlaySoundIDValue.Enabled := true;
 end;
 
 procedure TfrmMain.btnSoundPlayTestAllClick(Sender: TObject);
@@ -2304,7 +2493,7 @@ begin
   btnSoundPlayTestAll.Enabled := false;
   btnPlaySoundTest.Enabled := false;
   btnPlaySoundAbort.Enabled := true;
-  nbPlaySoundID.Enabled := false;
+  nbPlaySoundIDValue.Enabled := false;
 
   sgPlaysound.RowCount := 0;
   sgPlaysound.RowCount := 64;
@@ -2355,9 +2544,9 @@ begin
           btnSoundPlayTestAll.Enabled := true;
           btnPlaySoundTest.Enabled := true;
           btnPlaySoundAbort.Enabled := false;
-          nbPlaySoundID.Enabled := true;
+          nbPlaySoundIDValue.Enabled := true;
         end);
-    end).Start;
+    end).start;
 
 end;
 

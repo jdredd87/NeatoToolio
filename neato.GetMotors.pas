@@ -36,7 +36,6 @@ type
 
   tGetMotors = class(tNeatoBaseCommand)
   private
-    fParameter: String;
     fBrush_RPM: double;
     fBrush_mA: double;
     fVacuum_RPM: double;

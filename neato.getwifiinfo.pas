@@ -138,7 +138,6 @@ begin
             Item.Frequency := -999;
           end;
           Item.BSSID := wifiList[3].Trim;
-          Item := nil;
         end;
         freeandnil(wifiList);
       end;

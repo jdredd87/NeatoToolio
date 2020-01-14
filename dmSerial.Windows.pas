@@ -6,7 +6,7 @@ uses
   diagnostics,
   FMX.Dialogs,
   system.classes,
-{$IFDEF win32}
+{$IFDEF MSWindows}
   Winsoft.FireMonkey.FComPort,
   Winsoft.FireMonkey.FComSignal,
 {$ENDIF}
@@ -213,7 +213,6 @@ function TdmSerial.SendCommandAndWaitForValue(cmd: string; const readtimeout: in
 const count: byte = 1): string;
 
 var
-  idx: integer;
   timeout: boolean;
   sw: tstopwatch;
 begin
@@ -221,7 +220,6 @@ begin
     result := '';
     COM.WriteAnsiString(ansistring(cmd) + #13);
     COM.Timeouts.ReadInterval := readtimeout;
-    idx := 0;
     timeout := false;
 
     sw := tstopwatch.Create;

@@ -28,8 +28,6 @@ type
 implementation
 
 Function tPlaySound.ParseText(data: TStringList): boolean;
-var
-  id: integer;
 begin
   try
     Reset;

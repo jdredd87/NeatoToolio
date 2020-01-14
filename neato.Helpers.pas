@@ -14,7 +14,7 @@ type
 
   TStringArray = array of string; // for splitString
   TIntegerArray = array of Integer; // for splitString
-  TCharSet = set of Char;
+  TCharSet = set of AnsiChar;
 
 function GetSubData(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String; _Type: TVarType): Boolean;
 
@@ -61,6 +61,7 @@ var
 
 begin
   Result := tstringlist.Create;
+  tq := false;
 
   SetLength(SepPos, 1);
   SepPos[0] := 0;
