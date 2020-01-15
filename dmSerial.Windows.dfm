@@ -8,6 +8,7 @@ object dmSerial: TdmSerial
     Active = False
     BufferSizes.Output = 4096
     DeviceName = 'COM1'
+    LogFile = 'neato.toolio.log'
     Options = [opAbortOnError]
     Left = 192
     Top = 208

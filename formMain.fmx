@@ -12601,7 +12601,7 @@ object frmMain: TfrmMain
       Size.Width = 900.000000000000000000
       Size.Height = 613.000000000000000000
       Size.PlatformDefault = False
-      TabIndex = 6
+      TabIndex = 0
       TabOrder = 0
       TabPosition = PlatformDefault
       OnChange = tabsMainChange
@@ -12624,7 +12624,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = False
+        IsSelected = True
         Size.Width = 121.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -23802,7 +23802,7 @@ object frmMain: TfrmMain
           Size.Width = 900.000000000000000000
           Size.Height = 583.000000000000000000
           Size.PlatformDefault = False
-          TabIndex = 5
+          TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
           OnChange = tabsInfoOptionsChange
@@ -23823,7 +23823,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 111.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24506,7 +24506,7 @@ object frmMain: TfrmMain
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 96.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24648,7 +24648,7 @@ object frmMain: TfrmMain
         Text = 'Tools'
         ExplicitSize.cx = 58.000000000000000000
         ExplicitSize.cy = 30.000000000000000000
-        object tabsLIDAROptions: TTabControl
+        object tabsToolOptions: TTabControl
           Align = Client
           Size.Width = 900.000000000000000000
           Size.Height = 583.000000000000000000
@@ -24656,15 +24656,108 @@ object frmMain: TfrmMain
           TabIndex = 0
           TabOrder = 0
           TabPosition = PlatformDefault
-          OnChange = tabsLIDAROptionsChange
+          OnChange = tabsToolOptionsChange
           Sizes = (
             900s
+            553s
+            900s
+            553s
+            900s
             553s)
-          object tabLidar: TTabItem
+          object tabClearFiles: TTabItem
             CustomIcon = <
               item
               end>
             IsSelected = True
+            Size.Width = 88.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'ClearFiles'
+            ExplicitSize.cx = 88.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
+            object btnClearFiles: TButton
+              Enabled = False
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
+              Position.X = 650.000000000000000000
+              Position.Y = 40.000000000000000000
+              Size.Width = 80.000000000000000000
+              Size.Height = 70.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Text = 'Clear'
+              OnClick = btnClearFilesClick
+            end
+            object gbClearFiles: TGroupBox
+              Margins.Left = 5.000000000000000000
+              Margins.Top = 5.000000000000000000
+              Margins.Right = 5.000000000000000000
+              Margins.Bottom = 5.000000000000000000
+              Position.X = 5.000000000000000000
+              Position.Y = 5.000000000000000000
+              Size.Width = 636.000000000000000000
+              Size.Height = 140.000000000000000000
+              Size.PlatformDefault = False
+              StyleLookup = 'groupboxstyle'
+              Text = 'Option'
+              TabOrder = 1
+              object rbClearFilesBB: TRadioButton
+                Align = Top
+                Margins.Left = 15.000000000000000000
+                Margins.Top = 35.000000000000000000
+                Margins.Right = 15.000000000000000000
+                Margins.Bottom = 15.000000000000000000
+                Position.X = 15.000000000000000000
+                Position.Y = 35.000000000000000000
+                Size.Width = 606.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 0
+                Text = ' ( BB ) - Clears Managed Logs in BlackBox Directory.'
+                OnChange = rbClearFilesBBChange
+              end
+              object rbClearFilesALL: TRadioButton
+                Align = Top
+                Margins.Left = 15.000000000000000000
+                Margins.Top = 15.000000000000000000
+                Margins.Right = 15.000000000000000000
+                Margins.Bottom = 15.000000000000000000
+                Position.X = 15.000000000000000000
+                Position.Y = 90.000000000000000000
+                Size.Width = 606.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                Text = 
+                  ' ( ALL ) - Additionally clears unmanaged files (Crash, ...) in t' +
+                  'he specified directories.'
+                OnChange = rbClearFilesBBChange
+              end
+            end
+          end
+          object tabClean: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 61.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'Clean'
+            ExplicitSize.cx = 61.000000000000000000
+            ExplicitSize.cy = 30.000000000000000000
+          end
+          object tabLidar: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
             Size.Width = 64.000000000000000000
             Size.Height = 30.000000000000000000
             Size.PlatformDefault = False
@@ -24682,17 +24775,17 @@ object frmMain: TfrmMain
               Margins.Right = 5.000000000000000000
               Margins.Bottom = 5.000000000000000000
               Position.X = 5.000000000000000000
-              Position.Y = 5.000000000000000000
+              Position.Y = 75.000000000000000000
               Size.Width = 890.000000000000000000
-              Size.Height = 236.000000000000000000
+              Size.Height = 134.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'gridstyle'
               TextSettings.Font.Size = 10.000000000000000000
               StyledSettings = [Family, Style, FontColor]
-              TabOrder = 0
+              TabOrder = 1
               Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 870.000000000000000000
-              Viewport.Height = 211.000000000000000000
+              Viewport.Height = 109.000000000000000000
               object StringColumn1: TStringColumn
                 Header = 'AngleDegree'
                 Size.Width = 85.000000000000000000
@@ -24734,48 +24827,150 @@ object frmMain: TfrmMain
                 Size.Width = 85.000000000000000000
               end
             end
-            object Rectangle1: TRectangle
-              Fill.Color = claSilver
-              Position.X = 480.000000000000000000
-              Position.Y = 248.000000000000000000
-              Size.Width = 400.000000000000000000
-              Size.Height = 300.000000000000000000
+            object Panel1: TPanel
+              Align = Top
+              Size.Width = 900.000000000000000000
+              Size.Height = 70.000000000000000000
               Size.PlatformDefault = False
-              object plotLIDAR: TPlotGrid
-                Align = Client
-                Frequency = 5.000000000000000000
-                Marks = 25.000000000000000000
-                Size.Width = 400.000000000000000000
-                Size.Height = 300.000000000000000000
+              StyleLookup = 'grouppanel'
+              TabOrder = 0
+              object sbResetLIDARMapping: TSpinBox
+                Touch.InteractiveGestures = [LongTap, DoubleTap]
+                TabOrder = 0
+                Cursor = crIBeam
+                Max = 360.000000000000000000
+                Position.X = 8.000000000000000000
+                Position.Y = 16.000000000000000000
+              end
+              object lblResetLIDARmapping: TLabel
+                Position.X = 120.000000000000000000
+                Position.Y = 16.000000000000000000
+                Size.Width = 120.000000000000000000
+                Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
+                Text = 'Reset Mapping'
+                TabOrder = 1
               end
             end
-            object ckShowIntensityLines: TCheckBox
-              Position.X = 288.000000000000000000
-              Position.Y = 264.000000000000000000
-              Size.Width = 185.000000000000000000
-              Size.Height = 19.000000000000000000
-              Size.PlatformDefault = False
+            object plotLidar: TTMSFMXChart
+              ClickMargin = 10.000000000000000000
+              FillOpacity = 1.000000000000000000
+              Legend.Fill.Kind = Solid
+              Legend.FillOpacity = 1.000000000000000000
+              Legend.Stroke.Kind = Solid
+              Legend.StrokeOpacity = 1.000000000000000000
+              Legend.StrokeThickness = 1.000000000000000000
+              Legend.Visible = False
+              Legend.Left = 10.000000000000000000
+              Legend.Top = 10.000000000000000000
+              StrokeOpacity = 1.000000000000000000
+              StrokeThickness = 1.000000000000000000
+              SeriesMargins.Left = 5.000000000000000000
+              SeriesMargins.Top = 5.000000000000000000
+              SeriesMargins.Right = 5.000000000000000000
+              SeriesMargins.Bottom = 5.000000000000000000
+              Series = <
+                item
+                  AnimationFactor = 4.000000000000000000
+                  AutoXRange = arEnabledZeroBased
+                  AutoYRange = arEnabledZeroBased
+                  Bar.Width = 65.000000000000000000
+                  Bar.Spacing = 20.000000000000000000
+                  MultiPoint.Width = 65.000000000000000000
+                  Pie.Size = 200.000000000000000000
+                  Pie.SweepAngle = 360.000000000000000000
+                  ChartType = ctXYMarker
+                  FillOpacity = 1.000000000000000000
+                  LegendText = 'Serie 0'
+                  Labels.FillOpacity = 1.000000000000000000
+                  Labels.Format = '%.2f'
+                  Labels.OffsetY = -10.000000000000000000
+                  Labels.StrokeOpacity = 1.000000000000000000
+                  Labels.StrokeThickness = 1.000000000000000000
+                  Markers.FillOpacity = 1.000000000000000000
+                  Markers.Height = 10.000000000000000000
+                  Markers.Shape = msSquare
+                  Markers.StrokeOpacity = 1.000000000000000000
+                  Markers.StrokeThickness = 1.000000000000000000
+                  Markers.Visible = True
+                  Markers.Width = 10.000000000000000000
+                  MaxX = 10.000000000000000000
+                  MaxY = 10.000000000000000000
+                  Mode = smStatistical
+                  Offset3DX = 15.000000000000000000
+                  Offset3DY = 15.000000000000000000
+                  Points = <>
+                  Legend.FillOpacity = 1.000000000000000000
+                  Legend.Left = -10.000000000000000000
+                  Legend.StrokeOpacity = 1.000000000000000000
+                  Legend.StrokeThickness = 1.000000000000000000
+                  ShowInLegend = False
+                  StrokeOpacity = 1.000000000000000000
+                  StrokeThickness = 1.000000000000000000
+                  XGrid.MajorUnitStrokeOpacity = 1.000000000000000000
+                  XGrid.MajorUnitStrokeThickness = 1.000000000000000000
+                  XGrid.MinorUnitStrokeOpacity = 1.000000000000000000
+                  XGrid.MinorUnitStrokeThickness = 1.000000000000000000
+                  XGrid.Visible = True
+                  XValues.AutoUnits = True
+                  XValues.MajorUnit = 1.000000000000000000
+                  XValues.MajorUnitFormat = '%.0f'
+                  XValues.MajorUnitSpacing = 5.000000000000000000
+                  XValues.MajorUnitTickMarkSize = 10.000000000000000000
+                  XValues.MajorUnitTickMarkColor = claSilver
+                  XValues.MinorUnitFormat = '%.0f'
+                  XValues.MinorUnitSpacing = 5.000000000000000000
+                  XValues.MinorUnitTickMarkSize = 7.000000000000000000
+                  XValues.MinorUnitTickMarkColor = claSilver
+                  XValues.SpiderAngle = 270.000000000000000000
+                  YGrid.MajorUnitStrokeOpacity = 1.000000000000000000
+                  YGrid.MajorUnitStrokeThickness = 1.000000000000000000
+                  YGrid.MinorUnitStrokeOpacity = 1.000000000000000000
+                  YGrid.MinorUnitStrokeThickness = 1.000000000000000000
+                  YGrid.Visible = True
+                  YValues.MajorUnit = 1.000000000000000000
+                  YValues.MajorUnitFormat = '%.2f'
+                  YValues.MajorUnitSpacing = 5.000000000000000000
+                  YValues.MajorUnitTickMarkSize = 10.000000000000000000
+                  YValues.MajorUnitTickMarkColor = claSilver
+                  YValues.MinorUnitFormat = '%.2f'
+                  YValues.MinorUnitSpacing = 5.000000000000000000
+                  YValues.MinorUnitTickMarkSize = 7.000000000000000000
+                  YValues.MinorUnitTickMarkColor = claSilver
+                  YValues.SpiderAngle = 270.000000000000000000
+                end>
+              Title.FillOpacity = 1.000000000000000000
+              Title.Stroke.Kind = Solid
+              Title.StrokeOpacity = 1.000000000000000000
+              Title.StrokeThickness = 1.000000000000000000
+              Title.Visible = False
+              Title.Height = 35.000000000000000000
+              Version = '2.0.3.3'
+              XAxis.FillOpacity = 1.000000000000000000
+              XAxis.Stroke.Kind = Solid
+              XAxis.StrokeOpacity = 1.000000000000000000
+              XAxis.StrokeThickness = 1.000000000000000000
+              XAxis.Visible = False
+              XAxis.AutoSize = False
+              XAxis.Height = 35.000000000000000000
+              YAxis.FillOpacity = 1.000000000000000000
+              YAxis.Stroke.Kind = Solid
+              YAxis.StrokeOpacity = 1.000000000000000000
+              YAxis.StrokeThickness = 1.000000000000000000
+              YAxis.Visible = False
+              YAxis.AutoSize = False
+              YAxis.Width = 35.000000000000000000
+              Align = Client
+              ClipChildren = True
+              DisableFocusEffect = False
+              Margins.Left = 10.000000000000000000
+              Margins.Top = 10.000000000000000000
+              Margins.Right = 10.000000000000000000
+              Margins.Bottom = 10.000000000000000000
               TabOrder = 2
-              Text = 'Show Intensity Lines'
-              OnChange = ckShowIntensityLinesChange
-            end
-            object sbResetLIDARMapping: TSpinBox
-              Touch.InteractiveGestures = [LongTap, DoubleTap]
-              TabOrder = 3
-              Cursor = crIBeam
-              Max = 360.000000000000000000
-              Position.X = 208.000000000000000000
-              Position.Y = 296.000000000000000000
-            end
-            object lblResetLIDARmapping: TLabel
-              Position.X = 312.000000000000000000
-              Position.Y = 304.000000000000000000
-              Size.Width = 120.000000000000000000
-              Size.Height = 25.000000000000000000
+              Size.Width = 880.000000000000000000
+              Size.Height = 319.000000000000000000
               Size.PlatformDefault = False
-              Text = 'Reset Mapping'
-              TabOrder = 4
             end
           end
         end
@@ -25293,7 +25488,7 @@ object frmMain: TfrmMain
         CustomIcon = <
           item
           end>
-        IsSelected = True
+        IsSelected = False
         Size.Width = 69.000000000000000000
         Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
@@ -25332,19 +25527,20 @@ object frmMain: TfrmMain
             object pnlDebugTerminalTop: TPanel
               Align = Top
               Size.Width = 900.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 70.000000000000000000
               Size.PlatformDefault = False
+              StyleLookup = 'grouppanel'
               TabOrder = 0
               object btnDebugTerminalClear: TButton
                 Align = Left
-                Margins.Left = 5.000000000000000000
-                Margins.Top = 5.000000000000000000
-                Margins.Right = 5.000000000000000000
-                Margins.Bottom = 5.000000000000000000
-                Position.X = 5.000000000000000000
-                Position.Y = 5.000000000000000000
+                Margins.Left = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Position.X = 10.000000000000000000
+                Position.Y = 10.000000000000000000
                 Size.Width = 80.000000000000000000
-                Size.Height = 39.000000000000000000
+                Size.Height = 50.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 6
                 Text = 'Clear'
@@ -25352,14 +25548,14 @@ object frmMain: TfrmMain
               end
               object btnDebugTerminalHelp: TButton
                 Align = Left
-                Margins.Left = 5.000000000000000000
-                Margins.Top = 5.000000000000000000
-                Margins.Right = 5.000000000000000000
-                Margins.Bottom = 5.000000000000000000
-                Position.X = 95.000000000000000000
-                Position.Y = 5.000000000000000000
+                Margins.Left = 10.000000000000000000
+                Margins.Top = 10.000000000000000000
+                Margins.Right = 10.000000000000000000
+                Margins.Bottom = 10.000000000000000000
+                Position.X = 110.000000000000000000
+                Position.Y = 10.000000000000000000
                 Size.Width = 80.000000000000000000
-                Size.Height = 39.000000000000000000
+                Size.Height = 50.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 5
                 Text = 'Help'
@@ -25423,7 +25619,7 @@ object frmMain: TfrmMain
             object pnlDebugTerminalMemo: TPanel
               Align = Client
               Size.Width = 900.000000000000000000
-              Size.Height = 457.000000000000000000
+              Size.Height = 436.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 2
               object memoDebugTerminal: TMemo
@@ -25437,11 +25633,11 @@ object frmMain: TfrmMain
                 Margins.Right = 10.000000000000000000
                 Margins.Bottom = 10.000000000000000000
                 Size.Width = 880.000000000000000000
-                Size.Height = 437.000000000000000000
+                Size.Height = 416.000000000000000000
                 Size.PlatformDefault = False
                 TabOrder = 0
                 Viewport.Width = 876.000000000000000000
-                Viewport.Height = 433.000000000000000000
+                Viewport.Height = 412.000000000000000000
               end
             end
           end

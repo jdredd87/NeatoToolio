@@ -14,6 +14,13 @@
 // Then can just stop the timer. unassign event, reassign it to new one.. and move on.
 // Or set Tag # to define which event to use... who knows right now.
 
+
+// LIDAR - add Min/Max X/Y to grid
+// LIDAR - Add Avg X/Y
+
+// GetModel name and robot name, fix it so attempts more than once to get.. or figure out why
+// doesnt get it the first time
+
 unit formMain;
 
 interface
@@ -43,6 +50,7 @@ uses
   neato.GetButtons,
   neato.GetCalInfo,
   neato.Helpers,
+  neato.ClearFiles,
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
@@ -51,7 +59,7 @@ uses
   FMX.ListView, FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Effects,
   System.Math.Vectors, FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D,
   FMX.MaterialSources, FMX.Types3D, FMX.Filter.Effects, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ExtCtrls, FMX.Edit,
-  FMX.EditBox, FMX.SpinBox, FMX.NumberBox, FMX.ComboEdit, FMX.Colors;
+  FMX.EditBox, FMX.SpinBox, FMX.NumberBox, FMX.ComboEdit, FMX.Colors, FMX.TMSChart;
 
 type
   TfrmMain = class(TForm)
@@ -223,7 +231,7 @@ type
     timer_GetVersion: TTimer;
     timer_PlaySound: TTimer;
     tabTools: TTabItem;
-    tabsLIDAROptions: TTabControl;
+    tabsToolOptions: TTabControl;
     tabLidar: TTabItem;
     sgLIDAR: TStringGrid;
     StringColumn1: TStringColumn;
@@ -237,9 +245,6 @@ type
     StringColumn9: TStringColumn;
     StringColumn10: TStringColumn;
     timer_LIDAR: TTimer;
-    Rectangle1: TRectangle;
-    plotLIDAR: TPlotGrid;
-    ckShowIntensityLines: TCheckBox;
     sbResetLIDARMapping: TSpinBox;
     lblResetLIDARmapping: TLabel;
     lblTotalCleaningTime: TLabel;
@@ -528,6 +533,14 @@ type
     lblSetupRobotName: TLabel;
     lblRobotModel: TLabel;
     imgRobot: TImage;
+    tabClearFiles: TTabItem;
+    btnClearFiles: TButton;
+    gbClearFiles: TGroupBox;
+    rbClearFilesBB: TRadioButton;
+    rbClearFilesALL: TRadioButton;
+    tabClean: TTabItem;
+    plotLidar: TTMSFMXChart;
+    Panel1: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure chkAutoDetectChange(Sender: TObject);
     procedure timer_GetChargerTimer(Sender: TObject);
@@ -545,7 +558,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure timer_PlaySoundTimer(Sender: TObject);
     procedure timer_LIDARTimer(Sender: TObject);
-    procedure tabsLIDAROptionsChange(Sender: TObject);
+    procedure tabsToolOptionsChange(Sender: TObject);
     procedure ckShowIntensityLinesChange(Sender: TObject);
     procedure timer_GetUsageTimer(Sender: TObject);
     procedure timer_GetUserSettingsTimer(Sender: TObject);
@@ -567,11 +580,14 @@ type
     procedure timer_GetCalInfoTimer(Sender: TObject);
     procedure swConnectChange(Sender: TObject);
     procedure timer_StupidFixTimer(Sender: TObject);
+    procedure rbClearFilesBBChange(Sender: TObject);
+    procedure btnClearFilesClick(Sender: TObject);
   private
     fCurrentTimer: TTimer;
     fLIDARCounter: single;
     fPlaySoundAborted: Boolean;
 
+    maxx, maxy, minx, miny: double;
     procedure PopulateCOMPorts;
     procedure toggleComs(disable: Boolean);
     procedure comConnect;
@@ -677,6 +693,11 @@ begin
   tabsMain.Enabled := true;
 end;
 
+procedure TfrmMain.rbClearFilesBBChange(Sender: TObject);
+begin
+  btnClearFiles.Enabled := gbClearFiles.Index > -1;
+end;
+
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   freeandnil(com);
@@ -691,6 +712,7 @@ procedure TfrmMain.onIDLE(Sender: TObject; var done: Boolean);
 var
   isActive: Boolean;
 begin
+
   try
     isActive := com.com.Active;
   except
@@ -701,6 +723,22 @@ begin
   btnDebugTerminalSendHex.Enabled := isActive;
   btnDebugTerminalHelp.Enabled := isActive;
   btnGetWifiInfoScan.Enabled := isActive;
+
+  // make sure to turn button off if left enabled
+  if not isActive then
+  begin
+    rbClearFilesBB.Enabled := false;
+    rbClearFilesALL.Enabled := false;
+    rbClearFilesBB.IsChecked := false;
+    rbClearFilesALL.IsChecked := false;
+    btnClearFiles.Enabled := false;
+  end
+  else
+  begin
+    rbClearFilesBB.Enabled := true;
+    rbClearFilesALL.Enabled := true;
+  end;
+
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -930,7 +968,7 @@ begin
 
 end;
 
-procedure TfrmMain.tabsLIDAROptionsChange(Sender: TObject);
+procedure TfrmMain.tabsToolOptionsChange(Sender: TObject);
 begin
   StopTimers;
   tthread.CreateAnonymousThread(
@@ -943,7 +981,7 @@ begin
         procedure
         begin
 
-          if tabsLIDAROptions.ActiveTab = tabLidar then
+          if tabsToolOptions.ActiveTab = tabLidar then
           begin
             com.SendCommand('Testmode ON');
             com.SendCommand('SetLDSRotation ON');
@@ -995,8 +1033,8 @@ begin
 
           if tabsMain.ActiveTab = tabTools then
           begin
-            self.tabsLIDAROptions.TabIndex := 0;
-            self.tabsLIDAROptionsChange(nil);
+            self.tabsToolOptions.TabIndex := 0;
+            self.tabsToolOptionsChange(nil);
             exit;
           end;
 
@@ -1116,7 +1154,7 @@ end;
 
 procedure TfrmMain.ckShowIntensityLinesChange(Sender: TObject);
 begin
-  self.plotLIDAR.Repaint;
+  // self.plotLidar.Repaint;
 end;
 
 procedure TfrmMain.ckTestModeChange(Sender: TObject);
@@ -1814,6 +1852,7 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
     FieldDel: Char;
     Data: TStringList;
   begin
+    sg.BeginUpdate;
     Data := TStringList.Create;
     FieldDel := ',';
     Data.Text := ScanData;
@@ -1849,6 +1888,7 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       end;
     end;
     Data.Free;
+    sg.EndUpdate;
   end;
 
   procedure MapLIDAR;
@@ -1900,8 +1940,8 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       result := Y1 + Y2;
     end;
 
-  var
-
+  (*
+    var
     RowIDX: integer; // loop variable
 
     AngleInDegrees: double;
@@ -1931,24 +1971,179 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
 
     p: TPointF;
 
-  begin
+    begin
 
 
     // Plot -6000 +6000 X, -6000 +6000 Y reminder
     // Set a fixed PLOT?
 
-    scaleByValue := 0.08; // don't know what to do here
-    plotSpotSize := 4; // this guy too
+    scaleByValue := 0.02; // don't know what to do here
+    plotSpotSize := 2; // this guy too
 
-    xPixels := plotLIDAR.AbsoluteWidth / 4;
+    xPixels := plotLidar.AbsoluteWidth / 4;
     // Contain graph width within a quarter of the grid width (actually half because of neg values)
-    yPixels := plotLIDAR.AbsoluteHeight / 4;
+    yPixels := plotLidar.AbsoluteHeight / 4;
     // Contain graph height within a quarter of the grid height (actually half because of neg values)
 
-    PlotCenterOrigin := PointF(plotLIDAR.AbsoluteWidth / 2, plotLIDAR.AbsoluteHeight / 2);
+    //PlotCenterOrigin := PointF(plotLidar.AbsoluteWidth / 2, plotLidar.AbsoluteHeight / 2);
+    PlotCenterOrigin := PointF(Plotlidar.Width / 2, Plotlidar.Height / 2); // Calculate the center point of the plot grid
     // Calculate the center point of the plot grid
 
-    plotLIDAR.Canvas.BeginScene;
+    // plotLidar.Canvas.BeginScene;
+
+    plotLidar.BeginUpdate;
+    plotLidar.series.Items[0].Points.clear;
+
+    for RowIDX := 0 to sgLIDAR.RowCount - 1 do
+    begin
+
+    AngleInDegrees := strtoint(sgLIDAR.Cells[0, RowIDX]);
+    DistInMM := strtoint(sgLIDAR.Cells[1, RowIDX]);
+    intensity := strtoint(sgLIDAR.Cells[2, RowIDX]);
+    errorcode := strtoint(sgLIDAR.Cells[3, RowIDX]);
+
+    // Calculate x' and y' - add this to geometric correction to get object coordinates
+    Xo := CalcXCorrection(AngleInDegrees, DistInMM);
+    Yo := CalcYCorrection(AngleInDegrees, DistInMM);
+
+    sgLIDAR.Cells[4, RowIDX] := Xo.ToString;
+    sgLIDAR.Cells[5, RowIDX] := Yo.ToString;
+
+    // Calculate x and y geometric correction - add this to x' and y' to get object coordinates
+    Xc := CalcAlfaX(AngleInDegrees);
+    Yc := CalcAlfaY(AngleInDegrees);
+
+    sgLIDAR.Cells[6, RowIDX] := Xc.ToString;
+    sgLIDAR.Cells[7, RowIDX] := Yc.ToString;
+
+    // Calculate x and y - object coordinates
+
+    Xf := CalcFinalX(Xo, Xc);
+    Yf := CalcFinalY(Yo, Yc);
+
+    sgLIDAR.Cells[8, RowIDX] := Xf.ToString;
+    sgLIDAR.Cells[9, RowIDX] := Yf.ToString;
+
+    newPlotPoint.X := plotLidar.Position.X + PlotCenterOrigin.X + (Xf * scaleByValue);
+    newPlotPoint.Y := plotLidar.Position.Y + PlotCenterOrigin.Y + (Yf * scaleByValue);
+
+    plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y);
+
+    // start in center point and create the new plot point
+    // need to use plot's position on the form
+    // then PlotCenterOrigin to get to the center of that
+    // then add in our X,Y cords , with some scaling to fit... as X and Y can be big numbers
+    // so it always needs to fit inside our plot.
+
+    // assume a MIN / MAX of some sort of the final sample data is needed to figure this out?
+
+    // need to be able to scale the values to make sure always fits inside plot grid area
+
+    {
+    p.X := plotLIDAR.AbsoluteRect.Location.X;
+    p.Y := plotLIDAR.AbsoluteRect.Location.Y;
+
+    newPlotPoint.X := p.X + PlotCenterOrigin.X + (Xf * scaleByValue);
+    newPlotPoint.Y := p.Y + PlotCenterOrigin.Y + (Yf * scaleByValue);
+
+    plotSpot := TRectF.Create(newPlotPoint.X, newPlotPoint.Y, newPlotPoint.X + plotSpotSize,
+    newPlotPoint.Y + plotSpotSize);
+
+    plotLIDAR.Canvas.Stroke.Thickness := 1;
+
+    if errorcode > 0 then
+    intensity := 99999;
+
+    case intensity of
+    0 .. 511: // green
+    intensity := talphacolorrec.Green;
+    512 .. 1023:
+    intensity := talphacolorrec.Yellow;
+    1024 .. 1535:
+    intensity := talphacolorrec.Blue;
+    1536 .. 2047:
+    intensity := talphacolorrec.Magenta;
+    2048 .. 2559:
+    intensity := talphacolorrec.Orange;
+    2560 .. 99999:
+    intensity := talphacolorrec.Red;
+    end;
+
+    plotLIDAR.Canvas.Fill.Color := TAlphaCOlor(intensity);
+    plotLIDAR.Canvas.Stroke.Color := TAlphaCOlor(intensity);
+
+    plotLIDAR.Canvas.Fill.Kind := TBrushKind.Solid;
+    plotLIDAR.Canvas.FillEllipse(plotSpot, 1);
+
+    plotLIDAR.Canvas.Fill.Kind := TBrushKind.Solid;
+
+    newPlotPoint.X := p.X + PlotCenterOrigin.X + (Xf * scaleByValue) + (plotSpotSize div 2);
+    newPlotPoint.Y := p.Y + PlotCenterOrigin.Y + (Yf * scaleByValue) + (plotSpotSize div 2);
+
+    if ckShowIntensityLines.IsChecked then
+    plotLIDAR.Canvas.DrawLine(TPointF.Create(p.X + PlotCenterOrigin.X, p.Y + PlotCenterOrigin.Y), newPlotPoint, 1);
+    }
+
+    end;
+    // plotLidar.Canvas.EndScene;
+    plotLidar.EndUpdate;
+
+    end;
+  *)
+
+  var
+
+    RowIDX: integer; // loop variable
+
+    AngleInDegrees: double;
+    DistInMM: double;
+    intensity: cardinal;
+    errorcode: integer;
+
+    Xo: double; // X original calc
+    Yo: double; // Y original calc
+
+    Xc: double; // X 2nd calc (alfa?)
+    Yc: double; // Y 2nd calc (alfa?)
+
+    Xf: double; // X 3rd final calc
+    Yf: double; // Y 3rd final calc
+
+    xPixels, yPixels: double;
+    PlotCenterOrigin: TPointF;
+    newPlotPoint: TPointF;
+    plotSpot: TRectF;
+
+    scaleByValue: double;
+    plotSpotSize: byte;
+
+    scalebyX: double;
+    scalebyY: double;
+
+  begin
+
+    scaleByValue := 0.16; // don't know what to do here
+    plotSpotSize := 4; // this guy too
+
+    xPixels := plotLidar.Width / 4;
+    // Contain graph width within a quarter of the grid width (actually half because of neg values)
+    yPixels := plotLidar.Height / 4;
+    // Contain graph height within a quarter of the grid height (actually half because of neg values)
+    PlotCenterOrigin := PointF(plotLidar.Width / 2, plotLidar.Height / 2);
+    // Calculate the center point of the plot grid
+
+    plotLidar.BeginUpdate;
+    sgLIDAR.BeginUpdate;
+
+    if sbResetLIDARMapping.Value > 0 then
+    begin
+      if round(fLIDARCounter) >= round(sbResetLIDARMapping.Value) then
+      begin
+        plotLidar.series.Items[0].Points.clear;
+        fLIDARCounter := 0;
+      end;
+    end;
+
     for RowIDX := 0 to sgLIDAR.RowCount - 1 do
     begin
 
@@ -1956,6 +2151,9 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       DistInMM := strtoint(sgLIDAR.Cells[1, RowIDX]);
       intensity := strtoint(sgLIDAR.Cells[2, RowIDX]);
       errorcode := strtoint(sgLIDAR.Cells[3, RowIDX]);
+
+      if errorcode <> 0 then
+        continue;
 
       // Calculate x' and y' - add this to geometric correction to get object coordinates
       Xo := CalcXCorrection(AngleInDegrees, DistInMM);
@@ -1979,37 +2177,24 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       sgLIDAR.Cells[8, RowIDX] := Xf.ToString;
       sgLIDAR.Cells[9, RowIDX] := Yf.ToString;
 
-      // start in center point and create the new plot point
-      // need to use plot's position on the form
-      // then PlotCenterOrigin to get to the center of that
-      // then add in our X,Y cords , with some scaling to fit... as X and Y can be big numbers
-      // so it always needs to fit inside our plot.
+      newPlotPoint.X := plotLidar.Position.X + PlotCenterOrigin.X + (Xf * scaleByValue);
+      newPlotPoint.Y := plotLidar.Position.Y + PlotCenterOrigin.Y + (Yf * scaleByValue);
 
-      // assume a MIN / MAX of some sort of the final sample data is needed to figure this out?
+      if newPlotPoint.X > maxx then
+        maxx := newPlotPoint.X;
 
-      // need to be able to scale the values to make sure always fits inside plot grid area
+      if newPlotPoint.Y > maxy then
+        maxy := newPlotPoint.Y;
 
-      p.X := plotLIDAR.AbsoluteRect.Location.X;
-      p.Y := plotLIDAR.AbsoluteRect.Location.Y;
+      if newPlotPoint.X < minx then
+        minx := newPlotPoint.X;
 
-      newPlotPoint.X := p.X + PlotCenterOrigin.X + (Xf * scaleByValue);
-      newPlotPoint.Y := p.Y + PlotCenterOrigin.Y + (Yf * scaleByValue);
+      if newPlotPoint.Y < miny then
+        miny := newPlotPoint.Y;
 
-      {
-        scalebyX := (plot.height / plot.width) *0.5; // * 0.001; //plot.Width * 0.0001;
-        scalebyY := (plot.Height / plot.Width) * scalebyX;
+      //caption := 'MaxX = '+maxx.ToString + ' MaxY = '+maxy.ToString + '   ||   MinX = '+minx.ToString+' MinY = '+miny.ToString;
 
-        newPlotPoint.X := plot.Position.X + PlotCenterOrigin.X + (Xf * scaleByX);
-        newPlotPoint.Y := plot.Position.Y + PlotCenterOrigin.Y + (Yf * scaleByY);
-      }
-
-      // Create the drawing area now.
-      // Not sure how to adjust the width/height of the ellipse to scale up and down for the work area?
-
-      plotSpot := TRectF.Create(newPlotPoint.X, newPlotPoint.Y, newPlotPoint.X + plotSpotSize,
-        newPlotPoint.Y + plotSpotSize);
-
-      plotLIDAR.Canvas.Stroke.Thickness := 1;
+      plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y);
 
       if errorcode > 0 then
         intensity := 99999;
@@ -2029,29 +2214,18 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
           intensity := talphacolorrec.Red;
       end;
 
-      plotLIDAR.Canvas.Fill.Color := TAlphaCOlor(intensity);
-      plotLIDAR.Canvas.Stroke.Color := TAlphaCOlor(intensity);
-
-      plotLIDAR.Canvas.Fill.Kind := TBrushKind.Solid;
-      plotLIDAR.Canvas.FillEllipse(plotSpot, 1);
-
-      plotLIDAR.Canvas.Fill.Kind := TBrushKind.Solid;
-
-      newPlotPoint.X := p.X + PlotCenterOrigin.X + (Xf * scaleByValue) + (plotSpotSize div 2);
-      newPlotPoint.Y := p.Y + PlotCenterOrigin.Y + (Yf * scaleByValue) + (plotSpotSize div 2);
-
-      if ckShowIntensityLines.IsChecked then
-        plotLIDAR.Canvas.DrawLine(TPointF.Create(p.X + PlotCenterOrigin.X, p.Y + PlotCenterOrigin.Y), newPlotPoint, 1);
-
     end;
-    plotLIDAR.Canvas.EndScene;
+
+    plotLidar.EndUpdate;
+    sgLIDAR.EndUpdate;
+
   end;
 
 var
   pReadData: TStringList;
 begin
 
-  if (com.com.Active = false) or (tabsLIDAROptions.ActiveTab <> tabLidar) then
+  if (com.com.Active = false) or (tabsToolOptions.ActiveTab <> tabLidar) then
   begin
     timer_LIDAR.Enabled := false;
     exit;
@@ -2063,15 +2237,6 @@ begin
   memoDebug.Lines.Text := pReadData.Text;
 
   fLIDARCounter := fLIDARCounter + 1;
-
-  if sbResetLIDARMapping.Value > 0 then
-  begin
-    if round(fLIDARCounter) >= round(sbResetLIDARMapping.Value) then
-    begin
-      plotLIDAR.Repaint;
-      fLIDARCounter := 0;
-    end;
-  end;
 
   if pReadData.Count = 360 + 3 then // 360 data, plus header row, plus last row showing rotation speed
   begin
@@ -2330,6 +2495,42 @@ procedure TfrmMain.timer_StupidFixTimer(Sender: TObject);
 begin
   timer_StupidFix.Enabled := false;
   self.pnlSetupDetails.Visible := false;
+end;
+
+procedure TfrmMain.btnClearFilesClick(Sender: TObject);
+var
+  Code: string;
+  r: Boolean;
+  pReadData: TStringList;
+
+  gClearFiles: tClearFiles;
+begin
+
+  if rbClearFilesBB.IsChecked then
+    Code := sBB
+  else if rbClearFilesALL.IsChecked then
+    Code := sAll;
+
+  gClearFiles := tClearFiles.Create;
+  pReadData := TStringList.Create;
+
+  pReadData.Text := com.SendCommandAndWaitForValue(sClearFiles + ' ' + Code, 6000, ^Z, iClearFilesHeaderBreaks);
+  pReadData.Text := stringreplace(pReadData.Text, ',', '=', [rfreplaceall]);
+
+  r := gClearFiles.ParseText(pReadData);
+
+  Code := pReadData.Text;
+
+  if r then
+  begin
+    showmessage('Clearing Completed');
+    rbClearFilesBB.IsChecked := false;
+    rbClearFilesALL.IsChecked := false;
+    btnClearFiles.Enabled := false;
+  end
+  else
+    showmessage('Clearing did not complete');
+
 end;
 
 procedure TfrmMain.btnDebugTerminalClearClick(Sender: TObject);
