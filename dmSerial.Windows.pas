@@ -19,7 +19,7 @@ uses
 
 type
   TdmSerial = class(TDataModule)
-    COM: TFComPort;
+    Serial: TFComPort;
     FComSignalRX: TFComSignal;
     FComSignalCTS: TFComSignal;
     FComSignalRing: TFComSignal;
@@ -83,7 +83,7 @@ end;
 
 procedure TdmSerial.DataModuleDestroy(Sender: TObject);
 begin
-  freeandnil(COM);
+  freeandnil(Serial);
 end;
 
 procedure TdmSerial.FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
@@ -94,7 +94,7 @@ begin
     fError := E.Message;
     fErrorCode := E.ErrorCode;
     Action := caabort;
-    COM.Close;
+    Serial.Close;
     if assigned(onError) then
       onError(self);
   end;
@@ -109,11 +109,11 @@ begin
     fErrorCode := 0;
     fComFailure := false;
     try
-      COM.Close;
+      Serial.Close;
     except
     end;
-    COM.DeviceName := ComPort;
-    COM.Open;
+    Serial.DeviceName := '\\.\' +ComPort;
+    Serial.Active := true;
     result := true;
   except
     on E: Exception do
@@ -129,7 +129,7 @@ end;
 procedure TdmSerial.Close;
 begin
   try
-    COM.Close;
+    Serial.Close;
   except
     on E: Exception do
     begin
@@ -152,10 +152,10 @@ begin
     result := cmd;
     try
       result := '';
-      COM.Timeouts.ReadInterval := 16000;
-      COM.WriteAnsiString(ansistring(cmd) + #13);
-      COM.WaitForWriteCompletion;
-      COM.WaitForReadCompletion;
+      Serial.Timeouts.ReadInterval := 16000;
+      Serial.WriteAnsiString(ansistring(cmd) + #13);
+      Serial.WaitForWriteCompletion;
+      Serial.WaitForReadCompletion;
     except
       on E: Exception do
       begin
@@ -181,16 +181,16 @@ begin
     try
       sw := tstopwatch.Create;
       result := '';
-      COM.Timeouts.ReadInterval := readtimeout;
-      COM.WriteAnsiString(ansistring(cmd) + #13);
-      COM.WaitForWriteCompletion;
-      COM.WaitForReadCompletion;
+      Serial.Timeouts.ReadInterval := readtimeout;
+      Serial.WriteAnsiString(ansistring(cmd) + #13);
+      Serial.WaitForWriteCompletion;
+      Serial.WaitForReadCompletion;
 
       repeat
         sleep(waitfor);
-      until (not COM.ReadPending) or (not COM.Active);
+      until (not Serial.ReadPending) or (not Serial.Active);
 
-      result := string(COM.ReadAnsiString);
+      result := string(Serial.ReadAnsiString);
 
     except
       on E: Exception do
@@ -218,17 +218,17 @@ var
 begin
   try
     result := '';
-    COM.WriteAnsiString(ansistring(cmd) + #13);
-    COM.Timeouts.ReadInterval := readtimeout;
+    Serial.WriteAnsiString(ansistring(cmd) + #13);
+    Serial.Timeouts.ReadInterval := readtimeout;
     timeout := false;
 
     sw := tstopwatch.Create;
     sw.Start;
     repeat
-      result := result + COM.ReadAnsiString;
+      result := result + Serial.ReadAnsiString;
       if sw.ElapsedMilliseconds > readtimeout then
         timeout := true;
-    until (not COM.Active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
+    until (not Serial.Active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
 
     result := trim(result);
 

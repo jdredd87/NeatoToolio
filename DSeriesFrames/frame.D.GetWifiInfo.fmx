@@ -1,0 +1,70 @@
+object frameDGetWifiInfo: TframeDGetWifiInfo
+  Size.Width = 996.000000000000000000
+  Size.Height = 564.000000000000000000
+  Size.PlatformDefault = False
+  object pnlGetWifiInfoTop: TRectangle
+    Align = Top
+    Fill.Color = xFF2D92BF
+    Sides = []
+    Size.Width = 996.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    object btnGetWifiInfoScan: TButton
+      Align = Left
+      Enabled = False
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 177.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Scan WiFi Networks'
+      OnClick = btnGetWifiInfoScanClick
+    end
+    object aniGetWifiInfo: TAniIndicator
+      Align = Left
+      Enabled = True
+      StyleLookup = 'aniindicatorstyle'
+      Position.X = 197.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 70.000000000000000000
+      Size.PlatformDefault = False
+      Style = Circular
+      Visible = False
+    end
+  end
+  object sgGetWifiInfo: TStringGrid
+    Align = Client
+    CanFocus = True
+    ClipChildren = True
+    Size.Width = 996.000000000000000000
+    Size.Height = 494.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'gridstyle'
+    TabOrder = 0
+    RowCount = 10
+    Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+    Viewport.Width = 992.000000000000000000
+    Viewport.Height = 469.000000000000000000
+    object sgGetWifiInfoSSID: TStringColumn
+      Header = 'SSID'
+      Size.Width = 401.000000000000000000
+    end
+    object sgGetWifiInfoSignal: TStringColumn
+      Header = 'Signal'
+      Size.Width = 90.000000000000000000
+    end
+    object sgGetWifiInfoFrequency: TStringColumn
+      Header = 'Frequency'
+      Size.Width = 90.000000000000000000
+    end
+    object sgGetWifiInfoBSSID: TStringColumn
+      Header = 'BSSID ( MAC Address )'
+      Size.Width = 250.000000000000000000
+    end
+  end
+end

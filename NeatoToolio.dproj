@@ -378,6 +378,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -412,29 +414,136 @@
         </DCCReference>
         <DCCReference Include="XSuperJSON\XSuperJSON.pas"/>
         <DCCReference Include="XSuperJSON\XSuperObject.pas"/>
-        <DCCReference Include="neato.Commands.pas"/>
-        <DCCReference Include="neato.errors.pas"/>
-        <DCCReference Include="neato.GetAccel.pas"/>
-        <DCCReference Include="neato.GetAnalogSensors.pas"/>
-        <DCCReference Include="neato.GetMotors.pas"/>
-        <DCCReference Include="neato.GetDigitalSensors.pas"/>
-        <DCCReference Include="neato.GetErr.pas"/>
-        <DCCReference Include="neato.GetLDSScan.pas"/>
-        <DCCReference Include="neato.GetVersion.pas"/>
-        <DCCReference Include="neato.TestLDS.pas"/>
-        <DCCReference Include="neato.Helpers.pas"/>
-        <DCCReference Include="neato.Settings.pas"/>
-        <RcItem Include="Images\Neat.D3.png">
+        <DCCReference Include="common\neato.Commands.pas"/>
+        <DCCReference Include="common\neato.Errors.pas"/>
+        <DCCReference Include="common\neato.Helpers.pas"/>
+        <DCCReference Include="common\neato.Settings.pas"/>
+        <DCCReference Include="DSeries\neato.D.ClearFiles.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetAnalogSensors.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetButtons.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetCalInfo.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetCharger.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetDigitalSensors.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetErr.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetLDSScan.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetMotors.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetSensor.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetUsage.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetUserSettings.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetVersion.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetWarranty.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetWifiInfo.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetWifiStatus.pas"/>
+        <DCCReference Include="DSeries\neato.D.TestLDS.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetAnalogSensors.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetButtons.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetCalInfo.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetCharger.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetErr.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetLDSScan.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetMotors.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetVersion.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetWarranty.pas"/>
+        <DCCReference Include="Common\neato.DXV.Playsound.pas"/>
+        <DCCReference Include="Common\neato.DXV.GetAccel.pas"/>
+        <DCCReference Include="dmCommon.pas">
+            <Form>dm</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetAnalogSensors.pas">
+            <Form>frameDGetAnalogSensors</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetButtons.pas">
+            <Form>frameDGetButtons</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetCalInfo.pas">
+            <Form>frameDGetCalInfo</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetCharger.pas">
+            <Form>frameDGetCharger</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetDigitalSensors.pas">
+            <Form>frameDGetDigitalSensors</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetMotors.pas">
+            <Form>frameDGetMotors</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetSensors.pas">
+            <Form>frameDGetSensors</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetWarranty.pas">
+            <Form>frameDGetWarranty</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetErr.pas">
+            <Form>FrameDGetErr</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetVersion.pas">
+            <Form>frameDGetVersion</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetUsage.pas">
+            <Form>frameDGetUsage</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetUserSettings.pas">
+            <Form>frameDGetUserSettings</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.ClearFiles.pas">
+            <Form>frameDClearFiles</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetWifiInfo.pas">
+            <Form>frameDGetWifiInfo</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.GetWifiStatus.pas">
+            <Form>frameDGetWifiStatus</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetCharger.pas">
+            <Form>frameXVGetCharger</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="SharedFrames\frame.DXV.Terminal.pas">
+            <Form>frameDXVTerminal</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="SharedFrames\frame.DXV.Playsound.pas">
+            <Form>frameDXVPlaySound</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="SharedFrames\frame.DXV.GetAccel.pas">
+            <Form>frameDXVGetAccel</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetAnalogSensors.pas">
+            <Form>frameXVGetAnalogSensors</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetDigitalSensors.pas">
+            <Form>frameXVGetDigitalSensors</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetDigitalSensors.pas"/>
+        <RcItem Include="Images\Neato.Botvac.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>NeatoBotVac</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\Neato.D3.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoD3</ResourceId>
-        </RcItem>
-        <RcItem Include="Images\Neat.D6.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>NeatoD6</ResourceId>
-        </RcItem>
-        <RcItem Include="Images\Neat.D7.png">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>NeatoD7</ResourceId>
         </RcItem>
         <RcItem Include="Images\Neato.D4.png">
             <ResourceType>RCDATA</ResourceType>
@@ -444,9 +553,25 @@
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoD5</ResourceId>
         </RcItem>
-        <RcItem Include="Images\Neato.Botvac.png">
+        <RcItem Include="Images\Neato.D6.png">
             <ResourceType>RCDATA</ResourceType>
-            <ResourceId>NeatoBotvac</ResourceId>
+            <ResourceId>NeatoD6</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\Neato.D7.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>NeatoD7</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\Neato.XV16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>XV16</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\neato+logo.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>NeatoLogo</ResourceId>
+        </RcItem>
+        <RcItem Include="Images\Neato.XV.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>NeatoXV</ResourceId>
         </RcItem>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -474,14 +599,15 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="OSX32">
+                <DeployFile LocalName="Images\Neato.D3.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\NeatoToolio.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Images\Neato.Botvac.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win64">
-                        <RemoteName>NeatoToolio.exe</RemoteName>
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -491,8 +617,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\Neat.D7.png" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win64">
+                <DeployFile LocalName="Images\Neato.D6.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -509,14 +635,8 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\Neato.D5.png" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win64">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Images\Neato.Botvac.png" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win64">
+                <DeployFile LocalName="Images\Neato.D7.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
@@ -531,14 +651,67 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\NeatoToolio.rsm" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName="Images\Neat.D3.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win64">
-                        <RemoteName>NeatoToolio.rsm</RemoteName>
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\Neat.D3.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win64\Debug\NeatoToolio.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
+                        <RemoteName>NeatoToolio.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neato.XV16.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neat.D7.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neato.D5.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neato.D4.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\neato+logo.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neato.Botvac.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neato.XV.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\Neato.D5.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>

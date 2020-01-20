@@ -1,0 +1,486 @@
+object frameXVGetAnalogSensors: TframeXVGetAnalogSensors
+  Size.Width = 521.000000000000000000
+  Size.Height = 531.000000000000000000
+  Size.PlatformDefault = False
+  object lblGetAnalogSensorsBatteryVoltageIn: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'BatteryVoltageIn'
+    TabOrder = 23
+  end
+  object pbGetAnalogSensorsBatteryVoltageInValue: TProgressBar
+    Max = 24576.000000000000000000
+    Orientation = Vertical
+    Position.X = 30.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 12288.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsBatteryVoltageInValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '12288 mV'
+      TabOrder = 0
+    end
+  end
+  object pbGetAnalogSensorsBatteryTemp0InCValue: TProgressBar
+    Max = 200.000000000000000000
+    Orientation = Vertical
+    Position.X = 134.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 50.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsBatteryTemp0InCValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '0 *C'
+      TabOrder = 0
+    end
+  end
+  object lblGetAnalogSensorsBatteryTemp0InC: TLabel
+    Position.X = 104.000000000000000000
+    Position.Y = 176.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'BatteryTemp0InC'
+    TabOrder = 21
+  end
+  object lblGetAnalogSensorsBatteryTemperature: TLabel
+    Position.X = 200.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'BatteryTemp1In'
+    TabOrder = 20
+  end
+  object lblGetAnalogSensorsAccelXInmG: TLabel
+    Position.X = 272.000000000000000000
+    Position.Y = 410.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'AccelXInmG'
+    TabOrder = 11
+  end
+  object lblGetAnalogSensorsAccelXInmGValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 405.000000000000000000
+    Position.Y = 410.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 22
+  end
+  object lblGetAnalogSensorsAccelYInmG: TLabel
+    Position.X = 272.000000000000000000
+    Position.Y = 434.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'AccelYInmG'
+    TabOrder = 24
+  end
+  object lblGetAnalogSensorsAccelYInmGValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 405.000000000000000000
+    Position.Y = 434.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 12
+  end
+  object lblGetAnalogSensorsAccelZInmG: TLabel
+    Position.X = 272.000000000000000000
+    Position.Y = 458.000000000000000000
+    Size.Width = 120.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'AccelZInmG'
+    TabOrder = 13
+  end
+  object lblGetAnalogSensorsAccelZInmGValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 405.000000000000000000
+    Position.Y = 458.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 4
+  end
+  object lblGetAnalogSensorsLeftMagSensor: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 474.000000000000000000
+    Size.Width = 135.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LeftMagSensor'
+    TabOrder = 10
+  end
+  object lblGetAnalogSensorsWallSensorInMM: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 402.000000000000000000
+    Size.Width = 135.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'WallSensorInMM'
+    TabOrder = 8
+  end
+  object lblGetAnalogSensorsWallSensorInMMValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 157.000000000000000000
+    Position.Y = 402.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 0
+  end
+  object lblGetAnalogSensorsLeftDropInMM: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 426.000000000000000000
+    Size.Width = 135.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LeftDropInMM'
+    TabOrder = 1
+  end
+  object lblGetAnalogSensorsLeftDropInMMValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 157.000000000000000000
+    Position.Y = 426.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 6
+  end
+  object lblGetAnalogSensorsRightDropInMM: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 450.000000000000000000
+    Size.Width = 135.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'RightDropInMM'
+    TabOrder = 7
+  end
+  object lblGetAnalogSensorsRightDropInMMValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 157.000000000000000000
+    Position.Y = 450.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 3
+  end
+  object lblGetAnalogSensorsRightMagSensor: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 498.000000000000000000
+    Size.Width = 135.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'RightMagSensor'
+    TabOrder = 9
+  end
+  object Timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer_GetDataTimer
+    Left = 408
+    Top = 48
+  end
+  object pbGetAnalogSensorsBatteryTemp1InCValue: TProgressBar
+    Max = 200.000000000000000000
+    Orientation = Vertical
+    Position.X = 230.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 50.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsBatteryTemp1InCValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '0 *C'
+      TabOrder = 0
+    end
+  end
+  object pbGetAnalogSensorsUIButtonInmVValue: TProgressBar
+    Max = 24576.000000000000000000
+    Orientation = Vertical
+    Position.X = 334.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 1024.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsUIButtonInmVValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '0 *C'
+      TabOrder = 0
+    end
+  end
+  object lblUIButtonInmV: TLabel
+    Position.X = 312.000000000000000000
+    Position.Y = 176.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'UIButtonInmV'
+    TabOrder = 19
+  end
+  object pbGetAnalogSensorsVacuumCurrentInmAValue: TProgressBar
+    Max = 12288.000000000000000000
+    Orientation = Vertical
+    Position.X = 430.000000000000000000
+    Position.Y = 240.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 4000.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsVacuumCurrentInmAValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '12288 mA'
+      TabOrder = 0
+    end
+  end
+  object pbGetAnalogSensorsVoltageReferenceInmVValue: TProgressBar
+    Max = 24576.000000000000000000
+    Orientation = Vertical
+    Position.X = 334.000000000000000000
+    Position.Y = 240.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 12288.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsVoltageReferenceInmVValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '12288 mV'
+      TabOrder = 0
+    end
+  end
+  object pbGetAnalogSensorsChargeVoltInmVValue: TProgressBar
+    Max = 24576.000000000000000000
+    Orientation = Vertical
+    Position.X = 30.000000000000000000
+    Position.Y = 240.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 12288.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsChargeVoltInmVValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '12288 mV'
+      TabOrder = 0
+    end
+  end
+  object pbGetAnalogSensorsCurrentInmAValue: TProgressBar
+    Max = 12288.000000000000000000
+    Orientation = Vertical
+    Position.X = 134.000000000000000000
+    Position.Y = 240.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 4000.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsCurrentInmAValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '500 mA'
+      TabOrder = 0
+    end
+  end
+  object pnGetAnalogSensorsSideBrushCurrentInmAValue: TProgressBar
+    Max = 12288.000000000000000000
+    Orientation = Vertical
+    Position.X = 230.000000000000000000
+    Position.Y = 240.000000000000000000
+    Size.Width = 43.000000000000000000
+    Size.Height = 131.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'progressbarstyle'
+    Value = 4000.000000000000000000
+    ParentShowHint = False
+    ShowHint = False
+    object lblGetAnalogSensorsSideBrushCurrentInmAValue: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 43.000000000000000000
+      Size.Height = 131.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 11.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '12288 mA'
+      TabOrder = 0
+    end
+  end
+  object lblVacuumCurrentInmA: TLabel
+    Position.X = 392.000000000000000000
+    Position.Y = 216.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'VacuumCurrentInmA'
+    TabOrder = 18
+  end
+  object lblChargeVoltInmV: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 216.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'ChargeVoltInmV'
+    TabOrder = 17
+  end
+  object lblCurrentInmA: TLabel
+    Position.X = 120.000000000000000000
+    Position.Y = 376.000000000000000000
+    Size.Width = 160.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'CurrentInmA'
+    TabOrder = 16
+  end
+  object lblSideBrushCurrentInmA: TLabel
+    Position.X = 184.000000000000000000
+    Position.Y = 216.000000000000000000
+    Size.Width = 217.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'SideBrushCurrentInmA'
+    TabOrder = 15
+  end
+  object lblVoltageReferenceInmV: TLabel
+    Position.X = 288.000000000000000000
+    Position.Y = 376.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'VoltageReferenceInmV'
+    TabOrder = 14
+  end
+  object lblGetAnalogSensorsLeftMagSensorValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 157.000000000000000000
+    Position.Y = 474.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 5
+  end
+  object lblGetAnalogSensorsRightMagSensorValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 157.000000000000000000
+    Position.Y = 498.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 2
+  end
+end

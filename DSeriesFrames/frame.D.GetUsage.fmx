@@ -1,0 +1,138 @@
+object frameDGetUsage: TframeDGetUsage
+  Size.Width = 531.000000000000000000
+  Size.Height = 159.000000000000000000
+  Size.PlatformDefault = False
+  object lblTotalCleaningTime: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Total Cleaning Time'
+    TabOrder = 11
+  end
+  object lblTotalCleaningTimeValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 248.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 6
+  end
+  object lblTotalCleanedArea: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Total Cleaned Area'
+    TabOrder = 9
+  end
+  object lblTotalCleanedAreaValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 248.000000000000000000
+    Position.Y = 34.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 2
+  end
+  object lblMainBrushRunTimeinSec: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'MainBrushRunTimeinSec'
+    TabOrder = 4
+  end
+  object lblMainBrushRunTimeinSecValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 248.000000000000000000
+    Position.Y = 58.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 8
+  end
+  object lblSideBrushRunTimeinSec: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'SideBrushRunTimeinSec'
+    TabOrder = 10
+  end
+  object lblSideBrushRunTimeinSecValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 248.000000000000000000
+    Position.Y = 82.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 5
+  end
+  object lblDirtbinRunTimeinSec: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'DirtbinRunTimeinSec'
+    TabOrder = 7
+  end
+  object lblDirtbinRunTimeinSecValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 248.000000000000000000
+    Position.Y = 106.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 0
+  end
+  object lblFilterTimeinSec: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'FilterTimeinSec'
+    TabOrder = 1
+  end
+  object lblFilterTimeinSecValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 248.000000000000000000
+    Position.Y = 130.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 3
+  end
+  object timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetDataTimer
+    Left = 408
+    Top = 56
+  end
+end
