@@ -1,0 +1,23 @@
+object frameScripts: TframeScripts
+  Size.Width = 488.000000000000000000
+  Size.Height = 251.000000000000000000
+  Size.PlatformDefault = False
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Left
+    Size.Width = 385.000000000000000000
+    Size.Height = 251.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 385.000000000000000000
+    Viewport.Height = 251.000000000000000000
+  end
+  object Button1: TButton
+    Position.X = 400.000000000000000000
+    Position.Y = 8.000000000000000000
+    TabOrder = 1
+    Text = 'Run Script'
+    OnClick = Button1Click
+  end
+end

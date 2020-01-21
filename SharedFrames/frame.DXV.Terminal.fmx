@@ -111,8 +111,8 @@ object frameDXVTerminal: TframeDXVTerminal
     Size.Height = 538.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Viewport.Width = 995.000000000000000000
-    Viewport.Height = 538.000000000000000000
+    Viewport.Width = 991.000000000000000000
+    Viewport.Height = 534.000000000000000000
   end
   object timer_GetData: TTimer
     Enabled = False

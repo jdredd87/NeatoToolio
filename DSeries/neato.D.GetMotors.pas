@@ -24,7 +24,7 @@ const
   sLeftWheel_direction = 'LeftWheel_direction';
 
   sRightWheel_RPM = 'RightWheel_RPM';
-  sRightWheel_Load = 'RightWheel_Load';
+  sRightWheel_Load = 'RightWheel_Load%';
   sRightWheel_PositionInMM = 'RightWheel_PositionInMM';
   sRightWheel_Speed = 'RightWheel_Speed';
   sRightWheel_direction = 'RightWheel_direction';

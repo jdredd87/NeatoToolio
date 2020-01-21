@@ -102,6 +102,7 @@ begin
     btnDebugTerminalSendClick(Sender);
     Key := 0;
     KeyChar := #0;
+    edDebugTerminalSend.SetFocus;
   end;
 end;
 

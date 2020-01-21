@@ -1,0 +1,38 @@
+object FrameXVGetErr: TFrameXVGetErr
+  Size.Width = 894.000000000000000000
+  Size.Height = 237.000000000000000000
+  Size.PlatformDefault = False
+  object sgGetErr: TStringGrid
+    Align = Client
+    CanFocus = True
+    ClipChildren = True
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 884.000000000000000000
+    Size.Height = 227.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'gridstyle'
+    TabOrder = 0
+    RowCount = 6
+    Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+    Viewport.Width = 880.000000000000000000
+    Viewport.Height = 202.000000000000000000
+    object scGetErrName: TStringColumn
+      Header = 'Code'
+      Size.Width = 200.000000000000000000
+    end
+    object scGetErrValue: TStringColumn
+      Header = 'Description'
+      Size.Width = 672.000000000000000000
+    end
+  end
+  object timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetDataTimer
+    Left = 432
+    Top = 104
+  end
+end

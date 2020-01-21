@@ -1,0 +1,75 @@
+object frameXVGetWarranty: TframeXVGetWarranty
+  Size.Width = 527.000000000000000000
+  Size.Height = 88.000000000000000000
+  Size.PlatformDefault = False
+  object lbl_CumulativeCleaningTimeInSecs: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CumulativeCleaningTimeInSecs?'
+    TabOrder = 5
+  end
+  object lbl_CumulativeCleaningTimeInSecsValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 272.000000000000000000
+    Position.Y = 10.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 2
+  end
+  object lbl_CumulativeBatteryCycles: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CumulativeBatteryCycles?'
+    TabOrder = 4
+  end
+  object lbl_CumulativeBatteryCyclesValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 272.000000000000000000
+    Position.Y = 34.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 0
+  end
+  object lbl_ValidationCode: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'ValidationCode?'
+    TabOrder = 1
+  end
+  object lbl_ValidationCodeValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 272.000000000000000000
+    Position.Y = 58.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 3
+  end
+  object timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetDataTimer
+    Left = 64
+    Top = 40
+  end
+end

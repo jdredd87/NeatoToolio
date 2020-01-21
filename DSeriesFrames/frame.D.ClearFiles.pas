@@ -31,7 +31,6 @@ var
   Code: string;
   r: Boolean;
   pReadData: TStringList;
-
   gClearFiles: tClearFilesD;
 begin
 

@@ -409,6 +409,10 @@
             <Form>dmSerial</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="dmCommon.pas">
+            <Form>dm</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <DCCReference Include="formMain.pas">
             <Form>frmMain</Form>
         </DCCReference>
@@ -427,7 +431,6 @@
         <DCCReference Include="DSeries\neato.D.GetErr.pas"/>
         <DCCReference Include="DSeries\neato.D.GetLDSScan.pas"/>
         <DCCReference Include="DSeries\neato.D.GetMotors.pas"/>
-        <DCCReference Include="DSeries\neato.D.GetSensor.pas"/>
         <DCCReference Include="DSeries\neato.D.GetUsage.pas"/>
         <DCCReference Include="DSeries\neato.D.GetUserSettings.pas"/>
         <DCCReference Include="DSeries\neato.D.GetVersion.pas"/>
@@ -441,15 +444,12 @@
         <DCCReference Include="XVSeries\neato.XV.GetCharger.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetErr.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetLDSScan.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetMotors.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetVersion.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetWarranty.pas"/>
         <DCCReference Include="Common\neato.DXV.Playsound.pas"/>
         <DCCReference Include="Common\neato.DXV.GetAccel.pas"/>
-        <DCCReference Include="dmCommon.pas">
-            <Form>dm</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetDigitalSensors.pas"/>
+        <DCCReference Include="DSeries\neato.D.GetSensor.pas"/>
         <DCCReference Include="DSeriesFrames\frame.D.GetAnalogSensors.pas">
             <Form>frameDGetAnalogSensors</Form>
             <DesignClass>TFrame</DesignClass>
@@ -472,10 +472,6 @@
         </DCCReference>
         <DCCReference Include="DSeriesFrames\frame.D.GetMotors.pas">
             <Form>frameDGetMotors</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="DSeriesFrames\frame.D.GetSensors.pas">
-            <Form>frameDGetSensors</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="DSeriesFrames\frame.D.GetWarranty.pas">
@@ -536,7 +532,21 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="XVSeries\neato.XV.GetDigitalSensors.pas"/>
+        <DCCReference Include="DSeriesFrames\frame.D.GetSensors.pas">
+            <Form>frameDGetSensors</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Scripts\frame.Scripts.pas">
+            <Form>frameScripts</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetMotors.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetMotors.pas">
+            <Form>frameXVGetMotors</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>

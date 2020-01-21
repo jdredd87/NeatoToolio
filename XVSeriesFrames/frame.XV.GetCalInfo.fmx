@@ -1,0 +1,453 @@
+object frameXVGetCalInfo: TframeXVGetCalInfo
+  Size.Width = 559.000000000000000000
+  Size.Height = 402.000000000000000000
+  Size.PlatformDefault = False
+  object lblGetCalInfoLDSOffset: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 18.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LDSOffset'
+    TabOrder = 38
+  end
+  object lblGetCalInfoLDSOffsetValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 18.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 21
+  end
+  object lblGetCalInfoXAccel: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 43.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'XAccel'
+    TabOrder = 26
+  end
+  object lblGetCalInfoXAccelValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 43.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 28
+  end
+  object lblGetCalInfoYAccel: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 69.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'YAccel'
+    TabOrder = 55
+  end
+  object lblGetCalInfoYAccelValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 69.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 47
+  end
+  object lblGetCalInfoZAccel: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 95.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'ZAccel'
+    TabOrder = 51
+  end
+  object lblGetCalInfoZAccelValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 95.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 30
+  end
+  object lblGetCalInfoRTCOffset: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 121.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'RTCOffset'
+    TabOrder = 33
+  end
+  object lblGetCalInfoRTCOffsetValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 121.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 42
+  end
+  object lblGetCalInfoCleaningTestSurface: TLabel
+    Position.X = 241.000000000000000000
+    Position.Y = 46.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CleaningTestSurface'
+    TabOrder = 45
+  end
+  object lblGetCalInfoCleaningTestSurfaceValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 453.000000000000000000
+    Position.Y = 46.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 36
+  end
+  object lblGetCalInfoCleaningTestHardSpeed: TLabel
+    Position.X = 241.000000000000000000
+    Position.Y = 71.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CleaningTestHardSpeed'
+    TabOrder = 37
+  end
+  object lblGetCalInfoCleaningTestHardSpeedValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 453.000000000000000000
+    Position.Y = 71.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 5
+  end
+  object lblGetCalInfoCleaningTestCarpetSpeed: TLabel
+    Position.X = 241.000000000000000000
+    Position.Y = 97.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CleaningTestCarpetSpeed'
+    TabOrder = 17
+  end
+  object lblGetCalInfoCleaningTestCarpetSpeedValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 453.000000000000000000
+    Position.Y = 97.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 24
+  end
+  object lblGetCalInfoCleaningTestHardDistance: TLabel
+    Position.X = 241.000000000000000000
+    Position.Y = 123.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CleaningTestHardDistance'
+    TabOrder = 11
+  end
+  object lblGetCalInfoCleaningTestHardDistanceValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 453.000000000000000000
+    Position.Y = 123.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 18
+  end
+  object lblGetCalInfoCleaningTestCarpetDistance: TLabel
+    Position.X = 241.000000000000000000
+    Position.Y = 149.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'CleaningTestCarpetDistance'
+    TabOrder = 20
+  end
+  object lblGetCalInfoCleaningTestCarpetDistanceValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 453.000000000000000000
+    Position.Y = 149.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 25
+  end
+  object lblGetCalInfoQAState: TLabel
+    Position.X = 241.000000000000000000
+    Position.Y = 20.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'QAState'
+    TabOrder = 9
+  end
+  object lblGetCalInfoQAStateValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 453.000000000000000000
+    Position.Y = 20.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 15
+  end
+  object timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetDataTimer
+    Left = 424
+    Top = 304
+  end
+  object lblGetCalInfoRDropMin: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 172.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'RDropMin'
+    TabOrder = 44
+  end
+  object lblGetCalInfoRDropMinValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 172.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 34
+  end
+  object lblGetCalInfoRDropMid: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 198.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'RDropMid'
+    TabOrder = 35
+  end
+  object lblGetCalInfoRDropMidValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 198.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 2
+  end
+  object lblGetCalInfoRDropMax: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'RDropMax'
+    TabOrder = 14
+  end
+  object lblGetCalInfoRDropMaxValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 19
+  end
+  object lblGetCalInfoLDropMin: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 249.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LDropMin'
+    TabOrder = 8
+  end
+  object lblGetCalInfoLDropMinValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 249.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 12
+  end
+  object lblGetCalInfoLDropMid: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 275.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LDropMid'
+    TabOrder = 13
+  end
+  object lblGetCalInfoLDropMidValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 275.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 16
+  end
+  object lblGetCalInfoLCDContrast: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 146.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LCDContrast'
+    TabOrder = 4
+  end
+  object lblGetCalInfoLCDContrastValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 146.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 7
+  end
+  object lblGetCalInfoWallMin: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 327.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'WallMin'
+    TabOrder = 32
+  end
+  object lblGetCalInfoWallMinValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 327.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 22
+  end
+  object lblGetCalInfoWallMid: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 352.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'WallMid'
+    TabOrder = 23
+  end
+  object lblGetCalInfoWallMidValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 352.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 0
+  end
+  object lblGetCalInfoWallMax: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 378.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'WallMax'
+    TabOrder = 6
+  end
+  object lblGetCalInfoWallMaxValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 378.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 10
+  end
+  object lblGetCalInfoLDropMax: TLabel
+    Position.X = 25.000000000000000000
+    Position.Y = 301.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'LDropMax'
+    TabOrder = 1
+  end
+  object lblGetCalInfoLDropMaxValue: TLabel
+    AutoSize = True
+    Margins.Left = 5.000000000000000000
+    Position.X = 141.000000000000000000
+    Position.Y = 301.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 16.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0'
+    TabOrder = 3
+  end
+end

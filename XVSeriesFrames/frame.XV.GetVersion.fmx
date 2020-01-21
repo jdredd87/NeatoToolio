@@ -1,0 +1,46 @@
+object frameXVGetVersion: TframeXVGetVersion
+  Size.Width = 887.000000000000000000
+  Size.Height = 401.000000000000000000
+  Size.PlatformDefault = False
+  object sgGetVersion: TStringGrid
+    Align = Client
+    CanFocus = True
+    ClipChildren = True
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 877.000000000000000000
+    Size.Height = 391.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'gridstyle'
+    TabOrder = 0
+    RowCount = 6
+    Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+    Viewport.Width = 873.000000000000000000
+    Viewport.Height = 366.000000000000000000
+    object scGetVersionComponent: TStringColumn
+      Header = 'Component'
+      Size.Width = 241.000000000000000000
+    end
+    object scGerVersionMajor: TStringColumn
+      Header = 'Major'
+      Size.Width = 200.000000000000000000
+    end
+    object scGetVersionMinor: TStringColumn
+      Header = 'Minor'
+      Size.Width = 200.000000000000000000
+    end
+    object scGetVersionBuild: TStringColumn
+      Header = 'Build'
+      Size.Width = 190.000000000000000000
+    end
+  end
+  object timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = timer_GetDataTimer
+    Left = 120
+    Top = 240
+  end
+end

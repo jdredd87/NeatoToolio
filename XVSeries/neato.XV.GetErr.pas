@@ -27,17 +27,17 @@ type
 
 implementation
 
-Constructor tGetErrXV.create;
+Constructor tGetErrXV.Create;
 begin
   inherited;
   fCommand := sGetErr;
   fDescription := 'Get Error Messages';
 
-  fErrorList := TStringList.create;
+  fErrorList := TStringList.Create;
   fErrorList.CaseSensitive := false;
 end;
 
-Destructor tGetErrXV.destroy;
+Destructor tGetErrXV.Destroy;
 begin
   freeandnil(fErrorList);
   inherited;
@@ -62,22 +62,12 @@ begin
   if NOT assigned(data) then
     exit;
 
+  data.Text := stringreplace(data.Text, ' - ', '=', [rfreplaceall]);
+
   try
     for IDX := 0 to data.Count - 1 do
-    begin
-      if pos(sGetErr, data[IDX]) > 0 then
-        continue; // skip row as it has the cmd sent
-
-      if odd(IDX) then
-        name := data[IDX]
-      else
-      begin
-        value := data[IDX];
-        fErrorList.AddPair(name, value);
-        name := '';
-        value := '';
-      end;
-    end;
+     if trim(data.Names[idx])<>'' then
+      fErrorList.AddPair(data.Names[IDX], data.ValueFromIndex[IDX]);
 
     result := true;
 

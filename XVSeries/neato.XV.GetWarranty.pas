@@ -6,11 +6,10 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers
 
 const
   // labels of text to look / parse for
-  sLabel = 'Item';
-  sValue = 'Value';
-  sCumulativeCleaningTimeInSecs = 'CumulativeCleaningTimeInSecs';
-  sCumulativeBatteryCycles = 'CumulativeBatteryCycles';
-  sValidationCode = 'ValidationCode';
+
+  // sCumulativeCleaningTimeInSecs = 'CumulativeCleaningTimeInSecs';
+  // sCumulativeBatteryCycles = 'CumulativeBatteryCycles';
+  // sValidationCode = 'ValidationCode';
   // Command to send
 
   sGetWarranty = 'GetWarranty';
@@ -38,7 +37,7 @@ type
 
 implementation
 
-Constructor tGetWarrantyXV.create;
+Constructor tGetWarrantyXV.Create;
 begin
   inherited;
   fCommand := sGetWarranty;
@@ -46,7 +45,7 @@ begin
   Reset;
 end;
 
-Destructor tGetWarrantyXV.destroy;
+Destructor tGetWarrantyXV.Destroy;
 begin
   inherited;
 end;
@@ -70,11 +69,12 @@ begin
 
   // Simple test to make sure we got data
 
-  if data.Values[sLabel] = sValue then
+  if data.Count = 5 then
   begin
-    fCumulativeCleaningTimeInSecs := data.Values[sCumulativeCleaningTimeInSecs];
-    fCumulativeBatteryCycles := data.Values[sCumulativeBatteryCycles];
-    fValidationCode := data.Values[sValidationCode];
+    data.Delete(0); // delete 1 top rows first
+    fCumulativeCleaningTimeInSecs := data[0];
+    fCumulativeBatteryCycles := data[1];
+    fValidationCode := data[2];
     result := true;
   end
   else

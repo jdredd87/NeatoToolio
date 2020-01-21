@@ -5,17 +5,17 @@ interface
 uses
   diagnostics,
   FMX.Dialogs,
+  FMX.Memo,
   system.classes,
-{$IFDEF MSWindows}
   Winsoft.FireMonkey.FComPort,
   Winsoft.FireMonkey.FComSignal,
-{$ENDIF}
+
 {$IFDEF android}
   Winsoft.Android.UsbSerial,
   Winsoft.Android.Usb,
 {$ENDIF}
   neato.helpers,
-  System.SysUtils;
+  system.SysUtils;
 
 type
   TdmSerial = class(TDataModule)
@@ -34,6 +34,7 @@ type
     fError: String;
     fErrorCode: longint;
     fComFailure: boolean;
+
   public
 {$IFDEF win32}
     // com: TFComPort;
@@ -42,6 +43,7 @@ type
     COM: TUsbSerial;
 {$ENDIF}
     onError: TNotifyEvent;
+    fmemoDebug: tmemo;
     Function Open(ComPort: String): boolean;
     procedure Close;
 
@@ -55,6 +57,7 @@ type
     property Error: String read fError;
     property ErrorCode: longint read fErrorCode;
     property Failure: boolean read fComFailure;
+
   end;
 
 var
@@ -71,11 +74,6 @@ begin
 
   // but android did kind of work
 
-{$IFDEF win32}
-  // com := TFComPort.Create(nil);
-  // com.onError := FComPort1Error;
-  // COM.LogFile := 'neato.toolio.log';
-{$ENDIF}
 {$IFDEF android}
   COM := TUsbSerial.Create;
 {$ENDIF}
@@ -112,7 +110,7 @@ begin
       Serial.Close;
     except
     end;
-    Serial.DeviceName := '\\.\' +ComPort;
+    Serial.DeviceName := '\\.\' + ComPort;
     Serial.Active := true;
     result := true;
   except
@@ -153,6 +151,17 @@ begin
     try
       result := '';
       Serial.Timeouts.ReadInterval := 16000;
+
+      if assigned(fmemoDebug) then
+      begin
+        fmemoDebug.BeginUpdate;
+        fmemoDebug.Lines.Add(cmd);
+        fmemoDebug.Lines.Add('');
+        fmemoDebug.Lines.Add('< Call does not check response >');
+        fmemoDebug.GoToTextEnd;
+        fmemoDebug.EndUpdate;
+      end;
+
       Serial.WriteAnsiString(ansistring(cmd) + #13);
       Serial.WaitForWriteCompletion;
       Serial.WaitForReadCompletion;
@@ -182,6 +191,10 @@ begin
       sw := tstopwatch.Create;
       result := '';
       Serial.Timeouts.ReadInterval := readtimeout;
+
+      if assigned(fmemoDebug) then
+        fmemoDebug.Lines.Add(cmd);
+
       Serial.WriteAnsiString(ansistring(cmd) + #13);
       Serial.WaitForWriteCompletion;
       Serial.WaitForReadCompletion;
@@ -191,6 +204,14 @@ begin
       until (not Serial.ReadPending) or (not Serial.Active);
 
       result := string(Serial.ReadAnsiString);
+
+      if assigned(fmemoDebug) then
+      begin
+        fmemoDebug.BeginUpdate;
+        fmemoDebug.Lines.Add(result);
+        fmemoDebug.GoToTextEnd;
+        fmemoDebug.EndUpdate;
+      end;
 
     except
       on E: Exception do
@@ -218,6 +239,9 @@ var
 begin
   try
     result := '';
+    if assigned(fmemoDebug) then
+      fmemoDebug.Lines.Add(cmd);
+
     Serial.WriteAnsiString(ansistring(cmd) + #13);
     Serial.Timeouts.ReadInterval := readtimeout;
     timeout := false;
@@ -231,6 +255,14 @@ begin
     until (not Serial.Active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
 
     result := trim(result);
+
+    if assigned(fmemoDebug) then
+    begin
+      fmemoDebug.BeginUpdate;
+      fmemoDebug.Lines.Add(result);
+      fmemoDebug.GoToTextEnd;
+      fmemoDebug.EndUpdate;
+    end;
 
   except
     on E: Exception do

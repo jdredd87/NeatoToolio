@@ -1,7 +1,4 @@
 program NeatoToolio;
-
-
-
 {$R *.dres}
 
 uses
@@ -14,6 +11,7 @@ uses
   FMX.Forms,
   fmx.types,
   dmSerial.Windows in 'dmSerial.Windows.pas' {dmSerial: TDataModule},
+  dmCommon in 'dmCommon.pas' {dm: TDataModule},
   formMain in 'formMain.pas' {frmMain},
   XSuperJSON in 'XSuperJSON\XSuperJSON.pas',
   XSuperObject in 'XSuperJSON\XSuperObject.pas',
@@ -30,7 +28,6 @@ uses
   neato.D.GetErr in 'DSeries\neato.D.GetErr.pas',
   neato.D.GetLDSScan in 'DSeries\neato.D.GetLDSScan.pas',
   neato.D.GetMotors in 'DSeries\neato.D.GetMotors.pas',
-  neato.D.GetSensor in 'DSeries\neato.D.GetSensor.pas',
   neato.D.GetUsage in 'DSeries\neato.D.GetUsage.pas',
   neato.D.GetUserSettings in 'DSeries\neato.D.GetUserSettings.pas',
   neato.D.GetVersion in 'DSeries\neato.D.GetVersion.pas',
@@ -44,19 +41,18 @@ uses
   neato.XV.GetCharger in 'XVSeries\neato.XV.GetCharger.pas',
   neato.XV.GetErr in 'XVSeries\neato.XV.GetErr.pas',
   neato.XV.GetLDSScan in 'XVSeries\neato.XV.GetLDSScan.pas',
-  neato.XV.GetMotors in 'XVSeries\neato.XV.GetMotors.pas',
   neato.XV.GetVersion in 'XVSeries\neato.XV.GetVersion.pas',
   neato.XV.GetWarranty in 'XVSeries\neato.XV.GetWarranty.pas',
   neato.DXV.Playsound in 'Common\neato.DXV.Playsound.pas',
   neato.DXV.GetAccel in 'Common\neato.DXV.GetAccel.pas',
-  dmCommon in 'dmCommon.pas' {dm: TDataModule},
+  neato.XV.GetDigitalSensors in 'XVSeries\neato.XV.GetDigitalSensors.pas',
+  neato.D.GetSensor in 'DSeries\neato.D.GetSensor.pas',
   frame.D.GetAnalogSensors in 'DSeriesFrames\frame.D.GetAnalogSensors.pas' {frameDGetAnalogSensors: TFrame},
   frame.D.GetButtons in 'DSeriesFrames\frame.D.GetButtons.pas' {frameDGetButtons: TFrame},
   frame.D.GetCalInfo in 'DSeriesFrames\frame.D.GetCalInfo.pas' {frameDGetCalInfo: TFrame},
   frame.D.GetCharger in 'DSeriesFrames\frame.D.GetCharger.pas' {frameDGetCharger: TFrame},
   frame.D.GetDigitalSensors in 'DSeriesFrames\frame.D.GetDigitalSensors.pas' {frameDGetDigitalSensors: TFrame},
   frame.D.GetMotors in 'DSeriesFrames\frame.D.GetMotors.pas' {frameDGetMotors: TFrame},
-  frame.D.GetSensors in 'DSeriesFrames\frame.D.GetSensors.pas' {frameDGetSensors: TFrame},
   frame.D.GetWarranty in 'DSeriesFrames\frame.D.GetWarranty.pas' {frameDGetWarranty: TFrame},
   frame.D.GetErr in 'DSeriesFrames\frame.D.GetErr.pas' {FrameDGetErr: TFrame},
   frame.D.GetVersion in 'DSeriesFrames\frame.D.GetVersion.pas' {frameDGetVersion: TFrame},
@@ -71,7 +67,10 @@ uses
   frame.DXV.GetAccel in 'SharedFrames\frame.DXV.GetAccel.pas' {frameDXVGetAccel: TFrame},
   frame.XV.GetAnalogSensors in 'XVSeriesFrames\frame.XV.GetAnalogSensors.pas' {frameXVGetAnalogSensors: TFrame},
   frame.XV.GetDigitalSensors in 'XVSeriesFrames\frame.XV.GetDigitalSensors.pas' {frameXVGetDigitalSensors: TFrame},
-  neato.XV.GetDigitalSensors in 'XVSeries\neato.XV.GetDigitalSensors.pas';
+  frame.D.GetSensors in 'DSeriesFrames\frame.D.GetSensors.pas' {frameDGetSensors: TFrame},
+  frame.Scripts in 'Scripts\frame.Scripts.pas' {frameScripts: TFrame},
+  neato.XV.GetMotors in 'XVSeries\neato.XV.GetMotors.pas',
+  frame.XV.GetMotors in 'XVSeriesFrames\frame.XV.GetMotors.pas' {frameXVGetMotors: TFrame};
 
 {$R *.res}
 

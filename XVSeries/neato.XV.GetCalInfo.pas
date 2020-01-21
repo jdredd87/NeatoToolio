@@ -20,17 +20,24 @@ const
   sYAccel = 'YAccel';
   sZAccel = 'ZAccel';
   sRTCOffset = 'RTCOffset';
+
+  sLCDContrast = 'LCDContrast';
+  sRDropMin = 'RDropMin';
+  sRDropMid = 'RDropMid';
+  sRDropMax = 'RDropMax';
+  sLDropMin = 'LDropMin';
+  sLDropMid = 'LDropMid';
+  sLDropMax = 'LDropMax';
+  sWallMin = 'WallMin';
+  sWallMid = 'WallMid';
+  sWallMax = 'WallMax';
+
+  sQAState = 'QAState';
   sCleaningTestSurface = 'CleaningTestSurface';
   sCleaningTestHardSpeed = 'CleaningTestHardSpeed';
   sCleaningTestCarpetSpeed = 'CleaningTestCarpetSpeed';
   sCleaningTestHardDistance = 'CleaningTestHardDistance';
   sCleaningTestCarpetDistance = 'CleaningTestCarpetDistance';
-  sCleaningTestMode = 'CleaningTestMode';
-  sQAState = 'QAState';
-  sLeftDropSensor_CalibrationData = 'LeftDropSensor_CalibrationData';
-  sRightDropSensor_CalibrationData = 'RightDropSensor_CalibrationData';
-  sWheelDropSensor_CalibrationData = 'WheelDropSensor_CalibrationData';
-  sWallSensor_CalibrationData = 'WallSensor_CalibrationData';
 
 type
   tGetCalInfoXV = class(tNeatoBaseCommand)
@@ -42,17 +49,25 @@ type
     fYAccel: double;
     fZAccel: double;
     fRTCOffset: double;
+
+    fLCDContrast: double;
+    fRDropMin: double;
+    fRDropMid: double;
+    fRDropMax: double;
+    fLDropMin: double;
+    fLDropMid: double;
+    fLDropMax: double;
+    fWallMin: double;
+    fWallMid: double;
+    fWallMax: double;
+
+    fQAState: string;
     fCleaningTestSurface: String;
     fCleaningTestHardSpeed: double;
     fCleaningTestCarpetSpeed: double;
     fCleaningTestHardDistance: double;
     fCleaningTestCarpetDistance: double;
-    fCleaningTestMode: double;
-    fQAState: string;
-    fLeftDropSensor_CalibrationData: double;
-    fRightDropSensor_CalibrationData: double;
-    fWheelDropSensor_CalibrationData: double;
-    fWallSensor_CalibrationData: double;
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -64,21 +79,23 @@ type
     property YAccel: double read fYAccel write fYAccel;
     property ZAccel: double read fZAccel write fZAccel;
     property RTCOffset: double read fRTCOffset write fRTCOffset;
+    property LCDContrast: double read fLCDContrast write fLCDContrast;
+    property RDropMin: double read fRDropMin write fRDropMin;
+    property RDropMid: double read fRDropMid write fRDropMid;
+    property RDropMax: double read fRDropMax write fRDropMax;
+    property LDropMin: double read fLDropMin write fLDropMin;
+    property LDropMid: double read fLDropMid write fLDropMid;
+    property LDropMax: double read fLDropMax write fLDropMax;
+    property WallMin: double read fWallMin write fWallMin;
+    property WallMid: double read fWallMid write fWallMid;
+    property WallMax: double read fWallMax write fWallMax;
+
+    property QAState: string read fQAState write fQAState;
     property CleaningTestSurface: String read fCleaningTestSurface write fCleaningTestSurface;
     property CleaningTestHardSpeed: double read fCleaningTestHardSpeed write fCleaningTestHardSpeed;
     property CleaningTestCarpetSpeed: double read fCleaningTestCarpetSpeed write fCleaningTestCarpetSpeed;
     property CleaningTestHardDistance: double read fCleaningTestHardDistance write fCleaningTestHardDistance;
     property CleaningTestCarpetDistance: double read fCleaningTestCarpetDistance write fCleaningTestCarpetDistance;
-    property CleaningTestMode: double read fCleaningTestMode write fCleaningTestMode;
-    property QAState: string read fQAState write fQAState;
-    property LeftDropSensor_CalibrationData: double read fLeftDropSensor_CalibrationData
-      write fLeftDropSensor_CalibrationData;
-    property RightDropSensor_CalibrationData: double read fRightDropSensor_CalibrationData
-      write fRightDropSensor_CalibrationData;
-    property WheelDropSensor_CalibrationData: double read fWheelDropSensor_CalibrationData
-      write fWheelDropSensor_CalibrationData;
-    property WallSensor_CalibrationData: double read fWallSensor_CalibrationData write fWallSensor_CalibrationData;
-
   end;
 
 implementation
@@ -103,17 +120,24 @@ begin
   fYAccel := 0;
   fZAccel := 0;
   fRTCOffset := 0;
+
+  fLCDContrast := 0;
+  fRDropMin := 0;
+  fRDropMid := 0;
+  fRDropMax := 0;
+  fLDropMin := 0;
+  fLDropMid := 0;
+  fLDropMax := 0;
+  fWallMin := 0;
+  fWallMid := 0;
+  fWallMax := 0;
+
+  fQAState := '';
   fCleaningTestSurface := '';
   fCleaningTestHardSpeed := 0;
   fCleaningTestCarpetSpeed := 0;
   fCleaningTestHardDistance := 0;
   fCleaningTestCarpetDistance := 0;
-  fCleaningTestMode := 0;
-  fQAState := '';
-  fLeftDropSensor_CalibrationData := 0;
-  fRightDropSensor_CalibrationData := 0;
-  fWheelDropSensor_CalibrationData := 0;
-  fWallSensor_CalibrationData := 0;
   inherited;
 end;
 
@@ -140,17 +164,24 @@ begin
     trystrtofloat(data.Values[sYAccel], fYAccel);
     trystrtofloat(data.Values[sZAccel], fZAccel);
     trystrtofloat(data.Values[sRTCOffset], fRTCOffset);
+
+    trystrtofloat(data.Values[sLCDContrast], fLCDContrast);
+    trystrtofloat(data.Values[sRDropMin], fRDropMin);
+    trystrtofloat(data.Values[sRDropMid], fRDropMid);
+    trystrtofloat(data.Values[sRDropMax], fRDropMax);
+    trystrtofloat(data.Values[sLDropMin], fLDropMin);
+    trystrtofloat(data.Values[sLDropMid], fLDropMid);
+    trystrtofloat(data.Values[sLDropMax], fLDropMax);
+    trystrtofloat(data.Values[sWallMin], fWallMin);
+    trystrtofloat(data.Values[sWallMid], fWallMid);
+    trystrtofloat(data.Values[sWallMax], fWallMax);
+
+    fQAState := data.Values[sQAState];
     fCleaningTestSurface := data.Values[sCleaningTestSurface];
     trystrtofloat(data.Values[sCleaningTestHardSpeed], fCleaningTestHardSpeed);
     trystrtofloat(data.Values[sCleaningTestCarpetSpeed], fCleaningTestCarpetSpeed);
     trystrtofloat(data.Values[sCleaningTestHardDistance], fCleaningTestHardDistance);
     trystrtofloat(data.Values[sCleaningTestCarpetDistance], fCleaningTestCarpetDistance);
-    trystrtofloat(data.Values[sCleaningTestMode], fCleaningTestMode);
-    fQAState := data.Values[sQAState];
-    trystrtofloat(data.Values[sLeftDropSensor_CalibrationData], fLeftDropSensor_CalibrationData);
-    trystrtofloat(data.Values[sRightDropSensor_CalibrationData], fRightDropSensor_CalibrationData);
-    trystrtofloat(data.Values[sWheelDropSensor_CalibrationData], fWheelDropSensor_CalibrationData);
-    trystrtofloat(data.Values[sWallSensor_CalibrationData], fWallSensor_CalibrationData);
     result := true;
   end
   else

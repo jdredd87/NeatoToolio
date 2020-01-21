@@ -5,7 +5,8 @@ interface
 uses
 {$IFDEF MSWINDOWS}
   Madexcept,
-  Winsoft.FireMonkey.FComPort, dmSerial.Windows,
+  Winsoft.FireMonkey.FComPort,
+  dmSerial.Windows,
   WinAPI.Windows,
   FMX.Platform.WIN,
 {$ENDIF}
@@ -19,21 +20,21 @@ uses
   Neato.D.GetAnalogSensors,
   Neato.D.GetDigitalSensors,
   Neato.D.GetErr,
-  Neato.D.GetVersion,
   Neato.D.GetUsage,
   Neato.D.GetUserSettings,
-  Neato.D.GetSensor,
+  Neato.D.GetVersion,
   Neato.D.GetMotors,
   Neato.D.GetWifiInfo,
   Neato.D.GetWifiStatus,
   Neato.D.GetButtons,
   Neato.D.GetCalInfo,
   Neato.D.ClearFiles,
+  Neato.D.GetSensor,
 
+  {D3-D7, DSeries Frames}
   frame.D.GetCharger,
   frame.D.GetAnalogSensors,
   frame.D.GetDigitalSensors,
-  frame.D.GetSensors,
   frame.D.GetMotors,
   frame.D.GetButtons,
   frame.D.GetCalInfo,
@@ -45,8 +46,9 @@ uses
   frame.D.ClearFiles,
   frame.D.GetWifiInfo,
   frame.D.GetWifiStatus,
+  frame.D.GetSensors,
 
-  {XV Series}
+  {XV Series Units}
   Neato.XV.GetCharger,
   Neato.XV.GetWarranty,
   Neato.XV.GetAnalogSensors,
@@ -56,13 +58,23 @@ uses
   Neato.XV.GetMotors,
   Neato.XV.GetButtons,
   Neato.XV.GetCalInfo,
+  Neato.XV.RestoreDefaults,
 
+  {XV Series Frames}
   frame.XV.GetCharger,
   frame.XV.GetAnalogSensors,
   frame.XV.GetDigitalSensors,
+  frame.XV.GetMotors,
+  frame.XV.GetButtons,
+  frame.XV.GetCalInfo,
+  frame.XV.GetWarranty,
+  frame.XV.GetErr,
+  frame.XV.GetVersion,
+  frame.XV.RestoreDefaults,
 
-  {XV and D Series}
+  {XV and D Series Units}
   Neato.DXV.Playsound,
+  Neato.DXV.GetAccel,
 
   frame.DXV.GetAccel,
   frame.DXV.Playsound,
@@ -71,18 +83,37 @@ uses
   {Everything else to run this}
   dmCommon,
 
-  Generics.Collections,
   XSuperObject,
   XSuperJson,
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.Controls.Presentation, FMX.StdCtrls, FMX.TabControl, FMX.ListBox,
-  FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
-  FMX.ListView, FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Effects,
-  System.Math.Vectors, FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D,
-  FMX.MaterialSources, FMX.Types3D, FMX.Filter.Effects, System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ExtCtrls, FMX.Edit,
-  FMX.EditBox, FMX.SpinBox, FMX.NumberBox, FMX.ComboEdit, FMX.Colors, FMX.TMSChart;
+  System.Rtti,
+  Generics.Collections,
+
+  FMX.Dialogs,
+  FMX.Grid.Style,
+  FMX.Types,
+  FMX.Colors,
+  FMX.StdCtrls,
+  FMX.Memo,
+  FMX.TMSChart,
+  FMX.Edit,
+  FMX.EditBox,
+  FMX.SpinBox,
+  FMX.Grid,
+  FMX.ScrollBox,
+  FMX.ListBox,
+  FMX.Objects,
+  FMX.Effects,
+  FMX.Controls.Presentation,
+  FMX.Controls,
+  FMX.TabControl,
+  FMX.Layouts,
+  FMX.Forms, frame.Scripts;
 
 type
   TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
@@ -169,6 +200,16 @@ type
     lblSetupComPort: TLabel;
     lblConnect: TLabel;
     swConnect: TCheckBox;
+    ShadowEffectmemoAbout: TShadowEffect;
+    RectangleaboutMemo: trectangle;
+    memoAbout: TMemo;
+    pnlDebugTerminalTop: trectangle;
+    btnDebugRawDataClear: TButton;
+    tabScripts: TTabItem;
+    frameScripts: TframeScripts;
+    lblNotSupported: TLabel;
+    ShadowEffect1: TShadowEffect;
+    tabRestoreDefaults: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -183,6 +224,7 @@ type
     procedure timer_LIDARTimer(Sender: TObject);
     procedure tabControlChange(Sender: TObject);
     procedure tabClickRepaint(Sender: TObject);
+    procedure btnDebugRawDataClearClick(Sender: TObject);
 
   private
     fCurrentTimer: TTimer;
@@ -210,7 +252,6 @@ type
     DGetCharger: TframeDGetCharger;
     DGetAnalogSensors: TframeDGetAnalogSensors;
     DGetDigitalSensors: TframeDGetDigitalSensors;
-    DGetSensors: TframeDGetSensors;
     DGetMotors: TframeDGetMotors;
     DGetButtons: TframeDGetButtons;
     DGetCalInfo: TframeDGetCalInfo;
@@ -222,12 +263,20 @@ type
     DClearFiles: TframeDClearFiles;
     DGetWifiInfo: TframeDGetWifiInfo;
     DGetWifiStatus: TframeDGetWifiStatus;
+    DGetSensors: TframeDGetSensors;
 
     // XVSeries Frames
 
     XVGetCharger: TframeXVGetCharger;
     XVGetAnalogSensors: TframeXVGetAnalogSensors;
     XVGetDigitalSensors: TframeXVGetDigitalSensors;
+    XVGetMotors: TframeXVGetMotors;
+    XVGetButtons: TframeXVGetButtons;
+    XVGetCalInfo: TframeXVGetCalInfo;
+    XVGetWarranty: TframeXVGetWarranty;
+    XVGetErr: TframeXVGetErr;
+    XVGetVersion: TframeXVGetVersion;
+    XVRestoreDefaults: TframeXVRestoreDefaults;
 
     // common tabs
     DXVPlaySound: TframeDXVPlaySound;
@@ -255,6 +304,23 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   idx: integer;
 begin
+
+  memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('Created by Steven Chesser');
+  memoAbout.Lines.Add('Contact : steven.chesser@twc.com');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('Thanks to the Neato group at @ http://www.robotreviews.com/chat/viewforum.php?f=20');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('Thanks to Ed Vickery for loaning out an XV for testing!');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('Neato Toolio is free.  It is open-source (mostly).  It comes with no guarantee.');
+  memoAbout.Lines.Add('Github @ https://github.com/jdredd87/NeatoToolio');
+  memoAbout.Lines.Add('');
+  memoAbout.Lines.Add('Neato Toolio is use at your own risk!');
 
 {$IFDEF ANDORID}
   application.onException := self.onException;
@@ -292,6 +358,7 @@ begin
   dm.com.FComSignalRLSD.ColorBox := self.ColorBoxRLSD;
   dm.com.FComSignalDSR.ColorBox := self.ColorBoxDSR;
   dm.com.FComSignalTX.ColorBox := self.ColorBoxTX;
+  dm.com.fmemoDebug := memoDebug;
 
   for idx := 0 to self.ComponentCount - 1 do
     if components[idx] is TTabItem then
@@ -307,6 +374,8 @@ begin
           PopulateCOMPorts;
         end);
     end).start;
+
+  self.frameScripts.init;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -319,6 +388,7 @@ procedure TfrmMain.FormShow(Sender: TObject);
 begin
   LoadImageID('NeatoLogo', self.imgRobot);
 end;
+
 
 // can use this event that when IDLE happens, which is very often and fast
 // to enable/disable things , such as send buttons when com is open or not
@@ -425,6 +495,11 @@ procedure TfrmMain.swConnectChange(Sender: TObject);
 begin
   StopTimers;
   toggleComs(swConnect.IsChecked);
+end;
+
+procedure TfrmMain.btnDebugRawDataClearClick(Sender: TObject);
+begin
+  memoDebug.Lines.Clear;
 end;
 
 procedure TfrmMain.chkAutoDetectChange(Sender: TObject);
@@ -601,7 +676,7 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
     begin
       if round(fLIDARCounter) >= round(sbResetLIDARMapping.Value) then
       begin
-        plotLidar.series.Items[0].Points.clear;
+        plotLidar.series.Items[0].Points.Clear;
         fLIDARCounter := 0;
       end;
     end;
@@ -980,49 +1055,81 @@ begin
   if TTabControl(Sender).ActiveTab = tabGetDigitalSensors then
     case Neato of
       neatoBotVac:
-       begin
-        XVGetDigitalSensors.Visible := false;
-        DGetDigitalSensors.Visible := true;
-        timerStarter := DGetDigitalSensors.timer_GetData;
-       end;
+        begin
+          XVGetDigitalSensors.Visible := false;
+          DGetDigitalSensors.Visible := true;
+          timerStarter := DGetDigitalSensors.timer_GetData;
+        end;
       neatoXV:
-      begin
-        DGetDigitalSensors.Visible := false;
-        XVGetDigitalSensors.Visible := true;
-        timerStarter := XVGetDigitalSensors.timer_GetData;
-      end;
+        begin
+          DGetDigitalSensors.Visible := false;
+          XVGetDigitalSensors.Visible := true;
+          timerStarter := XVGetDigitalSensors.timer_GetData;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetSensor then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetSensors.timer_GetData;
+        begin
+          lblNotSupported.Visible := false;
+          DGetSensors.Visible := true;
+          timerStarter := DGetSensors.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          DGetSensors.Visible := false;
+          lblNotSupported.Parent := tabGetSensor;
+          lblNotSupported.Visible := true;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetMotors then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetMotors.timer_GetData;
+        begin
+          DGetMotors.Visible := true;
+          XVGetMotors.Visible := false;
+          timerStarter := DGetMotors.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          XVGetMotors.Visible := true;
+          DGetMotors.Visible := false;
+          timerStarter := XVGetMotors.timer_GetData;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetButtons then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetButtons.timer_GetData;
+        begin
+          DGetButtons.Visible := true;
+          XVGetButtons.Visible := false;
+          timerStarter := DGetButtons.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          XVGetButtons.Visible := true;
+          DGetButtons.Visible := false;
+          timerStarter := XVGetButtons.timer_GetData;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetCalInfo then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetCalInfo.timer_GetData;
+        begin
+          DGetCalInfo.Visible := true;
+          XVGetCalInfo.Visible := false;
+          timerStarter := DGetCalInfo.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          XVGetCalInfo.Visible := true;
+          DGetCalInfo.Visible := false;
+          timerStarter := XVGetCalInfo.timer_GetData;
+        end;
     end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1030,84 +1137,165 @@ begin
   if TTabControl(Sender).ActiveTab = tabGetWarranty then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetWarranty.timer_GetData;
+        begin
+          DGetWarranty.Visible := true;
+          XVGetWarranty.Visible := false;
+          timerStarter := DGetWarranty.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          XVGetWarranty.Visible := true;
+          DGetWarranty.Visible := false;
+          timerStarter := XVGetWarranty.timer_GetData;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetErr then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetErr.timer_GetData;
+        begin
+          DGetErr.Visible := true;
+          XVGetErr.Visible := false;
+          timerStarter := DGetErr.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          XVGetErr.Visible := true;
+          DGetErr.Visible := false;
+          timerStarter := XVGetErr.timer_GetData;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetVersion then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetVersion.timer_GetData;
+        begin
+          DGetVersion.Visible := true;
+          XVGetVersion.Visible := false;
+          timerStarter := DGetVersion.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          XVGetVersion.Visible := true;
+          DGetVersion.Visible := false;
+          timerStarter := XVGetVersion.timer_GetData;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetUsage then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetUsage.timer_GetData;
+        begin
+          DGetUsage.Visible := true;
+          lblNotSupported.Visible := false;
+          timerStarter := DGetUsage.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          DGetVersion.Visible := false;
+          lblNotSupported.Parent := tabGetUsage;
+          lblNotSupported.Visible := true;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetUserSettings then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetUserSettings.timer_GetData;
+        begin
+          DGetUserSettings.Visible := true;
+          lblNotSupported.Visible := false;
+          timerStarter := DGetUserSettings.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          DGetUserSettings.Visible := false;
+          lblNotSupported.Parent := tabGetUserSettings;
+          lblNotSupported.Visible := true;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabPlaySound then
+  begin
+    DXVPlaySound.Visible := true;
     DXVPlaySound.Check;
+  end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabClearFiles then
     case Neato of
       neatoBotVac:
-        DClearFiles.Check;
+        begin
+          DClearFiles.Check;
+          DClearFiles.Visible := true;
+          lblNotSupported.Visible := false;
+        end;
       neatoXV:
-        timerStarter := nil; // does not have
+        begin
+          DClearFiles.Visible := false;
+          lblNotSupported.Parent := tabClearFiles;
+          lblNotSupported.Visible := true;
+        end;
     end;
 
-  if TTabControl(Sender).ActiveTab = tabGetUserSettings then
+  if TTabControl(Sender).ActiveTab = tabRestoreDefaults then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetUserSettings.timer_GetData;
+        begin
+          XVRestoreDefaults.Visible := false;
+          lblNotSupported.Parent := tabRestoreDefaults;
+          lblNotSupported.Visible := true;
+        end;
       neatoXV:
-        timerStarter := nil;
+        begin
+          lblNotSupported.Visible := false;
+          XVRestoreDefaults.Check;
+          XVRestoreDefaults.Visible := true;
+        end;
     end;
-
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabGetWifiInfo then
     case Neato of
       neatoBotVac:
-        DGetWifiInfo.Check;
+        begin
+          DGetWifiInfo.Check;
+          DGetWifiInfo.Visible := true;
+          lblNotSupported.Visible := false;
+        end;
       neatoXV:
-        timerStarter := nil; // does not have
+        begin
+          DGetWifiInfo.Visible := false;
+          lblNotSupported.Parent := tabGetWifiInfo;
+          lblNotSupported.Visible := true;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetWifiStatus then
     case Neato of
       neatoBotVac:
-        timerStarter := DGetWifiStatus.timer_GetData;
+        begin
+          DGetWifiStatus.Visible := true;
+          lblNotSupported.Visible := false;
+          timerStarter := DGetWifiStatus.timer_GetData;
+        end;
       neatoXV:
-        timerStarter := nil; // does not have
+        begin
+          DGetWifiStatus.Visible := false;
+          lblNotSupported.Parent := tabGetWifiStatus;
+          lblNotSupported.Visible := true;
+        end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabDebugTerminal then
+  begin
+    DXVTerminal.Visible := true;
+
+    if DXVTerminal.edDebugTerminalSend.CanFocus then
+      DXVTerminal.edDebugTerminalSend.SetFocus;
+
     timerStarter := DXVTerminal.timer_GetData;
+  end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1124,7 +1312,7 @@ begin
   with DGetCharger do
   begin
     Visible := false;
-    parent := tabGetCharger;
+    Parent := tabGetCharger;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1135,7 +1323,7 @@ begin
   with DXVGetAccel do
   begin
     Visible := false;
-    parent := tabGetAccel;
+    Parent := tabGetAccel;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1146,7 +1334,7 @@ begin
   with DGetAnalogSensors do
   begin
     Visible := false;
-    parent := tabGetAnalogSensors;
+    Parent := tabGetAnalogSensors;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1157,7 +1345,7 @@ begin
   with DGetDigitalSensors do
   begin
     Visible := false;
-    parent := tabGetDigitalSensors;
+    Parent := tabGetDigitalSensors;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1168,7 +1356,7 @@ begin
   with DGetSensors do
   begin
     Visible := false;
-    parent := tabGetSensor;
+    Parent := tabGetSensor;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1179,7 +1367,7 @@ begin
   with DGetMotors do
   begin
     Visible := false;
-    parent := tabGetMotors;
+    Parent := tabGetMotors;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1190,7 +1378,7 @@ begin
   with DGetButtons do
   begin
     Visible := false;
-    parent := tabGetButtons;
+    Parent := tabGetButtons;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1201,7 +1389,7 @@ begin
   with DGetCalInfo do
   begin
     Visible := false;
-    parent := tabGetCalInfo;
+    Parent := tabGetCalInfo;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1212,7 +1400,7 @@ begin
   with DGetWarranty do
   begin
     Visible := false;
-    parent := tabGetWarranty;
+    Parent := tabGetWarranty;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1223,7 +1411,7 @@ begin
   with DGetErr do
   begin
     Visible := false;
-    parent := tabGetErr;
+    Parent := tabGetErr;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1234,7 +1422,7 @@ begin
   with DGetVersion do
   begin
     Visible := false;
-    parent := tabGetVersion;
+    Parent := tabGetVersion;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1245,7 +1433,7 @@ begin
   with DGetUsage do
   begin
     Visible := false;
-    parent := tabGetUsage;
+    Parent := tabGetUsage;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1256,7 +1444,7 @@ begin
   with DGetUserSettings do
   begin
     Visible := false;
-    parent := tabGetUserSettings;
+    Parent := tabGetUserSettings;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1267,7 +1455,7 @@ begin
   with DClearFiles do
   begin
     Visible := false;
-    parent := tabClearFiles;
+    Parent := tabClearFiles;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1277,7 +1465,7 @@ begin
   with DGetWifiInfo do
   begin
     Visible := false;
-    parent := tabGetWifiInfo;
+    Parent := tabGetWifiInfo;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1287,7 +1475,7 @@ begin
   with DGetWifiStatus do
   begin
     Visible := false;
-    parent := tabGetWifiStatus;
+    Parent := tabGetWifiStatus;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1300,7 +1488,7 @@ begin
   with XVGetCharger do
   begin
     Visible := false;
-    parent := tabGetCharger;
+    Parent := tabGetCharger;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1311,7 +1499,7 @@ begin
   with XVGetAnalogSensors do
   begin
     Visible := false;
-    parent := tabGetAnalogSensors;
+    Parent := tabGetAnalogSensors;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1322,20 +1510,95 @@ begin
   with XVGetDigitalSensors do
   begin
     Visible := false;
-    parent := tabGetDigitalSensors;
+    Parent := tabGetDigitalSensors;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
     fTimerList.Add(timer_GetData);
   end;
 
+  XVGetMotors := TframeXVGetMotors.Create(tabGetMotors);
+  with XVGetMotors do
+  begin
+    Visible := false;
+    Parent := tabGetMotors;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    fTimerList.Add(timer_GetData);
+  end;
+
+  XVGetButtons := TframeXVGetButtons.Create(tabGetButtons);
+  with XVGetButtons do
+  begin
+    Visible := false;
+    Parent := tabGetButtons;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    fTimerList.Add(timer_GetData);
+  end;
+
+  XVGetCalInfo := TframeXVGetCalInfo.Create(tabGetCalInfo);
+  with XVGetCalInfo do
+  begin
+    Visible := false;
+    Parent := tabGetCalInfo;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    fTimerList.Add(timer_GetData);
+  end;
+
+  XVGetWarranty := TframeXVGetWarranty.Create(tabGetWarranty);
+  with XVGetWarranty do
+  begin
+    Visible := false;
+    Parent := tabGetWarranty;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    fTimerList.Add(timer_GetData);
+  end;
+
+  XVGetErr := TframeXVGetErr.Create(tabGetErr);
+  with XVGetErr do
+  begin
+    Visible := false;
+    Parent := tabGetErr;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    fTimerList.Add(timer_GetData);
+  end;
+
+  XVGetVersion := TframeXVGetVersion.Create(tabGetVersion);
+  with XVGetVersion do
+  begin
+    Visible := false;
+    Parent := tabGetVersion;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    fTimerList.Add(timer_GetData);
+  end;
+
+  XVRestoreDefaults := TframeXVRestoreDefaults.Create(tabRestoreDefaults);
+  with XVRestoreDefaults do
+  begin
+    Visible := false;
+    Parent := tabRestoreDefaults;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
 
   // Create common tabs
 
   DXVPlaySound := TframeDXVPlaySound.Create(tabPlaySound);
   with DXVPlaySound do
   begin
-    parent := tabPlaySound;
+    Parent := tabPlaySound;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
@@ -1344,7 +1607,7 @@ begin
   DXVTerminal := TframeDXVTerminal.Create(tabDebugTerminal);
   with DXVTerminal do
   begin
-    parent := tabDebugTerminal;
+    Parent := tabDebugTerminal;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;
