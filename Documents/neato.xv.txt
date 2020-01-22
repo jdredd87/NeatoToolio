@@ -1,0 +1,40 @@
+d = done
+y = started
+x = not gonna do, doesnt seem to do much of anything and not documented
+
+x	Clean - Starts a cleaning by simulating press of start button.
+x	DiagTest - Executes different test modes. Once set, press Start button to engage. (Test modes are mutually exclusive.)
+
+d	GetAccel - Get the Accelerometer readings.
+d	GetAnalogSensors - Get the A2D readings for the analog sensors.
+d	GetButtons - Get the state of the UI Buttons.
+d	GetCalInfo - Prints out the cal info from the System Control Block.
+d	GetCharger - Get the diagnostic data for the charging system.
+d	GetDigitalSensors - Get the state of the digital sensors.
+d	GetErr - Get Error Message.
+
+x	GetLDSScan - Get scan packet from LDS.
+
+d	GetMotors - Get the diagnostic data for the motors.
+
+x	GetSchedule - Get the Cleaning Schedule. (24 hour clock format)
+x	GetTime - Get Current Scheduler Time.
+
+d	GetVersion - Get the version information for the system software and hardware.
+d	GetWarranty - Get the warranty validation codes.
+d	PlaySound - Play the specified sound in the robot.
+
+d	RestoreDefaults - Restore user settings to default.
+
+x	SetFuelGauge - Set Fuel Gauge Level.
+x	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
+x	SetTime - Sets the current day, hour, and minute for the scheduler clock.
+x	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
+x	SetIEC - Sets the IEC Cleaning Test parameters
+x	SetLCD - Sets the LCD to the specified display. (TestMode Only)
+x	SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
+x	SetSchedule - Modify Cleaning Schedule.
+x	SetSystemMode - Set the operation mode of the robot. (TestMode Only)
+	
+d	TestMode - Sets TestMode on or off. Some commands can only be run in TestMode.
+	Upload - Uploads new program to the robot.
