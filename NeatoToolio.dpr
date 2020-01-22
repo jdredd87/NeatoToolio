@@ -36,13 +36,8 @@ uses
   neato.D.GetWifiStatus in 'DSeries\neato.D.GetWifiStatus.pas',
   neato.D.TestLDS in 'DSeries\neato.D.TestLDS.pas',
   neato.XV.GetAnalogSensors in 'XVSeries\neato.XV.GetAnalogSensors.pas',
-  neato.XV.GetButtons in 'XVSeries\neato.XV.GetButtons.pas',
-  neato.XV.GetCalInfo in 'XVSeries\neato.XV.GetCalInfo.pas',
   neato.XV.GetCharger in 'XVSeries\neato.XV.GetCharger.pas',
-  neato.XV.GetErr in 'XVSeries\neato.XV.GetErr.pas',
   neato.XV.GetLDSScan in 'XVSeries\neato.XV.GetLDSScan.pas',
-  neato.XV.GetVersion in 'XVSeries\neato.XV.GetVersion.pas',
-  neato.XV.GetWarranty in 'XVSeries\neato.XV.GetWarranty.pas',
   neato.DXV.Playsound in 'Common\neato.DXV.Playsound.pas',
   neato.DXV.GetAccel in 'Common\neato.DXV.GetAccel.pas',
   neato.XV.GetDigitalSensors in 'XVSeries\neato.XV.GetDigitalSensors.pas',
@@ -70,7 +65,21 @@ uses
   frame.D.GetSensors in 'DSeriesFrames\frame.D.GetSensors.pas' {frameDGetSensors: TFrame},
   frame.Scripts in 'Scripts\frame.Scripts.pas' {frameScripts: TFrame},
   neato.XV.GetMotors in 'XVSeries\neato.XV.GetMotors.pas',
-  frame.XV.GetMotors in 'XVSeriesFrames\frame.XV.GetMotors.pas' {frameXVGetMotors: TFrame};
+  frame.XV.GetMotors in 'XVSeriesFrames\frame.XV.GetMotors.pas' {frameXVGetMotors: TFrame},
+  frame.XV.GetCalInfo in 'XVSeriesFrames\frame.XV.GetCalInfo.pas' {frameXVGetCalInfo: TFrame},
+  neato.XV.GetCalInfo in 'XVSeries\neato.XV.GetCalInfo.pas',
+  frame.XV.GetWarranty in 'XVSeriesFrames\frame.XV.GetWarranty.pas' {frameXVGetWarranty: TFrame},
+  neato.XV.GetWarranty in 'XVSeries\neato.XV.GetWarranty.pas',
+  neato.XV.GetErr in 'XVSeries\neato.XV.GetErr.pas',
+  frame.XV.GetErr in 'XVSeriesFrames\frame.XV.GetErr.pas' {FrameXVGetErr: TFrame},
+  frame.XV.GetVersion in 'XVSeriesFrames\frame.XV.GetVersion.pas' {frameXVGetVersion: TFrame},
+  neato.XV.GetVersion in 'XVSeries\neato.XV.GetVersion.pas',
+  frame.XV.RestoreDefaults in 'XVSeriesFrames\frame.XV.RestoreDefaults.pas' {frameXVRestoreDefaults: TFrame},
+  neato.XV.RestoreDefaults in 'XVSeries\neato.XV.RestoreDefaults.pas',
+  neato.XV.GetSchedule in 'XVSeries\neato.XV.GetSchedule.pas',
+  neato.XV.GetButtons in 'XVSeries\neato.XV.GetButtons.pas',
+  frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame},
+  frame.XV.GetButtons in 'XVSeriesFrames\frame.XV.GetButtons.pas' {frameXVGetButtons: TFrame};
 
 {$R *.res}
 

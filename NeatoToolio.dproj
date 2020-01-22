@@ -378,8 +378,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>1</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -396,6 +396,10 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <DCC_Define>madExcept;$(DCC_Define)</DCC_Define>
+        <DCC_MapFile>3</DCC_MapFile>
+        <DCC_DebugInformation>2</DCC_DebugInformation>
+        <DCC_LocalDebugSymbols>true</DCC_LocalDebugSymbols>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -439,13 +443,8 @@
         <DCCReference Include="DSeries\neato.D.GetWifiStatus.pas"/>
         <DCCReference Include="DSeries\neato.D.TestLDS.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetAnalogSensors.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetButtons.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetCalInfo.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetCharger.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetErr.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetLDSScan.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetVersion.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetWarranty.pas"/>
         <DCCReference Include="Common\neato.DXV.Playsound.pas"/>
         <DCCReference Include="Common\neato.DXV.GetAccel.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetDigitalSensors.pas"/>
@@ -544,6 +543,48 @@
         <DCCReference Include="XVSeries\neato.XV.GetMotors.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetMotors.pas">
             <Form>frameXVGetMotors</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetCalInfo.pas">
+            <Form>frameXVGetCalInfo</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetCalInfo.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetWarranty.pas">
+            <Form>frameXVGetWarranty</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetWarranty.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetErr.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetErr.pas">
+            <Form>FrameXVGetErr</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetVersion.pas">
+            <Form>frameXVGetVersion</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetVersion.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.RestoreDefaults.pas">
+            <Form>frameXVRestoreDefaults</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.RestoreDefaults.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetSchedule.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetButtons.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetSchedule.pas">
+            <Form>frameXVGetSchedule</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetButtons.pas">
+            <Form>frameXVGetButtons</Form>
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>

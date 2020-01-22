@@ -59,6 +59,7 @@ uses
   Neato.XV.GetButtons,
   Neato.XV.GetCalInfo,
   Neato.XV.RestoreDefaults,
+  Neato.XV.GetSchedule,
 
   {XV Series Frames}
   frame.XV.GetCharger,
@@ -71,6 +72,7 @@ uses
   frame.XV.GetErr,
   frame.XV.GetVersion,
   frame.XV.RestoreDefaults,
+  frame.XV.GetSchedule,
 
   {XV and D Series Units}
   Neato.DXV.Playsound,
@@ -113,7 +115,7 @@ uses
   FMX.Controls,
   FMX.TabControl,
   FMX.Layouts,
-  FMX.Forms, frame.Scripts;
+  FMX.Forms, frame.Scripts, FMX.DateTimeCtrls;
 
 type
   TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
@@ -210,6 +212,7 @@ type
     lblNotSupported: TLabel;
     ShadowEffect1: TShadowEffect;
     tabRestoreDefaults: TTabItem;
+    tabGetSchedule: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -277,6 +280,7 @@ type
     XVGetErr: TframeXVGetErr;
     XVGetVersion: TframeXVGetVersion;
     XVRestoreDefaults: TframeXVRestoreDefaults;
+    XVGetSchedule: TframeXVGetSchedule;
 
     // common tabs
     DXVPlaySound: TframeDXVPlaySound;
@@ -303,6 +307,7 @@ implementation
 procedure TfrmMain.FormCreate(Sender: TObject);
 var
   idx: integer;
+  FUPButton: TFMXObject;
 begin
 
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
@@ -1214,6 +1219,13 @@ begin
         end;
     end;
 
+  if TTabControl(Sender).ActiveTab = tabGetSchedule then
+  begin
+    lblNotSupported.Visible := false;
+    XVGetSchedule.Visible := true;
+    timerStarter := XVGetSchedule.timer_GetData;
+  end;
+
   if TTabControl(Sender).ActiveTab = tabPlaySound then
   begin
     DXVPlaySound.Visible := true;
@@ -1592,6 +1604,17 @@ begin
     position.Y := 0;
     align := talignlayout.Client;
   end;
+
+  XVGetSchedule := TframeXVGetSchedule.Create(tabGetSchedule);
+  with XVGetSchedule do
+  begin
+    Visible := false;
+    Parent := tabGetSchedule;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
 
   // Create common tabs
 
