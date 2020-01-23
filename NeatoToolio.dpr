@@ -79,7 +79,9 @@ uses
   neato.XV.GetSchedule in 'XVSeries\neato.XV.GetSchedule.pas',
   neato.XV.GetButtons in 'XVSeries\neato.XV.GetButtons.pas',
   frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame},
-  frame.XV.GetButtons in 'XVSeriesFrames\frame.XV.GetButtons.pas' {frameXVGetButtons: TFrame};
+  frame.XV.GetButtons in 'XVSeriesFrames\frame.XV.GetButtons.pas' {frameXVGetButtons: TFrame},
+  neato.XV.GetTime in 'XVSeries\neato.XV.GetTime.pas',
+  frame.XV.GetTime in 'XVSeriesFrames\frame.XV.GetTime.pas' {frameXVGetTime: TFrame};
 
 {$R *.res}
 

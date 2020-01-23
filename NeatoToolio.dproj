@@ -588,6 +588,12 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.GetTime.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetTime.pas">
+            <Form>frameXVGetTime</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>

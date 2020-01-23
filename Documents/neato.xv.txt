@@ -17,7 +17,7 @@ x	GetLDSScan - Get scan packet from LDS.
 
 d	GetMotors - Get the diagnostic data for the motors.
 
-x	GetSchedule - Get the Cleaning Schedule. (24 hour clock format)
+d	GetSchedule - Get the Cleaning Schedule. (24 hour clock format)
 x	GetTime - Get Current Scheduler Time.
 
 d	GetVersion - Get the version information for the system software and hardware.
