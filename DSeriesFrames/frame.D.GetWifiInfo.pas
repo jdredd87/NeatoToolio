@@ -24,7 +24,7 @@ type
   private
     { Private declarations }
   public
-   procedure Check;
+    procedure Check;
   end;
 
 implementation
@@ -96,12 +96,13 @@ begin
       freeandnil(gGetWifiInfo);
 
     end).start;
+  resetfocus;
 end;
 
 procedure TframeDGetWifiInfo.Check;
 begin
- btnGetWifiInfoScan.Enabled := dm.COM.Serial.Active;
- sgGetWifiInfo.Clear;
+  btnGetWifiInfoScan.Enabled := dm.com.Serial.Active;
+  sgGetWifiInfo.Clear;
 end;
 
 end.

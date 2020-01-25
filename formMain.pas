@@ -61,6 +61,7 @@ uses
   Neato.XV.RestoreDefaults,
   Neato.XV.GetSchedule,
   Neato.XV.GetTime,
+  Neato.XV.Clean,
 
   {XV Series Frames}
   frame.XV.GetCharger,
@@ -75,14 +76,17 @@ uses
   frame.XV.RestoreDefaults,
   frame.XV.GetSchedule,
   frame.XV.GetTime,
+  frame.XV.Clean,
 
   {XV and D Series Units}
   Neato.DXV.Playsound,
   Neato.DXV.GetAccel,
+  Neato.DXV.GetLDSScan,
 
   frame.DXV.GetAccel,
   frame.DXV.Playsound,
   frame.DXV.Terminal,
+  frame.DXV.GetLDSScan,
 
   {Everything else to run this}
   dmCommon,
@@ -98,6 +102,7 @@ uses
   System.Rtti,
   Generics.Collections,
 
+  FMX.Controls,
   FMX.Dialogs,
   FMX.Grid.Style,
   FMX.Types,
@@ -114,10 +119,9 @@ uses
   FMX.Objects,
   FMX.Effects,
   FMX.Controls.Presentation,
-  FMX.Controls,
   FMX.TabControl,
   FMX.Layouts,
-  FMX.Forms, frame.Scripts, FMX.DateTimeCtrls;
+  FMX.Forms, frame.Scripts, FMX.DateTimeCtrls, FMXTee.Engine, FMXTee.Series, FMXTee.Procs, FMXTee.Chart;
 
 type
   TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
@@ -194,8 +198,7 @@ type
     lblRobotModel: TLabel;
     imgRobot: TImage;
     tabClearFiles: TTabItem;
-    plotLidar: TTMSFMXChart;
-    Panel1: trectangle;
+    pnlLidarTop: TRectangle;
     ShadowEffect2: TShadowEffect;
     GlowEffect1: TGlowEffect;
     shadowBotImage: TShadowEffect;
@@ -216,6 +219,19 @@ type
     tabRestoreDefaults: TTabItem;
     tabGetSchedule: TTabItem;
     tabGetTime: TTabItem;
+    tabClean: TTabItem;
+    tabDiagTest: TTabItem;
+    tabGetLDSScan: TTabItem;
+    tabGetConfiguredWifiNetworks: TTabItem;
+    btnLidarStart: TButton;
+    chkChartShowLabels: TCheckBox;
+    spinLidarDrawEvery: TSpinBox;
+    lblMarkerCount: TLabel;
+    chkLidarHideCalc: TCheckBox;
+    rectLidarChart: TRectangle;
+    plotLidar: TChart;
+    Series1: TPointSeries;
+    Series2: TPointSeries;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -231,6 +247,10 @@ type
     procedure tabControlChange(Sender: TObject);
     procedure tabClickRepaint(Sender: TObject);
     procedure btnDebugRawDataClearClick(Sender: TObject);
+    procedure btnLidarStartClick(Sender: TObject);
+    procedure chkChartShowLabelsChange(Sender: TObject);
+    procedure spinLidarDrawEveryChange(Sender: TObject);
+    procedure chkLidarHideCalcChange(Sender: TObject);
 
   private
     fCurrentTimer: TTimer;
@@ -285,11 +305,13 @@ type
     XVRestoreDefaults: TframeXVRestoreDefaults;
     XVGetSchedule: TframeXVGetSchedule;
     XVGetTime: TframeXVGetTime;
+    XVClean: TFrameXVClean;
 
     // common tabs
     DXVPlaySound: TframeDXVPlaySound;
     DXVTerminal: TframeDXVTerminal;
     DXVGetAccel: TframeDXVGetAccel;
+    DXVGetLDSScan: TframeDXVGetLDSScan;
 
     Neato: TNeatoModels; // what kind of bot model line
 
@@ -312,6 +334,9 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   idx: integer;
 begin
+
+  dm.chkTestmode := chkTestMode;
+  chkLidarHideCalc.IsChecked := true;
 
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
   memoAbout.Lines.Add('');
@@ -480,11 +505,14 @@ end;
 procedure TfrmMain.FComPortError(Sender: TObject);
 begin
   StopTimers;
+
+  if dm.com.errorcode <> 0 then
+    showmessage('COM Issue #' + dm.com.errorcode.ToString + ' : ' + dm.com.Error);
+
   try
     dm.com.Serial.Active := false;
   finally
   end;
-  showmessage('COM Issue #' + dm.com.errorcode.ToString + ' : ' + dm.com.Error);
 
   swConnect.IsChecked := false;
   chkAutoDetect.Enabled := true;
@@ -515,6 +543,36 @@ begin
   cbCOM.Enabled := NOT chkAutoDetect.IsChecked;
   swConnect.IsChecked := false;
   neatoSettings.AutoDetectNeato := chkAutoDetect.IsChecked;
+end;
+
+procedure TfrmMain.chkChartShowLabelsChange(Sender: TObject);
+begin
+  plotLidar.Series[0].Marks.Visible := chkChartShowLabels.IsChecked;
+  plotLidar.Series[0].Marks.DrawEvery := round(spinLidarDrawEvery.Value);
+  spinLidarDrawEvery.Enabled := chkChartShowLabels.IsChecked;
+end;
+
+procedure TfrmMain.chkLidarHideCalcChange(Sender: TObject);
+begin
+  case chkLidarHideCalc.IsChecked of
+    true:
+      begin
+        sgLIDAR.Visible := false;
+        plotLidar.Width := plotLidar.Width + 100;
+        plotLidar.height := plotLidar.height + 130;
+      end;
+    false:
+      begin
+        plotLidar.Width := plotLidar.Width - 100;
+        plotLidar.height := plotLidar.height - 130;
+        sgLIDAR.Visible := true;
+      end;
+  end;
+end;
+
+procedure TfrmMain.spinLidarDrawEveryChange(Sender: TObject);
+begin
+  plotLidar.Series[0].Marks.DrawEvery := round(spinLidarDrawEvery.Value);
 end;
 
 procedure TfrmMain.chkTestModeChange(Sender: TObject);
@@ -670,11 +728,11 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
     scaleByValue := 0.16; // don't know what to do here
     plotSpotSize := 4; // this guy too
 
-    xPixels := plotLidar.Width / 4;
+    // xPixels := plotLidar.Width / 4;
     // Contain graph width within a quarter of the grid width (actually half because of neg values)
-    yPixels := plotLidar.Height / 4;
+    // yPixels := plotLidar.Height / 4;
     // Contain graph height within a quarter of the grid height (actually half because of neg values)
-    PlotCenterOrigin := PointF(plotLidar.Width / 2, plotLidar.Height / 2);
+    // PlotCenterOrigin := PointF(plotLidar.Width / 2, plotLidar.Height / 2);
     // Calculate the center point of the plot grid
 
     plotLidar.BeginUpdate;
@@ -684,7 +742,9 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
     begin
       if round(fLIDARCounter) >= round(sbResetLIDARMapping.Value) then
       begin
-        plotLidar.series.Items[0].Points.Clear;
+        // plotLidar.series.Items[0].Points.Clear;
+        plotLidar.Series[0].Clear;
+        plotLidar.Series[1].Clear;
         fLIDARCounter := 0;
       end;
     end;
@@ -697,8 +757,7 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       intensity := strtoint(sgLIDAR.Cells[2, RowIDX]);
       errorcode := strtoint(sgLIDAR.Cells[3, RowIDX]);
 
-      if errorcode <> 0 then
-        continue;
+      // if errorcode <> 0 then   continue;
 
       // Calculate x' and y' - add this to geometric correction to get object coordinates
       Xo := CalcXCorrection(AngleInDegrees, DistInMM);
@@ -725,6 +784,12 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
       newPlotPoint.X := plotLidar.position.X + PlotCenterOrigin.X + (Xf * scaleByValue);
       newPlotPoint.Y := plotLidar.position.Y + PlotCenterOrigin.Y + (Yf * scaleByValue);
 
+      if (newPlotPoint.X > 1000) or (newPlotPoint.X < -1000) then
+        continue;
+
+      if (newPlotPoint.Y > 1000) or (newPlotPoint.Y < -1000) then
+        continue;
+
       { if newPlotPoint.X > maxx then
         maxx := newPlotPoint.X;
 
@@ -736,17 +801,22 @@ procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
 
         if newPlotPoint.Y < miny then
         miny := newPlotPoint.Y;
-
-        // caption := 'MaxX = '+maxx.ToString + ' MaxY = '+maxy.ToString + '   ||   MinX = '+minx.ToString+' MinY = '+miny.ToString;
-
-        plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y);
       }
+      // caption := 'MaxX = '+maxx.ToString + ' MaxY = '+maxy.ToString + '   ||   MinX = '+minx.ToString+' MinY = '+miny.ToString;
+
+      if errorcode > 0 then
+        plotLidar.Series[1].AddXY(newPlotPoint.X, newPlotPoint.Y, '', talphacolorrec.Red)
+        // plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y)
+      else
+        plotLidar.Series[0].AddXY(newPlotPoint.X, newPlotPoint.Y, '', talphacolorrec.green);
+      // plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y);
+
       if errorcode > 0 then
         intensity := 99999;
 
       case intensity of
         0 .. 511: // green
-          intensity := talphacolorrec.Green;
+          intensity := talphacolorrec.green;
         512 .. 1023:
           intensity := talphacolorrec.Yellow;
         1024 .. 1535:
@@ -793,6 +863,37 @@ begin
   end;
 
   pReadData.Free;
+
+end;
+
+procedure TfrmMain.btnLidarStartClick(Sender: TObject);
+begin
+
+  if NOT btnLidarStart.IsPressed then
+  begin
+    timer_LIDAR.Enabled := false;
+    dm.com.SendCommand('Setldsrotation off');
+    sleep(250);
+    dm.com.SendCommand('Setldsrotation off');
+    sleep(250);
+    btnLidarStart.ResetFocus;
+    btnLidarStart.Text := 'Start';
+  end
+  else
+  begin
+
+    chkTestMode.IsChecked := true;
+    sleep(250);
+    chkTestMode.IsChecked := true;
+    sleep(250);
+    dm.com.SendCommand('Setldsrotation on');
+    sleep(250);
+    dm.com.SendCommand('Setldsrotation on');
+    sleep(250);
+    timer_LIDAR.Enabled := true;
+    btnLidarStart.ResetFocus;
+    btnLidarStart.Text := 'Stop';
+  end;
 
 end;
 
@@ -995,6 +1096,12 @@ procedure TfrmMain.PopulateCOMPorts;
 var
   comList: TStringList;
 begin
+  try
+    swConnect.IsChecked := false;
+    StopTimers;
+    toggleComs(false);
+  except
+  end;
   comList := TStringList.Create;
   dm.com.Serial.EnumComDevices(comList);
   cbCOM.BeginUpdate;
@@ -1236,12 +1343,32 @@ begin
     timerStarter := XVGetTime.timer_GetData;
   end;
 
-
+  if TTabControl(Sender).ActiveTab = tabClean then
+    case Neato of
+      neatoBotVac:
+        begin
+          XVClean.Visible := false;
+          lblNotSupported.Parent := tabClean;
+          lblNotSupported.Visible := true;
+        end;
+      neatoXV:
+        begin
+          XVClean.Visible := true;
+          XVClean.Check;
+          lblNotSupported.Visible := false;
+        end;
+    end;
 
   if TTabControl(Sender).ActiveTab = tabPlaySound then
   begin
     DXVPlaySound.Visible := true;
     DXVPlaySound.Check;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabGetLDSScan then
+  begin
+    DXVGetLDSScan.Visible := true;
+    timerStarter := DXVGetLDSScan.timer_GetData;
   end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1637,7 +1764,15 @@ begin
     align := talignlayout.Client;
   end;
 
-
+  XVClean := TFrameXVClean.Create(tabClean);
+  with XVClean do
+  begin
+    Visible := false;
+    Parent := tabClean;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
 
   // Create common tabs
 
@@ -1658,6 +1793,16 @@ begin
     position.Y := 0;
     align := talignlayout.Client;
   end;
+
+  DXVGetLDSScan := TframeDXVGetLDSScan.Create(tabGetLDSScan);
+  with DXVGetLDSScan do
+  begin
+    Parent := tabGetLDSScan;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
 
 end;
 

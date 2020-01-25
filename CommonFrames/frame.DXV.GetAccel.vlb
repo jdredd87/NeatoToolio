@@ -1,0 +1,11 @@
+﻿[view3dGetAccelValue]
+Coordinates=317,214,120,51
+Visible=True
+ExplicitSubNodes=Color
+
+[Timer_GetData]
+Coordinates=416,269,87,33
+
+[]
+Coordinates=467,214,93,33
+

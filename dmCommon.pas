@@ -6,7 +6,7 @@ uses
 {$IFDEF MSWINDOWS}
   dmSerial.Windows,
 {$ENDIF}
-  System.SysUtils, System.Classes, FMX.Types, FMX.Controls;
+  System.SysUtils, System.Classes, FMX.Types, FMX.Controls, FMX.StdCtrls;
 
 type
   Tdm = class(TDataModule)
@@ -16,9 +16,11 @@ type
   private
     { Private declarations }
   public
-   {$ifdef MSWINDOWS}
-   COM: TdmSerial; // COM, Communicaitons level depending on OS
-   {$endif}
+{$IFDEF MSWINDOWS}
+    COM: TdmSerial; // COM, Communicaitons level depending on OS
+{$ENDIF}
+    chkTestmode: tcheckbox; // allows frames to access the main form object easily!
+
   end;
 
 var
@@ -27,17 +29,16 @@ var
 implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
-
 {$R *.dfm}
 
 procedure Tdm.DataModuleCreate(Sender: TObject);
 begin
- com := TdmSerial.Create(self);
+  COM := TdmSerial.Create(self);
 end;
 
 procedure Tdm.DataModuleDestroy(Sender: TObject);
 begin
- freeandnil(com);
+  freeandnil(COM);
 end;
 
 end.

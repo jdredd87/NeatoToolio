@@ -378,8 +378,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>2</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>4</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.4;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -433,7 +433,6 @@
         <DCCReference Include="DSeries\neato.D.GetCharger.pas"/>
         <DCCReference Include="DSeries\neato.D.GetDigitalSensors.pas"/>
         <DCCReference Include="DSeries\neato.D.GetErr.pas"/>
-        <DCCReference Include="DSeries\neato.D.GetLDSScan.pas"/>
         <DCCReference Include="DSeries\neato.D.GetMotors.pas"/>
         <DCCReference Include="DSeries\neato.D.GetUsage.pas"/>
         <DCCReference Include="DSeries\neato.D.GetUserSettings.pas"/>
@@ -509,15 +508,15 @@
             <Form>frameXVGetCharger</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="SharedFrames\frame.DXV.Terminal.pas">
+        <DCCReference Include="CommonFrames\frame.DXV.Terminal.pas">
             <Form>frameDXVTerminal</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="SharedFrames\frame.DXV.Playsound.pas">
+        <DCCReference Include="CommonFrames\frame.DXV.Playsound.pas">
             <Form>frameDXVPlaySound</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="SharedFrames\frame.DXV.GetAccel.pas">
+        <DCCReference Include="CommonFrames\frame.DXV.GetAccel.pas">
             <Form>frameDXVGetAccel</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
@@ -594,6 +593,18 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="XVSeries\neato.XV.Clean.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.Clean.pas">
+            <Form>frameXVClean</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.GetLDSScan.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.GetLDSScan.pas">
+            <Form>frameDXVGetLDSScan</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>
@@ -653,6 +664,7 @@
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\software\Winsoft\Protocol Suite for FireMonkey\Delphi103-Win32\Winsoft.FireMonkey.FProtSuite.bpl">Winsoft Communication Protocol Suite for FireMonkey</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">

@@ -1,0 +1,86 @@
+object frameDXVGetLDSScan: TframeDXVGetLDSScan
+  Align = Client
+  Size.Width = 808.000000000000000000
+  Size.Height = 528.000000000000000000
+  Size.PlatformDefault = False
+  object Timer_GetData: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer_GetDataTimer
+    Left = 576
+    Top = 152
+  end
+  object sgGetLDSScan: TStringGrid
+    Align = Left
+    CanFocus = True
+    ClipChildren = True
+    Position.Y = 70.000000000000000000
+    Size.Width = 537.000000000000000000
+    Size.Height = 458.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    OnDrawColumnCell = sgGetLDSScanDrawColumnCell
+    Viewport.Width = 517.000000000000000000
+    Viewport.Height = 433.000000000000000000
+    object sgGetLDSScanColumnAngleInDegrees: TStringColumn
+      Header = 'AngleInDegrees'
+      Size.Width = 125.000000000000000000
+      object FloatAnimation1: TFloatAnimation
+        Duration = 0.200000002980232200
+        PropertyName = 'Width'
+        StartValue = 0.000000000000000000
+        StopValue = 0.000000000000000000
+      end
+    end
+    object sgGetLDSScanColumnDistInMM: TStringColumn
+      Header = 'DistInMM'
+      Size.Width = 125.000000000000000000
+    end
+    object sgGetLDSScanColumnIntensity: TStringColumn
+      Header = 'Intensity'
+      Size.Width = 125.000000000000000000
+    end
+    object sgGetLDSScanColumnErrorCodeHEX: TStringColumn
+      Header = 'ErrorCodeHEX'
+      Size.Width = 125.000000000000000000
+    end
+  end
+  object lblGetLDSScanRotationSpeed: TLabel
+    Position.X = 544.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'ROTATION_SPEED'
+    TabOrder = 6
+  end
+  object lblGetLDSScanRotationSpeedValue: TLabel
+    Position.X = 728.000000000000000000
+    Position.Y = 80.000000000000000000
+    Size.Width = 41.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = '0.00'
+    TabOrder = 7
+  end
+  object Panel1: TRectangle
+    Align = Top
+    Fill.Color = xFF2D92BF
+    Sides = []
+    Size.Width = 808.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object btnLidarStart: TButton
+    StaysPressed = True
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 80.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Start'
+    OnClick = btnLidarStartClick
+  end
+end

@@ -70,8 +70,7 @@ begin
   Scripter.EventSupport := true;
 
   Scripter.AddLibrary(TatClassesLibrary);
-  scripter.AddLibrary(TatDialogsLibrary);
-
+  Scripter.AddLibrary(TatDialogsLibrary);
 
   Scripter.DefineClassByRTTI(TScriptForm, roInclude);
   Scripter.DefineClassByRTTI(TButton);
@@ -87,7 +86,6 @@ begin
   Scripter.DefineClassByRTTI(TRadioButton);
   Scripter.DefineClassByRTTI(TComboBox);
 
-
   Scripter.DefineClassByRTTI(TdmSerial);
   Scripter.DefineClassByRTTI(tdm);
 
@@ -97,7 +95,7 @@ begin
   Scripter.AddConstant('mrCancel', mrCancel);
 
   Scripter.AddDataModule(dm);
-
+  resetfocus;
 end;
 
 end.

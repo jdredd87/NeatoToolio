@@ -5,7 +5,7 @@ interface
 uses
   dmCommon,
   neato.D.ClearFiles,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
@@ -19,7 +19,7 @@ type
   private
     { Private declarations }
   public
-   procedure Check;
+    procedure Check;
   end;
 
 implementation
@@ -58,23 +58,22 @@ begin
   end
   else
     showmessage('Clearing did not complete');
-
+  resetfocus;
 end;
-
 
 procedure TframeDClearFiles.rbClearFilesBBChange(Sender: TObject);
 begin
- btnClearFiles.Enabled := gbClearFiles.Index > -1;
+  btnClearFiles.Enabled := gbClearFiles.Index > -1;
+  resetfocus;
 end;
-
 
 procedure TframeDClearFiles.Check;
 begin
-    rbClearFilesBB.Enabled := dm.COM.Serial.Active;
-    rbClearFilesALL.Enabled := dm.COM.Serial.Active;
-    btnClearFiles.Enabled := dm.COM.Serial.Active;
-    rbClearFilesBB.IsChecked := false;
-    rbClearFilesALL.IsChecked := false;
+  rbClearFilesBB.Enabled := dm.com.Serial.Active;
+  rbClearFilesALL.Enabled := dm.com.Serial.Active;
+  btnClearFiles.Enabled := dm.com.Serial.Active;
+  rbClearFilesBB.IsChecked := false;
+  rbClearFilesALL.IsChecked := false;
 end;
 
 end.

@@ -26,7 +26,6 @@ uses
   neato.D.GetCharger in 'DSeries\neato.D.GetCharger.pas',
   neato.D.GetDigitalSensors in 'DSeries\neato.D.GetDigitalSensors.pas',
   neato.D.GetErr in 'DSeries\neato.D.GetErr.pas',
-  neato.D.GetLDSScan in 'DSeries\neato.D.GetLDSScan.pas',
   neato.D.GetMotors in 'DSeries\neato.D.GetMotors.pas',
   neato.D.GetUsage in 'DSeries\neato.D.GetUsage.pas',
   neato.D.GetUserSettings in 'DSeries\neato.D.GetUserSettings.pas',
@@ -57,9 +56,9 @@ uses
   frame.D.GetWifiInfo in 'DSeriesFrames\frame.D.GetWifiInfo.pas' {frameDGetWifiInfo: TFrame},
   frame.D.GetWifiStatus in 'DSeriesFrames\frame.D.GetWifiStatus.pas' {frameDGetWifiStatus: TFrame},
   frame.XV.GetCharger in 'XVSeriesFrames\frame.XV.GetCharger.pas' {frameXVGetCharger: TFrame},
-  frame.DXV.Terminal in 'SharedFrames\frame.DXV.Terminal.pas' {frameDXVTerminal: TFrame},
-  frame.DXV.Playsound in 'SharedFrames\frame.DXV.Playsound.pas' {frameDXVPlaySound: TFrame},
-  frame.DXV.GetAccel in 'SharedFrames\frame.DXV.GetAccel.pas' {frameDXVGetAccel: TFrame},
+  frame.DXV.Terminal in 'CommonFrames\frame.DXV.Terminal.pas' {frameDXVTerminal: TFrame},
+  frame.DXV.Playsound in 'CommonFrames\frame.DXV.Playsound.pas' {frameDXVPlaySound: TFrame},
+  frame.DXV.GetAccel in 'CommonFrames\frame.DXV.GetAccel.pas' {frameDXVGetAccel: TFrame},
   frame.XV.GetAnalogSensors in 'XVSeriesFrames\frame.XV.GetAnalogSensors.pas' {frameXVGetAnalogSensors: TFrame},
   frame.XV.GetDigitalSensors in 'XVSeriesFrames\frame.XV.GetDigitalSensors.pas' {frameXVGetDigitalSensors: TFrame},
   frame.D.GetSensors in 'DSeriesFrames\frame.D.GetSensors.pas' {frameDGetSensors: TFrame},
@@ -81,7 +80,11 @@ uses
   frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame},
   frame.XV.GetButtons in 'XVSeriesFrames\frame.XV.GetButtons.pas' {frameXVGetButtons: TFrame},
   neato.XV.GetTime in 'XVSeries\neato.XV.GetTime.pas',
-  frame.XV.GetTime in 'XVSeriesFrames\frame.XV.GetTime.pas' {frameXVGetTime: TFrame};
+  frame.XV.GetTime in 'XVSeriesFrames\frame.XV.GetTime.pas' {frameXVGetTime: TFrame},
+  neato.XV.Clean in 'XVSeries\neato.XV.Clean.pas',
+  frame.XV.Clean in 'XVSeriesFrames\frame.XV.Clean.pas' {frameXVClean: TFrame},
+  neato.DXV.GetLDSScan in 'Common\neato.DXV.GetLDSScan.pas',
+  frame.DXV.GetLDSScan in 'CommonFrames\frame.DXV.GetLDSScan.pas' {frameDXVGetLDSScan: TFrame};
 
 {$R *.res}
 

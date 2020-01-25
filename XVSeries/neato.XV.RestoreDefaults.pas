@@ -11,7 +11,7 @@ const
 
 type
 
-  tRestoreDefaults = class(tNeatoBaseCommand)
+  tRestoreDefaultsXV = class(tNeatoBaseCommand)
   strict private
   public
     constructor Create;
@@ -22,7 +22,7 @@ type
 
 implementation
 
-Constructor tRestoreDefaults.Create;
+Constructor tRestoreDefaultsXV.Create;
 begin
   inherited;
   fCommand := sRestoreDefaults;
@@ -30,17 +30,17 @@ begin
   Reset;
 end;
 
-Destructor tRestoreDefaults.Destroy;
+Destructor tRestoreDefaultsXV.Destroy;
 begin
   inherited;
 end;
 
-procedure tRestoreDefaults.Reset;
+procedure tRestoreDefaultsXV.Reset;
 begin
   inherited;
 end;
 
-function tRestoreDefaults.ParseText(data: tstringlist): boolean;
+function tRestoreDefaultsXV.ParseText(data: tstringlist): boolean;
 begin
   Reset;
   result := false;

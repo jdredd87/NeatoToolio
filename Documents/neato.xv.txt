@@ -1,9 +1,10 @@
 d = done
 y = started
+n = not started
 x = not gonna do, doesnt seem to do much of anything and not documented
 
-x	Clean - Starts a cleaning by simulating press of start button.
-x	DiagTest - Executes different test modes. Once set, press Start button to engage. (Test modes are mutually exclusive.)
+d	Clean - Starts a cleaning by simulating press of start button.
+y	DiagTest - Executes different test modes. Once set, press Start button to engage. (Test modes are mutually exclusive.)
 
 d	GetAccel - Get the Accelerometer readings.
 d	GetAnalogSensors - Get the A2D readings for the analog sensors.
@@ -18,7 +19,7 @@ x	GetLDSScan - Get scan packet from LDS.
 d	GetMotors - Get the diagnostic data for the motors.
 
 d	GetSchedule - Get the Cleaning Schedule. (24 hour clock format)
-x	GetTime - Get Current Scheduler Time.
+d	GetTime - Get Current Scheduler Time.
 
 d	GetVersion - Get the version information for the system software and hardware.
 d	GetWarranty - Get the warranty validation codes.
@@ -26,15 +27,54 @@ d	PlaySound - Play the specified sound in the robot.
 
 d	RestoreDefaults - Restore user settings to default.
 
-x	SetFuelGauge - Set Fuel Gauge Level.
-x	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
-x	SetTime - Sets the current day, hour, and minute for the scheduler clock.
-x	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
-x	SetIEC - Sets the IEC Cleaning Test parameters
-x	SetLCD - Sets the LCD to the specified display. (TestMode Only)
-x	SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
-x	SetSchedule - Modify Cleaning Schedule.
-x	SetSystemMode - Set the operation mode of the robot. (TestMode Only)
+n	SetFuelGauge - Set Fuel Gauge Level.
+n	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
+n	SetTime - Sets the current day, hour, and minute for the scheduler clock.
+n	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
+n	SetIEC - Sets the IEC Cleaning Test parameters
+n	SetLCD - Sets the LCD to the specified display. (TestMode Only)
+n	SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
+n	SetSchedule - Modify Cleaning Schedule.
+n	SetSystemMode - Set the operation mode of the robot. (TestMode Only)
 	
 d	TestMode - Sets TestMode on or off. Some commands can only be run in TestMode.
-	Upload - Uploads new program to the robot.
+x	Upload - Uploads new program to the robot.
+
+
+DIAGTEST 
+
+DiagTest - Executes different test modes. Once set, press Start button to engage. (Test modes are mutually exclusive.)
+    TestsOff - Stop Diagnostic Test and clears all diagnostic test modes. 
+    DrivePath - Sets DrivePath TestMode. Press start button to start. Robot travels straight by commanded distance as path. Mutually exclusive with other diagtest modes. Use 'TestsOff' option to stop.
+    DriveForever - Sets DriveForever TestMode. Press start button to start. Robot drives continuously. Mutually exclusive with other diagtest modes. Use 'TestsOff' option to stop.
+    MoveAndBump - Sets Move and Bump TestMode. Press start button to start. Executes canned series of motions, but will react to bumps. Mutually exclusive with other diagtest modes.
+    DropTest - Enables DropTest. Robot drives forward until a drop is detected. Mutually exclusive with other diagtest modes.
+    AutoCycle - DropTest argument to enable automatic restart of the test. The robot will drive backwards and then forward until a drop is detected until the test is over.
+    OneShot - Only executes test once.
+    BrushOn - Turns on brush during test. May conflict with motor commands of test so use carefully!
+    VacuumOn - Turns on vacuum during test. May conflict with motor commands of test so use carefully!
+    LDSOn - Turns on LDS during test. May conflict with motor commands of test so use carefully!
+    SideBrushOn - Turns on side brush during test. May conflict with motor commands of test so use carefully!
+    AllMotorsOn - Turns on brush, vacuum, and lds during test. May conflict with motor commands of test so use carefully!
+    DisablePickupDetect - Ignores pickup (wheel suspension). By default, pickup detect is enabled and stops the test.
+    DrivePathDist - Distance in mm
+    DriveForeverLeftDist - Use next arg to set left wheel dist for DriveForever test. Requires DriveForeverRightDist as well. The ratio of this value to DriveForeverRightDist determines turn radius.
+    DriveForeverRightDist - Use next arg to set right wheel dist for DriveForever test. Requires DriveForeverLeftDist as well. The ratio of this value to DriveForeverLeftDist determines turn radius.
+    DriveForeverSpeed - Use next arg to set turn speed of outer wheel for DriveForever test in mm/s.
+    Speed - DropTest argument to set the robot speed in mm/s.
+    BrushSpeed - DropTest argument to set the speed of the brush in rpm.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

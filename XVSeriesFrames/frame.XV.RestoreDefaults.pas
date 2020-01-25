@@ -5,7 +5,7 @@ interface
 uses
   dmCommon,
   neato.XV.RestoreDefaults,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
@@ -15,7 +15,7 @@ type
   private
     { Private declarations }
   public
-   procedure Check;
+    procedure Check;
   end;
 
 implementation
@@ -25,10 +25,10 @@ implementation
 procedure TframeXVRestoreDefaults.btnRestoreDefaultsClick(Sender: TObject);
 var
   pReadData: TStringList;
-  gRestoreDefaults: tRestoreDefaults;
-  r : boolean;
+  gRestoreDefaults: tRestoreDefaultsXV;
+  r: boolean;
 begin
-  gRestoreDefaults := tRestoreDefaults.Create;
+  gRestoreDefaults := tRestoreDefaultsXV.Create;
   pReadData := TStringList.Create;
   pReadData.Text := dm.com.SendCommand(sRestoreDefaults);
   r := gRestoreDefaults.ParseText(pReadData);
@@ -38,15 +38,13 @@ begin
   end
   else
     showmessage('RestoreDefaults did not complete');
-
+  freeandnil(gRestoreDefaults);
+  resetfocus;
 end;
 
 procedure TframeXVRestoreDefaults.Check;
 begin
-    btnRestoreDefaults.Enabled := dm.COM.Serial.Active;
+  btnRestoreDefaults.Enabled := dm.com.Serial.Active;
 end;
-
-
-
 
 end.
