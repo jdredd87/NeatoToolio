@@ -82,11 +82,21 @@ uses
   Neato.DXV.Playsound,
   Neato.DXV.GetAccel,
   Neato.DXV.GetLDSScan,
+  Neato.DXV.SetFuelGauge,
+  Neato.DXV.SetTime,
+  Neato.DXV.SetSystemMode,
+  Neato.DXV.SetLCD,
+  Neato.DXV.SetLED,
 
   frame.DXV.GetAccel,
   frame.DXV.Playsound,
   frame.DXV.Terminal,
   frame.DXV.GetLDSScan,
+  frame.DXV.SetFuelGauge,
+  frame.DXV.SetTime,
+  frame.DXV.SetSystemMode,
+  frame.DXV.SetLCD,
+  frame.DXV.SetLED,
 
   {Everything else to run this}
   dmCommon,
@@ -132,12 +142,8 @@ type
     tabsMain: TTabControl;
     tabSetup: TTabItem;
     tabSensors: TTabItem;
-    tabAbout: TTabItem;
-    pnlSerialTop: trectangle;
-    tabDebug: TTabItem;
     ScaledLayoutMain: TScaledLayout;
     tabSensorsOptions: TTabControl;
-    tabGetCharger: TTabItem;
     tabGetAccel: TTabItem;
     tabGetAnalogSensors: TTabItem;
     tabGetDigitalSensors: TTabItem;
@@ -154,29 +160,8 @@ type
     tabGetErr: TTabItem;
     tabTools: TTabItem;
     tabsToolOptions: TTabControl;
-    tabLidar: TTabItem;
-    sgLIDAR: TStringGrid;
-    StringColumn1: TStringColumn;
-    StringColumn2: TStringColumn;
-    StringColumn3: TStringColumn;
-    StringColumn4: TStringColumn;
-    StringColumn5: TStringColumn;
-    StringColumn6: TStringColumn;
-    StringColumn7: TStringColumn;
-    StringColumn8: TStringColumn;
-    StringColumn9: TStringColumn;
-    StringColumn10: TStringColumn;
     timer_LIDAR: TTimer;
-    sbResetLIDARMapping: TSpinBox;
-    lblResetLIDARmapping: TLabel;
-    tabDebuggerOptions: TTabControl;
-    tabDebugRawData: TTabItem;
-    tabDebugTerminal: TTabItem;
-    memoDebug: TMemo;
     tabGetSensor: TTabItem;
-    tabPlaySound: TTabItem;
-    lblPlaysoundIDX: TLabel;
-    tabGetMotors: TTabItem;
     pnlStatusBar: trectangle;
     ColorBoxRX: TColorBox;
     LabelRX: TLabel;
@@ -190,48 +175,101 @@ type
     LabelRLSD: TLabel;
     ColorBoxBreak: TColorBox;
     LabelBreak: TLabel;
-    tabGetButtons: TTabItem;
     chkTestMode: TCheckBox;
     tabGetCalInfo: TTabItem;
     pnlSetupDetails: trectangle;
-    lblSetupRobotName: TLabel;
-    lblRobotModel: TLabel;
-    imgRobot: TImage;
     tabClearFiles: TTabItem;
-    pnlLidarTop: TRectangle;
-    ShadowEffect2: TShadowEffect;
-    GlowEffect1: TGlowEffect;
-    shadowBotImage: TShadowEffect;
-    chkAutoDetect: TCheckBox;
-    cbCOM: TComboBox;
+    lblNotSupported: TLabel;
+    ShadowEffect1: TShadowEffect;
+    tabRestoreDefaults: TTabItem;
+    tabClean: TTabItem;
+    tabDiagTest: TTabItem;
+    tabGetConfiguredWifiNetworks: TTabItem;
+    tabSetWifi: TTabItem;
+    tabMotors: TTabItem;
+    tabMotorOptions: TTabControl;
+    tabGetMotors: TTabItem;
+    tabSetMotor: TTabItem;
+    tabPower: TTabItem;
+    tabPowerOptions: TTabControl;
+    tabGetCharger: TTabItem;
+    tabSetFuelGauge: TTabItem;
+    tabSetSystemMode: TTabItem;
+    tabLidar: TTabItem;
+    tabLidarOptions: TTabControl;
+    tabGetLDSScan: TTabItem;
+    tabLidarView: TTabItem;
+    sgLIDAR: TStringGrid;
+    StringColumn1: TStringColumn;
+    StringColumn2: TStringColumn;
+    StringColumn3: TStringColumn;
+    StringColumn4: TStringColumn;
+    StringColumn5: TStringColumn;
+    StringColumn6: TStringColumn;
+    StringColumn7: TStringColumn;
+    StringColumn8: TStringColumn;
+    StringColumn9: TStringColumn;
+    StringColumn10: TStringColumn;
+    pnlLidarTop: trectangle;
+    sbResetLIDARMapping: TSpinBox;
+    lblResetLIDARmapping: TLabel;
+    btnLidarStart: TButton;
+    chkChartShowLabels: TCheckBox;
+    chkLidarHideCalc: TCheckBox;
+    spinLidarDrawEvery: TSpinBox;
+    lblMarkerCount: TLabel;
+    rectLidarChart: trectangle;
+    plotLidar: TChart;
+    Series1: TPointSeries;
+    Series2: TPointSeries;
+    tabSetBatteryTest: TTabItem;
+    tabSetBrushControlParams: TTabItem;
+    tabButtons: TTabItem;
+    tabButtonOptions: TTabControl;
+    tabSetButton: TTabItem;
+    tabGetButtons: TTabItem;
+    tabSerialOptions: TTabControl;
+    tabSerialSettings: TTabItem;
+    pnlSerialTop: trectangle;
     lblSetupComPort: TLabel;
+    cbCOM: TComboBox;
+    chkAutoDetect: TCheckBox;
     lblConnect: TLabel;
     swConnect: TCheckBox;
+    imgRobot: TImage;
+    shadowBotImage: TShadowEffect;
+    lblSetupRobotName: TLabel;
+    GlowEffect1: TGlowEffect;
+    lblRobotModel: TLabel;
+    ShadowEffect2: TShadowEffect;
+    tabAbout: TTabItem;
     ShadowEffectmemoAbout: TShadowEffect;
     RectangleaboutMemo: trectangle;
     memoAbout: TMemo;
+    tabDebug: TTabItem;
+    tabDebuggerOptions: TTabControl;
+    tabDebugTerminal: TTabItem;
+    tabDebugRawData: TTabItem;
+    memoDebug: TMemo;
     pnlDebugTerminalTop: trectangle;
     btnDebugRawDataClear: TButton;
     tabScripts: TTabItem;
     frameScripts: TframeScripts;
-    lblNotSupported: TLabel;
-    ShadowEffect1: TShadowEffect;
-    tabRestoreDefaults: TTabItem;
-    tabGetSchedule: TTabItem;
+    tabTime: TTabItem;
+    tabTimeOptions: TTabControl;
+    tabSetTime: TTabItem;
     tabGetTime: TTabItem;
-    tabClean: TTabItem;
-    tabDiagTest: TTabItem;
-    tabGetLDSScan: TTabItem;
-    tabGetConfiguredWifiNetworks: TTabItem;
-    btnLidarStart: TButton;
-    chkChartShowLabels: TCheckBox;
-    spinLidarDrawEvery: TSpinBox;
-    lblMarkerCount: TLabel;
-    chkLidarHideCalc: TCheckBox;
-    rectLidarChart: TRectangle;
-    plotLidar: TChart;
-    Series1: TPointSeries;
-    Series2: TPointSeries;
+    tabGetSchedule: TTabItem;
+    tabSetIEC: TTabItem;
+    tabSetLCD: TTabItem;
+    tabSetLED: TTabItem;
+    tabSetSchedule: TTabItem;
+    tabSetNavigationMode: TTabItem;
+    tabSetNTPTime: TTabItem;
+    tabSetUsage: TTabItem;
+    tabPlaySound: TTabItem;
+    lblPlaysoundIDX: TLabel;
+    tabSetUserSettings: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -257,7 +295,6 @@ type
     fLIDARCounter: single;
     fPlaySoundAborted: Boolean;
     fTimerList: TTimerList;
-
     // form events
 
     procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
@@ -312,6 +349,11 @@ type
     DXVTerminal: TframeDXVTerminal;
     DXVGetAccel: TframeDXVGetAccel;
     DXVGetLDSScan: TframeDXVGetLDSScan;
+    DXVSetFuelGauge: TframeDXVSetFuelGauge;
+    DXVSetTime: TframeDXVSetTime;
+    DXVSetSystemMode: TframeDXVSetSystemMode;
+    DXVSetLCD: TframeDXVSetLCD;
+    DXVSetLED: TframeDXVSetLED;
 
     Neato: TNeatoModels; // what kind of bot model line
 
@@ -335,7 +377,7 @@ var
   idx: integer;
 begin
 
-  dm.chkTestmode := chkTestMode;
+  dm.chkTestMode := chkTestMode;
   chkLidarHideCalc.IsChecked := true;
 
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
@@ -394,8 +436,22 @@ begin
   dm.com.fmemoDebug := memoDebug;
 
   for idx := 0 to self.ComponentCount - 1 do
+  begin
     if components[idx] is TTabItem then
       TTabItem(components[idx]).OnClick := tabClickRepaint;
+
+    if components[idx] is TTabControl then
+    begin
+      TTabControl(components[idx]).OnChange := tabControlChange;
+      TTabControl(components[idx]).ActiveTab := nil;
+    end;
+  end;
+
+  // make sure we are at the first tab to do connection
+  // otherwise looks dumb with nothing loaded up in view
+
+  tabsMain.TabIndex := 0;
+  tabSerialOptions.TabIndex := 0;
 
   tthread.CreateAnonymousThread(
     procedure
@@ -429,7 +485,17 @@ end;
 
 procedure TfrmMain.onIDLE(Sender: TObject; var done: Boolean);
 begin
-  //
+  if dm.ActiveTab = nil then
+  begin
+    tabsMain.TabIndex := 0;
+    tabSetup.Index := 0;
+    dm.ActiveTab := tabSerialSettings;
+    if NOT dm.com.Serial.Active then
+    begin
+      chkTestMode.IsChecked := false;
+      toggleComs(false);
+    end;
+  end;
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -840,8 +906,10 @@ var
   pReadData: TStringList;
 begin
 
-  if (dm.com.Serial.Active = false) or (tabsToolOptions.ActiveTab <> tabLidar) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tabLidarView) then
   begin
+    btnLidarStart.IsPressed := false;
+    self.btnLidarStartClick(Sender);
     timer_LIDAR.Enabled := false;
     exit;
   end;
@@ -849,7 +917,11 @@ begin
   pReadData := TStringList.Create; // LIDAR will just use a simple TStringList name/Value pair to work by
 
   pReadData.Text := trim(dm.com.SendCommand('GetLDSScan'));
-  memoDebug.Lines.Text := pReadData.Text;
+
+  memoDebug.BeginUpdate;
+  memoDebug.Lines.Add(pReadData.Text);
+  memoDebug.GoToTextEnd;
+  memoDebug.EndUpdate;
 
   fLIDARCounter := fLIDARCounter + 1;
 
@@ -925,7 +997,7 @@ var
 
   gGetVersionXV: tGetVersionXV;
 
-  readData: TStringList;
+  ReadData: TStringList;
 
   botFound: Boolean;
 begin
@@ -962,7 +1034,7 @@ begin
   end
   else
   begin
-    readData := TStringList.Create;
+    ReadData := TStringList.Create;
     dm.com.open(cbCOM.Items[cbCOM.ItemIndex]);
 
     r := dm.com.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
@@ -977,9 +1049,9 @@ begin
       r := dm.com.SendCommand(sGetWifiStatus);
 
       gGetWifiStatusD := tGetWifiStatusD.Create;
-      readData.Text := r;
+      ReadData.Text := r;
 
-      if gGetWifiStatusD.ParseText(readData) then
+      if gGetWifiStatusD.ParseText(ReadData) then
         lblSetupRobotName.Text := gGetWifiStatusD.Robot_Name;
 
       freeandnil(gGetWifiStatusD);
@@ -987,9 +1059,9 @@ begin
       r := dm.com.SendCommand(sGetVersion);
 
       gGetVersionD := tGetVersionD.Create;
-      readData.Text := r;
+      ReadData.Text := r;
 
-      if gGetVersionD.ParseText(readData) then
+      if gGetVersionD.ParseText(ReadData) then
       begin
         lblRobotModel.Text := stringreplace(gGetVersionD.Model.Major, 'BotVac', 'BotVac' + #13,
           [rfreplaceall, rfignorecase]);
@@ -1036,9 +1108,9 @@ begin
     if (r <> '') and (Neato = neatoXV) then
     begin
       gGetVersionXV := tGetVersionXV.Create;
-      readData.Text := r;
+      ReadData.Text := r;
 
-      if gGetVersionXV.ParseText(readData) then
+      if gGetVersionXV.ParseText(ReadData) then
       begin
         lblRobotModel.Text := gGetVersionXV.ModelID.Minor;
 
@@ -1115,6 +1187,8 @@ procedure TfrmMain.tabControlChange(Sender: TObject);
 var
   timerStarter: TTimer;
 begin
+
+  dm.ActiveTab := TTabControl(Sender).ActiveTab;
 
   TTabControl(Sender).BeginUpdate;
 
@@ -1371,6 +1445,31 @@ begin
     timerStarter := DXVGetLDSScan.timer_GetData;
   end;
 
+  if TTabControl(Sender).ActiveTab = tabSetFuelGauge then
+  begin
+    DXVSetFuelGauge.Visible := true;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabSetTime then
+  begin
+    DXVSetTime.Visible := true;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabSetSystemMode then
+  begin
+    DXVSetSystemMode.Visible := true;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabSetLCD then
+  begin
+    DXVSetLCD.Visible := true;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabSetLED then
+  begin
+    DXVSetLED.Visible := true;
+  end;
+
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabClearFiles then
@@ -1462,6 +1561,7 @@ begin
   DGetCharger := TframeDGetCharger.Create(tabGetCharger);
   with DGetCharger do
   begin
+    Tab := tabGetCharger;
     Visible := false;
     Parent := tabGetCharger;
     position.X := 0;
@@ -1473,6 +1573,7 @@ begin
   DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel);
   with DXVGetAccel do
   begin
+    Tab := tabGetAccel;
     Visible := false;
     Parent := tabGetAccel;
     position.X := 0;
@@ -1484,6 +1585,7 @@ begin
   DGetAnalogSensors := TframeDGetAnalogSensors.Create(tabGetAnalogSensors);
   with DGetAnalogSensors do
   begin
+    Tab := tabGetAnalogSensors;
     Visible := false;
     Parent := tabGetAnalogSensors;
     position.X := 0;
@@ -1495,6 +1597,7 @@ begin
   DGetDigitalSensors := TframeDGetDigitalSensors.Create(tabGetDigitalSensors);
   with DGetDigitalSensors do
   begin
+    Tab := tabGetDigitalSensors;
     Visible := false;
     Parent := tabGetDigitalSensors;
     position.X := 0;
@@ -1506,6 +1609,7 @@ begin
   DGetSensors := TframeDGetSensors.Create(tabGetSensor);
   with DGetSensors do
   begin
+    Tab := tabGetSensor;
     Visible := false;
     Parent := tabGetSensor;
     position.X := 0;
@@ -1517,6 +1621,7 @@ begin
   DGetMotors := TframeDGetMotors.Create(tabGetMotors);
   with DGetMotors do
   begin
+    Tab := tabGetMotors;
     Visible := false;
     Parent := tabGetMotors;
     position.X := 0;
@@ -1528,6 +1633,7 @@ begin
   DGetButtons := TframeDGetButtons.Create(tabGetButtons);
   with DGetButtons do
   begin
+    Tab := tabGetButtons;
     Visible := false;
     Parent := tabGetButtons;
     position.X := 0;
@@ -1539,6 +1645,7 @@ begin
   DGetCalInfo := TframeDGetCalInfo.Create(tabGetCalInfo);
   with DGetCalInfo do
   begin
+    Tab := tabGetCalInfo;
     Visible := false;
     Parent := tabGetCalInfo;
     position.X := 0;
@@ -1550,6 +1657,7 @@ begin
   DGetWarranty := TframeDGetWarranty.Create(tabGetWarranty);
   with DGetWarranty do
   begin
+    Tab := tabGetWarranty;
     Visible := false;
     Parent := tabGetWarranty;
     position.X := 0;
@@ -1561,6 +1669,7 @@ begin
   DGetErr := TframeDGetErr.Create(tabGetErr);
   with DGetErr do
   begin
+    Tab := tabGetErr;
     Visible := false;
     Parent := tabGetErr;
     position.X := 0;
@@ -1572,6 +1681,7 @@ begin
   DGetVersion := TframeDGetVersion.Create(tabGetVersion);
   with DGetVersion do
   begin
+    Tab := tabGetVersion;
     Visible := false;
     Parent := tabGetVersion;
     position.X := 0;
@@ -1583,6 +1693,7 @@ begin
   DGetUsage := TframeDGetUsage.Create(tabGetUsage);
   with DGetUsage do
   begin
+    Tab := tabGetUsage;
     Visible := false;
     Parent := tabGetUsage;
     position.X := 0;
@@ -1594,6 +1705,7 @@ begin
   DGetUserSettings := TframeDGetUserSettings.Create(tabGetUserSettings);
   with DGetUserSettings do
   begin
+    Tab := tabGetUserSettings;
     Visible := false;
     Parent := tabGetUserSettings;
     position.X := 0;
@@ -1605,6 +1717,7 @@ begin
   DClearFiles := TframeDClearFiles.Create(tabClearFiles);
   with DClearFiles do
   begin
+    Tab := tabClearFiles;
     Visible := false;
     Parent := tabClearFiles;
     position.X := 0;
@@ -1615,6 +1728,7 @@ begin
   DGetWifiInfo := TframeDGetWifiInfo.Create(tabGetWifiInfo);
   with DGetWifiInfo do
   begin
+    Tab := tabGetWifiInfo;
     Visible := false;
     Parent := tabGetWifiInfo;
     position.X := 0;
@@ -1625,6 +1739,7 @@ begin
   DGetWifiStatus := TframeDGetWifiStatus.Create(tabGetWifiStatus);
   with DGetWifiStatus do
   begin
+    Tab := tabGetWifiStatus;
     Visible := false;
     Parent := tabGetWifiStatus;
     position.X := 0;
@@ -1638,6 +1753,7 @@ begin
   XVGetCharger := TframeXVGetCharger.Create(tabGetCharger);
   with XVGetCharger do
   begin
+    Tab := tabGetCharger;
     Visible := false;
     Parent := tabGetCharger;
     position.X := 0;
@@ -1649,6 +1765,7 @@ begin
   XVGetAnalogSensors := TframeXVGetAnalogSensors.Create(tabGetAnalogSensors);
   with XVGetAnalogSensors do
   begin
+    Tab := tabGetAnalogSensors;
     Visible := false;
     Parent := tabGetAnalogSensors;
     position.X := 0;
@@ -1660,6 +1777,7 @@ begin
   XVGetDigitalSensors := TframeXVGetDigitalSensors.Create(tabGetDigitalSensors);
   with XVGetDigitalSensors do
   begin
+    Tab := tabGetDigitalSensors;
     Visible := false;
     Parent := tabGetDigitalSensors;
     position.X := 0;
@@ -1671,6 +1789,7 @@ begin
   XVGetMotors := TframeXVGetMotors.Create(tabGetMotors);
   with XVGetMotors do
   begin
+    Tab := tabGetMotors;
     Visible := false;
     Parent := tabGetMotors;
     position.X := 0;
@@ -1682,6 +1801,7 @@ begin
   XVGetButtons := TframeXVGetButtons.Create(tabGetButtons);
   with XVGetButtons do
   begin
+    Tab := tabGetButtons;
     Visible := false;
     Parent := tabGetButtons;
     position.X := 0;
@@ -1693,6 +1813,7 @@ begin
   XVGetCalInfo := TframeXVGetCalInfo.Create(tabGetCalInfo);
   with XVGetCalInfo do
   begin
+    Tab := tabGetCalInfo;
     Visible := false;
     Parent := tabGetCalInfo;
     position.X := 0;
@@ -1704,6 +1825,7 @@ begin
   XVGetWarranty := TframeXVGetWarranty.Create(tabGetWarranty);
   with XVGetWarranty do
   begin
+    Tab := tabGetWarranty;
     Visible := false;
     Parent := tabGetWarranty;
     position.X := 0;
@@ -1715,6 +1837,7 @@ begin
   XVGetErr := TframeXVGetErr.Create(tabGetErr);
   with XVGetErr do
   begin
+    Tab := tabGetErr;
     Visible := false;
     Parent := tabGetErr;
     position.X := 0;
@@ -1726,6 +1849,7 @@ begin
   XVGetVersion := TframeXVGetVersion.Create(tabGetVersion);
   with XVGetVersion do
   begin
+    Tab := tabGetVersion;
     Visible := false;
     Parent := tabGetVersion;
     position.X := 0;
@@ -1737,6 +1861,7 @@ begin
   XVRestoreDefaults := TframeXVRestoreDefaults.Create(tabRestoreDefaults);
   with XVRestoreDefaults do
   begin
+    Tab := tabRestoreDefaults;
     Visible := false;
     Parent := tabRestoreDefaults;
     position.X := 0;
@@ -1747,6 +1872,7 @@ begin
   XVGetSchedule := TframeXVGetSchedule.Create(tabGetSchedule);
   with XVGetSchedule do
   begin
+    Tab := tabGetSchedule;
     Visible := false;
     Parent := tabGetSchedule;
     position.X := 0;
@@ -1757,6 +1883,7 @@ begin
   XVGetTime := TframeXVGetTime.Create(tabGetTime);
   with XVGetTime do
   begin
+    Tab := tabGetTime;
     Visible := false;
     Parent := tabGetTime;
     position.X := 0;
@@ -1767,6 +1894,7 @@ begin
   XVClean := TFrameXVClean.Create(tabClean);
   with XVClean do
   begin
+    Tab := tabClean;
     Visible := false;
     Parent := tabClean;
     position.X := 0;
@@ -1779,6 +1907,7 @@ begin
   DXVPlaySound := TframeDXVPlaySound.Create(tabPlaySound);
   with DXVPlaySound do
   begin
+    Tab := tabPlaySound;
     Parent := tabPlaySound;
     position.X := 0;
     position.Y := 0;
@@ -1788,6 +1917,7 @@ begin
   DXVTerminal := TframeDXVTerminal.Create(tabDebugTerminal);
   with DXVTerminal do
   begin
+    Tab := tabDebugTerminal;
     Parent := tabDebugTerminal;
     position.X := 0;
     position.Y := 0;
@@ -1797,7 +1927,58 @@ begin
   DXVGetLDSScan := TframeDXVGetLDSScan.Create(tabGetLDSScan);
   with DXVGetLDSScan do
   begin
+    Tab := tabGetLDSScan;
     Parent := tabGetLDSScan;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
+  DXVSetFuelGauge := TframeDXVSetFuelGauge.Create(tabSetFuelGauge);
+  with DXVSetFuelGauge do
+  begin
+    Tab := tabSetFuelGauge;
+    Parent := tabSetFuelGauge;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
+  DXVSetTime := TframeDXVSetTime.Create(tabSetTime);
+  with DXVSetTime do
+  begin
+    Tab := tabSetTime;
+    Parent := tabSetTime;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
+  DXVSetSystemMode := TframeDXVSetSystemMode.Create(tabSetSystemMode);
+  with DXVSetSystemMode do
+  begin
+    Tab := tabSetSystemMode;
+    Parent := tabSetSystemMode;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
+  DXVSetLCD := TframeDXVSetLCD.Create(tabSetLCD);
+  with DXVSetLCD do
+  begin
+    Tab := tabSetLCD;
+    Parent := tabSetLCD;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+  end;
+
+  DXVSetLED := TframeDXVSetLED.Create(tabSetLED);
+  with DXVSetLED do
+  begin
+    Tab := tabSetLED;
+    Parent := tabSetLED;
     position.X := 0;
     position.Y := 0;
     align := talignlayout.Client;

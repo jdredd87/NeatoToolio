@@ -4,7 +4,7 @@ interface
 
 uses
   dmCommon,
-  neato.Helpers,
+  neato.Helpers,   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.ScrollBox, FMX.Memo, FMX.Edit,
   FMX.ComboEdit, FMX.Controls.Presentation, FMX.Objects;
@@ -30,6 +30,7 @@ type
   private
     { Private declarations }
   public
+    Tab : TTabItem;
     procedure check;
     procedure FComPortRxChar(Sender: TObject);
     procedure FComPortEOL(Sender: TObject);

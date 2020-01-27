@@ -378,8 +378,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>4</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.4;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>5</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.5;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -445,7 +445,6 @@
         <DCCReference Include="XVSeries\neato.XV.GetCharger.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetLDSScan.pas"/>
         <DCCReference Include="Common\neato.DXV.Playsound.pas"/>
-        <DCCReference Include="Common\neato.DXV.GetAccel.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetDigitalSensors.pas"/>
         <DCCReference Include="DSeries\neato.D.GetSensor.pas"/>
         <DCCReference Include="DSeriesFrames\frame.D.GetAnalogSensors.pas">
@@ -516,10 +515,6 @@
             <Form>frameDXVPlaySound</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="CommonFrames\frame.DXV.GetAccel.pas">
-            <Form>frameDXVGetAccel</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetAnalogSensors.pas">
             <Form>frameXVGetAnalogSensors</Form>
             <FormType>fmx</FormType>
@@ -575,13 +570,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.RestoreDefaults.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetSchedule.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetButtons.pas"/>
-        <DCCReference Include="XVSeriesFrames\frame.XV.GetSchedule.pas">
-            <Form>frameXVGetSchedule</Form>
-            <FormType>fmx</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetButtons.pas">
             <Form>frameXVGetButtons</Form>
             <FormType>fmx</FormType>
@@ -602,6 +591,48 @@
         <DCCReference Include="Common\neato.DXV.GetLDSScan.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.GetLDSScan.pas">
             <Form>frameDXVGetLDSScan</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetFuelGauge.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetFuelGauge.pas">
+            <Form>frameDXVSetFuelGauge</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CommonFrames\frame.DXV.GetAccel.pas">
+            <Form>frameDXVGetAccel</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.GetAccel.pas"/>
+        <DCCReference Include="Common\neato.DXV.SetTime.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetTime.pas">
+            <Form>frameDXVSetTime</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CommonFrames\frame.DXV.SetSystemMode.pas">
+            <Form>frameDXVSetSystemMode</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetSystemMode.pas"/>
+        <DCCReference Include="Common\neato.DXV.SetLCD.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetLCD.pas">
+            <Form>frameDXVSetLCD</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CommonFrames\frame.DXV.SetLED.pas">
+            <Form>frameDXVSetLED</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetLED.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.GetSchedule.pas"/>
+        <DCCReference Include="XVSeriesFrames\frame.XV.GetSchedule.pas">
+            <Form>frameXVGetSchedule</Form>
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>

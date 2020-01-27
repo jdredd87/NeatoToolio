@@ -4,7 +4,7 @@ interface
 
 uses
   dmCommon,
-  neato.DXV.GetAccel,
+  neato.DXV.GetAccel,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D;
@@ -31,6 +31,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    Tab: TTabItem;
   end;
 
 implementation
@@ -45,7 +46,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) then // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>Tab) then // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
   begin
     Timer_GetData.Enabled := false;
     exit;

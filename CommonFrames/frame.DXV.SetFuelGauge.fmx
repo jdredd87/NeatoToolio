@@ -1,0 +1,49 @@
+object frameDXVSetFuelGauge: TframeDXVSetFuelGauge
+  Align = Client
+  Size.Width = 808.000000000000000000
+  Size.Height = 265.000000000000000000
+  Size.PlatformDefault = False
+  object tbSetFuelGauge: TTrackBar
+    Align = Top
+    CanParentFocus = True
+    Frequency = 1.000000000000000000
+    Orientation = Horizontal
+    Margins.Left = 25.000000000000000000
+    Margins.Right = 25.000000000000000000
+    Position.X = 25.000000000000000000
+    Position.Y = 53.000000000000000000
+    Scale.Y = 3.000000000000000000
+    Size.Width = 758.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    OnChange = tbSetFuelGaugeChange
+  end
+  object lblSetFuelGauge: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 808.000000000000000000
+    Size.Height = 43.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    Text = 'Fuel 0%'
+    TabOrder = 2
+  end
+  object lblSetFuelGaugeError: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 115.000000000000000000
+    Size.Width = 808.000000000000000000
+    Size.Height = 110.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 1
+  end
+end

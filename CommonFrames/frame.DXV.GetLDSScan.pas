@@ -5,7 +5,7 @@ interface
 uses
   dmCommon,
   neato.DXV.GetLDSScan,
-  neato.helpers,
+  neato.helpers, FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
@@ -31,7 +31,7 @@ type
   private
     { Private declarations }
   public
-
+    Tab : TTabItem;
   end;
 
 implementation
@@ -56,6 +56,14 @@ begin
     dm.chkTestmode.IsChecked := true;
     sleep(250);
     dm.chkTestmode.IsChecked := true;
+    sleep(250);
+    dm.chkTestmode.IsChecked := true;
+    sleep(250);
+    dm.chkTestmode.IsChecked := true;
+    sleep(250);
+    dm.com.SendCommand('Setldsrotation on');
+    sleep(250);
+    dm.com.SendCommand('Setldsrotation on');
     sleep(250);
     dm.com.SendCommand('Setldsrotation on');
     sleep(250);
@@ -93,11 +101,14 @@ var
   pGetLDSScan: tGetLDSScanDXV;
   pReadData: TStringList;
   r: Boolean;
-  idx: integer;
+  idx: Integer;
 begin
 
-  if (dm.com.Serial.Active = false) then // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
+  // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
   begin
+    btnLidarStart.IsPressed := false;
+    btnLidarStartClick(Sender);
     Timer_GetData.Enabled := false;
     exit;
   end;
@@ -125,8 +136,8 @@ begin
     sgGetLDSScan.EndUpdate;
   end;
 
-  pReadData.Free;
-  pGetLDSScan.Free;
+  pReadData.free;
+  pGetLDSScan.free;
 end;
 
 end.

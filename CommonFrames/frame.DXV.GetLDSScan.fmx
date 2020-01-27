@@ -7,8 +7,8 @@ object frameDXVGetLDSScan: TframeDXVGetLDSScan
     Enabled = False
     Interval = 500
     OnTimer = Timer_GetDataTimer
-    Left = 576
-    Top = 152
+    Left = 608
+    Top = 192
   end
   object sgGetLDSScan: TStringGrid
     Align = Left
@@ -20,8 +20,8 @@ object frameDXVGetLDSScan: TframeDXVGetLDSScan
     Size.PlatformDefault = False
     TabOrder = 5
     OnDrawColumnCell = sgGetLDSScanDrawColumnCell
-    Viewport.Width = 517.000000000000000000
-    Viewport.Height = 433.000000000000000000
+    Viewport.Width = 537.000000000000000000
+    Viewport.Height = 458.000000000000000000
     object sgGetLDSScanColumnAngleInDegrees: TStringColumn
       Header = 'AngleInDegrees'
       Size.Width = 125.000000000000000000

@@ -48,8 +48,8 @@ object frameDGetWifiInfo: TframeDGetWifiInfo
     TabOrder = 0
     RowCount = 10
     Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 996.000000000000000000
-    Viewport.Height = 494.000000000000000000
+    Viewport.Width = 992.000000000000000000
+    Viewport.Height = 469.000000000000000000
     object sgGetWifiInfoSSID: TStringColumn
       Header = 'SSID'
       Size.Width = 401.000000000000000000

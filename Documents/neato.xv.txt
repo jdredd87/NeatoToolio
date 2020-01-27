@@ -27,15 +27,15 @@ d	PlaySound - Play the specified sound in the robot.
 
 d	RestoreDefaults - Restore user settings to default.
 
-n	SetFuelGauge - Set Fuel Gauge Level.
+d	SetFuelGauge - Set Fuel Gauge Level.
 n	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
-n	SetTime - Sets the current day, hour, and minute for the scheduler clock.
-n	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
+d	SetTime - Sets the current day, hour, and minute for the scheduler clock.
+d	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
 n	SetIEC - Sets the IEC Cleaning Test parameters
-n	SetLCD - Sets the LCD to the specified display. (TestMode Only)
-n	SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
-n	SetSchedule - Modify Cleaning Schedule.
-n	SetSystemMode - Set the operation mode of the robot. (TestMode Only)
+d	SetLCD - Sets the LCD to the specified display. (TestMode Only)
+d(in others)	SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
+x	SetSchedule - Modify Cleaning Schedule.
+d	SetSystemMode - Set the operation mode of the robot. (TestMode Only)
 	
 d	TestMode - Sets TestMode on or off. Some commands can only be run in TestMode.
 x	Upload - Uploads new program to the robot.

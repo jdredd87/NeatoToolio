@@ -1,0 +1,224 @@
+object frameDXVSetLCD: TframeDXVSetLCD
+  Align = Client
+  Size.Width = 825.000000000000000000
+  Size.Height = 443.000000000000000000
+  Size.PlatformDefault = False
+  object lblSetLCDError: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 370.000000000000000000
+    Size.Width = 825.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 3
+  end
+  object rectSetLCDTop: TRectangle
+    Align = Top
+    Fill.Color = claNull
+    Sides = []
+    Size.Width = 825.000000000000000000
+    Size.Height = 193.000000000000000000
+    Size.PlatformDefault = False
+    object btnSetLCDBGBlack: TButton
+      Position.X = 112.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'BGBlack'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDBGWhite: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'BGWhite'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDHLine: TButton
+      Position.X = 216.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'HLine'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDVLine: TButton
+      Position.X = 320.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'VLine'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDHBars: TButton
+      Position.X = 424.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'HBars'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDVBars: TButton
+      Position.X = 528.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'VBars'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDFGWhite: TButton
+      Position.X = 632.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'FGWhite'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object btnSetLCDFGBlack: TButton
+      Position.X = 736.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'FGBlack'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+    object sbHLineValue: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 8
+      Cursor = crIBeam
+      Max = 127.000000000000000000
+      Position.X = 216.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object sbVLineValue: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 9
+      Cursor = crIBeam
+      Max = 127.000000000000000000
+      Position.X = 320.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object btnSetLCDHBars2: TButton
+      Position.X = 424.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+      Text = 'HBars 2'
+      OnClick = btnSetLCDClick
+      OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+      OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+    end
+  end
+  object lblSetLCDMessage: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 308.000000000000000000
+    Size.Width = 825.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 1
+  end
+  object lblSetLCDContrast: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 198.000000000000000000
+    Size.Width = 825.000000000000000000
+    Size.Height = 43.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    Text = 'Contrast 0%'
+    TabOrder = 2
+  end
+  object tbSetLCDContrast: TTrackBar
+    Align = Top
+    CanParentFocus = True
+    Frequency = 1.000000000000000000
+    Orientation = Horizontal
+    Margins.Left = 25.000000000000000000
+    Margins.Right = 25.000000000000000000
+    Position.X = 25.000000000000000000
+    Position.Y = 246.000000000000000000
+    Scale.Y = 3.000000000000000000
+    Size.Width = 775.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    OnChange = btnSetLCDClick
+    OnMouseEnter = btnSetLCDBGWhiteMouseEnter
+    OnMouseLeave = btnSetLCDBGWhiteMouseLeave
+  end
+  object sbFGWhiteValue: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 7
+    Cursor = crIBeam
+    Max = 127.000000000000000000
+    Position.X = 632.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object sbFGBlackValue: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 8
+    Cursor = crIBeam
+    Max = 127.000000000000000000
+    Position.X = 736.000000000000000000
+    Position.Y = 88.000000000000000000
+    Size.Width = 81.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+end

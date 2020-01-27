@@ -6,7 +6,7 @@ uses
 {$IFDEF MSWINDOWS}
   dmSerial.Windows,
 {$ENDIF}
-  System.SysUtils, System.Classes, FMX.Types, FMX.Controls, FMX.StdCtrls;
+  System.SysUtils, System.Classes, FMX.Types, FMX.Controls, FMX.StdCtrls,  FMX.TabControl;
 
 type
   Tdm = class(TDataModule)
@@ -21,6 +21,7 @@ type
 {$ENDIF}
     chkTestmode: tcheckbox; // allows frames to access the main form object easily!
 
+    ActiveTab: TTabItem;
   end;
 
 var
@@ -34,6 +35,7 @@ implementation
 procedure Tdm.DataModuleCreate(Sender: TObject);
 begin
   COM := TdmSerial.Create(self);
+  ActiveTab := nil;
 end;
 
 procedure Tdm.DataModuleDestroy(Sender: TObject);

@@ -49,6 +49,7 @@ type
   private
     Scripter: TatScripter;
   public
+    Tab : TTabItem;
     procedure init;
   end;
 

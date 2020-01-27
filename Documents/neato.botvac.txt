@@ -18,7 +18,7 @@ d	GetCharger			Get the diagnostic data for the charging system.
 y	GetConfiguredWifiNetworks		Get the list of configured wifi networks.
 d	GetDigitalSensors			Get the state of the digital sensors.
 d	GetErr				Get Error Message.
-y	GetLDSScan			Get scan packet from LDS.
+d	GetLDSScan			Get scan packet from LDS.
 d	GetMotors				Get the diagnostic data for the motors.
 x	GetRobotLinkCode			Get the robot linking code
 d	GetSensor			Gets the sensors status ON/OFF (Wall Follower and Ultra Sound Only)
@@ -32,22 +32,22 @@ d	GetWifiStatus			Get the current status of the wifi.
 d	Help				Without any argument, this prints a list of all possible cmds. With a command name, it prints the help for that particular command
 d	PlaySound			Play the specified sound in the robot.
 
-n	SetBatteryTest			Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode.
-n	SetBrushControlParams		Sets the open loop control params for the VR300 brush motor.
-n	SetButton				Simulates a button press.
-n	SetFuelGauge			Set Fuel Gauge Level.
-n	SetIEC				Sets the IEC Cleaning Test parameters
-n	SetLCD				Sets the LCD to the specified display. (TestMode Only)
-n	SetLDSRotation			Sets LDS rotation on or off. Can only be run in TestMode.
-n	SetLED				Sets the specified LED to on,off,blink, or dim. (TestMode Only)
-n	SetMotor				Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
-n	SetNavigationMode			Sets the Navigation Mode
-n	SetNTPTime			Set system time using the NTP servers (WIFI must be up for this to work)
-n	SetSystemMode			Set the operation mode of the robot. (TestMode Only)
-n	SetTime				Sets the current day, hour, and minute for the scheduler clock.
-n	SetUsage			Sets usage settings
-n	SetUserSettings			Sets user settings
-n	SetWifi				SetWifi variables
+s	SetBatteryTest			Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode.
+s	SetBrushControlParams		Sets the open loop control params for the VR300 brush motor.
+s	SetButton				Simulates a button press.
+s	SetFuelGauge			Set Fuel Gauge Level.
+s	SetIEC				Sets the IEC Cleaning Test parameters
+s	SetLCD				Sets the LCD to the specified display. (TestMode Only)
+s	SetLDSRotation			Sets LDS rotation on or off. Can only be run in TestMode.
+s	SetLED				Sets the specified LED to on,off,blink, or dim. (TestMode Only)
+s	SetMotor				Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
+s	SetNavigationMode			Sets the Navigation Mode
+s	SetNTPTime			Set system time using the NTP servers (WIFI must be up for this to work)
+s	SetSystemMode			Set the operation mode of the robot. (TestMode Only)
+s	SetTime				Sets the current day, hour, and minute for the scheduler clock.
+s	SetUsage			Sets usage settings
+s	SetUserSettings			Sets user settings
+s	SetWifi				SetWifi variables
 
 d	TestMode				Sets TestMode on or off. Some commands can only be run in TestMode.
 

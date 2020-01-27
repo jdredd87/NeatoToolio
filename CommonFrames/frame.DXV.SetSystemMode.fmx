@@ -1,0 +1,88 @@
+object frameDXVSetSystemMode: TframeDXVSetSystemMode
+  Align = Client
+  Size.Width = 808.000000000000000000
+  Size.Height = 356.000000000000000000
+  Size.PlatformDefault = False
+  object lblSetSystemModeError: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 220.000000000000000000
+    Size.Width = 808.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 2
+  end
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Color = claNull
+    Sides = []
+    Size.Width = 808.000000000000000000
+    Size.Height = 153.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object btnSetSystemModeShutdown: TButton
+    Position.X = 16.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 97.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 56
+    Text = 'Shutdown'
+    OnClick = btnSetSystemModeClick
+    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+  end
+  object btnSetSystemModeHibernate: TButton
+    Position.X = 176.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 97.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 55
+    Text = 'Hibernate'
+    OnClick = btnSetSystemModeClick
+    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+  end
+  object btnSetSystemModeStandby: TButton
+    Position.X = 336.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 97.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 54
+    Text = 'Standby'
+    OnClick = btnSetSystemModeClick
+    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+  end
+  object btnSetSystemModePowerCycle: TButton
+    Position.X = 496.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 129.000000000000000000
+    Size.Height = 97.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 53
+    Text = 'PowerCycle'
+    OnClick = btnSetSystemModeClick
+    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+  end
+  object lblSetSystemModeMessage: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 158.000000000000000000
+    Size.Width = 808.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 1
+  end
+end

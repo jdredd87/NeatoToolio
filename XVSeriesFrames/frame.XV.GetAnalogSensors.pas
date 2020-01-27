@@ -62,7 +62,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+   Tab : TTabItem;
   end;
 
 implementation
@@ -76,7 +76,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>tab) then
   begin
     Timer_GetData.Enabled := false;
     exit;

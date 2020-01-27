@@ -4,7 +4,7 @@ interface
 
 uses
   dmCommon,
-  neato.D.Getversion,
+  neato.D.Getversion,FMX.TabControl,
   neato.Helpers,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
@@ -24,7 +24,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    Tab : ttabitem;
   end;
 
 implementation
@@ -49,7 +49,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>tab) then
   begin
     timer_GetData.Enabled := false;
     exit;

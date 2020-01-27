@@ -5,7 +5,7 @@ interface
 uses
   dmcommon,
   neato.helpers,
-  neato.D.GetWifiInfo,
+  neato.D.GetWifiInfo, FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
   FMX.ScrollBox, FMX.Controls.Presentation, FMX.Objects;
@@ -24,6 +24,7 @@ type
   private
     { Private declarations }
   public
+    Tab : TTabitem;
     procedure Check;
   end;
 

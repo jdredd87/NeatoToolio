@@ -1,0 +1,172 @@
+object frameDXVSetLED: TframeDXVSetLED
+  Align = Client
+  Size.Width = 637.000000000000000000
+  Size.Height = 443.000000000000000000
+  Size.PlatformDefault = False
+  object lblSetLEDError: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 332.000000000000000000
+    Size.Width = 637.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 11
+  end
+  object rectSetLCDTop: TRectangle
+    Align = Top
+    Fill.Color = claNull
+    Sides = []
+    Size.Width = 637.000000000000000000
+    Size.Height = 265.000000000000000000
+    Size.PlatformDefault = False
+    object btnSetLEDBacklightOn: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 140.000000000000000000
+      Size.Height = 70.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'BacklightOn'
+      OnClick = btnSetLEDOnClick
+      OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+      OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+    end
+    object btnSetLEDBacklightOff: TButton
+      Position.X = 168.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 140.000000000000000000
+      Size.Height = 70.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'BacklightOff'
+      OnClick = btnSetLEDOnClick
+      OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+      OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+    end
+  end
+  object lblSetLEDMessage: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 270.000000000000000000
+    Size.Width = 637.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 10
+  end
+  object btnSetLEDButtonAmber: TButton
+    Position.X = 328.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    Text = 'ButtonAmber'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDButtonOff: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    Text = 'ButtonOff'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDBlinkOn: TButton
+    Position.X = 168.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Text = 'BlinkOn'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDButtonGreenDim: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 96.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'ButtonGreenDim'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDButtonAmberDim: TButton
+    Position.X = 328.000000000000000000
+    Position.Y = 96.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'ButtonAmberDim'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDLEDGreen: TButton
+    Position.X = 168.000000000000000000
+    Position.Y = 96.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'LEDGreen'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDLEDRed: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 96.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'LEDRed'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDButtonGreen: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'ButtonGreen'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+  object btnSetLEDBlinkOff: TButton
+    Position.X = 328.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 140.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'BlinkOff'
+    OnClick = btnSetLEDOnClick
+    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
+    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  end
+end

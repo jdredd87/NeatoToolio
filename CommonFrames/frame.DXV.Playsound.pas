@@ -5,7 +5,7 @@ interface
 uses
   dmCommon,
   neato.Helpers,
-  neato.DXV.Playsound,
+  neato.DXV.Playsound,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
   FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects;
@@ -27,7 +27,7 @@ type
   private
     fPlaySoundAborted: Boolean;
   public
-    { Public declarations }
+    Tab : TTabItem;
     procedure Check;
     property PlaySoundAborted: Boolean read fPlaySoundAborted;
   end;
@@ -104,7 +104,7 @@ begin
       for idx := 0 to sSoundIDMax - 1 do
       begin
 
-        if fPlaySoundAborted then
+        if (PlaySoundAborted) or (dm.ActiveTab<>Tab) then
           break;
 
         // pReadData.Text := com.SendCommand(sPlaysoundSoundID + ' ' + idx.ToString);
