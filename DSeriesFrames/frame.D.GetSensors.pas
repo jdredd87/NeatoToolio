@@ -3,13 +3,14 @@ unit frame.D.GetSensors;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetSensor,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetSensors = class(TFrame)
+  TframeDGetSensors = class(TframeMaster)
     lblGetSensorWallFollower: TLabel;
     swGetSensorWallFollowerValue: TSwitch;
     lblGetSensorUltraSound: TLabel;
@@ -40,12 +41,10 @@ type
     lblGetSensorIMUAccelYValue: TLabel;
     lblGetSensorIMUAccelZ: TLabel;
     lblGetSensorIMUAccelZValue: TLabel;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

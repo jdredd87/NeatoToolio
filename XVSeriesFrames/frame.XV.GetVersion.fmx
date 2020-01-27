@@ -1,7 +1,11 @@
-object frameXVGetVersion: TframeXVGetVersion
+inherited frameXVGetVersion: TframeXVGetVersion
   Size.Width = 887.000000000000000000
   Size.Height = 401.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 152
+    Top = 248
+  end
   object sgGetVersion: TStringGrid
     Align = Client
     CanFocus = True
@@ -35,12 +39,5 @@ object frameXVGetVersion: TframeXVGetVersion
       Header = 'Build'
       Size.Width = 190.000000000000000000
     end
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 120
-    Top = 240
   end
 end

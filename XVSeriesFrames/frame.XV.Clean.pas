@@ -3,6 +3,7 @@ unit frame.XV.Clean;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.Clean,
   neato.errors,FMX.TabControl,
@@ -10,7 +11,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects;
 
 type
-  TframeXVClean = class(TFrame)
+  TframeXVClean = class(TframeMaster)
     btnCleanHouse: TButton;
     btnCleanSpot: TButton;
     btnCleanStop: TButton;
@@ -21,7 +22,6 @@ type
   private
     { Private declarations }
   public
-    Tab : TTabItem;
     procedure Check;
   end;
 

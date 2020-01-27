@@ -3,6 +3,7 @@ unit frame.XV.GetSchedule;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetSchedule,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -10,10 +11,9 @@ uses
   FMX.DateTimeCtrls, FMX.Objects;
 
 type
-  TframeXVGetSchedule = class(TFrame)
+  TframeXVGetSchedule = class(TframeMaster)
     lblGetScheduleScheduleIs: TLabel;
     swGetScheduleScheduleIsValue: TSwitch;
-    timer_GetData: TTimer;
     ckGetScheduleSun: TCheckBox;
     ckGetScheduleMon: TCheckBox;
     ckGetScheduleTue: TCheckBox;
@@ -39,7 +39,6 @@ type
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

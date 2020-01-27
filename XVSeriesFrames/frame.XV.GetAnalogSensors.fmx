@@ -1,7 +1,11 @@
-object frameXVGetAnalogSensors: TframeXVGetAnalogSensors
+inherited frameXVGetAnalogSensors: TframeXVGetAnalogSensors
   Size.Width = 521.000000000000000000
   Size.Height = 531.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 440
+    Top = 24
+  end
   object lblGetAnalogSensorsBatteryVoltageIn: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -224,13 +228,6 @@ object frameXVGetAnalogSensors: TframeXVGetAnalogSensors
     TextSettings.HorzAlign = Trailing
     Text = 'RightMagSensor'
     TabOrder = 9
-  end
-  object Timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = Timer_GetDataTimer
-    Left = 408
-    Top = 48
   end
   object pbGetAnalogSensorsBatteryTemp1InCValue: TProgressBar
     Max = 200.000000000000000000

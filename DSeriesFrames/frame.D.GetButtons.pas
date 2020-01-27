@@ -3,13 +3,14 @@ unit frame.D.GetButtons;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.d.getbuttons,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetButtons = class(TFrame)
+  TframeDGetButtons = class(TframeMaster)
     lblGetButtonsBTN_SOFT_KEY: TLabel;
     swGetButtonsBTN_SOFT_KEYvalue: TSwitch;
     lblGetButtonsBTN_SCROLL_UP: TLabel;
@@ -42,12 +43,10 @@ type
     swGetButtonsIR_BTN_LEFT_ARCvalue: TSwitch;
     lblGetButtonsIR_BTN_RIGHT_ARC: TLabel;
     swGetButtonsIR_BTN_RIGHT_ARCvalue: TSwitch;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

@@ -2,46 +2,13 @@ unit frame.Scripts;
 
 interface
 
-uses dmCommon,
-  dmSerial.Windows,
-  neato.D.ClearFiles,
-  atScript,
-  atScripter,
-  ScrmPS,
-  FMX.ScriptForm,
-  FMX.ScripterInit,
-  System.SysUtils,
-  System.Types,
-  System.UITypes,
-  System.Classes,
-  System.Variants,
-  FMX.Dialogs,
-  FMX.Grid.Style,
-  FMX.Types,
-  FMX.Colors,
-  FMX.StdCtrls,
-  FMX.Memo,
-  FMX.TMSChart,
-  FMX.Edit,
-  FMX.EditBox,
-  FMX.SpinBox,
-  FMX.Grid,
-  FMX.ScrollBox,
-  FMX.ListBox,
-  FMX.Objects,
-  FMX.Effects,
-  FMX.Controls.Presentation,
-  FMX.Controls,
-  FMX.TabControl,
-  FMX.Layouts,
-  FMX.Forms,
-  XSuperObject,
-  XSuperJson,
-  System.Rtti,
-  Generics.Collections;
+uses
+  frame.master,
+    atScripter,
+  atScript, FMX.StdCtrls, System.Classes, FMX.Types, FMX.Controls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo;
 
 type
-  TframeScripts = class(TFrame)
+  TframeScripts = class(TframeMaster)
     Memo1: TMemo;
     Button1: TButton;
     procedure Button1Click(Sender: TObject);
@@ -49,13 +16,43 @@ type
   private
     Scripter: TatScripter;
   public
-    Tab : TTabItem;
     procedure init;
   end;
 
 implementation
 
-uses ap_Classes, ap_Forms, ap_Dialogs;
+uses
+
+  ScrmPS,
+  FMX.ScriptForm,
+  FMX.ScripterInit,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Variants,
+  FMX.Dialogs,
+  FMX.Grid.Style,
+
+  FMX.Colors,
+  FMX.TMSChart,
+  FMX.Edit,
+  FMX.EditBox,
+  FMX.SpinBox,
+  FMX.Grid,
+  FMX.ListBox,
+  FMX.Objects,
+  FMX.Effects,
+  FMX.TabControl,
+  FMX.Layouts,
+  FMX.Forms,
+  XSuperObject,
+  XSuperJson,
+  System.Rtti,
+  Generics.Collections,
+  dmCommon,
+  dmSerial.Windows,
+
+ap_Classes, ap_Forms, ap_Dialogs;
 
 {$R *.fmx}
 

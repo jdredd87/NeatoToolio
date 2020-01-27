@@ -1,14 +1,11 @@
-object frameDXVGetAccel: TframeDXVGetAccel
+inherited frameDXVGetAccel: TframeDXVGetAccel
   Align = Client
   Size.Width = 706.000000000000000000
   Size.Height = 382.000000000000000000
-  Size.PlatformDefault = False
-  object Timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = Timer_GetDataTimer
-    Left = 328
-    Top = 32
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 96
+    Top = 248
   end
   object view3dGetAccelValue: TViewport3D
     Align = Client

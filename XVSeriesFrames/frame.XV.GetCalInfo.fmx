@@ -1,7 +1,11 @@
-object frameXVGetCalInfo: TframeXVGetCalInfo
+inherited frameXVGetCalInfo: TframeXVGetCalInfo
   Size.Width = 559.000000000000000000
   Size.Height = 402.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 392
+    Top = 256
+  end
   object lblGetCalInfoLDSOffset: TLabel
     Position.X = 25.000000000000000000
     Position.Y = 18.000000000000000000
@@ -232,13 +236,6 @@ object frameXVGetCalInfo: TframeXVGetCalInfo
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 15
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 424
-    Top = 304
   end
   object lblGetCalInfoRDropMin: TLabel
     Position.X = 25.000000000000000000

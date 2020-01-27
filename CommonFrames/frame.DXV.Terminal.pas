@@ -3,6 +3,7 @@ unit frame.DXV.Terminal;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.Helpers,   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -10,7 +11,7 @@ uses
   FMX.ComboEdit, FMX.Controls.Presentation, FMX.Objects;
 
 type
-  TframeDXVTerminal = class(TFrame)
+  TframeDXVTerminal = class(TframeMaster)
     pnlDebugTerminalBottom: trectangle;
     lblDebugTerminalCMD: TLabel;
     edDebugTerminalSend: TComboEdit;
@@ -20,7 +21,6 @@ type
     btnDebugTerminalClear: TButton;
     btnDebugTerminalHelp: TButton;
     memoDebugTerminal: TMemo;
-    timer_GetData: TTimer;
     procedure btnDebugTerminalClearClick(Sender: TObject);
     procedure btnDebugTerminalHelpClick(Sender: TObject);
     procedure btnDebugTerminalSendClick(Sender: TObject);
@@ -30,7 +30,6 @@ type
   private
     { Private declarations }
   public
-    Tab : TTabItem;
     procedure check;
     procedure FComPortRxChar(Sender: TObject);
     procedure FComPortEOL(Sender: TObject);

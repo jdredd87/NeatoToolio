@@ -1,7 +1,10 @@
-object frameXVRestoreDefaults: TframeXVRestoreDefaults
+inherited frameXVRestoreDefaults: TframeXVRestoreDefaults
   Size.Width = 738.000000000000000000
   Size.Height = 159.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 504
+    Top = 64
+  end
   object btnRestoreDefaults: TButton
     Enabled = False
     Margins.Left = 10.000000000000000000

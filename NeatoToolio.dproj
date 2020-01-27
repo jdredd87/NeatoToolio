@@ -636,6 +636,11 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="CommonFrames\frame.Master.pas">
+            <Form>frameMaster</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>

@@ -94,7 +94,8 @@ uses
   frame.DXV.SetLED in 'CommonFrames\frame.DXV.SetLED.pas' {frameDXVSetLED: TFrame},
   neato.DXV.SetLED in 'Common\neato.DXV.SetLED.pas',
   neato.XV.GetSchedule in 'XVSeries\neato.XV.GetSchedule.pas',
-  frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame};
+  frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame},
+  frame.Master in 'CommonFrames\frame.Master.pas' {frameMaster: TFrame};
 
 {$R *.res}
 

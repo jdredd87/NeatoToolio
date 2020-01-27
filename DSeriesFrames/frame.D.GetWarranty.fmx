@@ -1,7 +1,11 @@
-object frameDGetWarranty: TframeDGetWarranty
+inherited frameDGetWarranty: TframeDGetWarranty
   Size.Width = 527.000000000000000000
   Size.Height = 88.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 392
+    Top = 16
+  end
   object lbl_CumulativeCleaningTimeInSecs: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -64,12 +68,5 @@ object frameDGetWarranty: TframeDGetWarranty
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 3
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 64
-    Top = 40
   end
 end

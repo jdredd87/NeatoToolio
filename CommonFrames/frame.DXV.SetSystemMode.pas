@@ -3,6 +3,7 @@ unit frame.DXV.SetSystemMode;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.DXV.SetSystemMode,
   neato.helpers, FMX.TabControl,
@@ -12,7 +13,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
 
 type
-  TframeDXVSetSystemMode = class(TFrame)
+  TframeDXVSetSystemMode = class(TframeMaster)
     lblSetSystemModeError: TLabel;
     Rectangle1: TRectangle;
     btnSetSystemModeShutdown: TButton;
@@ -27,7 +28,6 @@ type
   private
     { Private declarations }
   public
-    Tab: TTabItem;
   end;
 
 implementation

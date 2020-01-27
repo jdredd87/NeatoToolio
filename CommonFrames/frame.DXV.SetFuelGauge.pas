@@ -3,6 +3,7 @@ unit frame.DXV.SetFuelGauge;
 interface
 
 uses
+ frame.master,
   dmCommon,
   neato.DXV.SetFuelGauge,
   neato.helpers, FMX.TabControl,
@@ -12,7 +13,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani;
 
 type
-  TframeDXVSetFuelGauge = class(TFrame)
+  TframeDXVSetFuelGauge = class(TframeMaster)
     tbSetFuelGauge: TTrackBar;
     lblSetFuelGauge: TLabel;
     lblSetFuelGaugeError: TLabel;
@@ -20,7 +21,6 @@ type
   private
     { Private declarations }
   public
-    Tab: TTabItem;
   end;
 
 implementation

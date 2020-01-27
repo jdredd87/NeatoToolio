@@ -1,8 +1,10 @@
-object frameDXVSetTime: TframeDXVSetTime
+inherited frameDXVSetTime: TframeDXVSetTime
   Align = Client
   Size.Width = 808.000000000000000000
   Size.Height = 356.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 544
+  end
   object lblSetTimeError: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]

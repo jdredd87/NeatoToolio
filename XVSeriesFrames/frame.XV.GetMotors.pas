@@ -3,13 +3,14 @@ unit frame.XV.GetMotors;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetMotors,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeXVGetMotors = class(TFrame)
+  TframeXVGetMotors = class(TframeMaster)
     lblGetMotorsBrush_RPM: TLabel;
     lblGetMotorsBrush_RPMValue: TLabel;
     lblGetMotorsBrush_mA: TLabel;
@@ -36,14 +37,12 @@ type
     lblGetMotorsRightWheel_SpeedValue: TLabel;
     lblGetMotorsSideBrush_mA: TLabel;
     lblGetMotorsSideBrush_mAValue: TLabel;
-    timer_GetData: TTimer;
     lblGetMotorsCharger_mAH: TLabel;
     lblGetMotorsCharger_mAHValue: TLabel;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

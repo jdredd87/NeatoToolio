@@ -3,6 +3,7 @@ unit frame.D.GetVersion;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.Getversion,FMX.TabControl,
   neato.Helpers,
@@ -11,7 +12,7 @@ uses
   FMX.Controls.Presentation, FMX.ScrollBox;
 
 type
-  TframeDGetVersion = class(TFrame)
+  TframeDGetVersion = class(TframeMaster)
     sgGetVersion: TStringGrid;
     scGetVersionComponent: TStringColumn;
     scGerVersionMajor: TStringColumn;
@@ -19,12 +20,10 @@ type
     scGetVersionBuild: TStringColumn;
     scGetVersionAux: TStringColumn;
     scGetGetVersionAUX2: TStringColumn;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-    Tab : ttabitem;
   end;
 
 implementation

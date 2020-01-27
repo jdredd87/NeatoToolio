@@ -1,8 +1,11 @@
-object frameDXVSetSystemMode: TframeDXVSetSystemMode
+inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
   Align = Client
   Size.Width = 808.000000000000000000
   Size.Height = 356.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 728
+    Top = 16
+  end
   object lblSetSystemModeError: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]

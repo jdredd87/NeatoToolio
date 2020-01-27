@@ -1,7 +1,11 @@
-object frameDXVTerminal: TframeDXVTerminal
+inherited frameDXVTerminal: TframeDXVTerminal
   Size.Width = 1015.000000000000000000
   Size.Height = 675.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 336
+    Top = 136
+  end
   object pnlDebugTerminalBottom: TRectangle
     Align = Bottom
     Fill.Color = xFF2D92BF
@@ -113,11 +117,5 @@ object frameDXVTerminal: TframeDXVTerminal
     TabOrder = 0
     Viewport.Width = 991.000000000000000000
     Viewport.Height = 534.000000000000000000
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    OnTimer = timer_GetDataTimer
-    Left = 496
-    Top = 320
   end
 end

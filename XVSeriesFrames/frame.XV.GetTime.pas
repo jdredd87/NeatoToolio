@@ -3,6 +3,7 @@ unit frame.XV.GetTime;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetTime,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -13,8 +14,7 @@ type
   // https://www.youtube.com/watch?v=QL5SdJAiWGE
   // Used his simple 3 line clock example!
 
-  TframeXVGetTime = class(TFrame)
-    timer_GetData: TTimer;
+  TframeXVGetTime = class(TframeMaster)
     lblGetTime: TLabel;
     ScaledLayout1: TScaledLayout;
     circleGetTime: TCircle;
@@ -54,7 +54,6 @@ type
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

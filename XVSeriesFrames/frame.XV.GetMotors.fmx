@@ -1,7 +1,9 @@
-object frameXVGetMotors: TframeXVGetMotors
+inherited frameXVGetMotors: TframeXVGetMotors
   Size.Width = 336.000000000000000000
   Size.Height = 488.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+  end
   object lblGetMotorsBrush_RPM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 24.000000000000000000
@@ -274,13 +276,6 @@ object frameXVGetMotors: TframeXVGetMotors
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 4
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 48
-    Top = 24
   end
   object lblGetMotorsCharger_mAH: TLabel
     Position.X = 16.000000000000000000

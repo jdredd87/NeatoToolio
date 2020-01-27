@@ -3,13 +3,14 @@ unit frame.XV.GetCalInfo;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetCalInfo,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeXVGetCalInfo = class(TFrame)
+  TframeXVGetCalInfo = class(TframeMaster)
     lblGetCalInfoLDSOffset: TLabel;
     lblGetCalInfoLDSOffsetValue: TLabel;
     lblGetCalInfoXAccel: TLabel;
@@ -32,7 +33,6 @@ type
     lblGetCalInfoCleaningTestCarpetDistanceValue: TLabel;
     lblGetCalInfoQAState: TLabel;
     lblGetCalInfoQAStateValue: TLabel;
-    timer_GetData: TTimer;
     lblGetCalInfoRDropMin: TLabel;
     lblGetCalInfoRDropMinValue: TLabel;
     lblGetCalInfoRDropMid: TLabel;
@@ -57,7 +57,6 @@ type
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

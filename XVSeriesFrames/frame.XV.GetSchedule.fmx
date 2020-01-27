@@ -1,7 +1,9 @@
-object frameXVGetSchedule: TframeXVGetSchedule
+inherited frameXVGetSchedule: TframeXVGetSchedule
   Size.Width = 302.000000000000000000
   Size.Height = 306.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+  end
   object lblGetScheduleScheduleIs: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 19.000000000000000000
@@ -21,13 +23,6 @@ object frameXVGetSchedule: TframeXVGetSchedule
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 48
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 32
-    Top = 16
   end
   object ckGetScheduleSun: TCheckBox
     HitTest = False

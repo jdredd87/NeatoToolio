@@ -3,6 +3,7 @@ unit frame.XV.GetAnalogSensors;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetAnalogSensors,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -10,7 +11,7 @@ uses
   FMX.TabControl;
 
 type
-  TframeXVGetAnalogSensors = class(TFrame)
+  TframeXVGetAnalogSensors = class(TframeMaster)
     lblGetAnalogSensorsBatteryVoltageIn: TLabel;
     pbGetAnalogSensorsBatteryVoltageInValue: TProgressBar;
 
@@ -35,7 +36,6 @@ type
     lblGetAnalogSensorsRightDropInMM: TLabel;
     lblGetAnalogSensorsRightDropInMMValue: TLabel;
     lblGetAnalogSensorsRightMagSensor: TLabel;
-    Timer_GetData: TTimer;
     pbGetAnalogSensorsBatteryTemp1InCValue: TProgressBar;
     lblGetAnalogSensorsBatteryTemp1InCValue: TLabel;
     pbGetAnalogSensorsUIButtonInmVValue: TProgressBar;
@@ -62,7 +62,6 @@ type
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

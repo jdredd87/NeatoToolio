@@ -3,6 +3,7 @@ unit frame.DXV.Playsound;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.Helpers,
   neato.DXV.Playsound,FMX.TabControl,
@@ -11,7 +12,7 @@ uses
   FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects;
 
 type
-  TframeDXVPlaySound = class(TFrame)
+  TframeDXVPlaySound = class(TframeMaster)
     pnlPlaySoundTop: trectangle;
     lblPlaySoundID: TLabel;
     nbPlaySoundIDValue: TNumberBox;
@@ -27,7 +28,6 @@ type
   private
     fPlaySoundAborted: Boolean;
   public
-    Tab : TTabItem;
     procedure Check;
     property PlaySoundAborted: Boolean read fPlaySoundAborted;
   end;

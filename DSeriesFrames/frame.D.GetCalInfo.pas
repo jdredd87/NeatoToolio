@@ -3,13 +3,14 @@ unit frame.D.GetCalInfo;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetCalInfo,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetCalInfo = class(TFrame)
+  TframeDGetCalInfo = class(TframeMaster)
     lblGetCalInfoLDSOffset: TLabel;
     lblGetCalInfoLDSOffsetValue: TLabel;
     lblGetCalInfoXAccel: TLabel;
@@ -42,12 +43,10 @@ type
     lblGetCalInfoWheelDropSensor_CalibrationDataValue: TLabel;
     lblGetCalInfoWallSensor_CalibrationData: TLabel;
     lblGetCalInfoWallSensor_CalibrationDataValue: TLabel;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

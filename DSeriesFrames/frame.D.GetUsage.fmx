@@ -1,7 +1,9 @@
-object frameDGetUsage: TframeDGetUsage
+inherited frameDGetUsage: TframeDGetUsage
   Size.Width = 531.000000000000000000
   Size.Height = 159.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+  end
   object lblTotalCleaningTime: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -127,12 +129,5 @@ object frameDGetUsage: TframeDGetUsage
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 3
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 408
-    Top = 56
   end
 end

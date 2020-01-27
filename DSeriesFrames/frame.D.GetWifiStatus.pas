@@ -3,13 +3,14 @@ unit frame.D.GetWifiStatus;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetWifiStatus,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetWifiStatus = class(TFrame)
+  TframeDGetWifiStatus = class(TframeMaster)
     lblGetWifiStatusEnabled: TLabel;
     swGetWifiStatusEnabledValue: TSwitch;
     lblGetWifiStatusIPADDR: TLabel;
@@ -48,13 +49,11 @@ type
     lblGetWifiStatusUTCOffsetValue: TLabel;
     lblGetWifiStatusTimeZone: TLabel;
     lblGetWifiStatusTimeZoneValue: TLabel;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-   Tab : TTabItem;
   end;
 
 implementation

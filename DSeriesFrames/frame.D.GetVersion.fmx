@@ -1,7 +1,11 @@
-object frameDGetVersion: TframeDGetVersion
+inherited frameDGetVersion: TframeDGetVersion
   Size.Width = 887.000000000000000000
   Size.Height = 401.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 176
+    Top = 224
+  end
   object sgGetVersion: TStringGrid
     Align = Client
     CanFocus = True
@@ -43,12 +47,5 @@ object frameDGetVersion: TframeDGetVersion
       Header = 'Aux2'
       Size.Width = 85.000000000000000000
     end
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 120
-    Top = 240
   end
 end

@@ -3,6 +3,7 @@ unit frame.DXV.SetLED;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.DXV.SetLED,
   neato.helpers, FMX.TabControl,
@@ -12,7 +13,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
 
 type
-  TframeDXVSetLED = class(TFrame)
+  TframeDXVSetLED = class(TframeMaster)
     lblSetLEDError: TLabel;
     rectSetLCDTop: TRectangle;
     lblSetLEDMessage: TLabel;
@@ -33,7 +34,6 @@ type
   private
     { Private declarations }
   public
-    Tab: TTabItem;
   end;
 
 implementation

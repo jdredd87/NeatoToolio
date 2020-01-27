@@ -3,6 +3,7 @@ unit frame.D.GetWifiInfo;
 interface
 
 uses
+  frame.master,
   dmcommon,
   neato.helpers,
   neato.D.GetWifiInfo, FMX.TabControl,
@@ -11,7 +12,7 @@ uses
   FMX.ScrollBox, FMX.Controls.Presentation, FMX.Objects;
 
 type
-  TframeDGetWifiInfo = class(TFrame)
+  TframeDGetWifiInfo = class(TframeMaster)
     pnlGetWifiInfoTop: trectangle;
     btnGetWifiInfoScan: TButton;
     aniGetWifiInfo: TAniIndicator;
@@ -24,7 +25,6 @@ type
   private
     { Private declarations }
   public
-    Tab : TTabitem;
     procedure Check;
   end;
 

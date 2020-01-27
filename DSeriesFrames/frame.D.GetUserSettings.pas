@@ -3,13 +3,14 @@ unit frame.D.GetUserSettings;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetUserSettings,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetUserSettings = class(TFrame)
+  TframeDGetUserSettings = class(TframeMaster)
     lblGetUserSettingsLanguage: TLabel;
     lblGetUserSettingsLanguageValue: TLabel;
     lblGetUserSettingsClickSounds: TLabel;
@@ -49,13 +50,11 @@ type
     CheckBox5: TCheckBox;
     CheckBox6: TCheckBox;
     CheckBox7: TCheckBox;
-    timer_GetData: TTimer;
 
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

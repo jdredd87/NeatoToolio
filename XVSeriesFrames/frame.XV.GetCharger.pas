@@ -3,6 +3,7 @@ unit frame.XV.GetCharger;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetCharger,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -10,7 +11,7 @@ uses
   FMX.TabControl;
 
 type
-  TframeXVGetCharger = class(TFrame)
+  TframeXVGetCharger = class(TframeMaster)
     pbGetChargerFuelPercentValue: TProgressBar;
     lblGetChargerFuelPercentValue: TLabel;
     lblGetChargerFuelPercent: TLabel;
@@ -44,7 +45,6 @@ type
     swGetChargerExtPwrPresentValue: TSwitch;
     lblGetChargerThermistor0Present: TLabel;
     swGetChargerThermistorPresent0Value: TSwitch;
-    timer_GetData: TTimer;
     swGetChargerThermistorPresent1Value: TSwitch;
     lblGetChargerThermistor1Present: TLabel;
     pbGetChargerBattTempCAvg1Value: TProgressBar;
@@ -54,7 +54,6 @@ type
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

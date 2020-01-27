@@ -1,13 +1,10 @@
-object frameXVGetTime: TframeXVGetTime
+inherited frameXVGetTime: TframeXVGetTime
   Size.Width = 550.000000000000000000
   Size.Height = 540.000000000000000000
-  Size.PlatformDefault = False
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 296
-    Top = 144
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 40
+    Top = 56
   end
   object lblGetTime: TLabel
     Align = Top

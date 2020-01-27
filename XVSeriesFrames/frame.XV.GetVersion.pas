@@ -3,6 +3,7 @@ unit frame.XV.GetVersion;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetVersion,FMX.TabControl,
   neato.Helpers,
@@ -11,18 +12,16 @@ uses
   FMX.Controls.Presentation, FMX.ScrollBox;
 
 type
-  TframeXVGetVersion = class(TFrame)
+  TframeXVGetVersion = class(TframeMaster)
     sgGetVersion: TStringGrid;
     scGetVersionComponent: TStringColumn;
     scGerVersionMajor: TStringColumn;
     scGetVersionMinor: TStringColumn;
     scGetVersionBuild: TStringColumn;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

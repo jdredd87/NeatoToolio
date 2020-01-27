@@ -3,6 +3,7 @@ unit frame.DXV.SetTime;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.DXV.SetTime,
   neato.helpers, FMX.TabControl,
@@ -12,7 +13,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
 
 type
-  TframeDXVSetTime = class(TFrame)
+  TframeDXVSetTime = class(TframeMaster)
     lblSetTimeError: TLabel;
     Rectangle1: TRectangle;
     ckSetTimeSun: tradiobutton;
@@ -35,7 +36,6 @@ type
   private
     { Private declarations }
   public
-    Tab: TTabItem;
   end;
 
 implementation

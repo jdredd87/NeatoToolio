@@ -1,7 +1,9 @@
-object frameDGetButtons: TframeDGetButtons
+inherited frameDGetButtons: TframeDGetButtons
   Size.Width = 280.000000000000000000
   Size.Height = 408.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+  end
   object lblGetButtonsBTN_SOFT_KEY: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 19.000000000000000000
@@ -321,12 +323,5 @@ object frameDGetButtons: TframeDGetButtons
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 56
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 40
-    Top = 48
   end
 end

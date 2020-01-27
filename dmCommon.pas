@@ -6,9 +6,22 @@ uses
 {$IFDEF MSWINDOWS}
   dmSerial.Windows,
 {$ENDIF}
-  System.SysUtils, System.Classes, FMX.Types, FMX.Controls, FMX.StdCtrls,  FMX.TabControl;
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  System.Rtti,
+  Generics.Collections,
+  FMX.Types,
+  FMX.Controls,
+  FMX.StdCtrls,
+  FMX.TabControl,
+  FMX.Objects;
 
 type
+  TTimerList = TObjectList<TTimer>;
+
   Tdm = class(TDataModule)
     StyleBook: TStyleBook;
     procedure DataModuleCreate(Sender: TObject);
@@ -25,7 +38,13 @@ type
   end;
 
 var
-  dm: Tdm;
+
+  dm: Tdm; // common datamodule
+
+  TimerList: TTimerList; // object list of TTimers
+  CurrentTimer: TTimer; // quickly know what the active TTimer is
+
+procedure StopTimers; // stops all running registered timers
 
 implementation
 
@@ -42,5 +61,27 @@ procedure Tdm.DataModuleDestroy(Sender: TObject);
 begin
   freeandnil(COM);
 end;
+
+procedure StopTimers;
+var
+  idx: integer;
+begin
+  if not assigned(TimerList) then
+    exit;
+
+  for idx := 0 to TimerList.Count - 1 do
+    if assigned(TimerList[idx]) then
+      TimerList[idx].Enabled := false;
+end;
+
+initialization
+
+TimerList := TTimerList.Create(false);
+CurrentTimer := nil;
+
+finalization
+
+StopTimers;
+freeandnil(TimerList);
 
 end.

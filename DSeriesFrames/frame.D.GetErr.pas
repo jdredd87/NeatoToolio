@@ -3,6 +3,7 @@ unit frame.D.GetErr;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetErr,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -10,16 +11,14 @@ uses
   FMX.Controls.Presentation, FMX.ScrollBox;
 
 type
-  TFrameDGetErr = class(TFrame)
+  TFrameDGetErr = class(TframeMaster)
     sgGetErr: TStringGrid;
     scGetErrName: TStringColumn;
     scGetErrValue: TStringColumn;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabitem;
   end;
 
 implementation

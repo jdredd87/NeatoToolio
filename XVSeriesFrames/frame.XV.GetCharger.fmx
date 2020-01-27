@@ -1,8 +1,12 @@
-object frameXVGetCharger: TframeXVGetCharger
+inherited frameXVGetCharger: TframeXVGetCharger
   Align = Client
   Size.Width = 505.000000000000000000
   Size.Height = 447.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 152
+    Top = 400
+  end
   object pbGetChargerFuelPercentValue: TProgressBar
     Orientation = Vertical
     Position.X = 22.000000000000000000
@@ -366,13 +370,6 @@ object frameXVGetCharger: TframeXVGetCharger
     Size.Height = 19.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 13
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 215
-    Top = 398
   end
   object swGetChargerThermistorPresent1Value: TSwitch
     HitTest = False

@@ -1,7 +1,10 @@
-object frameDGetWifiInfo: TframeDGetWifiInfo
+inherited frameDGetWifiInfo: TframeDGetWifiInfo
   Size.Width = 996.000000000000000000
   Size.Height = 564.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 256
+    Top = 304
+  end
   object pnlGetWifiInfoTop: TRectangle
     Align = Top
     Fill.Color = xFF2D92BF

@@ -1,8 +1,11 @@
-object frameDXVSetLCD: TframeDXVSetLCD
+inherited frameDXVSetLCD: TframeDXVSetLCD
   Align = Client
   Size.Width = 825.000000000000000000
   Size.Height = 443.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 680
+    Top = 152
+  end
   object lblSetLCDError: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]

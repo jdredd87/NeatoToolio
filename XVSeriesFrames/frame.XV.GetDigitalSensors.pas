@@ -3,13 +3,14 @@ unit frame.XV.GetDigitalSensors;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.GetDigitalSensors,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.TabControl;
 
 type
-  TframeXVGetDigitalSensors = class(TFrame)
+  TframeXVGetDigitalSensors = class(TframeMaster)
     swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch;
     lblGetDigitalSensorsSNSR_DC_JACK_IS_IN: TLabel;
     lblGetDigitalSensorsSNSR_DUSTBIN_IS_IN: TLabel;
@@ -22,7 +23,6 @@ type
     lblGetDigitalSensorsLFRONTBIT: TLabel;
     swGetDigitalSensorsLSIDEBITValue: TSwitch;
     lblGetDigitalSensorsLSIDEBIT: TLabel;
-    timer_GetData: TTimer;
     swGetDigitalSensorsRFRONTBITValue: TSwitch;
     lblGetDigitalSensorsRFRONTBIT: TLabel;
     swGetDigitalSensorsRSIDEBITValue: TSwitch;
@@ -31,7 +31,6 @@ type
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

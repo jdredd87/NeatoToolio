@@ -3,19 +3,19 @@ unit frame.XV.RestoreDefaults;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.XV.RestoreDefaults,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeXVRestoreDefaults = class(TFrame)
+  TframeXVRestoreDefaults = class(TframeMaster)
     btnRestoreDefaults: TButton;
     procedure btnRestoreDefaultsClick(Sender: TObject);
   private
     { Private declarations }
   public
-    Tab : TTabItem;
     procedure Check;
   end;
 

@@ -3,6 +3,7 @@ unit frame.DXV.GetAccel;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.DXV.GetAccel,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
@@ -10,8 +11,7 @@ uses
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D;
 
 type
-  TframeDXVGetAccel = class(TFrame)
-    Timer_GetData: TTimer;
+  TframeDXVGetAccel = class(TframeMaster)
     view3dGetAccelValue: TViewport3D;
     lblGetAccelSumInG: TLabel;
     lblGetAccelSumInGValue: TLabel;
@@ -31,7 +31,6 @@ type
     { Private declarations }
   public
     { Public declarations }
-    Tab: TTabItem;
   end;
 
 implementation

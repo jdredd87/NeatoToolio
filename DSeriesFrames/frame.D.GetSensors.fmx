@@ -1,7 +1,11 @@
-object frameDGetSensors: TframeDGetSensors
+inherited frameDGetSensors: TframeDGetSensors
   Size.Width = 450.000000000000000000
   Size.Height = 371.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 360
+    Top = 184
+  end
   object lblGetSensorWallFollower: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -313,12 +317,5 @@ object frameDGetSensors: TframeDGetSensors
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 0
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 304
-    Top = 136
   end
 end

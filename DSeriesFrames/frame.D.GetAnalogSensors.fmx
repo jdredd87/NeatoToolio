@@ -1,7 +1,9 @@
-object frameDGetAnalogSensors: TframeDGetAnalogSensors
+inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
   Size.Width = 506.000000000000000000
   Size.Height = 453.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+  end
   object lblGetAnalogSensorsBatteryVoltage: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -532,12 +534,5 @@ object frameDGetAnalogSensors: TframeDGetAnalogSensors
     Size.PlatformDefault = False
     Text = 'MagSensorRight'
     TabOrder = 18
-  end
-  object Timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = Timer_GetDataTimer
-    Left = 240
-    Top = 216
   end
 end

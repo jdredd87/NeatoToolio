@@ -1,7 +1,11 @@
-object frameDGetWifiStatus: TframeDGetWifiStatus
+inherited frameDGetWifiStatus: TframeDGetWifiStatus
   Size.Width = 508.000000000000000000
   Size.Height = 489.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 384
+    Top = 304
+  end
   object lblGetWifiStatusEnabled: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -390,12 +394,5 @@ object frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 14
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 400
-    Top = 328
   end
 end

@@ -3,25 +3,24 @@ unit frame.D.GetWarranty;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetWarranty,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetWarranty = class(TFrame)
+  TframeDGetWarranty = class(TframeMaster)
     lbl_CumulativeCleaningTimeInSecs: TLabel;
     lbl_CumulativeCleaningTimeInSecsValue: TLabel;
     lbl_CumulativeBatteryCycles: TLabel;
     lbl_CumulativeBatteryCyclesValue: TLabel;
     lbl_ValidationCode: TLabel;
     lbl_ValidationCodeValue: TLabel;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

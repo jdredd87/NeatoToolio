@@ -1,7 +1,10 @@
-object frameDClearFiles: TframeDClearFiles
+inherited frameDClearFiles: TframeDClearFiles
   Size.Width = 738.000000000000000000
   Size.Height = 159.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 576
+    Top = 24
+  end
   object gbClearFiles: TGroupBox
     Margins.Left = 5.000000000000000000
     Margins.Top = 5.000000000000000000

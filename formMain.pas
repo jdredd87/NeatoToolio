@@ -1,3 +1,10 @@
+{
+
+ Possibly make a new TFrame that the rest of the frames can inherit from.
+ In said new Frame, create a new create constructor to handle the staging up.
+
+}
+
 unit formMain;
 
 interface
@@ -100,6 +107,7 @@ uses
 
   {Everything else to run this}
   dmCommon,
+  frame.Scripts,
 
   XSuperObject,
   XSuperJson,
@@ -131,19 +139,24 @@ uses
   FMX.Controls.Presentation,
   FMX.TabControl,
   FMX.Layouts,
-  FMX.Forms, frame.Scripts, FMX.DateTimeCtrls, FMXTee.Engine, FMXTee.Series, FMXTee.Procs, FMXTee.Chart;
+  FMX.Forms,
+  FMX.DateTimeCtrls,
+  FMXTee.Engine,
+  FMXTee.Series,
+  FMXTee.Procs,
+  FMXTee.Chart;
 
 type
   TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
 
-  TTimerList = TObjectList<TTimer>;
+
 
   TfrmMain = class(TForm)
     tabsMain: TTabControl;
     tabSetup: TTabItem;
     tabSensors: TTabItem;
     ScaledLayoutMain: TScaledLayout;
-    tabSensorsOptions: TTabControl;
+    tabsSensorsOptions: TTabControl;
     tabGetAccel: TTabItem;
     tabGetAnalogSensors: TTabItem;
     tabGetDigitalSensors: TTabItem;
@@ -187,16 +200,16 @@ type
     tabGetConfiguredWifiNetworks: TTabItem;
     tabSetWifi: TTabItem;
     tabMotors: TTabItem;
-    tabMotorOptions: TTabControl;
+    tabsMotorOptions: TTabControl;
     tabGetMotors: TTabItem;
     tabSetMotor: TTabItem;
     tabPower: TTabItem;
-    tabPowerOptions: TTabControl;
+    tabsPowerOptions: TTabControl;
     tabGetCharger: TTabItem;
     tabSetFuelGauge: TTabItem;
     tabSetSystemMode: TTabItem;
     tabLidar: TTabItem;
-    tabLidarOptions: TTabControl;
+    tabsLidarOptions: TTabControl;
     tabGetLDSScan: TTabItem;
     tabLidarView: TTabItem;
     sgLIDAR: TStringGrid;
@@ -225,10 +238,10 @@ type
     tabSetBatteryTest: TTabItem;
     tabSetBrushControlParams: TTabItem;
     tabButtons: TTabItem;
-    tabButtonOptions: TTabControl;
+    tabsButtonOptions: TTabControl;
     tabSetButton: TTabItem;
     tabGetButtons: TTabItem;
-    tabSerialOptions: TTabControl;
+    tabsSerialOptions: TTabControl;
     tabSerialSettings: TTabItem;
     pnlSerialTop: trectangle;
     lblSetupComPort: TLabel;
@@ -247,7 +260,7 @@ type
     RectangleaboutMemo: trectangle;
     memoAbout: TMemo;
     tabDebug: TTabItem;
-    tabDebuggerOptions: TTabControl;
+    tabsDebuggerOptions: TTabControl;
     tabDebugTerminal: TTabItem;
     tabDebugRawData: TTabItem;
     memoDebug: TMemo;
@@ -256,7 +269,7 @@ type
     tabScripts: TTabItem;
     frameScripts: TframeScripts;
     tabTime: TTabItem;
-    tabTimeOptions: TTabControl;
+    tabsTimeOptions: TTabControl;
     tabSetTime: TTabItem;
     tabGetTime: TTabItem;
     tabGetSchedule: TTabItem;
@@ -270,11 +283,11 @@ type
     tabPlaySound: TTabItem;
     lblPlaysoundIDX: TLabel;
     tabSetUserSettings: TTabItem;
+    tabTestLDS: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormShow(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
 
     procedure chkAutoDetectChange(Sender: TObject);
     procedure chkTestModeChange(Sender: TObject);
@@ -291,10 +304,11 @@ type
     procedure chkLidarHideCalcChange(Sender: TObject);
 
   private
-    fCurrentTimer: TTimer;
+
     fLIDARCounter: single;
     fPlaySoundAborted: Boolean;
-    fTimerList: TTimerList;
+
+//    fActiveTabControl: TTabControl;
     // form events
 
     procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
@@ -358,7 +372,6 @@ type
     Neato: TNeatoModels; // what kind of bot model line
 
     Procedure StageTabs; // create and place our tabs depending on model
-    procedure StopTimers; // STOP all tab timers from running
     procedure ResetTabs; // Reset tab states
     procedure PopulateCOMPorts; // repopulate drop down with active com ports
     procedure toggleComs(disable: Boolean); // connect/disconnect basically
@@ -400,8 +413,6 @@ begin
 {$IFDEF ANDORID}
   application.onException := self.onException;
 {$ENDIF}
-  fCurrentTimer := nil;
-  fTimerList := TTimerList.Create(false);
 
   Neato := neatoUnknown;
 
@@ -451,7 +462,8 @@ begin
   // otherwise looks dumb with nothing loaded up in view
 
   tabsMain.TabIndex := 0;
-  tabSerialOptions.TabIndex := 0;
+  tabsSerialOptions.TabIndex := 0;
+
 
   tthread.CreateAnonymousThread(
     procedure
@@ -465,12 +477,6 @@ begin
     end).start;
 
   self.frameScripts.init;
-end;
-
-procedure TfrmMain.FormDestroy(Sender: TObject);
-begin
-  if assigned(fTimerList) then
-    freeandnil(fTimerList);
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -507,7 +513,7 @@ begin
   // as it seems these can trigger on closeing
 
   tabsMain.OnChange := nil;
-  tabSensorsOptions.OnChange := nil;
+  tabsSensorsOptions.OnChange := nil;
   tabsInfoOptions.OnChange := nil;
   tabsWifiOptions.OnChange := nil;
 
@@ -643,8 +649,8 @@ end;
 
 procedure TfrmMain.chkTestModeChange(Sender: TObject);
 begin
-  if assigned(fCurrentTimer) then
-    fCurrentTimer.Enabled := false;
+  if assigned(CurrentTimer) then
+    CurrentTimer.Enabled := false;
 
   case chkTestMode.IsChecked of
     true:
@@ -653,8 +659,8 @@ begin
       dm.com.SendCommand('TestMode OFF');
   end;
 
-  if assigned(fCurrentTimer) then
-    fCurrentTimer.Enabled := true;
+  if assigned(CurrentTimer) then
+    CurrentTimer.Enabled := true;
 end;
 
 procedure TfrmMain.tabClickRepaint(Sender: TObject);
@@ -1152,17 +1158,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.StopTimers;
-var
-  idx: integer;
-begin
-  if not assigned(fTimerList) then
-    exit;
 
-  for idx := 0 to fTimerList.Count - 1 do
-    if assigned(fTimerList[idx]) then
-      fTimerList[idx].Enabled := false;
-end;
 
 procedure TfrmMain.PopulateCOMPorts;
 var
@@ -1197,10 +1193,17 @@ begin
 
   if TTabControl(Sender) = tabsMain then
   begin
-    tabSensorsOptions.TabIndex := -1;
+    tabsSensorsOptions.TabIndex := -1;
+    tabsInfoOptions.TabIndex := -1;
     tabsWifiOptions.TabIndex := -1;
     tabsToolOptions.TabIndex := -1;
-    tabsInfoOptions.TabIndex := -1;
+    tabsMotorOptions.TabIndex := -1;
+    tabsPowerOptions.TabIndex := -1;
+    tabsLidarOptions.TabIndex := -1;
+    tabsButtonOptions.TabIndex := -1;
+    tabsSerialOptions.TabIndex := -1;
+    tabsDebuggerOptions.TabIndex := -1;
+    tabsTimeOptions.TabIndex := -1;
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetCharger then
@@ -1557,445 +1560,62 @@ end;
 
 procedure TfrmMain.StageTabs;
 begin
-  // create D Series frames
+// create a whole bunch of tabs!
+
   DGetCharger := TframeDGetCharger.Create(tabGetCharger);
-  with DGetCharger do
-  begin
-    Tab := tabGetCharger;
-    Visible := false;
-    Parent := tabGetCharger;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel);
-  with DXVGetAccel do
-  begin
-    Tab := tabGetAccel;
-    Visible := false;
-    Parent := tabGetAccel;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetAnalogSensors := TframeDGetAnalogSensors.Create(tabGetAnalogSensors);
-  with DGetAnalogSensors do
-  begin
-    Tab := tabGetAnalogSensors;
-    Visible := false;
-    Parent := tabGetAnalogSensors;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetDigitalSensors := TframeDGetDigitalSensors.Create(tabGetDigitalSensors);
-  with DGetDigitalSensors do
-  begin
-    Tab := tabGetDigitalSensors;
-    Visible := false;
-    Parent := tabGetDigitalSensors;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetSensors := TframeDGetSensors.Create(tabGetSensor);
-  with DGetSensors do
-  begin
-    Tab := tabGetSensor;
-    Visible := false;
-    Parent := tabGetSensor;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetMotors := TframeDGetMotors.Create(tabGetMotors);
-  with DGetMotors do
-  begin
-    Tab := tabGetMotors;
-    Visible := false;
-    Parent := tabGetMotors;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetButtons := TframeDGetButtons.Create(tabGetButtons);
-  with DGetButtons do
-  begin
-    Tab := tabGetButtons;
-    Visible := false;
-    Parent := tabGetButtons;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetCalInfo := TframeDGetCalInfo.Create(tabGetCalInfo);
-  with DGetCalInfo do
-  begin
-    Tab := tabGetCalInfo;
-    Visible := false;
-    Parent := tabGetCalInfo;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetWarranty := TframeDGetWarranty.Create(tabGetWarranty);
-  with DGetWarranty do
-  begin
-    Tab := tabGetWarranty;
-    Visible := false;
-    Parent := tabGetWarranty;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetErr := TframeDGetErr.Create(tabGetErr);
-  with DGetErr do
-  begin
-    Tab := tabGetErr;
-    Visible := false;
-    Parent := tabGetErr;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetVersion := TframeDGetVersion.Create(tabGetVersion);
-  with DGetVersion do
-  begin
-    Tab := tabGetVersion;
-    Visible := false;
-    Parent := tabGetVersion;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetUsage := TframeDGetUsage.Create(tabGetUsage);
-  with DGetUsage do
-  begin
-    Tab := tabGetUsage;
-    Visible := false;
-    Parent := tabGetUsage;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DGetUserSettings := TframeDGetUserSettings.Create(tabGetUserSettings);
-  with DGetUserSettings do
-  begin
-    Tab := tabGetUserSettings;
-    Visible := false;
-    Parent := tabGetUserSettings;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   DClearFiles := TframeDClearFiles.Create(tabClearFiles);
-  with DClearFiles do
-  begin
-    Tab := tabClearFiles;
-    Visible := false;
-    Parent := tabClearFiles;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DGetWifiInfo := TframeDGetWifiInfo.Create(tabGetWifiInfo);
-  with DGetWifiInfo do
-  begin
-    Tab := tabGetWifiInfo;
-    Visible := false;
-    Parent := tabGetWifiInfo;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DGetWifiStatus := TframeDGetWifiStatus.Create(tabGetWifiStatus);
-  with DGetWifiStatus do
-  begin
-    Tab := tabGetWifiStatus;
-    Visible := false;
-    Parent := tabGetWifiStatus;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
-  // Create XV tabs
-
   XVGetCharger := TframeXVGetCharger.Create(tabGetCharger);
-  with XVGetCharger do
-  begin
-    Tab := tabGetCharger;
-    Visible := false;
-    Parent := tabGetCharger;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetAnalogSensors := TframeXVGetAnalogSensors.Create(tabGetAnalogSensors);
-  with XVGetAnalogSensors do
-  begin
-    Tab := tabGetAnalogSensors;
-    Visible := false;
-    Parent := tabGetAnalogSensors;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetDigitalSensors := TframeXVGetDigitalSensors.Create(tabGetDigitalSensors);
-  with XVGetDigitalSensors do
-  begin
-    Tab := tabGetDigitalSensors;
-    Visible := false;
-    Parent := tabGetDigitalSensors;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetMotors := TframeXVGetMotors.Create(tabGetMotors);
-  with XVGetMotors do
-  begin
-    Tab := tabGetMotors;
-    Visible := false;
-    Parent := tabGetMotors;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetButtons := TframeXVGetButtons.Create(tabGetButtons);
-  with XVGetButtons do
-  begin
-    Tab := tabGetButtons;
-    Visible := false;
-    Parent := tabGetButtons;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetCalInfo := TframeXVGetCalInfo.Create(tabGetCalInfo);
-  with XVGetCalInfo do
-  begin
-    Tab := tabGetCalInfo;
-    Visible := false;
-    Parent := tabGetCalInfo;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetWarranty := TframeXVGetWarranty.Create(tabGetWarranty);
-  with XVGetWarranty do
-  begin
-    Tab := tabGetWarranty;
-    Visible := false;
-    Parent := tabGetWarranty;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetErr := TframeXVGetErr.Create(tabGetErr);
-  with XVGetErr do
-  begin
-    Tab := tabGetErr;
-    Visible := false;
-    Parent := tabGetErr;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVGetVersion := TframeXVGetVersion.Create(tabGetVersion);
-  with XVGetVersion do
-  begin
-    Tab := tabGetVersion;
-    Visible := false;
-    Parent := tabGetVersion;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-    fTimerList.Add(timer_GetData);
-  end;
-
   XVRestoreDefaults := TframeXVRestoreDefaults.Create(tabRestoreDefaults);
-  with XVRestoreDefaults do
-  begin
-    Tab := tabRestoreDefaults;
-    Visible := false;
-    Parent := tabRestoreDefaults;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   XVGetSchedule := TframeXVGetSchedule.Create(tabGetSchedule);
-  with XVGetSchedule do
-  begin
-    Tab := tabGetSchedule;
-    Visible := false;
-    Parent := tabGetSchedule;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   XVGetTime := TframeXVGetTime.Create(tabGetTime);
-  with XVGetTime do
-  begin
-    Tab := tabGetTime;
-    Visible := false;
-    Parent := tabGetTime;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   XVClean := TFrameXVClean.Create(tabClean);
-  with XVClean do
-  begin
-    Tab := tabClean;
-    Visible := false;
-    Parent := tabClean;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
-  // Create common tabs
-
   DXVPlaySound := TframeDXVPlaySound.Create(tabPlaySound);
-  with DXVPlaySound do
-  begin
-    Tab := tabPlaySound;
-    Parent := tabPlaySound;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVTerminal := TframeDXVTerminal.Create(tabDebugTerminal);
-  with DXVTerminal do
-  begin
-    Tab := tabDebugTerminal;
-    Parent := tabDebugTerminal;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVGetLDSScan := TframeDXVGetLDSScan.Create(tabGetLDSScan);
-  with DXVGetLDSScan do
-  begin
-    Tab := tabGetLDSScan;
-    Parent := tabGetLDSScan;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVSetFuelGauge := TframeDXVSetFuelGauge.Create(tabSetFuelGauge);
-  with DXVSetFuelGauge do
-  begin
-    Tab := tabSetFuelGauge;
-    Parent := tabSetFuelGauge;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVSetTime := TframeDXVSetTime.Create(tabSetTime);
-  with DXVSetTime do
-  begin
-    Tab := tabSetTime;
-    Parent := tabSetTime;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVSetSystemMode := TframeDXVSetSystemMode.Create(tabSetSystemMode);
-  with DXVSetSystemMode do
-  begin
-    Tab := tabSetSystemMode;
-    Parent := tabSetSystemMode;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVSetLCD := TframeDXVSetLCD.Create(tabSetLCD);
-  with DXVSetLCD do
-  begin
-    Tab := tabSetLCD;
-    Parent := tabSetLCD;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
   DXVSetLED := TframeDXVSetLED.Create(tabSetLED);
-  with DXVSetLED do
-  begin
-    Tab := tabSetLED;
-    Parent := tabSetLED;
-    position.X := 0;
-    position.Y := 0;
-    align := talignlayout.Client;
-  end;
-
-
 end;
 
 procedure TfrmMain.ResetTabs;
 begin
   tabsMain.TabIndex := 0;
   tabsMain.SetFocus;
-  tabSensorsOptions.TabIndex := -1;
+  tabsSerialOptions.TabIndex := 0;
+  tabsSensorsOptions.TabIndex := -1;
   tabsInfoOptions.TabIndex := -1;
   tabsWifiOptions.TabIndex := -1;
   tabsToolOptions.TabIndex := -1;
-  tabDebuggerOptions.TabIndex := -1;
+  tabsMotorOptions.TabIndex := -1;
+  tabsPowerOptions.TabIndex := -1;
+  tabsLidarOptions.TabIndex := -1;
+  tabsButtonOptions.TabIndex := -1;
+  tabsDebuggerOptions.TabIndex := -1;
+  tabsTimeOptions.TabIndex := -1;
 end;
 
 end.

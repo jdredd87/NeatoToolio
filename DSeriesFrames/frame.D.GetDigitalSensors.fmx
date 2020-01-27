@@ -1,7 +1,11 @@
-object frameDGetDigitalSensors: TframeDGetDigitalSensors
+inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
   Size.Width = 354.000000000000000000
   Size.Height = 457.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 216
+    Top = 344
+  end
   object swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch
     HitTest = False
     IsChecked = False
@@ -161,13 +165,6 @@ object frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     Text = 'LSIDEBIT'
     TabOrder = 33
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 200
-    Top = 32
   end
   object swGetDigitalSensorsRFRONTBITValue: TSwitch
     HitTest = False

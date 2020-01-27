@@ -3,13 +3,14 @@ unit frame.D.GetUsage;
 interface
 
 uses
+  frame.master,
   dmCommon,
   neato.D.GetUsage,FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
-  TframeDGetUsage = class(TFrame)
+  TframeDGetUsage = class(TframeMaster)
     lblTotalCleaningTime: TLabel;
     lblTotalCleaningTimeValue: TLabel;
     lblTotalCleanedArea: TLabel;
@@ -22,12 +23,10 @@ type
     lblDirtbinRunTimeinSecValue: TLabel;
     lblFilterTimeinSec: TLabel;
     lblFilterTimeinSecValue: TLabel;
-    timer_GetData: TTimer;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   Tab : TTabItem;
   end;
 
 implementation

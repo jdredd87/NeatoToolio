@@ -1,7 +1,11 @@
-object FrameXVGetErr: TFrameXVGetErr
+inherited FrameXVGetErr: TFrameXVGetErr
   Size.Width = 894.000000000000000000
   Size.Height = 237.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 360
+    Top = 120
+  end
   object sgGetErr: TStringGrid
     Align = Client
     CanFocus = True
@@ -27,12 +31,5 @@ object FrameXVGetErr: TFrameXVGetErr
       Header = 'Description'
       Size.Width = 672.000000000000000000
     end
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 432
-    Top = 104
   end
 end

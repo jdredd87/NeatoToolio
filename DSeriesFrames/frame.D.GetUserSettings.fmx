@@ -1,7 +1,11 @@
-object frameDGetUserSettings: TframeDGetUserSettings
+inherited frameDGetUserSettings: TframeDGetUserSettings
   Size.Width = 670.000000000000000000
   Size.Height = 434.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 96
+    Top = 72
+  end
   object lblGetUserSettingsLanguage: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -387,12 +391,5 @@ object frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 12
     Text = 'Saturday'
-  end
-  object timer_GetData: TTimer
-    Enabled = False
-    Interval = 500
-    OnTimer = timer_GetDataTimer
-    Left = 80
-    Top = 24
   end
 end

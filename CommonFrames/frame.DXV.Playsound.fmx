@@ -1,7 +1,10 @@
-object frameDXVPlaySound: TframeDXVPlaySound
+inherited frameDXVPlaySound: TframeDXVPlaySound
   Size.Width = 803.000000000000000000
   Size.Height = 373.000000000000000000
-  Size.PlatformDefault = False
+  inherited timer_getdata: TTimer
+    Left = 552
+    Top = 160
+  end
   object pnlPlaySoundTop: TRectangle
     Align = Top
     Fill.Color = xFF2D92BF

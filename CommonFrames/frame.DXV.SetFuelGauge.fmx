@@ -1,8 +1,8 @@
-object frameDXVSetFuelGauge: TframeDXVSetFuelGauge
-  Align = Client
-  Size.Width = 808.000000000000000000
-  Size.Height = 265.000000000000000000
-  Size.PlatformDefault = False
+inherited frameDXVSetFuelGauge: TframeDXVSetFuelGauge
+  inherited timer_getdata: TTimer
+    Left = 664
+    Top = 152
+  end
   object tbSetFuelGauge: TTrackBar
     Align = Top
     CanParentFocus = True
@@ -13,7 +13,7 @@ object frameDXVSetFuelGauge: TframeDXVSetFuelGauge
     Position.X = 25.000000000000000000
     Position.Y = 53.000000000000000000
     Scale.Y = 3.000000000000000000
-    Size.Width = 758.000000000000000000
+    Size.Width = 697.000000000000000000
     Size.Height = 19.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
@@ -25,7 +25,7 @@ object frameDXVSetFuelGauge: TframeDXVSetFuelGauge
     Margins.Top = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Position.Y = 5.000000000000000000
-    Size.Width = 808.000000000000000000
+    Size.Width = 747.000000000000000000
     Size.Height = 43.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.Size = 18.000000000000000000
@@ -39,7 +39,7 @@ object frameDXVSetFuelGauge: TframeDXVSetFuelGauge
     Margins.Top = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Position.Y = 115.000000000000000000
-    Size.Width = 808.000000000000000000
+    Size.Width = 747.000000000000000000
     Size.Height = 110.000000000000000000
     Size.PlatformDefault = False
     TextSettings.Font.Size = 18.000000000000000000

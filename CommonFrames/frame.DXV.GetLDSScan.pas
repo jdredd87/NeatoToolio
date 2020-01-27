@@ -3,6 +3,7 @@ unit frame.DXV.GetLDSScan;
 interface
 
 uses
+frame.master,
   dmCommon,
   neato.DXV.GetLDSScan,
   neato.helpers, FMX.TabControl,
@@ -12,8 +13,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani;
 
 type
-  TframeDXVGetLDSScan = class(TFrame)
-    Timer_GetData: TTimer;
+  TframeDXVGetLDSScan = class(TframeMaster)
     sgGetLDSScan: TStringGrid;
     sgGetLDSScanColumnAngleInDegrees: TStringColumn;
     sgGetLDSScanColumnDistInMM: TStringColumn;
@@ -31,7 +31,6 @@ type
   private
     { Private declarations }
   public
-    Tab : TTabItem;
   end;
 
 implementation
