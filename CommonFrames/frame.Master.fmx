@@ -1,0 +1,11 @@
+object frameMaster: TframeMaster
+  Size.Width = 747.000000000000000000
+  Size.Height = 519.000000000000000000
+  Size.PlatformDefault = False
+  object timer_getdata: TTimer
+    Enabled = False
+    Interval = 500
+    Left = 32
+    Top = 8
+  end
+end

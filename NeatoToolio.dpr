@@ -95,7 +95,14 @@ uses
   neato.DXV.SetLED in 'Common\neato.DXV.SetLED.pas',
   neato.XV.GetSchedule in 'XVSeries\neato.XV.GetSchedule.pas',
   frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame},
-  frame.Master in 'CommonFrames\frame.Master.pas' {frameMaster: TFrame};
+  frame.Master in 'CommonFrames\frame.Master.pas' {frameMaster: TFrame},
+  dmIP in 'dmIP.pas' {s: TDataModule},
+  frame.DXV.SetSchedule in 'CommonFrames\frame.DXV.SetSchedule.pas' {frameXVSetSchedule: TFrame},
+  neato.DXV.SetSchedule in 'Common\neato.DXV.SetSchedule.pas',
+  frame.DXV.SetWallFollower in 'CommonFrames\frame.DXV.SetWallFollower.pas' {frameDXVSetWallFollower: TFrame},
+  neato.DXV.SetWallFollower in 'Common\neato.DXV.SetWallFollower.pas',
+  frame.DXV.SetDistanceCal in 'CommonFrames\frame.DXV.SetDistanceCal.pas' {frameDXVSetDistanceCal: TFrame},
+  neato.DXV.SetDistanceCal in 'Common\neato.DXV.SetDistanceCal.pas';
 
 {$R *.res}
 

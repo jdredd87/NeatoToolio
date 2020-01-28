@@ -1,7 +1,7 @@
 {
 
- Possibly make a new TFrame that the rest of the frames can inherit from.
- In said new Frame, create a new create constructor to handle the staging up.
+  Possibly make a new TFrame that the rest of the frames can inherit from.
+  In said new Frame, create a new create constructor to handle the staging up.
 
 }
 
@@ -94,6 +94,9 @@ uses
   Neato.DXV.SetSystemMode,
   Neato.DXV.SetLCD,
   Neato.DXV.SetLED,
+  Neato.DXV.SetSchedule,
+  Neato.DXV.SetWallFollower,
+  Neato.DXV.SetDistanceCal,
 
   frame.DXV.GetAccel,
   frame.DXV.Playsound,
@@ -104,6 +107,9 @@ uses
   frame.DXV.SetSystemMode,
   frame.DXV.SetLCD,
   frame.DXV.SetLED,
+  frame.DXV.SetSchedule,
+  frame.DXV.SetWallFollower,
+  frame.DXV.SetDistanceCal,
 
   {Everything else to run this}
   dmCommon,
@@ -148,8 +154,6 @@ uses
 
 type
   TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
-
-
 
   TfrmMain = class(TForm)
     tabsMain: TTabControl;
@@ -239,7 +243,6 @@ type
     tabSetBrushControlParams: TTabItem;
     tabButtons: TTabItem;
     tabsButtonOptions: TTabControl;
-    tabSetButton: TTabItem;
     tabGetButtons: TTabItem;
     tabsSerialOptions: TTabControl;
     tabSerialSettings: TTabItem;
@@ -267,7 +270,6 @@ type
     pnlDebugTerminalTop: trectangle;
     btnDebugRawDataClear: TButton;
     tabScripts: TTabItem;
-    frameScripts: TframeScripts;
     tabTime: TTabItem;
     tabsTimeOptions: TTabControl;
     tabSetTime: TTabItem;
@@ -284,6 +286,14 @@ type
     lblPlaysoundIDX: TLabel;
     tabSetUserSettings: TTabItem;
     tabTestLDS: TTabItem;
+    edIPAddress: TEdit;
+    lblConnectIP: TLabel;
+    edIPPort: TSpinBox;
+    lblConnectPort: TLabel;
+    swIPConnection: TSwitch;
+    lblConnectIPEnabled: TLabel;
+    tabSetWallFollower: TTabItem;
+    tabSetDistanceCal: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -308,7 +318,7 @@ type
     fLIDARCounter: single;
     fPlaySoundAborted: Boolean;
 
-//    fActiveTabControl: TTabControl;
+    // fActiveTabControl: TTabControl;
     // form events
 
     procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
@@ -368,6 +378,9 @@ type
     DXVSetSystemMode: TframeDXVSetSystemMode;
     DXVSetLCD: TframeDXVSetLCD;
     DXVSetLED: TframeDXVSetLED;
+    DXVSetSchedule: TframeXVSetSchedule;
+    DXVSetWallFollower: TframeDXVSetWallFollower;
+    DXVSetDistanceCal: TframeDXVSetDistanceCal;
 
     Neato: TNeatoModels; // what kind of bot model line
 
@@ -413,7 +426,6 @@ begin
 {$IFDEF ANDORID}
   application.onException := self.onException;
 {$ENDIF}
-
   Neato := neatoUnknown;
 
   lblSetupRobotName.Text := '';
@@ -464,7 +476,6 @@ begin
   tabsMain.TabIndex := 0;
   tabsSerialOptions.TabIndex := 0;
 
-
   tthread.CreateAnonymousThread(
     procedure
     begin
@@ -476,7 +487,7 @@ begin
         end);
     end).start;
 
-  self.frameScripts.init;
+  /// self.frameScripts.init;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -491,17 +502,19 @@ end;
 
 procedure TfrmMain.onIDLE(Sender: TObject; var done: Boolean);
 begin
-  if dm.ActiveTab = nil then
-  begin
+  {
+    if dm.ActiveTab = nil then
+    begin
     tabsMain.TabIndex := 0;
     tabSetup.Index := 0;
     dm.ActiveTab := tabSerialSettings;
     if NOT dm.com.Serial.Active then
     begin
-      chkTestMode.IsChecked := false;
-      toggleComs(false);
+    chkTestMode.IsChecked := false;
+    toggleComs(false);
     end;
-  end;
+    end;
+  }
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -1158,8 +1171,6 @@ begin
   end;
 end;
 
-
-
 procedure TfrmMain.PopulateCOMPorts;
 var
   comList: TStringList;
@@ -1473,6 +1484,23 @@ begin
     DXVSetLED.Visible := true;
   end;
 
+  if ttabcontrol(Sender).ActiveTab = tabSetSchedule then
+   begin
+    DXVSetSchedule.Visible := true;
+   end;
+
+
+  if ttabcontrol(Sender).ActiveTab = tabSetWallFollower then
+  begin
+   DXVSetWallFollower.Visible := true;
+  end;
+
+  if ttabcontrol(Sender).activetab = tabSetDistanceCal then
+  begin
+   DXVSetDistanceCal.visible := true;
+  end;
+
+
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabClearFiles then
@@ -1560,7 +1588,7 @@ end;
 
 procedure TfrmMain.StageTabs;
 begin
-// create a whole bunch of tabs!
+  // create a whole bunch of tabs!
 
   DGetCharger := TframeDGetCharger.Create(tabGetCharger);
   DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel);
@@ -1599,6 +1627,9 @@ begin
   DXVSetSystemMode := TframeDXVSetSystemMode.Create(tabSetSystemMode);
   DXVSetLCD := TframeDXVSetLCD.Create(tabSetLCD);
   DXVSetLED := TframeDXVSetLED.Create(tabSetLED);
+  DXVSetSchedule := TframeXVSetSchedule.Create(tabSetSchedule);
+  DXVSetWallFollower := TframeDXVSetWallFollower.Create(tabSetWallFollower);
+  DXVSetDistanceCal := TframeDXVSetDistanceCal.Create(tabSetDistanceCal);
 end;
 
 procedure TfrmMain.ResetTabs;

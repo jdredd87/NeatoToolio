@@ -3,7 +3,7 @@ unit frame.DXV.GetLDSScan;
 interface
 
 uses
-frame.master,
+  frame.master,
   dmCommon,
   neato.DXV.GetLDSScan,
   neato.helpers, FMX.TabControl,
@@ -68,6 +68,8 @@ begin
     sleep(250);
     dm.com.SendCommand('Setldsrotation on');
     sleep(250);
+    dm.com.Serial.PurgeInput;
+    dm.com.Serial.PurgeOutput;
     btnLidarStart.ResetFocus;
     btnLidarStart.Text := 'Stop';
   end;

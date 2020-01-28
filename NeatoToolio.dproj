@@ -641,6 +641,29 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="dmIP.pas">
+            <Form>s</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CommonFrames\frame.DXV.SetSchedule.pas">
+            <Form>frameXVSetSchedule</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetSchedule.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetWallFollower.pas">
+            <Form>frameDXVSetWallFollower</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetWallFollower.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetDistanceCal.pas">
+            <Form>frameDXVSetDistanceCal</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetDistanceCal.pas"/>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>
