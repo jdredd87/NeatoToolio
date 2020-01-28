@@ -6,6 +6,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers
 
 const
 
+  sDescription = 'Get a list of available wifi networks';
   // Command to send
   sGetWifiInfo = 'GetWifiInfo';
   sscanResultsReady = 'scan results ready'; // check for this
@@ -63,7 +64,7 @@ Constructor tGetWifiInfoD.Create;
 begin
   inherited;
   fCommand := sGetWifiInfo;
-  fDescription := 'Get a list of available wifi networks';
+  fDescription := sDescription;
   fGetWifiInfoItems := tGetWifiInfoItems.Create(tGetWifiInfoItem);
   Reset;
 end;

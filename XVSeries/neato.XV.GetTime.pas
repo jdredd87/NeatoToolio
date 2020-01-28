@@ -8,6 +8,7 @@ const
 
   // Command to send
   sGetTime = 'GetTime';
+  sDescription = 'Get Current Scheduler Time';
 
 type
 
@@ -30,7 +31,7 @@ Constructor tGetTimeXV.Create;
 begin
   inherited;
   fCommand := sGetTime;
-  fDescription := 'Get Current Scheduler Time';
+  fDescription := sDescription;
   reset;
 end;
 

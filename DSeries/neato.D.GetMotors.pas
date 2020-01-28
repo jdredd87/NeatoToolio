@@ -5,6 +5,7 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
 
 const
+  sDescription = 'Get the diagnostic data for the motors';
 
   sGetMotors = 'GetMotors';
 

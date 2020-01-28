@@ -5,6 +5,8 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
 
 const
+  sDescription =  'Get the Accelerometer readings';
+
   // labels of text to look / parse for
   sLabel = 'Label';
   sValue = 'Value';
@@ -50,7 +52,7 @@ Constructor tGetAccelD.Create;
 begin
   inherited;
   fCommand := sGetAccelD;
-  fDescription := 'Get the Accelerometer readings';
+  fDescription := sDescription;
   Reset;
 end;
 

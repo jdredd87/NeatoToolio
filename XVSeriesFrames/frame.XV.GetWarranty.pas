@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.XV.GetWarranty,FMX.TabControl,
+  neato.XV.GetWarranty,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
@@ -21,11 +22,19 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeXVGetWarranty.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
+
 
 procedure TframeXVGetWarranty.timer_GetDataTimer(Sender: TObject);
 var

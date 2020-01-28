@@ -5,7 +5,7 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers;
 
 const
-
+  sDescription = 'Starts a cleaning by simulating press of start button';
   // Command to send
   sClean = 'Clean';
   sHouse = 'House';
@@ -29,7 +29,7 @@ Constructor tCleanXV.Create;
 begin
   inherited;
   fCommand := sClean;
-  fDescription := 'Starts a cleaning by simulating press of start button';
+  fDescription := sDescription;
   Reset;
 end;
 

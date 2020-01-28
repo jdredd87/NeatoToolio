@@ -8,7 +8,7 @@ const
   // labels of text to look / parse for
 
   // Command to send
-
+  sDescription = 'Sets the current day, hour, and minute for the scheduler clock.';
   sSetTime = 'SetTime';
   sUnrecognizedOption = 'Unrecognized Option';
 
@@ -28,7 +28,7 @@ Constructor tSetTime.Create;
 begin
   inherited;
   fCommand := sSetTime;
-  fDescription := 'Sets the current day, hour, and minute for the scheduler clock.';
+  fDescription := sDescription;
   Reset;
 end;
 

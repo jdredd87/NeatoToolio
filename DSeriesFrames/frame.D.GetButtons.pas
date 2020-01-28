@@ -5,8 +5,9 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.d.getbuttons,FMX.TabControl,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  neato.D.GetButtons,
+  FMX.TabControl,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
@@ -47,11 +48,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDGetButtons.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDGetButtons.timer_GetDataTimer(Sender: TObject);
 var
@@ -60,7 +68,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>tab) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -96,6 +104,5 @@ begin
   pReadData.Free;
   pGetButtons.Free;
 end;
-
 
 end.

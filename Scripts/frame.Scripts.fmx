@@ -15,8 +15,8 @@ object frameScripts: TframeScripts
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Viewport.Width = 385.000000000000000000
-    Viewport.Height = 480.000000000000000000
+    Viewport.Width = 381.000000000000000000
+    Viewport.Height = 476.000000000000000000
   end
   object Button1: TButton
     Position.X = 400.000000000000000000

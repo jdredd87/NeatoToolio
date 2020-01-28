@@ -5,7 +5,7 @@ inherited frameDGetWifiInfo: TframeDGetWifiInfo
     Left = 256
     Top = 304
   end
-  object pnlGetWifiInfoTop: TRectangle
+  object pnlGetWifiInfoTop: TRectangle [1]
     Align = Top
     Fill.Color = xFF2D92BF
     Sides = []
@@ -40,19 +40,19 @@ inherited frameDGetWifiInfo: TframeDGetWifiInfo
       Visible = False
     end
   end
-  object sgGetWifiInfo: TStringGrid
+  object sgGetWifiInfo: TStringGrid [2]
     Align = Client
     CanFocus = True
     ClipChildren = True
     Size.Width = 996.000000000000000000
-    Size.Height = 494.000000000000000000
+    Size.Height = 458.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'gridstyle'
     TabOrder = 0
     RowCount = 10
     Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
     Viewport.Width = 992.000000000000000000
-    Viewport.Height = 469.000000000000000000
+    Viewport.Height = 433.000000000000000000
     object sgGetWifiInfoSSID: TStringColumn
       Header = 'SSID'
       Size.Width = 401.000000000000000000
@@ -69,5 +69,9 @@ inherited frameDGetWifiInfo: TframeDGetWifiInfo
       Header = 'BSSID ( MAC Address )'
       Size.Width = 250.000000000000000000
     end
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 533.000000000000000000
+    Size.Width = 976.000000000000000000
   end
 end

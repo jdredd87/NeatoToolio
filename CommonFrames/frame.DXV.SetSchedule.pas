@@ -1,33 +1,5 @@
 unit frame.DXV.SetSchedule;
 
-{
-
-  SETSCHEDULE 1 12 12 F
-  SetSchedule: Unrecognized Option 'F'
-  SetSchedule - Modify Cleaning Schedule.
-  Day - Day of the week to schedule cleaning for. Sun=0,Sat=6. (required)
-  Hour - Hour value 0..23 (required)
-  Min - Minutes value 0..59 (required)
-  House - Schedule to Clean whole house (default)
-  (Mutually exclusive with None)
-  None - Remove Scheduled Cleaning for specified day. Time is ignored.
-  (Mutually exclusive with House)
-  ON - Enable Scheduled cleanings (Mutually exclusive with OFF)
-  OFF - Disable Scheduled cleanings (Mutually exclusive with ON)
-
-  SETSCHEDULE 0 12 12 HOUSE
-  Schedule is Enabled
-  Sun 12:12 H
-  
-  SETSCHEDULE 0 12 12 NONE
-  Schedule is Enabled
-  Sun 00:00 - None -
-
-  SETSCHEDULE 0 00 00 ON     // one must be on for schedule to be enabled
-  Schedule is Enabled
-  Sun 00:00 H
-}
-
 interface
 
 uses
@@ -58,13 +30,20 @@ type
     procedure ckSetScheduleEnabledChange(Sender: TObject);
     procedure cbSetScheduleDayChange(Sender: TObject);
     procedure btnSetScheduleModeONClick(Sender: TObject);
-  private
+  public
     { Private declarations }
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeXVSetSchedule.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeXVSetSchedule.btnSetScheduleApplyClick(Sender: TObject);
 var

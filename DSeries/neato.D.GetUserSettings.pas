@@ -39,6 +39,7 @@ const
 
   }
 
+  sDescription = 'Get the user settings';
   // Command to send
   sGetUserSettings = 'GetUserSettings';
 
@@ -162,7 +163,7 @@ Constructor tGetUserSettingsD.Create;
 begin
   inherited;
   fCommand := sGetUserSettings;
-  fDescription := 'Get the user settings';
+  fDescription := sDescription;
   Reset;
 end;
 

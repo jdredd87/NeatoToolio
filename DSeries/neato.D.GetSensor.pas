@@ -5,6 +5,8 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers;
 
 const
+  sDescription = 'Gets the sensors status ON/OFF (Wall Follower and Ultra Sound Only)';
+
   sWall_FollowerUnfixed = 'Wall Follower';
   sUltra_SoundUnfixed = 'Ultra Sound';
   sDrop_SensorsUnfixed = 'Drop Sensors';
@@ -87,7 +89,7 @@ Constructor tGetSensorD.Create;
 begin
   inherited;
   fCommand := sGetSensor;
-  fDescription := 'Gets the sensors status ON/OFF (Wall Follower and Ultra Sound Only)';
+  fDescription := sDescription;
   Reset;
 end;
 

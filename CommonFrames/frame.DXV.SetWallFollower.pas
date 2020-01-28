@@ -48,12 +48,20 @@ type
     btnSetWallFollowerDisabled: TButton;
     procedure btnSetWallFollowerClick(Sender: TObject);
   private
-    { Private declarations }
+  public
+   constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVSetWallFollower.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
+
 
 procedure TframeDXVSetWallFollower.btnSetWallFollowerClick(Sender: TObject);
 var

@@ -3,7 +3,7 @@ inherited frameDXVSetFuelGauge: TframeDXVSetFuelGauge
     Left = 664
     Top = 152
   end
-  object tbSetFuelGauge: TTrackBar
+  object tbSetFuelGauge: TTrackBar [1]
     Align = Top
     CanParentFocus = True
     Frequency = 1.000000000000000000
@@ -19,7 +19,7 @@ inherited frameDXVSetFuelGauge: TframeDXVSetFuelGauge
     TabOrder = 5
     OnChange = tbSetFuelGaugeChange
   end
-  object lblSetFuelGauge: TLabel
+  object lblSetFuelGauge: TLabel [2]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -33,7 +33,7 @@ inherited frameDXVSetFuelGauge: TframeDXVSetFuelGauge
     Text = 'Fuel 0%'
     TabOrder = 2
   end
-  object lblSetFuelGaugeError: TLabel
+  object lblSetFuelGaugeError: TLabel [3]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000

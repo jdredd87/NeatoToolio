@@ -21,11 +21,19 @@ type
   private
     { Private declarations }
   public
+   constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVSetFuelGauge.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
+
 
 procedure TframeDXVSetFuelGauge.tbSetFuelGaugeChange(Sender: TObject);
 var

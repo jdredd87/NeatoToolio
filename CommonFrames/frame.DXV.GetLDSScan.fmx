@@ -5,18 +5,18 @@ inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
     Left = 616
     Top = 160
   end
-  object sgGetLDSScan: TStringGrid
+  object sgGetLDSScan: TStringGrid [1]
     Align = Left
     CanFocus = True
     ClipChildren = True
     Position.Y = 70.000000000000000000
     Size.Width = 537.000000000000000000
-    Size.Height = 449.000000000000000000
+    Size.Height = 413.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 5
     OnDrawColumnCell = sgGetLDSScanDrawColumnCell
-    Viewport.Width = 537.000000000000000000
-    Viewport.Height = 449.000000000000000000
+    Viewport.Width = 517.000000000000000000
+    Viewport.Height = 388.000000000000000000
     object sgGetLDSScanColumnAngleInDegrees: TStringColumn
       Header = 'AngleInDegrees'
       Size.Width = 125.000000000000000000
@@ -40,7 +40,7 @@ inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
       Size.Width = 125.000000000000000000
     end
   end
-  object lblGetLDSScanRotationSpeed: TLabel
+  object lblGetLDSScanRotationSpeed: TLabel [2]
     Position.X = 544.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 169.000000000000000000
@@ -50,7 +50,7 @@ inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
     Text = 'ROTATION_SPEED'
     TabOrder = 6
   end
-  object lblGetLDSScanRotationSpeedValue: TLabel
+  object lblGetLDSScanRotationSpeedValue: TLabel [3]
     Position.X = 728.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 41.000000000000000000
@@ -59,7 +59,7 @@ inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
     Text = '0.00'
     TabOrder = 7
   end
-  object Panel1: TRectangle
+  object Panel1: TRectangle [4]
     Align = Top
     Fill.Color = xFF2D92BF
     Sides = []
@@ -67,7 +67,7 @@ inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
     Size.Height = 70.000000000000000000
     Size.PlatformDefault = False
   end
-  object btnLidarStart: TButton
+  object btnLidarStart: TButton [5]
     StaysPressed = True
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
@@ -77,5 +77,8 @@ inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
     TabOrder = 2
     Text = 'Start'
     OnClick = btnLidarStartClick
+  end
+  inherited lblFrameTitle: TLabel
+    Size.Width = 801.000000000000000000
   end
 end

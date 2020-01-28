@@ -14,6 +14,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors,
 
 const
 
+  sDescription = 'Play the specified sound in the robot.';
   // Command to send
 
   sPlaysoundSoundID = 'Playsound SoundId ';
@@ -54,7 +55,7 @@ Constructor tPlaySoundDXV.Create;
 begin
   inherited;
   fCommand := sPlaysoundSoundID;
-  fDescription := 'Play the specified sound in the robot.';
+  fDescription := sDescription;
   Reset;
 end;
 

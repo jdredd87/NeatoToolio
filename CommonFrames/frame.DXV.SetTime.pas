@@ -36,11 +36,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVSetTime.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDXVSetTime.btnSetTimeApplyClick(Sender: TObject);
 var
@@ -75,8 +82,8 @@ begin
   fseconds := round(sbSetTimeSeconds.Value);
 
   pReadData := TStringList.Create;
-  pReadData.Text := dm.com.SendCommand(sSetTime + ' ' + fday.ToString +' '+ fhour.ToString +' '+ fminutes.ToString +' '+
-    fseconds.ToString);
+  pReadData.Text := dm.com.SendCommand(sSetTime + ' ' + fday.ToString + ' ' + fhour.ToString + ' ' + fminutes.ToString +
+    ' ' + fseconds.ToString);
 
   r := pSetTime.ParseText(pReadData);
 

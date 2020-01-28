@@ -6,7 +6,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors,
   neato.Helpers;
 
 const
-
+  sDescription = 'Get Error Messages';
   // Command to send
 
   sGetErr = 'GetErr';
@@ -27,17 +27,17 @@ type
 
 implementation
 
-Constructor tGetErrD.create;
+Constructor tGetErrD.Create;
 begin
   inherited;
   fCommand := sGetErr;
-  fDescription := 'Get Error Messages';
+  fDescription := sDescription;
 
-  fErrorList := TStringList.create;
+  fErrorList := TStringList.Create;
   fErrorList.CaseSensitive := false;
 end;
 
-Destructor tGetErrD.destroy;
+Destructor tGetErrD.Destroy;
 begin
   freeandnil(fErrorList);
   inherited;

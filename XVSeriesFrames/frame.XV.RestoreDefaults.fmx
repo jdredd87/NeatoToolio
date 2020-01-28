@@ -5,7 +5,7 @@ inherited frameXVRestoreDefaults: TframeXVRestoreDefaults
     Left = 504
     Top = 64
   end
-  object btnRestoreDefaults: TButton
+  object btnRestoreDefaults: TButton [1]
     Enabled = False
     Margins.Left = 10.000000000000000000
     Margins.Top = 10.000000000000000000
@@ -19,5 +19,9 @@ inherited frameXVRestoreDefaults: TframeXVRestoreDefaults
     TabOrder = 0
     Text = 'Restore Defaults'
     OnClick = btnRestoreDefaultsClick
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 128.000000000000000000
+    Size.Width = 718.000000000000000000
   end
 end

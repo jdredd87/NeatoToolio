@@ -7,6 +7,8 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors,
 
 const
 
+  sDescription = 'Get scan packet from LDS (Lidar)';
+
   // Command to send
 
   sGetLDSScan = 'GetLDSScan';
@@ -42,9 +44,8 @@ implementation
 Constructor tGetLDSScanDXV.Create;
 begin
   inherited;
-  // fCommand := sGetErr;
-  fDescription := 'Get Error Messages';
-
+  fCommand := sGetLDSScan;
+  fDescription := sDescription;
 end;
 
 Destructor tGetLDSScanDXV.Destroy;

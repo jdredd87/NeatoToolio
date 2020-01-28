@@ -6,7 +6,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Left = 680
     Top = 152
   end
-  object lblSetLCDError: TLabel
+  object lblSetLCDError: TLabel [1]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -19,7 +19,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     TextSettings.HorzAlign = Center
     TabOrder = 3
   end
-  object rectSetLCDTop: TRectangle
+  object rectSetLCDTop: TRectangle [2]
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -157,7 +157,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
       OnMouseLeave = btnSetLCDBGWhiteMouseLeave
     end
   end
-  object lblSetLCDMessage: TLabel
+  object lblSetLCDMessage: TLabel [3]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -170,7 +170,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     TextSettings.HorzAlign = Center
     TabOrder = 1
   end
-  object lblSetLCDContrast: TLabel
+  object lblSetLCDContrast: TLabel [4]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -184,7 +184,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Text = 'Contrast 0%'
     TabOrder = 2
   end
-  object tbSetLCDContrast: TTrackBar
+  object tbSetLCDContrast: TTrackBar [5]
     Align = Top
     CanParentFocus = True
     Frequency = 1.000000000000000000
@@ -202,7 +202,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     OnMouseEnter = btnSetLCDBGWhiteMouseEnter
     OnMouseLeave = btnSetLCDBGWhiteMouseLeave
   end
-  object sbFGWhiteValue: TSpinBox
+  object sbFGWhiteValue: TSpinBox [6]
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 7
     Cursor = crIBeam
@@ -213,7 +213,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
   end
-  object sbFGBlackValue: TSpinBox
+  object sbFGBlackValue: TSpinBox [7]
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 8
     Cursor = crIBeam
@@ -223,5 +223,9 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Size.Width = 81.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 412.000000000000000000
+    Size.Width = 805.000000000000000000
   end
 end

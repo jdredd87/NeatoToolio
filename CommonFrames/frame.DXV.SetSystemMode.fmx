@@ -6,7 +6,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     Left = 728
     Top = 16
   end
-  object lblSetSystemModeError: TLabel
+  object lblSetSystemModeError: TLabel [1]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -19,7 +19,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     TextSettings.HorzAlign = Center
     TabOrder = 2
   end
-  object Rectangle1: TRectangle
+  object Rectangle1: TRectangle [2]
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -27,7 +27,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     Size.Height = 153.000000000000000000
     Size.PlatformDefault = False
   end
-  object btnSetSystemModeShutdown: TButton
+  object btnSetSystemModeShutdown: TButton [3]
     Position.X = 16.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 129.000000000000000000
@@ -39,7 +39,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     OnMouseEnter = btnSetSystemModeShutdownMouseEnter
     OnMouseLeave = btnSetSystemModeShutdownMouseLeave
   end
-  object btnSetSystemModeHibernate: TButton
+  object btnSetSystemModeHibernate: TButton [4]
     Position.X = 176.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 129.000000000000000000
@@ -51,7 +51,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     OnMouseEnter = btnSetSystemModeShutdownMouseEnter
     OnMouseLeave = btnSetSystemModeShutdownMouseLeave
   end
-  object btnSetSystemModeStandby: TButton
+  object btnSetSystemModeStandby: TButton [5]
     Position.X = 336.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 129.000000000000000000
@@ -63,7 +63,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     OnMouseEnter = btnSetSystemModeShutdownMouseEnter
     OnMouseLeave = btnSetSystemModeShutdownMouseLeave
   end
-  object btnSetSystemModePowerCycle: TButton
+  object btnSetSystemModePowerCycle: TButton [6]
     Position.X = 496.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 129.000000000000000000
@@ -75,7 +75,7 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     OnMouseEnter = btnSetSystemModeShutdownMouseEnter
     OnMouseLeave = btnSetSystemModeShutdownMouseLeave
   end
-  object lblSetSystemModeMessage: TLabel
+  object lblSetSystemModeMessage: TLabel [7]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -87,5 +87,9 @@ inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
     TextSettings.Font.Size = 18.000000000000000000
     TextSettings.HorzAlign = Center
     TabOrder = 1
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 325.000000000000000000
+    Size.Width = 788.000000000000000000
   end
 end

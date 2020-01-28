@@ -6,6 +6,9 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors,
   neato.Helpers;
 
 const
+
+  sDescription = 'Get the state of the digital sensors';
+
   // labels of text to look / parse for
   sDigitalSensorName = 'Digital Sensor Name';
   sValue = ' Value'; // bug in neato, has leading space, derp
@@ -67,7 +70,7 @@ Constructor tGetDigitalSensorsD.Create;
 begin
   inherited;
   fCommand := sGetDigitalSensors;
-  fDescription := 'Get the state of the digital sensors';
+  fDescription := sDescription;
   Reset;
 end;
 

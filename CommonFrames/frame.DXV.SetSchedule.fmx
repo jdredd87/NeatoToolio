@@ -5,6 +5,10 @@ inherited frameXVSetSchedule: TframeXVSetSchedule
     Left = 64
     Top = 224
   end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 400.000000000000000000
+    Size.Width = 633.000000000000000000
+  end
   object sbSetScheduleHour: TSpinBox
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 60

@@ -9,6 +9,7 @@ const
 
   // Command to send
 
+  sDescription = 'Get Error Messages';
   sGetErr = 'GetErr';
 
 type
@@ -31,7 +32,7 @@ Constructor tGetErrXV.Create;
 begin
   inherited;
   fCommand := sGetErr;
-  fDescription := 'Get Error Messages';
+  fDescription := sDescription;
 
   fErrorList := TStringList.Create;
   fErrorList.CaseSensitive := false;

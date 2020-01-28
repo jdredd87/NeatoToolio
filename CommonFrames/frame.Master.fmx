@@ -8,4 +8,18 @@ object frameMaster: TframeMaster
     Left = 32
     Top = 8
   end
+  object lblFrameTitle: TLabel
+    Align = Bottom
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 488.000000000000000000
+    Size.Width = 727.000000000000000000
+    Size.Height = 26.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    TabOrder = 62
+  end
 end

@@ -1,12 +1,12 @@
 inherited frameDGetCalInfo: TframeDGetCalInfo
   Size.Width = 566.000000000000000000
-  Size.Height = 446.000000000000000000
+  Size.Height = 467.000000000000000000
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
     Left = 56
     Top = 32
   end
-  object lblGetCalInfoLDSOffset: TLabel
+  object lblGetCalInfoLDSOffset: TLabel [1]
     Position.X = 25.000000000000000000
     Position.Y = 18.000000000000000000
     Size.Width = 265.000000000000000000
@@ -16,7 +16,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'LDSOffset'
     TabOrder = 30
   end
-  object lblGetCalInfoLDSOffsetValue: TLabel
+  object lblGetCalInfoLDSOffsetValue: TLabel [2]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -27,7 +27,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 16
   end
-  object lblGetCalInfoXAccel: TLabel
+  object lblGetCalInfoXAccel: TLabel [3]
     Position.X = 25.000000000000000000
     Position.Y = 44.000000000000000000
     Size.Width = 265.000000000000000000
@@ -37,7 +37,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'XAccel'
     TabOrder = 20
   end
-  object lblGetCalInfoXAccelValue: TLabel
+  object lblGetCalInfoXAccelValue: TLabel [4]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -48,7 +48,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 22
   end
-  object lblGetCalInfoYAccel: TLabel
+  object lblGetCalInfoYAccel: TLabel [5]
     Position.X = 25.000000000000000000
     Position.Y = 70.000000000000000000
     Size.Width = 265.000000000000000000
@@ -58,7 +58,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'YAccel'
     TabOrder = 46
   end
-  object lblGetCalInfoYAccelValue: TLabel
+  object lblGetCalInfoYAccelValue: TLabel [6]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -69,7 +69,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 38
   end
-  object lblGetCalInfoZAccel: TLabel
+  object lblGetCalInfoZAccel: TLabel [7]
     Position.X = 25.000000000000000000
     Position.Y = 96.000000000000000000
     Size.Width = 265.000000000000000000
@@ -79,7 +79,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'ZAccel'
     TabOrder = 42
   end
-  object lblGetCalInfoZAccelValue: TLabel
+  object lblGetCalInfoZAccelValue: TLabel [8]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -90,7 +90,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 24
   end
-  object lblGetCalInfoRTCOffset: TLabel
+  object lblGetCalInfoRTCOffset: TLabel [9]
     Position.X = 25.000000000000000000
     Position.Y = 122.000000000000000000
     Size.Width = 265.000000000000000000
@@ -100,7 +100,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'RTCOffset'
     TabOrder = 26
   end
-  object lblGetCalInfoRTCOffsetValue: TLabel
+  object lblGetCalInfoRTCOffsetValue: TLabel [10]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -111,7 +111,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 34
   end
-  object lblGetCalInfoCleaningTestSurface: TLabel
+  object lblGetCalInfoCleaningTestSurface: TLabel [11]
     Position.X = 25.000000000000000000
     Position.Y = 148.000000000000000000
     Size.Width = 265.000000000000000000
@@ -121,7 +121,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'CleaningTestSurface'
     TabOrder = 36
   end
-  object lblGetCalInfoCleaningTestSurfaceValue: TLabel
+  object lblGetCalInfoCleaningTestSurfaceValue: TLabel [12]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -132,7 +132,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 27
   end
-  object lblGetCalInfoCleaningTestHardSpeed: TLabel
+  object lblGetCalInfoCleaningTestHardSpeed: TLabel [13]
     Position.X = 25.000000000000000000
     Position.Y = 174.000000000000000000
     Size.Width = 265.000000000000000000
@@ -142,7 +142,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'CleaningTestHardSpeed'
     TabOrder = 29
   end
-  object lblGetCalInfoCleaningTestHardSpeedValue: TLabel
+  object lblGetCalInfoCleaningTestHardSpeedValue: TLabel [14]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -153,7 +153,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 0
   end
-  object lblGetCalInfoCleaningTestCarpetSpeed: TLabel
+  object lblGetCalInfoCleaningTestCarpetSpeed: TLabel [15]
     Position.X = 25.000000000000000000
     Position.Y = 200.000000000000000000
     Size.Width = 265.000000000000000000
@@ -163,7 +163,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'CleaningTestCarpetSpeed'
     TabOrder = 8
   end
-  object lblGetCalInfoCleaningTestCarpetSpeedValue: TLabel
+  object lblGetCalInfoCleaningTestCarpetSpeedValue: TLabel [16]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -174,7 +174,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 18
   end
-  object lblGetCalInfoCleaningTestHardDistance: TLabel
+  object lblGetCalInfoCleaningTestHardDistance: TLabel [17]
     Position.X = 25.000000000000000000
     Position.Y = 227.000000000000000000
     Size.Width = 265.000000000000000000
@@ -184,7 +184,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'CleaningTestHardDistance'
     TabOrder = 6
   end
-  object lblGetCalInfoCleaningTestHardDistanceValue: TLabel
+  object lblGetCalInfoCleaningTestHardDistanceValue: TLabel [18]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -195,7 +195,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 9
   end
-  object lblGetCalInfoCleaningTestCarpetDistance: TLabel
+  object lblGetCalInfoCleaningTestCarpetDistance: TLabel [19]
     Position.X = 25.000000000000000000
     Position.Y = 253.000000000000000000
     Size.Width = 265.000000000000000000
@@ -205,7 +205,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'CleaningTestCarpetDistance'
     TabOrder = 14
   end
-  object lblGetCalInfoCleaningTestCarpetDistanceValue: TLabel
+  object lblGetCalInfoCleaningTestCarpetDistanceValue: TLabel [20]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -216,7 +216,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 19
   end
-  object lblGetCalInfoCleaningTestMode: TLabel
+  object lblGetCalInfoCleaningTestMode: TLabel [21]
     Position.X = 25.000000000000000000
     Position.Y = 279.000000000000000000
     Size.Width = 265.000000000000000000
@@ -226,7 +226,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'CleaningTestMode'
     TabOrder = 12
   end
-  object lblGetCalInfoCleaningTestModeValue: TLabel
+  object lblGetCalInfoCleaningTestModeValue: TLabel [22]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -237,7 +237,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 17
   end
-  object lblGetCalInfoQAState: TLabel
+  object lblGetCalInfoQAState: TLabel [23]
     Position.X = 25.000000000000000000
     Position.Y = 305.000000000000000000
     Size.Width = 265.000000000000000000
@@ -247,7 +247,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'QAState'
     TabOrder = 4
   end
-  object lblGetCalInfoQAStateValue: TLabel
+  object lblGetCalInfoQAStateValue: TLabel [24]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -258,7 +258,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 7
   end
-  object lblGetCalInfoLeftDropSensor_CalibrationData: TLabel
+  object lblGetCalInfoLeftDropSensor_CalibrationData: TLabel [25]
     Position.X = 25.000000000000000000
     Position.Y = 331.000000000000000000
     Size.Width = 265.000000000000000000
@@ -268,7 +268,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'LeftDropSensor_CalibrationData'
     TabOrder = 11
   end
-  object lblGetCalInfoLeftDropSensor_CalibrationDataValue: TLabel
+  object lblGetCalInfoLeftDropSensor_CalibrationDataValue: TLabel [26]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -279,7 +279,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 15
   end
-  object lblGetCalInfoRightDropSensor_CalibrationData: TLabel
+  object lblGetCalInfoRightDropSensor_CalibrationData: TLabel [27]
     Position.X = 25.000000000000000000
     Position.Y = 357.000000000000000000
     Size.Width = 265.000000000000000000
@@ -289,7 +289,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'RightDropSensor_CalibrationData'
     TabOrder = 2
   end
-  object lblGetCalInfoRightDropSensor_CalibrationDataValue: TLabel
+  object lblGetCalInfoRightDropSensor_CalibrationDataValue: TLabel [28]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -300,7 +300,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 5
   end
-  object lblGetCalInfoWheelDropSensor_CalibrationData: TLabel
+  object lblGetCalInfoWheelDropSensor_CalibrationData: TLabel [29]
     Position.X = 25.000000000000000000
     Position.Y = 383.000000000000000000
     Size.Width = 265.000000000000000000
@@ -310,7 +310,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'WheelDropSensor_CalibrationData'
     TabOrder = 10
   end
-  object lblGetCalInfoWheelDropSensor_CalibrationDataValue: TLabel
+  object lblGetCalInfoWheelDropSensor_CalibrationDataValue: TLabel [30]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -321,7 +321,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = '0'
     TabOrder = 13
   end
-  object lblGetCalInfoWallSensor_CalibrationData: TLabel
+  object lblGetCalInfoWallSensor_CalibrationData: TLabel [31]
     Position.X = 25.000000000000000000
     Position.Y = 410.000000000000000000
     Size.Width = 265.000000000000000000
@@ -331,7 +331,7 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Text = 'WallSensor_CalibrationData'
     TabOrder = 1
   end
-  object lblGetCalInfoWallSensor_CalibrationDataValue: TLabel
+  object lblGetCalInfoWallSensor_CalibrationDataValue: TLabel [32]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 309.000000000000000000
@@ -341,5 +341,9 @@ inherited frameDGetCalInfo: TframeDGetCalInfo
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 3
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 436.000000000000000000
+    Size.Width = 546.000000000000000000
   end
 end

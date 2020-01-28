@@ -5,6 +5,8 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
 
 const
+  sDescription = 'Get the diagnostic data for the charging system.';
+
   // labels of text to look / parse for
   sLabel = 'Label';
   sValue = 'Value';
@@ -75,7 +77,7 @@ Constructor tGetChargerD.Create;
 begin
   inherited;
   fCommand := sGetChargerD;
-  fDescription := 'Get the diagnostic data for the charging system.';
+  fDescription := sDescription;
   Reset;
 end;
 

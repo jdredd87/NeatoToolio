@@ -7,6 +7,7 @@ uses
 
 const
 
+  sDescription = 'Enables/Disables wall follower';
   // Command to send
   sSetWallFollower = 'SetWallFollower';
   sUnrecognizedOption = 'Unrecognized Option';
@@ -33,7 +34,7 @@ Constructor tSetWallFollowerDXV.Create;
 begin
   inherited;
   fCommand := sSetWallFollower;
-  fDescription := 'Enables/Disables wall follower';
+  fDescription := sDescription;
   reset;
 end;
 

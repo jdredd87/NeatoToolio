@@ -7,6 +7,9 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers
 const
 
   // Command to send
+
+  sDescription = 'Get Cleaning Schedule';
+
   sGetSchedule = 'GetSchedule';
 
   sSchedule_is_Enabled = 'Schedule is Enabled';
@@ -105,7 +108,7 @@ Constructor tGetScheduleXV.Create;
 begin
   inherited;
   fCommand := sGetSchedule;
-  fDescription := 'Get Cleaning Schedule';
+  fDescription := sDescription;
   reset;
 end;
 

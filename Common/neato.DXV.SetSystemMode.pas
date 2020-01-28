@@ -6,6 +6,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, dmCommon;
 
 const
   // labels of text to look / parse for
+  sDescription = 'Set the operation mode of the robot. (TestMode Only)';
 
   // Command to send
 
@@ -36,7 +37,7 @@ Constructor tSetSystemMode.Create;
 begin
   inherited;
   fCommand := sSetSystemMode;
-  fDescription := 'Set the operation mode of the robot. (TestMode Only)';
+  fDescription := sDescription;
   Reset;
 end;
 

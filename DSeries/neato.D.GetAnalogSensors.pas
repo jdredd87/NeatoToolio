@@ -6,6 +6,8 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors,
   neato.Helpers;
 
 const
+  sDescription = 'Get the A2D ( analog to digital ) readings for the analog sensors';
+
   // labels of text to look / parse for
   sSensorName = 'SensorName';
   sUnit = 'Unit';
@@ -106,7 +108,7 @@ Constructor tGetAnalogSensorsD.create;
 begin
   inherited;
   fCommand := sGetAnalogSensors;
-  fDescription := 'Get the A2D ( analog to digital ) readings for the analog sensors';
+  fDescription := sDescription;
   Reset;
 end;
 

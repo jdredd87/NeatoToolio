@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetErr,FMX.TabControl,
+  neato.D.GetErr,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
   FMX.Controls.Presentation, FMX.ScrollBox;
@@ -19,11 +20,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TFrameDGetErr.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TFrameDGetErr.timer_GetDataTimer(Sender: TObject);
 var

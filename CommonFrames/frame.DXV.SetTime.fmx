@@ -5,7 +5,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
   inherited timer_getdata: TTimer
     Left = 544
   end
-  object lblSetTimeError: TLabel
+  object lblSetTimeError: TLabel [1]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -18,7 +18,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Center
     TabOrder = 1
   end
-  object Rectangle1: TRectangle
+  object Rectangle1: TRectangle [2]
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -26,7 +26,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     Size.Height = 249.000000000000000000
     Size.PlatformDefault = False
   end
-  object ckSetTimeSun: TRadioButton
+  object ckSetTimeSun: TRadioButton [3]
     Position.X = 16.000000000000000000
     Position.Y = 16.000000000000000000
     Size.Width = 120.000000000000000000
@@ -38,7 +38,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object ckSetTimeMon: TRadioButton
+  object ckSetTimeMon: TRadioButton [4]
     Position.X = 16.000000000000000000
     Position.Y = 48.000000000000000000
     Size.Width = 120.000000000000000000
@@ -50,7 +50,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object ckSetTimeTue: TRadioButton
+  object ckSetTimeTue: TRadioButton [5]
     Position.X = 16.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 120.000000000000000000
@@ -62,7 +62,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object ckSetTimeWed: TRadioButton
+  object ckSetTimeWed: TRadioButton [6]
     Position.X = 16.000000000000000000
     Position.Y = 112.000000000000000000
     Size.Width = 120.000000000000000000
@@ -74,7 +74,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object ckSetTimeThu: TRadioButton
+  object ckSetTimeThu: TRadioButton [7]
     Position.X = 16.000000000000000000
     Position.Y = 144.000000000000000000
     Size.Width = 120.000000000000000000
@@ -86,7 +86,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object ckSetTimeFri: TRadioButton
+  object ckSetTimeFri: TRadioButton [8]
     Position.X = 16.000000000000000000
     Position.Y = 176.000000000000000000
     Size.Width = 120.000000000000000000
@@ -98,7 +98,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object ckSetTimeSat: TRadioButton
+  object ckSetTimeSat: TRadioButton [9]
     Position.X = 16.000000000000000000
     Position.Y = 208.000000000000000000
     Size.Width = 120.000000000000000000
@@ -110,27 +110,27 @@ inherited frameDXVSetTime: TframeDXVSetTime
     TextSettings.HorzAlign = Trailing
     OnChange = ckSetTimeSunChange
   end
-  object sbSetTimeHour: TSpinBox
+  object sbSetTimeHour: TSpinBox [10]
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 62
+    TabOrder = 63
     Cursor = crIBeam
     Max = 23.000000000000000000
     Position.X = 256.000000000000000000
     Position.Y = 40.000000000000000000
   end
-  object lblSetTimeHour: TLabel
+  object lblSetTimeHour: TLabel [11]
     Position.X = 256.000000000000000000
     Position.Y = 16.000000000000000000
     Text = 'Hour'
-    TabOrder = 64
+    TabOrder = 65
   end
-  object lblSetTimeMinutes: TLabel
+  object lblSetTimeMinutes: TLabel [12]
     Position.X = 256.000000000000000000
     Position.Y = 80.000000000000000000
     Text = 'Minutes'
-    TabOrder = 63
+    TabOrder = 64
   end
-  object sbSetTimeMinutes: TSpinBox
+  object sbSetTimeMinutes: TSpinBox [13]
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 60
     Cursor = crIBeam
@@ -138,7 +138,7 @@ inherited frameDXVSetTime: TframeDXVSetTime
     Position.X = 256.000000000000000000
     Position.Y = 104.000000000000000000
   end
-  object sbSetTimeSeconds: TSpinBox
+  object sbSetTimeSeconds: TSpinBox [14]
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 59
     Cursor = crIBeam
@@ -146,21 +146,25 @@ inherited frameDXVSetTime: TframeDXVSetTime
     Position.X = 256.000000000000000000
     Position.Y = 168.000000000000000000
   end
-  object lblSetTimeSeconds: TLabel
+  object lblSetTimeSeconds: TLabel [15]
     Position.X = 256.000000000000000000
     Position.Y = 144.000000000000000000
     Text = 'Seconds'
     TabOrder = 61
   end
-  object btnSetTimeApply: TButton
+  object btnSetTimeApply: TButton [16]
     Enabled = False
     Position.X = 400.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 113.000000000000000000
     Size.Height = 81.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 65
+    TabOrder = 66
     Text = 'Apply'
     OnClick = btnSetTimeApplyClick
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 325.000000000000000000
+    Size.Width = 788.000000000000000000
   end
 end

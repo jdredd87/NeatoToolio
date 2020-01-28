@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetUserSettings,FMX.TabControl,
+  neato.D.GetUserSettings,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
@@ -55,11 +56,19 @@ type
   private
     { Private declarations }
   public
+   constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDGetUserSettings.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
+
 
 procedure TframeDGetUserSettings.timer_GetDataTimer(Sender: TObject);
 var

@@ -5,6 +5,8 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, dmCommon;
 
 const
+
+  sDescription = 'Sets the specified LED to on,off,blink, or dim. (TestMode Only)';
   // labels of text to look / parse for
 
   // Command to send
@@ -50,7 +52,7 @@ Constructor tSetLED.Create;
 begin
   inherited;
   fCommand := sSetLED;
-  fDescription := 'Sets the specified LED to on,off,blink, or dim. (TestMode Only)';
+  fDescription := sDescription;
   Reset;
 end;
 
@@ -78,9 +80,9 @@ begin
   data.text := trim(data.text);
 
   if data.Count = 1 then
-   data.delete(0);
+    data.delete(0);
 
-  if data.Count=0 then
+  if data.Count = 0 then
   begin
     result := true;
   end

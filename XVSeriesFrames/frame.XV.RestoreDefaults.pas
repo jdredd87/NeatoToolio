@@ -16,12 +16,19 @@ type
   private
     { Private declarations }
   public
-    procedure Check;
+   constructor Create(AOwner: TComponent); reintroduce; overload;
+   procedure Check;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeXVRestoreDefaults.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeXVRestoreDefaults.btnRestoreDefaultsClick(Sender: TObject);
 var

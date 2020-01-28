@@ -6,6 +6,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors,
   neato.Helpers;
 
 const
+  sDescription = 'Get the version information for the system software and hardware';
 
   // labels of text to look / parse for
   sComponent = 'Component';
@@ -248,7 +249,7 @@ Constructor tGetVersionD.Create;
 begin
   inherited;
   fCommand := sGetVersion;
-  fDescription := 'Get the version information for the system software and hardware';
+  fDescription := sDescription;
   Reset;
 end;
 

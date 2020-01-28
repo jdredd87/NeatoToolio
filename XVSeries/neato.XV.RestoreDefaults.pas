@@ -8,6 +8,7 @@ const
 
   // Command to send
   sRestoreDefaults = 'RestoreDefaults';
+  sDescription = 'Restore user settings to default.';
 
 type
 
@@ -26,7 +27,7 @@ Constructor tRestoreDefaultsXV.Create;
 begin
   inherited;
   fCommand := sRestoreDefaults;
-  fDescription := 'Restore user settings to default.';
+  fDescription := sDescription;
   Reset;
 end;
 

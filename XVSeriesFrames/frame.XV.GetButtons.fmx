@@ -4,7 +4,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  object lblGetButtonsBTN_SOFT_KEY: TLabel
+  object lblGetButtonsBTN_SOFT_KEY: TLabel [1]
     Position.X = 16.000000000000000000
     Position.Y = 19.000000000000000000
     Size.Width = 150.000000000000000000
@@ -14,7 +14,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Text = 'BTN_SOFT_KEY'
     TabOrder = 46
   end
-  object swGetButtonsBTN_SOFT_KEYvalue: TSwitch
+  object swGetButtonsBTN_SOFT_KEYvalue: TSwitch [2]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -24,7 +24,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Size.PlatformDefault = False
     TabOrder = 55
   end
-  object lblGetButtonsBTN_SCROLL_UP: TLabel
+  object lblGetButtonsBTN_SCROLL_UP: TLabel [3]
     Position.X = 16.000000000000000000
     Position.Y = 42.000000000000000000
     Size.Width = 150.000000000000000000
@@ -34,7 +34,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Text = 'BTN_SCROLL_UP'
     TabOrder = 44
   end
-  object swGetButtonsBTN_SCROLL_UPvalue: TSwitch
+  object swGetButtonsBTN_SCROLL_UPvalue: TSwitch [4]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -44,7 +44,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Size.PlatformDefault = False
     TabOrder = 56
   end
-  object lblGetButtonsBTN_START: TLabel
+  object lblGetButtonsBTN_START: TLabel [5]
     Position.X = 16.000000000000000000
     Position.Y = 65.000000000000000000
     Size.Width = 150.000000000000000000
@@ -54,7 +54,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Text = 'BTN_START'
     TabOrder = 42
   end
-  object swGetButtonsBTN_STARTvalue: TSwitch
+  object swGetButtonsBTN_STARTvalue: TSwitch [6]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -64,7 +64,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Size.PlatformDefault = False
     TabOrder = 54
   end
-  object lblGetButtonsBTN_BACK: TLabel
+  object lblGetButtonsBTN_BACK: TLabel [7]
     Position.X = 16.000000000000000000
     Position.Y = 88.000000000000000000
     Size.Width = 150.000000000000000000
@@ -74,7 +74,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Text = 'BTN_BACK'
     TabOrder = 45
   end
-  object swGetButtonsBTN_BACKvalue: TSwitch
+  object swGetButtonsBTN_BACKvalue: TSwitch [8]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -84,7 +84,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Size.PlatformDefault = False
     TabOrder = 53
   end
-  object lblGetButtonsBTN_SCROLL_DOWN: TLabel
+  object lblGetButtonsBTN_SCROLL_DOWN: TLabel [9]
     Position.X = 16.000000000000000000
     Position.Y = 112.000000000000000000
     Size.Width = 150.000000000000000000
@@ -94,7 +94,7 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Text = 'BTN_SCROLL_DOWN'
     TabOrder = 43
   end
-  object swGetButtonsBTN_SCROLL_DOWNvalue: TSwitch
+  object swGetButtonsBTN_SCROLL_DOWNvalue: TSwitch [10]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -103,5 +103,9 @@ inherited frameXVGetButtons: TframeXVGetButtons
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 52
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 130.000000000000000000
+    Size.Width = 260.000000000000000000
   end
 end

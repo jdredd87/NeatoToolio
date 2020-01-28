@@ -153,7 +153,7 @@ uses
   FMXTee.Chart;
 
 type
-  TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
+
 
   TfrmMain = class(TForm)
     tabsMain: TTabControl;
@@ -382,8 +382,6 @@ type
     DXVSetWallFollower: TframeDXVSetWallFollower;
     DXVSetDistanceCal: TframeDXVSetDistanceCal;
 
-    Neato: TNeatoModels; // what kind of bot model line
-
     Procedure StageTabs; // create and place our tabs depending on model
     procedure ResetTabs; // Reset tab states
     procedure PopulateCOMPorts; // repopulate drop down with active com ports
@@ -426,7 +424,6 @@ begin
 {$IFDEF ANDORID}
   application.onException := self.onException;
 {$ENDIF}
-  Neato := neatoUnknown;
 
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
@@ -1059,11 +1056,11 @@ begin
     r := dm.com.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
 
     if pos('BotVac', r) > 0 then
-      Neato := neatoBotVac
+      NeatoType := neatoBotVac
     else if pos('XV', r) > 0 then
-      Neato := neatoXV;
+      NeatoType := neatoXV;
 
-    if (r <> '') and (Neato = neatoBotVac) then
+    if (r <> '') and (NeatoType = neatoBotVac) then
     begin
       r := dm.com.SendCommand(sGetWifiStatus);
 
@@ -1124,7 +1121,7 @@ begin
       freeandnil(gGetVersionD);
     end;
 
-    if (r <> '') and (Neato = neatoXV) then
+    if (r <> '') and (NeatoType = neatoXV) then
     begin
       gGetVersionXV := tGetVersionXV.Create;
       ReadData.Text := r;
@@ -1218,7 +1215,7 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetCharger then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           timerStarter := DGetCharger.timer_GetData;
@@ -1240,7 +1237,7 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetAnalogSensors then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           timerStarter := DGetAnalogSensors.timer_GetData;
@@ -1256,7 +1253,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetDigitalSensors then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           XVGetDigitalSensors.Visible := false;
@@ -1272,7 +1269,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetSensor then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           lblNotSupported.Visible := false;
@@ -1288,7 +1285,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetMotors then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetMotors.Visible := true;
@@ -1304,7 +1301,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetButtons then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetButtons.Visible := true;
@@ -1320,7 +1317,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetCalInfo then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetCalInfo.Visible := true;
@@ -1338,7 +1335,7 @@ begin
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabGetWarranty then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetWarranty.Visible := true;
@@ -1354,7 +1351,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetErr then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetErr.Visible := true;
@@ -1370,7 +1367,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetVersion then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetVersion.Visible := true;
@@ -1386,7 +1383,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetUsage then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetUsage.Visible := true;
@@ -1402,7 +1399,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetUserSettings then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetUserSettings.Visible := true;
@@ -1432,7 +1429,7 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabClean then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           XVClean.Visible := false;
@@ -1504,7 +1501,7 @@ begin
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabClearFiles then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DClearFiles.Check;
@@ -1520,7 +1517,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabRestoreDefaults then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           XVRestoreDefaults.Visible := false;
@@ -1537,7 +1534,7 @@ begin
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabGetWifiInfo then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetWifiInfo.Check;
@@ -1553,7 +1550,7 @@ begin
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetWifiStatus then
-    case Neato of
+    case NeatoType of
       neatoBotVac:
         begin
           DGetWifiStatus.Visible := true;

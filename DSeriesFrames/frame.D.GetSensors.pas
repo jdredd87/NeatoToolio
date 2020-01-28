@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetSensor,FMX.TabControl,
+  neato.D.GetSensor,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
@@ -45,11 +46,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDGetSensors.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDGetSensors.timer_GetDataTimer(Sender: TObject);
 var
@@ -68,7 +76,6 @@ begin
 
   pReadData := TStringList.Create;
   pReadData.Text := dm.com.SendCommand(sGetSensor);
-
 
   r := pGetSensor.ParseText(pReadData);
 

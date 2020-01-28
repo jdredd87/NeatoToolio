@@ -5,7 +5,7 @@ inherited frameDClearFiles: TframeDClearFiles
     Left = 576
     Top = 24
   end
-  object gbClearFiles: TGroupBox
+  object gbClearFiles: TGroupBox [1]
     Margins.Left = 5.000000000000000000
     Margins.Top = 5.000000000000000000
     Margins.Right = 5.000000000000000000
@@ -51,7 +51,7 @@ inherited frameDClearFiles: TframeDClearFiles
       OnChange = rbClearFilesBBChange
     end
   end
-  object btnClearFiles: TButton
+  object btnClearFiles: TButton [2]
     Enabled = False
     Margins.Left = 10.000000000000000000
     Margins.Top = 10.000000000000000000
@@ -65,5 +65,9 @@ inherited frameDClearFiles: TframeDClearFiles
     TabOrder = 0
     Text = 'Clear'
     OnClick = btnClearFilesClick
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 128.000000000000000000
+    Size.Width = 718.000000000000000000
   end
 end

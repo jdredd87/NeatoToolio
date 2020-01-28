@@ -34,11 +34,18 @@ type
   private
     { Private declarations }
   public
+   constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVSetLED.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDXVSetLED.btnSetLEDOnClick(Sender: TObject);
 var

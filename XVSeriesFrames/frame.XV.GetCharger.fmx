@@ -1,13 +1,13 @@
 inherited frameXVGetCharger: TframeXVGetCharger
   Align = Client
   Size.Width = 505.000000000000000000
-  Size.Height = 447.000000000000000000
+  Size.Height = 462.000000000000000000
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
     Left = 152
     Top = 400
   end
-  object pbGetChargerFuelPercentValue: TProgressBar
+  object pbGetChargerFuelPercentValue: TProgressBar [1]
     Orientation = Vertical
     Position.X = 22.000000000000000000
     Position.Y = 48.000000000000000000
@@ -31,7 +31,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
       TabOrder = 0
     end
   end
-  object lblGetChargerFuelPercent: TLabel
+  object lblGetChargerFuelPercent: TLabel [2]
     AutoSize = True
     StyledSettings = [Family, Style, FontColor]
     Position.X = 8.000000000000000000
@@ -43,7 +43,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'FuelPercent'
     TabOrder = 6
   end
-  object pbGetChargerBattTempCAvg0Value: TProgressBar
+  object pbGetChargerBattTempCAvg0Value: TProgressBar [3]
     Max = 110.000000000000000000
     Orientation = Vertical
     Position.X = 102.000000000000000000
@@ -68,7 +68,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
       TabOrder = 0
     end
   end
-  object pbGetChargerVBattVValue: TProgressBar
+  object pbGetChargerVBattVValue: TProgressBar [4]
     Max = 24.000000000000000000
     Orientation = Vertical
     Position.X = 262.000000000000000000
@@ -93,7 +93,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
       TabOrder = 0
     end
   end
-  object pbGetChargerVextVValue: TProgressBar
+  object pbGetChargerVextVValue: TProgressBar [5]
     Max = 24.000000000000000000
     Orientation = Vertical
     Position.X = 350.000000000000000000
@@ -118,7 +118,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
       TabOrder = 0
     end
   end
-  object pbGetChargerChargermAHValue: TProgressBar
+  object pbGetChargerChargermAHValue: TProgressBar [6]
     Max = 4096.000000000000000000
     Orientation = Vertical
     Position.X = 430.000000000000000000
@@ -143,7 +143,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
       TabOrder = 0
     end
   end
-  object lblGetChargerBattTempCAvg0: TLabel
+  object lblGetChargerBattTempCAvg0: TLabel [7]
     AutoSize = True
     StyledSettings = [Family, Style, FontColor]
     Position.X = 72.000000000000000000
@@ -155,7 +155,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'BattTempCAvg[0]'
     TabOrder = 5
   end
-  object lblGetChargerVBattV: TLabel
+  object lblGetChargerVBattV: TLabel [8]
     AutoSize = True
     StyledSettings = [Family, Style, FontColor]
     Position.X = 262.000000000000000000
@@ -167,7 +167,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'VBattV'
     TabOrder = 3
   end
-  object lblGetChargerVExtV: TLabel
+  object lblGetChargerVExtV: TLabel [9]
     AutoSize = True
     StyledSettings = [Family, Style, FontColor]
     Position.X = 352.000000000000000000
@@ -179,7 +179,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'VExtV'
     TabOrder = 2
   end
-  object lblGetChargerChargermAH: TLabel
+  object lblGetChargerChargermAH: TLabel [10]
     AutoSize = True
     StyledSettings = [Family, Style, FontColor]
     Position.X = 408.000000000000000000
@@ -191,7 +191,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'Charger mAH'
     TabOrder = 1
   end
-  object swGetChargerBatteryOverTempValue: TSwitch
+  object swGetChargerBatteryOverTempValue: TSwitch [11]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -201,7 +201,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 25
   end
-  object swGetChargerChargingActiveValue: TSwitch
+  object swGetChargerChargingActiveValue: TSwitch [12]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -211,7 +211,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 23
   end
-  object swGetChargerChargingEnabledValue: TSwitch
+  object swGetChargerChargingEnabledValue: TSwitch [13]
     HitTest = False
     IsChecked = False
     Position.X = 328.000000000000000000
@@ -221,7 +221,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 16
   end
-  object lblGetChargerBatteryOverTemp: TLabel
+  object lblGetChargerBatteryOverTemp: TLabel [14]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 210.000000000000000000
@@ -231,7 +231,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'BatteryOverTemp'
     TabOrder = 29
   end
-  object lblGetChargerChargingActive: TLabel
+  object lblGetChargerChargingActive: TLabel [15]
     AutoSize = True
     Position.X = 176.000000000000000000
     Position.Y = 210.000000000000000000
@@ -241,7 +241,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'ChargingActive'
     TabOrder = 30
   end
-  object lblGetChargerChargingEnabled: TLabel
+  object lblGetChargerChargingEnabled: TLabel [16]
     AutoSize = True
     Position.X = 328.000000000000000000
     Position.Y = 210.000000000000000000
@@ -251,7 +251,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'ChargingEnabled'
     TabOrder = 31
   end
-  object lblGetChargerConfidentOnFuel: TLabel
+  object lblGetChargerConfidentOnFuel: TLabel [17]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 266.000000000000000000
@@ -261,7 +261,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'ConfidentOnFuel'
     TabOrder = 28
   end
-  object swGetChargerConfidentOnFuelValue: TSwitch
+  object swGetChargerConfidentOnFuelValue: TSwitch [18]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -271,7 +271,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 24
   end
-  object lblGetChargerOnReservedFuel: TLabel
+  object lblGetChargerOnReservedFuel: TLabel [19]
     AutoSize = True
     Position.X = 176.000000000000000000
     Position.Y = 266.000000000000000000
@@ -281,7 +281,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'OnReservedFuel'
     TabOrder = 27
   end
-  object swGetChargerOnReservedFuelValue: TSwitch
+  object swGetChargerOnReservedFuelValue: TSwitch [20]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -291,7 +291,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 19
   end
-  object lblGetChargerEmptyFuel: TLabel
+  object lblGetChargerEmptyFuel: TLabel [21]
     AutoSize = True
     Position.X = 328.000000000000000000
     Position.Y = 266.000000000000000000
@@ -301,7 +301,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'EmptyFuel'
     TabOrder = 26
   end
-  object swGetChargerEmptyFuelValue: TSwitch
+  object swGetChargerEmptyFuelValue: TSwitch [22]
     HitTest = False
     IsChecked = False
     Position.X = 328.000000000000000000
@@ -311,7 +311,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 14
   end
-  object lblGetChargerBatteryFailure: TLabel
+  object lblGetChargerBatteryFailure: TLabel [23]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 322.000000000000000000
@@ -321,7 +321,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'BatteryFailure'
     TabOrder = 22
   end
-  object swGetChargerBatteryFailureValue: TSwitch
+  object swGetChargerBatteryFailureValue: TSwitch [24]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -331,7 +331,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 17
   end
-  object lblGetChargerExtPwrPresent: TLabel
+  object lblGetChargerExtPwrPresent: TLabel [25]
     AutoSize = True
     Position.X = 176.000000000000000000
     Position.Y = 322.000000000000000000
@@ -341,7 +341,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'ExtPwrPresent'
     TabOrder = 21
   end
-  object swGetChargerExtPwrPresentValue: TSwitch
+  object swGetChargerExtPwrPresentValue: TSwitch [26]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -351,7 +351,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 15
   end
-  object lblGetChargerThermistor0Present: TLabel
+  object lblGetChargerThermistor0Present: TLabel [27]
     AutoSize = True
     Position.X = 328.000000000000000000
     Position.Y = 322.000000000000000000
@@ -361,7 +361,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'ThermistorPresent[0]'
     TabOrder = 20
   end
-  object swGetChargerThermistorPresent0Value: TSwitch
+  object swGetChargerThermistorPresent0Value: TSwitch [28]
     HitTest = False
     IsChecked = False
     Position.X = 328.000000000000000000
@@ -371,7 +371,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 13
   end
-  object swGetChargerThermistorPresent1Value: TSwitch
+  object swGetChargerThermistorPresent1Value: TSwitch [29]
     HitTest = False
     IsChecked = False
     Position.X = 328.000000000000000000
@@ -381,7 +381,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Size.PlatformDefault = False
     TabOrder = 12
   end
-  object lblGetChargerThermistor1Present: TLabel
+  object lblGetChargerThermistor1Present: TLabel [30]
     AutoSize = True
     Position.X = 328.000000000000000000
     Position.Y = 386.000000000000000000
@@ -391,7 +391,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
     Text = 'ThermistorPresent[1]'
     TabOrder = 18
   end
-  object pbGetChargerBattTempCAvg1Value: TProgressBar
+  object pbGetChargerBattTempCAvg1Value: TProgressBar [31]
     Max = 110.000000000000000000
     Orientation = Vertical
     Position.X = 182.000000000000000000
@@ -416,7 +416,7 @@ inherited frameXVGetCharger: TframeXVGetCharger
       TabOrder = 0
     end
   end
-  object lblGetChargerBattTempCAvg1: TLabel
+  object lblGetChargerBattTempCAvg1: TLabel [32]
     AutoSize = True
     StyledSettings = [Family, Style, FontColor]
     Position.X = 144.000000000000000000
@@ -427,5 +427,9 @@ inherited frameXVGetCharger: TframeXVGetCharger
     TextSettings.Font.Size = 14.000000000000000000
     Text = 'BattTempCAvg[1]'
     TabOrder = 4
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 431.000000000000000000
+    Size.Width = 485.000000000000000000
   end
 end

@@ -20,6 +20,8 @@ uses
   FMX.Objects;
 
 type
+  TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
+
   TTimerList = TObjectList<TTimer>;
 
   Tdm = class(TDataModule)
@@ -43,6 +45,7 @@ var
 
   TimerList: TTimerList; // object list of TTimers
   CurrentTimer: TTimer; // quickly know what the active TTimer is
+  NeatoType: TNeatoModels; // what kind of bot model line
 
 procedure StopTimers; // stops all running registered timers
 
@@ -76,6 +79,7 @@ end;
 
 initialization
 
+NeatoType := neatoUnknown;
 TimerList := TTimerList.Create(false);
 CurrentTimer := nil;
 

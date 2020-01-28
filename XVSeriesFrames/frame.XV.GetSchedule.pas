@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.XV.GetSchedule,FMX.TabControl,
+  neato.XV.GetSchedule,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
   FMX.DateTimeCtrls, FMX.Objects;
@@ -39,11 +40,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeXVGetSchedule.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeXVGetSchedule.timer_GetDataTimer(Sender: TObject);
 var

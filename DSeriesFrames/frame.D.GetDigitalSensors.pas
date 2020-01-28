@@ -36,11 +36,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDGetDigitalSensors.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDGetDigitalSensors.timer_GetDataTimer(Sender: TObject);
 var

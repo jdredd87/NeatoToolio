@@ -10,6 +10,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, dmCommon;
 const
   // labels of text to look / parse for
 
+  sDescription = 'Sets the LCD to the specified display. (TestMode Only)';
   // Command to send
 
   sSetLCD = 'SetLCD';
@@ -60,7 +61,7 @@ Constructor tSetLCD.Create;
 begin
   inherited;
   fCommand := sSetLCD;
-  fDescription := 'Sets the LCD to the specified display. (TestMode Only)';
+  fDescription := sDescription;
   Reset;
 end;
 

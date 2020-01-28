@@ -6,7 +6,8 @@ uses
   frame.master,
   dmCommon,
   neato.Helpers,
-  neato.DXV.Playsound,FMX.TabControl,
+  neato.DXV.Playsound,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
   FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects;
@@ -30,11 +31,18 @@ type
   public
     procedure Check;
     property PlaySoundAborted: Boolean read fPlaySoundAborted;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVPlaySound.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDXVPlaySound.btnPlaySoundAbortClick(Sender: TObject);
 begin
@@ -104,7 +112,7 @@ begin
       for idx := 0 to sSoundIDMax - 1 do
       begin
 
-        if (PlaySoundAborted) or (dm.ActiveTab<>Tab) then
+        if (PlaySoundAborted) or (dm.ActiveTab <> Tab) then
           break;
 
         // pReadData.Text := com.SendCommand(sPlaysoundSoundID + ' ' + idx.ToString);

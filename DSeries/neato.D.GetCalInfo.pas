@@ -6,6 +6,7 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers
 
 const
 
+  sDescription = 'Prints out the cal info from the System Control Block.';
   // Command to send
   sGetCalInfo = 'GetCalInfo';
   // I always get this odd message
@@ -87,7 +88,7 @@ Constructor tGetCalInfoD.Create;
 begin
   inherited;
   fCommand := sGetCalInfo;
-  fDescription := 'Prints out the cal info from the System Control Block.';
+  fDescription := sDescription;
   Reset;
 end;
 

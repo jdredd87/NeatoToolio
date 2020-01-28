@@ -22,6 +22,7 @@ const
     Total cleaning time : 18365
 
   }
+  sDescription = 'Get usage settings';
 
   sTotal_cleaning_timeUnFixed = 'Total cleaning time'; // use this original value
   sTotal_cleaning_time = 'Totalcleaningtime'; // use this original value
@@ -70,7 +71,7 @@ Constructor tGetUsageD.create;
 begin
   inherited;
   fCommand := sGetUsage;
-  fDescription := 'Get usage settings';
+  fDescription := sDescription;
   Reset;
 end;
 

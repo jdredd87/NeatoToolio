@@ -49,11 +49,21 @@ type
     procedure btnSetDistanceCalDropMinimumMouseLeave(Sender: TObject);
   private
     { Private declarations }
+  public
+    { Private declarations }
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVSetDistanceCal.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDXVSetDistanceCal.btnSetDistanceCalClick(Sender: TObject);
 var

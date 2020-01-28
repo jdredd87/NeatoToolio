@@ -12,6 +12,7 @@ const
   sUnrecognizedOption = 'Unrecognized Option';
   sON = 'ON';
   sOFF = 'OFF';
+  sDescription = 'Modify Cleaning Schedule.';
 
 type
 
@@ -30,7 +31,7 @@ Constructor tSetScheduleDXV.Create;
 begin
   inherited;
   fCommand := sSetSchedule;
-  fDescription := 'Get Cleaning Schedule';
+  fDescription := sDescription;
   reset;
 end;
 

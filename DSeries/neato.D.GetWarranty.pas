@@ -5,6 +5,7 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers;
 
 const
+  sDescription = 'Get the warranty validation codes';
   // labels of text to look / parse for
   sLabel = 'Item';
   sValue = 'Value';
@@ -42,7 +43,7 @@ Constructor tGetWarrantyD.create;
 begin
   inherited;
   fCommand := sGetWarranty;
-  fDescription := 'Get the warranty validation codes';
+  fDescription := sDescription;
   Reset;
 end;
 

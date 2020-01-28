@@ -7,6 +7,8 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
 const
   // labels of text to look / parse for
 
+  sDescription = 'Set Fuel Gauge Level.';
+
   // Command to send
 
   sSetFuelGauge = 'SetFuelGauge';
@@ -30,7 +32,7 @@ Constructor tSetFuelGauge.Create;
 begin
   inherited;
   fCommand := sSetFuelGauge;
-  fDescription := 'Set Fuel Gauge Level.';
+  fDescription := sDescription;
   Reset;
 end;
 

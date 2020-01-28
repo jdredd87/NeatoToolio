@@ -5,7 +5,7 @@ inherited frameDXVSetDistanceCal: TframeDXVSetDistanceCal
     Left = 448
     Top = 352
   end
-  object lblSetDistanceCalError: TLabel
+  object lblSetDistanceCalError: TLabel [1]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -18,7 +18,7 @@ inherited frameDXVSetDistanceCal: TframeDXVSetDistanceCal
     TextSettings.HorzAlign = Center
     TabOrder = 1
   end
-  object Rectangle1: TRectangle
+  object Rectangle1: TRectangle [2]
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -242,7 +242,7 @@ inherited frameDXVSetDistanceCal: TframeDXVSetDistanceCal
       TabOrder = 23
     end
   end
-  object lblSetDistanceCalMessage: TLabel
+  object lblSetDistanceCalMessage: TLabel [3]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -255,5 +255,9 @@ inherited frameDXVSetDistanceCal: TframeDXVSetDistanceCal
     TextSettings.HorzAlign = Center
     Text = 'These commands take a few seconds to complete.'
     TabOrder = 0
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 507.000000000000000000
+    Size.Width = 633.000000000000000000
   end
 end

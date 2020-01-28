@@ -5,6 +5,7 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
 
 const
+  sDescription = 'Get the diagnostic data for the motors';
 
   sGetMotors = 'GetMotors';
 
@@ -80,7 +81,7 @@ Constructor tGetMotorsXV.Create;
 begin
   inherited;
   fCommand := sGetMotors;
-  fDescription := 'Get the diagnostic data for the motors';
+  fDescription := sDescription;
   Reset;
 end;
 

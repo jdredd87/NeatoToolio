@@ -54,11 +54,18 @@ type
   private
     { Private declarations }
   public
+   constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeXVGetCharger.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeXVGetCharger.timer_GetDataTimer(Sender: TObject);
 var

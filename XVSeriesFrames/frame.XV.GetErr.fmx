@@ -6,7 +6,7 @@ inherited FrameXVGetErr: TFrameXVGetErr
     Left = 360
     Top = 120
   end
-  object sgGetErr: TStringGrid
+  object sgGetErr: TStringGrid [1]
     Align = Client
     CanFocus = True
     ClipChildren = True
@@ -15,14 +15,14 @@ inherited FrameXVGetErr: TFrameXVGetErr
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Size.Width = 884.000000000000000000
-    Size.Height = 227.000000000000000000
+    Size.Height = 191.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'gridstyle'
     TabOrder = 0
     RowCount = 6
     Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
     Viewport.Width = 880.000000000000000000
-    Viewport.Height = 202.000000000000000000
+    Viewport.Height = 166.000000000000000000
     object scGetErrName: TStringColumn
       Header = 'Code'
       Size.Width = 200.000000000000000000
@@ -31,5 +31,9 @@ inherited FrameXVGetErr: TFrameXVGetErr
       Header = 'Description'
       Size.Width = 672.000000000000000000
     end
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 206.000000000000000000
+    Size.Width = 874.000000000000000000
   end
 end

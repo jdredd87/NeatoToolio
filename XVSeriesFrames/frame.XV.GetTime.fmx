@@ -6,7 +6,7 @@ inherited frameXVGetTime: TframeXVGetTime
     Left = 40
     Top = 56
   end
-  object lblGetTime: TLabel
+  object lblGetTime: TLabel [1]
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Size.Width = 550.000000000000000000
@@ -17,12 +17,12 @@ inherited frameXVGetTime: TframeXVGetTime
     Text = 'Sunday 00:00:00'
     TabOrder = 49
   end
-  object ScaledLayout1: TScaledLayout
+  object ScaledLayout1: TScaledLayout [2]
     Align = Client
     OriginalWidth = 550.000000000000000000
-    OriginalHeight = 500.000000000000000000
+    OriginalHeight = 464.000000000000000000
     Size.Width = 550.000000000000000000
-    Size.Height = 500.000000000000000000
+    Size.Height = 464.000000000000000000
     Size.PlatformDefault = False
     object circleGetTime: TCircle
       Fill.Kind = Gradient
@@ -272,15 +272,19 @@ inherited frameXVGetTime: TframeXVGetTime
       end
     end
   end
-  object PixelateEffect1: TPixelateEffect
+  object PixelateEffect1: TPixelateEffect [3]
     Enabled = False
     BlockCount = 1000.000000000000000000
   end
-  object timer_Pixelate: TTimer
+  object timer_Pixelate: TTimer [4]
     Enabled = False
     Interval = 32
     OnTimer = timer_PixelateTimer
     Left = 440
     Top = 56
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 509.000000000000000000
+    Size.Width = 530.000000000000000000
   end
 end

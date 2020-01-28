@@ -23,11 +23,19 @@ type
     { Private declarations }
   public
     procedure Check;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeXVClean.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
+
 
 procedure TframeXVClean.btnCleanClick(Sender: TObject);
 var

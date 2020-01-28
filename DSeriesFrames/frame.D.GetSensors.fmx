@@ -6,7 +6,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Left = 360
     Top = 184
   end
-  object lblGetSensorWallFollower: TLabel
+  object lblGetSensorWallFollower: TLabel [1]
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 150.000000000000000000
@@ -16,7 +16,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Wall Follower'
     TabOrder = 46
   end
-  object swGetSensorWallFollowerValue: TSwitch
+  object swGetSensorWallFollowerValue: TSwitch [2]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -26,7 +26,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Size.PlatformDefault = False
     TabOrder = 57
   end
-  object lblGetSensorUltraSound: TLabel
+  object lblGetSensorUltraSound: TLabel [3]
     Position.X = 8.000000000000000000
     Position.Y = 32.000000000000000000
     Size.Width = 150.000000000000000000
@@ -36,7 +36,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Ultra Sound'
     TabOrder = 43
   end
-  object swGetSensorUltraSoundValue: TSwitch
+  object swGetSensorUltraSoundValue: TSwitch [4]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -46,7 +46,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Size.PlatformDefault = False
     TabOrder = 58
   end
-  object lblGetSensorDropSensors: TLabel
+  object lblGetSensorDropSensors: TLabel [5]
     Position.X = 8.000000000000000000
     Position.Y = 56.000000000000000000
     Size.Width = 150.000000000000000000
@@ -56,7 +56,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Drop Sensors'
     TabOrder = 42
   end
-  object swGetSensorDropSensorsValue: TSwitch
+  object swGetSensorDropSensorsValue: TSwitch [6]
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -66,7 +66,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Size.PlatformDefault = False
     TabOrder = 56
   end
-  object lblGetSensorsensorsStatus: TLabel
+  object lblGetSensorsensorsStatus: TLabel [7]
     Position.X = 8.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 150.000000000000000000
@@ -76,7 +76,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Sensors Status'
     TabOrder = 37
   end
-  object lblGetSensorsensorsStatusValue: TLabel
+  object lblGetSensorsensorsStatusValue: TLabel [8]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -87,7 +87,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 11
   end
-  object lblGetSensorleftdropStatus: TLabel
+  object lblGetSensorleftdropStatus: TLabel [9]
     Position.X = 8.000000000000000000
     Position.Y = 104.000000000000000000
     Size.Width = 150.000000000000000000
@@ -97,7 +97,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Left Drop Status'
     TabOrder = 35
   end
-  object lblGetSensorleftdropStatusValue: TLabel
+  object lblGetSensorleftdropStatusValue: TLabel [10]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -108,7 +108,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 9
   end
-  object lblGetSensorRightDropStatus: TLabel
+  object lblGetSensorRightDropStatus: TLabel [11]
     Position.X = 8.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 150.000000000000000000
@@ -118,7 +118,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Right Drop Status'
     TabOrder = 36
   end
-  object lblGetSensorRightDropStatusValue: TLabel
+  object lblGetSensorRightDropStatusValue: TLabel [12]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -129,7 +129,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 10
   end
-  object lblGetSensorWallRightStatus: TLabel
+  object lblGetSensorWallRightStatus: TLabel [13]
     Position.X = 8.000000000000000000
     Position.Y = 152.000000000000000000
     Size.Width = 150.000000000000000000
@@ -139,7 +139,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Wall Right Status'
     TabOrder = 34
   end
-  object lblGetSensorWallRightStatusValue: TLabel
+  object lblGetSensorWallRightStatusValue: TLabel [14]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -150,7 +150,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 7
   end
-  object lblGetSensorWheelDropStatus: TLabel
+  object lblGetSensorWheelDropStatus: TLabel [15]
     Position.X = 8.000000000000000000
     Position.Y = 176.000000000000000000
     Size.Width = 150.000000000000000000
@@ -160,7 +160,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Wheel Drop Status'
     TabOrder = 31
   end
-  object lblGetSensorWheelDropStatusValue: TLabel
+  object lblGetSensorWheelDropStatusValue: TLabel [16]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -171,7 +171,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 8
   end
-  object lblGetSensorLeftDropmm: TLabel
+  object lblGetSensorLeftDropmm: TLabel [17]
     Position.X = 8.000000000000000000
     Position.Y = 200.000000000000000000
     Size.Width = 150.000000000000000000
@@ -181,7 +181,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Left Drop mm'
     TabOrder = 27
   end
-  object lblGetSensorLeftDropmmValue: TLabel
+  object lblGetSensorLeftDropmmValue: TLabel [18]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -192,7 +192,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 5
   end
-  object lblGetSensorRightDropmm: TLabel
+  object lblGetSensorRightDropmm: TLabel [19]
     Position.X = 8.000000000000000000
     Position.Y = 224.000000000000000000
     Size.Width = 150.000000000000000000
@@ -202,7 +202,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Right Drop mm'
     TabOrder = 29
   end
-  object lblGetSensorRightDropmmValue: TLabel
+  object lblGetSensorRightDropmmValue: TLabel [20]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -213,7 +213,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 6
   end
-  object lblGetSensorWallRightmm: TLabel
+  object lblGetSensorWallRightmm: TLabel [21]
     Position.X = 8.000000000000000000
     Position.Y = 248.000000000000000000
     Size.Width = 150.000000000000000000
@@ -223,7 +223,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Wall Right mm'
     TabOrder = 33
   end
-  object lblGetSensorWallRightmmValue: TLabel
+  object lblGetSensorWallRightmmValue: TLabel [22]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -234,7 +234,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 4
   end
-  object lblGetSensorWheelDropmm: TLabel
+  object lblGetSensorWheelDropmm: TLabel [23]
     Position.X = 8.000000000000000000
     Position.Y = 272.000000000000000000
     Size.Width = 150.000000000000000000
@@ -244,7 +244,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'Wheel Drop mm'
     TabOrder = 32
   end
-  object lblGetSensorWheelDropmmValue: TLabel
+  object lblGetSensorWheelDropmmValue: TLabel [24]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -255,7 +255,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 3
   end
-  object lblGetSensorIMUAccelX: TLabel
+  object lblGetSensorIMUAccelX: TLabel [25]
     Position.X = 8.000000000000000000
     Position.Y = 296.000000000000000000
     Size.Width = 150.000000000000000000
@@ -265,7 +265,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'IMU Accel X'
     TabOrder = 30
   end
-  object lblGetSensorIMUAccelXValue: TLabel
+  object lblGetSensorIMUAccelXValue: TLabel [26]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -276,7 +276,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 2
   end
-  object lblGetSensorIMUAccelY: TLabel
+  object lblGetSensorIMUAccelY: TLabel [27]
     Position.X = 8.000000000000000000
     Position.Y = 320.000000000000000000
     Size.Width = 150.000000000000000000
@@ -286,7 +286,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'IMU Accel Y'
     TabOrder = 28
   end
-  object lblGetSensorIMUAccelYValue: TLabel
+  object lblGetSensorIMUAccelYValue: TLabel [28]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -297,7 +297,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = '0'
     TabOrder = 1
   end
-  object lblGetSensorIMUAccelZ: TLabel
+  object lblGetSensorIMUAccelZ: TLabel [29]
     Position.X = 8.000000000000000000
     Position.Y = 344.000000000000000000
     Size.Width = 150.000000000000000000
@@ -307,7 +307,7 @@ inherited frameDGetSensors: TframeDGetSensors
     Text = 'IMU Accel Z'
     TabOrder = 26
   end
-  object lblGetSensorIMUAccelZValue: TLabel
+  object lblGetSensorIMUAccelZValue: TLabel [30]
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 176.000000000000000000
@@ -317,5 +317,9 @@ inherited frameDGetSensors: TframeDGetSensors
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 0
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 340.000000000000000000
+    Size.Width = 430.000000000000000000
   end
 end

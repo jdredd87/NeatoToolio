@@ -7,6 +7,8 @@ uses
 
 const
 
+  sDescription = 'Compute and set distance sensor calibration values for min and max distances.';
+
   // Command to send
   sSetDistanceCal = 'SetDistanceCal';
   sUnrecognizedOption = 'Unrecognized Option';
@@ -74,7 +76,7 @@ Constructor tSetDistanceCalDXV.Create;
 begin
   inherited;
   fCommand := sSetDistanceCal;
-  fDescription := 'Compute and set distance sensor calibration values for min and max distances.';
+  fDescription := sDescription;
   reset;
 end;
 

@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.DXV.GetAccel,FMX.TabControl,
+  neato.DXV.GetAccel,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D;
@@ -30,12 +31,18 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVGetAccel.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDXVGetAccel.Timer_GetDataTimer(Sender: TObject);
 var
@@ -45,7 +52,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>Tab) then // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
   begin
     Timer_GetData.Enabled := false;
     exit;

@@ -5,7 +5,8 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetWifiStatus,FMX.TabControl,
+  neato.D.GetWifiStatus,
+  FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
@@ -54,11 +55,18 @@ type
     { Private declarations }
   public
     { Public declarations }
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDGetWifiStatus.Create(AOwner: TComponent);
+begin
+ inherited;
+ lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDGetWifiStatus.timer_GetDataTimer(Sender: TObject);
 var

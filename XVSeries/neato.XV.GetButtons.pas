@@ -6,6 +6,8 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers
 
 const
 
+  sdescription = 'Get the state of the UI Buttons.';
+
   // Command to send
   sGetButtons = 'GetButtons';
 

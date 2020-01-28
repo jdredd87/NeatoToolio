@@ -6,7 +6,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Left = 216
     Top = 344
   end
-  object swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch
+  object swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch [1]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -16,7 +16,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 24
   end
-  object lblGetDigitalSensorsSNSR_DC_JACK_IS_IN: TLabel
+  object lblGetDigitalSensorsSNSR_DC_JACK_IS_IN: TLabel [2]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 18.000000000000000000
@@ -26,7 +26,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'SNSR_DC_JACK_IS_IN'
     TabOrder = 41
   end
-  object lblGetDigitalSensorsSNSR_DUSTBIN_IS_IN: TLabel
+  object lblGetDigitalSensorsSNSR_DUSTBIN_IS_IN: TLabel [3]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 82.000000000000000000
@@ -36,7 +36,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'SNSR_DUSTBIN_IS_IN'
     TabOrder = 40
   end
-  object swGetDigitalSensorsSNSR_DUSTBIN_IS_INValue: TSwitch
+  object swGetDigitalSensorsSNSR_DUSTBIN_IS_INValue: TSwitch [4]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -46,7 +46,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 23
   end
-  object lblGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDED: TLabel
+  object lblGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDED: TLabel [5]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 154.000000000000000000
@@ -56,7 +56,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'SNSR_LEFT_WHEEL_EXTENDED'
     TabOrder = 39
   end
-  object swGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDEDValue: TSwitch
+  object swGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDEDValue: TSwitch [6]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -66,7 +66,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 22
   end
-  object lblGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDED: TLabel
+  object lblGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDED: TLabel [7]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 226.000000000000000000
@@ -76,7 +76,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'SNSR_RIGHT_WHEEL_EXTENDED'
     TabOrder = 38
   end
-  object swGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDEDValue: TSwitch
+  object swGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDEDValue: TSwitch [8]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -86,7 +86,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 21
   end
-  object lblGetDigitalSensorsRLDSBIT: TLabel
+  object lblGetDigitalSensorsRLDSBIT: TLabel [9]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 378.000000000000000000
@@ -96,7 +96,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'RLDSBIT'
     TabOrder = 37
   end
-  object swGetDigitalSensorsRLDSBITValue: TSwitch
+  object swGetDigitalSensorsRLDSBITValue: TSwitch [10]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -106,7 +106,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 17
   end
-  object lblGetDigitalSensorsLLDSBIT: TLabel
+  object lblGetDigitalSensorsLLDSBIT: TLabel [11]
     AutoSize = True
     Position.X = 24.000000000000000000
     Position.Y = 306.000000000000000000
@@ -116,7 +116,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'LLDSBIT'
     TabOrder = 36
   end
-  object swGetDigitalSensorsLLDSBITValue: TSwitch
+  object swGetDigitalSensorsLLDSBITValue: TSwitch [12]
     HitTest = False
     IsChecked = False
     Position.X = 24.000000000000000000
@@ -126,7 +126,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 18
   end
-  object swGetDigitalSensorsLFRONTBITValue: TSwitch
+  object swGetDigitalSensorsLFRONTBITValue: TSwitch [13]
     HitTest = False
     IsChecked = False
     Position.X = 280.000000000000000000
@@ -136,7 +136,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 19
   end
-  object lblGetDigitalSensorsLFRONTBIT: TLabel
+  object lblGetDigitalSensorsLFRONTBIT: TLabel [14]
     AutoSize = True
     Position.X = 280.000000000000000000
     Position.Y = 82.000000000000000000
@@ -146,7 +146,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'LFRONTBIT'
     TabOrder = 35
   end
-  object swGetDigitalSensorsLSIDEBITValue: TSwitch
+  object swGetDigitalSensorsLSIDEBITValue: TSwitch [15]
     HitTest = False
     IsChecked = False
     Position.X = 280.000000000000000000
@@ -156,7 +156,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 20
   end
-  object lblGetDigitalSensorsLSIDEBIT: TLabel
+  object lblGetDigitalSensorsLSIDEBIT: TLabel [16]
     AutoSize = True
     Position.X = 280.000000000000000000
     Position.Y = 18.000000000000000000
@@ -166,7 +166,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'LSIDEBIT'
     TabOrder = 33
   end
-  object swGetDigitalSensorsRFRONTBITValue: TSwitch
+  object swGetDigitalSensorsRFRONTBITValue: TSwitch [17]
     HitTest = False
     IsChecked = False
     Position.X = 280.000000000000000000
@@ -176,7 +176,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 15
   end
-  object lblGetDigitalSensorsRFRONTBIT: TLabel
+  object lblGetDigitalSensorsRFRONTBIT: TLabel [18]
     AutoSize = True
     Position.X = 281.000000000000000000
     Position.Y = 226.000000000000000000
@@ -186,7 +186,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Text = 'RFRONTBIT'
     TabOrder = 34
   end
-  object swGetDigitalSensorsRSIDEBITValue: TSwitch
+  object swGetDigitalSensorsRSIDEBITValue: TSwitch [19]
     HitTest = False
     IsChecked = False
     Position.X = 280.000000000000000000
@@ -196,7 +196,7 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     TabOrder = 16
   end
-  object lblGetDigitalSensorsRSIDEBIT: TLabel
+  object lblGetDigitalSensorsRSIDEBIT: TLabel [20]
     AutoSize = True
     Position.X = 281.000000000000000000
     Position.Y = 154.000000000000000000
@@ -205,5 +205,9 @@ inherited frameDGetDigitalSensors: TframeDGetDigitalSensors
     Size.PlatformDefault = False
     Text = 'RSIDEBIT'
     TabOrder = 31
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 426.000000000000000000
+    Size.Width = 334.000000000000000000
   end
 end

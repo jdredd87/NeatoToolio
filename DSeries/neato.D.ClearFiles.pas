@@ -6,6 +6,8 @@ uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers
 
 const
 
+  sDescription = 'Erases Black Box, and other Logs.';
+
   // Command to send
   sClearFilesD = 'ClearFiles';
   sAll = 'ALL';
@@ -31,7 +33,7 @@ Constructor tClearFilesD.Create;
 begin
   inherited;
   fCommand := sClearFilesD;
-  fDescription := 'Erases Black Box, and other Logs.';
+  fDescription := sDescription;
   Reset;
 end;
 

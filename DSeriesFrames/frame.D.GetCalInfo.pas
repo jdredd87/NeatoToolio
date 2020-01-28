@@ -5,8 +5,9 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetCalInfo,FMX.TabControl,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  neato.D.GetCalInfo,
+  FMX.TabControl,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
@@ -47,11 +48,18 @@ type
   private
     { Private declarations }
   public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDGetCalInfo.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
 
 procedure TframeDGetCalInfo.timer_GetDataTimer(Sender: TObject);
 var
@@ -96,6 +104,5 @@ begin
   pReadData.Free;
   pGetCalInfo.Free;
 end;
-
 
 end.

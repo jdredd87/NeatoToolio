@@ -5,6 +5,7 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers;
 
 const
+  sDescription = 'Get the state of the UI Buttons.';
 
   // Command to send
   sGetButtons = 'GetButtons';
@@ -80,7 +81,7 @@ Constructor tGetButtonsD.Create;
 begin
   inherited;
   fCommand := sGetButtons;
-  fDescription := 'Get the state of the UI Buttons.';
+  fDescription := sDescription;
   Reset;
 end;
 

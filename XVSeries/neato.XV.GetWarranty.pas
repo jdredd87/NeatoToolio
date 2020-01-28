@@ -13,6 +13,7 @@ const
   // Command to send
 
   sGetWarranty = 'GetWarranty';
+  sDescription = 'Get the warranty validation codes';
 
 type
 
@@ -41,7 +42,7 @@ Constructor tGetWarrantyXV.Create;
 begin
   inherited;
   fCommand := sGetWarranty;
-  fDescription := 'Get the warranty validation codes';
+  fDescription := sDescription;
   Reset;
 end;
 
