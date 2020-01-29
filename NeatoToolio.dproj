@@ -664,6 +664,18 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetDistanceCal.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetIEC.pas">
+            <Form>frameDXVSetIEC</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetIEC.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.GetLifeStatLog.pas">
+            <Form>frameDXVGetLifeStatLog</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.GetLifeStatLog.pas"/>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>

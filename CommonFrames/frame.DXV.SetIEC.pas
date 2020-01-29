@@ -1,0 +1,80 @@
+unit frame.DXV.SetIEC;
+
+interface
+
+uses
+  frame.master,
+  dmCommon,
+  neato.DXV.SetIEC,
+  FMX.TabControl,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
+  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox;
+
+type
+  TframeDXVSetIEC = class(TframeMaster)
+    lblSetIECError: TLabel;
+    Rectangle1: TRectangle;
+    btnSetIECHardSpeed: TButton;
+    btnSetIECCarpetSpeed: TButton;
+    btnSetIECDistance: TButton;
+    sbSetIECHardSpeedValue: TSpinBox;
+    sbSetIECCarpetSpeedValue: TSpinBox;
+    sbSetIECDistanceValue: TSpinBox;
+    procedure btnSetWallFollowerClick(Sender: TObject);
+  private
+  public
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+  end;
+
+implementation
+
+{$R *.fmx}
+
+constructor TframeDXVSetIEC.Create(AOwner: TComponent);
+begin
+  inherited;
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVSetIEC.btnSetWallFollowerClick(Sender: TObject);
+var
+  cmd: String;
+  r: boolean;
+  pReadData: tstringlist;
+  pSetIECDXV: tSetIECDXV;
+begin
+  inherited;
+  cmd := '';
+
+  if Sender = btnSetIECHardSpeed then
+    cmd := sSetIEC + ' ' + sHardSpeed + ' ' + self.sbSetIECHardSpeedValue.Value.ToString;
+
+  if Sender = self.btnSetIECCarpetSpeed then
+    cmd := sSetIEC + ' ' + sCarpetSpeed + ' ' + self.sbSetIECCarpetSpeedValue.Value.ToString;
+
+  if Sender = self.btnSetIECDistance then
+    cmd := sSetIEC + ' ' + sDistance + ' ' + self.sbSetIECDistanceValue.Value.ToString;
+
+  if cmd <> '' then
+  begin
+    pReadData := tstringlist.Create;
+    pReadData.Text := dm.com.SendCommandAndWaitForValue(cmd, 6000, ^Z, 1);
+
+    pSetIECDXV := tSetIECDXV.Create;
+
+    r := pSetIECDXV.ParseText(pReadData);
+
+    if r then
+      lblSetIECError.Text := ''
+    else
+      lblSetIECError.Text := pSetIECDXV.Error;
+
+    freeandnil(pSetIECDXV);
+    freeandnil(pReadData);
+  end;
+
+  resetfocus;
+end;
+
+end.

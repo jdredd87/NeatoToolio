@@ -48,6 +48,7 @@ function String2Hex(const Buffer: AnsiString): string;
 function FixStringCommaTwoPart(InputStr: string): String;
 function GetAppVersionStr: string;
 
+procedure LoadCSV(ScanData: String; sg: TStringGrid);
 procedure LoadImageID(id: String; img: TImage); overload;
 procedure LoadImageID(id: String; img: TImage3D); overload;
 
@@ -300,5 +301,51 @@ begin
   RowCount := 0;
   RowCount := 1;
 end;
+
+  procedure LoadCSV(ScanData: String; sg: TStringGrid);
+  var
+    i, j, position, Count, edt1: integer;
+    temp, tempField: string;
+    FieldDel: Char;
+    Data: TStringList;
+  begin
+    sg.BeginUpdate;
+    Data := TStringList.Create;
+    FieldDel := ',';
+    Data.Text := ScanData;
+    temp := Data[1];
+
+    Count := 0;
+
+    for i := 1 to length(temp) do
+      if copy(temp, i, 1) = FieldDel then
+        inc(Count);
+
+    edt1 := Count + 1;
+
+    sg.RowCount := Data.Count;
+
+    for i := 0 to Data.Count - 1 do
+    begin;
+      temp := Data[i];
+      if copy(temp, length(temp), 1) <> FieldDel then
+        temp := temp + FieldDel;
+      while pos('"', temp) > 0 do
+      begin
+        Delete(temp, pos('"', temp), 1);
+      end;
+      for j := 1 to edt1 do
+      begin
+        position := pos(FieldDel, temp);
+        tempField := copy(temp, 0, position - 1);
+
+        sg.Cells[j - 1, i] := tempField;
+
+        Delete(temp, 1, length(tempField) + 1);
+      end;
+    end;
+    Data.Free;
+    sg.EndUpdate;
+  end;
 
 end.

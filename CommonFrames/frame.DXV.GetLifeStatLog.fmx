@@ -1,0 +1,101 @@
+inherited frameDXVGetLifeStatLog: TframeDXVGetLifeStatLog
+  Align = Client
+  Size.Width = 889.000000000000000000
+  Size.Height = 355.000000000000000000
+  inherited timer_getdata: TTimer
+    Left = 712
+    Top = 120
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 324.000000000000000000
+    Size.Width = 869.000000000000000000
+    TabOrder = 52
+  end
+  object lblSetTimeError: TLabel
+    Align = Bottom
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 262.000000000000000000
+    Size.Width = 889.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 1
+  end
+  object sgGetLifeStatLog: TStringGrid
+    Align = Client
+    CanFocus = True
+    ClipChildren = True
+    Size.Width = 889.000000000000000000
+    Size.Height = 187.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 54
+    Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+    Viewport.Width = 869.000000000000000000
+    Viewport.Height = 162.000000000000000000
+    object StringColumn1: TStringColumn
+      Header = 'runID'
+      Size.Width = 60.000000000000000000
+    end
+    object StringColumn2: TStringColumn
+      Header = 'statID'
+      Size.Width = 250.000000000000000000
+    end
+    object StringColumn3: TStringColumn
+      Header = 'count'
+      Size.Width = 60.000000000000000000
+    end
+    object StringColumn4: TStringColumn
+      Header = 'Min'
+      Size.Width = 60.000000000000000000
+    end
+    object StringColumn5: TStringColumn
+      Header = 'Max'
+      Size.Width = 60.000000000000000000
+    end
+    object StringColumn6: TStringColumn
+      Header = 'Sum'
+      Size.Width = 180.000000000000000000
+    end
+    object StringColumn7: TStringColumn
+      Header = 'SumV*2'
+      Size.Width = 180.000000000000000000
+    end
+  end
+  object pnlGetLifeStatLog: TRectangle
+    Align = Top
+    Fill.Color = xFF2D92BF
+    Sides = []
+    Size.Width = 889.000000000000000000
+    Size.Height = 70.000000000000000000
+    Size.PlatformDefault = False
+    object btnGetLifeStatLog: TButton
+      Align = Left
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 135.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'GetLifeStatLog'
+      OnClick = btnGetLifeStatLogClick
+    end
+    object aniGetLifeStatLog: TAniIndicator
+      Align = Left
+      Enabled = True
+      StyleLookup = 'aniindicatorstyle'
+      Position.X = 197.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 70.000000000000000000
+      Size.PlatformDefault = False
+      Style = Circular
+      Visible = False
+    end
+  end
+end

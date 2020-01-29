@@ -14,7 +14,7 @@ d	GetCharger - Get the diagnostic data for the charging system.
 d	GetDigitalSensors - Get the state of the digital sensors.
 d	GetErr - Get Error Message.
 
-x	GetLDSScan - Get scan packet from LDS.
+d	GetLDSScan - Get scan packet from LDS.
 
 d	GetMotors - Get the diagnostic data for the motors.
 
@@ -31,7 +31,7 @@ d	SetFuelGauge - Set Fuel Gauge Level.
 n	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
 d	SetTime - Sets the current day, hour, and minute for the scheduler clock.
 d	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
-n	SetIEC - Sets the IEC Cleaning Test parameters
+d	SetIEC - Sets the IEC Cleaning Test parameters
 d	SetLCD - Sets the LCD to the specified display. (TestMode Only)
 d	SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
 d	SetSchedule - Modify Cleaning Schedule.

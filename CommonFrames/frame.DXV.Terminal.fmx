@@ -6,6 +6,10 @@ inherited frameDXVTerminal: TframeDXVTerminal
     Left = 336
     Top = 136
   end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 597.000000000000000000
+    Size.Width = 995.000000000000000000
+  end
   object pnlDebugTerminalBottom: TRectangle
     Align = Bottom
     Fill.Color = xFF2D92BF
@@ -112,10 +116,10 @@ inherited frameDXVTerminal: TframeDXVTerminal
     Margins.Right = 10.000000000000000000
     Margins.Bottom = 10.000000000000000000
     Size.Width = 995.000000000000000000
-    Size.Height = 538.000000000000000000
+    Size.Height = 502.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     Viewport.Width = 991.000000000000000000
-    Viewport.Height = 534.000000000000000000
+    Viewport.Height = 498.000000000000000000
   end
 end

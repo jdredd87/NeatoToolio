@@ -122,7 +122,10 @@ begin
 
   memoDebugTerminal.BeginUpdate;
   try
-    Text := dm.COM.Serial.ReadAnsiString;
+   Text := dm.COM.Serial.ReadAnsiString;
+   text := stringreplace(text,#10,'',[rfreplaceall]);
+
+
   except
     on E: Exception do
     begin

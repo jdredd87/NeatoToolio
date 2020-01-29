@@ -97,6 +97,8 @@ uses
   Neato.DXV.SetSchedule,
   Neato.DXV.SetWallFollower,
   Neato.DXV.SetDistanceCal,
+  Neato.DXV.SetIEC,
+  Neato.DXV.GetLifeStatLog,
 
   frame.DXV.GetAccel,
   frame.DXV.Playsound,
@@ -110,6 +112,8 @@ uses
   frame.DXV.SetSchedule,
   frame.DXV.SetWallFollower,
   frame.DXV.SetDistanceCal,
+  frame.DXV.SetIEC,
+  frame.DXV.GetLifeStatLog,
 
   {Everything else to run this}
   dmCommon,
@@ -153,7 +157,6 @@ uses
   FMXTee.Chart;
 
 type
-
 
   TfrmMain = class(TForm)
     tabsMain: TTabControl;
@@ -294,6 +297,7 @@ type
     lblConnectIPEnabled: TLabel;
     tabSetWallFollower: TTabItem;
     tabSetDistanceCal: TTabItem;
+    tabGetLifeStatLog: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -381,6 +385,8 @@ type
     DXVSetSchedule: TframeXVSetSchedule;
     DXVSetWallFollower: TframeDXVSetWallFollower;
     DXVSetDistanceCal: TframeDXVSetDistanceCal;
+    DXVSetIEC: TframeDXVSetIEC;
+    DXVGetLifeStatLog: TframeDXVGetLifeStatLog;
 
     Procedure StageTabs; // create and place our tabs depending on model
     procedure ResetTabs; // Reset tab states
@@ -424,7 +430,6 @@ begin
 {$IFDEF ANDORID}
   application.onException := self.onException;
 {$ENDIF}
-
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
 
@@ -680,52 +685,6 @@ begin
 end;
 
 procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
-
-  procedure LoadCSV(ScanData: String; sg: TStringGrid);
-  var
-    i, j, position, Count, edt1: integer;
-    temp, tempField: string;
-    FieldDel: Char;
-    Data: TStringList;
-  begin
-    sg.BeginUpdate;
-    Data := TStringList.Create;
-    FieldDel := ',';
-    Data.Text := ScanData;
-    temp := Data[1];
-
-    Count := 0;
-
-    for i := 1 to length(temp) do
-      if copy(temp, i, 1) = FieldDel then
-        inc(Count);
-
-    edt1 := Count + 1;
-
-    sg.RowCount := Data.Count;
-
-    for i := 0 to Data.Count - 1 do
-    begin;
-      temp := Data[i];
-      if copy(temp, length(temp), 1) <> FieldDel then
-        temp := temp + FieldDel;
-      while pos('"', temp) > 0 do
-      begin
-        Delete(temp, pos('"', temp), 1);
-      end;
-      for j := 1 to edt1 do
-      begin
-        position := pos(FieldDel, temp);
-        tempField := copy(temp, 0, position - 1);
-
-        sg.Cells[j - 1, i] := tempField;
-
-        Delete(temp, 1, length(tempField) + 1);
-      end;
-    end;
-    Data.Free;
-    sg.EndUpdate;
-  end;
 
   procedure MapLIDAR;
 
@@ -1481,22 +1440,31 @@ begin
     DXVSetLED.Visible := true;
   end;
 
-  if ttabcontrol(Sender).ActiveTab = tabSetSchedule then
-   begin
+  if TTabControl(Sender).ActiveTab = tabSetSchedule then
+  begin
     DXVSetSchedule.Visible := true;
-   end;
-
-
-  if ttabcontrol(Sender).ActiveTab = tabSetWallFollower then
-  begin
-   DXVSetWallFollower.Visible := true;
   end;
 
-  if ttabcontrol(Sender).activetab = tabSetDistanceCal then
+  if TTabControl(Sender).ActiveTab = tabSetWallFollower then
   begin
-   DXVSetDistanceCal.visible := true;
+    DXVSetWallFollower.Visible := true;
   end;
 
+  if TTabControl(Sender).ActiveTab = tabSetDistanceCal then
+  begin
+    DXVSetDistanceCal.Visible := true;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabSetIEC then
+  begin
+    DXVSetIEC.Visible := true;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabGetLifeStatLog then
+  begin
+    DXVGetLifeStatLog.Check;
+    DXVGetLifeStatLog.Visible := true;
+  end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1627,6 +1595,8 @@ begin
   DXVSetSchedule := TframeXVSetSchedule.Create(tabSetSchedule);
   DXVSetWallFollower := TframeDXVSetWallFollower.Create(tabSetWallFollower);
   DXVSetDistanceCal := TframeDXVSetDistanceCal.Create(tabSetDistanceCal);
+  DXVSetIEC := TframeDXVSetIEC.Create(tabSetIEC);
+  DXVGetLifeStatLog := TframeDXVGetLifeStatLog.Create(tabGetLifeStatLog);
 end;
 
 procedure TfrmMain.ResetTabs;

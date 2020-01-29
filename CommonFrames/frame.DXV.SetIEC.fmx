@@ -1,0 +1,103 @@
+inherited frameDXVSetIEC: TframeDXVSetIEC
+  Size.Width = 653.000000000000000000
+  Size.Height = 431.000000000000000000
+  inherited timer_getdata: TTimer
+    Left = 136
+    Top = 256
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 400.000000000000000000
+    Size.Width = 633.000000000000000000
+    TabOrder = 61
+  end
+  object lblSetIECError: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 142.000000000000000000
+    Size.Width = 653.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 0
+  end
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Color = claNull
+    Sides = []
+    Size.Width = 653.000000000000000000
+    Size.Height = 137.000000000000000000
+    Size.PlatformDefault = False
+    object btnSetIECCarpetSpeed: TButton
+      Position.X = 172.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'CarpetSpeed'
+      OnClick = btnSetWallFollowerClick
+    end
+    object btnSetIECHardSpeed: TButton
+      Position.X = 25.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'HardSpeed'
+      OnClick = btnSetWallFollowerClick
+    end
+    object sbSetIECHardSpeedValue: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Cursor = crIBeam
+      Min = 10.000000000000000000
+      Max = 300.000000000000000000
+      Value = 10.000000000000000000
+      Position.X = 24.000000000000000000
+      Position.Y = 108.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object sbSetIECCarpetSpeedValue: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Cursor = crIBeam
+      Min = 10.000000000000000000
+      Max = 300.000000000000000000
+      Value = 10.000000000000000000
+      Position.X = 171.000000000000000000
+      Position.Y = 109.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object btnSetIECDistance: TButton
+      Position.X = 320.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 66.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Distance'
+      OnClick = btnSetWallFollowerClick
+    end
+    object sbSetIECDistanceValue: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 5
+      Cursor = crIBeam
+      Min = 20.000000000000000000
+      Max = 4000.000000000000000000
+      Value = 20.000000000000000000
+      Position.X = 318.000000000000000000
+      Position.Y = 107.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end

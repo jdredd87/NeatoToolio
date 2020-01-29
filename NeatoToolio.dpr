@@ -102,7 +102,11 @@ uses
   frame.DXV.SetWallFollower in 'CommonFrames\frame.DXV.SetWallFollower.pas' {frameDXVSetWallFollower: TFrame},
   neato.DXV.SetWallFollower in 'Common\neato.DXV.SetWallFollower.pas',
   frame.DXV.SetDistanceCal in 'CommonFrames\frame.DXV.SetDistanceCal.pas' {frameDXVSetDistanceCal: TFrame},
-  neato.DXV.SetDistanceCal in 'Common\neato.DXV.SetDistanceCal.pas';
+  neato.DXV.SetDistanceCal in 'Common\neato.DXV.SetDistanceCal.pas',
+  frame.DXV.SetIEC in 'CommonFrames\frame.DXV.SetIEC.pas' {frameDXVSetIEC: TFrame},
+  neato.DXV.SetIEC in 'Common\neato.DXV.SetIEC.pas',
+  frame.DXV.GetLifeStatLog in 'CommonFrames\frame.DXV.GetLifeStatLog.pas' {frameDXVGetLifeStatLog: TFrame},
+  neato.DXV.GetLifeStatLog in 'Common\neato.DXV.GetLifeStatLog.pas';
 
 {$R *.res}
 
