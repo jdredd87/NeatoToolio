@@ -378,8 +378,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>5</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.5;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>6</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.6;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -440,10 +440,8 @@
         <DCCReference Include="DSeries\neato.D.GetWarranty.pas"/>
         <DCCReference Include="DSeries\neato.D.GetWifiInfo.pas"/>
         <DCCReference Include="DSeries\neato.D.GetWifiStatus.pas"/>
-        <DCCReference Include="DSeries\neato.D.TestLDS.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetAnalogSensors.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetCharger.pas"/>
-        <DCCReference Include="XVSeries\neato.XV.GetLDSScan.pas"/>
         <DCCReference Include="Common\neato.DXV.Playsound.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetDigitalSensors.pas"/>
         <DCCReference Include="DSeries\neato.D.GetSensor.pas"/>
@@ -624,12 +622,7 @@
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="CommonFrames\frame.DXV.SetLED.pas">
-            <Form>frameDXVSetLED</Form>
-            <FormType>fmx</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Common\neato.DXV.SetLED.pas"/>
+        <DCCReference Include="XVSeries\neato.XV.SetLED.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetSchedule.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetSchedule.pas">
             <Form>frameXVGetSchedule</Form>
@@ -676,6 +669,58 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.GetLifeStatLog.pas"/>
+        <DCCReference Include="Common\neato.DXV.SetMotor.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.LidarView.pas">
+            <Form>frameDXVLidarView</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CommonFrames\frame.DXV.SetMotor.pas">
+            <Form>frameDXVSetMotor</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.TestLDS.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.TestLDS.pas">
+            <Form>frameDXVTestLDS</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CommonFrames\frame.DXV.SetBatteryTest.pas">
+            <Form>frameDXVSetBatteryTest</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetBatteryTest.pas"/>
+        <DCCReference Include="CommonFrames\frame.DXV.SetLanguage.pas">
+            <Form>frameDXVSetLanguage</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Common\neato.DXV.SetLanguage.pas"/>
+        <DCCReference Include="DSeries\neato.D.SetButton.pas"/>
+        <DCCReference Include="DSeriesFrames\frame.D.SetButton.pas">
+            <Form>frameDSetButton</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeries\neato.D.Clean.pas"/>
+        <DCCReference Include="DSeriesFrames\frame.D.Clean.pas">
+            <Form>frameDClean</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="XVSeriesFrames\frame.XV.SetLED.pas">
+            <Form>frameXVSetLED</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeriesFrames\frame.D.SetLED.pas">
+            <Form>frameDSetLED</Form>
+            <FormType>fmx</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeries\neato.D.SetLED.pas"/>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>

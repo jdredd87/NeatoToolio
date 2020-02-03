@@ -56,13 +56,13 @@ var
   IDX: integer;
   name, value: string;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
   try
+    Reset;
+    result := false;
+
+    if NOT assigned(data) then
+      exit;
+
     for IDX := 0 to data.Count - 1 do
     begin
       if pos(sGetErr, data[IDX]) > 0 then
@@ -84,7 +84,7 @@ begin
   except
     on e: exception do
     begin
-      fError := strParseTextError;
+      fError := e.Message;
       result := false;
     end;
   end;

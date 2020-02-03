@@ -195,53 +195,61 @@ end;
 
 function tGetUserSettingsD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if pos(sLanguage, data.Text) > 0 then // kind of lazy in this case with the bad response layout
-  begin
-    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]); // strip out commas
-    data.Text := stringreplace(data.Text, ':', '=', [rfreplaceall]); // so can do name value pair look ups
-    data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]); // strip out spaces
-    data.Text := stringreplace(data.Text, #9, '', [rfreplaceall]); // strip out tabs
-    data.Text := stringreplace(data.Text, '(', '', [rfreplaceall]); // strip out (
-    data.Text := stringreplace(data.Text, ')', '', [rfreplaceall]); // strip out )
-    data.CaseSensitive := false;
-
-    // data should be "cleaned up now"
-
-    fLanguage := data.Values[sLanguage];
-    fClickSounds := data.Values[sClickSounds] = 'ON';
-    fLED := data.Values[sLED] = 'ON';
-    fWall_Enable := data.Values[sWall_Enable] = 'ON';
-    fEco_Mode := data.Values[sEco_Mode] = 'ON';
-    fIntenseClean := data.Values[sIntenseClean] = 'ON';
-    fWiFi := data.Values[sWiFi] = 'ON';
-    fMelody_Sounds := data.Values[sMelody_Sounds] = 'ON';
-    fWarning_Sounds := data.Values[sWarning_Sounds] = 'ON';
-    fBin_Full_Detect := data.Values[sBin_Full_Detect] = 'ON';
-
-    trystrtoint(data.Values[sFilter_Change_Time_seconds], fFilter_Change_Time_seconds);
-    trystrtoint(data.Values[sBrush_Change_Time_seconds], fBrush_Change_Time_seconds);
-    trystrtoint(data.Values[sDirt_Bin_Alert_Reminder_Interval_minutes], fDirt_Bin_Alert_Reminder_Interval_minutes);
-    trystrtoint(data.Values[sCurrent_Dirt_Bin_Runtime_is], fCurrent_Dirt_Bin_Runtime_is);
-    trystrtoint(data.Values[sNumber_of_Cleanings_where_Dust_Bin_was_Full_is],
-      fNumber_of_Cleanings_where_Dust_Bin_was_Full_is);
-
-    Schedule_is := data.IndexOf(sSchedule_is) > -1;
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if pos(sLanguage, data.Text) > 0 then // kind of lazy in this case with the bad response layout
+    begin
+      data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]); // strip out commas
+      data.Text := stringreplace(data.Text, ':', '=', [rfreplaceall]); // so can do name value pair look ups
+      data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]); // strip out spaces
+      data.Text := stringreplace(data.Text, #9, '', [rfreplaceall]); // strip out tabs
+      data.Text := stringreplace(data.Text, '(', '', [rfreplaceall]); // strip out (
+      data.Text := stringreplace(data.Text, ')', '', [rfreplaceall]); // strip out )
+      data.CaseSensitive := false;
+
+      // data should be "cleaned up now"
+
+      fLanguage := data.Values[sLanguage];
+      fClickSounds := data.Values[sClickSounds] = 'ON';
+      fLED := data.Values[sLED] = 'ON';
+      fWall_Enable := data.Values[sWall_Enable] = 'ON';
+      fEco_Mode := data.Values[sEco_Mode] = 'ON';
+      fIntenseClean := data.Values[sIntenseClean] = 'ON';
+      fWiFi := data.Values[sWiFi] = 'ON';
+      fMelody_Sounds := data.Values[sMelody_Sounds] = 'ON';
+      fWarning_Sounds := data.Values[sWarning_Sounds] = 'ON';
+      fBin_Full_Detect := data.Values[sBin_Full_Detect] = 'ON';
+
+      trystrtoint(data.Values[sFilter_Change_Time_seconds], fFilter_Change_Time_seconds);
+      trystrtoint(data.Values[sBrush_Change_Time_seconds], fBrush_Change_Time_seconds);
+      trystrtoint(data.Values[sDirt_Bin_Alert_Reminder_Interval_minutes], fDirt_Bin_Alert_Reminder_Interval_minutes);
+      trystrtoint(data.Values[sCurrent_Dirt_Bin_Runtime_is], fCurrent_Dirt_Bin_Runtime_is);
+      trystrtoint(data.Values[sNumber_of_Cleanings_where_Dust_Bin_was_Full_is],
+        fNumber_of_Cleanings_where_Dust_Bin_was_Full_is);
+
+      Schedule_is := data.IndexOf(sSchedule_is) > -1;
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

@@ -1,0 +1,225 @@
+inherited frameDXVSetLanguage: TframeDXVSetLanguage
+  Size.Width = 820.000000000000000000
+  Size.Height = 431.000000000000000000
+  inherited timer_getdata: TTimer
+    Left = 680
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 400.000000000000000000
+    Size.Width = 800.000000000000000000
+  end
+  object lblSetLanguageError: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 340.000000000000000000
+    Size.Width = 820.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 1
+  end
+  object rectTop: TRectangle
+    Align = Top
+    Fill.Color = claNull
+    Sides = []
+    Size.Width = 820.000000000000000000
+    Size.Height = 273.000000000000000000
+    Size.PlatformDefault = False
+    object btnSetLanguageNone: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'None'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageGerman: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'German'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageItalian: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Italian'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageDutch: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Dutch'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageCzech: TButton
+      Position.X = 456.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Czech'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageDanish: TButton
+      Position.X = 456.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'Danish'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageEnglish: TButton
+      Position.X = 232.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'English'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageFinnish: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 216.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      Text = 'Finnish'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageFrench: TButton
+      Position.X = 456.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 8
+      Text = 'French'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageJapanese: TButton
+      Position.X = 232.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+      Text = 'Japanese'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguagePortuguese: TButton
+      Position.X = 232.000000000000000000
+      Position.Y = 216.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+      Text = 'Portuguese'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageSChinese: TButton
+      Position.X = 456.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 11
+      Text = 'SChinese'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageSpanish: TButton
+      Position.X = 232.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 12
+      Text = 'Spanish'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageSwedish: TButton
+      Position.X = 232.000000000000000000
+      Position.Y = 168.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 13
+      Text = 'Swedish'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+    object btnSetLanguageTChinese: TButton
+      Position.X = 456.000000000000000000
+      Position.Y = 216.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 14
+      Text = 'TChinese'
+      OnClick = btnSetLanguage
+      OnMouseEnter = btnSetLanguageMouseEnter
+      OnMouseLeave = btnSetLanguageMouseLeave
+    end
+  end
+  object lblSetLanguageDescription: TLabel
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Top = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 278.000000000000000000
+    Size.Width = 820.000000000000000000
+    Size.Height = 52.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 18.000000000000000000
+    TextSettings.HorzAlign = Center
+    TabOrder = 0
+  end
+end

@@ -4,7 +4,11 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  object lblGetAnalogSensorsBatteryVoltage: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 434.000000000000000000
+    Size.Width = 486.000000000000000000
+  end
+  object lblGetAnalogSensorsBatteryVoltage: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 120.000000000000000000
@@ -13,7 +17,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'BatteryVoltage'
     TabOrder = 40
   end
-  object pbGetAnalogSensorsBatteryVoltageValue: TProgressBar [2]
+  object pbGetAnalogSensorsBatteryVoltageValue: TProgressBar
     Max = 24576.000000000000000000
     Orientation = Vertical
     Position.X = 30.000000000000000000
@@ -38,7 +42,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
       TabOrder = 0
     end
   end
-  object pbGetAnalogSensorsBatteryCurrentValue: TProgressBar [3]
+  object pbGetAnalogSensorsBatteryCurrentValue: TProgressBar
     Max = 1024.000000000000000000
     Min = -1024.000000000000000000
     Orientation = Vertical
@@ -63,7 +67,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
       TabOrder = 0
     end
   end
-  object pbGetAnalogSensorsBatteryTemperatureValue: TProgressBar [4]
+  object pbGetAnalogSensorsBatteryTemperatureValue: TProgressBar
     Max = 73728.000000000000000000
     Orientation = Vertical
     Position.X = 238.000000000000000000
@@ -88,7 +92,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
       TabOrder = 0
     end
   end
-  object pbGetAnalogSensorsExternalVoltageValue: TProgressBar [5]
+  object pbGetAnalogSensorsExternalVoltageValue: TProgressBar
     Max = 24576.000000000000000000
     Orientation = Vertical
     Position.X = 334.000000000000000000
@@ -113,7 +117,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
       TabOrder = 0
     end
   end
-  object lblGetAnalogSensorsBatteryCurrent: TLabel [6]
+  object lblGetAnalogSensorsBatteryCurrent: TLabel
     Position.X = 104.000000000000000000
     Position.Y = 176.000000000000000000
     Size.Width = 120.000000000000000000
@@ -122,7 +126,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'BatteryCurrent'
     TabOrder = 37
   end
-  object lblGetAnalogSensorsBatteryTemperature: TLabel [7]
+  object lblGetAnalogSensorsBatteryTemperature: TLabel
     Position.X = 192.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 145.000000000000000000
@@ -131,7 +135,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'BatteryTemperature'
     TabOrder = 35
   end
-  object lblGetAnalogSensorsExternalVoltage: TLabel [8]
+  object lblGetAnalogSensorsExternalVoltage: TLabel
     Position.X = 296.000000000000000000
     Position.Y = 176.000000000000000000
     Size.Width = 120.000000000000000000
@@ -140,7 +144,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'ExternalVoltage'
     TabOrder = 31
   end
-  object lblGetAnalogSensorsAccelerometerX: TLabel [9]
+  object lblGetAnalogSensorsAccelerometerX: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 226.000000000000000000
     Size.Width = 120.000000000000000000
@@ -150,7 +154,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'AccelerometerX'
     TabOrder = 20
   end
-  object lblGetAnalogSensorsAccelerometerXValue: TLabel [10]
+  object lblGetAnalogSensorsAccelerometerXValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -161,7 +165,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 39
   end
-  object lblGetAnalogSensorsAccelerometerY: TLabel [11]
+  object lblGetAnalogSensorsAccelerometerY: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 250.000000000000000000
     Size.Width = 120.000000000000000000
@@ -171,7 +175,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'AccelerometerY'
     TabOrder = 41
   end
-  object lblGetAnalogSensorsAccelerometerYValue: TLabel [12]
+  object lblGetAnalogSensorsAccelerometerYValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -182,7 +186,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 29
   end
-  object lblGetAnalogSensorsAccelerometerZ: TLabel [13]
+  object lblGetAnalogSensorsAccelerometerZ: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 274.000000000000000000
     Size.Width = 120.000000000000000000
@@ -192,7 +196,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'AccelerometerZ'
     TabOrder = 33
   end
-  object lblGetAnalogSensorsAccelerometerZValue: TLabel [14]
+  object lblGetAnalogSensorsAccelerometerZValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -203,7 +207,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 6
   end
-  object lblGetAnalogSensorsCompassmeterX: TLabel [15]
+  object lblGetAnalogSensorsCompassmeterX: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 298.000000000000000000
     Size.Width = 120.000000000000000000
@@ -213,7 +217,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'CompassmeterX'
     TabOrder = 13
   end
-  object lblGetAnalogSensorsCompassmeterXValue: TLabel [16]
+  object lblGetAnalogSensorsCompassmeterXValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -224,7 +228,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 32
   end
-  object lblGetAnalogSensorsCompassmeterY: TLabel [17]
+  object lblGetAnalogSensorsCompassmeterY: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 322.000000000000000000
     Size.Width = 120.000000000000000000
@@ -234,7 +238,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'CompassmeterY'
     TabOrder = 34
   end
-  object lblGetAnalogSensorsCompassmeterYValue: TLabel [18]
+  object lblGetAnalogSensorsCompassmeterYValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -245,7 +249,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 16
   end
-  object lblGetAnalogSensorsCompassmeterZ: TLabel [19]
+  object lblGetAnalogSensorsCompassmeterZ: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 346.000000000000000000
     Size.Width = 120.000000000000000000
@@ -255,7 +259,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'CompassmeterZ'
     TabOrder = 22
   end
-  object lblGetAnalogSensorsCompassmeterZValue: TLabel [20]
+  object lblGetAnalogSensorsCompassmeterZValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -266,7 +270,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 2
   end
-  object lblGetAnalogSensorsGyroscopeX: TLabel [21]
+  object lblGetAnalogSensorsGyroscopeX: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 370.000000000000000000
     Size.Width = 120.000000000000000000
@@ -276,7 +280,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'GyroscopeX'
     TabOrder = 7
   end
-  object lblGetAnalogSensorsGyroscopeXValue: TLabel [22]
+  object lblGetAnalogSensorsGyroscopeXValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -287,7 +291,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 21
   end
-  object lblGetAnalogSensorsGyroscopeY: TLabel [23]
+  object lblGetAnalogSensorsGyroscopeY: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 394.000000000000000000
     Size.Width = 120.000000000000000000
@@ -297,7 +301,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'GyroscopeY'
     TabOrder = 28
   end
-  object lblGetAnalogSensorsGyroscopeYValue: TLabel [24]
+  object lblGetAnalogSensorsGyroscopeYValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -308,7 +312,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 9
   end
-  object lblGetAnalogSensorsGyroscopeZ: TLabel [25]
+  object lblGetAnalogSensorsGyroscopeZ: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 418.000000000000000000
     Size.Width = 120.000000000000000000
@@ -318,7 +322,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'GyroscopeZ'
     TabOrder = 14
   end
-  object lblGetAnalogSensorsGyroscopeZValue: TLabel [26]
+  object lblGetAnalogSensorsGyroscopeZValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -329,7 +333,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 0
   end
-  object lblGetAnalogSensorsMagSensorLeft: TLabel [27]
+  object lblGetAnalogSensorsMagSensorLeft: TLabel
     Position.X = 408.000000000000000000
     Position.Y = 26.000000000000000000
     Size.Width = 113.000000000000000000
@@ -338,7 +342,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'MagSensorLeft'
     TabOrder = 19
   end
-  object lblGetAnalogSensorsIMUAccelerometerXValue: TLabel [28]
+  object lblGetAnalogSensorsIMUAccelerometerXValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -349,7 +353,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 36
   end
-  object lblGetAnalogSensorsIMUAccelerometerY: TLabel [29]
+  object lblGetAnalogSensorsIMUAccelerometerY: TLabel
     Position.X = 288.000000000000000000
     Position.Y = 250.000000000000000000
     Size.Width = 150.000000000000000000
@@ -359,7 +363,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'IMUAccelerometerY'
     TabOrder = 38
   end
-  object lblGetAnalogSensorsIMUAccelerometerYValue: TLabel [30]
+  object lblGetAnalogSensorsIMUAccelerometerYValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -370,7 +374,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 24
   end
-  object lblGetAnalogSensorsIMUAccelerometerZ: TLabel [31]
+  object lblGetAnalogSensorsIMUAccelerometerZ: TLabel
     Position.X = 288.000000000000000000
     Position.Y = 274.000000000000000000
     Size.Width = 150.000000000000000000
@@ -380,7 +384,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'IMUAccelerometerZ'
     TabOrder = 30
   end
-  object lblGetAnalogSensorsIMUAccelerometerZValue: TLabel [32]
+  object lblGetAnalogSensorsIMUAccelerometerZValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -391,7 +395,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 5
   end
-  object lblGetAnalogSensorsVacuumCurrent: TLabel [33]
+  object lblGetAnalogSensorsVacuumCurrent: TLabel
     Position.X = 320.000000000000000000
     Position.Y = 298.000000000000000000
     Size.Width = 120.000000000000000000
@@ -401,7 +405,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'VacuumCurrent'
     TabOrder = 8
   end
-  object lblGetAnalogSensorsVacuumCurrentValue: TLabel [34]
+  object lblGetAnalogSensorsVacuumCurrentValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -412,7 +416,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 23
   end
-  object lblGetAnalogSensorsSideBrushCurrent: TLabel [35]
+  object lblGetAnalogSensorsSideBrushCurrent: TLabel
     Position.X = 304.000000000000000000
     Position.Y = 322.000000000000000000
     Size.Width = 136.000000000000000000
@@ -422,7 +426,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'SideBrushCurrent'
     TabOrder = 27
   end
-  object lblGetAnalogSensorsSideBrushCurrentValue: TLabel [36]
+  object lblGetAnalogSensorsSideBrushCurrentValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -433,7 +437,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 11
   end
-  object lblGetAnalogSensorsWallSensor: TLabel [37]
+  object lblGetAnalogSensorsWallSensor: TLabel
     Position.X = 352.000000000000000000
     Position.Y = 346.000000000000000000
     Size.Width = 88.000000000000000000
@@ -443,7 +447,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'WallSensor'
     TabOrder = 15
   end
-  object lblGetAnalogSensorsWallSensorValue: TLabel [38]
+  object lblGetAnalogSensorsWallSensorValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -454,7 +458,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 1
   end
-  object lblGetAnalogSensorsDropSensorLeft: TLabel [39]
+  object lblGetAnalogSensorsDropSensorLeft: TLabel
     Position.X = 320.000000000000000000
     Position.Y = 370.000000000000000000
     Size.Width = 120.000000000000000000
@@ -464,7 +468,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'DropSensorLeft'
     TabOrder = 3
   end
-  object lblGetAnalogSensorsDropSensorLeftValue: TLabel [40]
+  object lblGetAnalogSensorsDropSensorLeftValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -475,7 +479,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 10
   end
-  object lblGetAnalogSensorsDropSensorRight: TLabel [41]
+  object lblGetAnalogSensorsDropSensorRight: TLabel
     Position.X = 304.000000000000000000
     Position.Y = 394.000000000000000000
     Size.Width = 136.000000000000000000
@@ -485,7 +489,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'DropSensorRight'
     TabOrder = 12
   end
-  object lblGetAnalogSensorsDropSensorRightValue: TLabel [42]
+  object lblGetAnalogSensorsDropSensorRightValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 453.000000000000000000
@@ -496,7 +500,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = '0'
     TabOrder = 4
   end
-  object swGetAnalogSensorsMagSensorLeftValue: TSwitch [43]
+  object swGetAnalogSensorsMagSensorLeftValue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 432.000000000000000000
@@ -506,7 +510,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Size.PlatformDefault = False
     TabOrder = 26
   end
-  object swGetAnalogSensorsMagSensorRightValue: TSwitch [44]
+  object swGetAnalogSensorsMagSensorRightValue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 432.000000000000000000
@@ -516,7 +520,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Size.PlatformDefault = False
     TabOrder = 25
   end
-  object lblGetAnalogSensorsIMUAccelerometerX: TLabel [45]
+  object lblGetAnalogSensorsIMUAccelerometerX: TLabel
     Position.X = 288.000000000000000000
     Position.Y = 226.000000000000000000
     Size.Width = 150.000000000000000000
@@ -526,7 +530,7 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Text = 'IMUAccelerometerX'
     TabOrder = 17
   end
-  object lblGetAnalogSensorsMagSensorRight: TLabel [46]
+  object lblGetAnalogSensorsMagSensorRight: TLabel
     Position.X = 400.000000000000000000
     Position.Y = 90.000000000000000000
     Size.Width = 121.000000000000000000
@@ -534,9 +538,5 @@ inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
     Size.PlatformDefault = False
     Text = 'MagSensorRight'
     TabOrder = 18
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 434.000000000000000000
-    Size.Width = 486.000000000000000000
   end
 end

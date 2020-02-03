@@ -99,57 +99,53 @@ begin
   inherited;
 end;
 
-{
-  SETDISTANCECAL WALLMIDDLE
-  Label,Value
-  RDropCalA2DMin,458
-  RDropCalA2DMid,459
-  RDropCalA2DMax,460
-  LDropCalA2DMin,465
-  LDropCalA2DMid,465
-  LDropCalA2DMax,465
-  WallCalA2DMin,752
-  WallCalA2DMid,119
-  WallCalA2DMax,118
-}
-
 function tSetDistanceCalDXV.parsetext(data: tstringlist): boolean;
 begin
-  reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.CaseSensitive := false;
-  data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
-
-  if (pos(sLabel, data.Text) > 0) or (pos(sValue, data.Text) > 0) then
-  begin
-    result := true;
-    trystrtofloat(data.Values[sRDropCalA2DMin], fRDropCalA2DMin);
-    trystrtofloat(data.Values[sRDropCalA2DMid], fRDropCalA2DMid);
-    trystrtofloat(data.Values[sRDropCalA2DMax], fRDropCalA2DMax);
-    trystrtofloat(data.Values[sLDropCalA2DMin], fLDropCalA2DMin);
-    trystrtofloat(data.Values[sLDropCalA2DMid], fLDropCalA2DMid);
-    trystrtofloat(data.Values[sLDropCalA2DMax], fLDropCalA2DMax);
-    trystrtofloat(data.Values[sWallCalA2DMin], fWallCalA2DMin);
-    trystrtofloat(data.Values[sWallCalA2DMid], fWallCalA2DMid);
-    trystrtofloat(data.Values[sWallCalA2DMax], fWallCalA2DMax);
-  end
-  else if (pos(sUnrecognizedOption, data.Text) > 0) or (pos(sTestmoed, data.Text) > 0) then
-  begin
-    data.Text := trim(data.Text);
-    ferror := data.Text;
+  try
+    reset;
     result := false;
-  end
-  else
-  begin
-    ferror := strParseTextError;
-    result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.CaseSensitive := false;
+    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
+
+    if (pos(sLabel, data.Text) > 0) or (pos(sValue, data.Text) > 0) then
+    begin
+      result := true;
+      trystrtofloat(data.Values[sRDropCalA2DMin], fRDropCalA2DMin);
+      trystrtofloat(data.Values[sRDropCalA2DMid], fRDropCalA2DMid);
+      trystrtofloat(data.Values[sRDropCalA2DMax], fRDropCalA2DMax);
+      trystrtofloat(data.Values[sLDropCalA2DMin], fLDropCalA2DMin);
+      trystrtofloat(data.Values[sLDropCalA2DMid], fLDropCalA2DMid);
+      trystrtofloat(data.Values[sLDropCalA2DMax], fLDropCalA2DMax);
+      trystrtofloat(data.Values[sWallCalA2DMin], fWallCalA2DMin);
+      trystrtofloat(data.Values[sWallCalA2DMid], fWallCalA2DMid);
+      trystrtofloat(data.Values[sWallCalA2DMax], fWallCalA2DMax);
+    end
+    else if (pos(sUnrecognizedOption, data.Text) > 0) or (pos(sTestmoed, data.Text) > 0) then
+    begin
+      data.Text := trim(data.Text);
+      ferror := data.Text;
+      result := false;
+    end
+    else
+    begin
+      ferror := strParseTextError;
+      result := false;
+    end;
+
+  except
+    on e: exception do
+    begin
+      ferror := e.Message;
+      result := false;
+    end;
   end;
+
 end;
 
 end.

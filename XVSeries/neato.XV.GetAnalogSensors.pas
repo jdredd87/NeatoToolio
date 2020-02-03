@@ -123,47 +123,54 @@ function tGetAnalogSensorsXV.ParseText(data: tstringlist): Boolean;
 // this is a 3 field wide data set so things are differently done
 
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  data.CaseSensitive := false;
-  data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]);
-  data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
-
-  // Neato output error... they have an extra comma after the data values...
-
-
-  if pos(sSensorName, data.Text) > 0 then
-  begin
-
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sWallSensorInMM]), fWallSensorInMM);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sBatteryVoltageInmV]), fBatteryVoltageInmV);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sLeftDropInMM]), fLeftDropInMM);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sRightDropInMM]), fRightDropInMM);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sLeftMagSensor]), fLeftMagSensor);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sRightMagSensor]), fRightMagSensor);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sUIButtonInmV]), fUIButtonInmV);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sVacuumCurrentInmA]), fVacuumCurrentInmA);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sChargeVoltInmV]), fChargeVoltInmV);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sBatteryTemp0InC]), fBatteryTemp0InC);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sBatteryTemp1InC]), fBatteryTemp1InC);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sCurrentInmA]), fCurrentInmA);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sSideBrushCurrentInmA]), fSideBrushCurrentInmA);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sVoltageReferenceInmV]), fVoltageReferenceInmV);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sAccelXInmG]), fAccelXInmG);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sAccelYInmG]), fAccelYInmG);
-    trystrtofloat(FixStringCommaTwoPart(data.Values[sAccelZInmG]), fAccelZInmG);
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    data.CaseSensitive := false;
+    data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]);
+    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
+
+    // Neato output error... they have an extra comma after the data values...
+
+    if pos(sSensorName, data.Text) > 0 then
+    begin
+
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sWallSensorInMM]), fWallSensorInMM);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sBatteryVoltageInmV]), fBatteryVoltageInmV);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sLeftDropInMM]), fLeftDropInMM);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sRightDropInMM]), fRightDropInMM);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sLeftMagSensor]), fLeftMagSensor);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sRightMagSensor]), fRightMagSensor);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sUIButtonInmV]), fUIButtonInmV);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sVacuumCurrentInmA]), fVacuumCurrentInmA);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sChargeVoltInmV]), fChargeVoltInmV);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sBatteryTemp0InC]), fBatteryTemp0InC);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sBatteryTemp1InC]), fBatteryTemp1InC);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sCurrentInmA]), fCurrentInmA);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sSideBrushCurrentInmA]), fSideBrushCurrentInmA);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sVoltageReferenceInmV]), fVoltageReferenceInmV);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sAccelXInmG]), fAccelXInmG);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sAccelYInmG]), fAccelYInmG);
+      trystrtofloat(FixStringCommaTwoPart(data.Values[sAccelZInmG]), fAccelZInmG);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

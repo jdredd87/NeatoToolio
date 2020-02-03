@@ -61,29 +61,36 @@ end;
 
 function tGetWarrantyXV.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if data.Count = 5 then
-  begin
-    data.Delete(0); // delete 1 top rows first
-    fCumulativeCleaningTimeInSecs := data[0];
-    fCumulativeBatteryCycles := data[1];
-    fValidationCode := data[2];
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
-  end;
 
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if data.Count = 5 then
+    begin
+      data.Delete(0); // delete 1 top rows first
+      fCumulativeCleaningTimeInSecs := data[0];
+      fCumulativeBatteryCycles := data[1];
+      fValidationCode := data[2];
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
+  end;
 end;
 
 function tGetWarrantyXV.CumulativeCleaningTimeInSecs_asHours: double;

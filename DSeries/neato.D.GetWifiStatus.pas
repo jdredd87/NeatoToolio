@@ -119,74 +119,59 @@ begin
   inherited;
 end;
 
-{
-  getwifistatus
-  Enabled, yes
-  IPADDR, 192.168.50.17
-  Wifi Mode, station
-  Wifi On Init, yes
-  AP Shutoff in, N/A
-  AP Desired, no
-  Linked to Beehive, yes
-  Nucleo Connected, yes
-  EZ-Connect Message, 0
-  Robot Name, Wadsworth
-  SSID, lucidgl2
-  Scanning, N/A
-  SignalStrength, -87
-  BSSID, 04:d4:c4:d2:39:00
-  Beehive URL, beehive.neatocloud.com
-  Nucleo URL, nucleo.neatocloud.com
-  NTP URL, pool.ntp.org
-  UTC Offset, STD+5:00DST+4:00
-  Time Zone, America/New_York
-}
-
 function tGetWifiStatusD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-  data.CaseSensitive := false;
-  data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
-
-  if pos(sEnabled, data.Text) > 0 then // kind of lazy in this case with the bad response layout
-  begin
-    fEnabled := trim(data.Values[sEnabled]) = 'yes';
-    fIPADDR := trim(data.Values[sIPADDR]);
-    fWifi_Mode := trim(data.Values[sWifi_Mode]);
-    fWifi_On_Init := trim(data.Values[sWifi_On_Init]) = 'yes';
-    fAP_Shutoff_in := trim(data.Values[sAP_Shutoff_in]);
-    fAP_Desired := trim(data.Values[sAP_Desired]) = 'yes';
-    fLinked_to_Beehive := trim(data.Values[sLinked_to_Beehive]) = 'yes';
-    fNucleo_Connected := trim(data.Values[sNucleo_Connected]) = 'yes';
-    fEZ_Connect_Message := trim(data.Values[sEZ_Connect_Message]);
-    fRobot_Name := trim(data.Values[sRobot_Name]);
-    fSSID := trim(data.Values[sSSID]);
-    fScanning := trim(data.Values[sScanning]);
-
-    try
-      fSignalStrength := strtoint(trim(data.Values[sSignalStrength]));
-    except
-      fSignalStrength := 0;
-    end;
-
-    fBSSID := trim(data.Values[sBSSID]);
-    fBeehive_URL := trim(data.Values[sBeehive_URL]);
-    fNucleo_URL := trim(data.Values[sNucleo_URL]);
-    fNTP_URL := trim(data.Values[sNTP_URL]);
-    fUTC_Offset := trim(data.Values[sUTC_Offset]);
-    fTime_Zone := trim(data.Values[sTime_Zone]);
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    Reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+    data.CaseSensitive := false;
+    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
+
+    if pos(sEnabled, data.Text) > 0 then // kind of lazy in this case with the bad response layout
+    begin
+      fEnabled := trim(data.Values[sEnabled]) = 'yes';
+      fIPADDR := trim(data.Values[sIPADDR]);
+      fWifi_Mode := trim(data.Values[sWifi_Mode]);
+      fWifi_On_Init := trim(data.Values[sWifi_On_Init]) = 'yes';
+      fAP_Shutoff_in := trim(data.Values[sAP_Shutoff_in]);
+      fAP_Desired := trim(data.Values[sAP_Desired]) = 'yes';
+      fLinked_to_Beehive := trim(data.Values[sLinked_to_Beehive]) = 'yes';
+      fNucleo_Connected := trim(data.Values[sNucleo_Connected]) = 'yes';
+      fEZ_Connect_Message := trim(data.Values[sEZ_Connect_Message]);
+      fRobot_Name := trim(data.Values[sRobot_Name]);
+      fSSID := trim(data.Values[sSSID]);
+      fScanning := trim(data.Values[sScanning]);
+
+      try
+        fSignalStrength := strtoint(trim(data.Values[sSignalStrength]));
+      except
+        fSignalStrength := 0;
+      end;
+
+      fBSSID := trim(data.Values[sBSSID]);
+      fBeehive_URL := trim(data.Values[sBeehive_URL]);
+      fNucleo_URL := trim(data.Values[sNucleo_URL]);
+      fNTP_URL := trim(data.Values[sNTP_URL]);
+      fUTC_Offset := trim(data.Values[sUTC_Offset]);
+      fTime_Zone := trim(data.Values[sTime_Zone]);
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

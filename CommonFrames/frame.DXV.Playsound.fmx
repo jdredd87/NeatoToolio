@@ -5,7 +5,11 @@ inherited frameDXVPlaySound: TframeDXVPlaySound
     Left = 552
     Top = 160
   end
-  object pnlPlaySoundTop: TRectangle [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 342.000000000000000000
+    Size.Width = 783.000000000000000000
+  end
+  object pnlPlaySoundTop: TRectangle
     Align = Top
     Fill.Color = xFF2D92BF
     Sides = []
@@ -93,7 +97,7 @@ inherited frameDXVPlaySound: TframeDXVPlaySound
       OnClick = btnPlaySoundAbortClick
     end
   end
-  object sgPlaysound: TStringGrid [2]
+  object sgPlaysound: TStringGrid
     Align = Left
     CanFocus = True
     ClipChildren = True
@@ -103,13 +107,13 @@ inherited frameDXVPlaySound: TframeDXVPlaySound
     Margins.Bottom = 10.000000000000000000
     Position.X = 10.000000000000000000
     Position.Y = 80.000000000000000000
-    Size.Width = 329.000000000000000000
+    Size.Width = 591.000000000000000000
     Size.Height = 247.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'gridstyle'
     TabOrder = 0
     Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 309.000000000000000000
+    Viewport.Width = 571.000000000000000000
     Viewport.Height = 222.000000000000000000
     object sgPlaysoundID: TStringColumn
       Header = 'ID'
@@ -117,11 +121,7 @@ inherited frameDXVPlaySound: TframeDXVPlaySound
     end
     object sgPlaySoundResponse: TStringColumn
       Header = 'Response'
-      Size.Width = 239.000000000000000000
+      Size.Width = 391.000000000000000000
     end
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 342.000000000000000000
-    Size.Width = 783.000000000000000000
   end
 end

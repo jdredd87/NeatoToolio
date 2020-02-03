@@ -18,6 +18,8 @@ d	GetLDSScan - Get scan packet from LDS.
 
 d	GetMotors - Get the diagnostic data for the motors.
 
+d	GetLifeStatLog - Get All Life Stat Logs.
+
 d	GetSchedule - Get the Cleaning Schedule. (24 hour clock format)
 d	GetTime - Get Current Scheduler Time.
 
@@ -28,7 +30,9 @@ d	PlaySound - Play the specified sound in the robot.
 d	RestoreDefaults - Restore user settings to default.
 
 d	SetFuelGauge - Set Fuel Gauge Level.
-n	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
+
+d	SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
+
 d	SetTime - Sets the current day, hour, and minute for the scheduler clock.
 d	SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
 d	SetIEC - Sets the IEC Cleaning Test parameters
@@ -38,8 +42,33 @@ d	SetSchedule - Modify Cleaning Schedule.
 d	SetSystemMode - Set the operation mode of the robot. (TestMode Only)
 d	SetWallFollower - Enables/Disables wall follower
 d	SetDistanceCal - Compute and set distance sensor calibration values for min and max distances.
-n	TestLDS
+
+d	TestLDS - getversion
 	
 d	TestMode - Sets TestMode on or off. Some commands can only be run in TestMode.
 x	Upload - Uploads new program to the robot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

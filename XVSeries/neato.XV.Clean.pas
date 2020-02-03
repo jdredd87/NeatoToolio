@@ -45,29 +45,37 @@ end;
 
 function tCleanXV.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  data.Text := trim(data.Text);
-  data.Text := stringreplace(data.Text, #10, '', [rfreplaceall]);
-  data.Text := stringreplace(data.Text, #13, '', [rfreplaceall]);
-  data.Text := stringreplace(data.Text, #26, '', [rfreplaceall]);
-  data.Text := stringreplace(data.Text, sClean, '', [rfreplaceall, rfignorecase]);
-  data.Text := stringreplace(data.Text, sHouse, '', [rfreplaceall, rfignorecase]);
-  data.Text := stringreplace(data.Text, sSpot, '', [rfreplaceall, rfignorecase]);
-  data.Text := stringreplace(data.Text, sStop, '', [rfreplaceall, rfignorecase]);
-
-  if trim(data.Text) = '' then
-  begin
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    Reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    data.Text := trim(data.Text);
+    data.Text := stringreplace(data.Text, #10, '', [rfreplaceall]);
+    data.Text := stringreplace(data.Text, #13, '', [rfreplaceall]);
+    data.Text := stringreplace(data.Text, #26, '', [rfreplaceall]);
+    data.Text := stringreplace(data.Text, sClean, '', [rfreplaceall, rfignorecase]);
+    data.Text := stringreplace(data.Text, sHouse, '', [rfreplaceall, rfignorecase]);
+    data.Text := stringreplace(data.Text, sSpot, '', [rfreplaceall, rfignorecase]);
+    data.Text := stringreplace(data.Text, sStop, '', [rfreplaceall, rfignorecase]);
+
+    if trim(data.Text) = '' then
+    begin
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

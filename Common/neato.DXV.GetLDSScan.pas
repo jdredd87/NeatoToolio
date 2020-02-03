@@ -65,41 +65,53 @@ var
   lineData: TStringList;
   idx: Integer;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
   try
-    lineData := TStringList.Create;
-    lineData.Delimiter := ',';
-    lineData.StrictDelimiter := true;
+    Reset;
+    result := false;
 
-    data.Text := trim(data.Text);
-    data.Delete(0);
-    data.Delete(0);
-    for idx := 0 to 359 do
+    if NOT assigned(data) then
+      exit;
+
+    if data.count = 364 then
     begin
-      lineData.DelimitedText := data[idx];
-      trystrtoint(lineData[0], fGetLDSScanRecords[idx + 1].AngleInDegrees);
-      trystrtoint(lineData[1], fGetLDSScanRecords[idx + 1].DistInMM);
-      trystrtoint(lineData[2], fGetLDSScanRecords[idx + 1].Intensity);
-      trystrtoint(lineData[3], fGetLDSScanRecords[idx + 1].ErrorCodeHEX);
-      lineData.Clear;
-    end;
 
-    trystrtofloat(stringreplace(data[data.Count - 1],sRotation_Speed,'',[rfignorecase]), self.fRotation_Speed);
-    result := true;
-  except
-    on e: exception do
+      lineData := TStringList.Create;
+      lineData.Delimiter := ',';
+      lineData.StrictDelimiter := true;
+
+      data.Text := trim(data.Text);
+      data.Delete(0);
+      data.Delete(0);
+      for idx := 0 to 359 do
+      begin
+        lineData.DelimitedText := data[idx];
+        trystrtoint(lineData[0], fGetLDSScanRecords[idx + 1].AngleInDegrees);
+        trystrtoint(lineData[1], fGetLDSScanRecords[idx + 1].DistInMM);
+        trystrtoint(lineData[2], fGetLDSScanRecords[idx + 1].Intensity);
+        trystrtoint(lineData[3], fGetLDSScanRecords[idx + 1].ErrorCodeHEX);
+        lineData.Clear;
+      end;
+
+      trystrtofloat(stringreplace(data[data.count - 1], sRotation_Speed, '', [rfignorecase]), self.fRotation_Speed);
+      result := true;
+    end
+    else
     begin
       fError := strParseTextError;
       result := false;
     end;
+
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
-  freeandnil(lineData);
+  if assigned(lineData) then
+    freeandnil(lineData);
+
 end;
 
 end.

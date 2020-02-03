@@ -20,6 +20,16 @@ const
   sAccelerometerX = 'AccelerometerX';
   sAccelerometerY = 'AccelerometerY';
   sAccelerometerZ = 'AccelerometerZ';
+  sVacuumCurrent = 'VacuumCurrent';
+  sSideBrushCurrent = 'SideBrushCurrent';
+  sMagSensorLeft = 'MagSensorLeft';
+  sMagSensorRight = 'MagSensorRight';
+  sWallSensor = 'WallSensor';
+  sDropSensorLeft = 'DropSensorLeft';
+  sDropSensorRight = 'DropSensorRight';
+
+  // these are not supported by The BotVac Dxx models
+
   sCompassmeterX = 'CompassmeterX';
   sCompassmeterY = 'CompassmeterY';
   sCompassmeterZ = 'CompassmeterZ';
@@ -29,13 +39,8 @@ const
   sIMUAccelerometerX = 'IMUAccelerometerX';
   sIMUAccelerometerY = 'IMUAccelerometerY';
   sIMUAccelerometerZ = 'IMUAccelerometerZ';
-  sVacuumCurrent = 'VacuumCurrent';
-  sSideBrushCurrent = 'SideBrushCurrent';
-  sMagSensorLeft = 'MagSensorLeft';
-  sMagSensorRight = 'MagSensorRight';
-  sWallSensor = 'WallSensor';
-  sDropSensorLeft = 'DropSensorLeft';
-  sDropSensorRight = 'DropSensorRight';
+
+
 
 
   // Command to send
@@ -104,7 +109,7 @@ type
 
 implementation
 
-Constructor tGetAnalogSensorsD.create;
+Constructor tGetAnalogSensorsD.Create;
 begin
   inherited;
   fCommand := sGetAnalogSensors;
@@ -112,7 +117,7 @@ begin
   Reset;
 end;
 
-Destructor tGetAnalogSensorsD.destroy;
+Destructor tGetAnalogSensorsD.Destroy;
 begin
   inherited;
 end;
@@ -153,65 +158,76 @@ var
   IDX: integer;
 
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  lineData := tstringlist.create;
-  lineData.Delimiter := ',';
-  lineData.DelimitedText := data.Strings[1]; // grab header row
-
-  subData := tstringlist.create;
-  subData.Delimiter := ',';
-
-  // Simple test to make sure we got data
-
-  if lineData[0] = sSensorName then
-  begin
-    lineData.Text := data.Text;
-    lineData.Delete(0); // strip off heaer row, no longe needed
-
-    for IDX := 0 to lineData.Count - 1 do
-      lineData[IDX] := stringreplace(lineData[IDX], ',', '=', []);
-    // replaces only FIRST , with an =
-
-    GetSubData(lineData, fBatteryVoltage, sBatteryVoltage, varDouble);
-    GetSubData(lineData, fBatteryCurrent, sBatteryCurrent, varDouble);
-    GetSubData(lineData, fBatteryTemperature, sBatteryTemperature, varDouble);
-    GetSubData(lineData, fExternalVoltage, sExternalVoltage, varDouble);
-    GetSubData(lineData, fAccelerometerX, sAccelerometerX, varDouble);
-    GetSubData(lineData, fAccelerometerY, sAccelerometerY, varDouble);
-    GetSubData(lineData, fAccelerometerZ, sAccelerometerZ, varDouble);
-    GetSubData(lineData, fCompassmeterX, sCompassmeterX, varDouble);
-    GetSubData(lineData, fCompassmeterY, sCompassmeterY, varDouble);
-    GetSubData(lineData, fCompassmeterZ, sCompassmeterZ, varDouble);
-    GetSubData(lineData, fGyroscopeX, sGyroscopeX, varDouble);
-    GetSubData(lineData, fGyroscopeY, sGyroscopeY, varDouble);
-    GetSubData(lineData, fGyroscopeZ, sGyroscopeZ, varDouble);
-    GetSubData(lineData, fIMUAccelerometerX, sIMUAccelerometerX, varDouble);
-    GetSubData(lineData, fIMUAccelerometerY, sIMUAccelerometerY, varDouble);
-    GetSubData(lineData, fIMUAccelerometerZ, sIMUAccelerometerZ, varDouble);
-    GetSubData(lineData, fVacuumCurrent, sVacuumCurrent, varDouble);
-    GetSubData(lineData, fSideBrushCurrent, sSideBrushCurrent, varDouble);
-    GetSubData(lineData, fMagSensorLeft, sMagSensorLeft, varBoolean);
-    GetSubData(lineData, fMagSensorRight, sMagSensorRight, varBoolean);
-    GetSubData(lineData, fWallSensor, sWallSensor, varDouble);
-    GetSubData(lineData, fDropSensorLeft, sDropSensorLeft, varDouble);
-    GetSubData(lineData, fDropSensorRight, sDropSensorRight, varDouble);
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    lineData := tstringlist.Create;
+    lineData.Delimiter := ',';
+    lineData.DelimitedText := data.Strings[1]; // grab header row
+
+    subData := tstringlist.Create;
+    subData.Delimiter := ',';
+
+    // Simple test to make sure we got data
+
+    if lineData[0] = sSensorName then
+    begin
+      lineData.Text := data.Text;
+      lineData.Delete(0); // strip off heaer row, no longe needed
+
+      for IDX := 0 to lineData.Count - 1 do
+        lineData[IDX] := stringreplace(lineData[IDX], ',', '=', []);
+      // replaces only FIRST , with an =
+
+      GetSubData(lineData, fBatteryVoltage, sBatteryVoltage, varDouble);
+      GetSubData(lineData, fBatteryCurrent, sBatteryCurrent, varDouble);
+      GetSubData(lineData, fBatteryTemperature, sBatteryTemperature, varDouble);
+      GetSubData(lineData, fExternalVoltage, sExternalVoltage, varDouble);
+      GetSubData(lineData, fAccelerometerX, sAccelerometerX, varDouble);
+      GetSubData(lineData, fAccelerometerY, sAccelerometerY, varDouble);
+      GetSubData(lineData, fAccelerometerZ, sAccelerometerZ, varDouble);
+      GetSubData(lineData, fCompassmeterX, sCompassmeterX, varDouble);
+      GetSubData(lineData, fCompassmeterY, sCompassmeterY, varDouble);
+      GetSubData(lineData, fCompassmeterZ, sCompassmeterZ, varDouble);
+      GetSubData(lineData, fGyroscopeX, sGyroscopeX, varDouble);
+      GetSubData(lineData, fGyroscopeY, sGyroscopeY, varDouble);
+      GetSubData(lineData, fGyroscopeZ, sGyroscopeZ, varDouble);
+      GetSubData(lineData, fIMUAccelerometerX, sIMUAccelerometerX, varDouble);
+      GetSubData(lineData, fIMUAccelerometerY, sIMUAccelerometerY, varDouble);
+      GetSubData(lineData, fIMUAccelerometerZ, sIMUAccelerometerZ, varDouble);
+      GetSubData(lineData, fVacuumCurrent, sVacuumCurrent, varDouble);
+      GetSubData(lineData, fSideBrushCurrent, sSideBrushCurrent, varDouble);
+      GetSubData(lineData, fMagSensorLeft, sMagSensorLeft, varBoolean);
+      GetSubData(lineData, fMagSensorRight, sMagSensorRight, varBoolean);
+      GetSubData(lineData, fWallSensor, sWallSensor, varDouble);
+      GetSubData(lineData, fDropSensorLeft, sDropSensorLeft, varDouble);
+      GetSubData(lineData, fDropSensorRight, sDropSensorRight, varDouble);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
-  freeandnil(lineData);
-  freeandnil(subData);
+  if assigned(lineData) then
+    freeandnil(lineData);
+
+  if assigned(subData) then
+    freeandnil(subData);
 end;
 
 end.

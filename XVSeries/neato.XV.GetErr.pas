@@ -57,28 +57,39 @@ var
   IDX: integer;
   name, value: string;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  data.Text := stringreplace(data.Text, ' - ', '=', [rfreplaceall]);
-
   try
-    for IDX := 0 to data.Count - 1 do
-     if trim(data.Names[idx])<>'' then
-      fErrorList.AddPair(data.Names[IDX], data.ValueFromIndex[IDX]);
+    Reset;
+    result := false;
 
-    result := true;
+    if NOT assigned(data) then
+      exit;
+
+    data.Text := stringreplace(data.Text, ' - ', '=', [rfreplaceall]);
+
+    try
+      for IDX := 0 to data.Count - 1 do
+        if trim(data.Names[IDX]) <> '' then
+          fErrorList.AddPair(data.Names[IDX], data.ValueFromIndex[IDX]);
+
+      result := true;
+
+    except
+      on e: exception do
+      begin
+        fError := strParseTextError;
+        result := false;
+      end;
+    end;
 
   except
     on e: exception do
     begin
-      fError := strParseTextError;
+      fError := e.Message;
       result := false;
     end;
   end;
+
+
 end;
 
 end.

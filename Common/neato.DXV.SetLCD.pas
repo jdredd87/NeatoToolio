@@ -77,29 +77,36 @@ end;
 
 function tSetLCD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.text := trim(data.text);
-
-  if data.Count = 1 then
-   data.delete(0);
-
-  if data.Count=0 then
-  begin
-    result := true;
-  end
-  else
-  begin
-
-    ferror := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.text := trim(data.text);
+
+    if data.Count = 1 then
+      data.delete(0);
+
+    if data.Count = 0 then
+    begin
+      result := true;
+    end
+    else
+    begin
+      ferror := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      ferror := e.Message;
+      result := false;
+    end;
   end;
 
 end;

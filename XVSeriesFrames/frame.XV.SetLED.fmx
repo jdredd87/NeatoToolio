@@ -1,4 +1,4 @@
-inherited frameDXVSetLED: TframeDXVSetLED
+inherited frameXVSetLED: TframeXVSetLED
   Align = Client
   Size.Width = 637.000000000000000000
   Size.Height = 443.000000000000000000
@@ -6,7 +6,11 @@ inherited frameDXVSetLED: TframeDXVSetLED
     Left = 528
     Top = 272
   end
-  object lblSetLEDError: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 412.000000000000000000
+    Size.Width = 617.000000000000000000
+  end
+  object lblSetLEDError: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -19,7 +23,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     TextSettings.HorzAlign = Center
     TabOrder = 11
   end
-  object rectSetLCDTop: TRectangle [2]
+  object rectSetLCDTop: TRectangle
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -51,7 +55,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
       OnMouseLeave = btnSetLEDBacklightOnMouseLeave
     end
   end
-  object lblSetLEDMessage: TLabel [3]
+  object lblSetLEDMessage: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -64,7 +68,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     TextSettings.HorzAlign = Center
     TabOrder = 10
   end
-  object btnSetLEDButtonAmber: TButton [4]
+  object btnSetLEDButtonAmber: TButton
     Position.X = 328.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 140.000000000000000000
@@ -76,7 +80,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDButtonOff: TButton [5]
+  object btnSetLEDButtonOff: TButton
     Position.X = 8.000000000000000000
     Position.Y = 184.000000000000000000
     Size.Width = 140.000000000000000000
@@ -88,7 +92,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDBlinkOn: TButton [6]
+  object btnSetLEDBlinkOn: TButton
     Position.X = 168.000000000000000000
     Position.Y = 184.000000000000000000
     Size.Width = 140.000000000000000000
@@ -100,7 +104,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDButtonGreenDim: TButton [7]
+  object btnSetLEDButtonGreenDim: TButton
     Position.X = 488.000000000000000000
     Position.Y = 96.000000000000000000
     Size.Width = 140.000000000000000000
@@ -112,7 +116,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDButtonAmberDim: TButton [8]
+  object btnSetLEDButtonAmberDim: TButton
     Position.X = 328.000000000000000000
     Position.Y = 96.000000000000000000
     Size.Width = 140.000000000000000000
@@ -124,7 +128,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDLEDGreen: TButton [9]
+  object btnSetLEDLEDGreen: TButton
     Position.X = 168.000000000000000000
     Position.Y = 96.000000000000000000
     Size.Width = 140.000000000000000000
@@ -136,7 +140,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDLEDRed: TButton [10]
+  object btnSetLEDLEDRed: TButton
     Position.X = 8.000000000000000000
     Position.Y = 96.000000000000000000
     Size.Width = 140.000000000000000000
@@ -148,7 +152,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDButtonGreen: TButton [11]
+  object btnSetLEDButtonGreen: TButton
     Position.X = 488.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 140.000000000000000000
@@ -160,7 +164,7 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
   end
-  object btnSetLEDBlinkOff: TButton [12]
+  object btnSetLEDBlinkOff: TButton
     Position.X = 328.000000000000000000
     Position.Y = 184.000000000000000000
     Size.Width = 140.000000000000000000
@@ -171,9 +175,5 @@ inherited frameDXVSetLED: TframeDXVSetLED
     OnClick = btnSetLEDOnClick
     OnMouseEnter = btnSetLEDBacklightOnMouseEnter
     OnMouseLeave = btnSetLEDBacklightOnMouseLeave
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 412.000000000000000000
-    Size.Width = 617.000000000000000000
   end
 end

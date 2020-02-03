@@ -1,11 +1,11 @@
-unit frame.DXV.SetLED;
+unit frame.XV.SetLED;
 
 interface
 
 uses
   frame.master,
   dmCommon,
-  neato.DXV.SetLED,
+  neato.XV.SetLED,
   neato.helpers, FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
@@ -13,7 +13,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
 
 type
-  TframeDXVSetLED = class(TframeMaster)
+  TframeXVSetLED = class(TframeMaster)
     lblSetLEDError: TLabel;
     rectSetLCDTop: TRectangle;
     lblSetLEDMessage: TLabel;
@@ -41,16 +41,16 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetLED.Create(AOwner: TComponent);
+constructor TframeXVSetLED.Create(AOwner: TComponent);
 begin
  inherited;
  lblFrameTitle.Text := sDescription;
 end;
 
-procedure TframeDXVSetLED.btnSetLEDOnClick(Sender: TObject);
+procedure TframeXVSetLED.btnSetLEDOnClick(Sender: TObject);
 var
   cmd: string;
-  pSetLED: tSetLED;
+  pSetLED: tSetLEDXV;
   pReadData: TStringList;
   r: Boolean;
   idx: integer;
@@ -86,7 +86,7 @@ begin
     dm.chkTestmode.IsChecked := true;
     sleep(250);
 
-    pSetLED := tSetLED.Create;
+    pSetLED := tSetLEDXV.Create;
 
     pReadData := TStringList.Create;
     pReadData.Text := dm.com.SendCommand(sSetLED + ' ' + cmd);
@@ -106,7 +106,7 @@ begin
   resetfocus;
 end;
 
-procedure TframeDXVSetLED.btnSetLEDBacklightOnMouseEnter(Sender: TObject);
+procedure TframeXVSetLED.btnSetLEDBacklightOnMouseEnter(Sender: TObject);
 var
   msg: string;
 begin
@@ -138,7 +138,7 @@ begin
   lblSetLEDMessage.Text := msg;
 end;
 
-procedure TframeDXVSetLED.btnSetLEDBacklightOnMouseLeave(Sender: TObject);
+procedure TframeXVSetLED.btnSetLEDBacklightOnMouseLeave(Sender: TObject);
 begin
   lblSetLEDMessage.Text := '';
 end;

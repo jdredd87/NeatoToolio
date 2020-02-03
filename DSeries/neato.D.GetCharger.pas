@@ -108,38 +108,46 @@ end;
 
 function tGetChargerD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if data.Values[sLabel] = sValue then
-  begin
-    TryStrToFloat(data.Values[sFuelPercent], fFuelPercent);
-    fBatteryOverTemp := data.Values[sBatteryOverTemp] = '1';
-    fChargingActive := data.Values[sChargingActive] = '1';
-    fChargingEnabled := data.Values[sChargingEnabled] = '1';
-    fConfidentOnFuel := data.Values[sConfidentOnFuel] = '1';
-    fOnReservedFuel := data.Values[sOnReservedFuel] = '1';
-    fEmptyFuel := data.Values[sEmptyFuel] = '1';
-    fBatteryFailure := data.Values[sBatteryFailure] = '1';
-    fExtPwrPresent := data.Values[sExtPwrPresent] = '1';
-    fThermistorPresent := data.Values[sThermistorPresent] = '1';
-    TryStrToFloat(data.Values[sBattTempCAvg], fBattTempCAvg);
-    TryStrToFloat(data.Values[sVBattV], fVBattV);
-    TryStrToFloat(data.Values[sVExtV], fVExtV);
-    TryStrToFloat(data.Values[sCharger_mAH], fCharger_mAH);
-    TryStrToFloat(data.Values[sDischarge_mAH], fDischarge_mAH);
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if data.Values[sLabel] = sValue then
+    begin
+      TryStrToFloat(data.Values[sFuelPercent], fFuelPercent);
+      fBatteryOverTemp := data.Values[sBatteryOverTemp] = '1';
+      fChargingActive := data.Values[sChargingActive] = '1';
+      fChargingEnabled := data.Values[sChargingEnabled] = '1';
+      fConfidentOnFuel := data.Values[sConfidentOnFuel] = '1';
+      fOnReservedFuel := data.Values[sOnReservedFuel] = '1';
+      fEmptyFuel := data.Values[sEmptyFuel] = '1';
+      fBatteryFailure := data.Values[sBatteryFailure] = '1';
+      fExtPwrPresent := data.Values[sExtPwrPresent] = '1';
+      fThermistorPresent := data.Values[sThermistorPresent] = '1';
+      TryStrToFloat(data.Values[sBattTempCAvg], fBattTempCAvg);
+      TryStrToFloat(data.Values[sVBattV], fVBattV);
+      TryStrToFloat(data.Values[sVExtV], fVExtV);
+      TryStrToFloat(data.Values[sCharger_mAH], fCharger_mAH);
+      TryStrToFloat(data.Values[sDischarge_mAH], fDischarge_mAH);
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

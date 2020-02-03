@@ -72,32 +72,40 @@ end;
 
 function tGetButtonsXV.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.CaseSensitive := false;
-  data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
-  // looks like no spaces in the data but lets make sure
-  data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]);
-
-  if data.Values[sButton_Name] = sPressed then
-  begin
-    fBTN_SOFT_KEY := data.Values[sBTN_SOFT_KEY] = '1';
-    fBTN_SCROLL_UP := data.Values[sBTN_SCROLL_UP] = '1';
-    fBTN_START := data.Values[sBTN_START] = '1';
-    fBTN_BACK := data.Values[sBTN_BACK] = '1';
-    fBTN_SCROLL_DOWN := data.Values[sBTN_SCROLL_DOWN] = '1';
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    Reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.CaseSensitive := false;
+    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
+    // looks like no spaces in the data but lets make sure
+    data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]);
+
+    if data.Values[sButton_Name] = sPressed then
+    begin
+      fBTN_SOFT_KEY := data.Values[sBTN_SOFT_KEY] = '1';
+      fBTN_SCROLL_UP := data.Values[sBTN_SCROLL_UP] = '1';
+      fBTN_START := data.Values[sBTN_START] = '1';
+      fBTN_BACK := data.Values[sBTN_BACK] = '1';
+      fBTN_SCROLL_DOWN := data.Values[sBTN_SCROLL_DOWN] = '1';
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

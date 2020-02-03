@@ -49,33 +49,38 @@ end;
 
 function tGetTimeXV.parsetext(data: tstringlist): boolean;
 begin
-  reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.CaseSensitive := false;
-  data.text := stringreplace(data.text, ' ', '=', [rfreplaceall]);
-  // looks like no spaces in the data but lets make sure
-
-
-  // Thursday 0:44:14
-  // Thursday=0:44:14
-
-  if pos(':', data.text) > 0 then
-  begin
-    data.Delete(0); // delete first row of data, dont need
-    fDay := data.Names[0];
-    fTime := strtotime(data.ValueFromIndex[0]);
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.CaseSensitive := false;
+    data.text := stringreplace(data.text, ' ', '=', [rfreplaceall]);
+    // looks like no spaces in the data but lets make sure
+
+
+    if pos(':', data.text) > 0 then
+    begin
+      data.Delete(0); // delete first row of data, dont need
+      fDay := data.Names[0];
+      fTime := strtotime(data.ValueFromIndex[0]);
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

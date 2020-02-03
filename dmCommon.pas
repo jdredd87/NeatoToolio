@@ -13,6 +13,8 @@ uses
   System.Variants,
   System.Rtti,
   Generics.Collections,
+  FMX.Memo,
+  FMX.Dialogs,
   FMX.Types,
   FMX.Controls,
   FMX.StdCtrls,
@@ -20,7 +22,7 @@ uses
   FMX.Objects;
 
 type
-  TNeatoModels = (neatoXV, neatoBotVac, neatoUnknown);
+  TNeatoModels = (XV, BotVac, BotVacConnected, neatoUnknown);
 
   TTimerList = TObjectList<TTimer>;
 
@@ -37,6 +39,7 @@ type
     chkTestmode: tcheckbox; // allows frames to access the main form object easily!
 
     ActiveTab: TTabItem;
+    log: tmemo;
   end;
 
 var
@@ -46,6 +49,8 @@ var
   TimerList: TTimerList; // object list of TTimers
   CurrentTimer: TTimer; // quickly know what the active TTimer is
   NeatoType: TNeatoModels; // what kind of bot model line
+  timerStarter: TTimer;
+  onTabChangeEvent: TNotifyEvent;
 
 procedure StopTimers; // stops all running registered timers
 
@@ -68,13 +73,32 @@ end;
 procedure StopTimers;
 var
   idx: integer;
+  i: integer;
 begin
-  if not assigned(TimerList) then
+
+  if assigned(timerStarter) then
+    if timerStarter <> nil then
+      timerStarter.Enabled := false;
+
+  // this below I think can be phased out
+  // having a TimerList
+  // will keep it around , for now...
+
+  {
+    if not assigned(TimerList) then
     exit;
 
-  for idx := 0 to TimerList.Count - 1 do
+    for idx := 0 to TimerList.Count - 1 do
+    try
     if assigned(TimerList[idx]) then
-      TimerList[idx].Enabled := false;
+    TimerList[idx].Enabled := false;
+    except
+    on e: exception do
+    begin
+    i := idx;
+    end;
+    end;
+  }
 end;
 
 initialization

@@ -6,7 +6,7 @@ uses
   frame.master,
   dmCommon,
   neato.XV.Clean,
-  neato.errors,FMX.TabControl,
+  neato.errors, FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects;
 
@@ -18,6 +18,7 @@ type
     Image1: TImage;
     Image2: TImage;
     Image3: TImage;
+    lblCleanError: TLabel;
     procedure btnCleanClick(Sender: TObject);
   private
     { Private declarations }
@@ -32,19 +33,18 @@ implementation
 
 constructor TframeXVClean.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeXVClean.btnCleanClick(Sender: TObject);
 var
   pReadData: TStringList;
-  gRestoreDefaults: tCleanXV;
+  pCleanXV: tCleanXV;
   r: boolean;
   command: string;
 begin
-  gRestoreDefaults := tCleanXV.Create;
+  pCleanXV := tCleanXV.Create;
   pReadData := TStringList.Create;
 
   if Sender = self.btnCleanHouse then
@@ -56,12 +56,12 @@ begin
 
   pReadData.Text := dm.com.SendCommand(sClean + ' ' + sHouse);
 
-  r := gRestoreDefaults.ParseText(pReadData);
+  r := pCleanXV.ParseText(pReadData);
 
-  if not r then
-    showmessage(strParseTextError);
+  lblCleanError.Text := pCleanXV.Error;
 
-  freeandnil(gRestoreDefaults);
+  freeandnil(pCleanXV);
+  freeandnil(pReadData);
 
   resetfocus;
 end;

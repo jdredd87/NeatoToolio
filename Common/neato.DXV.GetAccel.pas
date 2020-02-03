@@ -5,7 +5,7 @@ interface
 uses fmx.dialogs, classes, sysutils, neato.Commands, neato.errors;
 
 const
-  sDescription =  'Get the Accelerometer readings';
+  sDescription = 'Get the Accelerometer readings';
 
   // labels of text to look / parse for
   sLabel = 'Label';
@@ -74,29 +74,38 @@ end;
 
 function tGetAccelD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if data.Values[sLabel] = sValue then
-  begin
-    TryStrToFloat(data.Values[sPitchInDegrees], fPitchInDegrees);
-    TryStrToFloat(data.Values[sRollInDegrees], fRollInDegrees);
-    TryStrToFloat(data.Values[sXInG], fXInG);
-    TryStrToFloat(data.Values[sYInG], fYInG);
-    TryStrToFloat(data.Values[sZIng], fZInG);
-    TryStrToFloat(data.Values[sSumInG], fSumInG);
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if data.Values[sLabel] = sValue then
+    begin
+      TryStrToFloat(data.Values[sPitchInDegrees], fPitchInDegrees);
+      TryStrToFloat(data.Values[sRollInDegrees], fRollInDegrees);
+      TryStrToFloat(data.Values[sXInG], fXInG);
+      TryStrToFloat(data.Values[sYInG], fYInG);
+      TryStrToFloat(data.Values[sZIng], fZInG);
+      TryStrToFloat(data.Values[sSumInG], fSumInG);
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 end;
 

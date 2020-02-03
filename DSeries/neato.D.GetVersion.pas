@@ -317,90 +317,98 @@ var
   IDX: integer;
 
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  if data.count<2 then
-   exit;
-
-  lineData := TStringList.Create;
-  lineData.Delimiter := ',';
-
-
-  lineData.DelimitedText := data.Strings[1]; // grab header row
-
-  // Simple test to make sure we got data
-
-  if lineData[0] = sComponent then
-  begin
-    lineData.Text := data.Text;
-    lineData.Delete(0); // strip off heaer row, no longe needed
-
-    for IDX := 0 to lineData.Count - 1 do
-      lineData[IDX] := stringreplace(lineData[IDX], ',', '=', []);
-
-    fBaseID.ParseText(lineData, sBaseID);
-    fBeehive_URL.ParseText(lineData, sBeehive_URL);
-    fBlowerType.ParseText(lineData, sBlowerType);
-    fBootloader_Version.ParseText(lineData, sBootloader_Version);
-    fBrushMotorResistorPowerRating.ParseText(lineData, sBrushMotorResistorPowerRating);
-    fBrushMotorResistorResistance.ParseText(lineData, sBrushMotorResistorResistance);
-    fBrushMotorType.ParseText(lineData, sBrushMotorType);
-    fBrushSpeed.ParseText(lineData, sBrushSpeed);
-    fBrushSpeedEco.ParseText(lineData, sBrushSpeedEco);
-    fChassisRev.ParseText(lineData, sChassisRev);
-    fDropSensorType.ParseText(lineData, sDropSensorType);
-    fLCD_Panel.ParseText(lineData, sLCD_Panel);
-    fLDS_CPU.ParseText(lineData, sLDS_CPU);
-    fLDS_Serial.ParseText(lineData, sLDS_Serial);
-    fLDS_Software.ParseText(lineData, sLDS_Software);
-    fLDSMotorType.ParseText(lineData, sLDSMotorType);
-    fLocale.ParseText(lineData, sLocale);
-    fMagSensorType.ParseText(lineData, sMagSensorType);
-    fMainBoard_Serial_Number.ParseText(lineData, sMainBoard_Serial_Number);
-    fMainBoard_Version.ParseText(lineData, sMainBoard_Version);
-    fModel.ParseText(lineData, sModel);
-    fNTP_URL.ParseText(lineData, sNTP_URL);
-    fNucleo_URL.ParseText(lineData, sNucleo_URL);
-    fQAState.ParseText(lineData, sQAState);
-    fSerial_Number.ParseText(lineData, sSerial_Number);
-    fSideBrushPower.ParseText(lineData, sSideBrushPower);
-    fSideBrushType.ParseText(lineData, sSideBrushType);
-    fSmartBatt_Authorization.ParseText(lineData, sSmartBatt_Authorization);
-    fSmartBatt_Data_Version.ParseText(lineData, sSmartBatt_Data_Version);
-    fSmartBatt_Device_Chemistry.ParseText(lineData, sSmartBatt_Device_Chemistry);
-    fSmartBatt_Device_Name.ParseText(lineData, sSmartBatt_Device_Name);
-    fSmartBatt_Manufacturer_Name.ParseText(lineData, sSmartBatt_Manufacturer_Name);
-    fSmartBatt_Mfg_Year_Month_Day.ParseText(lineData, sSmartBatt_Mfg_Year_Month_Day);
-    fSmartBatt_Serial_Number.ParseText(lineData, sSmartBatt_Serial_Number);
-    fSmartBatt_Software_Version.ParseText(lineData, sSmartBatt_Software_Version);
-    fSoftware_Git_SHA.ParseText(lineData, sSoftware_Git_SHA);
-    fSoftware.ParseText(lineData, sSoftware);
-    fTime_Local.ParseText(lineData, sTime_Local);
-    fTime_UTC.ParseText(lineData, sTime_UTC);
-    fUI_Board_Hardware.ParseText(lineData, sUI_Board_Hardware);
-    fUI_Board_Software.ParseText(lineData, sUI_Board_Software);
-    fUI_Name.ParseText(lineData, sUI_Name);
-    fUI_Version.ParseText(lineData, sUI_Version);
-    fVacuumPwr.ParseText(lineData, sVacuumPwr);
-    fVacuumPwrEco.ParseText(lineData, sVacuumPwrEco);
-    fWallSensorType.ParseText(lineData, sWallSensorType);
-    fWheelPodType.ParseText(lineData, sWheelPodType);
-    // replaces only FIRST , with an =
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    if data.Count < 2 then
+      exit;
+
+    lineData := TStringList.Create;
+    lineData.Delimiter := ',';
+
+    lineData.DelimitedText := data.Strings[1]; // grab header row
+
+    // Simple test to make sure we got data
+
+    if lineData[0] = sComponent then
+    begin
+      lineData.Text := data.Text;
+      lineData.Delete(0); // strip off heaer row, no longe needed
+
+      for IDX := 0 to lineData.Count - 1 do
+        lineData[IDX] := stringreplace(lineData[IDX], ',', '=', []);
+
+      fBaseID.ParseText(lineData, sBaseID);
+      fBeehive_URL.ParseText(lineData, sBeehive_URL);
+      fBlowerType.ParseText(lineData, sBlowerType);
+      fBootloader_Version.ParseText(lineData, sBootloader_Version);
+      fBrushMotorResistorPowerRating.ParseText(lineData, sBrushMotorResistorPowerRating);
+      fBrushMotorResistorResistance.ParseText(lineData, sBrushMotorResistorResistance);
+      fBrushMotorType.ParseText(lineData, sBrushMotorType);
+      fBrushSpeed.ParseText(lineData, sBrushSpeed);
+      fBrushSpeedEco.ParseText(lineData, sBrushSpeedEco);
+      fChassisRev.ParseText(lineData, sChassisRev);
+      fDropSensorType.ParseText(lineData, sDropSensorType);
+      fLCD_Panel.ParseText(lineData, sLCD_Panel);
+      fLDS_CPU.ParseText(lineData, sLDS_CPU);
+      fLDS_Serial.ParseText(lineData, sLDS_Serial);
+      fLDS_Software.ParseText(lineData, sLDS_Software);
+      fLDSMotorType.ParseText(lineData, sLDSMotorType);
+      fLocale.ParseText(lineData, sLocale);
+      fMagSensorType.ParseText(lineData, sMagSensorType);
+      fMainBoard_Serial_Number.ParseText(lineData, sMainBoard_Serial_Number);
+      fMainBoard_Version.ParseText(lineData, sMainBoard_Version);
+      fModel.ParseText(lineData, sModel);
+      fNTP_URL.ParseText(lineData, sNTP_URL);
+      fNucleo_URL.ParseText(lineData, sNucleo_URL);
+      fQAState.ParseText(lineData, sQAState);
+      fSerial_Number.ParseText(lineData, sSerial_Number);
+      fSideBrushPower.ParseText(lineData, sSideBrushPower);
+      fSideBrushType.ParseText(lineData, sSideBrushType);
+      fSmartBatt_Authorization.ParseText(lineData, sSmartBatt_Authorization);
+      fSmartBatt_Data_Version.ParseText(lineData, sSmartBatt_Data_Version);
+      fSmartBatt_Device_Chemistry.ParseText(lineData, sSmartBatt_Device_Chemistry);
+      fSmartBatt_Device_Name.ParseText(lineData, sSmartBatt_Device_Name);
+      fSmartBatt_Manufacturer_Name.ParseText(lineData, sSmartBatt_Manufacturer_Name);
+      fSmartBatt_Mfg_Year_Month_Day.ParseText(lineData, sSmartBatt_Mfg_Year_Month_Day);
+      fSmartBatt_Serial_Number.ParseText(lineData, sSmartBatt_Serial_Number);
+      fSmartBatt_Software_Version.ParseText(lineData, sSmartBatt_Software_Version);
+      fSoftware_Git_SHA.ParseText(lineData, sSoftware_Git_SHA);
+      fSoftware.ParseText(lineData, sSoftware);
+      fTime_Local.ParseText(lineData, sTime_Local);
+      fTime_UTC.ParseText(lineData, sTime_UTC);
+      fUI_Board_Hardware.ParseText(lineData, sUI_Board_Hardware);
+      fUI_Board_Software.ParseText(lineData, sUI_Board_Software);
+      fUI_Name.ParseText(lineData, sUI_Name);
+      fUI_Version.ParseText(lineData, sUI_Version);
+      fVacuumPwr.ParseText(lineData, sVacuumPwr);
+      fVacuumPwrEco.ParseText(lineData, sVacuumPwrEco);
+      fWallSensorType.ParseText(lineData, sWallSensorType);
+      fWheelPodType.ParseText(lineData, sWheelPodType);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
-  freeandnil(lineData);
+  if assigned(lineData) then
+    freeandnil(lineData);
+
 end;
 
 end.

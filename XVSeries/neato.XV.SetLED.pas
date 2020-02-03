@@ -1,4 +1,4 @@
-unit neato.DXV.SetLED;
+unit neato.XV.SetLED;
 
 interface
 
@@ -37,7 +37,7 @@ const
   sBlinkOffMSG = 'Stop the LED and LCD Blink';
 
 type
-  tSetLED = class(tNeatoBaseCommand)
+  tSetLEDXV = class(tNeatoBaseCommand)
   private
   public
     constructor Create;
@@ -48,7 +48,7 @@ type
 
 implementation
 
-Constructor tSetLED.Create;
+Constructor tSetLEDXV.Create;
 begin
   inherited;
   fCommand := sSetLED;
@@ -56,41 +56,48 @@ begin
   Reset;
 end;
 
-Destructor tSetLED.Destroy;
+Destructor tSetLEDXV.Destroy;
 begin
   inherited;
 end;
 
-procedure tSetLED.Reset;
+procedure tSetLEDXV.Reset;
 begin
   inherited;
 end;
 
-function tSetLED.ParseText(data: tstringlist): boolean;
+function tSetLEDXV.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.text := trim(data.text);
-
-  if data.Count = 1 then
-    data.delete(0);
-
-  if data.Count = 0 then
-  begin
-    result := true;
-  end
-  else
-  begin
-
-    ferror := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.text := trim(data.text);
+
+    if data.Count = 1 then
+      data.delete(0);
+
+    if data.Count = 0 then
+    begin
+      result := true;
+    end
+    else
+    begin
+      ferror := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      ferror := e.Message;
+      result := false;
+    end;
   end;
 
 end;

@@ -122,49 +122,57 @@ end;
 
 function tGetSensorD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if pos(sWall_FollowerUnfixed, data.Text) > 0 then // kind of lazy in this case with the bad response layout
-  begin
-    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]); // strip out commas
-    data.Text := stringreplace(data.Text, ':', '=', [rfreplaceall]); // so can do name value pair look ups
-    data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]); // strip out spaces
-    data.Text := stringreplace(data.Text, #9, '', [rfreplaceall]); // strip out tabs
-    data.Text := stringreplace(data.Text, '(', '', [rfreplaceall]); // strip out (
-    data.Text := stringreplace(data.Text, ')', '', [rfreplaceall]); // strip out )
-    data.CaseSensitive := false;
-
-    // data should be "cleaned up now"
-
-    fWall_Follower := data.Values[sWall_Follower] = 'ON';;
-    fUltra_Sound := data.Values[sUltra_Sound] = 'ON';;
-    fDrop_Sensors := data.Values[sDrop_Sensors] = 'ON';;
-    trystrtoint(data.Values[ssensor_Status], fsensor_Status);
-    trystrtoint(data.Values[sleft_drop_Status], fleft_drop_Status);
-    trystrtoint(data.Values[sright_drop_Status], fright_drop_Status);
-    trystrtoint(data.Values[swall_right_Status], fwall_right_Status);
-    trystrtoint(data.Values[swheel_drop_Status], fwheel_drop_Status);
-    trystrtoint(data.Values[sleft_drop_mm], fleft_drop_mm);
-    trystrtoint(data.Values[sright_drop_mm], fright_drop_mm);
-    trystrtoint(data.Values[swall_right_mm], fwall_right_mm);
-    trystrtoint(data.Values[swheel_drop_mm], fwheel_drop_mm);
-    trystrtofloat(data.Values[sIMU_accel_x], fIMU_accel_x);
-    trystrtofloat(data.Values[sIMU_accel_y], fIMU_accel_y);
-    trystrtofloat(data.Values[sIMU_accel_z], fIMU_accel_z);
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if pos(sWall_FollowerUnfixed, data.Text) > 0 then // kind of lazy in this case with the bad response layout
+    begin
+      data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]); // strip out commas
+      data.Text := stringreplace(data.Text, ':', '=', [rfreplaceall]); // so can do name value pair look ups
+      data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]); // strip out spaces
+      data.Text := stringreplace(data.Text, #9, '', [rfreplaceall]); // strip out tabs
+      data.Text := stringreplace(data.Text, '(', '', [rfreplaceall]); // strip out (
+      data.Text := stringreplace(data.Text, ')', '', [rfreplaceall]); // strip out )
+      data.CaseSensitive := false;
+
+      // data should be "cleaned up now"
+
+      fWall_Follower := data.Values[sWall_Follower] = 'ON';;
+      fUltra_Sound := data.Values[sUltra_Sound] = 'ON';;
+      fDrop_Sensors := data.Values[sDrop_Sensors] = 'ON';;
+      trystrtoint(data.Values[ssensor_Status], fsensor_Status);
+      trystrtoint(data.Values[sleft_drop_Status], fleft_drop_Status);
+      trystrtoint(data.Values[sright_drop_Status], fright_drop_Status);
+      trystrtoint(data.Values[swall_right_Status], fwall_right_Status);
+      trystrtoint(data.Values[swheel_drop_Status], fwheel_drop_Status);
+      trystrtoint(data.Values[sleft_drop_mm], fleft_drop_mm);
+      trystrtoint(data.Values[sright_drop_mm], fright_drop_mm);
+      trystrtoint(data.Values[swall_right_mm], fwall_right_mm);
+      trystrtoint(data.Values[swheel_drop_mm], fwheel_drop_mm);
+      trystrtofloat(data.Values[sIMU_accel_x], fIMU_accel_x);
+      trystrtofloat(data.Values[sIMU_accel_y], fIMU_accel_y);
+      trystrtofloat(data.Values[sIMU_accel_z], fIMU_accel_z);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

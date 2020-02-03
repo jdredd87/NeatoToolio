@@ -219,66 +219,76 @@ var
   IDX: integer;
 
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  if data.Count < 2 then
-    exit;
-
-  lineData := TStringList.Create;
-  lineData.Delimiter := ',';
-
-  lineData.DelimitedText := data.Strings[1]; // grab header row
-
-  // Simple test to make sure we got data
-
-  if lineData[0] = sComponent then
-  begin
-    lineData.Text := data.Text;
-    lineData.Delete(0); // strip off heaer row, no longe needed
-
-    for IDX := 0 to lineData.Count - 1 do
-      lineData[IDX] := stringreplace(lineData[IDX], ',', '=', []);
-
-    fModelID.ParseText(lineData, sModelID);
-    fConfigID.ParseText(lineData, sConfigID);
-    fSerial_Number.ParseText(lineData, sSerial_Number);
-    fSoftware.ParseText(lineData, sSoftware);
-    fBatteryType.ParseText(lineData, sBatteryType);
-    fBlowerType.ParseText(lineData, sBlowerType );
-    fBrushSpeed.ParseText(lineData, sBrushSpeed);
-    fBrushMotorType.ParseText(lineData, sBrushMotorType);
-    fSideBrushType.ParseText(lineData, sSideBrushType );
-    fWheelPodType.ParseText(lineData, sWheelPodType );
-    fDropSensorType.ParseText(lineData, sDropSensorType );
-    fMagSensorType.ParseText(lineData, sMagSensorType);
-    fWallSensorType.ParseText(lineData, sWallSensorType );
-    fLocale.ParseText(lineData, sLocale );
-    fLDS_Software.ParseText(lineData, sLDS_Software );
-    fLDS_Serial.ParseText(lineData, sLDS_Serial );
-    fLDS_CPU.ParseText(lineData, sLDS_CPU);
-    fMainBoard_Vendor_ID.ParseText(lineData, sMainBoard_Vendor_ID);
-    fMainBoard_Serial_Number.ParseText(lineData, sMainBoard_Serial_Number);
-    fBootLoader_Software.ParseText(lineData, sBootLoader_Software );
-    fMainBoard_Software.ParseText(lineData, sMainBoard_Software);
-    fMainBoard_Boot.ParseText(lineData, sMainBoard_Boot );
-    fMainBoard_Version.ParseText(lineData, sMainBoard_Version );
-    fChassisRev.ParseText(lineData, sChassisRev);
-    fUIPanelRev.ParseText(lineData, sUIPanelRev );
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    if data.Count < 2 then
+      exit;
+
+    lineData := TStringList.Create;
+    lineData.Delimiter := ',';
+
+    lineData.DelimitedText := data.Strings[1]; // grab header row
+
+    // Simple test to make sure we got data
+
+    if lineData[0] = sComponent then
+    begin
+      lineData.Text := data.Text;
+      lineData.Delete(0); // strip off heaer row, no longe needed
+
+      for IDX := 0 to lineData.Count - 1 do
+        lineData[IDX] := stringreplace(lineData[IDX], ',', '=', []);
+
+      fModelID.ParseText(lineData, sModelID);
+      fConfigID.ParseText(lineData, sConfigID);
+      fSerial_Number.ParseText(lineData, sSerial_Number);
+      fSoftware.ParseText(lineData, sSoftware);
+      fBatteryType.ParseText(lineData, sBatteryType);
+      fBlowerType.ParseText(lineData, sBlowerType);
+      fBrushSpeed.ParseText(lineData, sBrushSpeed);
+      fBrushMotorType.ParseText(lineData, sBrushMotorType);
+      fSideBrushType.ParseText(lineData, sSideBrushType);
+      fWheelPodType.ParseText(lineData, sWheelPodType);
+      fDropSensorType.ParseText(lineData, sDropSensorType);
+      fMagSensorType.ParseText(lineData, sMagSensorType);
+      fWallSensorType.ParseText(lineData, sWallSensorType);
+      fLocale.ParseText(lineData, sLocale);
+      fLDS_Software.ParseText(lineData, sLDS_Software);
+      fLDS_Serial.ParseText(lineData, sLDS_Serial);
+      fLDS_CPU.ParseText(lineData, sLDS_CPU);
+      fMainBoard_Vendor_ID.ParseText(lineData, sMainBoard_Vendor_ID);
+      fMainBoard_Serial_Number.ParseText(lineData, sMainBoard_Serial_Number);
+      fBootLoader_Software.ParseText(lineData, sBootLoader_Software);
+      fMainBoard_Software.ParseText(lineData, sMainBoard_Software);
+      fMainBoard_Boot.ParseText(lineData, sMainBoard_Boot);
+      fMainBoard_Version.ParseText(lineData, sMainBoard_Version);
+      fChassisRev.ParseText(lineData, sChassisRev);
+      fUIPanelRev.ParseText(lineData, sUIPanelRev);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
-  freeandnil(lineData);
+  if assigned(lineData) then
+    freeandnil(lineData);
+
 end;
 
 end.

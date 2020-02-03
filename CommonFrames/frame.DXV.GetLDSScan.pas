@@ -21,17 +21,15 @@ type
     sgGetLDSScanColumnErrorCodeHEX: TStringColumn;
     lblGetLDSScanRotationSpeed: TLabel;
     lblGetLDSScanRotationSpeedValue: TLabel;
-    Panel1: TRectangle;
-    btnLidarStart: TButton;
     FloatAnimation1: TFloatAnimation;
     procedure Timer_GetDataTimer(Sender: TObject);
-    procedure btnLidarStartClick(Sender: TObject);
     procedure sgGetLDSScanDrawColumnCell(Sender: TObject; const Canvas: TCanvas; const Column: TColumn;
       const Bounds: TRectF; const Row: Integer; const Value: TValue; const State: TGridDrawStates);
   private
     { Private declarations }
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -44,43 +42,13 @@ begin
   lblFrameTitle.Text := sDescription;
 end;
 
-procedure TframeDXVGetLDSScan.btnLidarStartClick(Sender: TObject);
+procedure TframeDXVGetLDSScan.check;
 begin
-
-  if NOT btnLidarStart.IsPressed then
-  begin
-    dm.com.SendCommand('Setldsrotation off');
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation off');
-    sleep(250);
-    btnLidarStart.ResetFocus;
-    btnLidarStart.Text := 'Start';
-  end
-  else
-  begin
-
-    dm.chkTestmode.IsChecked := true;
-    sleep(250);
-    dm.chkTestmode.IsChecked := true;
-    sleep(250);
-    dm.chkTestmode.IsChecked := true;
-    sleep(250);
-    dm.chkTestmode.IsChecked := true;
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation on');
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation on');
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation on');
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation on');
-    sleep(250);
-    dm.com.Serial.PurgeInput;
-    dm.com.Serial.PurgeOutput;
-    btnLidarStart.ResetFocus;
-    btnLidarStart.Text := 'Stop';
-  end;
-
+  dm.chkTestmode.IsChecked := true;
+  sleep(250);
+  dm.com.SendCommand('Setldsrotation on');
+  sleep(250);
+//  timer_getdata.Enabled := true;
 end;
 
 procedure TframeDXVGetLDSScan.sgGetLDSScanDrawColumnCell(Sender: TObject; const Canvas: TCanvas; const Column: TColumn;
@@ -113,11 +81,8 @@ var
 begin
 
   if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
-  // (tabSensorsOptions.ActiveTab <> tabGetAccel) then
   begin
-    btnLidarStart.IsPressed := false;
-    btnLidarStartClick(Sender);
-    Timer_GetData.Enabled := false;
+    timer_getdata.Enabled := false;
     exit;
   end;
 

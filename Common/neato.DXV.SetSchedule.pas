@@ -3,7 +3,7 @@ unit neato.DXV.SetSchedule;
 interface
 
 uses
- fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers, system.dateutils;
+  fmx.dialogs, classes, sysutils, neato.Commands, neato.errors, neato.helpers, system.dateutils;
 
 const
 
@@ -47,31 +47,39 @@ end;
 
 function tSetScheduleDXV.parsetext(data: tstringlist): boolean;
 begin
-  reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.CaseSensitive := false;
-if data.text = '' then
-  begin
-    result := true;
-  end
-  else if pos(sUnrecognizedOption, data.text) > 0 then
-  begin
-    data.text := trim(data.text);
-    ferror := data.text;
+  try
+    reset;
     result := false;
-  end
-  else
-  begin
 
-    ferror := strParseTextError;
-    result := false;
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.CaseSensitive := false;
+    if data.text = '' then
+    begin
+      result := true;
+    end
+    else if pos(sUnrecognizedOption, data.text) > 0 then
+    begin
+      data.text := trim(data.text);
+      ferror := data.text;
+      result := false;
+    end
+    else
+    begin
+      ferror := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      ferror := e.Message;
+      result := false;
+    end;
   end;
+
 end;
 
 end.

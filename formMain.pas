@@ -37,6 +37,8 @@ uses
   Neato.D.GetCalInfo,
   Neato.D.ClearFiles,
   Neato.D.GetSensor,
+  Neato.D.SetButton,
+  Neato.D.Clean,
 
   {D3-D7, DSeries Frames}
   frame.D.GetCharger,
@@ -54,6 +56,8 @@ uses
   frame.D.GetWifiInfo,
   frame.D.GetWifiStatus,
   frame.D.GetSensors,
+  frame.D.SetButton,
+  frame.D.Clean,
 
   {XV Series Units}
   Neato.XV.GetCharger,
@@ -69,6 +73,7 @@ uses
   Neato.XV.GetSchedule,
   Neato.XV.GetTime,
   Neato.XV.Clean,
+  Neato.XV.SetLED,
 
   {XV Series Frames}
   frame.XV.GetCharger,
@@ -84,6 +89,7 @@ uses
   frame.XV.GetSchedule,
   frame.XV.GetTime,
   frame.XV.Clean,
+  frame.XV.SetLED,
 
   {XV and D Series Units}
   Neato.DXV.Playsound,
@@ -93,12 +99,15 @@ uses
   Neato.DXV.SetTime,
   Neato.DXV.SetSystemMode,
   Neato.DXV.SetLCD,
-  Neato.DXV.SetLED,
   Neato.DXV.SetSchedule,
   Neato.DXV.SetWallFollower,
   Neato.DXV.SetDistanceCal,
   Neato.DXV.SetIEC,
   Neato.DXV.GetLifeStatLog,
+  Neato.DXV.SetMotor,
+  Neato.DXV.TestLDS,
+  Neato.DXV.SetBatteryTest,
+  Neato.DXV.SetLanguage,
 
   frame.DXV.GetAccel,
   frame.DXV.Playsound,
@@ -108,12 +117,16 @@ uses
   frame.DXV.SetTime,
   frame.DXV.SetSystemMode,
   frame.DXV.SetLCD,
-  frame.DXV.SetLED,
   frame.DXV.SetSchedule,
   frame.DXV.SetWallFollower,
   frame.DXV.SetDistanceCal,
   frame.DXV.SetIEC,
   frame.DXV.GetLifeStatLog,
+  frame.DXV.SetMotor,
+  frame.DXV.LidarView,
+  frame.DXV.TestLDS,
+  frame.DXV.SetBatteryTest,
+  frame.DXV.SetLanguage,
 
   {Everything else to run this}
   dmCommon,
@@ -130,6 +143,7 @@ uses
   System.Rtti,
   Generics.Collections,
 
+  math,
   FMX.Controls,
   FMX.Dialogs,
   FMX.Grid.Style,
@@ -154,7 +168,7 @@ uses
   FMXTee.Engine,
   FMXTee.Series,
   FMXTee.Procs,
-  FMXTee.Chart;
+  FMXTee.Chart, FMXTee.Series.Polar, FMXTee.Functions.Stats, FMXTee.Tools;
 
 type
 
@@ -180,7 +194,6 @@ type
     tabGetErr: TTabItem;
     tabTools: TTabItem;
     tabsToolOptions: TTabControl;
-    timer_LIDAR: TTimer;
     tabGetSensor: TTabItem;
     pnlStatusBar: trectangle;
     ColorBoxRX: TColorBox;
@@ -201,6 +214,7 @@ type
     tabClearFiles: TTabItem;
     lblNotSupported: TLabel;
     ShadowEffect1: TShadowEffect;
+    tabSetButton: TTabItem;
     tabRestoreDefaults: TTabItem;
     tabClean: TTabItem;
     tabDiagTest: TTabItem;
@@ -215,33 +229,10 @@ type
     tabGetCharger: TTabItem;
     tabSetFuelGauge: TTabItem;
     tabSetSystemMode: TTabItem;
-    tabLidar: TTabItem;
+    tabLidarStuff: TTabItem;
     tabsLidarOptions: TTabControl;
     tabGetLDSScan: TTabItem;
     tabLidarView: TTabItem;
-    sgLIDAR: TStringGrid;
-    StringColumn1: TStringColumn;
-    StringColumn2: TStringColumn;
-    StringColumn3: TStringColumn;
-    StringColumn4: TStringColumn;
-    StringColumn5: TStringColumn;
-    StringColumn6: TStringColumn;
-    StringColumn7: TStringColumn;
-    StringColumn8: TStringColumn;
-    StringColumn9: TStringColumn;
-    StringColumn10: TStringColumn;
-    pnlLidarTop: trectangle;
-    sbResetLIDARMapping: TSpinBox;
-    lblResetLIDARmapping: TLabel;
-    btnLidarStart: TButton;
-    chkChartShowLabels: TCheckBox;
-    chkLidarHideCalc: TCheckBox;
-    spinLidarDrawEvery: TSpinBox;
-    lblMarkerCount: TLabel;
-    rectLidarChart: trectangle;
-    plotLidar: TChart;
-    Series1: TPointSeries;
-    Series2: TPointSeries;
     tabSetBatteryTest: TTabItem;
     tabSetBrushControlParams: TTabItem;
     tabButtons: TTabItem;
@@ -261,10 +252,6 @@ type
     GlowEffect1: TGlowEffect;
     lblRobotModel: TLabel;
     ShadowEffect2: TShadowEffect;
-    tabAbout: TTabItem;
-    ShadowEffectmemoAbout: TShadowEffect;
-    RectangleaboutMemo: trectangle;
-    memoAbout: TMemo;
     tabDebug: TTabItem;
     tabsDebuggerOptions: TTabControl;
     tabDebugTerminal: TTabItem;
@@ -289,15 +276,22 @@ type
     lblPlaysoundIDX: TLabel;
     tabSetUserSettings: TTabItem;
     tabTestLDS: TTabItem;
+    tabSetWallFollower: TTabItem;
+    tabSetDistanceCal: TTabItem;
+    tabGetLifeStatLog: TTabItem;
+
     edIPAddress: TEdit;
     lblConnectIP: TLabel;
     edIPPort: TSpinBox;
     lblConnectPort: TLabel;
     swIPConnection: TSwitch;
     lblConnectIPEnabled: TLabel;
-    tabSetWallFollower: TTabItem;
-    tabSetDistanceCal: TTabItem;
-    tabGetLifeStatLog: TTabItem;
+    Rectangle1: trectangle;
+    tabAbout: TTabItem;
+    ShadowEffectmemoAbout: TShadowEffect;
+    RectangleaboutMemo: trectangle;
+    memoAbout: TMemo;
+    tabSetLanguage: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -307,19 +301,12 @@ type
     procedure chkTestModeChange(Sender: TObject);
 
     procedure swConnectChange(Sender: TObject);
-
-    procedure timer_LIDARTimer(Sender: TObject);
     procedure tabControlChange(Sender: TObject);
     procedure tabClickRepaint(Sender: TObject);
     procedure btnDebugRawDataClearClick(Sender: TObject);
-    procedure btnLidarStartClick(Sender: TObject);
-    procedure chkChartShowLabelsChange(Sender: TObject);
-    procedure spinLidarDrawEveryChange(Sender: TObject);
-    procedure chkLidarHideCalcChange(Sender: TObject);
 
   private
 
-    fLIDARCounter: single;
     fPlaySoundAborted: Boolean;
 
     // fActiveTabControl: TTabControl;
@@ -355,7 +342,8 @@ type
     DGetWifiInfo: TframeDGetWifiInfo;
     DGetWifiStatus: TframeDGetWifiStatus;
     DGetSensors: TframeDGetSensors;
-
+    DSetButton: TframeDSetButton;
+    DClean: TframeDClean;
     // XVSeries Frames
 
     XVGetCharger: TframeXVGetCharger;
@@ -371,6 +359,7 @@ type
     XVGetSchedule: TframeXVGetSchedule;
     XVGetTime: TframeXVGetTime;
     XVClean: TFrameXVClean;
+    XVSetLED: TframeXVSetLED;
 
     // common tabs
     DXVPlaySound: TframeDXVPlaySound;
@@ -381,12 +370,16 @@ type
     DXVSetTime: TframeDXVSetTime;
     DXVSetSystemMode: TframeDXVSetSystemMode;
     DXVSetLCD: TframeDXVSetLCD;
-    DXVSetLED: TframeDXVSetLED;
     DXVSetSchedule: TframeXVSetSchedule;
     DXVSetWallFollower: TframeDXVSetWallFollower;
     DXVSetDistanceCal: TframeDXVSetDistanceCal;
     DXVSetIEC: TframeDXVSetIEC;
     DXVGetLifeStatLog: TframeDXVGetLifeStatLog;
+    DXVSetMotor: TframeDXVSetMotor;
+    DXVLidarView: TframeDXVLidarView;
+    DXVTestLDS: TframeDXVTestLDS;
+    DXVSetBatteryTest: TframeDXVSetBatteryTest;
+    DXVSetLanguage: TframeDXVSetLanguage;
 
     Procedure StageTabs; // create and place our tabs depending on model
     procedure ResetTabs; // Reset tab states
@@ -408,7 +401,6 @@ var
 begin
 
   dm.chkTestMode := chkTestMode;
-  chkLidarHideCalc.IsChecked := true;
 
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
   memoAbout.Lines.Add('');
@@ -459,7 +451,6 @@ begin
   dm.com.FComSignalDSR.ColorBox := self.ColorBoxDSR;
   dm.com.FComSignalTX.ColorBox := self.ColorBoxTX;
   dm.com.fmemoDebug := memoDebug;
-
   for idx := 0 to self.ComponentCount - 1 do
   begin
     if components[idx] is TTabItem then
@@ -471,6 +462,8 @@ begin
       TTabControl(components[idx]).ActiveTab := nil;
     end;
   end;
+
+  dmCommon.onTabChangeEvent := tabControlChange; // so frames with tabs can piggy back off this
 
   // make sure we are at the first tab to do connection
   // otherwise looks dumb with nothing loaded up in view
@@ -632,36 +625,6 @@ begin
   neatoSettings.AutoDetectNeato := chkAutoDetect.IsChecked;
 end;
 
-procedure TfrmMain.chkChartShowLabelsChange(Sender: TObject);
-begin
-  plotLidar.Series[0].Marks.Visible := chkChartShowLabels.IsChecked;
-  plotLidar.Series[0].Marks.DrawEvery := round(spinLidarDrawEvery.Value);
-  spinLidarDrawEvery.Enabled := chkChartShowLabels.IsChecked;
-end;
-
-procedure TfrmMain.chkLidarHideCalcChange(Sender: TObject);
-begin
-  case chkLidarHideCalc.IsChecked of
-    true:
-      begin
-        sgLIDAR.Visible := false;
-        plotLidar.Width := plotLidar.Width + 100;
-        plotLidar.height := plotLidar.height + 130;
-      end;
-    false:
-      begin
-        plotLidar.Width := plotLidar.Width - 100;
-        plotLidar.height := plotLidar.height - 130;
-        sgLIDAR.Visible := true;
-      end;
-  end;
-end;
-
-procedure TfrmMain.spinLidarDrawEveryChange(Sender: TObject);
-begin
-  plotLidar.Series[0].Marks.DrawEvery := round(spinLidarDrawEvery.Value);
-end;
-
 procedure TfrmMain.chkTestModeChange(Sender: TObject);
 begin
   if assigned(CurrentTimer) then
@@ -682,266 +645,6 @@ procedure TfrmMain.tabClickRepaint(Sender: TObject);
 begin
   if (Sender) is TTabItem then
     TTabItem(Sender).Repaint;
-end;
-
-procedure TfrmMain.timer_LIDARTimer(Sender: TObject);
-
-  procedure MapLIDAR;
-
-  Const
-    D2R = 0.017453293;
-    // PI divided by 180 degrees, multiply by this to get angle in degrees expressed in radians
-    betaDegree = 82;
-    // (degree) angle (for geometric correction) between laser beam and line parallel to the image plane
-    bmm = 25; // (mm) distance (for geometric correction) between the rotation center and laser source along line parallel to the image plane
-
-    Function CalcXCorrection(fiDegree, Distance: double): double;
-    // Calculate x - add this to geometric correction to get object coordinates
-    begin
-      result := -SIN(fiDegree * D2R) * Distance;
-    end;
-
-    Function CalcYCorrection(Degree, Distance: double): double;
-    // Calculate y - add this to geometric correction to get object coordinates
-    begin
-      result := Cos(Degree * D2R) * Distance;
-    end;
-
-    function CalcAlfaX(fiDegree: double): double;
-    // Calculate x geometric correction - add this to x' and y' to get object coordinates
-    var
-      alfa: double;
-    begin
-      alfa := 180 - betaDegree + fiDegree;
-      result := bmm * SIN(alfa * D2R);
-    end;
-
-    function CalcAlfaY(fiDegree: double): double;
-    // Calculate y geometric correction - add this to x' and y' to get object coordinates
-    var
-      alfa: double;
-    begin
-      alfa := 180 - betaDegree + fiDegree;
-      result := -bmm * Cos(alfa * D2R);
-    end;
-
-    function CalcFinalX(X1: double; X2: double): double; // Calculate x - object coordinates
-    begin
-      result := X1 + X2;
-    end;
-
-    function CalcFinalY(Y1: double; Y2: double): double; // Calculate y - object coordinates
-    begin
-      result := Y1 + Y2;
-    end;
-
-  var
-
-    RowIDX: integer; // loop variable
-
-    AngleInDegrees: double;
-    DistInMM: double;
-    intensity: cardinal;
-    errorcode: integer;
-
-    Xo: double; // X original calc
-    Yo: double; // Y original calc
-
-    Xc: double; // X 2nd calc (alfa?)
-    Yc: double; // Y 2nd calc (alfa?)
-
-    Xf: double; // X 3rd final calc
-    Yf: double; // Y 3rd final calc
-
-    xPixels, yPixels: double;
-    PlotCenterOrigin: TPointF;
-    newPlotPoint: TPointF;
-    plotSpot: TRectF;
-
-    scaleByValue: double;
-    plotSpotSize: byte;
-
-    scalebyX: double;
-    scalebyY: double;
-
-  begin
-
-    scaleByValue := 0.16; // don't know what to do here
-    plotSpotSize := 4; // this guy too
-
-    // xPixels := plotLidar.Width / 4;
-    // Contain graph width within a quarter of the grid width (actually half because of neg values)
-    // yPixels := plotLidar.Height / 4;
-    // Contain graph height within a quarter of the grid height (actually half because of neg values)
-    // PlotCenterOrigin := PointF(plotLidar.Width / 2, plotLidar.Height / 2);
-    // Calculate the center point of the plot grid
-
-    plotLidar.BeginUpdate;
-    sgLIDAR.BeginUpdate;
-
-    if sbResetLIDARMapping.Value > 0 then
-    begin
-      if round(fLIDARCounter) >= round(sbResetLIDARMapping.Value) then
-      begin
-        // plotLidar.series.Items[0].Points.Clear;
-        plotLidar.Series[0].Clear;
-        plotLidar.Series[1].Clear;
-        fLIDARCounter := 0;
-      end;
-    end;
-
-    for RowIDX := 0 to sgLIDAR.RowCount - 1 do
-    begin
-
-      AngleInDegrees := strtoint(sgLIDAR.Cells[0, RowIDX]);
-      DistInMM := strtoint(sgLIDAR.Cells[1, RowIDX]);
-      intensity := strtoint(sgLIDAR.Cells[2, RowIDX]);
-      errorcode := strtoint(sgLIDAR.Cells[3, RowIDX]);
-
-      // if errorcode <> 0 then   continue;
-
-      // Calculate x' and y' - add this to geometric correction to get object coordinates
-      Xo := CalcXCorrection(AngleInDegrees, DistInMM);
-      Yo := CalcYCorrection(AngleInDegrees, DistInMM);
-
-      sgLIDAR.Cells[4, RowIDX] := Xo.ToString;
-      sgLIDAR.Cells[5, RowIDX] := Yo.ToString;
-
-      // Calculate x and y geometric correction - add this to x' and y' to get object coordinates
-      Xc := CalcAlfaX(AngleInDegrees);
-      Yc := CalcAlfaY(AngleInDegrees);
-
-      sgLIDAR.Cells[6, RowIDX] := Xc.ToString;
-      sgLIDAR.Cells[7, RowIDX] := Yc.ToString;
-
-      // Calculate x and y - object coordinates
-
-      Xf := CalcFinalX(Xo, Xc);
-      Yf := CalcFinalY(Yo, Yc);
-
-      sgLIDAR.Cells[8, RowIDX] := Xf.ToString;
-      sgLIDAR.Cells[9, RowIDX] := Yf.ToString;
-
-      newPlotPoint.X := plotLidar.position.X + PlotCenterOrigin.X + (Xf * scaleByValue);
-      newPlotPoint.Y := plotLidar.position.Y + PlotCenterOrigin.Y + (Yf * scaleByValue);
-
-      if (newPlotPoint.X > 1000) or (newPlotPoint.X < -1000) then
-        continue;
-
-      if (newPlotPoint.Y > 1000) or (newPlotPoint.Y < -1000) then
-        continue;
-
-      { if newPlotPoint.X > maxx then
-        maxx := newPlotPoint.X;
-
-        if newPlotPoint.Y > maxy then
-        maxy := newPlotPoint.Y;
-
-        if newPlotPoint.X < minx then
-        minx := newPlotPoint.X;
-
-        if newPlotPoint.Y < miny then
-        miny := newPlotPoint.Y;
-      }
-      // caption := 'MaxX = '+maxx.ToString + ' MaxY = '+maxy.ToString + '   ||   MinX = '+minx.ToString+' MinY = '+miny.ToString;
-
-      if errorcode > 0 then
-        plotLidar.Series[1].AddXY(newPlotPoint.X, newPlotPoint.Y, '', talphacolorrec.Red)
-        // plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y)
-      else
-        plotLidar.Series[0].AddXY(newPlotPoint.X, newPlotPoint.Y, '', talphacolorrec.green);
-      // plotLidar.series.Items[0].AddXYPoint(newPlotPoint.X, newPlotPoint.Y);
-
-      if errorcode > 0 then
-        intensity := 99999;
-
-      case intensity of
-        0 .. 511: // green
-          intensity := talphacolorrec.green;
-        512 .. 1023:
-          intensity := talphacolorrec.Yellow;
-        1024 .. 1535:
-          intensity := talphacolorrec.Blue;
-        1536 .. 2047:
-          intensity := talphacolorrec.Magenta;
-        2048 .. 2559:
-          intensity := talphacolorrec.Orange;
-        2560 .. 99999:
-          intensity := talphacolorrec.Red;
-      end;
-
-    end;
-
-    plotLidar.EndUpdate;
-    sgLIDAR.EndUpdate;
-
-  end;
-
-var
-  pReadData: TStringList;
-begin
-
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tabLidarView) then
-  begin
-    btnLidarStart.IsPressed := false;
-    self.btnLidarStartClick(Sender);
-    timer_LIDAR.Enabled := false;
-    exit;
-  end;
-
-  pReadData := TStringList.Create; // LIDAR will just use a simple TStringList name/Value pair to work by
-
-  pReadData.Text := trim(dm.com.SendCommand('GetLDSScan'));
-
-  memoDebug.BeginUpdate;
-  memoDebug.Lines.Add(pReadData.Text);
-  memoDebug.GoToTextEnd;
-  memoDebug.EndUpdate;
-
-  fLIDARCounter := fLIDARCounter + 1;
-
-  if pReadData.Count = 360 + 3 then // 360 data, plus header row, plus last row showing rotation speed
-  begin
-    pReadData.Delete(0); // delete first row
-    pReadData.Delete(0); // delete first row again
-    pReadData.Delete(360); // delete first row again
-    LoadCSV(pReadData.Text, sgLIDAR);
-    MapLIDAR;
-  end;
-
-  pReadData.Free;
-
-end;
-
-procedure TfrmMain.btnLidarStartClick(Sender: TObject);
-begin
-
-  if NOT btnLidarStart.IsPressed then
-  begin
-    timer_LIDAR.Enabled := false;
-    dm.com.SendCommand('Setldsrotation off');
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation off');
-    sleep(250);
-    btnLidarStart.ResetFocus;
-    btnLidarStart.Text := 'Start';
-  end
-  else
-  begin
-
-    chkTestMode.IsChecked := true;
-    sleep(250);
-    chkTestMode.IsChecked := true;
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation on');
-    sleep(250);
-    dm.com.SendCommand('Setldsrotation on');
-    sleep(250);
-    timer_LIDAR.Enabled := true;
-    btnLidarStart.ResetFocus;
-    btnLidarStart.Text := 'Stop';
-  end;
-
 end;
 
 /// ///////////////////////////////////////////////////////////////
@@ -965,7 +668,7 @@ end;
 procedure TfrmMain.comConnect;
 var
   idx: integer;
-  r: string;
+  R: string;
 
   gGetWifiStatusD: tGetWifiStatusD;
   gGetVersionD: tGetVersionD;
@@ -990,8 +693,8 @@ begin
       if not dm.com.open(cbCOM.Items[idx]) then
         continue;
 
-      r := dm.com.SendCommand('HELP');
-      if pos('Help', r) > 0 then
+      R := dm.com.SendCommand('HELP');
+      if pos('Help', R) > 0 then
       begin
         cbCOM.ItemIndex := idx;
         break;
@@ -1012,29 +715,41 @@ begin
     ReadData := TStringList.Create;
     dm.com.open(cbCOM.Items[cbCOM.ItemIndex]);
 
-    r := dm.com.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
+    R := dm.com.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
 
-    if pos('BotVac', r) > 0 then
-      NeatoType := neatoBotVac
-    else if pos('XV', r) > 0 then
-      NeatoType := neatoXV;
-
-    if (r <> '') and (NeatoType = neatoBotVac) then
+    if pos('BotVac', R) > 0 then
     begin
-      r := dm.com.SendCommand(sGetWifiStatus);
+      if (pos('BotVacD3', R) > 0) or (pos('BotVacD4', R) > 0) or (pos('BotVacD5', R) > 0) or (pos('BotVacD6', R) > 0) or
+        (pos('BotVacD7', R) > 0) then
+      begin
+        neatoType := BotVacConnected;
+      end
+      else
+        neatoType := BotVac;
+
+    end
+    else if pos('XV', R) > 0 then
+      neatoType := XV;
+
+    if (R <> '') and (neatoType in [BotVac, BotVacConnected]) then
+    begin
+      R := dm.com.SendCommandAndWaitForValue(sGetWifiStatus,5000,^Z,1);
 
       gGetWifiStatusD := tGetWifiStatusD.Create;
-      ReadData.Text := r;
+      ReadData.Text := R;
 
       if gGetWifiStatusD.ParseText(ReadData) then
         lblSetupRobotName.Text := gGetWifiStatusD.Robot_Name;
 
       freeandnil(gGetWifiStatusD);
 
-      r := dm.com.SendCommand(sGetVersion);
+      dm.com.Serial.PurgeInput;
+      dm.COM.Serial.PurgeOutput;
+
+      R := dm.com.SendCommandAndWaitForValue(sGetversion,5000,^Z,1);
 
       gGetVersionD := tGetVersionD.Create;
-      ReadData.Text := r;
+      ReadData.Text := R;
 
       if gGetVersionD.ParseText(ReadData) then
       begin
@@ -1080,10 +795,10 @@ begin
       freeandnil(gGetVersionD);
     end;
 
-    if (r <> '') and (NeatoType = neatoXV) then
+    if (R <> '') and (neatoType = XV) then
     begin
       gGetVersionXV := tGetVersionXV.Create;
-      ReadData.Text := r;
+      ReadData.Text := R;
 
       if gGetVersionXV.ParseText(ReadData) then
       begin
@@ -1141,22 +856,31 @@ begin
   dm.com.Serial.EnumComDevices(comList);
   cbCOM.BeginUpdate;
   cbCOM.Items.Assign(comList);
-  cbCOM.EndUpdate;
+  cbCOM.endupdate;
   comList.Free;
   tabsMain.Enabled := true;
 end;
 
 procedure TfrmMain.tabControlChange(Sender: TObject);
 var
-  timerStarter: TTimer;
+  tabItem: TTabItem;
+
+  procedure SetNotSupported;
+  begin
+    lblNotSupported.Parent := TTabControl(Sender).ActiveTab;
+    lblNotSupported.Visible := true;
+  end;
+
 begin
 
   dm.ActiveTab := TTabControl(Sender).ActiveTab;
 
   TTabControl(Sender).BeginUpdate;
 
-  timerStarter := nil;
   StopTimers;
+  timerStarter := nil;
+
+  lblNotSupported.Visible := false;
 
   if TTabControl(Sender) = tabsMain then
   begin
@@ -1174,20 +898,22 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetCharger then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVac, BotVacConnected:
         begin
           timerStarter := DGetCharger.timer_GetData;
           XVGetCharger.Visible := false;
           DGetCharger.Visible := true;
         end;
-      neatoXV:
+      XV:
         begin
           timerStarter := XVGetCharger.timer_GetData;
           DGetCharger.Visible := false;
           XVGetCharger.Visible := true;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetAccel then
   begin
@@ -1196,223 +922,241 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetAnalogSensors then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
-          timerStarter := DGetAnalogSensors.timer_GetData;
           XVGetAnalogSensors.Visible := false;
           DGetAnalogSensors.Visible := true;
+          DGetAnalogSensors.Check; // toggles things based on BotVac type
+          timerStarter := DGetAnalogSensors.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           timerStarter := XVGetAnalogSensors.timer_GetData;
           DGetAnalogSensors.Visible := false;
           XVGetAnalogSensors.Visible := true;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetDigitalSensors then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           XVGetDigitalSensors.Visible := false;
           DGetDigitalSensors.Visible := true;
           timerStarter := DGetDigitalSensors.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           DGetDigitalSensors.Visible := false;
           XVGetDigitalSensors.Visible := true;
           timerStarter := XVGetDigitalSensors.timer_GetData;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetSensor then
-    case NeatoType of
-      neatoBotVac:
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
-          lblNotSupported.Visible := false;
           DGetSensors.Visible := true;
           timerStarter := DGetSensors.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           DGetSensors.Visible := false;
-          lblNotSupported.Parent := tabGetSensor;
-          lblNotSupported.Visible := true;
+          SetNotSupported;
         end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetMotors then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           DGetMotors.Visible := true;
           XVGetMotors.Visible := false;
           timerStarter := DGetMotors.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           XVGetMotors.Visible := true;
           DGetMotors.Visible := false;
           timerStarter := XVGetMotors.timer_GetData;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetButtons then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           DGetButtons.Visible := true;
           XVGetButtons.Visible := false;
           timerStarter := DGetButtons.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           XVGetButtons.Visible := true;
           DGetButtons.Visible := false;
           timerStarter := XVGetButtons.timer_GetData;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetCalInfo then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           DGetCalInfo.Visible := true;
+          DGetCalInfo.Check; // toggles things based on BotVac type
           XVGetCalInfo.Visible := false;
           timerStarter := DGetCalInfo.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           XVGetCalInfo.Visible := true;
           DGetCalInfo.Visible := false;
           timerStarter := XVGetCalInfo.timer_GetData;
         end;
     end;
-
-  /// ///////////////////////////////////////////////////////////////////////////////////////////////
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetWarranty then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           DGetWarranty.Visible := true;
           XVGetWarranty.Visible := false;
           timerStarter := DGetWarranty.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           XVGetWarranty.Visible := true;
           DGetWarranty.Visible := false;
           timerStarter := XVGetWarranty.timer_GetData;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetErr then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           DGetErr.Visible := true;
           XVGetErr.Visible := false;
           timerStarter := DGetErr.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           XVGetErr.Visible := true;
           DGetErr.Visible := false;
           timerStarter := XVGetErr.timer_GetData;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetVersion then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           DGetVersion.Visible := true;
           XVGetVersion.Visible := false;
           timerStarter := DGetVersion.timer_GetData;
         end;
-      neatoXV:
+      XV:
         begin
           XVGetVersion.Visible := true;
           DGetVersion.Visible := false;
           timerStarter := XVGetVersion.timer_GetData;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetUsage then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected:
         begin
           DGetUsage.Visible := true;
-          lblNotSupported.Visible := false;
           timerStarter := DGetUsage.timer_GetData;
         end;
-      neatoXV:
+      BotVac, XV:
         begin
-          DGetVersion.Visible := false;
-          lblNotSupported.Parent := tabGetUsage;
-          lblNotSupported.Visible := true;
+          DGetUsage.Visible := false;
+          SetNotSupported;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetUserSettings then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected:
         begin
           DGetUserSettings.Visible := true;
-          lblNotSupported.Visible := false;
           timerStarter := DGetUserSettings.timer_GetData;
         end;
-      neatoXV:
+      BotVac, XV:
         begin
           DGetUserSettings.Visible := false;
-          lblNotSupported.Parent := tabGetUserSettings;
-          lblNotSupported.Visible := true;
+          SetNotSupported;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabGetSchedule then
   begin
-    lblNotSupported.Visible := false;
-    XVGetSchedule.Visible := true;
-    timerStarter := XVGetSchedule.timer_GetData;
+    case neatoType of
+      BotVacConnected: // there is a GetSchedule but appears not usable
+        begin
+          XVGetSchedule.Visible := false;
+          SetNotSupported;
+        end;
+      BotVac, XV:
+        begin
+          XVGetSchedule.Visible := true;
+          timerStarter := XVGetSchedule.timer_GetData;
+        end;
+    end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetTime then
   begin
-    lblNotSupported.Visible := false;
     XVGetTime.Visible := true;
     timerStarter := XVGetTime.timer_GetData;
   end;
 
   if TTabControl(Sender).ActiveTab = tabClean then
-    case NeatoType of
-      neatoBotVac:
+  begin
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
           XVClean.Visible := false;
-          lblNotSupported.Parent := tabClean;
-          lblNotSupported.Visible := true;
+          DClean.Visible := true;
+          DClean.Check;
         end;
-      neatoXV:
+      XV:
         begin
+          DClean.Visible := false;
           XVClean.Visible := true;
           XVClean.Check;
-          lblNotSupported.Visible := false;
         end;
     end;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabPlaySound then
   begin
     DXVPlaySound.Visible := true;
     DXVPlaySound.Check;
-  end;
-
-  if TTabControl(Sender).ActiveTab = tabGetLDSScan then
-  begin
-    DXVGetLDSScan.Visible := true;
-    timerStarter := DXVGetLDSScan.timer_GetData;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetFuelGauge then
@@ -1432,27 +1176,77 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetLCD then
   begin
-    DXVSetLCD.Visible := true;
+    case neatoType of
+      BotVacConnected, BotVac: // there IS a SetLCD available, but can't figure it out as no HELP for it
+        begin
+          DXVSetLCD.Visible := false;
+          SetNotSupported;
+        end;
+      XV:
+        begin
+          DXVSetLCD.Visible := true;
+        end;
+    end;
   end;
 
-  if TTabControl(Sender).ActiveTab = tabSetLED then
+  if TTabControl(Sender).ActiveTab = tabSetLED then // BotVac Connected D3-D7 has SetLED, needs written.
   begin
-    DXVSetLED.Visible := true;
+    case neatoType of
+      BotVacConnected: // there IS a setLED but can't seem to get anything to respond
+        begin
+          XVSetLED.Visible := FALSE;
+          SetNotSupported;
+        end;
+      BotVac, XV:
+        begin
+          XVSetLED.Visible := true; // BotVac and XV are similar enough to share the XV code
+        end;
+    end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetSchedule then
   begin
-    DXVSetSchedule.Visible := true;
+    case neatoType of
+      BotVacConnected: // there IS a SetSchedule for D3-D7 but it appears not used anymore
+        begin
+          DXVSetSchedule.Visible := false;
+          SetNotSupported;
+        end;
+      BotVac, XV:
+        begin
+          DXVSetSchedule.Visible := true;
+        end;
+    end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetWallFollower then
   begin
-    DXVSetWallFollower.Visible := true;
+    case neatoType of
+      BotVac, BotVacConnected:
+        begin
+          DXVSetWallFollower.Visible := false;
+          SetNotSupported;
+        end;
+      XV:
+        begin
+          DXVSetWallFollower.Visible := true;
+        end;
+    end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetDistanceCal then
   begin
-    DXVSetDistanceCal.Visible := true;
+    case neatoType of
+      BotVac, BotVacConnected:
+        begin
+          DXVSetDistanceCal.Visible := false;
+          SetNotSupported;
+        end;
+      XV:
+        begin
+          DXVSetDistanceCal.Visible := true;
+        end;
+    end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetIEC then
@@ -1462,98 +1256,187 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabGetLifeStatLog then
   begin
-    DXVGetLifeStatLog.Check;
-    DXVGetLifeStatLog.Visible := true;
+    case neatoType of
+      BotVac, BotVacConnected:
+        begin
+          DXVGetLifeStatLog.Visible := false;
+          SetNotSupported;
+        end;
+      XV:
+        begin
+          DXVGetLifeStatLog.Check;
+          DXVGetLifeStatLog.Visible := true;
+        end;
+    end;
   end;
+
+  if TTabControl(Sender).ActiveTab = tabSetMotor then
+    if assigned(DXVSetMotor) then
+    begin
+      DXVSetMotor.Check;
+      DXVSetMotor.Visible := true;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabGetLDSScan then
+  begin
+    DXVGetLDSScan.Check;
+    DXVGetLDSScan.Visible := true;
+    timerStarter := DXVGetLDSScan.timer_GetData;
+  end;
+
+  if TTabControl(Sender).ActiveTab = tabLidarView then
+    if assigned(DXVLidarView) then
+    begin
+      DXVLidarView.Check;
+      DXVLidarView.Visible := true;
+      timerStarter := DXVLidarView.timer_GetData;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabTestLDS then
+    if assigned(DXVTestLDS) then
+    begin
+      DXVTestLDS.Visible := true;
+      timerStarter := DXVTestLDS.timer_GetData;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabSetBatteryTest then
+    if assigned(DXVSetBatteryTest) then
+    begin
+      DXVSetBatteryTest.Visible := true;
+    end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabClearFiles then
-    case NeatoType of
-      neatoBotVac:
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
-          DClearFiles.Check;
-          DClearFiles.Visible := true;
-          lblNotSupported.Visible := false;
+          if assigned(DClearFiles) then
+          begin
+            DClearFiles.Check;
+            DClearFiles.Visible := true;
+          end;
         end;
-      neatoXV:
+      XV:
         begin
-          DClearFiles.Visible := false;
-          lblNotSupported.Parent := tabClearFiles;
-          lblNotSupported.Visible := true;
+          if assigned(DClearFiles) then
+            DClearFiles.Visible := false;
+
+          SetNotSupported;
         end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabRestoreDefaults then
-    case NeatoType of
-      neatoBotVac:
+    case neatoType of
+      BotVacConnected, BotVac:
         begin
-          XVRestoreDefaults.Visible := false;
-          lblNotSupported.Parent := tabRestoreDefaults;
-          lblNotSupported.Visible := true;
+          if assigned(XVRestoreDefaults) then
+            XVRestoreDefaults.Visible := false;
+
+          SetNotSupported;
         end;
-      neatoXV:
+      XV:
         begin
-          lblNotSupported.Visible := false;
-          XVRestoreDefaults.Check;
-          XVRestoreDefaults.Visible := true;
+          if assigned(XVRestoreDefaults) then
+          begin
+            XVRestoreDefaults.Check;
+            XVRestoreDefaults.Visible := true;
+          end;
         end;
     end;
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
 
   if TTabControl(Sender).ActiveTab = tabGetWifiInfo then
-    case NeatoType of
-      neatoBotVac:
+    case neatoType of
+      BotVacConnected:
         begin
-          DGetWifiInfo.Check;
-          DGetWifiInfo.Visible := true;
-          lblNotSupported.Visible := false;
+          if assigned(DGetWifiInfo) then
+          begin
+            DGetWifiInfo.Check;
+            DGetWifiInfo.Visible := true;
+          end;
         end;
-      neatoXV:
+      BotVac, XV:
         begin
-          DGetWifiInfo.Visible := false;
-          lblNotSupported.Parent := tabGetWifiInfo;
-          lblNotSupported.Visible := true;
+          if assigned(DGetWifiInfo) then
+            DGetWifiInfo.Visible := false;
+          SetNotSupported;
         end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetWifiStatus then
-    case NeatoType of
-      neatoBotVac:
+    case neatoType of
+      BotVacConnected:
         begin
-          DGetWifiStatus.Visible := true;
-          lblNotSupported.Visible := false;
-          timerStarter := DGetWifiStatus.timer_GetData;
+          if assigned(DGetWifiStatus) then
+          begin
+            DGetWifiStatus.Visible := true;
+            timerStarter := DGetWifiStatus.timer_GetData;
+          end;
         end;
-      neatoXV:
+      BotVac, XV:
         begin
-          DGetWifiStatus.Visible := false;
-          lblNotSupported.Parent := tabGetWifiStatus;
-          lblNotSupported.Visible := true;
+          if assigned(DGetWifiStatus) then
+            DGetWifiStatus.Visible := false;
+          SetNotSupported;
         end;
     end;
 
   if TTabControl(Sender).ActiveTab = tabDebugTerminal then
   begin
-    DXVTerminal.Visible := true;
-
-    if DXVTerminal.edDebugTerminalSend.CanFocus then
-      DXVTerminal.edDebugTerminalSend.SetFocus;
-
-    timerStarter := DXVTerminal.timer_GetData;
+    if assigned(DXVTerminal) then
+    begin
+      DXVTerminal.Visible := true;
+      if DXVTerminal.edDebugTerminalSend.CanFocus then
+        DXVTerminal.edDebugTerminalSend.SetFocus;
+      timerStarter := DXVTerminal.timer_GetData;
+    end;
   end;
 
-  /// ///////////////////////////////////////////////////////////////////////////////////////////////
+  if TTabControl(Sender).ActiveTab = tabSetLanguage then
+    case neatoType of
+      BotVac:
+        begin
+          if assigned(DXVSetLanguage) then
+          begin
+            DXVSetLanguage.Visible := true;
+          end;
+        end;
+      BotVacConnected, XV:
+        begin
+          DXVSetLanguage.Visible := false;
+          SetNotSupported;
+        end;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabSetButton then
+    case neatoType of
+      BotVac,BotVacConnected: //maybe the connected ?
+        begin
+          if assigned(DSetButton) then
+          begin
+            DSetButton.check;
+            DSetButton.Visible := true;
+          end;
+        end;
+      XV:
+        begin
+          DSetButton.Visible := false;
+          SetNotSupported;
+        end;
+    end;
+
 
   if assigned(timerStarter) then
     timerStarter.Enabled := true;
 
-  TTabControl(Sender).EndUpdate;
+  TTabControl(Sender).endupdate;
 end;
 
 procedure TfrmMain.StageTabs;
 begin
   // create a whole bunch of tabs!
+  dm.log := self.memoDebug;
 
   DGetCharger := TframeDGetCharger.Create(tabGetCharger);
   DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel);
@@ -1584,6 +1467,8 @@ begin
   XVGetSchedule := TframeXVGetSchedule.Create(tabGetSchedule);
   XVGetTime := TframeXVGetTime.Create(tabGetTime);
   XVClean := TFrameXVClean.Create(tabClean);
+  XVSetLED := TframeXVSetLED.Create(tabSetLED);
+
   DXVPlaySound := TframeDXVPlaySound.Create(tabPlaySound);
   DXVTerminal := TframeDXVTerminal.Create(tabDebugTerminal);
   DXVGetLDSScan := TframeDXVGetLDSScan.Create(tabGetLDSScan);
@@ -1591,12 +1476,18 @@ begin
   DXVSetTime := TframeDXVSetTime.Create(tabSetTime);
   DXVSetSystemMode := TframeDXVSetSystemMode.Create(tabSetSystemMode);
   DXVSetLCD := TframeDXVSetLCD.Create(tabSetLCD);
-  DXVSetLED := TframeDXVSetLED.Create(tabSetLED);
   DXVSetSchedule := TframeXVSetSchedule.Create(tabSetSchedule);
   DXVSetWallFollower := TframeDXVSetWallFollower.Create(tabSetWallFollower);
   DXVSetDistanceCal := TframeDXVSetDistanceCal.Create(tabSetDistanceCal);
   DXVSetIEC := TframeDXVSetIEC.Create(tabSetIEC);
   DXVGetLifeStatLog := TframeDXVGetLifeStatLog.Create(tabGetLifeStatLog);
+  DXVSetMotor := TframeDXVSetMotor.Create(tabSetMotor);
+  DXVLidarView := TframeDXVLidarView.Create(tabLidarView);
+  DXVTestLDS := TframeDXVTestLDS.Create(tabTestLDS);
+  DXVSetBatteryTest := TframeDXVSetBatteryTest.Create(tabSetBatteryTest);
+  DXVSetLanguage := TframeDXVSetLanguage.Create(tabSetLanguage);
+  DSetButton := TframeDSetButton.Create(tabSetButton);
+  DClean := TframeDClean.Create(tabClean);
 end;
 
 procedure TfrmMain.ResetTabs;

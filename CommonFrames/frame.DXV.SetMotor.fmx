@@ -1,0 +1,459 @@
+inherited frameDXVSetMotor: TframeDXVSetMotor
+  HitTest = False
+  Size.Width = 939.000000000000000000
+  Size.Height = 515.000000000000000000
+  inherited timer_getdata: TTimer
+    OnTimer = timer_getdataTimer
+    Left = 832
+    Top = 160
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 484.000000000000000000
+    Size.Width = 919.000000000000000000
+    TabOrder = 56
+  end
+  object circleBody: TCircle
+    Fill.Kind = Gradient
+    Fill.Gradient.Points = <
+      item
+        Color = xFF0F417E
+        Offset = 0.000000000000000000
+      end
+      item
+        Color = claWhite
+        Offset = 1.000000000000000000
+      end>
+    Fill.Gradient.StartPosition.X = 1.000000000000000000
+    Fill.Gradient.StartPosition.Y = 0.850103735923767100
+    Fill.Gradient.StopPosition.Y = 0.149896234273910500
+    Position.X = 8.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 265.000000000000000000
+    Size.PlatformDefault = False
+    object btnForward: TCircle
+      Fill.Color = xFF10A0CF
+      Position.X = 104.000000000000000000
+      Size.Width = 89.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = btnForwardClick
+      OnMouseEnter = btnCircleMouseEnter
+      OnMouseLeave = btnCircleMouseLeave
+      object lblForward: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        Size.Width = 89.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 48.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = #8593
+        TabOrder = 0
+      end
+    end
+    object btnReverse: TCircle
+      Fill.Color = xFF10A0CF
+      Position.X = 104.000000000000000000
+      Position.Y = 192.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = btnReverseClick
+      OnMouseEnter = btnCircleMouseEnter
+      OnMouseLeave = btnCircleMouseLeave
+      object lblReverse: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        Size.Width = 81.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 48.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = #8595
+        TabOrder = 0
+      end
+    end
+    object btnLeft: TCircle
+      Fill.Color = xFF10A0CF
+      Position.X = 16.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = btnLeftClick
+      OnMouseEnter = btnCircleMouseEnter
+      OnMouseLeave = btnCircleMouseLeave
+      object lblLeft: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        RotationAngle = 150.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 48.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = #10553
+        TabOrder = 0
+      end
+    end
+    object btnLeftUTurn: TCircle
+      Fill.Color = xFF10A0CF
+      Position.X = 16.000000000000000000
+      Position.Y = 144.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = btnLeftUTurnClick
+      OnMouseEnter = btnCircleMouseEnter
+      OnMouseLeave = btnCircleMouseLeave
+      object lblLeftUTurn: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        Size.Width = 97.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 48.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = #10226
+        TabOrder = 0
+      end
+    end
+    object btnRightUTurn: TCircle
+      Fill.Color = xFF10A0CF
+      Position.X = 184.000000000000000000
+      Position.Y = 144.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = btnRightUTurnClick
+      OnMouseEnter = btnCircleMouseEnter
+      OnMouseLeave = btnCircleMouseLeave
+      object lblRightUTurn: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        Size.Width = 97.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 48.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = #10227
+        TabOrder = 0
+      end
+    end
+    object btnRight: TCircle
+      Fill.Color = xFF10A0CF
+      Position.X = 184.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = btnRightClick
+      OnMouseEnter = btnCircleMouseEnter
+      OnMouseLeave = btnCircleMouseLeave
+      object lblRight: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        RotationAngle = 210.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 73.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 48.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = #10552
+        TabOrder = 0
+      end
+    end
+    object shapeD: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Margins.Left = 15.000000000000000000
+      RotationAngle = 90.000000000000000000
+      Size.Width = 282.000000000000000000
+      Size.Height = 265.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 99.000000000000000000
+      TextSettings.HorzAlign = Center
+      Text = 'D'
+      TabOrder = 6
+      object ShadowEffect2: TShadowEffect
+        Distance = 3.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.300000011920929000
+        Opacity = 0.600000023841857900
+        ShadowColor = claBlack
+      end
+    end
+    object ShadowEffect1: TShadowEffect
+      Distance = 3.000000000000000000
+      Direction = 45.000000000000000000
+      Softness = 0.300000011920929000
+      Opacity = 0.600000023841857900
+      ShadowColor = claBlack
+    end
+  end
+  object lblLeftWheel: TLabel
+    Position.X = 295.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Left Wheel'
+    TabOrder = 60
+  end
+  object lblRightWheel: TLabel
+    Position.X = 295.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Right Wheel'
+    TabOrder = 59
+  end
+  object lblSideBrush: TLabel
+    Position.X = 295.000000000000000000
+    Position.Y = 312.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Side Brush'
+    TabOrder = 65
+  end
+  object sbBrushRPMValue: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 11
+    Cursor = crIBeam
+    Max = 1000.000000000000000000
+    Value = 1000.000000000000000000
+    Position.X = 576.000000000000000000
+    Position.Y = 248.000000000000000000
+    OnChange = btnSetMotorMainBrushEnableClick
+  end
+  object lblMainBrush: TLabel
+    Position.X = 295.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Main Brush'
+    TabOrder = 62
+  end
+  object sbSideBrushMillwattsValue: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 14
+    Cursor = crIBeam
+    Max = 5000.000000000000000000
+    Value = 2500.000000000000000000
+    Position.X = 576.000000000000000000
+    Position.Y = 336.000000000000000000
+    OnClick = btnSetMotorSideBrushEnableClick
+  end
+  object lblVacuum: TLabel
+    Position.X = 295.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 90.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Trailing
+    Text = 'Vacuum'
+    TabOrder = 61
+  end
+  object sbVacuumSpeedValue: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 8
+    Cursor = crIBeam
+    Value = 50.000000000000000000
+    Position.X = 576.000000000000000000
+    Position.Y = 152.000000000000000000
+    OnChange = btnSetMotorVacuumEnableClick
+  end
+  object spWheelSpeed: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 5
+    Cursor = crIBeam
+    Max = 300.000000000000000000
+    Value = 150.000000000000000000
+    Position.X = 576.000000000000000000
+    Position.Y = 56.000000000000000000
+  end
+  object lblWheelSpeed: TLabel
+    Position.X = 576.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Speed and Distance in millimeters '
+    TabOrder = 67
+  end
+  object lblSideBrushPower: TLabel
+    Position.X = 575.000000000000000000
+    Position.Y = 304.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Side Brush maximum power in milliwatts'
+    TabOrder = 64
+  end
+  object lblMainBrushRPM: TLabel
+    Position.X = 575.000000000000000000
+    Position.Y = 216.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Main Brush RPM'
+    TabOrder = 63
+  end
+  object lblVacuumSpeed: TLabel
+    Position.X = 576.000000000000000000
+    Position.Y = 120.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = ' Vacuum speed in percent'
+    TabOrder = 66
+  end
+  object lblBtnPosition: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 292.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 29.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Center
+    TabOrder = 68
+  end
+  object btnSetMotorLeftWheelEnable: TButton
+    Position.X = 400.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'Enable'
+    OnClick = btnSetMotorLeftheelEnableClick
+  end
+  object btnSetMotorLeftWheelDisable: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Disable'
+    OnClick = btnSetMotorLeftWheelDisableClick
+  end
+  object btnSetMotorRightWheelEnable: TButton
+    Position.X = 400.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Enable'
+    OnClick = btnSetMotorRightWheelEnableClick
+  end
+  object btnSetMotorRightWheelDisable: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Disable'
+    OnClick = btnSetMotorRightWheelDisableClick
+  end
+  object btnSetMotorVacuumEnable: TButton
+    Position.X = 400.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'Enable'
+    OnClick = btnSetMotorVacuumEnableClick
+  end
+  object btnSetMotorVacuumDisable: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Text = 'Disable'
+    OnClick = btnSetMotorVacuumDisableClick
+  end
+  object btnSetMotorMainBrushEnable: TButton
+    Position.X = 400.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    Text = 'Enable'
+    OnClick = btnSetMotorMainBrushEnableClick
+  end
+  object btnSetMotorMainBrushDisable: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    Text = 'Disable'
+    OnClick = btnSetMotorMainBrushDisableClick
+  end
+  object btnSetMotorSideBrushEnable: TButton
+    Position.X = 400.000000000000000000
+    Position.Y = 312.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 12
+    Text = 'Enable'
+    OnClick = btnSetMotorSideBrushEnableClick
+  end
+  object btnSetMotorSideBrushDisable: TButton
+    Position.X = 488.000000000000000000
+    Position.Y = 312.000000000000000000
+    Size.Width = 70.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 13
+    Text = 'Disable'
+    OnClick = btnSetMotorSideBrushDisableClick
+  end
+  object sbWheelDistance: TSpinBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Cursor = crIBeam
+    Max = 10000.000000000000000000
+    Value = 150.000000000000000000
+    Position.X = 696.000000000000000000
+    Position.Y = 56.000000000000000000
+  end
+  object btnSetMotorSTOP: TCircle
+    Fill.Color = claRed
+    Position.X = 108.000000000000000000
+    Position.Y = 358.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 73.000000000000000000
+    Size.PlatformDefault = False
+    OnClick = btnSetMotorSTOPClick
+    OnMouseEnter = btnCircleMouseEnter
+    OnMouseLeave = btnCircleMouseLeave
+    object lblSetMotorSTOP: TLabel
+      Align = Client
+      StyledSettings = [Family, Style, FontColor]
+      Size.Width = 89.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 22.000000000000000000
+      TextSettings.HorzAlign = Center
+      Text = 'STOP'
+      TabOrder = 0
+    end
+  end
+end

@@ -28,7 +28,7 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
@@ -37,10 +37,9 @@ implementation
 
 constructor TframeDXVSetSystemMode.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeDXVSetSystemMode.btnSetSystemModeClick(Sender: TObject);
 var
@@ -68,7 +67,11 @@ begin
     pSetSystemMode := tSetSystemMode.Create;
 
     pReadData := TStringList.Create;
+
     pReadData.Text := dm.com.SendCommand(sSetSystemMode + ' ' + cmd);
+    sleep(250);
+    pReadData.Text := dm.com.SendCommand(sSetSystemMode + ' ' + cmd);
+
 
     r := pSetSystemMode.ParseText(pReadData);
 
@@ -85,6 +88,8 @@ begin
 
     pReadData.Free;
     pSetSystemMode.Free;
+
+    resetfocus;
 
   end;
 

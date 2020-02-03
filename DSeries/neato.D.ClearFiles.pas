@@ -49,22 +49,30 @@ end;
 
 function tClearFilesD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-  data.CaseSensitive := false;
-  if pos(sDeleting, data.text) > 0 then
-  begin
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    Reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+    data.CaseSensitive := false;
+    if pos(sDeleting, data.text) > 0 then
+    begin
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

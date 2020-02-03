@@ -59,20 +59,6 @@ type
     property Sat: TTimeXVRec read fSat write fSat;
   end;
 
-  {
-
-
-    Schedule is Enabled
-    Sun 20:30 H
-    Mon 20:30 H
-    Tue 05:30 H
-    Wed 01:30 H
-    Thu 00:00 - None -
-    Fri 00:00 - None -
-    Sat 19:30 H
-
-
-  }
 implementation
 
 procedure TTimeXVRec.reset;
@@ -132,44 +118,52 @@ end;
 
 function tGetScheduleXV.parsetext(data: tstringlist): boolean;
 begin
-  reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.CaseSensitive := false;
-  data.text := stringreplace(data.text, ',', '=', [rfreplaceall]);
-  // looks like no spaces in the data but lets make sure
-
-  if pos(sSchedule_is, data.text) > 0 then
-  begin
-    data.text := stringreplace(data.text, sSun + ' ', sSun + '=', [rfignorecase]);
-    data.text := stringreplace(data.text, sMon + ' ', sMon + '=', [rfignorecase]);
-    data.text := stringreplace(data.text, sTue + ' ', sTue + '=', [rfignorecase]);
-    data.text := stringreplace(data.text, sWed + ' ', sWed + '=', [rfignorecase]);
-    data.text := stringreplace(data.text, sThu + ' ', sThu + '=', [rfignorecase]);
-    data.text := stringreplace(data.text, sFri + ' ', sFri + '=', [rfignorecase]);
-    data.text := stringreplace(data.text, sSat + ' ', sSat + '=', [rfignorecase]);
-
-    fScheduleIS := pos(sSchedule_is_Enabled, data.text) > 0;
-
-    fSun.parsetext(data.Values[sSun]);
-    fMon.parsetext(data.Values[sMon]);
-    fTue.parsetext(data.Values[sTue]);
-    fWed.parsetext(data.Values[sWed]);
-    fThu.parsetext(data.Values[sThu]);
-    fFri.parsetext(data.Values[sFri]);
-    fSat.parsetext(data.Values[sSat]);
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.CaseSensitive := false;
+    data.text := stringreplace(data.text, ',', '=', [rfreplaceall]);
+    // looks like no spaces in the data but lets make sure
+
+    if pos(sSchedule_is, data.text) > 0 then
+    begin
+      data.text := stringreplace(data.text, sSun + ' ', sSun + '=', [rfignorecase]);
+      data.text := stringreplace(data.text, sMon + ' ', sMon + '=', [rfignorecase]);
+      data.text := stringreplace(data.text, sTue + ' ', sTue + '=', [rfignorecase]);
+      data.text := stringreplace(data.text, sWed + ' ', sWed + '=', [rfignorecase]);
+      data.text := stringreplace(data.text, sThu + ' ', sThu + '=', [rfignorecase]);
+      data.text := stringreplace(data.text, sFri + ' ', sFri + '=', [rfignorecase]);
+      data.text := stringreplace(data.text, sSat + ' ', sSat + '=', [rfignorecase]);
+
+      fScheduleIS := pos(sSchedule_is_Enabled, data.text) > 0;
+
+      fSun.parsetext(data.Values[sSun]);
+      fMon.parsetext(data.Values[sMon]);
+      fTue.parsetext(data.Values[sTue]);
+      fWed.parsetext(data.Values[sWed]);
+      fThu.parsetext(data.Values[sThu]);
+      fFri.parsetext(data.Values[sFri]);
+      fSat.parsetext(data.Values[sSat]);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

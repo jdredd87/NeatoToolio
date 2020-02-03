@@ -32,7 +32,7 @@ d	GetWifiStatus			Get the current status of the wifi.
 d	Help				Without any argument, this prints a list of all possible cmds. With a command name, it prints the help for that particular command
 d	PlaySound			Play the specified sound in the robot.
 
-s	SetBatteryTest			Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode.
+d	SetBatteryTest			Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode.
 s	SetBrushControlParams		Sets the open loop control params for the VR300 brush motor.
 s	SetButton				Simulates a button press.
 s	SetFuelGauge			Set Fuel Gauge Level.
@@ -45,10 +45,45 @@ s	SetNavigationMode			Sets the Navigation Mode
 s	SetNTPTime			Set system time using the NTP servers (WIFI must be up for this to work)
 s	SetSystemMode			Set the operation mode of the robot. (TestMode Only)
 s	SetTime				Sets the current day, hour, and minute for the scheduler clock.
-s	SetUsage			Sets usage settings
+s	SetUsage				Sets usage settings
 s	SetUserSettings			Sets user settings
 s	SetWifi				SetWifi variables
 
 d	TestMode				Sets TestMode on or off. Some commands can only be run in TestMode.
 
 x	Upload				Uploads new program to the robot.
+
+SETUSAGE H
+SetUsage: Unrecognized Option 'H'
+SetUsage - Sets usage settings
+    MainBrush - Set mainbrush life time.
+    SideBrush - Set sidebrush life time.
+    Dustbin - Set dustbin life time.
+    Filter - Set filter life time.
+
+
+SETUSERSETTINGS X
+SetUserSettings: Unrecognized Option 'X'
+SetUserSettings - Sets user settings
+    Schedule - Set scheduled cleanings (Must give a day and time)
+    Day - Day of the week to set schedule for. Sun=0,Sat=6. If not specified, then all days are given.
+    Hour - Hour value 0..23 (required)
+    Min - Minutes value 0..59 (required)
+    House - Schedule to Clean whole house (default)(Mutually exclusive with None)
+    None - Remove Scheduled Cleaning for specified day. Time is ignored.(Mutually exclusive with House)
+    EcoMode - Set ECO cleaning Mode(ON/OFF) 
+    IntenseClean - Set Intense clean State(ON/OFF) 
+    ButtonClick - Set Button click sound (ON/OFF) 
+    WiFi - Set WiFi (ON/OFF)
+    StealthLED - Set LEDs in standby mode (ON/OFF)
+    Melodies - Set melody sounds(ON/OFF)
+    Warnings - Set warning sounds (ON/OFF)
+    BinFullDetect - Set dust bin full detect option (ON/OFF)
+    FilterChange - Set time interval in seconds before sending alert to change filter
+    BrushChange - Set time interval in seconds before sending alert to change brush
+    DirtBin - Set time interval in minutes before sending alert to change dirt bin
+    ON - Enable  (Mutually exclusive with OFF)
+    OFF - Disable (Mutually exclusive with ON)
+    Reset - Resets all the above user settings to factory and clears all scheduled cleanings
+
+

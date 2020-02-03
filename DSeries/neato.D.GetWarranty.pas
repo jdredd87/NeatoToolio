@@ -39,7 +39,7 @@ type
 
 implementation
 
-Constructor tGetWarrantyD.create;
+Constructor tGetWarrantyD.Create;
 begin
   inherited;
   fCommand := sGetWarranty;
@@ -47,7 +47,7 @@ begin
   Reset;
 end;
 
-Destructor tGetWarrantyD.destroy;
+Destructor tGetWarrantyD.Destroy;
 begin
   inherited;
 end;
@@ -62,26 +62,34 @@ end;
 
 function tGetWarrantyD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if data.Values[sLabel] = sValue then
-  begin
-    fCumulativeCleaningTimeInSecs := data.Values[sCumulativeCleaningTimeInSecs];
-    fCumulativeBatteryCycles := data.Values[sCumulativeBatteryCycles];
-    fValidationCode := data.Values[sValidationCode];
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if data.Values[sLabel] = sValue then
+    begin
+      fCumulativeCleaningTimeInSecs := data.Values[sCumulativeCleaningTimeInSecs];
+      fCumulativeBatteryCycles := data.Values[sCumulativeBatteryCycles];
+      fValidationCode := data.Values[sValidationCode];
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

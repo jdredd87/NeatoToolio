@@ -1,0 +1,52 @@
+d = done
+y = started
+n = not started
+x = not gonna do, doesnt seem to do much of anything and not documented
+
+HELP
+Help - Without any argument, this prints a list of all possible cmds.
+
+With a command name, it prints the help for that particular command
+
+Clean - Starts a cleaning by simulating press of start button.
+ClearFiles - Erases Black Box, and other Logs
+DiagTest - Executes different test modes. Once set, press Start button to engage. (Test modes are mutually exclusive.)
+GetAccel - Get the Accelerometer readings.
+GetAnalogSensors - Get the A2D readings for the analog sensors.
+GetButtons - Get the state of the UI Buttons.
+GetCalInfo - Prints out the cal info from the System Control Block.
+GetCharger - Get the diagnostic data for the charging system.
+GetDigitalSensors - Get the state of the digital sensors.
+GetErr - Get Error Message.
+GetLanguage - Gets the UI Language from the robot.
+GetLDSScan - Get scan packet from LDS.
+GetMotors - Get the diagnostic data for the motors.
+GetSchedule - Get the Cleaning Schedule. (24 hour clock format)
+GetTime - Get Current Scheduler Time.
+GetVersion - Get the version information for the system software and hardware.
+GetWarranty - Get the warranty data.
+PlaySound - Play the specified sound in the robot.
+SetFuelGauge - Set Fuel Gauge Level.
+SetMotor - Sets the specified motor to run in a direction at a requested speed. (TestMode Only)
+SetTime - Sets the current day, hour, and minute for the scheduler clock.
+SetLanguage - Sets the UI Language for the robot.
+SetLED - Sets the specified LED to on,off,blink, or dim. (TestMode Only)
+SetIEC - Sets the IEC Cleaning Test parameters
+SetLCD - Sets the LCD to the specified display. (TestMode Only)
+SetLDSRotation - Sets LDS rotation on or off. Can only be run in TestMode.
+SetSchedule - Modify Cleaning Schedule.
+SetSystemMode - Set the operation mode of the robot. (TestMode Only)
+TestMode - Sets TestMode on or off. Some commands can only be run in TestMode.
+Upload - Uploads new program to the robot.
+SetButton - Simulates a button press.
+SetBatteryTest - Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode.
+
+
+
+SETLCD
+SetLCD requires testmode on and only one of Image/Red/Black/Blue/Green options
+
+SETLCD HELP
+SetLCD: Unrecognized Option 'HELP'
+SetLCD - Sets the LCD to the specified display. (TestMode Only)
+SetLCD requires testmode on and only one of Image/Red/Black/Blue/Green options

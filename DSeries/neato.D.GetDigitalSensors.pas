@@ -23,7 +23,6 @@ const
   sRSIDEBIT = 'RSIDEBIT';
   sRFRONTBIT = 'RFRONTBIT';
 
-
   sLLDSBIT = 'LLDSBIT';
   sRLDSBIT = 'RLDSBIT';
 
@@ -99,41 +98,51 @@ function tGetDigitalSensorsD.ParseText(data: tstringlist): Boolean;
 var
   lineData: tstringlist;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
-
-  lineData := tstringlist.Create;
-  lineData.Text := data.Text;
-
-  // Simple test to make sure we got data
-
-  if lineData.Values[sDigitalSensorName] = sValue then
-  begin
-    GetSubDataNameValuePair(lineData, fSNSR_DC_JACK_IS_IN, sSNSR_DC_JACK_IS_IN, varBoolean);
-    GetSubDataNameValuePair(lineData, fSNSR_DUSTBIN_IS_IN, sSNSR_DUSTBIN_IS_IN, varBoolean);
-    GetSubDataNameValuePair(lineData, fSNSR_LEFT_WHEEL_EXTENDED, sSNSR_LEFT_WHEEL_EXTENDED, varBoolean);
-    GetSubDataNameValuePair(lineData, fSNSR_RIGHT_WHEEL_EXTENDED, sSNSR_RIGHT_WHEEL_EXTENDED, varBoolean);
-    GetSubDataNameValuePair(lineData, fLSIDEBIT, sLSIDEBIT, varBoolean);
-    GetSubDataNameValuePair(lineData, fLFRONTBIT, sLFRONTBIT, varBoolean);
-    GetSubDataNameValuePair(lineData, fLLDSBIT, sLLDSBIT, varBoolean);
-    GetSubDataNameValuePair(lineData, fRSIDEBIT, sRSIDEBIT, varBoolean);
-    GetSubDataNameValuePair(lineData, fRFRONTBIT, sRFRONTBIT, varBoolean);
-    GetSubDataNameValuePair(lineData, fRLDSBIT, sRLDSBIT, varBoolean);
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
+
+    lineData := tstringlist.Create;
+    lineData.Text := data.Text;
+
+    // Simple test to make sure we got data
+
+    if lineData.Values[sDigitalSensorName] = sValue then
+    begin
+      GetSubDataNameValuePair(lineData, fSNSR_DC_JACK_IS_IN, sSNSR_DC_JACK_IS_IN, varBoolean);
+      GetSubDataNameValuePair(lineData, fSNSR_DUSTBIN_IS_IN, sSNSR_DUSTBIN_IS_IN, varBoolean);
+      GetSubDataNameValuePair(lineData, fSNSR_LEFT_WHEEL_EXTENDED, sSNSR_LEFT_WHEEL_EXTENDED, varBoolean);
+      GetSubDataNameValuePair(lineData, fSNSR_RIGHT_WHEEL_EXTENDED, sSNSR_RIGHT_WHEEL_EXTENDED, varBoolean);
+      GetSubDataNameValuePair(lineData, fLSIDEBIT, sLSIDEBIT, varBoolean);
+      GetSubDataNameValuePair(lineData, fLFRONTBIT, sLFRONTBIT, varBoolean);
+      GetSubDataNameValuePair(lineData, fLLDSBIT, sLLDSBIT, varBoolean);
+      GetSubDataNameValuePair(lineData, fRSIDEBIT, sRSIDEBIT, varBoolean);
+      GetSubDataNameValuePair(lineData, fRFRONTBIT, sRFRONTBIT, varBoolean);
+      GetSubDataNameValuePair(lineData, fRLDSBIT, sRLDSBIT, varBoolean);
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
-  freeandnil(lineData);
+  if assigned(lineData) then
+    freeandnil(lineData);
+
 end;
 
 end.

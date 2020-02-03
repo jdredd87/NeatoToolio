@@ -54,7 +54,7 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
@@ -63,8 +63,8 @@ implementation
 
 constructor TframeXVGetCharger.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeXVGetCharger.timer_GetDataTimer(Sender: TObject);
@@ -74,7 +74,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>Tab) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -101,12 +101,12 @@ begin
 
     lblGetChargerFuelPercentValue.Text := pGetCharger.FuelPercent.ToString + ' %';
 
-    lblGetChargerBattTempCAvg0Value.Text := pGetCharger.BattTempCAvg0.ToString + ' *';
-    lblGetChargerBattTempCAvg1Value.Text := pGetCharger.BattTempCAvg1.ToString + ' *';
+    lblGetChargerBattTempCAvg0Value.Text := pGetCharger.BattTempCAvg0.ToString + ' *C';
+    lblGetChargerBattTempCAvg1Value.Text := pGetCharger.BattTempCAvg1.ToString + ' *C';
 
     lblGetChargerVbattVValue.Text := pGetCharger.VBattV.ToString + ' v';
     lblGetChargerVextVValue.Text := pGetCharger.VExtV.ToString + ' v';
-    lblGetChargerChargermAHValue.Text := pGetCharger.Charger_mAH.ToString;
+    lblGetChargerChargermAHValue.Text := pGetCharger.Charger_mAH.ToString + ' mAH';
 
     swGetChargerBatteryOverTempValue.IsChecked := pGetCharger.BatteryOverTemp;
     swGetChargerChargingActiveValue.IsChecked := pGetCharger.ChargingActive;

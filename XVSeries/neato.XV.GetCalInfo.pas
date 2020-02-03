@@ -144,51 +144,59 @@ end;
 
 function tGetCalInfoXV.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  data.CaseSensitive := false;
-  // looks like no spaces in the data but lets make sure
-  data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]);
-
-  if pos(sParameter_Value_DistanceInMM, data.Text) > 0 then
-  begin
-    // the , to = conversion now
-    data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
-    trystrtofloat(data.Values[sLDSOffset], fLDSOffset);
-    trystrtofloat(data.Values[sXAccel], fXAccel);
-    trystrtofloat(data.Values[sYAccel], fYAccel);
-    trystrtofloat(data.Values[sZAccel], fZAccel);
-    trystrtofloat(data.Values[sRTCOffset], fRTCOffset);
-
-    trystrtofloat(data.Values[sLCDContrast], fLCDContrast);
-    trystrtofloat(data.Values[sRDropMin], fRDropMin);
-    trystrtofloat(data.Values[sRDropMid], fRDropMid);
-    trystrtofloat(data.Values[sRDropMax], fRDropMax);
-    trystrtofloat(data.Values[sLDropMin], fLDropMin);
-    trystrtofloat(data.Values[sLDropMid], fLDropMid);
-    trystrtofloat(data.Values[sLDropMax], fLDropMax);
-    trystrtofloat(data.Values[sWallMin], fWallMin);
-    trystrtofloat(data.Values[sWallMid], fWallMid);
-    trystrtofloat(data.Values[sWallMax], fWallMax);
-
-    fQAState := data.Values[sQAState];
-    fCleaningTestSurface := data.Values[sCleaningTestSurface];
-    trystrtofloat(data.Values[sCleaningTestHardSpeed], fCleaningTestHardSpeed);
-    trystrtofloat(data.Values[sCleaningTestCarpetSpeed], fCleaningTestCarpetSpeed);
-    trystrtofloat(data.Values[sCleaningTestHardDistance], fCleaningTestHardDistance);
-    trystrtofloat(data.Values[sCleaningTestCarpetDistance], fCleaningTestCarpetDistance);
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    Reset;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    data.CaseSensitive := false;
+    // looks like no spaces in the data but lets make sure
+    data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]);
+
+    if pos(sParameter_Value_DistanceInMM, data.Text) > 0 then
+    begin
+      // the , to = conversion now
+      data.Text := stringreplace(data.Text, ',', '=', [rfreplaceall]);
+      trystrtofloat(data.Values[sLDSOffset], fLDSOffset);
+      trystrtofloat(data.Values[sXAccel], fXAccel);
+      trystrtofloat(data.Values[sYAccel], fYAccel);
+      trystrtofloat(data.Values[sZAccel], fZAccel);
+      trystrtofloat(data.Values[sRTCOffset], fRTCOffset);
+
+      trystrtofloat(data.Values[sLCDContrast], fLCDContrast);
+      trystrtofloat(data.Values[sRDropMin], fRDropMin);
+      trystrtofloat(data.Values[sRDropMid], fRDropMid);
+      trystrtofloat(data.Values[sRDropMax], fRDropMax);
+      trystrtofloat(data.Values[sLDropMin], fLDropMin);
+      trystrtofloat(data.Values[sLDropMid], fLDropMid);
+      trystrtofloat(data.Values[sLDropMax], fLDropMax);
+      trystrtofloat(data.Values[sWallMin], fWallMin);
+      trystrtofloat(data.Values[sWallMid], fWallMid);
+      trystrtofloat(data.Values[sWallMax], fWallMax);
+
+      fQAState := data.Values[sQAState];
+      fCleaningTestSurface := data.Values[sCleaningTestSurface];
+      trystrtofloat(data.Values[sCleaningTestHardSpeed], fCleaningTestHardSpeed);
+      trystrtofloat(data.Values[sCleaningTestCarpetSpeed], fCleaningTestCarpetSpeed);
+      trystrtofloat(data.Values[sCleaningTestHardDistance], fCleaningTestHardDistance);
+      trystrtofloat(data.Values[sCleaningTestCarpetDistance], fCleaningTestCarpetDistance);
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

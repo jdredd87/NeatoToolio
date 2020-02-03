@@ -66,6 +66,7 @@ type
   private
     { Private declarations }
   public
+    procedure Check;
     constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
@@ -77,6 +78,35 @@ constructor TframeDGetAnalogSensors.Create(AOwner: TComponent);
 begin
   inherited;
   lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDGetAnalogSensors.Check;
+begin
+
+  lblGetAnalogSensorsCompassmeterX.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsCompassmeterY.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsCompassmeterZ.Enabled := neatotype = BotVacConnected;
+
+  lblGetAnalogSensorsGyroscopeX.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsGyroscopeY.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsGyroscopeZ.Enabled := neatotype = BotVacConnected;
+
+  lblGetAnalogSensorsIMUAccelerometerX.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsIMUAccelerometerY.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsIMUAccelerometerZ.Enabled := neatotype = BotVacConnected;
+
+  lblGetAnalogSensorsCompassmeterXValue.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsCompassmeterYValue.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsCompassmeterZValue.Enabled := neatotype = BotVacConnected;
+
+  lblGetAnalogSensorsGyroscopeXValue.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsGyroscopeYValue.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsGyroscopeZValue.Enabled := neatotype = BotVacConnected;
+
+  lblGetAnalogSensorsIMUAccelerometerXValue.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsIMUAccelerometerYValue.Enabled := neatotype = BotVacConnected;
+  lblGetAnalogSensorsIMUAccelerometerZValue.Enabled := neatotype = BotVacConnected;
+
 end;
 
 procedure TframeDGetAnalogSensors.Timer_GetDataTimer(Sender: TObject);

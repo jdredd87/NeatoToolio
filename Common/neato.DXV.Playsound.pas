@@ -1,7 +1,7 @@
 {
 
-This is common call between XV and Dx models.
-So both have this in common.
+  This is common call between XV and Dx models.
+  So both have this in common.
 
 }
 
@@ -45,6 +45,7 @@ begin
     on e: exception do
     begin
       Reset;
+      fError := e.Message;
       Result := false;
     end;
   end;

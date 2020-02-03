@@ -67,7 +67,7 @@ type
 
 implementation
 
-Constructor tGetUsageD.create;
+Constructor tGetUsageD.Create;
 begin
   inherited;
   fCommand := sGetUsage;
@@ -75,7 +75,7 @@ begin
   Reset;
 end;
 
-Destructor tGetUsageD.destroy;
+Destructor tGetUsageD.Destroy;
 begin
   inherited;
 end;
@@ -93,38 +93,46 @@ end;
 
 function tGetUsageD.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if pos(sTotal_cleaning_timeUnFixed, data.Text) > 0 then // kind of lazy in this case with the bad response layout
-  begin
-    data.Text := stringreplace(data.Text, ',', '', [rfreplaceall]); // strip out commas
-    data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]); // strip out spaces
-    data.Text := stringreplace(data.Text, #9, '', [rfreplaceall]); // strip out tabs
-    data.Text := stringreplace(data.Text, ':', '=', [rfreplaceall]); // so can do name value pair look ups
-    data.CaseSensitive := false;
-
-    // data should be "cleaned up now"
-
-    trystrtoint(data.Values[sTotal_cleaning_time], fTotal_cleaning_time);
-    trystrtoint(data.Values[sTotal_cleaned_area], fTotal_cleaned_area);
-    trystrtoint(data.Values[sMainBrushRunTimeinSec], fMainBrushRunTimeinSec);
-    trystrtoint(data.Values[sSideBrushRunTimeinSec], fSideBrushRunTimeinSec);
-    trystrtoint(data.Values[sDirtbinRunTimeinSec], fDirtbinRunTimeinSec);
-    trystrtoint(data.Values[sFilterTimeinSec], fFilterTimeinSec);
-
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
     result := false;
+
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if pos(sTotal_cleaning_timeUnFixed, data.Text) > 0 then // kind of lazy in this case with the bad response layout
+    begin
+      data.Text := stringreplace(data.Text, ',', '', [rfreplaceall]); // strip out commas
+      data.Text := stringreplace(data.Text, ' ', '', [rfreplaceall]); // strip out spaces
+      data.Text := stringreplace(data.Text, #9, '', [rfreplaceall]); // strip out tabs
+      data.Text := stringreplace(data.Text, ':', '=', [rfreplaceall]); // so can do name value pair look ups
+      data.CaseSensitive := false;
+
+      // data should be "cleaned up now"
+
+      trystrtoint(data.Values[sTotal_cleaning_time], fTotal_cleaning_time);
+      trystrtoint(data.Values[sTotal_cleaned_area], fTotal_cleaned_area);
+      trystrtoint(data.Values[sMainBrushRunTimeinSec], fMainBrushRunTimeinSec);
+      trystrtoint(data.Values[sSideBrushRunTimeinSec], fSideBrushRunTimeinSec);
+      trystrtoint(data.Values[sDirtbinRunTimeinSec], fDirtbinRunTimeinSec);
+      trystrtoint(data.Values[sFilterTimeinSec], fFilterTimeinSec);
+
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
   end;
 
 end;

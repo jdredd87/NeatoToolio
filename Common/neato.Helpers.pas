@@ -4,18 +4,17 @@ interface
 
 uses
 
-{$ifdef MSWINDOWS}
-winapi.windows,
-{$endif}
-
-Classes,
-System.sysutils,
-System.types,
-fmx.extctrls,
-fmx.Grid,
-fmx.MaterialSources,
-fmx.objects,
-fmx.layers3d;
+{$IFDEF MSWINDOWS}
+  winapi.windows,
+{$ENDIF}
+  Classes,
+  System.sysutils,
+  System.types,
+  fmx.extctrls,
+  fmx.Grid,
+  fmx.MaterialSources,
+  fmx.objects,
+  fmx.layers3d;
 
 type
 
@@ -51,6 +50,9 @@ function GetAppVersionStr: string;
 procedure LoadCSV(ScanData: String; sg: TStringGrid);
 procedure LoadImageID(id: String; img: TImage); overload;
 procedure LoadImageID(id: String; img: TImage3D); overload;
+
+function map(x, in_min, in_max, out_min, out_max: extended): extended;
+// Stole this code from Arduino as it is very handy!
 
 implementation
 
@@ -261,7 +263,8 @@ begin
     end;
   end;
 
-  freeandnil(subData);
+  if assigned(subData) then
+    freeandnil(subData);
 end;
 
 function GetSubDataNameValuePair(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String;
@@ -302,50 +305,55 @@ begin
   RowCount := 1;
 end;
 
-  procedure LoadCSV(ScanData: String; sg: TStringGrid);
-  var
-    i, j, position, Count, edt1: integer;
-    temp, tempField: string;
-    FieldDel: Char;
-    Data: TStringList;
-  begin
-    sg.BeginUpdate;
-    Data := TStringList.Create;
-    FieldDel := ',';
-    Data.Text := ScanData;
-    temp := Data[1];
+procedure LoadCSV(ScanData: String; sg: TStringGrid);
+var
+  i, j, position, Count, edt1: Integer;
+  temp, tempField: string;
+  FieldDel: Char;
+  Data: tstringlist;
+begin
+  sg.BeginUpdate;
+  Data := tstringlist.Create;
+  FieldDel := ',';
+  Data.Text := ScanData;
+  temp := Data[1];
 
-    Count := 0;
+  Count := 0;
 
-    for i := 1 to length(temp) do
-      if copy(temp, i, 1) = FieldDel then
-        inc(Count);
+  for i := 1 to Length(temp) do
+    if Copy(temp, i, 1) = FieldDel then
+      inc(Count);
 
-    edt1 := Count + 1;
+  edt1 := Count + 1;
 
-    sg.RowCount := Data.Count;
+  sg.RowCount := Data.Count;
 
-    for i := 0 to Data.Count - 1 do
-    begin;
-      temp := Data[i];
-      if copy(temp, length(temp), 1) <> FieldDel then
-        temp := temp + FieldDel;
-      while pos('"', temp) > 0 do
-      begin
-        Delete(temp, pos('"', temp), 1);
-      end;
-      for j := 1 to edt1 do
-      begin
-        position := pos(FieldDel, temp);
-        tempField := copy(temp, 0, position - 1);
-
-        sg.Cells[j - 1, i] := tempField;
-
-        Delete(temp, 1, length(tempField) + 1);
-      end;
+  for i := 0 to Data.Count - 1 do
+  begin;
+    temp := Data[i];
+    if Copy(temp, Length(temp), 1) <> FieldDel then
+      temp := temp + FieldDel;
+    while pos('"', temp) > 0 do
+    begin
+      Delete(temp, pos('"', temp), 1);
     end;
-    Data.Free;
-    sg.EndUpdate;
+    for j := 1 to edt1 do
+    begin
+      position := pos(FieldDel, temp);
+      tempField := Copy(temp, 0, position - 1);
+
+      sg.Cells[j - 1, i] := tempField;
+
+      Delete(temp, 1, Length(tempField) + 1);
+    end;
   end;
+  Data.Free;
+  sg.EndUpdate;
+end;
+
+function map(x, in_min, in_max, out_min, out_max: extended): extended;
+begin
+  Result := (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+end;
 
 end.

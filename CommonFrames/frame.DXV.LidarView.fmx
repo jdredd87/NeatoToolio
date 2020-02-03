@@ -1,0 +1,485 @@
+inherited frameDXVLidarView: TframeDXVLidarView
+  Size.Width = 998.000000000000000000
+  Size.Height = 585.000000000000000000
+  inherited timer_getdata: TTimer
+    Interval = 250
+    OnTimer = timer_getdataTimer
+    Left = 896
+    Top = 128
+  end
+  inherited lblFrameTitle: TLabel
+    Position.Y = 617.000000000000000000
+    Size.Width = 978.000000000000000000
+    Visible = False
+    TabOrder = 57
+  end
+  object pnlLidarTop: TRectangle
+    Align = Left
+    Fill.Color = xFF2D92BF
+    Position.Y = 48.000000000000000000
+    Sides = []
+    Size.Width = 153.000000000000000000
+    Size.Height = 537.000000000000000000
+    Size.PlatformDefault = False
+    object sbResetLIDARMapping: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 0
+      Cursor = crIBeam
+      Min = 1.000000000000000000
+      Max = 32.000000000000000000
+      Value = 1.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 40.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 143.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblResetLIDARmapping: TLabel
+      Align = Top
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 143.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Reset Mapping'
+      TabOrder = 1
+    end
+    object chkChartShowLabels: TCheckBox
+      Align = Top
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 82.000000000000000000
+      Size.Width = 143.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Show Labels'
+      TextSettings.HorzAlign = Center
+      OnChange = chkChartShowLabelsChange
+    end
+    object spinLidarDrawEvery: TSpinBox
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 3
+      Cursor = crIBeam
+      Min = 10.000000000000000000
+      Value = 10.000000000000000000
+      Increment = 10.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 152.000000000000000000
+      Enabled = False
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 143.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnChange = spinLidarDrawEveryChange
+    end
+    object lblMarkerCount: TLabel
+      Align = Top
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 117.000000000000000000
+      Size.Width = 143.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Draw Every'
+      TabOrder = 4
+    end
+    object lblLidarDegree: TLabel
+      Align = Top
+      Position.Y = 189.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Degree'
+      TabOrder = 5
+    end
+    object lblLidarDegreeValue: TLabel
+      Align = Top
+      Position.Y = 214.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 6
+    end
+    object lblLidarDistancemm: TLabel
+      Align = Top
+      Position.Y = 239.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Distance mm'
+      TabOrder = 7
+    end
+    object lblLidarDistancemmValue: TLabel
+      Align = Top
+      Position.Y = 264.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 8
+    end
+    object lblLidarErrorCode: TLabel
+      Align = Top
+      Position.Y = 339.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Error Code'
+      TabOrder = 9
+    end
+    object lblLidarErrorCodeValue: TLabel
+      Align = Top
+      Position.Y = 364.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 10
+    end
+    object lblLidarIntesnity: TLabel
+      Align = Top
+      Position.Y = 289.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Intensity'
+      TabOrder = 11
+    end
+    object lblLidarIntesnityValue: TLabel
+      Align = Top
+      Position.Y = 314.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 12
+    end
+    object lblLidarSpeed: TLabel
+      Align = Top
+      Position.Y = 389.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Speed'
+      TabOrder = 13
+    end
+    object lblLidarSpeedValue: TLabel
+      Align = Top
+      Position.Y = 414.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 14
+    end
+  end
+  object rectPlotPoints: TRectangle
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 988.000000000000000000
+    Size.Height = 38.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object tabsLidarViewOptions: TTabControl
+    Align = Client
+    Size.Width = 845.000000000000000000
+    Size.Height = 537.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 61
+    TabPosition = PlatformDefault
+    Sizes = (
+      845s
+      511s
+      845s
+      511s
+      845s
+      511s)
+    object tabLidarPlotXY: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 73.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Plotter XY'
+      ExplicitSize.cx = 86.000000000000000000
+      ExplicitSize.cy = 30.000000000000000000
+      object plotLidar: TChart
+        Foot.Font.StyleExt = {00040000000200000004000000}
+        Legend.Title.Font.StyleExt = {00070000000000000004000000}
+        Legend.Visible = False
+        MarginBottom = 2
+        MarginLeft = 2
+        MarginRight = 2
+        MarginTop = 2
+        PrintProportional = False
+        SubFoot.Font.StyleExt = {00040000000200000004000000}
+        SubTitle.Visible = False
+        Title.Text.Strings = (
+          'Lidar')
+        Title.Visible = False
+        View3D = False
+        View3DOptions.Elevation = 294
+        View3DOptions.Orthogonal = False
+        View3DOptions.Perspective = 100
+        View3DOptions.Rotation = 360
+        View3DOptions.Zoom = 80
+        Zoom.Brush.Kind = None
+        Zoom.Pen.Fill.Color = claSilver
+        Align = Center
+        TabOrder = 0
+        Size.Width = 490.000000000000000000
+        Size.Height = 450.000000000000000000
+        Size.PlatformDefault = False
+        ColorPaletteIndex = 13
+        object seriesPlotterXY: TPointSeries
+          HoverElement = [heCurrent]
+          Legend.Visible = False
+          OnGetPointerStyle = seriesPlotterXYGetPointerStyle
+          Marks.Style = smsXY
+          Marks.Angle = 25
+          Marks.Callout.ArrowHead = ahLine
+          ShowInLegend = False
+          ClickableLine = False
+          Pointer.InflateMargins = True
+          Pointer.Style = psRectangle
+          XValues.Name = 'X'
+          XValues.Order = loNone
+          YValues.Name = 'Y'
+          YValues.Order = loNone
+        end
+        object ChartTool1: TMarksTipTool
+          Format.CustomPosition = True
+          Format.Left = 0
+          Format.TextAlignment = taCenter
+          Format.Top = 0
+          Format.Visible = False
+          MouseDelay = 0
+          Series = seriesPlotterXY
+          Style = smsXY
+        end
+      end
+    end
+    object tablidarpolar: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 94.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Polar Degrees'
+      ExplicitSize.cx = 86.000000000000000000
+      ExplicitSize.cy = 30.000000000000000000
+      object Rectangle2: TRectangle
+        Align = Client
+        Fill.Color = claNull
+        Sides = []
+        Size.Width = 845.000000000000000000
+        Size.Height = 511.000000000000000000
+        Size.PlatformDefault = False
+        object Circle1: TCircle
+          Align = Center
+          Fill.Color = xFFFCFCFC
+          Size.Width = 900.000000000000000000
+          Size.Height = 403.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object polarLidar: TChart
+          Foot.Font.StyleExt = {00040000000200000004000000}
+          LeftWall.Visible = False
+          Legend.Title.Font.StyleExt = {00070000000000000004000000}
+          Legend.Visible = False
+          PrintProportional = False
+          SubFoot.Font.StyleExt = {00040000000200000004000000}
+          Title.Text.Strings = (
+            'TChart')
+          Title.Visible = False
+          BottomAxis.Increment = 10.000000000000000000
+          Panning.MouseWheel = pmwNone
+          View3D = False
+          View3DWalls = False
+          Zoom.Allow = False
+          Zoom.Brush.Kind = None
+          Zoom.Pen.Fill.Color = claSilver
+          Align = Client
+          BevelOuter = bvNone
+          Color = claNull
+          TabOrder = 0
+          Size.Width = 845.000000000000000000
+          Size.Height = 511.000000000000000000
+          Size.PlatformDefault = False
+          ColorPaletteIndex = 13
+          object seriesPolar: TPolarBarSeries
+            HoverElement = []
+            Marks.Style = smsValue
+            XValues.Name = 'Angle'
+            XValues.Order = loNone
+            YValues.Name = 'Radius'
+            YValues.Order = loNone
+            Frame.InnerBrush.Kind = Gradient
+            Frame.InnerBrush.Gradient.EndColor = claGray
+            Frame.InnerBrush.Gradient.MidColor = claWhite
+            Frame.InnerBrush.Gradient.StartColor = xFF404040
+            Frame.InnerBrush.Gradient.Visible = True
+            Frame.InnerBrush.BackColor = claRed
+            Frame.MiddleBrush.Kind = Gradient
+            Frame.MiddleBrush.Gradient.EndColor = xFF828282
+            Frame.MiddleBrush.Gradient.MidColor = claWhite
+            Frame.MiddleBrush.Gradient.StartColor = claGray
+            Frame.MiddleBrush.Gradient.Visible = True
+            Frame.MiddleBrush.BackColor = claYellow
+            Frame.OuterBrush.Kind = Gradient
+            Frame.OuterBrush.Gradient.EndColor = xFF404040
+            Frame.OuterBrush.Gradient.MidColor = claWhite
+            Frame.OuterBrush.Gradient.StartColor = claSilver
+            Frame.OuterBrush.Gradient.Visible = True
+            Frame.OuterBrush.BackColor = claGreen
+            Frame.Width = 4
+            Shadow.Visible = False
+            ColorEachPoint = True
+            AngleIncrement = 10.000000000000000000
+            AngleValues.Name = 'AngleValues'
+            AngleValues.Order = loNone
+            Brush.Kind = None
+            Pen.Color = xFF4466A3
+            Pen.Fill.Color = xFF4466A3
+            Pointer.HorizSize = 3
+            Pointer.InflateMargins = True
+            Pointer.Style = psCircle
+            Pointer.VertSize = 3
+            RotationAngle = 90
+            OnGetPointerStyle = seriesPolarGetPointerStyle
+          end
+          object ChartTool2: TMarksTipTool
+            Format.CustomPosition = True
+            Format.Left = 0
+            Format.TextAlignment = taCenter
+            Format.Top = 0
+            Format.Visible = False
+            MouseDelay = 0
+            Series = seriesPolar
+            Style = smsValue
+          end
+        end
+      end
+    end
+    object tabLidarCalculations: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 84.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Calculations'
+      ExplicitSize.cx = 107.000000000000000000
+      ExplicitSize.cy = 30.000000000000000000
+      object sgLIDAR: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 835.000000000000000000
+        Size.Height = 501.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'gridstyle'
+        TextSettings.Font.Size = 10.000000000000000000
+        StyledSettings = [Family, Style, FontColor]
+        TabOrder = 1
+        Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+        Viewport.Width = 835.000000000000000000
+        Viewport.Height = 501.000000000000000000
+        object StringColumn1: TStringColumn
+          Header = 'AngleDegree'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn2: TStringColumn
+          Header = 'DistanceMM'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn3: TStringColumn
+          Header = 'Intensity'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn4: TStringColumn
+          Header = 'Error'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn5: TStringColumn
+          Header = 'XCC'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn6: TStringColumn
+          Header = 'YCC'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn7: TStringColumn
+          Header = 'AXC'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn8: TStringColumn
+          Header = 'AYC'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn9: TStringColumn
+          Header = 'FX'
+          Size.Width = 85.000000000000000000
+        end
+        object StringColumn10: TStringColumn
+          Header = 'FY'
+          Size.Width = 85.000000000000000000
+        end
+      end
+    end
+  end
+end

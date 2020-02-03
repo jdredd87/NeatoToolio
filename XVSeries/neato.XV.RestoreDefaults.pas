@@ -43,27 +43,34 @@ end;
 
 function tRestoreDefaultsXV.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  data.Text := stringreplace(data.Text, sRestoreDefaults, '', [rfreplaceall]);
-  data.Text.Replace(#10, #0);
-  data.Text.Replace(#13, #0);
-  data.Text.Replace(#26, #0);
-
-  if trim(data.Text) = '' then
-  begin
-    result := true;
-  end
-  else
-  begin
-    fError := strParseTextError;
+  try
+    Reset;
     result := false;
-  end;
 
+    if NOT assigned(data) then
+      exit;
+
+    data.Text := stringreplace(data.Text, sRestoreDefaults, '', [rfreplaceall]);
+    data.Text.Replace(#10, #0);
+    data.Text.Replace(#13, #0);
+    data.Text.Replace(#26, #0);
+
+    if trim(data.Text) = '' then
+    begin
+      result := true;
+    end
+    else
+    begin
+      fError := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      fError := e.Message;
+      result := false;
+    end;
+  end;
 end;
 
 end.

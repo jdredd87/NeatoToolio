@@ -48,31 +48,39 @@ end;
 
 function tSetFuelGauge.ParseText(data: tstringlist): boolean;
 begin
-  Reset;
+  try
+    Reset;
 
-  result := false;
-
-  if NOT assigned(data) then
-    exit;
-
-  // Simple test to make sure we got data
-
-  if pos(sSetFuelGaugeTo, data.Text) > 0 then
-  begin
-    result := true;
-  end
-  else if pos(sInvalidFuelgauge, data.Text) > 0 then
-  begin
-    data.Text := trim(data.Text);
-    ferror := data.Text;
     result := false;
-  end
-  else
-  begin
 
-    ferror := strParseTextError;
-    result := false;
+    if NOT assigned(data) then
+      exit;
+
+    // Simple test to make sure we got data
+
+    if pos(sSetFuelGaugeTo, data.Text) > 0 then
+    begin
+      result := true;
+    end
+    else if pos(sInvalidFuelgauge, data.Text) > 0 then
+    begin
+      data.Text := trim(data.Text);
+      ferror := data.Text;
+      result := false;
+    end
+    else
+    begin
+      ferror := strParseTextError;
+      result := false;
+    end;
+  except
+    on e: exception do
+    begin
+      ferror := e.Message;
+      result := false;
+    end;
   end;
+
 end;
 
 end.

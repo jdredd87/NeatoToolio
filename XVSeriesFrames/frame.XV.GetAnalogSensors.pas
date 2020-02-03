@@ -62,7 +62,7 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
@@ -71,10 +71,9 @@ implementation
 
 constructor TframeXVGetAnalogSensors.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeXVGetAnalogSensors.Timer_GetDataTimer(Sender: TObject);
 var
@@ -83,7 +82,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>tab) then
+  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tab) then
   begin
     Timer_GetData.Enabled := false;
     exit;
@@ -99,42 +98,42 @@ begin
   if r then
   begin
 
-    lblGetAnalogSensorsBatteryVoltageInValue.Text := pGetAnalogSensors.BatteryVoltageInmV.ToString;
+    lblGetAnalogSensorsBatteryVoltageInValue.Text := pGetAnalogSensors.BatteryVoltageInmV.ToString +  'mV';
     pbGetAnalogSensorsBatteryVoltageInValue.Value := pGetAnalogSensors.BatteryVoltageInmV;
 
-    lblGetAnalogSensorsBatteryTemp0InCValue.Text := pGetAnalogSensors.BatteryTemp0InC.ToString;
+    lblGetAnalogSensorsBatteryTemp0InCValue.Text := pGetAnalogSensors.BatteryTemp0InC.ToString + ' *C';
     pbGetAnalogSensorsBatteryTemp0InCValue.Value := pGetAnalogSensors.BatteryTemp0InC;
 
-    lblGetAnalogSensorsBatteryTemp1InCValue.Text := pGetAnalogSensors.BatteryTemp1InC.ToString;
+    lblGetAnalogSensorsBatteryTemp1InCValue.Text := pGetAnalogSensors.BatteryTemp1InC.ToString + ' *C';
     pbGetAnalogSensorsBatteryTemp1InCValue.Value := pGetAnalogSensors.BatteryTemp1InC;
 
-    lblGetAnalogSensorsUIButtonInmVValue.Text := pGetAnalogSensors.UIButtonInmV.ToString;
+    lblGetAnalogSensorsUIButtonInmVValue.Text := pGetAnalogSensors.UIButtonInmV.ToString + ' mV';
     pbGetAnalogSensorsUIButtonInmVValue.Value := pGetAnalogSensors.UIButtonInmV;
 
-    lblGetAnalogSensorsChargeVoltInmVValue.Text := pGetAnalogSensors.VacuumCurrentInmA.ToString;
+    lblGetAnalogSensorsChargeVoltInmVValue.Text := pGetAnalogSensors.VacuumCurrentInmA.ToString + ' mA';
     pbGetAnalogSensorsChargeVoltInmVValue.Value := pGetAnalogSensors.VacuumCurrentInmA;
 
-    lblGetAnalogSensorsCurrentInmAValue.Text := pGetAnalogSensors.CurrentInmA.ToString;
+    lblGetAnalogSensorsCurrentInmAValue.Text := pGetAnalogSensors.CurrentInmA.ToString +' mA';
     pbGetAnalogSensorsCurrentInmAValue.Value := pGetAnalogSensors.CurrentInmA;
 
-    lblGetAnalogSensorsSideBrushCurrentInmAValue.Text := pGetAnalogSensors.SideBrushCurrentInmA.ToString;
+    lblGetAnalogSensorsSideBrushCurrentInmAValue.Text := pGetAnalogSensors.SideBrushCurrentInmA.ToString +' mA';
     pnGetAnalogSensorsSideBrushCurrentInmAValue.Value := pGetAnalogSensors.SideBrushCurrentInmA;
 
-    lblGetAnalogSensorsVoltageReferenceInmVValue.Text := pGetAnalogSensors.VoltageReferenceInmV.ToString;
+    lblGetAnalogSensorsVoltageReferenceInmVValue.Text := pGetAnalogSensors.VoltageReferenceInmV.ToString + ' mV';
     pnGetAnalogSensorsSideBrushCurrentInmAValue.Value := pGetAnalogSensors.VoltageReferenceInmV;
 
-    lblGetAnalogSensorsVacuumCurrentInmAValue.Text := pGetAnalogSensors.VacuumCurrentInmA.ToString;
+    lblGetAnalogSensorsVacuumCurrentInmAValue.Text := pGetAnalogSensors.VacuumCurrentInmA.ToString + ' mA';
     pbGetAnalogSensorsVacuumCurrentInmAValue.Value := pGetAnalogSensors.VacuumCurrentInmA;
 
-    lblGetAnalogSensorsWallSensorInMMValue.Text := pGetAnalogSensors.WallSensorInMM.ToString;
-    lblGetAnalogSensorsLeftDropInMMValue.Text := pGetAnalogSensors.LeftDropInMM.ToString;
-    lblGetAnalogSensorsRightDropInMMValue.Text := pGetAnalogSensors.RightDropInMM.ToString;
+    lblGetAnalogSensorsWallSensorInMMValue.Text := pGetAnalogSensors.WallSensorInMM.ToString + ' mm';
+    lblGetAnalogSensorsLeftDropInMMValue.Text := pGetAnalogSensors.LeftDropInMM.ToString + ' mm';
+    lblGetAnalogSensorsRightDropInMMValue.Text := pGetAnalogSensors.RightDropInMM.ToString + ' mm';
     lblGetAnalogSensorsLeftMagSensorValue.Text := pGetAnalogSensors.LeftMagSensor.ToString;
     lblGetAnalogSensorsRightMagSensorValue.Text := pGetAnalogSensors.RightMagSensor.ToString;
 
-    lblGetAnalogSensorsAccelXInmGValue.Text := pGetAnalogSensors.AccelXInmG.ToString;
-    lblGetAnalogSensorsAccelYInmGValue.Text := pGetAnalogSensors.AccelYInmG.ToString;
-    lblGetAnalogSensorsAccelZInmGValue.Text := pGetAnalogSensors.AccelZInmG.ToString;
+    lblGetAnalogSensorsAccelXInmGValue.Text := pGetAnalogSensors.AccelXInmG.ToString + ' mG';
+    lblGetAnalogSensorsAccelYInmGValue.Text := pGetAnalogSensors.AccelYInmG.ToString + ' mG';
+    lblGetAnalogSensorsAccelZInmGValue.Text := pGetAnalogSensors.AccelZInmG.ToString + ' mG';
 
   end;
   pReadData.Free;
