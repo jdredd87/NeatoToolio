@@ -6,7 +6,11 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Left = 680
     Top = 152
   end
-  object lblSetLCDError: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 412.000000000000000000
+    Size.Width = 805.000000000000000000
+  end
+  object lblSetLCDError: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -19,7 +23,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     TextSettings.HorzAlign = Center
     TabOrder = 3
   end
-  object rectSetLCDTop: TRectangle [2]
+  object rectSetLCDTop: TRectangle
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -157,7 +161,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
       OnMouseLeave = btnSetLCDBGWhiteMouseLeave
     end
   end
-  object lblSetLCDMessage: TLabel [3]
+  object lblSetLCDMessage: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -170,7 +174,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     TextSettings.HorzAlign = Center
     TabOrder = 1
   end
-  object lblSetLCDContrast: TLabel [4]
+  object lblSetLCDContrast: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -184,7 +188,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Text = 'Contrast 0%'
     TabOrder = 2
   end
-  object tbSetLCDContrast: TTrackBar [5]
+  object tbSetLCDContrast: TTrackBar
     Align = Top
     CanParentFocus = True
     Frequency = 1.000000000000000000
@@ -202,7 +206,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     OnMouseEnter = btnSetLCDBGWhiteMouseEnter
     OnMouseLeave = btnSetLCDBGWhiteMouseLeave
   end
-  object sbFGWhiteValue: TSpinBox [6]
+  object sbFGWhiteValue: TSpinBox
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 7
     Cursor = crIBeam
@@ -213,7 +217,7 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
   end
-  object sbFGBlackValue: TSpinBox [7]
+  object sbFGBlackValue: TSpinBox
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 8
     Cursor = crIBeam
@@ -223,9 +227,5 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
     Size.Width = 81.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 412.000000000000000000
-    Size.Width = 805.000000000000000000
   end
 end

@@ -28,6 +28,7 @@ type
   private
     { Private declarations }
   public
+    procedure check;
     constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
@@ -72,7 +73,6 @@ begin
     sleep(250);
     pReadData.Text := dm.com.SendCommand(sSetSystemMode + ' ' + cmd);
 
-
     r := pSetSystemMode.ParseText(pReadData);
 
     if r then
@@ -116,6 +116,18 @@ end;
 procedure TframeDXVSetSystemMode.btnSetSystemModeShutdownMouseLeave(Sender: TObject);
 begin
   lblSetSystemModeMessage.Text := '';
+end;
+
+procedure TframeDXVSetSystemMode.check;
+begin
+  btnSetSystemModeShutdown.Enabled := dm.com.Serial.Active;
+  btnSetSystemModeHibernate.Enabled := dm.com.Serial.Active;
+  btnSetSystemModeStandby.Enabled := dm.com.Serial.Active;
+  btnSetSystemModePowerCycle.Enabled := dm.com.Serial.Active;
+
+  if dm.com.Serial.Active then
+    dm.chkTestmode.IsChecked := true;
+
 end;
 
 end.

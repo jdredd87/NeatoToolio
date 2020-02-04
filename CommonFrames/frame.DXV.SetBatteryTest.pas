@@ -22,6 +22,7 @@ type
     procedure btnSetWallFollowerClick(Sender: TObject);
   private
   public
+    procedure check;
     constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
@@ -72,6 +73,14 @@ begin
     freeandnil(pReadData);
   end;
   resetfocus;
+end;
+
+procedure TframeDXVSetBatteryTest.check;
+begin
+  btnSetBateryTestEnabled.Enabled := dm.com.Serial.Active;
+  btnSetBatteryTestDisabled.Enabled := dm.com.Serial.Active;
+  if dm.COM.Serial.Active then
+   dm.chkTestmode.IsChecked := true;
 end;
 
 end.

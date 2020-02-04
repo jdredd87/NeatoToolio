@@ -38,7 +38,8 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
@@ -47,10 +48,9 @@ implementation
 
 constructor TframeDXVSetLCD.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeDXVSetLCD.btnSetLCDClick(Sender: TObject);
 var
@@ -229,6 +229,27 @@ end;
 procedure TframeDXVSetLCD.btnSetLCDBGWhiteMouseLeave(Sender: TObject);
 begin
   lblSetLCDMessage.Text := '';
+end;
+
+procedure TframeDXVSetLCD.check;
+begin
+  tbSetLCDContrast.Enabled := dm.com.Serial.Active;
+  btnSetLCDBGWhite.Enabled := dm.com.Serial.Active;
+  btnSetLCDBGBlack.Enabled := dm.com.Serial.Active;
+  btnSetLCDHLine.Enabled := dm.com.Serial.Active;
+  btnSetLCDVLine.Enabled := dm.com.Serial.Active;
+  btnSetLCDHBars.Enabled := dm.com.Serial.Active;
+  btnSetLCDVBars.Enabled := dm.com.Serial.Active;
+  btnSetLCDFGWhite.Enabled := dm.com.Serial.Active;
+  btnSetLCDFGBlack.Enabled := dm.com.Serial.Active;
+  sbHLineValue.Enabled := dm.com.Serial.Active;
+  sbVLineValue.Enabled := dm.com.Serial.Active;
+  sbFGWhiteValue.Enabled := dm.com.Serial.Active;
+  sbFGBlackValue.Enabled := dm.com.Serial.Active;
+  btnSetLCDHBars2.Enabled := dm.com.Serial.Active;
+
+  if dm.com.Serial.Active then
+    dm.chkTestmode.IsChecked := true;
 end;
 
 end.

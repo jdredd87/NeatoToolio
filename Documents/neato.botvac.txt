@@ -56,34 +56,11 @@ x	Upload				Uploads new program to the robot.
 SETUSAGE H
 SetUsage: Unrecognized Option 'H'
 SetUsage - Sets usage settings
-    MainBrush - Set mainbrush life time.
-    SideBrush - Set sidebrush life time.
-    Dustbin - Set dustbin life time.
-    Filter - Set filter life time.
 
+    MainBrush - Set mainbrush life time.    0-106561
+    SideBrush - Set sidebrush life time.     0-106561
+    Dustbin - Set dustbin life time.   0-106561
+    Filter - Set filter life time.   0-62686
 
-SETUSERSETTINGS X
-SetUserSettings: Unrecognized Option 'X'
-SetUserSettings - Sets user settings
-    Schedule - Set scheduled cleanings (Must give a day and time)
-    Day - Day of the week to set schedule for. Sun=0,Sat=6. If not specified, then all days are given.
-    Hour - Hour value 0..23 (required)
-    Min - Minutes value 0..59 (required)
-    House - Schedule to Clean whole house (default)(Mutually exclusive with None)
-    None - Remove Scheduled Cleaning for specified day. Time is ignored.(Mutually exclusive with House)
-    EcoMode - Set ECO cleaning Mode(ON/OFF) 
-    IntenseClean - Set Intense clean State(ON/OFF) 
-    ButtonClick - Set Button click sound (ON/OFF) 
-    WiFi - Set WiFi (ON/OFF)
-    StealthLED - Set LEDs in standby mode (ON/OFF)
-    Melodies - Set melody sounds(ON/OFF)
-    Warnings - Set warning sounds (ON/OFF)
-    BinFullDetect - Set dust bin full detect option (ON/OFF)
-    FilterChange - Set time interval in seconds before sending alert to change filter
-    BrushChange - Set time interval in seconds before sending alert to change brush
-    DirtBin - Set time interval in minutes before sending alert to change dirt bin
-    ON - Enable  (Mutually exclusive with OFF)
-    OFF - Disable (Mutually exclusive with ON)
-    Reset - Resets all the above user settings to factory and clears all scheduled cleanings
 
 

@@ -24,6 +24,7 @@ type
     procedure btnSetWallFollowerClick(Sender: TObject);
   private
   public
+    procedure check;
     constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
@@ -75,6 +76,18 @@ begin
   end;
 
   resetfocus;
+end;
+
+procedure TframeDXVSetIEC.check;
+begin
+  btnSetIECHardSpeed.Enabled := dm.com.Serial.Active;
+  btnSetIECCarpetSpeed.Enabled := dm.com.Serial.Active;
+  btnSetIECDistance.Enabled := dm.com.Serial.Active;
+  sbSetIECHardSpeedValue.Enabled := dm.com.Serial.Active;
+  sbSetIECCarpetSpeedValue.Enabled := dm.com.Serial.Active;
+  sbSetIECDistanceValue.Enabled := dm.com.Serial.Active;
+  if dm.com.Serial.Active then
+    dm.chkTestmode.IsChecked := true;
 end;
 
 end.

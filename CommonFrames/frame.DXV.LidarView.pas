@@ -28,13 +28,11 @@ type
     tabLidarPlotXY: TTabItem;
     plotLidar: TChart;
     seriesPlotterXY: TPointSeries;
-    ChartTool1: TMarksTipTool;
     tablidarpolar: TTabItem;
     Rectangle2: trectangle;
     Circle1: TCircle;
     polarLidar: TChart;
     seriesPolar: TPolarBarSeries;
-    ChartTool2: TMarksTipTool;
     tabLidarCalculations: TTabItem;
     sgLIDAR: TStringGrid;
     StringColumn1: TStringColumn;
@@ -48,12 +46,9 @@ type
     StringColumn9: TStringColumn;
     StringColumn10: TStringColumn;
     rectPlotPoints: trectangle;
-    pnlLidarTop: trectangle;
+    pnlLidarLeft: trectangle;
     sbResetLIDARMapping: TSpinBox;
     lblResetLIDARmapping: TLabel;
-    chkChartShowLabels: TCheckBox;
-    spinLidarDrawEvery: TSpinBox;
-    lblMarkerCount: TLabel;
     lblLidarDegree: TLabel;
     lblLidarDegreeValue: TLabel;
     lblLidarDistancemm: TLabel;
@@ -64,19 +59,24 @@ type
     lblLidarIntesnityValue: TLabel;
     lblLidarSpeed: TLabel;
     lblLidarSpeedValue: TLabel;
+    ckAutoScaleGraphs: TCheckBox;
+    lblMaxDistance: TLabel;
+    sbMaxDistance: TSpinBox;
     procedure Timer_GetDataTimer(Sender: TObject);
 
     procedure sgGetLDSScanDrawColumnCell(Sender: TObject; const Canvas: TCanvas; const Column: TColumn;
       const Bounds: TRectF; const Row: Integer; const Value: TValue; const State: TGridDrawStates);
-    procedure chkChartShowLabelsChange(Sender: TObject);
-    procedure spinLidarDrawEveryChange(Sender: TObject);
     function seriesPlotterXYGetPointerStyle(Sender: TChartSeries; ValueIndex: Integer): TSeriesPointerStyle;
     function seriesPolarGetPointerStyle(Sender: TChartSeries; ValueIndex: Integer): TSeriesPointerStyle;
+    procedure ckAutoScaleGraphsChange(Sender: TObject);
+    procedure sbMaxDistanceChange(Sender: TObject);
+    procedure sbResetLIDARMappingChange(Sender: TObject);
   private
     PlotPoints: array [0 .. 359] of TPlotPoint;
 
     fLIDARCounter: single;
     fActivePoint: trectangle;
+    fMaxDistance : Integer;
 
     procedure rectPlotPointsMouseEnter(Sender: TObject);
     procedure rectPlotPointsMouseLeave(Sender: TObject);
@@ -94,6 +94,7 @@ var
   idx: Integer;
 begin
   inherited;
+  fMaxDistance := 8000; // 8000mm
   fActivePoint := nil;
   tabsLidarViewOptions.TabIndex := 0;
   tabsLidarViewOptions.OnChange := dmCommon.onTabChangeEvent;
@@ -124,16 +125,23 @@ begin
     PlotPoints[idx].intensity := 0;
   end;
   sgLIDAR.RowCount := 360;
+
+  self.ckAutoScaleGraphs.IsChecked := true;
 end;
 
-procedure TframeDXVLidarView.chkChartShowLabelsChange(Sender: TObject);
+procedure TframeDXVLidarView.ckAutoScaleGraphsChange(Sender: TObject);
 begin
   inherited;
-  seriesPlotterXY.Marks.Visible := chkChartShowLabels.IsChecked;
-  seriesPlotterXY.Marks.DrawEvery := round(spinLidarDrawEvery.Value);
-  seriesPolar.Marks.Visible := chkChartShowLabels.IsChecked;
-  seriesPolar.Marks.DrawEvery := round(spinLidarDrawEvery.Value);
-  spinLidarDrawEvery.Enabled := chkChartShowLabels.IsChecked;
+
+  plotLidar.Axes.Left.Automatic := ckAutoScaleGraphs.IsChecked;
+  plotLidar.Axes.Bottom.Automatic := ckAutoScaleGraphs.IsChecked;
+
+  polarLidar.Axes.top.Automatic := ckAutoScaleGraphs.IsChecked;
+  polarLidar.Axes.Bottom.Automatic := ckAutoScaleGraphs.IsChecked;
+  polarLidar.Axes.Left.Automatic := ckAutoScaleGraphs.IsChecked;
+  polarLidar.Axes.right.Automatic := ckAutoScaleGraphs.IsChecked;
+
+  resetfocus;
 end;
 
 procedure TframeDXVLidarView.check;
@@ -179,6 +187,33 @@ begin
   lblLidarDistancemmValue.Text := '-1';
   lblLidarIntesnityValue.Text := '-1';
   lblLidarErrorCodeValue.Text := '-1';
+end;
+
+procedure TframeDXVLidarView.sbMaxDistanceChange(Sender: TObject);
+begin
+  inherited;
+  fMaxDistance := round(sbMaxDistance.Value);
+  self.plotLidar.Axes.Left.Maximum := sbMaxDistance.Value;
+  self.plotLidar.Axes.Left.Minimum := -abs(sbMaxDistance.Value);
+  self.plotLidar.Axes.Bottom.Maximum := sbMaxDistance.Value;
+  self.plotLidar.Axes.Bottom.Minimum := -abs(sbMaxDistance.Value);
+
+  self.polarLidar.Axes.top.Maximum := sbMaxDistance.Value;
+  self.polarLidar.Axes.top.Minimum := -abs(sbMaxDistance.Value);
+  self.polarLidar.Axes.Bottom.Maximum := sbMaxDistance.Value;
+  self.polarLidar.Axes.Bottom.Minimum := -abs(sbMaxDistance.Value);
+  self.polarLidar.Axes.Left.Maximum := sbMaxDistance.Value;
+  self.polarLidar.Axes.Left.Minimum := -abs(sbMaxDistance.Value);
+  self.polarLidar.Axes.right.Maximum := sbMaxDistance.Value;
+  self.polarLidar.Axes.right.Minimum := -abs(sbMaxDistance.Value);
+  self.ckAutoScaleGraphs.IsChecked := true;
+  resetfocus;
+end;
+
+procedure TframeDXVLidarView.sbResetLIDARMappingChange(Sender: TObject);
+begin
+  inherited;
+  resetfocus;
 end;
 
 function TframeDXVLidarView.seriesPlotterXYGetPointerStyle(Sender: TChartSeries; ValueIndex: Integer)
@@ -235,13 +270,6 @@ begin
   Column.DefaultDrawCell(Canvas, Bounds, Row, Value, State);
 
   aRowColor.free;
-end;
-
-procedure TframeDXVLidarView.spinLidarDrawEveryChange(Sender: TObject);
-begin
-  inherited;
-  seriesPlotterXY.Marks.DrawEvery := round(spinLidarDrawEvery.Value);
-  seriesPolar.Marks.DrawEvery := round(spinLidarDrawEvery.Value);
 end;
 
 procedure TframeDXVLidarView.Timer_GetDataTimer(Sender: TObject);
@@ -378,8 +406,7 @@ var
       sgLIDAR.Cells[8, RowIDX] := finalX.ToString;
       sgLIDAR.Cells[9, RowIDX] := finalY.ToString;
 
-      if (finalY < 8000) and (finalY > -8000) and
-      (finalX < 8000) and (finalX > -8000) then
+      if (finalY < fMaxDistance) and (finalY > -abs(fMaxDistance) ) and (finalX < fMaxDistance) and (finalX > -abs(fMaxDistance)) then
       begin
 
         if errorcode > 0 then
@@ -426,7 +453,7 @@ begin
 
   R := pGetLDSScan.ParseText(pReadData);
 
-  pnlLidarTop.BeginUpdate;
+  pnlLidarLeft.BeginUpdate;
 
   if R then
   begin
@@ -435,7 +462,7 @@ begin
     MapLIDAR;
   end;
 
-  pnlLidarTop.EndUpdate;
+  pnlLidarLeft.EndUpdate;
 
   pReadData.free;
   pGetLDSScan.free;

@@ -3,24 +3,25 @@ unit neato.Settings;
 
 interface
 
-uses classes, XSuperJSON, XSuperObject, sysutils;
+uses classes, XSuperJSON, XSuperObject, sysutils, system.ioutils;
 
 Const
   JSONSettingsFile = 'NeatoToolio.JSON';
 
 Type
 
-  tNeatoSettings = class   // application settings file, in JSON format
+  tNeatoSettings = class // application settings file, in JSON format
   private
     fAutoDetectNeato: boolean; // flag for auto detect neato serial port
   public
-   //
+    //
   published
     property AutoDetectNeato: boolean read fAutoDetectNeato write fAutoDetectNeato;
   end;
 
 var
   NeatoSettings: tNeatoSettings;
+  INIFilePath: string;
 
 implementation
 
@@ -29,29 +30,34 @@ initialization
 var
   loadSettingsFile: TStringlist;
 
-loadSettingsFile := TStringlist.Create;
+begin
+  loadSettingsFile := TStringlist.Create;
+  INIFilePath := '';
 
-try
   try
-    if fileexists(JSONSettingsFile) then
-    begin
-      loadSettingsFile.LoadFromFile(JSONSettingsFile);
-      NeatoSettings := tNeatoSettings.FromJSON(loadSettingsFile.Text);
-    end
-    else
-    begin
-      NeatoSettings := tNeatoSettings.Create; // something bad happened!
-      NeatoSettings.AutoDetectNeato := true;
+    forcedirectories(system.ioutils.TPath.GetHomePath + '\NeatoToolio\');
+    INIFilePath := system.ioutils.TPath.GetHomePath + '\NeatoToolio\' + JSONSettingsFile;
+    try
+      if fileexists(INIFilePath) then
+      begin
+        loadSettingsFile.LoadFromFile(INIFilePath);
+        NeatoSettings := tNeatoSettings.FromJSON(loadSettingsFile.Text);
+      end
+      else
+      begin
+        NeatoSettings := tNeatoSettings.Create; // something bad happened!
+        NeatoSettings.AutoDetectNeato := true;
+      end;
+    except
+      on e: Exception do
+      begin
+        NeatoSettings := tNeatoSettings.Create; // something bad happened!
+        NeatoSettings.AutoDetectNeato := false;
+      end;
     end;
-  except
-    on e: Exception do
-    begin
-      NeatoSettings := tNeatoSettings.Create; // something bad happened!
-      NeatoSettings.AutoDetectNeato := false;
-    end;
+  finally
+    loadSettingsFile.Free;
   end;
-finally
-  loadSettingsFile.Free;
 end;
 
 finalization
@@ -61,9 +67,9 @@ var
 try
   saveSettingsFile := TStringlist.Create;
   saveSettingsFile.Text := NeatoSettings.AsJSON(true);
-  saveSettingsFile.SaveToFile(JSONSettingsFile);
+  saveSettingsFile.SaveToFile(INIFilePath);
 finally
- freeandnil(saveSettingsFile);
+  freeandnil(saveSettingsFile);
 end;
 
 end.

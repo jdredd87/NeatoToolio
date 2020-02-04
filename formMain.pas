@@ -39,6 +39,9 @@ uses
   Neato.D.GetSensor,
   Neato.D.SetButton,
   Neato.D.Clean,
+  Neato.D.SetNTPTime,
+  Neato.D.SetNavigationMode,
+  Neato.D.SetUsage,
 
   {D3-D7, DSeries Frames}
   frame.D.GetCharger,
@@ -58,6 +61,9 @@ uses
   frame.D.GetSensors,
   frame.D.SetButton,
   frame.D.Clean,
+  frame.D.SetNTPTime,
+  frame.D.SetNavigationMode,
+  frame.D.SetUsage,
 
   {XV Series Units}
   Neato.XV.GetCharger,
@@ -218,8 +224,6 @@ type
     tabRestoreDefaults: TTabItem;
     tabClean: TTabItem;
     tabDiagTest: TTabItem;
-    tabGetConfiguredWifiNetworks: TTabItem;
-    tabSetWifi: TTabItem;
     tabMotors: TTabItem;
     tabsMotorOptions: TTabControl;
     tabGetMotors: TTabItem;
@@ -234,7 +238,6 @@ type
     tabGetLDSScan: TTabItem;
     tabLidarView: TTabItem;
     tabSetBatteryTest: TTabItem;
-    tabSetBrushControlParams: TTabItem;
     tabButtons: TTabItem;
     tabsButtonOptions: TTabControl;
     tabGetButtons: TTabItem;
@@ -274,7 +277,6 @@ type
     tabSetUsage: TTabItem;
     tabPlaySound: TTabItem;
     lblPlaysoundIDX: TLabel;
-    tabSetUserSettings: TTabItem;
     tabTestLDS: TTabItem;
     tabSetWallFollower: TTabItem;
     tabSetDistanceCal: TTabItem;
@@ -286,7 +288,6 @@ type
     lblConnectPort: TLabel;
     swIPConnection: TSwitch;
     lblConnectIPEnabled: TLabel;
-    Rectangle1: trectangle;
     tabAbout: TTabItem;
     ShadowEffectmemoAbout: TShadowEffect;
     RectangleaboutMemo: trectangle;
@@ -344,6 +345,10 @@ type
     DGetSensors: TframeDGetSensors;
     DSetButton: TframeDSetButton;
     DClean: TframeDClean;
+    DSetNTPTime: TframeDSetNTPTime;
+    DSetNavigationMode: TframeDSetNavigationMode;
+    DSetUsage: TframeDSetUsage;
+
     // XVSeries Frames
 
     XVGetCharger: TframeXVGetCharger;
@@ -405,7 +410,7 @@ begin
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
   memoAbout.Lines.Add('');
   memoAbout.Lines.Add('Created by Steven Chesser');
-  memoAbout.Lines.Add('Contact : steven.chesser@twc.com');
+  memoAbout.Lines.Add('Contact : NeatoToolio@twc.com');
   memoAbout.Lines.Add('');
   memoAbout.Lines.Add('');
   memoAbout.Lines.Add('');
@@ -733,7 +738,7 @@ begin
 
     if (R <> '') and (neatoType in [BotVac, BotVacConnected]) then
     begin
-      R := dm.com.SendCommandAndWaitForValue(sGetWifiStatus,5000,^Z,1);
+      R := dm.com.SendCommandAndWaitForValue(sGetWifiStatus, 5000, ^Z, 1);
 
       gGetWifiStatusD := tGetWifiStatusD.Create;
       ReadData.Text := R;
@@ -744,9 +749,9 @@ begin
       freeandnil(gGetWifiStatusD);
 
       dm.com.Serial.PurgeInput;
-      dm.COM.Serial.PurgeOutput;
+      dm.com.Serial.PurgeOutput;
 
-      R := dm.com.SendCommandAndWaitForValue(sGetversion,5000,^Z,1);
+      R := dm.com.SendCommandAndWaitForValue(sGetVersion, 5000, ^Z, 1);
 
       gGetVersionD := tGetVersionD.Create;
       ReadData.Text := R;
@@ -1131,8 +1136,18 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabGetTime then
   begin
-    XVGetTime.Visible := true;
-    timerStarter := XVGetTime.timer_GetData;
+    case neatoType of
+      BotVacConnected: // there is a GetSchedule but appears not usable
+        begin
+          XVGetTime.Visible := false;
+          SetNotSupported;
+        end;
+      BotVac, XV:
+        begin
+          XVGetTime.Visible := true;
+          timerStarter := XVGetTime.timer_GetData;
+        end;
+    end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabClean then
@@ -1171,6 +1186,7 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetSystemMode then
   begin
+    DXVSetSystemMode.check;
     DXVSetSystemMode.Visible := true;
   end;
 
@@ -1184,6 +1200,7 @@ begin
         end;
       XV:
         begin
+          DXVSetLCD.check;
           DXVSetLCD.Visible := true;
         end;
     end;
@@ -1194,11 +1211,12 @@ begin
     case neatoType of
       BotVacConnected: // there IS a setLED but can't seem to get anything to respond
         begin
-          XVSetLED.Visible := FALSE;
+          XVSetLED.Visible := false;
           SetNotSupported;
         end;
       BotVac, XV:
         begin
+          XVSetLED.check;
           XVSetLED.Visible := true; // BotVac and XV are similar enough to share the XV code
         end;
     end;
@@ -1251,6 +1269,7 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetIEC then
   begin
+    DXVSetIEC.check;
     DXVSetIEC.Visible := true;
   end;
 
@@ -1302,6 +1321,7 @@ begin
   if TTabControl(Sender).ActiveTab = tabSetBatteryTest then
     if assigned(DXVSetBatteryTest) then
     begin
+      DXVSetBatteryTest.check;
       DXVSetBatteryTest.Visible := true;
     end;
 
@@ -1411,17 +1431,68 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetButton then
     case neatoType of
-      BotVac,BotVacConnected: //maybe the connected ?
+      BotVac, BotVacConnected: // maybe the connected ?
         begin
           if assigned(DSetButton) then
           begin
-            DSetButton.check;
+            DSetButton.Check;
             DSetButton.Visible := true;
           end;
         end;
       XV:
         begin
           DSetButton.Visible := false;
+          SetNotSupported;
+        end;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabSetNTPTime then
+    case neatoType of
+      BotVacConnected: // maybe the connected ?
+        begin
+          if assigned(DSetNTPTime) then
+          begin
+            DSetNTPTime.Check;
+            DSetNTPTime.Visible := true;
+          end;
+        end;
+      BotVac, XV:
+        begin
+          DSetNTPTime.Visible := false;
+          SetNotSupported;
+        end;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabSetNavigationMode then
+    case neatoType of
+      BotVacConnected: // maybe the connected ?
+        begin
+          if assigned(DSetNavigationMode) then
+          begin
+            DSetNavigationMode.Check;
+            DSetNavigationMode.Visible := true;
+          end;
+        end;
+      BotVac, XV:
+        begin
+          DSetNavigationMode.Visible := false;
+          SetNotSupported;
+        end;
+    end;
+
+  if TTabControl(Sender).ActiveTab = tabSetUsage then
+    case neatoType of
+      BotVacConnected: // maybe the connected ?
+        begin
+          if assigned(DSetNavigationMode) then
+          begin
+            DSetUsage.Check;
+            DSetUsage.Visible := true;
+          end;
+        end;
+      BotVac, XV:
+        begin
+          DSetUsage.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1454,6 +1525,9 @@ begin
   DClearFiles := TframeDClearFiles.Create(tabClearFiles);
   DGetWifiInfo := TframeDGetWifiInfo.Create(tabGetWifiInfo);
   DGetWifiStatus := TframeDGetWifiStatus.Create(tabGetWifiStatus);
+  DSetNavigationMode :=  TframeDSetNavigationMode.Create(tabSetNavigationMode);
+  DSetUsage := TframeDSetUsage.Create(tabSetUsage);
+
   XVGetCharger := TframeXVGetCharger.Create(tabGetCharger);
   XVGetAnalogSensors := TframeXVGetAnalogSensors.Create(tabGetAnalogSensors);
   XVGetDigitalSensors := TframeXVGetDigitalSensors.Create(tabGetDigitalSensors);
@@ -1488,6 +1562,8 @@ begin
   DXVSetLanguage := TframeDXVSetLanguage.Create(tabSetLanguage);
   DSetButton := TframeDSetButton.Create(tabSetButton);
   DClean := TframeDClean.Create(tabClean);
+  DSetNTPTime := TframeDSetNTPTime.Create(tabSetNTPTime);
+
 end;
 
 procedure TfrmMain.ResetTabs;

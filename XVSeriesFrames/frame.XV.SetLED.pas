@@ -34,7 +34,8 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
@@ -43,8 +44,8 @@ implementation
 
 constructor TframeXVSetLED.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeXVSetLED.btnSetLEDOnClick(Sender: TObject);
@@ -96,7 +97,7 @@ begin
     if r then
       lblSetLEDMessage.Text := ''
     else
-      lblSetLEDMessage.Text := pSetLEd.Error;
+      lblSetLEDMessage.Text := pSetLED.Error;
 
     pReadData.Free;
     pSetLED.Free;
@@ -141,6 +142,24 @@ end;
 procedure TframeXVSetLED.btnSetLEDBacklightOnMouseLeave(Sender: TObject);
 begin
   lblSetLEDMessage.Text := '';
+end;
+
+procedure TframeXVSetLED.check;
+begin
+  btnSetLEDBacklightOn.Enabled := dm.com.Serial.Active;
+  btnSetLEDBacklightOff.Enabled := dm.com.Serial.Active;
+  btnSetLEDButtonAmber.Enabled := dm.com.Serial.Active;
+  btnSetLEDButtonOff.Enabled := dm.com.Serial.Active;
+  btnSetLEDBlinkOn.Enabled := dm.com.Serial.Active;
+  btnSetLEDButtonGreenDim.Enabled := dm.com.Serial.Active;
+  btnSetLEDButtonAmberDim.Enabled := dm.com.Serial.Active;
+  btnSetLEDLEDGreen.Enabled := dm.com.Serial.Active;
+  btnSetLEDLEDRed.Enabled := dm.com.Serial.Active;
+  btnSetLEDButtonGreen.Enabled := dm.com.Serial.Active;
+  btnSetLEDBlinkOff.Enabled := dm.com.Serial.Active;
+
+  if dm.com.Serial.Active then
+    dm.chkTestmode.IsChecked := true;
 end;
 
 end.

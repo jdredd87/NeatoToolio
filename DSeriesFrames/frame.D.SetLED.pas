@@ -30,7 +30,8 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
 implementation
@@ -39,73 +40,73 @@ implementation
 
 constructor TframeDSetLED.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeDSetLED.btnSetLEDOnClick(Sender: TObject);
 begin
-//
+  //
 end;
 {
-var
+  var
   cmd: string;
   pSetLED: tSetLEDXV;
   pReadData: TStringList;
   r: Boolean;
   idx: integer;
-begin
+  begin
   cmd := '';
 
   if Sender = btnSetLEDBacklightOn then
-    cmd := sBacklightOn;
+  cmd := sBacklightOn;
   if Sender = btnSetLEDBacklightOff then
-    cmd := sBacklightOff;
+  cmd := sBacklightOff;
   if Sender = btnSetLEDButtonAmber then
-    cmd := sButtonAmber;
+  cmd := sButtonAmber;
   if Sender = btnSetLEDButtonOff then
-    cmd := sButtonOff;
+  cmd := sButtonOff;
   if Sender = btnSetLEDBlinkOn then
-    cmd := sBlinkOn;
+  cmd := sBlinkOn;
   if Sender = btnSetLEDButtonGreenDim then
-    cmd := sButtonGreenDim;
+  cmd := sButtonGreenDim;
   if Sender = btnSetLEDButtonAmberDim then
-    cmd := sButtonAmberDim;
+  cmd := sButtonAmberDim;
   if Sender = btnSetLEDLEDGreen then
-    cmd := sLEDGreen;
+  cmd := sLEDGreen;
   if Sender = btnSetLEDLEDRed then
-    cmd := sLEDRed;
+  cmd := sLEDRed;
   if Sender = btnSetLEDButtonGreen then
-    cmd := sButtonGreen;
+  cmd := sButtonGreen;
   if Sender = btnSetLEDBlinkOff then
-    cmd := sBlinkOff;
+  cmd := sBlinkOff;
 
   if cmd <> '' then
   begin
 
-    dm.chkTestmode.IsChecked := true;
-    sleep(250);
+  dm.chkTestmode.IsChecked := true;
+  sleep(250);
 
-    pSetLED := tSetLEDXV.Create;
+  pSetLED := tSetLEDXV.Create;
 
-    pReadData := TStringList.Create;
-    pReadData.Text := dm.com.SendCommand(sSetLED + ' ' + cmd);
+  pReadData := TStringList.Create;
+  pReadData.Text := dm.com.SendCommand(sSetLED + ' ' + cmd);
 
-    r := pSetLED.ParseText(pReadData);
+  r := pSetLED.ParseText(pReadData);
 
-    if r then
-      lblSetLEDMessage.Text := ''
-    else
-      lblSetLEDMessage.Text := pSetLEd.Error;
+  if r then
+  lblSetLEDMessage.Text := ''
+  else
+  lblSetLEDMessage.Text := pSetLEd.Error;
 
-    pReadData.Free;
-    pSetLED.Free;
+  pReadData.Free;
+  pSetLED.Free;
 
   end;
 
   resetfocus;
-end;
- }
+  end;
+}
 
 procedure TframeDSetLED.btnSetLEDBacklightOnMouseEnter(Sender: TObject);
 var
@@ -113,36 +114,48 @@ var
 begin
   msg := '';
 
- {
-  if Sender = btnSetLEDBacklightOn then
+  {
+    if Sender = btnSetLEDBacklightOn then
     msg := sBacklightOnMSG;
-  if Sender = btnSetLEDBacklightOff then
+    if Sender = btnSetLEDBacklightOff then
     msg := sBacklightOffMSG;
-  if Sender = btnSetLEDButtonAmber then
+    if Sender = btnSetLEDButtonAmber then
     msg := sButtonAmberMSG;
-  if Sender = btnSetLEDButtonOff then
+    if Sender = btnSetLEDButtonOff then
     msg := sButtonOffMSG;
-  if Sender = btnSetLEDBlinkOn then
+    if Sender = btnSetLEDBlinkOn then
     msg := sBlinkOnMSG;
-  if Sender = btnSetLEDButtonGreenDim then
+    if Sender = btnSetLEDButtonGreenDim then
     msg := sButtonGreenDimMSG;
-  if Sender = btnSetLEDButtonAmberDim then
+    if Sender = btnSetLEDButtonAmberDim then
     msg := sButtonAmberDimMSG;
-  if Sender = btnSetLEDLEDGreen then
+    if Sender = btnSetLEDLEDGreen then
     msg := sLEDGreenMSG;
-  if Sender = btnSetLEDLEDRed then
+    if Sender = btnSetLEDLEDRed then
     msg := sLEDRedMSG;
-  if Sender = btnSetLEDButtonGreen then
+    if Sender = btnSetLEDButtonGreen then
     msg := sButtonGreenMSG;
-  if Sender = btnSetLEDBlinkOff then
+    if Sender = btnSetLEDBlinkOff then
     msg := sBlinkOffMSG;
- }
+  }
   lblSetLEDMessage.Text := msg;
 end;
 
 procedure TframeDSetLED.btnSetLEDBacklightOnMouseLeave(Sender: TObject);
 begin
   lblSetLEDMessage.Text := '';
+end;
+
+procedure TframeDSetLED.check;
+begin
+  btnSetLEDBacklightOn.Enabled := dm.COM.Serial.Active;
+  btnSetLEDBacklightOff.Enabled := dm.COM.Serial.Active;
+  btnSetLEDButtonAmber.Enabled := dm.COM.Serial.Active;
+  btnSetLEDLEDRed.Enabled := dm.COM.Serial.Active;
+  btnSetLEDButtonGreen.Enabled := dm.COM.Serial.Active;
+
+  if dm.COM.Serial.Active then
+    dm.chkTestmode.IsChecked := true;
 end;
 
 end.
