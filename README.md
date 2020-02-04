@@ -1,14 +1,7 @@
 # NeatoToolio
 Neato Toolio - Diagnostic tool for Neato Botvacs
 
-Slowly adding support for calls for the XV and BotVac Connected / D3-D7 models.
-
-If you just want the executable to run, browse to the win32\debug folder to find it.
-Just the one file is needed currently.
-
-Once things are "done" will include an installer.
-
-
+Slowly adding support for calls for the XV, BotVac and BotVac Connected / D3-D7 models.
 
 NeatoToolio is "Ready" to download and play with... I think... At least to a point where can start
 letting other people play around and weed out all the many issues I am sure to crop up that I didn't catch
@@ -35,7 +28,11 @@ Business logic code... GUI look and feel... More error catching... ect.
 8) I don't have an online update mechanism in place right now.. maybe later this week.
     I really don't want to host files, so may see if I can do this by using GitHub to host files for me.
 
-9) Remember, this is free... so don't complain to much :)
+9) Once I think everything in the Windows flavor is to a happy place, I will be switching to the Android and possibly iOS side of things.  Delphi allows cross compile and I've tested a few things with my Android devices and it works, but I have to remap all the GUI design to be mobile friendly. Which GUI is the pain usually in any dev work. iOS I am not 100% sure as iOS deployment is 1000x more a pain in the butt than Google Play Store. 
+
+10) IP / Port connecting ( wireless serial adapters ) will come eventually as I have a new adapter i've tested.
+
+11) Remember, this is free... so don't complain to much :)
 
 
 Anyways..
@@ -44,10 +41,3 @@ Can download and run @ https://github.com/jdredd87/NeatoToolio/raw/master/Instal
 
 Everything that isn't a paid for 3rd party that I own licenses to is posted to this repository... 
 Hopefully as time allows, ill be cleaning up source and improving.  Please let me know and please don't hammer me to badly :)
-
-
-
-
-
-
-
