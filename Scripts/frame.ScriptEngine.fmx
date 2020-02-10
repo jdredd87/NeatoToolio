@@ -1,0 +1,705 @@
+object frameScriptEngine: TframeScriptEngine
+  Size.Width = 744.000000000000000000
+  Size.Height = 593.000000000000000000
+  Size.PlatformDefault = False
+  object TabControl1: TTabControl
+    Align = Client
+    Size.Width = 744.000000000000000000
+    Size.Height = 593.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 1
+    TabOrder = 0
+    TabPosition = PlatformDefault
+    Sizes = (
+      744s
+      588s
+      744s
+      588s)
+    object TabItem1: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Height = 5.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Available Scripts'
+      ExplicitSize.cx = 107.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lbScripts: TListBox
+        Align = Left
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 241.000000000000000000
+        Size.Height = 578.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        DisableFocusEffect = True
+        DefaultItemStyles.ItemStyle = ''
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        OnChange = lbScriptsChange
+        Viewport.Width = 241.000000000000000000
+        Viewport.Height = 578.000000000000000000
+      end
+      object lblScriptDescription: TLabel
+        Position.X = 251.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 346.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+      object btnScriptOpenEdit: TButton
+        Enabled = False
+        Position.X = 256.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'Open to Edit'
+        OnClick = btnScriptOpenEditClick
+      end
+      object btnScriptRun: TButton
+        Enabled = False
+        Position.X = 256.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Run Script'
+      end
+      object btnScriptNew: TButton
+        Position.X = 256.000000000000000000
+        Position.Y = 248.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Create NEW Script'
+        OnClick = btnScriptNewClick
+      end
+    end
+    object tabScriptEditor: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Height = 5.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Script Editor'
+      ExplicitSize.cx = 85.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object rectTop: TRectangle
+        Align = Top
+        Fill.Color = xFF5A5FF4
+        Sides = []
+        Size.Width = 744.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        object btnScriptSave: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Save'
+          OnClick = btnScriptSaveClick
+        end
+        object btnScriptEditorRun: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 95.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Run'
+          OnClick = btnScriptEditorRunClick
+        end
+        object lblScriptFileName: TLabel
+          Align = Right
+          Position.X = 510.000000000000000000
+          Size.Width = 234.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = '-----'
+          TabOrder = 2
+        end
+        object btnIDE: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 185.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          Text = 'IDE'
+          OnClick = btnIDEClick
+        end
+      end
+      object memoScript: TTMSFMXMemo
+        Align = Client
+        Cursor = crIBeam
+        DisableFocusEffect = False
+        TabOrder = 5
+        Size.Width = 744.000000000000000000
+        Size.Height = 538.000000000000000000
+        Size.PlatformDefault = False
+        ActiveLineSettings.ShowActiveLine = False
+        ActiveLineSettings.ShowActiveLineIndicator = False
+        ActiveLineSettings.ActiveLineAtCursor = True
+        AutoCompletion.StartToken = '.'
+        CaseSensitive = False
+        Font.Family = 'Courier New'
+        Gutter.Font.Family = 'Courier New'
+        KeyboardType = Default
+        ReadOnly = False
+        SyntaxStyles = TMSFMXMemoPascalStyler1
+        SmartTabs = True
+        TabSize = 4
+        TrimTrailingSpaces = False
+        UseStyler = True
+        Version = '1.5.4.8'
+        WantTab = True
+      end
+    end
+  end
+  object saveDialog: TSaveDialog
+    DefaultExt = 'NTS'
+    Filter = 'NeatoToolioScript|*.NTS'
+    Left = 512
+    Top = 288
+  end
+  object ScrPascalMemoStyler1: TScrPascalMemoStyler
+    BlockStart = 'begin,try,case,class,record,interface'
+    BlockEnd = 'end'
+    LineComment = '//'
+    MultiCommentLeft = '{'
+    MultiCommentRight = '}'
+    CommentStyle.TextColor = clNavy
+    CommentStyle.BkColor = clNone
+    CommentStyle.Style = [fsItalic]
+    NumberStyle.TextColor = clFuchsia
+    NumberStyle.BkColor = clNone
+    NumberStyle.Style = [fsBold]
+    HighlightStyle.TextColor = clWhite
+    HighlightStyle.BkColor = clRed
+    HighlightStyle.Style = [fsBold]
+    AllStyles = <
+      item
+        KeyWords.Strings = (
+          'UNIT'
+          'INTERFACE'
+          'IMPLEMENTATION'
+          'USES'
+          'CONST'
+          'PROGRAM'
+          'PRIVATE'
+          'PUBLIC'
+          'PUBLISHED'
+          'PROTECTED'
+          'PROPERTY'
+          'FUNCTION'
+          'FINALISE'
+          'INITIALISE'
+          'VAR'
+          'BEGIN'
+          'WITH'
+          'END'
+          'FOR'
+          'TO'
+          'DO'
+          'NOT'
+          'IF'
+          'THEN'
+          'ELSE'
+          'TYPE'
+          'WHILE'
+          'REPEAT'
+          'UNTIL'
+          'BREAK'
+          'CONTINUE'
+          'VIRTUAL'
+          'OVERRIDE'
+          'DEFAULT'
+          'CLASS'
+          'STORED'
+          'INHERITED'
+          'PROCEDURE'
+          'CONSTRUCTOR'
+          'DESTRUCTOR'
+          'FINALLY'
+          'RAISE'
+          'STRING'
+          'TRY'
+          'EXCEPT'
+          'STDCALL'
+          'CDECL'
+          'PASCAL'
+          'NIL'
+          'CASE'
+          'REINTRODUCE'
+          'PACKED'
+          'RECORD'
+          'MESSAGE'
+          'IN'
+          'IS'
+          'SHL'
+          'SHR'
+          'MOD'
+          'DIV'
+          'XOR'
+          'OR'
+          'AND'
+          'OF'
+          'SET'
+          'DOWNTO'
+          'EXPORTS'
+          'LIBRARY'
+          'AS'
+          'ASM'
+          'DYNAMIC'
+          'OBJECT'
+          'THREADVAR'
+          'FILE'
+          'ABSTRACT'
+          'OVERLOAD'
+          'ASSEMBLER'
+          'ABSOLUTE'
+          'AUTOMATED'
+          'EXTERNAL'
+          'REGISTER'
+          'DISPINTERFACE'
+          'RESOURCESTRING'
+          'NEAR'
+          'FAR'
+          'LABEL'
+          'OUT'
+          'SAFECALL'
+          'DISPID'
+          'ARRAY'
+          'INLINE'
+          'FORWARD'
+          'PLATFORM'
+          'DEPRECATED')
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = [fsBold]
+        BGColor = clNone
+        StyleType = stKeyword
+        BracketStart = #0
+        BracketEnd = #0
+        Info = 'Pascal Standard Default'
+      end
+      item
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        BGColor = clNone
+        StyleType = stBracket
+        BracketStart = #39
+        BracketEnd = #39
+        Info = 'Simple Quote'
+      end
+      item
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        BGColor = clNone
+        StyleType = stBracket
+        BracketStart = '"'
+        BracketEnd = '"'
+        Info = 'Double Quote'
+      end
+      item
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = []
+        BGColor = clNone
+        StyleType = stSymbol
+        BracketStart = #0
+        BracketEnd = #0
+        Symbols = ' ,;:.(){}[]=+-*/^%<>#'#13#10
+        Info = 'Symbols Delimiters'
+      end
+      item
+        CommentLeft = '(*'
+        CommentRight = '*)'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -11
+        Font.Name = 'Courier New'
+        Font.Style = [fsItalic]
+        BGColor = clNone
+        StyleType = stComment
+        BracketStart = #0
+        BracketEnd = #0
+        Info = 'Multi line comment'
+      end>
+    AutoCompletion.Strings = (
+      'ShowMessage'
+      'MessageDlg')
+    HintParameter.TextColor = clBlack
+    HintParameter.BkColor = clInfoBk
+    HintParameter.HintCharStart = '('
+    HintParameter.HintCharEnd = ')'
+    HintParameter.HintCharDelimiter = ';'
+    HintParameter.HintClassDelimiter = '.'
+    HintParameter.HintCharWriteDelimiter = ','
+    HintParameter.Parameters.Strings = (
+      'ShowMessage(const Msg: string);'
+      
+        'MessageDlg(const Msg: string; DlgType: TMsgDlgType; Buttons: TMs' +
+        'gDlgButtons; HelpCtx: Longint): Integer);')
+    HexIdentifier = '$'
+    Description = 'Pascal'
+    Filter = 'Pascal Files (*.pas,*.dpr,*.dpk,*.inc)|*.pas;*.dpr;*.dpk;*.inc'
+    DefaultExtension = '.pas'
+    StylerName = 'Pascal'
+    Extensions = 'pas;dpr;dpk;inc'
+    RegionDefinitions = <
+      item
+        Identifier = 'procedure'
+        RegionStart = 'begin'
+        RegionEnd = 'end'
+        RegionType = rtClosed
+        ShowComments = False
+      end
+      item
+        Identifier = 'procedure'
+        RegionEnd = 'forward'
+        RegionType = rtClosed
+        ShowComments = False
+      end
+      item
+        Identifier = 'constructor'
+        RegionStart = 'begin'
+        RegionEnd = 'end'
+        RegionType = rtClosed
+        ShowComments = False
+      end
+      item
+        Identifier = 'destructor'
+        RegionStart = 'begin'
+        RegionEnd = 'end'
+        RegionType = rtClosed
+        ShowComments = False
+      end
+      item
+        Identifier = 'interface'
+        RegionStart = 'interface'
+        RegionType = rtOpen
+        ShowComments = False
+      end
+      item
+        Identifier = 'unit'
+        RegionStart = 'unit'
+        RegionType = rtFile
+        ShowComments = False
+      end
+      item
+        Identifier = 'implementation'
+        RegionStart = 'implementation'
+        RegionType = rtOpen
+        ShowComments = False
+      end
+      item
+        Identifier = 'case'
+        RegionStart = 'case'
+        RegionEnd = 'end'
+        RegionType = rtIgnore
+        ShowComments = False
+      end
+      item
+        Identifier = 'try'
+        RegionStart = 'try'
+        RegionEnd = 'end'
+        RegionType = rtIgnore
+        ShowComments = False
+      end
+      item
+        Identifier = 'function'
+        RegionStart = 'begin'
+        RegionEnd = 'end'
+        RegionType = rtClosed
+        ShowComments = False
+      end
+      item
+        Identifier = '{$region'
+        RegionStart = '{$region'
+        RegionEnd = '{$endregion'
+        RegionType = rtClosed
+        ShowComments = False
+      end>
+    Left = 512
+    Top = 344
+  end
+  object TMSFMXMemoPascalStyler1: TTMSFMXMemoPascalStyler
+    BlockStart = 'begin,try,case,class,record'
+    BlockEnd = 'end'
+    HighlightStyle.TextColor = claWhite
+    HighlightStyle.BkColor = claGreen
+    HighlightStyle.Style = []
+    LineComment = '//'
+    MultiCommentLeft = '{'
+    MultiCommentRight = '}'
+    CommentStyle.TextColor = claNavy
+    CommentStyle.BkColor = claNull
+    CommentStyle.Style = [fsItalic]
+    NumberStyle.TextColor = claFuchsia
+    NumberStyle.BkColor = claNull
+    NumberStyle.Style = [fsBold]
+    URLStyle.TextColor = claBlue
+    URLStyle.BkColor = claNull
+    URLStyle.Style = [fsUnderline]
+    AllStyles = <
+      item
+        KeyWords.Strings = (
+          'UNIT'
+          'INTERFACE'
+          'IMPLEMENTATION'
+          'USES'
+          'CONST'
+          'PROGRAM'
+          'PRIVATE'
+          'PUBLIC'
+          'PUBLISHED'
+          'PROTECTED'
+          'PROPERTY'
+          'FUNCTION'
+          'FINALISE'
+          'INITIALISE'
+          'VAR'
+          'BEGIN'
+          'WITH'
+          'END'
+          'FOR'
+          'TO'
+          'DO'
+          'NOT'
+          'IF'
+          'THEN'
+          'ELSE'
+          'TYPE'
+          'WHILE'
+          'REPEAT'
+          'UNTIL'
+          'BREAK'
+          'CONTINUE'
+          'VIRTUAL'
+          'OVERRIDE'
+          'DEFAULT'
+          'CLASS'
+          'STORED'
+          'INHERITED'
+          'PROCEDURE'
+          'CONSTRUCTOR'
+          'DESTRUCTOR'
+          'FINALLY'
+          'RAISE'
+          'STRING'
+          'TRY'
+          'EXCEPT'
+          'STDCALL'
+          'CDECL'
+          'PASCAL'
+          'NIL'
+          'CASE'
+          'REINTRODUCE'
+          'PACKED'
+          'RECORD'
+          'MESSAGE'
+          'IN'
+          'IS'
+          'SHL'
+          'SHR'
+          'MOD'
+          'DIV'
+          'XOR'
+          'OR'
+          'AND'
+          'OF'
+          'SET'
+          'DOWNTO'
+          'EXPORTS'
+          'LIBRARY'
+          'AS'
+          'ASM'
+          'DYNAMIC'
+          'OBJECT'
+          'THREADVAR'
+          'FILE'
+          'ABSTRACT'
+          'OVERLOAD'
+          'ASSEMBLER'
+          'ABSOLUTE'
+          'AUTOMATED'
+          'EXTERNAL'
+          'REGISTER'
+          'DISPINTERFACE'
+          'RESOURCESTRING'
+          'NEAR'
+          'FAR'
+          'LABEL'
+          'OUT'
+          'SAFECALL'
+          'DISPID'
+          'ARRAY'
+          'INLINE'
+          'FORWARD'
+          'PLATFORM'
+          'DEPRECATED')
+        Font.Family = 'Courier New'
+        Font.Size = 8.000000000000000000
+        Font.StyleExt = {00070000000000000004000000}
+        FontColor = claGreen
+        BGColor = claNull
+        StyleType = stKeyword
+        BracketStart = #0
+        BracketEnd = #0
+        Info = 'Pascal Standard Default'
+      end
+      item
+        Font.Family = 'Courier New'
+        Font.Size = 8.000000000000000000
+        FontColor = claBlue
+        BGColor = claNull
+        StyleType = stBracket
+        BracketStart = #39
+        BracketEnd = #39
+        Info = 'Simple Quote'
+      end
+      item
+        Font.Family = 'Courier New'
+        Font.Size = 8.000000000000000000
+        FontColor = claBlue
+        BGColor = claNull
+        StyleType = stBracket
+        BracketStart = '"'
+        BracketEnd = '"'
+        Info = 'Double Quote'
+      end
+      item
+        Font.Family = 'Courier New'
+        Font.Size = 8.000000000000000000
+        FontColor = claRed
+        BGColor = claNull
+        StyleType = stSymbol
+        BracketStart = #0
+        BracketEnd = #0
+        Symbols = ' ,;:.(){}[]=+-*/^%<>#'#13#10
+        Info = 'Symbols Delimiters'
+      end
+      item
+        CommentLeft = '(*'
+        CommentRight = '*)'
+        Font.Family = 'Courier New'
+        Font.Size = 8.000000000000000000
+        FontColor = claBlack
+        BGColor = claNull
+        StyleType = stComment
+        BracketStart = #0
+        BracketEnd = #0
+        Info = 'Multi line comment'
+      end>
+    AutoCompletion.Strings = (
+      'ShowMessage()'
+      'MessageDlg()')
+    HintParameter.TextColor = claBlack
+    HintParameter.BkColor = claYellow
+    HintParameter.HintCharStart = '('
+    HintParameter.HintCharEnd = ')'
+    HintParameter.HintCharDelimiter = ';'
+    HintParameter.HintClassDelimiter = '.'
+    HintParameter.HintCharWriteDelimiter = ','
+    HintParameter.Parameters.Strings = (
+      'ShowMessage(const Msg: string);'
+      
+        'MessageDlg(const Msg: string; DlgType: TMsgDlgType; Buttons: TMs' +
+        'gDlgButtons; HelpCtx: Longint): Integer);')
+    HexIdentifier = '$'
+    Description = 'Pascal'
+    Filter = 'Pascal Files (*.pas,*.dpr,*.dpk,*.inc)|*.pas;*.dpr;*.dpk;*.inc'
+    DefaultExtension = '.pas'
+    StylerName = 'Pascal'
+    Extensions = 'pas;dpr;dpk;inc'
+    Left = 504
+    Top = 400
+  end
+  object IDEDialog1: TIDEDialog
+    Engine = IDEEngine1
+    Title = 'NeatoToolio IDE - %s'
+    IDECloseAction = icaCloseAll
+    ShowInTaskBar = True
+    Left = 336
+    Top = 176
+  end
+  object IDEEngine1: TIDEEngine
+    Scripter = IDEScripter1
+    Options.AutoHideTabControl = True
+    FileExtPascalUnit = '.psc'
+    FileExtForm = '.sfm'
+    FileExtBasicUnit = '.bsc'
+    AutoStyler = True
+    ProjectExt = '.ssproj'
+    Left = 336
+    Top = 248
+  end
+  object IDEScripter1: TIDEScripter
+    DefaultLanguage = slPascal
+    SaveCompiledCode = False
+    ShortBooleanEval = True
+    LibOptions.SearchPath.Strings = (
+      '$(CURDIR)'
+      '$(APPDIR)')
+    LibOptions.UseScriptFiles = False
+    CallExecHookEvent = False
+    Left = 336
+    Top = 112
+  end
+  object ScripterEngine: TatScripter
+    DefaultLanguage = slPascal
+    SaveCompiledCode = False
+    ShortBooleanEval = True
+    LibOptions.SearchPath.Strings = (
+      '$(CURDIR)'
+      '$(APPDIR)')
+    LibOptions.UseScriptFiles = False
+    CallExecHookEvent = False
+    Left = 336
+    Top = 320
+  end
+end

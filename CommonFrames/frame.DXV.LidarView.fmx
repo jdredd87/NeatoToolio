@@ -2,7 +2,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
   Size.Width = 998.000000000000000000
   Size.Height = 585.000000000000000000
   inherited timer_getdata: TTimer
-    Interval = 250
+    Interval = 150
     OnTimer = timer_getdataTimer
     Left = 896
     Top = 128
@@ -11,7 +11,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     Position.Y = 617.000000000000000000
     Size.Width = 978.000000000000000000
     Visible = False
-    TabOrder = 56
+    TabOrder = 52
   end
   object pnlLidarLeft: TRectangle
     Align = Left
@@ -30,7 +30,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
       Max = 32.000000000000000000
       Value = 1.000000000000000000
       Position.X = 5.000000000000000000
-      Position.Y = 40.000000000000000000
+      Position.Y = 33.000000000000000000
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
@@ -43,11 +43,10 @@ inherited frameDXVLidarView: TframeDXVLidarView
     object lblResetLIDARmapping: TLabel
       Align = Top
       Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
+      Margins.Top = 3.000000000000000000
       Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
       Position.X = 5.000000000000000000
-      Position.Y = 5.000000000000000000
+      Position.Y = 3.000000000000000000
       Size.Width = 143.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -57,7 +56,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarDegree: TLabel
       Align = Top
-      Position.Y = 96.000000000000000000
+      Position.Y = 89.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -67,7 +66,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarDegreeValue: TLabel
       Align = Top
-      Position.Y = 121.000000000000000000
+      Position.Y = 114.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -77,7 +76,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarDistancemm: TLabel
       Align = Top
-      Position.Y = 146.000000000000000000
+      Position.Y = 139.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -87,7 +86,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarDistancemmValue: TLabel
       Align = Top
-      Position.Y = 171.000000000000000000
+      Position.Y = 164.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -97,7 +96,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarErrorCode: TLabel
       Align = Top
-      Position.Y = 246.000000000000000000
+      Position.Y = 239.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -107,7 +106,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarErrorCodeValue: TLabel
       Align = Top
-      Position.Y = 271.000000000000000000
+      Position.Y = 264.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -117,7 +116,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarIntesnity: TLabel
       Align = Top
-      Position.Y = 196.000000000000000000
+      Position.Y = 189.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -127,7 +126,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarIntesnityValue: TLabel
       Align = Top
-      Position.Y = 221.000000000000000000
+      Position.Y = 214.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -137,7 +136,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarSpeed: TLabel
       Align = Top
-      Position.Y = 296.000000000000000000
+      Position.Y = 289.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -147,7 +146,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblLidarSpeedValue: TLabel
       Align = Top
-      Position.Y = 321.000000000000000000
+      Position.Y = 314.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
@@ -159,7 +158,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
       Align = Top
       Margins.Left = 35.000000000000000000
       Position.X = 35.000000000000000000
-      Position.Y = 77.000000000000000000
+      Position.Y = 70.000000000000000000
       Size.Width = 118.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
@@ -169,7 +168,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     end
     object lblMaxDistance: TLabel
       Align = Top
-      Position.Y = 346.000000000000000000
+      Position.Y = 339.000000000000000000
       Size.Width = 153.000000000000000000
       Size.Height = 17.000000000000000000
       Size.PlatformDefault = False
@@ -182,11 +181,11 @@ inherited frameDXVLidarView: TframeDXVLidarView
       Align = Top
       TabOrder = 14
       Cursor = crIBeam
-      Min = 1000.000000000000000000
+      Min = 100.000000000000000000
       Max = 16000.000000000000000000
       Value = 8000.000000000000000000
       Position.X = 5.000000000000000000
-      Position.Y = 368.000000000000000000
+      Position.Y = 361.000000000000000000
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
@@ -195,6 +194,36 @@ inherited frameDXVLidarView: TframeDXVLidarView
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
       OnChange = sbMaxDistanceChange
+    end
+    object lblFPS: TLabel
+      Align = Bottom
+      Position.Y = 420.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 15
+    end
+    object lblDroppedPackets: TLabel
+      Align = Bottom
+      Position.Y = 459.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 16
+    end
+    object lblTotalFrames: TLabel
+      Align = Bottom
+      Position.Y = 498.000000000000000000
+      Size.Width = 153.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = '0'
+      TabOrder = 17
     end
   end
   object rectPlotPoints: TRectangle
@@ -215,7 +244,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
     Size.Height = 537.000000000000000000
     Size.PlatformDefault = False
     TabIndex = 0
-    TabOrder = 60
+    TabOrder = 56
     TabPosition = PlatformDefault
     Sizes = (
       845s

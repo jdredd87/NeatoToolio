@@ -153,8 +153,8 @@ begin
         sbCleanWidth.Min := -1;
         sbCleanWidth.Max := 500;
 
-        btnClean.Enabled := dm.com.Serial.Active;
-        sbCleanWidth.Enabled := dm.com.Serial.Active;
+        btnClean.Enabled := dm.com.Active;
+        sbCleanWidth.Enabled := dm.com.Active;
 
         btnCleanExplore.Enabled := false;
         btnCleanHouse.Enabled := false;
@@ -170,15 +170,15 @@ begin
       begin
         sbCleanWidth.Min := 100;
         sbCleanWidth.Max := 400;
-        btnCleanExplore.Enabled := dm.com.Serial.Active;
-        btnCleanHouse.Enabled := dm.com.Serial.Active;
-        btnCleanSpot.Enabled := dm.com.Serial.Active;
-        btnCleanPersistent.Enabled := dm.com.Serial.Active;
-        btnCleanAutoCycle.Enabled := dm.com.Serial.Active;
-        sbCleanWidth.Enabled := dm.com.Serial.Active;
-        sbCleanHeight.Enabled := dm.com.Serial.Active;
-        sbNumberOfCycles.Enabled := dm.com.Serial.Active;
-        ckCleanForever.Enabled := dm.com.Serial.Active;
+        btnCleanExplore.Enabled := dm.com.Active;
+        btnCleanHouse.Enabled := dm.com.Active;
+        btnCleanSpot.Enabled := dm.com.Active;
+        btnCleanPersistent.Enabled := dm.com.Active;
+        btnCleanAutoCycle.Enabled := dm.com.Active;
+        sbCleanWidth.Enabled := dm.com.Active;
+        sbCleanHeight.Enabled := dm.com.Active;
+        sbNumberOfCycles.Enabled := dm.com.Active;
+        ckCleanForever.Enabled := dm.com.Active;
       end;
   end;
 

@@ -7,7 +7,7 @@ uses
   dmCommon,
   neato.XV.GetErr,
   FMX.TabControl,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
   FMX.Controls.Presentation, FMX.ScrollBox;
 
@@ -20,7 +20,8 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -29,10 +30,9 @@ implementation
 
 constructor TFrameXVGetErr.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TFrameXVGetErr.timer_GetDataTimer(Sender: TObject);
 var
@@ -42,7 +42,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -67,6 +67,11 @@ begin
 
   pReadData.Free;
   pGetErr.Free;
+end;
+
+procedure TFrameXVGetErr.check;
+begin
+  //
 end;
 
 end.

@@ -79,7 +79,7 @@ begin
     begin
       lblSetSystemModeError.Text := '';
       dm.ActiveTab := nil;
-      dm.com.Serial.Close;
+      dm.com.Close;
     end
     else
     begin
@@ -120,12 +120,12 @@ end;
 
 procedure TframeDXVSetSystemMode.check;
 begin
-  btnSetSystemModeShutdown.Enabled := dm.com.Serial.Active;
-  btnSetSystemModeHibernate.Enabled := dm.com.Serial.Active;
-  btnSetSystemModeStandby.Enabled := dm.com.Serial.Active;
-  btnSetSystemModePowerCycle.Enabled := dm.com.Serial.Active;
+  btnSetSystemModeShutdown.Enabled := dm.com.Active;
+  btnSetSystemModeHibernate.Enabled := dm.com.Active;
+  btnSetSystemModeStandby.Enabled := dm.com.Active;
+  btnSetSystemModePowerCycle.Enabled := dm.com.Active;
 
-  if dm.com.Serial.Active then
+  if dm.com.Active then
     dm.chkTestmode.IsChecked := true;
 
 end;

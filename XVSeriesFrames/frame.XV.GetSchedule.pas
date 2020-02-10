@@ -41,6 +41,7 @@ type
     { Private declarations }
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -49,8 +50,8 @@ implementation
 
 constructor TframeXVGetSchedule.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeXVGetSchedule.timer_GetDataTimer(Sender: TObject);
@@ -60,7 +61,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -95,6 +96,11 @@ begin
 
   pReadData.Free;
   pGetSchedule.Free;
+end;
+
+procedure TframeXVGetSchedule.check;
+begin
+  //
 end;
 
 end.

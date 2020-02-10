@@ -146,19 +146,19 @@ end;
 
 procedure TframeXVSetLED.check;
 begin
-  btnSetLEDBacklightOn.Enabled := dm.com.Serial.Active;
-  btnSetLEDBacklightOff.Enabled := dm.com.Serial.Active;
-  btnSetLEDButtonAmber.Enabled := dm.com.Serial.Active;
-  btnSetLEDButtonOff.Enabled := dm.com.Serial.Active;
-  btnSetLEDBlinkOn.Enabled := dm.com.Serial.Active;
-  btnSetLEDButtonGreenDim.Enabled := dm.com.Serial.Active;
-  btnSetLEDButtonAmberDim.Enabled := dm.com.Serial.Active;
-  btnSetLEDLEDGreen.Enabled := dm.com.Serial.Active;
-  btnSetLEDLEDRed.Enabled := dm.com.Serial.Active;
-  btnSetLEDButtonGreen.Enabled := dm.com.Serial.Active;
-  btnSetLEDBlinkOff.Enabled := dm.com.Serial.Active;
+  btnSetLEDBacklightOn.Enabled := dm.com.Active;
+  btnSetLEDBacklightOff.Enabled := dm.com.Active;
+  btnSetLEDButtonAmber.Enabled := dm.com.Active;
+  btnSetLEDButtonOff.Enabled := dm.com.Active;
+  btnSetLEDBlinkOn.Enabled := dm.com.Active;
+  btnSetLEDButtonGreenDim.Enabled := dm.com.Active;
+  btnSetLEDButtonAmberDim.Enabled := dm.com.Active;
+  btnSetLEDLEDGreen.Enabled := dm.com.Active;
+  btnSetLEDLEDRed.Enabled := dm.com.Active;
+  btnSetLEDButtonGreen.Enabled := dm.com.Active;
+  btnSetLEDBlinkOff.Enabled := dm.com.Active;
 
-  if dm.com.Serial.Active then
+  if dm.com.Active then
     dm.chkTestmode.IsChecked := true;
 end;
 

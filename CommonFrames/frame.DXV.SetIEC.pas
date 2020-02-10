@@ -80,13 +80,13 @@ end;
 
 procedure TframeDXVSetIEC.check;
 begin
-  btnSetIECHardSpeed.Enabled := dm.com.Serial.Active;
-  btnSetIECCarpetSpeed.Enabled := dm.com.Serial.Active;
-  btnSetIECDistance.Enabled := dm.com.Serial.Active;
-  sbSetIECHardSpeedValue.Enabled := dm.com.Serial.Active;
-  sbSetIECCarpetSpeedValue.Enabled := dm.com.Serial.Active;
-  sbSetIECDistanceValue.Enabled := dm.com.Serial.Active;
-  if dm.com.Serial.Active then
+  btnSetIECHardSpeed.Enabled := dm.com.Active;
+  btnSetIECCarpetSpeed.Enabled := dm.com.Active;
+  btnSetIECDistance.Enabled := dm.com.Active;
+  sbSetIECHardSpeedValue.Enabled := dm.com.Active;
+  sbSetIECCarpetSpeedValue.Enabled := dm.com.Active;
+  sbSetIECDistanceValue.Enabled := dm.com.Active;
+  if dm.com.Active then
     dm.chkTestmode.IsChecked := true;
 end;
 

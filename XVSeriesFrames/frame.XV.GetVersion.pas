@@ -23,7 +23,8 @@ type
   private
     { Private declarations }
   public
-      constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -32,8 +33,8 @@ implementation
 
 constructor TframeXVGetVersion.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeXVGetVersion.timer_GetDataTimer(Sender: TObject);
@@ -52,7 +53,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -98,6 +99,11 @@ begin
 
   pReadData.Free;
   pGetVersion.Free;
+end;
+
+procedure TframeXVGetVersion.check;
+begin
+//
 end;
 
 end.

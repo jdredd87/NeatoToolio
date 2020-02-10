@@ -77,9 +77,9 @@ end;
 
 procedure TframeDXVSetBatteryTest.check;
 begin
-  btnSetBateryTestEnabled.Enabled := dm.com.Serial.Active;
-  btnSetBatteryTestDisabled.Enabled := dm.com.Serial.Active;
-  if dm.COM.Serial.Active then
+  btnSetBateryTestEnabled.Enabled := dm.com.Active;
+  btnSetBatteryTestDisabled.Enabled := dm.com.Active;
+  if dm.COM.Active then
    dm.chkTestmode.IsChecked := true;
 end;
 

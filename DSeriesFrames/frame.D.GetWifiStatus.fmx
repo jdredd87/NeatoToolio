@@ -6,7 +6,11 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Left = 384
     Top = 304
   end
-  object lblGetWifiStatusEnabled: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 458.000000000000000000
+    Size.Width = 488.000000000000000000
+  end
+  object lblGetWifiStatusEnabled: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 185.000000000000000000
@@ -16,7 +20,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Enabled'
     TabOrder = 35
   end
-  object swGetWifiStatusEnabledValue: TSwitch [2]
+  object swGetWifiStatusEnabledValue: TSwitch
     IsChecked = False
     Position.X = 210.000000000000000000
     Position.Y = 8.000000000000000000
@@ -25,7 +29,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     TabOrder = 49
   end
-  object lblGetWifiStatusIPADDR: TLabel [3]
+  object lblGetWifiStatusIPADDR: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 33.000000000000000000
     Size.Width = 185.000000000000000000
@@ -35,7 +39,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'IPADDR'
     TabOrder = 39
   end
-  object lblGetWifiStatusIPADDRValue: TLabel [4]
+  object lblGetWifiStatusIPADDRValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -46,7 +50,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 30
   end
-  object lblGetWifiStatusWifiMode: TLabel [5]
+  object lblGetWifiStatusWifiMode: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 58.000000000000000000
     Size.Width = 185.000000000000000000
@@ -56,7 +60,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Wifi Mode'
     TabOrder = 38
   end
-  object lblGetWifiStatusWifiModeValue: TLabel [6]
+  object lblGetWifiStatusWifiModeValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -67,7 +71,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 29
   end
-  object lblGetWifiStatusWifiOnInit: TLabel [7]
+  object lblGetWifiStatusWifiOnInit: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 83.000000000000000000
     Size.Width = 185.000000000000000000
@@ -77,7 +81,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Wifi On Init'
     TabOrder = 34
   end
-  object swGetWifiStatusWifiOnInitValue: TSwitch [8]
+  object swGetWifiStatusWifiOnInitValue: TSwitch
     IsChecked = False
     Position.X = 210.000000000000000000
     Position.Y = 84.000000000000000000
@@ -86,7 +90,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     TabOrder = 47
   end
-  object lblGetWifiStatusAPShutoffin: TLabel [9]
+  object lblGetWifiStatusAPShutoffin: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 108.000000000000000000
     Size.Width = 185.000000000000000000
@@ -96,7 +100,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'AP Shutoff in'
     TabOrder = 37
   end
-  object lblGetWifiStatusAPShutoffinValue: TLabel [10]
+  object lblGetWifiStatusAPShutoffinValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -107,7 +111,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 28
   end
-  object lblGetWifiStatusAPDesired: TLabel [11]
+  object lblGetWifiStatusAPDesired: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 134.000000000000000000
     Size.Width = 185.000000000000000000
@@ -117,7 +121,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'AP Desired'
     TabOrder = 33
   end
-  object swGetWifiStatusAPDesiredValue: TSwitch [12]
+  object swGetWifiStatusAPDesiredValue: TSwitch
     IsChecked = False
     Position.X = 210.000000000000000000
     Position.Y = 136.000000000000000000
@@ -126,7 +130,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     TabOrder = 46
   end
-  object lblGetWifiStatusLinkToBeehive: TLabel [13]
+  object lblGetWifiStatusLinkToBeehive: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 159.000000000000000000
     Size.Width = 185.000000000000000000
@@ -136,7 +140,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Linked to Beehive'
     TabOrder = 32
   end
-  object swGetWifiStatusLinkToBeehiveValue: TSwitch [14]
+  object swGetWifiStatusLinkToBeehiveValue: TSwitch
     IsChecked = False
     Position.X = 210.000000000000000000
     Position.Y = 161.000000000000000000
@@ -145,7 +149,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     TabOrder = 45
   end
-  object lblGetWifiStatusNucleoConnected: TLabel [15]
+  object lblGetWifiStatusNucleoConnected: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 184.000000000000000000
     Size.Width = 185.000000000000000000
@@ -155,7 +159,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Nucleo Connected'
     TabOrder = 31
   end
-  object swGetWifiStatusNucleoConnectedValue: TSwitch [16]
+  object swGetWifiStatusNucleoConnectedValue: TSwitch
     IsChecked = False
     Position.X = 210.000000000000000000
     Position.Y = 187.000000000000000000
@@ -164,7 +168,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     TabOrder = 44
   end
-  object lblGetWifiStatusEZConnectMessage: TLabel [17]
+  object lblGetWifiStatusEZConnectMessage: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 209.000000000000000000
     Size.Width = 185.000000000000000000
@@ -174,7 +178,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'EZ-Connect Message'
     TabOrder = 36
   end
-  object lblGetWifiStatusEZConnectMessageValue: TLabel [18]
+  object lblGetWifiStatusEZConnectMessageValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -185,7 +189,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 27
   end
-  object lblGetWifiStatusRobotName: TLabel [19]
+  object lblGetWifiStatusRobotName: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 235.000000000000000000
     Size.Width = 185.000000000000000000
@@ -195,7 +199,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Robot Name'
     TabOrder = 15
   end
-  object lblGetWifiStatusRobotNameValue: TLabel [20]
+  object lblGetWifiStatusRobotNameValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -206,7 +210,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 25
   end
-  object lblGetWifiStatusSSID: TLabel [21]
+  object lblGetWifiStatusSSID: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 260.000000000000000000
     Size.Width = 185.000000000000000000
@@ -216,7 +220,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'SSID'
     TabOrder = 20
   end
-  object lblGetWifiStatusSSIDValue: TLabel [22]
+  object lblGetWifiStatusSSIDValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -227,7 +231,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 26
   end
-  object lblGetWifiStatusScanning: TLabel [23]
+  object lblGetWifiStatusScanning: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 285.000000000000000000
     Size.Width = 185.000000000000000000
@@ -237,7 +241,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Scanning'
     TabOrder = 19
   end
-  object lblGetWifiStatusScanningValue: TLabel [24]
+  object lblGetWifiStatusScanningValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -248,7 +252,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 23
   end
-  object lblGetWifiStatusSignalStrength: TLabel [25]
+  object lblGetWifiStatusSignalStrength: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 310.000000000000000000
     Size.Width = 185.000000000000000000
@@ -258,7 +262,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Signal Strength'
     TabOrder = 12
   end
-  object lblGetWifiStatusSignalStrengthValue: TLabel [26]
+  object lblGetWifiStatusSignalStrengthValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -269,7 +273,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 24
   end
-  object lblGetWifiStatusBSSID: TLabel [27]
+  object lblGetWifiStatusBSSID: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 335.000000000000000000
     Size.Width = 185.000000000000000000
@@ -279,7 +283,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'BSSID'
     TabOrder = 9
   end
-  object lblGetWifiStatusBSSIDValue: TLabel [28]
+  object lblGetWifiStatusBSSIDValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -290,7 +294,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 21
   end
-  object lblGetWifiStatusBeehiveURL: TLabel [29]
+  object lblGetWifiStatusBeehiveURL: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 361.000000000000000000
     Size.Width = 185.000000000000000000
@@ -300,7 +304,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Beehive URL'
     TabOrder = 10
   end
-  object lblGetWifiStatusBeehiveURLValue: TLabel [30]
+  object lblGetWifiStatusBeehiveURLValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -311,7 +315,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 22
   end
-  object lblGetWifiStatusNucleoURL: TLabel [31]
+  object lblGetWifiStatusNucleoURL: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 386.000000000000000000
     Size.Width = 185.000000000000000000
@@ -321,7 +325,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Nucleo URL'
     TabOrder = 16
   end
-  object lblGetWifiStatusNucleoURLValue: TLabel [32]
+  object lblGetWifiStatusNucleoURLValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -332,7 +336,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 17
   end
-  object lblGetWifiStatusNTPURL: TLabel [33]
+  object lblGetWifiStatusNTPURL: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 411.000000000000000000
     Size.Width = 185.000000000000000000
@@ -342,7 +346,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'NTP URL'
     TabOrder = 11
   end
-  object lblGetWifiStatusNTPURLValue: TLabel [34]
+  object lblGetWifiStatusNTPURLValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -353,7 +357,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 18
   end
-  object lblGetWifiStatusUTCOffset: TLabel [35]
+  object lblGetWifiStatusUTCOffset: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 436.000000000000000000
     Size.Width = 185.000000000000000000
@@ -363,7 +367,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'UTC Offset'
     TabOrder = 7
   end
-  object lblGetWifiStatusUTCOffsetValue: TLabel [36]
+  object lblGetWifiStatusUTCOffsetValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -374,7 +378,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = '0'
     TabOrder = 13
   end
-  object lblGetWifiStatusTimeZone: TLabel [37]
+  object lblGetWifiStatusTimeZone: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 462.000000000000000000
     Size.Width = 185.000000000000000000
@@ -384,7 +388,7 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Text = 'Time Zone'
     TabOrder = 8
   end
-  object lblGetWifiStatusTimeZoneValue: TLabel [38]
+  object lblGetWifiStatusTimeZoneValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 210.000000000000000000
@@ -394,9 +398,5 @@ inherited frameDGetWifiStatus: TframeDGetWifiStatus
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 14
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 458.000000000000000000
-    Size.Width = 488.000000000000000000
   end
 end

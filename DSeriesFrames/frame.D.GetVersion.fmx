@@ -6,7 +6,11 @@ inherited frameDGetVersion: TframeDGetVersion
     Left = 176
     Top = 224
   end
-  object sgGetVersion: TStringGrid [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 370.000000000000000000
+    Size.Width = 867.000000000000000000
+  end
+  object sgGetVersion: TStringGrid
     Align = Client
     CanFocus = True
     ClipChildren = True
@@ -21,8 +25,8 @@ inherited frameDGetVersion: TframeDGetVersion
     TabOrder = 0
     RowCount = 6
     Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 873.000000000000000000
-    Viewport.Height = 330.000000000000000000
+    Viewport.Width = 877.000000000000000000
+    Viewport.Height = 355.000000000000000000
     object scGetVersionComponent: TStringColumn
       Header = 'Component'
       Size.Width = 241.000000000000000000
@@ -47,9 +51,5 @@ inherited frameDGetVersion: TframeDGetVersion
       Header = 'Aux2'
       Size.Width = 85.000000000000000000
     end
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 370.000000000000000000
-    Size.Width = 867.000000000000000000
   end
 end

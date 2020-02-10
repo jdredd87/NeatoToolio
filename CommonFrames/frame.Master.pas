@@ -51,7 +51,7 @@ begin
   align := talignlayout.Client;
   visible := false;
 
-  dmCommon.TimerList.Add(timer_getdata);
+//  dmCommon.TimerList.Add(timer_getdata);
 end;
 
 end.

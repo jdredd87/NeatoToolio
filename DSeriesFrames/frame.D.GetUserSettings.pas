@@ -7,7 +7,7 @@ uses
   dmCommon,
   neato.D.GetUserSettings,
   FMX.TabControl,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
@@ -56,7 +56,8 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -65,10 +66,9 @@ implementation
 
 constructor TframeDGetUserSettings.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeDGetUserSettings.timer_GetDataTimer(Sender: TObject);
 var
@@ -77,7 +77,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -118,5 +118,9 @@ begin
   pGetUserSettings.Free;
 end;
 
+procedure TframeDGetUserSettings.check;
+begin
+//
+end;
 
 end.

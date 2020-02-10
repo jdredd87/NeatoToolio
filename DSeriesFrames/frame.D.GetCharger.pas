@@ -53,6 +53,7 @@ type
     { Private declarations }
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -72,7 +73,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -82,7 +83,6 @@ begin
 
   pReadData := TStringList.Create;
   pReadData.Text := dm.com.SendCommand(sGetChargerD);
-  pReadData.Text := stringreplace(pReadData.Text, ',', '=', [rfreplaceall]);
 
   r := pGetCharger.ParseText(pReadData);
 
@@ -117,5 +117,11 @@ begin
   pGetCharger.Free;
 
 end;
+
+procedure TframeDGetCharger.check;
+begin
+//
+end;
+
 
 end.

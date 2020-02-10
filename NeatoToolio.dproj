@@ -378,8 +378,9 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>6</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.6;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>12</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=NeatoToolio;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.12;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.NeatoToolio.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=OpenS ource on Github</VerInfo_Keys>
+        <Icon_MainIcon>NeatoToolio_Icon1.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -410,7 +411,15 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="dmSerial.Windows.pas">
-            <Form>dmSerial</Form>
+            <Form>dmSerialWindows</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="dmSerial.Base.pas">
+            <Form>dmSerialBase</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="dmSerial.TCPIP.pas">
+            <Form>dmSerialTCP</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="dmCommon.pas">
@@ -515,212 +524,188 @@
         </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetAnalogSensors.pas">
             <Form>frameXVGetAnalogSensors</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetDigitalSensors.pas">
             <Form>frameXVGetDigitalSensors</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="DSeriesFrames\frame.D.GetSensors.pas">
             <Form>frameDGetSensors</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="Scripts\frame.Scripts.pas">
-            <Form>frameScripts</Form>
-            <FormType>fmx</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.GetMotors.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetMotors.pas">
             <Form>frameXVGetMotors</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetCalInfo.pas">
             <Form>frameXVGetCalInfo</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.GetCalInfo.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetWarranty.pas">
             <Form>frameXVGetWarranty</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.GetWarranty.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetErr.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetErr.pas">
             <Form>FrameXVGetErr</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetVersion.pas">
             <Form>frameXVGetVersion</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.GetVersion.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.RestoreDefaults.pas">
             <Form>frameXVRestoreDefaults</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.RestoreDefaults.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetButtons.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetButtons.pas">
             <Form>frameXVGetButtons</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.GetTime.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetTime.pas">
             <Form>frameXVGetTime</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.Clean.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.Clean.pas">
             <Form>frameXVClean</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.GetLDSScan.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.GetLDSScan.pas">
             <Form>frameDXVGetLDSScan</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetFuelGauge.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetFuelGauge.pas">
             <Form>frameDXVSetFuelGauge</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.DXV.GetAccel.pas">
             <Form>frameDXVGetAccel</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.GetAccel.pas"/>
         <DCCReference Include="Common\neato.DXV.SetTime.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetTime.pas">
             <Form>frameDXVSetTime</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.DXV.SetSystemMode.pas">
             <Form>frameDXVSetSystemMode</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetSystemMode.pas"/>
         <DCCReference Include="Common\neato.DXV.SetLCD.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetLCD.pas">
             <Form>frameDXVSetLCD</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeries\neato.XV.SetLED.pas"/>
         <DCCReference Include="XVSeries\neato.XV.GetSchedule.pas"/>
         <DCCReference Include="XVSeriesFrames\frame.XV.GetSchedule.pas">
             <Form>frameXVGetSchedule</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.Master.pas">
             <Form>frameMaster</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="dmIP.pas">
-            <Form>s</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.DXV.SetSchedule.pas">
             <Form>frameXVSetSchedule</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetSchedule.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetWallFollower.pas">
             <Form>frameDXVSetWallFollower</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetWallFollower.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetDistanceCal.pas">
             <Form>frameDXVSetDistanceCal</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetDistanceCal.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetIEC.pas">
             <Form>frameDXVSetIEC</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetIEC.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.GetLifeStatLog.pas">
             <Form>frameDXVGetLifeStatLog</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.GetLifeStatLog.pas"/>
         <DCCReference Include="Common\neato.DXV.SetMotor.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.LidarView.pas">
             <Form>frameDXVLidarView</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.DXV.SetMotor.pas">
             <Form>frameDXVSetMotor</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.TestLDS.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.TestLDS.pas">
             <Form>frameDXVTestLDS</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.DXV.SetBatteryTest.pas">
             <Form>frameDXVSetBatteryTest</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetBatteryTest.pas"/>
         <DCCReference Include="CommonFrames\frame.DXV.SetLanguage.pas">
             <Form>frameDXVSetLanguage</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Common\neato.DXV.SetLanguage.pas"/>
         <DCCReference Include="DSeries\neato.D.SetButton.pas"/>
         <DCCReference Include="DSeriesFrames\frame.D.SetButton.pas">
             <Form>frameDSetButton</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="DSeries\neato.D.Clean.pas"/>
         <DCCReference Include="DSeriesFrames\frame.D.Clean.pas">
             <Form>frameDClean</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="XVSeriesFrames\frame.XV.SetLED.pas">
             <Form>frameXVSetLED</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="DSeriesFrames\frame.D.SetLED.pas">
             <Form>frameDSetLED</Form>
-            <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="DSeries\neato.D.SetLED.pas"/>
+        <DCCReference Include="DSeriesFrames\frame.D.SetNTPTime.pas">
+            <Form>frameDSetNTPTime</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeries\neato.D.SetNTPTime.pas"/>
+        <DCCReference Include="DSeriesFrames\frame.D.SetNavigationMode.pas">
+            <Form>frameDSetNavigationMode</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="DSeries\neato.D.SetNavigationMode.pas"/>
+        <DCCReference Include="DSeries\neato.D.SetUsage.pas"/>
+        <DCCReference Include="DSeriesFrames\frame.D.SetUsage.pas">
+            <Form>frameDSetUsage</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Scripts\frame.ScriptEngine.pas">
+            <Form>frameScriptEngine</Form>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <RcItem Include="Images\Neato.Botvac.png">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>NeatoBotVac</ResourceId>

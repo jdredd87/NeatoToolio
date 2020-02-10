@@ -52,7 +52,7 @@ type
   public
     { Private declarations }
     constructor Create(AOwner: TComponent); reintroduce; overload;
-
+    procedure check;
   end;
 
 implementation
@@ -83,8 +83,8 @@ begin
     sleep(250);
     dm.chkTestmode.IsChecked := true;
     sleep(250);
-    dm.COM.Serial.PurgeInput;
-    dm.COM.Serial.PurgeOutput;
+    dm.COM.PurgeInput;
+    dm.COM.PurgeOutput;
   end;
 
   cmd := '';
@@ -189,6 +189,11 @@ begin
     msg := sWallMiddleMsg;
 
   lblSetDistanceCalMessage.Text := msg;
+end;
+
+procedure TframeDXVSetDistanceCal.check;
+begin
+//
 end;
 
 end.

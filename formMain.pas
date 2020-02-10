@@ -17,9 +17,14 @@ uses
   WinAPI.Windows,
   FMX.Platform.WIN,
 {$ENDIF}
+  dmSerial.Base,
+  dmSerial.TCPIP,
   {Common neato units}
   Neato.Helpers,
   Neato.Settings,
+
+  {Script Engine}
+  frame.ScriptEngine,
 
   {D3-D7, DSeries Units}
   Neato.D.GetCharger,
@@ -136,8 +141,6 @@ uses
 
   {Everything else to run this}
   dmCommon,
-  frame.Scripts,
-
   XSuperObject,
   XSuperJson,
 
@@ -174,7 +177,8 @@ uses
   FMXTee.Engine,
   FMXTee.Series,
   FMXTee.Procs,
-  FMXTee.Chart, FMXTee.Series.Polar, FMXTee.Functions.Stats, FMXTee.Tools;
+  FMXTee.Chart, FMXTee.Series.Polar, FMXTee.Functions.Stats, FMXTee.Tools, IdTelnet, IdGlobal, IdComponent,
+  IdBaseComponent, IdTCPConnection, IdTCPClient;
 
 type
 
@@ -206,14 +210,6 @@ type
     LabelRX: TLabel;
     ColorBoxTX: TColorBox;
     LabelTX: TLabel;
-    ColorBoxCTS: TColorBox;
-    LabelCTS: TLabel;
-    ColorBoxDSR: TColorBox;
-    LabelDSR: TLabel;
-    ColorBoxRLSD: TColorBox;
-    LabelRLSD: TLabel;
-    ColorBoxBreak: TColorBox;
-    LabelBreak: TLabel;
     chkTestMode: TCheckBox;
     tabGetCalInfo: TTabItem;
     pnlSetupDetails: trectangle;
@@ -247,8 +243,7 @@ type
     lblSetupComPort: TLabel;
     cbCOM: TComboBox;
     chkAutoDetect: TCheckBox;
-    lblConnect: TLabel;
-    swConnect: TCheckBox;
+    ckSerialConnect: TCheckBox;
     imgRobot: TImage;
     shadowBotImage: TShadowEffect;
     lblSetupRobotName: TLabel;
@@ -286,13 +281,18 @@ type
     lblConnectIP: TLabel;
     edIPPort: TSpinBox;
     lblConnectPort: TLabel;
-    swIPConnection: TSwitch;
     lblConnectIPEnabled: TLabel;
     tabAbout: TTabItem;
     ShadowEffectmemoAbout: TShadowEffect;
     RectangleaboutMemo: trectangle;
     memoAbout: TMemo;
     tabSetLanguage: TTabItem;
+    ckTCPIPConnect: TCheckBox;
+    aniConnect: TAniIndicator;
+    ColorBoxCNX: TColorBox;
+    LabelCNX: TLabel;
+    StyleBook: TStyleBook;
+    lblVersion: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -301,10 +301,14 @@ type
     procedure chkAutoDetectChange(Sender: TObject);
     procedure chkTestModeChange(Sender: TObject);
 
-    procedure swConnectChange(Sender: TObject);
+    procedure ckSerialConnectChange(Sender: TObject);
     procedure tabControlChange(Sender: TObject);
     procedure tabClickRepaint(Sender: TObject);
     procedure btnDebugRawDataClearClick(Sender: TObject);
+    procedure ckTCPIPConnectChange(Sender: TObject);
+    procedure edIPAddressChange(Sender: TObject);
+    procedure edIPPortChange(Sender: TObject);
+    procedure memoDebugChange(Sender: TObject);
 
   private
 
@@ -386,6 +390,13 @@ type
     DXVSetBatteryTest: TframeDXVSetBatteryTest;
     DXVSetLanguage: TframeDXVSetLanguage;
 
+    ///
+
+    Scripts: TframeScriptEngine;
+
+    COMWin32: TdmSerialWindows;
+    COMTCPIP: TdmSerialTCPIP;
+
     Procedure StageTabs; // create and place our tabs depending on model
     procedure ResetTabs; // Reset tab states
     procedure PopulateCOMPorts; // repopulate drop down with active com ports
@@ -440,22 +451,43 @@ begin
   ResetTabs;
   StageTabs;
 
+  COMWin32 := TdmSerialWindows.Create;
+  COMTCPIP := TdmSerialTCPIP.Create;
+
+  COMTCPIP.FComSignalRX := self.ColorBoxRX;
+  COMTCPIP.FComSignalTX := self.ColorBoxTX;
+  COMTCPIP.FComSignalCNX := self.ColorBoxCNX;
+
+  COMTCPIP.fmemoDebug := memoDebug;
+
+  dm.COM := COMWin32; // default as this will be the most use case
+
   chkAutoDetect.IsChecked := neatoSettings.AutoDetectNeato;
   chkAutoDetectChange(nil);
 
-  dm.com.onError := FComPortError;
-  dm.com.Serial.OnLineError := FComPortLineError;
-  dm.com.Serial.afterclose := FComPortAfterClose;
-  dm.com.Serial.afteropen := FComPortAfterOpen;
-  dm.com.Serial.OnDeviceArrival := FComPortDeviceUpdate;
-  dm.com.Serial.OnDeviceRemoved := FComPortDeviceUpdate;
-  dm.com.FComSignalRX.ColorBox := self.ColorBoxRX;
-  dm.com.FComSignalCTS.ColorBox := self.ColorBoxCTS;
-  dm.com.FComSignalBreak.ColorBox := self.ColorBoxBreak;
-  dm.com.FComSignalRLSD.ColorBox := self.ColorBoxRLSD;
-  dm.com.FComSignalDSR.ColorBox := self.ColorBoxDSR;
-  dm.com.FComSignalTX.ColorBox := self.ColorBoxTX;
-  dm.com.fmemoDebug := memoDebug;
+  edIPAddress.Text := neatoSettings.IP;
+  edIPPort.Text := neatoSettings.PORT.ToString;
+
+  TdmSerialWindows(COMWin32).onError := FComPortError;
+
+  with TdmSerialWindows(COMWin32).Serial do
+  begin
+    OnLineError := FComPortLineError;
+    afterclose := FComPortAfterClose;
+    afteropen := FComPortAfterOpen;
+    OnDeviceArrival := FComPortDeviceUpdate;
+    OnDeviceRemoved := FComPortDeviceUpdate;
+  end;
+
+  with TdmSerialWindows(COMWin32) do
+  begin
+    FComSignalRX.ColorBox := self.ColorBoxRX;
+    FComSignalTX.ColorBox := self.ColorBoxTX;
+    FComSignalCNX := self.ColorBoxCNX;
+
+    fmemoDebug := memoDebug;
+  end;
+
   for idx := 0 to self.ComponentCount - 1 do
   begin
     if components[idx] is TTabItem then
@@ -487,14 +519,20 @@ begin
         end);
     end).start;
 
-  /// self.frameScripts.init;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   LoadImageID('NeatoLogo', self.imgRobot);
+  lblVersion.Text := Neato.Helpers.GetAppVersionStr;
+
 end;
 
+procedure TfrmMain.memoDebugChange(Sender: TObject);
+begin
+  if memoDebug.Lines.Count > 10000 then
+    memoDebug.Lines.Clear;
+end;
 
 // can use this event that when IDLE happens, which is very often and fast
 // to enable/disable things , such as send buttons when com is open or not
@@ -508,7 +546,7 @@ begin
     tabsMain.TabIndex := 0;
     tabSetup.Index := 0;
     dm.ActiveTab := tabSerialSettings;
-    if NOT dm.com.Serial.Active then
+    if NOT dm.com.Active then
     begin
     chkTestMode.IsChecked := false;
     toggleComs(false);
@@ -521,7 +559,17 @@ procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   idx: integer;
 begin
-  StopTimers;
+  if assigned(dm.COM) then
+  begin
+    if dm.COM.Active then
+    begin
+      showmessage('Please disconnect first before closing....');
+      CanClose := false;
+      exit;
+    end;
+  end;
+
+  stoptimers(true);
   // make sure all onChange events are gone
   // as it seems these can trigger on closeing
 
@@ -530,20 +578,25 @@ begin
   tabsInfoOptions.OnChange := nil;
   tabsWifiOptions.OnChange := nil;
 
-  // make sure timers are disabled so they quit doing work
-  for idx := 0 to self.ComponentCount - 1 do
-    if components[idx] is TTimer then
-      TTimer(components[idx]).Enabled := false;
-
   // if com is open still.. so lets make sure we turn testmode back OFF as we are done
-  if dm.com.Serial.Active then
+  if dm.COM.Active then
   begin
     try
-      dm.com.SendCommand('testmode OFF'); // make sure to turn this off when close app
-      dm.com.SendCommand('testmode OFF'); // make sure to turn this off when close app
-      dm.com.SendCommand('testmode OFF'); // make sure to turn this off when close app
+      dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+      dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+      dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
     finally
     end;
+  end;
+
+  try
+    COMTCPIP.close;
+  finally
+  end;
+
+  try
+    COMWin32.close;
+  finally
   end;
 
   CanClose := true;
@@ -551,17 +604,17 @@ end;
 
 procedure TfrmMain.FComPortAfterClose(ComPort: TFComPort);
 begin
-  StopTimers;
+  stoptimers;
 end;
 
 procedure TfrmMain.FComPortAfterOpen(ComPort: TFComPort);
 begin
-  StopTimers;
+  stoptimers;
 end;
 
 procedure TfrmMain.FComPortLineError(Sender: TObject; LineErrors: TLineErrors);
 begin
-  StopTimers;
+  stoptimers;
 
   if leBreak in LineErrors then
     FMX.Dialogs.MessageDlg('Break detected', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
@@ -589,17 +642,17 @@ end;
 
 procedure TfrmMain.FComPortError(Sender: TObject);
 begin
-  StopTimers;
+  stoptimers;
 
-  if dm.com.errorcode <> 0 then
-    showmessage('COM Issue #' + dm.com.errorcode.ToString + ' : ' + dm.com.Error);
+  if dm.COM.errorcode <> 0 then
+    showmessage('COM Issue #' + dm.COM.errorcode.ToString + ' : ' + dm.COM.Error);
 
   try
-    dm.com.Serial.Active := false;
+    dm.COM.close;
   finally
   end;
 
-  swConnect.IsChecked := false;
+  ckSerialConnect.IsChecked := false;
   chkAutoDetect.Enabled := true;
   cbCOM.Enabled := true;
 end;
@@ -612,10 +665,18 @@ begin
   PopulateCOMPorts;
 end;
 
-procedure TfrmMain.swConnectChange(Sender: TObject);
+procedure TfrmMain.ckSerialConnectChange(Sender: TObject);
 begin
-  StopTimers;
-  toggleComs(swConnect.IsChecked);
+  dm.COM := COMWin32; // default as this will be the most use case
+  stoptimers;
+  toggleComs(ckSerialConnect.IsChecked);
+end;
+
+procedure TfrmMain.ckTCPIPConnectChange(Sender: TObject);
+begin
+  dm.COM := COMTCPIP; // default as this will be the most use case
+  stoptimers;
+  toggleComs(ckTCPIPConnect.IsChecked);
 end;
 
 procedure TfrmMain.btnDebugRawDataClearClick(Sender: TObject);
@@ -626,7 +687,7 @@ end;
 procedure TfrmMain.chkAutoDetectChange(Sender: TObject);
 begin
   cbCOM.Enabled := NOT chkAutoDetect.IsChecked;
-  swConnect.IsChecked := false;
+  ckSerialConnect.IsChecked := false;
   neatoSettings.AutoDetectNeato := chkAutoDetect.IsChecked;
 end;
 
@@ -637,9 +698,9 @@ begin
 
   case chkTestMode.IsChecked of
     true:
-      dm.com.SendCommand('TestMode ON');
+      dm.COM.SendCommand('TestMode ON');
     false:
-      dm.com.SendCommand('TestMode OFF');
+      dm.COM.SendCommand('TestMode OFF');
   end;
 
   if assigned(CurrentTimer) then
@@ -658,12 +719,14 @@ end;
 
 procedure TfrmMain.toggleComs(disable: Boolean);
 begin
-
   chkAutoDetect.Enabled := not disable;
   cbCOM.Enabled := not disable;
-
   chkTestMode.Enabled := false;
   chkTestMode.IsChecked := false;
+
+  edIPAddress.Enabled := not disable;
+  edIPPort.Enabled := not disable;
+
   if disable then
     comConnect
   else
@@ -671,180 +734,321 @@ begin
 end;
 
 procedure TfrmMain.comConnect;
-var
-  idx: integer;
-  R: string;
-
-  gGetWifiStatusD: tGetWifiStatusD;
-  gGetVersionD: tGetVersionD;
-
-  gGetVersionXV: tGetVersionXV;
-
-  ReadData: TStringList;
-
-  botFound: Boolean;
 begin
   ResetTabs;
-  botFound := false;
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
+  aniConnect.Visible := true;
+  aniConnect.Enabled := true;
+  ckSerialConnect.Enabled := false;
+  ckTCPIPConnect.Enabled := false;
 
-  if chkAutoDetect.IsChecked then
-  begin
-    dm.com.onError := nil;
+  tthread.CreateAnonymousThread(
+    procedure
 
-    for idx := 0 to cbCOM.Items.Count - 1 do
-    begin
-      if not dm.com.open(cbCOM.Items[idx]) then
-        continue;
+    var
+      idx: integer;
+      R: string;
+      gGetWifiStatusD: tGetWifiStatusD;
+      gGetVersionD: tGetVersionD;
+      gGetVersionXV: tGetVersionXV;
+      ReadData: TStringList;
+      botFound: Boolean;
 
-      R := dm.com.SendCommand('HELP');
-      if pos('Help', R) > 0 then
+      procedure stopAniConnect(showBoth: Boolean);
       begin
-        cbCOM.ItemIndex := idx;
-        break;
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            if showBoth then
+            begin
+              ckSerialConnect.Enabled := true;
+              ckTCPIPConnect.Enabled := true;
+            end
+            else
+            begin
+              if (dm.COM is TdmSerialWindows) then
+              begin
+                ckSerialConnect.Enabled := true;
+                if dm.COM.Active then
+                  ckTCPIPConnect.Enabled := false;
+              end;
+
+              if (dm.COM is TdmSerialTCPIP) then
+              begin
+                ckTCPIPConnect.Enabled := true;
+                if dm.COM.Active then
+                  ckSerialConnect.Enabled := false;
+              end;
+
+            end;
+            aniConnect.Visible := false;
+            aniConnect.Enabled := false;
+          end);
       end;
-      dm.com.Close;
-    end;
-    dm.com.onError := FComPortError;
-  end;
 
-  if cbCOM.ItemIndex = -1 then
-  begin
-    swConnect.IsChecked := false;
-    swConnectChange(nil);
-    showmessage('No COM Port selected');
-  end
-  else
-  begin
-    ReadData := TStringList.Create;
-    dm.com.open(cbCOM.Items[cbCOM.ItemIndex]);
-
-    R := dm.com.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
-
-    if pos('BotVac', R) > 0 then
     begin
-      if (pos('BotVacD3', R) > 0) or (pos('BotVacD4', R) > 0) or (pos('BotVacD5', R) > 0) or (pos('BotVacD6', R) > 0) or
-        (pos('BotVacD7', R) > 0) then
+      botFound := false;
+      if (dm.COM is TdmSerialTCPIP) then // if we are TCPIP, simple, set host and port
       begin
-        neatoType := BotVacConnected;
+        COMTCPIP.Serial.ConnectTimeout := 10000;
+        COMTCPIP.IP := self.edIPAddress.Text;
+        COMTCPIP.PORT := ROUND(self.edIPPort.Value);
       end
-      else
-        neatoType := BotVac;
-
-    end
-    else if pos('XV', R) > 0 then
-      neatoType := XV;
-
-    if (R <> '') and (neatoType in [BotVac, BotVacConnected]) then
-    begin
-      R := dm.com.SendCommandAndWaitForValue(sGetWifiStatus, 5000, ^Z, 1);
-
-      gGetWifiStatusD := tGetWifiStatusD.Create;
-      ReadData.Text := R;
-
-      if gGetWifiStatusD.ParseText(ReadData) then
-        lblSetupRobotName.Text := gGetWifiStatusD.Robot_Name;
-
-      freeandnil(gGetWifiStatusD);
-
-      dm.com.Serial.PurgeInput;
-      dm.com.Serial.PurgeOutput;
-
-      R := dm.com.SendCommandAndWaitForValue(sGetVersion, 5000, ^Z, 1);
-
-      gGetVersionD := tGetVersionD.Create;
-      ReadData.Text := R;
-
-      if gGetVersionD.ParseText(ReadData) then
+      else if (dm.COM is TdmSerialWindows) then // if we are serial, then we can hunt down a port or go directly to one
       begin
-        lblRobotModel.Text := stringreplace(gGetVersionD.Model.Major, 'BotVac', 'BotVac' + #13,
-          [rfreplaceall, rfignorecase]);
-
-        if pos('BotVacD3', gGetVersionD.Model.Major) > 0 then
+        if chkAutoDetect.IsChecked then
         begin
-          LoadImageID('NeatoD3', imgRobot);
-          LoadImageID('NeatoD3', DXVGetAccel._3DGetAccel);
+          dm.COM.onError := nil;
+          for idx := 0 to cbCOM.Items.Count - 1 do
+          begin
+            TdmSerialWindows(COMWin32).ComPort := cbCOM.Items[idx];
+            if not dm.COM.Open then
+              continue;
+
+            R := dm.COM.SendCommand('HELP');
+            if pos('Help', R) > 0 then
+            begin
+              tthread.Synchronize(tthread.CurrentThread,
+                procedure
+                begin
+                  cbCOM.ItemIndex := idx;
+                end);
+              break;
+            end;
+            dm.COM.close;
+          end;
+          dm.COM.onError := FComPortError;
         end;
 
-        if pos('BotVacD4', gGetVersionD.Model.Major) > 0 then
+        if cbCOM.ItemIndex = -1 then
         begin
-          LoadImageID('NeatoD4', imgRobot);
-          LoadImageID('NeatoD4', DXVGetAccel._3DGetAccel);
-        end;
-
-        if pos('BotVacD5', gGetVersionD.Model.Major) > 0 then
-        begin
-          LoadImageID('NeatoD5', imgRobot);
-          LoadImageID('NeatoD5', DXVGetAccel._3DGetAccel);
-        end;
-
-        if pos('BotVacD6', gGetVersionD.Model.Major) > 0 then
-        begin
-          LoadImageID('NeatoD6', imgRobot);
-          LoadImageID('NeatoD6', DXVGetAccel._3DGetAccel);
-        end;
-
-        if pos('BotVacD7', gGetVersionD.Model.Major) > 0 then
-        begin
-          LoadImageID('NeatoD7', imgRobot);
-          LoadImageID('NeatoD7', DXVGetAccel._3DGetAccel);
-        end;
-
-        if pos('BotVacConnected', gGetVersionD.Model.Major) > 0 then
-        begin
-          LoadImageID('NeatoBotVac', imgRobot);
-          LoadImageID('NeatoBotVac', DXVGetAccel._3DGetAccel);
-        end;
+          stopAniConnect(true);
+          tthread.Synchronize(tthread.CurrentThread,
+            procedure
+            begin
+              ckSerialConnect.IsChecked := false;
+              ckSerialConnectChange(nil);
+              showmessage('No COM Port selected');
+            end);
+          exit;
+        end
+        else
+          TdmSerialWindows(COMWin32).ComPort := cbCOM.Items[cbCOM.ItemIndex];
       end;
-      freeandnil(gGetVersionD);
-    end;
 
-    if (R <> '') and (neatoType = XV) then
-    begin
-      gGetVersionXV := tGetVersionXV.Create;
-      ReadData.Text := R;
-
-      if gGetVersionXV.ParseText(ReadData) then
+      if not dm.COM.Open then // by now we have serial or tcpip COM object assigned
       begin
-        lblRobotModel.Text := gGetVersionXV.ModelID.Minor;
+        stopAniConnect(true);
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            ckSerialConnect.IsChecked := false;
+            ckTCPIPConnect.IsChecked := false;
+            showmessage('Unable to open communications. ' + dm.COM.Error);
+          end);
+        exit;
+      end;
 
-        if pos('XV16', gGetVersionXV.ModelID.Minor) > 0 then
+      ReadData := TStringList.Create;
+
+      tthread.Synchronize(tthread.CurrentThread,
+        procedure
         begin
-          LoadImageID('XV16', imgRobot);
-          LoadImageID('NeatoXV', DXVGetAccel._3DGetAccel); // generic model
+          if (dm.COM is TdmSerialTCPIP) then
+            ckSerialConnect.Enabled := false;
+
+          if (dm.COM is TdmSerialWindows) then
+            ckTCPIPConnect.Enabled := false;
+        end);
+
+      R := dm.COM.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
+
+      if pos('BotVac', R) > 0 then
+      begin
+        if (pos('BotVacD3', R) > 0) or (pos('BotVacD4', R) > 0) or (pos('BotVacD5', R) > 0) or (pos('BotVacD6', R) > 0)
+          or (pos('BotVacD7', R) > 0) then
+        begin
+          neatoType := BotVacConnected;
+        end
+        else
+          neatoType := BotVac;
+
+      end
+      else if pos('XV', R) > 0 then
+        neatoType := XV;
+
+      if (R <> '') and (neatoType in [BotVac, BotVacConnected]) then
+      begin
+        R := dm.COM.SendCommandAndWaitForValue(sGetWifiStatus, 5000, ^Z, 1);
+
+        gGetWifiStatusD := tGetWifiStatusD.Create;
+        ReadData.Text := R;
+
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            if gGetWifiStatusD.ParseText(ReadData) then
+              lblSetupRobotName.Text := gGetWifiStatusD.Robot_Name;
+          end);
+
+        freeandnil(gGetWifiStatusD);
+
+        dm.COM.PurgeInput;
+        dm.COM.PurgeOutput;
+
+        R := dm.COM.SendCommandAndWaitForValue(sGetVersion, 5000, ^Z, 1);
+
+        gGetVersionD := tGetVersionD.Create;
+        ReadData.Text := R;
+
+        if gGetVersionD.ParseText(ReadData) then
+        begin
+          tthread.Synchronize(tthread.CurrentThread,
+            procedure
+            begin
+              lblRobotModel.Text := stringreplace(gGetVersionD.Model.Major, 'BotVac', 'BotVac' + #13,
+                [rfreplaceall, rfignorecase]);
+
+              if pos('BotVacD3', gGetVersionD.Model.Major) > 0 then
+              begin
+                LoadImageID('NeatoD3', imgRobot);
+                LoadImageID('NeatoD3', DXVGetAccel._3DGetAccel);
+              end;
+
+              if pos('BotVacD4', gGetVersionD.Model.Major) > 0 then
+              begin
+                LoadImageID('NeatoD4', imgRobot);
+                LoadImageID('NeatoD4', DXVGetAccel._3DGetAccel);
+              end;
+
+              if pos('BotVacD5', gGetVersionD.Model.Major) > 0 then
+              begin
+                LoadImageID('NeatoD5', imgRobot);
+                LoadImageID('NeatoD5', DXVGetAccel._3DGetAccel);
+              end;
+
+              if pos('BotVacD6', gGetVersionD.Model.Major) > 0 then
+              begin
+                LoadImageID('NeatoD6', imgRobot);
+                LoadImageID('NeatoD6', DXVGetAccel._3DGetAccel);
+              end;
+
+              if pos('BotVacD7', gGetVersionD.Model.Major) > 0 then
+              begin
+                LoadImageID('NeatoD7', imgRobot);
+                LoadImageID('NeatoD7', DXVGetAccel._3DGetAccel);
+              end;
+
+              if pos('BotVacConnected', gGetVersionD.Model.Major) > 0 then
+              begin
+                LoadImageID('NeatoBotVac', imgRobot);
+                LoadImageID('NeatoBotVac', DXVGetAccel._3DGetAccel);
+              end;
+            end);
+        end;
+        freeandnil(gGetVersionD);
+      end;
+
+      if (R <> '') and (neatoType = XV) then
+      begin
+        gGetVersionXV := tGetVersionXV.Create;
+        ReadData.Text := R;
+
+        if gGetVersionXV.ParseText(ReadData) then
+        begin
+          tthread.Synchronize(tthread.CurrentThread,
+            procedure
+            begin
+
+              lblRobotModel.Text := gGetVersionXV.ModelID.Minor;
+
+              if pos('XV16', gGetVersionXV.ModelID.Minor) > 0 then
+              begin
+                LoadImageID('XV16', imgRobot);
+                LoadImageID('NeatoXV', DXVGetAccel._3DGetAccel); // generic model
+              end;
+
+            end);
         end;
 
+        freeandnil(gGetVersionXV);
       end;
-      freeandnil(gGetVersionXV);
-    end;
 
-    botFound := lblRobotModel.Text <> '';
+      botFound := lblRobotModel.Text <> '';
 
-    if not botFound then
-    begin
-      showmessage('No Neato Found on this COM Port');
-      swConnect.IsChecked := false;
-      chkAutoDetect.Enabled := true;
-      cbCOM.Enabled := true;
-    end;
-  end;
+      stopAniConnect(not botFound);
 
-  chkTestMode.Enabled := dm.com.Serial.Active;
-  ResetTabs;
+      tthread.Synchronize(tthread.CurrentThread,
+        procedure
+        begin
+          if not botFound then
+          begin
+            if dm.isComSerial then
+              showmessage('No Neato Found on this COM Port');
 
+            if not dm.isComSerial then
+              showmessage('No Neato Found on this IP / Port');
+
+            ckSerialConnect.IsChecked := false;
+            ckTCPIPConnect.IsChecked := false;
+
+            chkAutoDetect.Enabled := true;
+            cbCOM.Enabled := true;
+          end;
+          chkTestMode.Enabled := dm.COM.Active;
+          ResetTabs;
+        end);
+
+      freeandnil(ReadData);
+
+    end).start;
 end;
 
 procedure TfrmMain.comDisconnect;
 begin
-  try
-    dm.com.Close;
-  finally
-    lblSetupRobotName.Text := '';
-    lblRobotModel.Text := '';
-    LoadImageID('NeatoLogo', imgRobot);
-    ResetTabs;
-  end;
+  aniConnect.Enabled := true;
+  aniConnect.Visible := true;
+
+  tthread.CreateAnonymousThread(
+    procedure
+    begin
+      try
+        if assigned(dm.COM) then
+        begin
+          if dm.COM.Active then
+          begin
+            dm.COM.SendCommand('TESTMODE OFF');
+            dm.COM.SendCommand('TESTMODE OFF');
+            dm.COM.SendCommand('TESTMODE OFF');
+          end;
+          dm.COM.close;
+        end;
+      finally
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            aniConnect.Enabled := false;
+            aniConnect.Visible := false;
+            lblSetupRobotName.Text := '';
+            lblRobotModel.Text := '';
+            LoadImageID('NeatoLogo', imgRobot);
+            ckSerialConnect.Enabled := true;
+            ckTCPIPConnect.Enabled := true;
+            ResetTabs;
+          end);
+      end;
+    end).start;
+end;
+
+procedure TfrmMain.edIPAddressChange(Sender: TObject);
+begin
+  neatoSettings.IP := edIPAddress.Text;
+end;
+
+procedure TfrmMain.edIPPortChange(Sender: TObject);
+begin
+  neatoSettings.PORT := ROUND(edIPPort.Value);
 end;
 
 procedure TfrmMain.PopulateCOMPorts;
@@ -852,13 +1056,15 @@ var
   comList: TStringList;
 begin
   try
-    swConnect.IsChecked := false;
-    StopTimers;
+    ckSerialConnect.IsChecked := false;
+    stoptimers;
     toggleComs(false);
   except
   end;
   comList := TStringList.Create;
-  dm.com.Serial.EnumComDevices(comList);
+
+  TdmSerialWindows(COMWin32).Serial.EnumComDevices(comList);
+
   cbCOM.BeginUpdate;
   cbCOM.Items.Assign(comList);
   cbCOM.endupdate;
@@ -882,7 +1088,7 @@ begin
 
   TTabControl(Sender).BeginUpdate;
 
-  StopTimers;
+  stoptimers;
   timerStarter := nil;
 
   lblNotSupported.Visible := false;
@@ -907,23 +1113,26 @@ begin
     case neatoType of
       BotVac, BotVacConnected:
         begin
-          timerStarter := DGetCharger.timer_GetData;
+          DGetCharger.check;
           XVGetCharger.Visible := false;
           DGetCharger.Visible := true;
+          timerStarter := DGetCharger.timer_GetData;
         end;
       XV:
         begin
-          timerStarter := XVGetCharger.timer_GetData;
+          XVGetCharger.check;
           DGetCharger.Visible := false;
           XVGetCharger.Visible := true;
+          timerStarter := XVGetCharger.timer_GetData;
         end;
     end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetAccel then
   begin
-    timerStarter := DXVGetAccel.timer_GetData;
+    DXVGetAccel.check;
     DXVGetAccel.Visible := true;
+    timerStarter := DXVGetAccel.timer_GetData;
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetAnalogSensors then
@@ -931,16 +1140,17 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetAnalogSensors.check; // toggles things based on BotVac type
           XVGetAnalogSensors.Visible := false;
           DGetAnalogSensors.Visible := true;
-          DGetAnalogSensors.Check; // toggles things based on BotVac type
           timerStarter := DGetAnalogSensors.timer_GetData;
         end;
       XV:
         begin
-          timerStarter := XVGetAnalogSensors.timer_GetData;
+          XVGetAnalogSensors.check;
           DGetAnalogSensors.Visible := false;
           XVGetAnalogSensors.Visible := true;
+          timerStarter := XVGetAnalogSensors.timer_GetData;
         end;
     end;
   end;
@@ -950,12 +1160,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetDigitalSensors.check;
           XVGetDigitalSensors.Visible := false;
           DGetDigitalSensors.Visible := true;
           timerStarter := DGetDigitalSensors.timer_GetData;
         end;
       XV:
         begin
+          XVGetDigitalSensors.check;
           DGetDigitalSensors.Visible := false;
           XVGetDigitalSensors.Visible := true;
           timerStarter := XVGetDigitalSensors.timer_GetData;
@@ -967,6 +1179,7 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetSensors.check;
           DGetSensors.Visible := true;
           timerStarter := DGetSensors.timer_GetData;
         end;
@@ -982,12 +1195,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetMotors.check;
           DGetMotors.Visible := true;
           XVGetMotors.Visible := false;
           timerStarter := DGetMotors.timer_GetData;
         end;
       XV:
         begin
+          XVGetMotors.check;
           XVGetMotors.Visible := true;
           DGetMotors.Visible := false;
           timerStarter := XVGetMotors.timer_GetData;
@@ -1000,12 +1215,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetButtons.check;
           DGetButtons.Visible := true;
           XVGetButtons.Visible := false;
           timerStarter := DGetButtons.timer_GetData;
         end;
       XV:
         begin
+          XVGetButtons.check;
           XVGetButtons.Visible := true;
           DGetButtons.Visible := false;
           timerStarter := XVGetButtons.timer_GetData;
@@ -1018,13 +1235,15 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetCalInfo.check;
           DGetCalInfo.Visible := true;
-          DGetCalInfo.Check; // toggles things based on BotVac type
+          DGetCalInfo.check; // toggles things based on BotVac type
           XVGetCalInfo.Visible := false;
           timerStarter := DGetCalInfo.timer_GetData;
         end;
       XV:
         begin
+          XVGetCalInfo.check;
           XVGetCalInfo.Visible := true;
           DGetCalInfo.Visible := false;
           timerStarter := XVGetCalInfo.timer_GetData;
@@ -1037,12 +1256,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetWarranty.check;
           DGetWarranty.Visible := true;
           XVGetWarranty.Visible := false;
           timerStarter := DGetWarranty.timer_GetData;
         end;
       XV:
         begin
+          XVGetWarranty.check;
           XVGetWarranty.Visible := true;
           DGetWarranty.Visible := false;
           timerStarter := XVGetWarranty.timer_GetData;
@@ -1055,12 +1276,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetErr.check;
           DGetErr.Visible := true;
           XVGetErr.Visible := false;
           timerStarter := DGetErr.timer_GetData;
         end;
       XV:
         begin
+          XVGetErr.check;
           XVGetErr.Visible := true;
           DGetErr.Visible := false;
           timerStarter := XVGetErr.timer_GetData;
@@ -1073,12 +1296,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DGetVersion.check;
           DGetVersion.Visible := true;
           XVGetVersion.Visible := false;
           timerStarter := DGetVersion.timer_GetData;
         end;
       XV:
         begin
+          XVGetVersion.check;
           XVGetVersion.Visible := true;
           DGetVersion.Visible := false;
           timerStarter := XVGetVersion.timer_GetData;
@@ -1091,6 +1316,7 @@ begin
     case neatoType of
       BotVacConnected:
         begin
+          DGetUsage.check;
           DGetUsage.Visible := true;
           timerStarter := DGetUsage.timer_GetData;
         end;
@@ -1107,6 +1333,7 @@ begin
     case neatoType of
       BotVacConnected:
         begin
+          DGetUserSettings.check;
           DGetUserSettings.Visible := true;
           timerStarter := DGetUserSettings.timer_GetData;
         end;
@@ -1128,6 +1355,7 @@ begin
         end;
       BotVac, XV:
         begin
+          XVGetSchedule.check;
           XVGetSchedule.Visible := true;
           timerStarter := XVGetSchedule.timer_GetData;
         end;
@@ -1144,6 +1372,7 @@ begin
         end;
       BotVac, XV:
         begin
+          XVGetTime.check;
           XVGetTime.Visible := true;
           timerStarter := XVGetTime.timer_GetData;
         end;
@@ -1155,32 +1384,34 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
+          DClean.check;
           XVClean.Visible := false;
           DClean.Visible := true;
-          DClean.Check;
         end;
       XV:
         begin
+          XVClean.check;
           DClean.Visible := false;
           XVClean.Visible := true;
-          XVClean.Check;
         end;
     end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabPlaySound then
   begin
+    DXVPlaySound.check;
     DXVPlaySound.Visible := true;
-    DXVPlaySound.Check;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetFuelGauge then
   begin
+    DXVSetFuelGauge.check;
     DXVSetFuelGauge.Visible := true;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetTime then
   begin
+    DXVSetTime.check;
     DXVSetTime.Visible := true;
   end;
 
@@ -1232,6 +1463,7 @@ begin
         end;
       BotVac, XV:
         begin
+          DXVSetSchedule.check;
           DXVSetSchedule.Visible := true;
         end;
     end;
@@ -1247,6 +1479,7 @@ begin
         end;
       XV:
         begin
+          DXVSetWallFollower.check;
           DXVSetWallFollower.Visible := true;
         end;
     end;
@@ -1262,6 +1495,7 @@ begin
         end;
       XV:
         begin
+          DXVSetDistanceCal.check;
           DXVSetDistanceCal.Visible := true;
         end;
     end;
@@ -1283,7 +1517,7 @@ begin
         end;
       XV:
         begin
-          DXVGetLifeStatLog.Check;
+          DXVGetLifeStatLog.check;
           DXVGetLifeStatLog.Visible := true;
         end;
     end;
@@ -1292,13 +1526,13 @@ begin
   if TTabControl(Sender).ActiveTab = tabSetMotor then
     if assigned(DXVSetMotor) then
     begin
-      DXVSetMotor.Check;
+      DXVSetMotor.check;
       DXVSetMotor.Visible := true;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetLDSScan then
   begin
-    DXVGetLDSScan.Check;
+    DXVGetLDSScan.check;
     DXVGetLDSScan.Visible := true;
     timerStarter := DXVGetLDSScan.timer_GetData;
   end;
@@ -1306,17 +1540,17 @@ begin
   if TTabControl(Sender).ActiveTab = tabLidarView then
     if assigned(DXVLidarView) then
     begin
-      DXVLidarView.Check;
+      DXVLidarView.check;
       DXVLidarView.Visible := true;
       timerStarter := DXVLidarView.timer_GetData;
     end;
 
   if TTabControl(Sender).ActiveTab = tabTestLDS then
-    if assigned(DXVTestLDS) then
-    begin
-      DXVTestLDS.Visible := true;
-      timerStarter := DXVTestLDS.timer_GetData;
-    end;
+  begin
+    DXVTestLDS.check;
+    DXVTestLDS.Visible := true;
+    timerStarter := DXVTestLDS.timer_GetData;
+  end;
 
   if TTabControl(Sender).ActiveTab = tabSetBatteryTest then
     if assigned(DXVSetBatteryTest) then
@@ -1331,17 +1565,12 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
-          if assigned(DClearFiles) then
-          begin
-            DClearFiles.Check;
-            DClearFiles.Visible := true;
-          end;
+          DClearFiles.check;
+          DClearFiles.Visible := true;
         end;
       XV:
         begin
-          if assigned(DClearFiles) then
-            DClearFiles.Visible := false;
-
+          DClearFiles.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1350,18 +1579,14 @@ begin
     case neatoType of
       BotVacConnected, BotVac:
         begin
-          if assigned(XVRestoreDefaults) then
-            XVRestoreDefaults.Visible := false;
-
+          XVRestoreDefaults.check;
+          XVRestoreDefaults.Visible := false;
           SetNotSupported;
         end;
       XV:
         begin
-          if assigned(XVRestoreDefaults) then
-          begin
-            XVRestoreDefaults.Check;
-            XVRestoreDefaults.Visible := true;
-          end;
+          XVRestoreDefaults.check;
+          XVRestoreDefaults.Visible := true;
         end;
     end;
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1370,16 +1595,12 @@ begin
     case neatoType of
       BotVacConnected:
         begin
-          if assigned(DGetWifiInfo) then
-          begin
-            DGetWifiInfo.Check;
-            DGetWifiInfo.Visible := true;
-          end;
+          DGetWifiInfo.check;
+          DGetWifiInfo.Visible := true;
         end;
       BotVac, XV:
         begin
-          if assigned(DGetWifiInfo) then
-            DGetWifiInfo.Visible := false;
+          DGetWifiInfo.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1388,16 +1609,13 @@ begin
     case neatoType of
       BotVacConnected:
         begin
-          if assigned(DGetWifiStatus) then
-          begin
-            DGetWifiStatus.Visible := true;
-            timerStarter := DGetWifiStatus.timer_GetData;
-          end;
+          DGetWifiStatus.check;
+          DGetWifiStatus.Visible := true;
+          timerStarter := DGetWifiStatus.timer_GetData;
         end;
       BotVac, XV:
         begin
-          if assigned(DGetWifiStatus) then
-            DGetWifiStatus.Visible := false;
+          DGetWifiStatus.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1417,10 +1635,8 @@ begin
     case neatoType of
       BotVac:
         begin
-          if assigned(DXVSetLanguage) then
-          begin
-            DXVSetLanguage.Visible := true;
-          end;
+          DXVSetLanguage.check;
+          DXVSetLanguage.Visible := true;
         end;
       BotVacConnected, XV:
         begin
@@ -1433,11 +1649,8 @@ begin
     case neatoType of
       BotVac, BotVacConnected: // maybe the connected ?
         begin
-          if assigned(DSetButton) then
-          begin
-            DSetButton.Check;
-            DSetButton.Visible := true;
-          end;
+          DSetButton.check;
+          DSetButton.Visible := true;
         end;
       XV:
         begin
@@ -1450,11 +1663,8 @@ begin
     case neatoType of
       BotVacConnected: // maybe the connected ?
         begin
-          if assigned(DSetNTPTime) then
-          begin
-            DSetNTPTime.Check;
-            DSetNTPTime.Visible := true;
-          end;
+          DSetNTPTime.check;
+          DSetNTPTime.Visible := true;
         end;
       BotVac, XV:
         begin
@@ -1467,11 +1677,8 @@ begin
     case neatoType of
       BotVacConnected: // maybe the connected ?
         begin
-          if assigned(DSetNavigationMode) then
-          begin
-            DSetNavigationMode.Check;
-            DSetNavigationMode.Visible := true;
-          end;
+          DSetNavigationMode.check;
+          DSetNavigationMode.Visible := true;
         end;
       BotVac, XV:
         begin
@@ -1484,11 +1691,8 @@ begin
     case neatoType of
       BotVacConnected: // maybe the connected ?
         begin
-          if assigned(DSetNavigationMode) then
-          begin
-            DSetUsage.Check;
-            DSetUsage.Visible := true;
-          end;
+          DSetUsage.check;
+          DSetUsage.Visible := true;
         end;
       BotVac, XV:
         begin
@@ -1497,9 +1701,19 @@ begin
         end;
     end;
 
-
   if assigned(timerStarter) then
-    timerStarter.Enabled := true;
+  begin
+    tthread.CreateAnonymousThread(
+      procedure
+      begin
+        sleep(1000);
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            timerStarter.Enabled := true;
+          end);
+      end).start;
+  end;
 
   TTabControl(Sender).endupdate;
 end;
@@ -1525,7 +1739,7 @@ begin
   DClearFiles := TframeDClearFiles.Create(tabClearFiles);
   DGetWifiInfo := TframeDGetWifiInfo.Create(tabGetWifiInfo);
   DGetWifiStatus := TframeDGetWifiStatus.Create(tabGetWifiStatus);
-  DSetNavigationMode :=  TframeDSetNavigationMode.Create(tabSetNavigationMode);
+  DSetNavigationMode := TframeDSetNavigationMode.Create(tabSetNavigationMode);
   DSetUsage := TframeDSetUsage.Create(tabSetUsage);
 
   XVGetCharger := TframeXVGetCharger.Create(tabGetCharger);
@@ -1563,6 +1777,13 @@ begin
   DSetButton := TframeDSetButton.Create(tabSetButton);
   DClean := TframeDClean.Create(tabClean);
   DSetNTPTime := TframeDSetNTPTime.Create(tabSetNTPTime);
+
+  Scripts := TframeScriptEngine.Create(tabScripts);
+  Scripts.Parent := tabScripts;
+  Scripts.Position.X := 0;
+  Scripts.Position.Y := 0;
+  Scripts.Align := talignlayout.Client;
+  Scripts.init;
 
 end;
 

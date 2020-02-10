@@ -77,7 +77,7 @@ inherited frameDXVSetBatteryTest: TframeDXVSetBatteryTest
     Size.Height = 225.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 64
-    Viewport.Width = 639.000000000000000000
-    Viewport.Height = 221.000000000000000000
+    Viewport.Width = 643.000000000000000000
+    Viewport.Height = 225.000000000000000000
   end
 end

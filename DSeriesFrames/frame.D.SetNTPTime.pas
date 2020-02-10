@@ -101,8 +101,8 @@ end;
 
 procedure TframeDSetNTPTime.check;
 begin
-  btnSetNTPTime.Enabled := dm.com.Serial.Active;
-  btnSetNTPTimeBrief.Enabled := dm.com.Serial.Active;
+  btnSetNTPTime.Enabled := dm.com.Active;
+  btnSetNTPTimeBrief.Enabled := dm.com.Active;
 end;
 
 end.

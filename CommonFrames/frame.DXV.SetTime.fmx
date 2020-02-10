@@ -5,7 +5,12 @@ inherited frameDXVSetTime: TframeDXVSetTime
   inherited timer_getdata: TTimer
     Left = 544
   end
-  object Rectangle1: TRectangle [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 325.000000000000000000
+    Size.Width = 788.000000000000000000
+    TabOrder = 52
+  end
+  object Rectangle1: TRectangle
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -149,11 +154,6 @@ inherited frameDXVSetTime: TframeDXVSetTime
       Position.X = 256.000000000000000000
       Position.Y = 168.000000000000000000
     end
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 325.000000000000000000
-    Size.Width = 788.000000000000000000
-    TabOrder = 52
   end
   object lblSetTimeError: TLabel
     Align = Top

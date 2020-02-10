@@ -58,7 +58,8 @@ type
   private
     { Private declarations }
   public
-  constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -67,10 +68,9 @@ implementation
 
 constructor TframeXVGetCalInfo.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeXVGetCalInfo.timer_GetDataTimer(Sender: TObject);
 var
@@ -79,13 +79,13 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
   end;
 
-  pGetCalInfo := tGetCalInfoxv.Create;
+  pGetCalInfo := tGetCalInfoXV.Create;
 
   pReadData := TStringList.Create;
   pReadData.Text := dm.com.SendCommand(sGetCalInfo);
@@ -111,7 +111,6 @@ begin
     lblGetCalInfoWallMidValue.Text := pGetCalInfo.WallMid.ToString;
     lblGetCalInfoWallMaxValue.Text := pGetCalInfo.WallMax.ToString;
 
-
     lblGetCalInfoQAStateValue.Text := pGetCalInfo.QAState;
     lblGetCalInfoCleaningTestSurfaceValue.Text := pGetCalInfo.CleaningTestSurface;
     lblGetCalInfoCleaningTestHardSpeedValue.Text := pGetCalInfo.CleaningTestHardSpeed.ToString;
@@ -124,5 +123,9 @@ begin
   pGetCalInfo.Free;
 end;
 
+procedure TframeXVGetCalInfo.check;
+begin
+  //
+end;
 
 end.

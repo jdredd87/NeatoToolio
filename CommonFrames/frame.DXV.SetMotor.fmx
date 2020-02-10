@@ -4,8 +4,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
   Size.Height = 515.000000000000000000
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
-    Left = 832
-    Top = 160
+    Left = 248
   end
   inherited lblFrameTitle: TLabel
     Position.Y = 484.000000000000000000
@@ -28,6 +27,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     Fill.Gradient.StopPosition.Y = 0.149896234273910500
     Position.X = 8.000000000000000000
     Position.Y = 16.000000000000000000
+    Scale.X = 0.750000000000000000
+    Scale.Y = 0.750000000000000000
     Size.Width = 297.000000000000000000
     Size.Height = 265.000000000000000000
     Size.PlatformDefault = False
@@ -193,7 +194,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     end
   end
   object lblLeftWheel: TLabel
-    Position.X = 295.000000000000000000
+    Position.X = 311.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 90.000000000000000000
     Size.Height = 20.000000000000000000
@@ -203,7 +204,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 60
   end
   object lblRightWheel: TLabel
-    Position.X = 295.000000000000000000
+    Position.X = 311.000000000000000000
     Position.Y = 72.000000000000000000
     Size.Width = 90.000000000000000000
     Size.Height = 20.000000000000000000
@@ -213,8 +214,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 59
   end
   object lblSideBrush: TLabel
-    Position.X = 295.000000000000000000
-    Position.Y = 312.000000000000000000
+    Position.X = 311.000000000000000000
+    Position.Y = 256.000000000000000000
     Size.Width = 90.000000000000000000
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
@@ -228,13 +229,13 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     Cursor = crIBeam
     Max = 1000.000000000000000000
     Value = 1000.000000000000000000
-    Position.X = 576.000000000000000000
-    Position.Y = 248.000000000000000000
+    Position.X = 592.000000000000000000
+    Position.Y = 192.000000000000000000
     OnChange = btnSetMotorMainBrushEnableClick
   end
   object lblMainBrush: TLabel
-    Position.X = 295.000000000000000000
-    Position.Y = 224.000000000000000000
+    Position.X = 311.000000000000000000
+    Position.Y = 192.000000000000000000
     Size.Width = 90.000000000000000000
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
@@ -248,12 +249,12 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     Cursor = crIBeam
     Max = 5000.000000000000000000
     Value = 2500.000000000000000000
-    Position.X = 576.000000000000000000
-    Position.Y = 336.000000000000000000
+    Position.X = 592.000000000000000000
+    Position.Y = 256.000000000000000000
     OnClick = btnSetMotorSideBrushEnableClick
   end
   object lblVacuum: TLabel
-    Position.X = 295.000000000000000000
+    Position.X = 311.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 90.000000000000000000
     Size.Height = 20.000000000000000000
@@ -267,8 +268,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 8
     Cursor = crIBeam
     Value = 50.000000000000000000
-    Position.X = 576.000000000000000000
-    Position.Y = 152.000000000000000000
+    Position.X = 592.000000000000000000
+    Position.Y = 128.000000000000000000
     OnChange = btnSetMotorVacuumEnableClick
   end
   object spWheelSpeed: TSpinBox
@@ -277,11 +278,11 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     Cursor = crIBeam
     Max = 300.000000000000000000
     Value = 150.000000000000000000
-    Position.X = 576.000000000000000000
+    Position.X = 592.000000000000000000
     Position.Y = 56.000000000000000000
   end
   object lblWheelSpeed: TLabel
-    Position.X = 576.000000000000000000
+    Position.X = 592.000000000000000000
     Position.Y = 16.000000000000000000
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
@@ -290,8 +291,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 67
   end
   object lblSideBrushPower: TLabel
-    Position.X = 575.000000000000000000
-    Position.Y = 304.000000000000000000
+    Position.X = 591.000000000000000000
+    Position.Y = 224.000000000000000000
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
@@ -299,8 +300,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 64
   end
   object lblMainBrushRPM: TLabel
-    Position.X = 575.000000000000000000
-    Position.Y = 216.000000000000000000
+    Position.X = 591.000000000000000000
+    Position.Y = 160.000000000000000000
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
@@ -308,8 +309,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 63
   end
   object lblVacuumSpeed: TLabel
-    Position.X = 576.000000000000000000
-    Position.Y = 120.000000000000000000
+    Position.X = 592.000000000000000000
+    Position.Y = 96.000000000000000000
     Size.Width = 300.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
@@ -318,7 +319,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
   end
   object lblBtnPosition: TLabel
     Position.X = 8.000000000000000000
-    Position.Y = 292.000000000000000000
+    Position.Y = 228.000000000000000000
     Size.Width = 289.000000000000000000
     Size.Height = 29.000000000000000000
     Size.PlatformDefault = False
@@ -326,7 +327,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     TabOrder = 68
   end
   object btnSetMotorLeftWheelEnable: TButton
-    Position.X = 400.000000000000000000
+    Position.X = 416.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
@@ -336,7 +337,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorLeftheelEnableClick
   end
   object btnSetMotorLeftWheelDisable: TButton
-    Position.X = 488.000000000000000000
+    Position.X = 504.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
@@ -346,7 +347,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorLeftWheelDisableClick
   end
   object btnSetMotorRightWheelEnable: TButton
-    Position.X = 400.000000000000000000
+    Position.X = 416.000000000000000000
     Position.Y = 72.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
@@ -356,7 +357,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorRightWheelEnableClick
   end
   object btnSetMotorRightWheelDisable: TButton
-    Position.X = 488.000000000000000000
+    Position.X = 504.000000000000000000
     Position.Y = 72.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
@@ -366,7 +367,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorRightWheelDisableClick
   end
   object btnSetMotorVacuumEnable: TButton
-    Position.X = 400.000000000000000000
+    Position.X = 416.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
@@ -376,7 +377,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorVacuumEnableClick
   end
   object btnSetMotorVacuumDisable: TButton
-    Position.X = 488.000000000000000000
+    Position.X = 504.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
@@ -386,8 +387,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorVacuumDisableClick
   end
   object btnSetMotorMainBrushEnable: TButton
-    Position.X = 400.000000000000000000
-    Position.Y = 224.000000000000000000
+    Position.X = 416.000000000000000000
+    Position.Y = 192.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
@@ -396,8 +397,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorMainBrushEnableClick
   end
   object btnSetMotorMainBrushDisable: TButton
-    Position.X = 488.000000000000000000
-    Position.Y = 224.000000000000000000
+    Position.X = 504.000000000000000000
+    Position.Y = 192.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
@@ -406,8 +407,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorMainBrushDisableClick
   end
   object btnSetMotorSideBrushEnable: TButton
-    Position.X = 400.000000000000000000
-    Position.Y = 312.000000000000000000
+    Position.X = 416.000000000000000000
+    Position.Y = 256.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
@@ -416,8 +417,8 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     OnClick = btnSetMotorSideBrushEnableClick
   end
   object btnSetMotorSideBrushDisable: TButton
-    Position.X = 488.000000000000000000
-    Position.Y = 312.000000000000000000
+    Position.X = 504.000000000000000000
+    Position.Y = 256.000000000000000000
     Size.Width = 70.000000000000000000
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
@@ -431,13 +432,13 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     Cursor = crIBeam
     Max = 10000.000000000000000000
     Value = 150.000000000000000000
-    Position.X = 696.000000000000000000
+    Position.X = 712.000000000000000000
     Position.Y = 56.000000000000000000
   end
   object btnSetMotorSTOP: TCircle
     Fill.Color = claRed
-    Position.X = 108.000000000000000000
-    Position.Y = 358.000000000000000000
+    Position.X = 228.000000000000000000
+    Position.Y = 135.000000000000000000
     Size.Width = 89.000000000000000000
     Size.Height = 73.000000000000000000
     Size.PlatformDefault = False
@@ -455,5 +456,24 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Text = 'STOP'
       TabOrder = 0
     end
+  end
+  object rectLidar: TRectangle
+    Fill.Color = claWhite
+    Position.X = 8.000000000000000000
+    Position.Y = 264.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 241.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object ckUsePlotterXY: TCheckBox
+    IsChecked = True
+    Position.X = 312.000000000000000000
+    Position.Y = 448.000000000000000000
+    Size.Width = 257.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 72
+    Text = 'Use PlotterXY Lidar View'
+    OnChange = ckUsePlotterXYChange
   end
 end

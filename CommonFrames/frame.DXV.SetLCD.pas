@@ -233,22 +233,22 @@ end;
 
 procedure TframeDXVSetLCD.check;
 begin
-  tbSetLCDContrast.Enabled := dm.com.Serial.Active;
-  btnSetLCDBGWhite.Enabled := dm.com.Serial.Active;
-  btnSetLCDBGBlack.Enabled := dm.com.Serial.Active;
-  btnSetLCDHLine.Enabled := dm.com.Serial.Active;
-  btnSetLCDVLine.Enabled := dm.com.Serial.Active;
-  btnSetLCDHBars.Enabled := dm.com.Serial.Active;
-  btnSetLCDVBars.Enabled := dm.com.Serial.Active;
-  btnSetLCDFGWhite.Enabled := dm.com.Serial.Active;
-  btnSetLCDFGBlack.Enabled := dm.com.Serial.Active;
-  sbHLineValue.Enabled := dm.com.Serial.Active;
-  sbVLineValue.Enabled := dm.com.Serial.Active;
-  sbFGWhiteValue.Enabled := dm.com.Serial.Active;
-  sbFGBlackValue.Enabled := dm.com.Serial.Active;
-  btnSetLCDHBars2.Enabled := dm.com.Serial.Active;
+  tbSetLCDContrast.Enabled := dm.com.Active;
+  btnSetLCDBGWhite.Enabled := dm.com.Active;
+  btnSetLCDBGBlack.Enabled := dm.com.Active;
+  btnSetLCDHLine.Enabled := dm.com.Active;
+  btnSetLCDVLine.Enabled := dm.com.Active;
+  btnSetLCDHBars.Enabled := dm.com.Active;
+  btnSetLCDVBars.Enabled := dm.com.Active;
+  btnSetLCDFGWhite.Enabled := dm.com.Active;
+  btnSetLCDFGBlack.Enabled := dm.com.Active;
+  sbHLineValue.Enabled := dm.com.Active;
+  sbVLineValue.Enabled := dm.com.Active;
+  sbFGWhiteValue.Enabled := dm.com.Active;
+  sbFGBlackValue.Enabled := dm.com.Active;
+  btnSetLCDHBars2.Enabled := dm.com.Active;
 
-  if dm.com.Serial.Active then
+  if dm.com.Active then
     dm.chkTestmode.IsChecked := true;
 end;
 

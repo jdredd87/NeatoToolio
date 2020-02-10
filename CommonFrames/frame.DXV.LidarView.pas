@@ -4,13 +4,14 @@ interface
 
 uses
   frame.master,
+  system.diagnostics,
   dmCommon,
   neato.DXV.GetLDSScan,
   neato.helpers, FMX.TabControl,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
+  system.SysUtils, system.Types, system.UITypes, system.Classes, system.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, system.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
-  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox,
+  system.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox,
   FMXTee.Engine, FMXTee.Series, FMXTee.Series.Polar, FMXTee.Tools, FMXTee.Functions.Stats, FMXTee.Procs, FMXTee.Chart;
 
 type
@@ -62,6 +63,9 @@ type
     ckAutoScaleGraphs: TCheckBox;
     lblMaxDistance: TLabel;
     sbMaxDistance: TSpinBox;
+    lblFPS: TLabel;
+    lblDroppedPackets: TLabel;
+    lblTotalFrames: TLabel;
     procedure Timer_GetDataTimer(Sender: TObject);
 
     procedure sgGetLDSScanDrawColumnCell(Sender: TObject; const Canvas: TCanvas; const Column: TColumn;
@@ -76,13 +80,23 @@ type
 
     fLIDARCounter: single;
     fActivePoint: trectangle;
-    fMaxDistance : Integer;
-
+    fMaxDistance: Integer;
+    fFPS: TStopWatch;
+    fFPSCount: Longint;
+    fFPSDroppedPacketCount: Longint;
+    fTotalFrames: Longint;
+    fGoodPointSize: byte;
+    fBadPointSize: byte;
     procedure rectPlotPointsMouseEnter(Sender: TObject);
     procedure rectPlotPointsMouseLeave(Sender: TObject);
+    procedure SetGoodPointSize(Value: byte);
+    procedure SetBadPointSize(Value: byte);
   public
     procedure check;
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    destructor destroy; reintroduce; overload;
+    property GoodPointSize: byte read fGoodPointSize write SetGoodPointSize;
+    property BadPointSize: byte read fBadPointSize write SetBadPointSize;
   end;
 
 implementation
@@ -94,16 +108,23 @@ var
   idx: Integer;
 begin
   inherited;
+  fFPS := TStopWatch.Create;
+
   fMaxDistance := 8000; // 8000mm
   fActivePoint := nil;
   tabsLidarViewOptions.TabIndex := 0;
   tabsLidarViewOptions.OnChange := dmCommon.onTabChangeEvent;
+  fLIDARCounter := 0;
+  fFPSCount := 0;
+  fFPSDroppedPacketCount := 0;
+  fTotalFrames := 0;
 
   lblFrameTitle.Text := sDescription;
   for idx := 0 to 359 do
   begin
     PlotPoints[idx].Point := trectangle.Create(rectPlotPoints);
     PlotPoints[idx].Point.Parent := rectPlotPoints;
+
     if idx > 0 then
     begin
       PlotPoints[idx].Point.Position.X := PlotPoints[idx - 1].Point.Position.X + 5;
@@ -124,9 +145,15 @@ begin
     PlotPoints[idx].Error := 0;
     PlotPoints[idx].intensity := 0;
   end;
+
   sgLIDAR.RowCount := 360;
 
   self.ckAutoScaleGraphs.IsChecked := true;
+end;
+
+destructor TframeDXVLidarView.destroy;
+begin
+  inherited;
 end;
 
 procedure TframeDXVLidarView.ckAutoScaleGraphsChange(Sender: TObject);
@@ -146,10 +173,23 @@ end;
 
 procedure TframeDXVLidarView.check;
 begin
+
+  if dm.isComSerial then
+    timer_getdata.Interval := 150
+  else
+    timer_getdata.Interval := 350;
+
   dm.chkTestmode.IsChecked := true;
   sleep(250);
   dm.com.SendCommand('Setldsrotation on');
   sleep(250);
+
+  fFPSCount := 0;
+  fLIDARCounter := 0;
+  fFPSDroppedPacketCount := 0;
+  fTotalFrames := 0;
+  fFPS.Reset;
+  fFPS.Start;
 end;
 
 procedure TframeDXVLidarView.rectPlotPointsMouseEnter(Sender: TObject);
@@ -216,20 +256,34 @@ begin
   resetfocus;
 end;
 
+procedure TframeDXVLidarView.SetGoodPointSize(Value: byte);
+begin
+  if Value = 0 then
+    Value := 1;
+  fGoodPointSize := Value;
+end;
+
+procedure TframeDXVLidarView.SetBadPointSize(Value: byte);
+begin
+  if Value = 0 then
+    Value := 1;
+  fBadPointSize := Value;
+end;
+
 function TframeDXVLidarView.seriesPlotterXYGetPointerStyle(Sender: TChartSeries; ValueIndex: Integer)
   : TSeriesPointerStyle;
 begin
   inherited;
   if seriesPlotterXY.ValueColor[ValueIndex] = talphacolorrec.Red then
   begin
-    seriesPlotterXY.Pointer.HorizSize := 8;
-    seriesPlotterXY.Pointer.VertSize := 8;
+    seriesPlotterXY.Pointer.HorizSize := BadPointSize;
+    seriesPlotterXY.Pointer.VertSize := BadPointSize;
     Result := TSeriesPointerStyle.psTriangle;
   end
   else
   begin
-    seriesPlotterXY.Pointer.HorizSize := 3;
-    seriesPlotterXY.Pointer.VertSize := 3;
+    seriesPlotterXY.Pointer.HorizSize := GoodPointSize;
+    seriesPlotterXY.Pointer.VertSize := GoodPointSize;
     Result := TSeriesPointerStyle.psRectangle;
   end;
 end;
@@ -239,14 +293,14 @@ begin
   inherited;
   if seriesPolar.XValue[ValueIndex] = 0 then
   begin
-    seriesPolar.Pointer.HorizSize := 8;
-    seriesPolar.Pointer.VertSize := 8;
+    seriesPolar.Pointer.HorizSize := BadPointSize;
+    seriesPolar.Pointer.VertSize := BadPointSize;
     Result := TSeriesPointerStyle.psTriangle
   end
   else
   begin
-    seriesPolar.Pointer.HorizSize := 3;
-    seriesPolar.Pointer.VertSize := 3;
+    seriesPolar.Pointer.HorizSize := GoodPointSize;
+    seriesPolar.Pointer.VertSize := GoodPointSize;
     Result := TSeriesPointerStyle.psRectangle;
   end;
 end;
@@ -360,27 +414,48 @@ var
 
   begin
 
+    // need to clean this up, but doing tests to try and improve the LiDAR FPS
+    // we can only view one tab at a time here so try and only do work
+    // for the tab you are on!
+
+    if tabsLidarViewOptions.ActiveTab = self.tabLidarPlotXY then
+      seriesPlotterXY.BeginUpdate
+    else if tabsLidarViewOptions.ActiveTab = self.tablidarpolar then
+      self.seriesPolar.BeginUpdate
+    else if tabsLidarViewOptions.ActiveTab = self.tabLidarCalculations then
+      sgLIDAR.BeginUpdate;
+
     if sbResetLIDARMapping.Value > 0 then
     begin
       if round(fLIDARCounter) >= round(sbResetLIDARMapping.Value) then
       begin
-        seriesPlotterXY.Clear;
-        seriesPolar.Clear;
+        if tabsLidarViewOptions.ActiveTab = self.tabLidarPlotXY then
+          seriesPlotterXY.Clear
+        else if tabsLidarViewOptions.ActiveTab = self.tablidarpolar then
+          seriesPolar.Clear;
         fLIDARCounter := 0;
       end;
     end;
 
-    for RowIDX := 0 to sgLIDAR.RowCount - 1 do
-    begin
-      sgLIDAR.Cells[0, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].AngleInDegrees.ToString;
-      sgLIDAR.Cells[1, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].DistInMM.ToString;
-      sgLIDAR.Cells[2, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].intensity.ToString;
-      sgLIDAR.Cells[3, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].ErrorCodeHEX.ToString;
 
-      AngleInDegrees := strtoint(sgLIDAR.Cells[0, RowIDX]);
-      DistInMM := strtoint(sgLIDAR.Cells[1, RowIDX]);
-      intensity := strtoint(sgLIDAR.Cells[2, RowIDX]);
-      errorcode := strtoint(sgLIDAR.Cells[3, RowIDX]);
+    // change this so the object collection is used.
+    // don't use the grid for anything other than visual representation of the data!
+
+    for RowIDX := 0 to 359 do // sgLIDAR.RowCount - 1 do
+    begin
+
+      if tabsLidarViewOptions.ActiveTab = self.tabLidarCalculations then
+      begin
+        sgLIDAR.Cells[0, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].AngleInDegrees.ToString;
+        sgLIDAR.Cells[1, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].DistInMM.ToString;
+        sgLIDAR.Cells[2, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].intensity.ToString;
+        sgLIDAR.Cells[3, RowIDX] := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].ErrorCodeHEX.ToString;
+      end;
+
+      AngleInDegrees := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].AngleInDegrees;
+      DistInMM := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].DistInMM;
+      intensity := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].intensity;
+      errorcode := pGetLDSScan.GetLDSScanRecords[RowIDX + 1].ErrorCodeHEX;
 
       // if errorcode <> 0 then   continue;
 
@@ -388,40 +463,56 @@ var
       originalX := CalcXCorrection(AngleInDegrees, DistInMM);
       originalY := CalcYCorrection(AngleInDegrees, DistInMM);
 
-      sgLIDAR.Cells[4, RowIDX] := originalX.ToString;
-      sgLIDAR.Cells[5, RowIDX] := originalY.ToString;
+      if tabsLidarViewOptions.ActiveTab = self.tabLidarCalculations then
+      begin
+        sgLIDAR.Cells[4, RowIDX] := originalX.ToString;
+        sgLIDAR.Cells[5, RowIDX] := originalY.ToString;
+      end;
 
       // Calculate x and y geometric correction - add this to x' and y' to get object coordinates
       calculatedX := CalcAlfaX(AngleInDegrees);
       calculatedY := CalcAlfaY(AngleInDegrees);
 
-      sgLIDAR.Cells[6, RowIDX] := calculatedX.ToString;
-      sgLIDAR.Cells[7, RowIDX] := calculatedY.ToString;
+      if tabsLidarViewOptions.ActiveTab = self.tabLidarCalculations then
+      begin
+        sgLIDAR.Cells[6, RowIDX] := calculatedX.ToString;
+        sgLIDAR.Cells[7, RowIDX] := calculatedY.ToString;
+      end;
 
       // Calculate x and y - object coordinates
 
       finalX := CalcFinalX(originalX, calculatedX);
       finalY := CalcFinalY(originalY, calculatedY);
 
-      sgLIDAR.Cells[8, RowIDX] := finalX.ToString;
-      sgLIDAR.Cells[9, RowIDX] := finalY.ToString;
+      if tabsLidarViewOptions.ActiveTab = self.tabLidarCalculations then
+      begin
+        sgLIDAR.Cells[8, RowIDX] := finalX.ToString;
+        sgLIDAR.Cells[9, RowIDX] := finalY.ToString;
+      end;
 
-      if (finalY < fMaxDistance) and (finalY > -abs(fMaxDistance) ) and (finalX < fMaxDistance) and (finalX > -abs(fMaxDistance)) then
+      if (finalY < fMaxDistance) and (finalY > -abs(fMaxDistance)) and (finalX < fMaxDistance) and
+        (finalX > -abs(fMaxDistance)) then
       begin
 
         if errorcode > 0 then
         begin
-          seriesPlotterXY.AddXY(finalX, finalY, '', talphacolorrec.Red);
-          seriesPolar.AddPolar(RowIDX, DistInMM, '', talphacolorrec.Red);
-          PlotPoints[RowIDX].Point.Fill.Color := talphacolorrec.Red;
+          IntensityColor := talphacolorrec.Red;
+          if tabsLidarViewOptions.ActiveTab = self.tabLidarPlotXY then
+            seriesPlotterXY.AddXY(finalX, finalY, '', talphacolorrec.Red)
+          else if tabsLidarViewOptions.ActiveTab = self.tablidarpolar then
+            seriesPolar.AddPolar(RowIDX, DistInMM, '', talphacolorrec.Red);
         end
         else
         begin
-          IntensityColor := ChangeBrightness(talphacolorrec.green, map(intensity, 0, 1024, 50, 250));
-          seriesPlotterXY.AddXY(finalX, finalY, '', IntensityColor);
-          seriesPolar.Pen.Color := IntensityColor;
-          seriesPolar.AddPolar(RowIDX, DistInMM, '', IntensityColor);
-          PlotPoints[RowIDX].Point.Fill.Color := IntensityColor;
+          IntensityColor := ChangeBrightness(talphacolorrec.green, map(intensity, 0, 1024, 50, 150));
+
+          if tabsLidarViewOptions.ActiveTab = self.tabLidarPlotXY then
+            seriesPlotterXY.AddXY(finalX, finalY, '', IntensityColor)
+          else if tabsLidarViewOptions.ActiveTab = self.tablidarpolar then
+          begin
+            seriesPolar.Pen.Color := IntensityColor;
+            seriesPolar.AddPolar(RowIDX, DistInMM, '', IntensityColor);
+          end;
         end;
 
         PlotPoints[RowIDX].X := finalX;
@@ -433,14 +524,25 @@ var
 
         if assigned(fActivePoint) then
           rectPlotPointsMouseEnter(fActivePoint);
-      end;
 
+        if PlotPoints[RowIDX].Point.Fill.Color <> IntensityColor then
+          PlotPoints[RowIDX].Point.Fill.Color := IntensityColor;
+
+      end;
     end;
+
+    if tabsLidarViewOptions.ActiveTab = self.tabLidarPlotXY then
+      seriesPlotterXY.EndUpdate
+    else if tabsLidarViewOptions.ActiveTab = self.tablidarpolar then
+      self.seriesPolar.EndUpdate
+    else if tabsLidarViewOptions.ActiveTab = self.tabLidarCalculations then
+      sgLIDAR.EndUpdate;
+
   end;
 
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_getdata.Enabled := false;
     exit;
@@ -455,11 +557,21 @@ begin
 
   pnlLidarLeft.BeginUpdate;
 
+  inc(fTotalFrames);
+  lblTotalFrames.Text := fTotalFrames.ToString;
+
   if R then
   begin
+    inc(fFPSCount);
+    lblFPS.Text := floattostrf(fFPSCount / (fFPS.ElapsedMilliseconds / 1000), fffixed, 4, 2) + 'fps';
     fLIDARCounter := fLIDARCounter + 1;
     lblLidarSpeedValue.Text := pGetLDSScan.Rotation_Speed.ToString;
     MapLIDAR;
+  end
+  else
+  begin
+    inc(fFPSDroppedPacketCount);
+    lblDroppedPackets.Text := fFPSDroppedPacketCount.ToString;
   end;
 
   pnlLidarLeft.EndUpdate;

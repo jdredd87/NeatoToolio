@@ -80,7 +80,7 @@ var
   idx: Integer;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_getdata.Enabled := false;
     exit;

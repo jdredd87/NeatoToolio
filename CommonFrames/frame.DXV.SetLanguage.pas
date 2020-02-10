@@ -39,6 +39,7 @@ type
   private
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -188,6 +189,11 @@ begin
     freeandnil(pReadData);
   end;
   resetfocus;
+end;
+
+procedure TframeDXVSetLanguage.check;
+begin
+  //
 end;
 
 end.

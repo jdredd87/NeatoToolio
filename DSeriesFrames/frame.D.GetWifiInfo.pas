@@ -55,9 +55,9 @@ begin
       r: Boolean;
     begin
       // make sure to have it ready
-      dm.com.Serial.PurgeInput;
-      dm.com.Serial.PurgeOutput;
-      dm.com.Serial.WaitForReadCompletion;
+      dm.com.PurgeInput;
+      dm.com.PurgeOutput;
+      dm.com.WaitForReadCompletion;
 
       dm.com.SendCommandOnly('');
       dm.com.SendCommandOnly('');
@@ -111,7 +111,7 @@ end;
 
 procedure TframeDGetWifiInfo.Check;
 begin
-  btnGetWifiInfoScan.Enabled := dm.com.Serial.Active;
+  btnGetWifiInfoScan.Enabled := dm.com.Active;
   sgGetWifiInfo.Clear;
 end;
 

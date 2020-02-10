@@ -3,7 +3,7 @@ unit frame.DXV.SetMotor;
 interface
 
 uses
-  frame.master,
+  frame.master, frame.DXV.LidarView,
   dmCommon,
   neato.Helpers,
   neato.DXV.SetMotor,
@@ -57,6 +57,8 @@ type
     sbWheelDistance: TSpinBox;
     btnSetMotorSTOP: TCircle;
     lblSetMotorSTOP: TLabel;
+    rectLidar: TRectangle;
+    ckUsePlotterXY: TCheckBox;
     procedure btnCircleMouseEnter(Sender: TObject);
     procedure btnCircleMouseLeave(Sender: TObject);
     procedure btnSetMotorLeftheelEnableClick(Sender: TObject);
@@ -77,8 +79,10 @@ type
     procedure btnRightUTurnClick(Sender: TObject);
     procedure btnSetMotorSTOPClick(Sender: TObject);
     procedure timer_getdataTimer(Sender: TObject);
+    procedure ckUsePlotterXYChange(Sender: TObject);
   private
     fPlaySoundAborted: Boolean;
+    fLidar: TframeDXVLidarView;
   public
     procedure Check;
     property PlaySoundAborted: Boolean read fPlaySoundAborted;
@@ -100,6 +104,54 @@ constructor TframeDXVSetMotor.Create(AOwner: TComponent);
 begin
   inherited;
   lblFrameTitle.Text := sDescription;
+  fLidar := TframeDXVLidarView.Create(self);
+
+  fLidar.Tab := Tab;
+
+  fLidar.tabsLidarViewOptions.ActiveTab := fLidar.tabLidarPlotXY;
+
+  fLidar.plotLidar.Parent := rectLidar;
+  fLidar.plotLidar.Align := talignlayout.Client;
+  fLidar.plotLidar.Visible := true;
+
+  fLidar.polarLidar.Parent := rectLidar;
+  fLidar.polarLidar.Align := talignlayout.Client;
+  fLidar.polarLidar.Visible := false;
+
+  fLidar.ckAutoScaleGraphs.Parent := self;
+  fLidar.ckAutoScaleGraphs.Align := talignlayout.None;
+  fLidar.ckAutoScaleGraphs.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
+  fLidar.ckAutoScaleGraphs.Position.y := rectLidar.Position.y + 35;
+
+  fLidar.lblMaxDistance.Parent := self;
+  fLidar.lblMaxDistance.Align := talignlayout.None;
+  fLidar.lblMaxDistance.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
+  fLidar.lblMaxDistance.Position.y := fLidar.ckAutoScaleGraphs.Position.y + 35;
+  fLidar.lblMaxDistance.Width := 150;
+
+  fLidar.sbMaxDistance.Parent := self;
+  fLidar.sbMaxDistance.Align := talignlayout.None;
+  fLidar.sbMaxDistance.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
+  fLidar.sbMaxDistance.Position.y := fLidar.lblMaxDistance.Position.y + 35;
+  fLidar.sbMaxDistance.Width := 150;
+
+end;
+
+procedure TframeDXVSetMotor.ckUsePlotterXYChange(Sender: TObject);
+begin
+  inherited;
+  if ckUsePlotterXY.IsChecked then
+  begin
+    fLidar.tabsLidarViewOptions.ActiveTab := fLidar.tabLidarPlotXY;
+    fLidar.polarLidar.Visible := false;
+    fLidar.plotLidar.Visible := true
+  end
+  else
+  begin
+    fLidar.tabsLidarViewOptions.ActiveTab := fLidar.tablidarpolar;
+    fLidar.polarLidar.Visible := true;
+    fLidar.plotLidar.Visible := false;
+  end;
 end;
 
 procedure TframeDXVSetMotor.timer_getdataTimer(Sender: TObject);
@@ -270,6 +322,7 @@ begin
   dm.chkTestmode.IsChecked := true;
   dm.chkTestmode.IsChecked := true;
   resetfocus;
+  fLidar.Check;
 end;
 
 procedure TframeDXVSetMotor.btnSetMotorVacuumDisableClick(Sender: TObject);
@@ -299,22 +352,22 @@ begin
   if NOT dm.chkTestmode.IsChecked then
     dm.chkTestmode.IsChecked := true;
 
-  self.btnForward.Enabled := dm.COM.Serial.Active;
-  self.btnReverse.Enabled := dm.COM.Serial.Active;
-  self.btnLeft.Enabled := dm.COM.Serial.Active;
-  self.btnLeftUTurn.Enabled := dm.COM.Serial.Active;
-  self.btnRightUTurn.Enabled := dm.COM.Serial.Active;
-  self.btnRight.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorLeftWheelEnable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorLeftWheelDisable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorRightWheelEnable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorRightWheelDisable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorVacuumEnable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorVacuumDisable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorMainBrushEnable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorMainBrushDisable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorSideBrushEnable.Enabled := dm.COM.Serial.Active;
-  self.btnSetMotorSideBrushDisable.Enabled := dm.COM.Serial.Active;
+  self.btnForward.Enabled := dm.COM.Active;
+  self.btnReverse.Enabled := dm.COM.Active;
+  self.btnLeft.Enabled := dm.COM.Active;
+  self.btnLeftUTurn.Enabled := dm.COM.Active;
+  self.btnRightUTurn.Enabled := dm.COM.Active;
+  self.btnRight.Enabled := dm.COM.Active;
+  self.btnSetMotorLeftWheelEnable.Enabled := dm.COM.Active;
+  self.btnSetMotorLeftWheelDisable.Enabled := dm.COM.Active;
+  self.btnSetMotorRightWheelEnable.Enabled := dm.COM.Active;
+  self.btnSetMotorRightWheelDisable.Enabled := dm.COM.Active;
+  self.btnSetMotorVacuumEnable.Enabled := dm.COM.Active;
+  self.btnSetMotorVacuumDisable.Enabled := dm.COM.Active;
+  self.btnSetMotorMainBrushEnable.Enabled := dm.COM.Active;
+  self.btnSetMotorMainBrushDisable.Enabled := dm.COM.Active;
+  self.btnSetMotorSideBrushEnable.Enabled := dm.COM.Active;
+  self.btnSetMotorSideBrushDisable.Enabled := dm.COM.Active;
 
   if neatotype = XV then // appears XV allows down to 0 while others do NOT
   begin
@@ -325,6 +378,10 @@ begin
     sbSideBrushMillwattsValue.Min := 500;
   end;
 
+  fLidar.Check;
+  fLidar.GoodPointSize := 2;
+  fLidar.BadPointSize := 4;
+  fLidar.timer_getdata.Enabled := true;
 end;
 
 end.

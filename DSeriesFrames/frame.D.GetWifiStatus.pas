@@ -7,7 +7,7 @@ uses
   dmCommon,
   neato.D.GetWifiStatus,
   FMX.TabControl,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
@@ -56,6 +56,7 @@ type
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -64,8 +65,8 @@ implementation
 
 constructor TframeDGetWifiStatus.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeDGetWifiStatus.timer_GetDataTimer(Sender: TObject);
@@ -75,10 +76,9 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab<>tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
-    timer_GetData
-    .Enabled := false;
+    timer_GetData.Enabled := false;
     exit;
   end;
 
@@ -116,6 +116,11 @@ begin
 
   pReadData.Free;
   pGetWifiStatus.Free;
+end;
+
+procedure TframeDGetWifiStatus.check;
+begin
+  //
 end;
 
 end.

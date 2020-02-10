@@ -6,7 +6,11 @@ inherited frameXVGetTime: TframeXVGetTime
     Left = 40
     Top = 56
   end
-  object lblGetTime: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 509.000000000000000000
+    Size.Width = 530.000000000000000000
+  end
+  object lblGetTime: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Size.Width = 550.000000000000000000
@@ -17,7 +21,7 @@ inherited frameXVGetTime: TframeXVGetTime
     Text = 'Sunday 00:00:00'
     TabOrder = 49
   end
-  object ScaledLayout1: TScaledLayout [2]
+  object ScaledLayout1: TScaledLayout
     Align = Client
     OriginalWidth = 550.000000000000000000
     OriginalHeight = 464.000000000000000000
@@ -272,19 +276,15 @@ inherited frameXVGetTime: TframeXVGetTime
       end
     end
   end
-  object PixelateEffect1: TPixelateEffect [3]
+  object PixelateEffect1: TPixelateEffect
     Enabled = False
     BlockCount = 1000.000000000000000000
   end
-  object timer_Pixelate: TTimer [4]
+  object timer_Pixelate: TTimer
     Enabled = False
     Interval = 32
     OnTimer = timer_PixelateTimer
     Left = 440
     Top = 56
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 509.000000000000000000
-    Size.Width = 530.000000000000000000
   end
 end

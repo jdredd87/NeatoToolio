@@ -4,7 +4,11 @@ inherited frameDGetUsage: TframeDGetUsage
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  object lblTotalCleaningTime: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 144.000000000000000000
+    Size.Width = 511.000000000000000000
+  end
+  object lblTotalCleaningTime: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 225.000000000000000000
@@ -14,7 +18,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = 'Total Cleaning Time'
     TabOrder = 11
   end
-  object lblTotalCleaningTimeValue: TLabel [2]
+  object lblTotalCleaningTimeValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 248.000000000000000000
@@ -25,7 +29,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = '0'
     TabOrder = 6
   end
-  object lblTotalCleanedArea: TLabel [3]
+  object lblTotalCleanedArea: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 32.000000000000000000
     Size.Width = 225.000000000000000000
@@ -35,7 +39,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = 'Total Cleaned Area'
     TabOrder = 9
   end
-  object lblTotalCleanedAreaValue: TLabel [4]
+  object lblTotalCleanedAreaValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 248.000000000000000000
@@ -46,7 +50,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = '0'
     TabOrder = 2
   end
-  object lblMainBrushRunTimeinSec: TLabel [5]
+  object lblMainBrushRunTimeinSec: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 56.000000000000000000
     Size.Width = 225.000000000000000000
@@ -56,7 +60,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = 'MainBrushRunTimeinSec'
     TabOrder = 4
   end
-  object lblMainBrushRunTimeinSecValue: TLabel [6]
+  object lblMainBrushRunTimeinSecValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 248.000000000000000000
@@ -67,7 +71,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = '0'
     TabOrder = 8
   end
-  object lblSideBrushRunTimeinSec: TLabel [7]
+  object lblSideBrushRunTimeinSec: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 225.000000000000000000
@@ -77,7 +81,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = 'SideBrushRunTimeinSec'
     TabOrder = 10
   end
-  object lblSideBrushRunTimeinSecValue: TLabel [8]
+  object lblSideBrushRunTimeinSecValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 248.000000000000000000
@@ -88,7 +92,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = '0'
     TabOrder = 5
   end
-  object lblDirtbinRunTimeinSec: TLabel [9]
+  object lblDirtbinRunTimeinSec: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 104.000000000000000000
     Size.Width = 225.000000000000000000
@@ -98,7 +102,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = 'DirtbinRunTimeinSec'
     TabOrder = 7
   end
-  object lblDirtbinRunTimeinSecValue: TLabel [10]
+  object lblDirtbinRunTimeinSecValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 248.000000000000000000
@@ -109,7 +113,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = '0'
     TabOrder = 0
   end
-  object lblFilterTimeinSec: TLabel [11]
+  object lblFilterTimeinSec: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 225.000000000000000000
@@ -119,7 +123,7 @@ inherited frameDGetUsage: TframeDGetUsage
     Text = 'FilterTimeinSec'
     TabOrder = 1
   end
-  object lblFilterTimeinSecValue: TLabel [12]
+  object lblFilterTimeinSecValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 248.000000000000000000
@@ -129,9 +133,5 @@ inherited frameDGetUsage: TframeDGetUsage
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 3
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 144.000000000000000000
-    Size.Width = 511.000000000000000000
   end
 end

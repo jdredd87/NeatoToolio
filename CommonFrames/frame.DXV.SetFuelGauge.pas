@@ -3,7 +3,7 @@ unit frame.DXV.SetFuelGauge;
 interface
 
 uses
- frame.master,
+  frame.master,
   dmCommon,
   neato.DXV.SetFuelGauge,
   neato.helpers, FMX.TabControl,
@@ -21,7 +21,8 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -30,10 +31,9 @@ implementation
 
 constructor TframeDXVSetFuelGauge.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeDXVSetFuelGauge.tbSetFuelGaugeChange(Sender: TObject);
 var
@@ -51,7 +51,7 @@ begin
 
   if r then
   begin
-    lblSetFuelGauge.Text := 'Fuel '+ROUND(tbSetFuelGauge.Value).ToString+'%';
+    lblSetFuelGauge.Text := 'Fuel ' + ROUND(tbSetFuelGauge.Value).ToString + '%';
     lblSetFuelGaugeError.Text := '';
   end
   else
@@ -62,6 +62,11 @@ begin
   pReadData.Free;
   pSetFuelGauge.Free;
 
+end;
+
+procedure TframeDXVSetFuelGauge.check;
+begin
+  //
 end;
 
 end.

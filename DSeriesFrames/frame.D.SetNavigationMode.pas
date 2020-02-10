@@ -115,10 +115,10 @@ end;
 
 procedure TframeDSetNavigationMode.check;
 begin
- btnSetNavigationModeNormal.Enabled := dm.com.Serial.Active;
- btnSetNavigationModeGentle.Enabled := dm.com.Serial.Active;
- btnSetNavigationModeDeep.Enabled := dm.com.Serial.Active;
- btnSetNavigationModeQuick.Enabled := dm.com.Serial.Active;
+ btnSetNavigationModeNormal.Enabled := dm.com.Active;
+ btnSetNavigationModeGentle.Enabled := dm.com.Active;
+ btnSetNavigationModeDeep.Enabled := dm.com.Active;
+ btnSetNavigationModeQuick.Enabled := dm.com.Active;
 end;
 
 end.

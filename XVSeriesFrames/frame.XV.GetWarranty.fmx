@@ -4,7 +4,11 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  object lbl_CumulativeCleaningTimeInSecs: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 81.000000000000000000
+    Size.Width = 507.000000000000000000
+  end
+  object lbl_CumulativeCleaningTimeInSecs: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 250.000000000000000000
@@ -14,7 +18,7 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
     Text = 'CumulativeCleaningTimeInSecs?'
     TabOrder = 5
   end
-  object lbl_CumulativeCleaningTimeInSecsValue: TLabel [2]
+  object lbl_CumulativeCleaningTimeInSecsValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 272.000000000000000000
@@ -25,7 +29,7 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
     Text = '0'
     TabOrder = 2
   end
-  object lbl_CumulativeBatteryCycles: TLabel [3]
+  object lbl_CumulativeBatteryCycles: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 32.000000000000000000
     Size.Width = 250.000000000000000000
@@ -35,7 +39,7 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
     Text = 'CumulativeBatteryCycles?'
     TabOrder = 4
   end
-  object lbl_CumulativeBatteryCyclesValue: TLabel [4]
+  object lbl_CumulativeBatteryCyclesValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 272.000000000000000000
@@ -46,7 +50,7 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
     Text = '0'
     TabOrder = 0
   end
-  object lbl_ValidationCode: TLabel [5]
+  object lbl_ValidationCode: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 56.000000000000000000
     Size.Width = 250.000000000000000000
@@ -56,7 +60,7 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
     Text = 'ValidationCode?'
     TabOrder = 1
   end
-  object lbl_ValidationCodeValue: TLabel [6]
+  object lbl_ValidationCodeValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 272.000000000000000000
@@ -66,9 +70,5 @@ inherited frameXVGetWarranty: TframeXVGetWarranty
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 3
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 81.000000000000000000
-    Size.Width = 507.000000000000000000
   end
 end

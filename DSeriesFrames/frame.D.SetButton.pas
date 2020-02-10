@@ -185,12 +185,12 @@ end;
 
 procedure TframeDSetButton.check;
 begin
-  btnSetButtonsoft.Enabled := dm.com.Serial.Active;
-  btnSetButtonstart.Enabled := dm.com.Serial.Active;
-  btnSetButtonspot.Enabled := dm.com.Serial.Active;
-  btnSetButtonback.Enabled := dm.com.Serial.Active;
-  btnSetButtonup.Enabled := dm.com.Serial.Active;
-  btnSetButtondown.Enabled := dm.com.Serial.Active;
+  btnSetButtonsoft.Enabled := dm.com.Active;
+  btnSetButtonstart.Enabled := dm.com.Active;
+  btnSetButtonspot.Enabled := dm.com.Active;
+  btnSetButtonback.Enabled := dm.com.Active;
+  btnSetButtonup.Enabled := dm.com.Active;
+  btnSetButtondown.Enabled := dm.com.Active;
 
   btnSetButtonIRstart.Enabled := neatotype = BotVac;
   btnSetButtonIRspot.Enabled := neatotype = BotVac;

@@ -52,7 +52,7 @@ end;
 
 procedure TframeXVRestoreDefaults.Check;
 begin
-  btnRestoreDefaults.Enabled := dm.com.Serial.Active;
+  btnRestoreDefaults.Enabled := dm.com.Active;
 end;
 
 end.

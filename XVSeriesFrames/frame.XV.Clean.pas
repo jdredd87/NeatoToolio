@@ -68,9 +68,9 @@ end;
 
 procedure TframeXVClean.Check;
 begin
-  btnCleanHouse.Enabled := dm.com.Serial.Active;
-  btnCleanSpot.Enabled := dm.com.Serial.Active;
-  btnCleanStop.Enabled := dm.com.Serial.Active;
+  btnCleanHouse.Enabled := dm.com.Active;
+  btnCleanSpot.Enabled := dm.com.Active;
+  btnCleanStop.Enabled := dm.com.Active;
 end;
 
 end.

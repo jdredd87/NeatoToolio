@@ -4,7 +4,11 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  object lblGetScheduleScheduleIs: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 275.000000000000000000
+    Size.Width = 282.000000000000000000
+  end
+  object lblGetScheduleScheduleIs: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 19.000000000000000000
     Size.Width = 150.000000000000000000
@@ -14,7 +18,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Schedule is'
     TabOrder = 42
   end
-  object swGetScheduleScheduleIsValue: TSwitch [2]
+  object swGetScheduleScheduleIsValue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -24,7 +28,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Size.PlatformDefault = False
     TabOrder = 48
   end
-  object ckGetScheduleSun: TCheckBox [3]
+  object ckGetScheduleSun: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 80.000000000000000000
@@ -36,7 +40,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Sunday'
     TextSettings.HorzAlign = Trailing
   end
-  object ckGetScheduleMon: TCheckBox [4]
+  object ckGetScheduleMon: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 112.000000000000000000
@@ -48,7 +52,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Monday'
     TextSettings.HorzAlign = Trailing
   end
-  object ckGetScheduleTue: TCheckBox [5]
+  object ckGetScheduleTue: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 144.000000000000000000
@@ -60,7 +64,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Tuesday'
     TextSettings.HorzAlign = Trailing
   end
-  object ckGetScheduleWed: TCheckBox [6]
+  object ckGetScheduleWed: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 176.000000000000000000
@@ -72,7 +76,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Wednesday'
     TextSettings.HorzAlign = Trailing
   end
-  object ckGetScheduleThu: TCheckBox [7]
+  object ckGetScheduleThu: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 208.000000000000000000
@@ -84,7 +88,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Thursday'
     TextSettings.HorzAlign = Trailing
   end
-  object ckGetScheduleFri: TCheckBox [8]
+  object ckGetScheduleFri: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 240.000000000000000000
@@ -96,7 +100,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Friday'
     TextSettings.HorzAlign = Trailing
   end
-  object ckGetScheduleSat: TCheckBox [9]
+  object ckGetScheduleSat: TCheckBox
     HitTest = False
     Position.X = 48.000000000000000000
     Position.Y = 272.000000000000000000
@@ -108,7 +112,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
     Text = 'Saturday'
     TextSettings.HorzAlign = Trailing
   end
-  object rectThu: TRectangle [10]
+  object rectThu: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 206.000000000000000000
@@ -127,7 +131,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       TabOrder = 0
     end
   end
-  object rectFri: TRectangle [11]
+  object rectFri: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 238.000000000000000000
@@ -146,7 +150,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       TabOrder = 0
     end
   end
-  object rectSat: TRectangle [12]
+  object rectSat: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 270.000000000000000000
@@ -165,7 +169,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       TabOrder = 0
     end
   end
-  object rectMon: TRectangle [13]
+  object rectMon: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 111.000000000000000000
@@ -184,7 +188,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       TabOrder = 0
     end
   end
-  object rectTue: TRectangle [14]
+  object rectTue: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 143.000000000000000000
@@ -203,7 +207,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       TabOrder = 0
     end
   end
-  object rectWed: TRectangle [15]
+  object rectWed: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 175.000000000000000000
@@ -222,7 +226,7 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       TabOrder = 0
     end
   end
-  object rectSun: TRectangle [16]
+  object rectSun: TRectangle
     HitTest = False
     Position.X = 180.000000000000000000
     Position.Y = 80.000000000000000000
@@ -240,9 +244,5 @@ inherited frameXVGetSchedule: TframeXVGetSchedule
       Text = '00:00 AM'
       TabOrder = 0
     end
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 275.000000000000000000
-    Size.Width = 282.000000000000000000
   end
 end

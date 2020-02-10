@@ -4,7 +4,11 @@ inherited frameDGetButtons: TframeDGetButtons
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  object lblGetButtonsBTN_SOFT_KEY: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 384.000000000000000000
+    Size.Width = 260.000000000000000000
+  end
+  object lblGetButtonsBTN_SOFT_KEY: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 19.000000000000000000
     Size.Width = 150.000000000000000000
@@ -14,7 +18,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'BTN_SOFT_KEY'
     TabOrder = 59
   end
-  object swGetButtonsBTN_SOFT_KEYvalue: TSwitch [2]
+  object swGetButtonsBTN_SOFT_KEYvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -24,7 +28,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 78
   end
-  object lblGetButtonsBTN_SCROLL_UP: TLabel [3]
+  object lblGetButtonsBTN_SCROLL_UP: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 42.000000000000000000
     Size.Width = 150.000000000000000000
@@ -34,7 +38,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'BTN_SCROLL_UP'
     TabOrder = 54
   end
-  object swGetButtonsBTN_SCROLL_UPvalue: TSwitch [4]
+  object swGetButtonsBTN_SCROLL_UPvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -44,7 +48,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 79
   end
-  object lblGetButtonsBTN_START: TLabel [5]
+  object lblGetButtonsBTN_START: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 66.000000000000000000
     Size.Width = 150.000000000000000000
@@ -54,7 +58,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'BTN_START'
     TabOrder = 51
   end
-  object swGetButtonsBTN_STARTvalue: TSwitch [6]
+  object swGetButtonsBTN_STARTvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -64,7 +68,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 77
   end
-  object lblGetButtonsBTN_BACK: TLabel [7]
+  object lblGetButtonsBTN_BACK: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 89.000000000000000000
     Size.Width = 150.000000000000000000
@@ -74,7 +78,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'BTN_BACK'
     TabOrder = 58
   end
-  object swGetButtonsBTN_BACKvalue: TSwitch [8]
+  object swGetButtonsBTN_BACKvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -84,7 +88,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 76
   end
-  object lblGetButtonsBTN_SCROLL_DOWN: TLabel [9]
+  object lblGetButtonsBTN_SCROLL_DOWN: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 112.000000000000000000
     Size.Width = 150.000000000000000000
@@ -94,7 +98,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'BTN_SCROLL_DOWN'
     TabOrder = 53
   end
-  object swGetButtonsBTN_SCROLL_DOWNvalue: TSwitch [10]
+  object swGetButtonsBTN_SCROLL_DOWNvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -104,7 +108,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 75
   end
-  object lblGetButtonsBTN_SPOT: TLabel [11]
+  object lblGetButtonsBTN_SPOT: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 135.000000000000000000
     Size.Width = 150.000000000000000000
@@ -114,7 +118,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'BTN_SPOT'
     TabOrder = 48
   end
-  object swGetButtonsBTN_SPOTvalue: TSwitch [12]
+  object swGetButtonsBTN_SPOTvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -124,7 +128,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 71
   end
-  object lblGetButtonsIR_BTN_HOME: TLabel [13]
+  object lblGetButtonsIR_BTN_HOME: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 158.000000000000000000
     Size.Width = 150.000000000000000000
@@ -134,7 +138,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_HOME'
     TabOrder = 55
   end
-  object swGetButtonsIR_BTN_HOMEvalue: TSwitch [14]
+  object swGetButtonsIR_BTN_HOMEvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -144,7 +148,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 73
   end
-  object lblGetButtonsIR_BTN_SPOT: TLabel [15]
+  object lblGetButtonsIR_BTN_SPOT: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 182.000000000000000000
     Size.Width = 150.000000000000000000
@@ -154,7 +158,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_SPOT'
     TabOrder = 50
   end
-  object swGetButtonsIR_BTN_SPOTvalue: TSwitch [16]
+  object swGetButtonsIR_BTN_SPOTvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -164,7 +168,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 72
   end
-  object lblGetButtonsIR_BTN_ECO: TLabel [17]
+  object lblGetButtonsIR_BTN_ECO: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 205.000000000000000000
     Size.Width = 150.000000000000000000
@@ -174,7 +178,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_ECO'
     TabOrder = 46
   end
-  object swGetButtonsIR_BTN_ECOvalue: TSwitch [18]
+  object swGetButtonsIR_BTN_ECOvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -184,7 +188,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 69
   end
-  object lblGetButtonsIR_BTN_UP: TLabel [19]
+  object lblGetButtonsIR_BTN_UP: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 228.000000000000000000
     Size.Width = 150.000000000000000000
@@ -194,7 +198,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_UP'
     TabOrder = 52
   end
-  object swGetButtonsIR_BTN_UPvalue: TSwitch [20]
+  object swGetButtonsIR_BTN_UPvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -204,7 +208,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 68
   end
-  object lblGetButtonsIR_BTN_DOWN: TLabel [21]
+  object lblGetButtonsIR_BTN_DOWN: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 251.000000000000000000
     Size.Width = 150.000000000000000000
@@ -214,7 +218,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_DOWN'
     TabOrder = 47
   end
-  object swGetButtonsIR_BTN_DOWNvalue: TSwitch [22]
+  object swGetButtonsIR_BTN_DOWNvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -224,7 +228,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 67
   end
-  object lblGetButtonsIR_BTN_RIGHT: TLabel [23]
+  object lblGetButtonsIR_BTN_RIGHT: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 275.000000000000000000
     Size.Width = 150.000000000000000000
@@ -234,7 +238,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_RIGHT'
     TabOrder = 44
   end
-  object swGetButtonsIR_BTN_RIGHTvalue: TSwitch [24]
+  object swGetButtonsIR_BTN_RIGHTvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -244,7 +248,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 64
   end
-  object lblGetButtonsIR_BTN_LEFT: TLabel [25]
+  object lblGetButtonsIR_BTN_LEFT: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 298.000000000000000000
     Size.Width = 150.000000000000000000
@@ -254,7 +258,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_LEFT'
     TabOrder = 49
   end
-  object swGetButtonsIR_BTN_LEFTvalue: TSwitch [26]
+  object swGetButtonsIR_BTN_LEFTvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -264,7 +268,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 63
   end
-  object lblGetButtonsIR_BTN_START: TLabel [27]
+  object lblGetButtonsIR_BTN_START: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 321.000000000000000000
     Size.Width = 150.000000000000000000
@@ -274,7 +278,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_START'
     TabOrder = 45
   end
-  object swGetButtonsIR_BTN_STARTvalue: TSwitch [28]
+  object swGetButtonsIR_BTN_STARTvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -284,7 +288,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 61
   end
-  object lblGetButtonsIR_BTN_LEFT_ARC: TLabel [29]
+  object lblGetButtonsIR_BTN_LEFT_ARC: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 344.000000000000000000
     Size.Width = 150.000000000000000000
@@ -294,7 +298,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_LEFT_ARC'
     TabOrder = 43
   end
-  object swGetButtonsIR_BTN_LEFT_ARCvalue: TSwitch [30]
+  object swGetButtonsIR_BTN_LEFT_ARCvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -304,7 +308,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.PlatformDefault = False
     TabOrder = 57
   end
-  object lblGetButtonsIR_BTN_RIGHT_ARC: TLabel [31]
+  object lblGetButtonsIR_BTN_RIGHT_ARC: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 368.000000000000000000
     Size.Width = 150.000000000000000000
@@ -314,7 +318,7 @@ inherited frameDGetButtons: TframeDGetButtons
     Text = 'IR_BTN_RIGHT_ARC'
     TabOrder = 42
   end
-  object swGetButtonsIR_BTN_RIGHT_ARCvalue: TSwitch [32]
+  object swGetButtonsIR_BTN_RIGHT_ARCvalue: TSwitch
     HitTest = False
     IsChecked = False
     Position.X = 176.000000000000000000
@@ -323,9 +327,5 @@ inherited frameDGetButtons: TframeDGetButtons
     Size.Height = 20.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 56
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 384.000000000000000000
-    Size.Width = 260.000000000000000000
   end
 end

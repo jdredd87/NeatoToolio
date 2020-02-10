@@ -72,12 +72,12 @@ begin
     if NOT assigned(data) then
       exit;
 
-    if data.count = 364 then
-    begin
+    lineData := TStringList.Create;
+    lineData.Delimiter := ',';
+    lineData.StrictDelimiter := true;
 
-      lineData := TStringList.Create;
-      lineData.Delimiter := ',';
-      lineData.StrictDelimiter := true;
+    if (data.count=363) or (data.count=364) then
+    begin
 
       data.Text := trim(data.Text);
       data.Delete(0);
@@ -85,10 +85,20 @@ begin
       for idx := 0 to 359 do
       begin
         lineData.DelimitedText := data[idx];
-        trystrtoint(lineData[0], fGetLDSScanRecords[idx + 1].AngleInDegrees);
-        trystrtoint(lineData[1], fGetLDSScanRecords[idx + 1].DistInMM);
-        trystrtoint(lineData[2], fGetLDSScanRecords[idx + 1].Intensity);
-        trystrtoint(lineData[3], fGetLDSScanRecords[idx + 1].ErrorCodeHEX);
+        if lineData.count = 4 then
+        begin
+          trystrtoint(lineData[0], fGetLDSScanRecords[idx + 1].AngleInDegrees);
+          trystrtoint(lineData[1], fGetLDSScanRecords[idx + 1].DistInMM);
+          trystrtoint(lineData[2], fGetLDSScanRecords[idx + 1].Intensity);
+          trystrtoint(lineData[3], fGetLDSScanRecords[idx + 1].ErrorCodeHEX);
+        end
+        else
+        begin
+          fGetLDSScanRecords[idx + 1].AngleInDegrees := idx;
+          fGetLDSScanRecords[idx + 1].DistInMM := 0;
+          fGetLDSScanRecords[idx + 1].Intensity := 0;
+          fGetLDSScanRecords[idx + 1].ErrorCodeHEX := 9999;
+        end;
         lineData.Clear;
       end;
 

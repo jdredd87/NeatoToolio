@@ -5,7 +5,11 @@ inherited frameDXVSetWallFollower: TframeDXVSetWallFollower
     Left = 136
     Top = 256
   end
-  object lblSetWallFollowerError: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 400.000000000000000000
+    Size.Width = 633.000000000000000000
+  end
+  object lblSetWallFollowerError: TLabel
     Align = Top
     StyledSettings = [Family, Style, FontColor]
     Margins.Top = 5.000000000000000000
@@ -18,7 +22,7 @@ inherited frameDXVSetWallFollower: TframeDXVSetWallFollower
     TextSettings.HorzAlign = Center
     TabOrder = 1
   end
-  object Rectangle1: TRectangle [2]
+  object Rectangle1: TRectangle
     Align = Top
     Fill.Color = claNull
     Sides = []
@@ -55,9 +59,5 @@ inherited frameDXVSetWallFollower: TframeDXVSetWallFollower
       Text = 'Enabled'
       OnClick = btnSetWallFollowerClick
     end
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 400.000000000000000000
-    Size.Width = 633.000000000000000000
   end
 end

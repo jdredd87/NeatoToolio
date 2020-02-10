@@ -6,7 +6,11 @@ inherited frameDGetMotors: TframeDGetMotors
     Left = 280
     Top = 328
   end
-  object lblGetMotorsBrush_RPM: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 473.000000000000000000
+    Size.Width = 316.000000000000000000
+  end
+  object lblGetMotorsBrush_RPM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 24.000000000000000000
     Size.Width = 190.000000000000000000
@@ -16,7 +20,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'Brush_RPM'
     TabOrder = 27
   end
-  object lblGetMotorsBrush_RPMValue: TLabel [2]
+  object lblGetMotorsBrush_RPMValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -27,7 +31,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 20
   end
-  object lblGetMotorsBrush_mA: TLabel [3]
+  object lblGetMotorsBrush_mA: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 48.000000000000000000
     Size.Width = 190.000000000000000000
@@ -37,7 +41,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'Brush_mA'
     TabOrder = 24
   end
-  object lblGetMotorsBrush_mAValue: TLabel [4]
+  object lblGetMotorsBrush_mAValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -48,7 +52,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 13
   end
-  object lblGetMotorsVacuum_RPM: TLabel [5]
+  object lblGetMotorsVacuum_RPM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 90.000000000000000000
     Size.Width = 190.000000000000000000
@@ -58,7 +62,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'Vacuum_RPM'
     TabOrder = 15
   end
-  object lblGetMotorsVacuum_RPMValue: TLabel [6]
+  object lblGetMotorsVacuum_RPMValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -69,7 +73,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 23
   end
-  object lblGetMotorsVacuum_mA: TLabel [7]
+  object lblGetMotorsVacuum_mA: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 114.000000000000000000
     Size.Width = 190.000000000000000000
@@ -79,7 +83,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'Vacuum_mA'
     TabOrder = 25
   end
-  object lblGetMotorsVacuum_mAValue: TLabel [8]
+  object lblGetMotorsVacuum_mAValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -90,7 +94,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 17
   end
-  object lblGetMotorsLeftWheel_RPM: TLabel [9]
+  object lblGetMotorsLeftWheel_RPM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 162.000000000000000000
     Size.Width = 190.000000000000000000
@@ -100,7 +104,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'LeftWheel_RPM'
     TabOrder = 22
   end
-  object lblGetMotorsLeftWheel_RPMValue: TLabel [10]
+  object lblGetMotorsLeftWheel_RPMValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -111,7 +115,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 9
   end
-  object lblGetMotorsLeftWheel_Load: TLabel [11]
+  object lblGetMotorsLeftWheel_Load: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 186.000000000000000000
     Size.Width = 190.000000000000000000
@@ -121,7 +125,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'LeftWheel_Load'
     TabOrder = 12
   end
-  object lblGetMotorsLeftWheel_LoadValue: TLabel [12]
+  object lblGetMotorsLeftWheel_LoadValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -132,7 +136,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 14
   end
-  object lblGetMotorsLeftWheel_PositionInMM: TLabel [13]
+  object lblGetMotorsLeftWheel_PositionInMM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 208.000000000000000000
     Size.Width = 190.000000000000000000
@@ -142,7 +146,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'LeftWheel_PositionInMM'
     TabOrder = 38
   end
-  object lblGetMotorsLeftWheel_PositionInMMValue: TLabel [14]
+  object lblGetMotorsLeftWheel_PositionInMMValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -153,7 +157,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 30
   end
-  object lblGetMotorsLeftWheel_Speed: TLabel [15]
+  object lblGetMotorsLeftWheel_Speed: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 232.000000000000000000
     Size.Width = 190.000000000000000000
@@ -163,7 +167,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'LeftWheel_Speed'
     TabOrder = 34
   end
-  object lblGetMotorsLeftWheel_SpeedValue: TLabel [16]
+  object lblGetMotorsLeftWheel_SpeedValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -174,7 +178,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 16
   end
-  object lblGetMotorsLeftWheel_direction: TLabel [17]
+  object lblGetMotorsLeftWheel_direction: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 258.000000000000000000
     Size.Width = 190.000000000000000000
@@ -184,7 +188,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'LeftWheel_direction'
     TabOrder = 18
   end
-  object lblGetMotorsLeftWheel_directionValue: TLabel [18]
+  object lblGetMotorsLeftWheel_directionValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -195,7 +199,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 26
   end
-  object lblGetMotorsRightWheel_RPM: TLabel [19]
+  object lblGetMotorsRightWheel_RPM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 298.000000000000000000
     Size.Width = 190.000000000000000000
@@ -205,7 +209,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'RightWheel_RPM'
     TabOrder = 28
   end
-  object lblGetMotorsRightWheel_RPMValue: TLabel [20]
+  object lblGetMotorsRightWheel_RPMValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -216,7 +220,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 19
   end
-  object lblGetMotorsRightWheel_Load: TLabel [21]
+  object lblGetMotorsRightWheel_Load: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 322.000000000000000000
     Size.Width = 190.000000000000000000
@@ -226,7 +230,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'RightWheel_Load%'
     TabOrder = 21
   end
-  object lblGetMotorsRightWheel_LoadValue: TLabel [22]
+  object lblGetMotorsRightWheel_LoadValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -237,7 +241,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 0
   end
-  object lblGetMotorsRightWheel_PositionInMM: TLabel [23]
+  object lblGetMotorsRightWheel_PositionInMM: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 346.000000000000000000
     Size.Width = 190.000000000000000000
@@ -247,7 +251,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'RightWheel_PositionInMM'
     TabOrder = 5
   end
-  object lblGetMotorsRightWheel_PositionInMMValue: TLabel [24]
+  object lblGetMotorsRightWheel_PositionInMMValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -258,7 +262,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 10
   end
-  object lblGetMotorsRightWheel_Speed: TLabel [25]
+  object lblGetMotorsRightWheel_Speed: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 370.000000000000000000
     Size.Width = 190.000000000000000000
@@ -268,7 +272,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'RightWheel_Speed'
     TabOrder = 2
   end
-  object lblGetMotorsRightWheel_SpeedValue: TLabel [26]
+  object lblGetMotorsRightWheel_SpeedValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -279,7 +283,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 6
   end
-  object lblGetMotorsRightWheel_direction: TLabel [27]
+  object lblGetMotorsRightWheel_direction: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 394.000000000000000000
     Size.Width = 190.000000000000000000
@@ -289,7 +293,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'RightWheel_direction'
     TabOrder = 8
   end
-  object lblGetMotorsRightWheel_directionValue: TLabel [28]
+  object lblGetMotorsRightWheel_directionValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -300,7 +304,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 11
   end
-  object lblGetMotorsROTATION_SPEED: TLabel [29]
+  object lblGetMotorsROTATION_SPEED: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 434.000000000000000000
     Size.Width = 190.000000000000000000
@@ -310,7 +314,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'ROTATION_SPEED'
     TabOrder = 4
   end
-  object lblGetMotorsROTATION_SPEEDValue: TLabel [30]
+  object lblGetMotorsROTATION_SPEEDValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -321,7 +325,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = '0'
     TabOrder = 7
   end
-  object lblGetMotorsSideBrush_mA: TLabel [31]
+  object lblGetMotorsSideBrush_mA: TLabel
     Position.X = 16.000000000000000000
     Position.Y = 458.000000000000000000
     Size.Width = 190.000000000000000000
@@ -331,7 +335,7 @@ inherited frameDGetMotors: TframeDGetMotors
     Text = 'SideBrush_mA'
     TabOrder = 1
   end
-  object lblGetMotorsSideBrush_mAValue: TLabel [32]
+  object lblGetMotorsSideBrush_mAValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 221.000000000000000000
@@ -341,9 +345,5 @@ inherited frameDGetMotors: TframeDGetMotors
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 3
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 473.000000000000000000
-    Size.Width = 316.000000000000000000
   end
 end

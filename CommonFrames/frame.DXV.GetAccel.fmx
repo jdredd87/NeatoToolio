@@ -7,7 +7,11 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Left = 96
     Top = 248
   end
-  object view3dGetAccelValue: TViewport3D [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 351.000000000000000000
+    Size.Width = 686.000000000000000000
+  end
+  object view3dGetAccelValue: TViewport3D
     Align = Client
     Color = xFF2240FB
     Margins.Left = 300.000000000000000000
@@ -1952,7 +1956,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
         '07106709480286)'
     end
   end
-  object lblGetAccelSumInG: TLabel [2]
+  object lblGetAccelSumInG: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 156.000000000000000000
     Size.Width = 120.000000000000000000
@@ -1962,7 +1966,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = 'SumInG'
     TabOrder = 3
   end
-  object lblGetAccelSumInGValue: TLabel [3]
+  object lblGetAccelSumInGValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -1973,7 +1977,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = '0'
     TabOrder = 7
   end
-  object lblGetAccelZInG: TLabel [4]
+  object lblGetAccelZInG: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 120.000000000000000000
@@ -1983,7 +1987,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = 'ZInG'
     TabOrder = 13
   end
-  object lblGetAccelZInGValue: TLabel [5]
+  object lblGetAccelZInGValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -1994,7 +1998,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = '0'
     TabOrder = 0
   end
-  object lblGetAccelYInG: TLabel [6]
+  object lblGetAccelYInG: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 100.000000000000000000
     Size.Width = 120.000000000000000000
@@ -2004,7 +2008,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = 'YInG'
     TabOrder = 15
   end
-  object lblGetAccelYInGValue: TLabel [7]
+  object lblGetAccelYInGValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -2015,7 +2019,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = '0'
     TabOrder = 8
   end
-  object lblGetAccelXInG: TLabel [8]
+  object lblGetAccelXInG: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 72.000000000000000000
     Size.Width = 120.000000000000000000
@@ -2025,7 +2029,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = 'XInG'
     TabOrder = 5
   end
-  object lblGetAccelXInGValue: TLabel [9]
+  object lblGetAccelXInGValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -2036,7 +2040,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = '0'
     TabOrder = 10
   end
-  object lblGetAccelRollInDegrees: TLabel [10]
+  object lblGetAccelRollInDegrees: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 44.000000000000000000
     Size.Width = 120.000000000000000000
@@ -2046,7 +2050,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = 'RollInDegrees'
     TabOrder = 11
   end
-  object lblGetAccelRollInDegreesValue: TLabel [11]
+  object lblGetAccelRollInDegreesValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -2057,7 +2061,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = '0'
     TabOrder = 2
   end
-  object lblGetAccelPitchInDegrees: TLabel [12]
+  object lblGetAccelPitchInDegrees: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 16.000000000000000000
     Size.Width = 120.000000000000000000
@@ -2067,7 +2071,7 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Text = 'PitchInDegrees'
     TabOrder = 12
   end
-  object lblGetAccelPitchInDegreesValue: TLabel [13]
+  object lblGetAccelPitchInDegreesValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 141.000000000000000000
@@ -2077,9 +2081,5 @@ inherited frameDXVGetAccel: TframeDXVGetAccel
     Size.PlatformDefault = False
     Text = '0'
     TabOrder = 6
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 351.000000000000000000
-    Size.Width = 686.000000000000000000
   end
 end

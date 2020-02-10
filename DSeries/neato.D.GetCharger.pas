@@ -117,6 +117,7 @@ begin
       exit;
 
     // Simple test to make sure we got data
+    data.Text := stringreplace(Data.Text, ',', '=', [rfreplaceall]);
 
     if data.Values[sLabel] = sValue then
     begin

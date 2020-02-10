@@ -37,6 +37,7 @@ type
     { Private declarations }
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -108,6 +109,11 @@ begin // ick i know
     btnSetTimeApply.Enabled := true
   else
     btnSetTimeApply.Enabled := false;
+end;
+
+procedure TframeDXVSetTime.check;
+begin
+  //
 end;
 
 end.

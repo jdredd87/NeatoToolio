@@ -49,7 +49,8 @@ type
     procedure btnSetWallFollowerClick(Sender: TObject);
   private
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -58,10 +59,9 @@ implementation
 
 constructor TframeDXVSetWallFollower.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeDXVSetWallFollower.btnSetWallFollowerClick(Sender: TObject);
 var
@@ -97,6 +97,11 @@ begin
     freeandnil(pReadData);
   end;
   resetfocus;
+end;
+
+procedure TframeDXVSetWallFollower.check;
+begin
+  //
 end;
 
 end.

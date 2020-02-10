@@ -48,6 +48,7 @@ type
   private
     { Private declarations }
   public
+    procedure Check;
     constructor Create(AOwner: TComponent); reintroduce; overload;
   end;
 
@@ -68,7 +69,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -107,6 +108,18 @@ begin
 
   pReadData.Free;
   pGetMotors.Free;
+end;
+
+procedure TframeDGetMotors.Check;
+begin
+ lblGetMotorsROTATION_SPEEDValue.Enabled := neatotype = BotVacConnected;
+ lblGetMotorsRightWheel_directionValue.Enabled := neatotype = BotVacConnected;
+ lblGetMotorsLeftWheel_directionValue.Enabled := neatotype = BotVacConnected;
+
+ lblGetMotorsROTATION_SPEED.Enabled := neatotype = BotVacConnected;
+ lblGetMotorsRightWheel_direction.Enabled := neatotype = BotVacConnected;
+ lblGetMotorsLeftWheel_direction.Enabled := neatotype = BotVacConnected;
+
 end;
 
 end.

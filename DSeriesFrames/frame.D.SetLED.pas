@@ -148,13 +148,13 @@ end;
 
 procedure TframeDSetLED.check;
 begin
-  btnSetLEDBacklightOn.Enabled := dm.COM.Serial.Active;
-  btnSetLEDBacklightOff.Enabled := dm.COM.Serial.Active;
-  btnSetLEDButtonAmber.Enabled := dm.COM.Serial.Active;
-  btnSetLEDLEDRed.Enabled := dm.COM.Serial.Active;
-  btnSetLEDButtonGreen.Enabled := dm.COM.Serial.Active;
+  btnSetLEDBacklightOn.Enabled := dm.COM.Active;
+  btnSetLEDBacklightOff.Enabled := dm.COM.Active;
+  btnSetLEDButtonAmber.Enabled := dm.COM.Active;
+  btnSetLEDLEDRed.Enabled := dm.COM.Active;
+  btnSetLEDButtonGreen.Enabled := dm.COM.Active;
 
-  if dm.COM.Serial.Active then
+  if dm.COM.Active then
     dm.chkTestmode.IsChecked := true;
 end;
 

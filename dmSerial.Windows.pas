@@ -3,13 +3,15 @@ unit dmSerial.Windows;
 interface
 
 uses
+  dmSerial.Base,
   diagnostics,
   FMX.Dialogs,
   FMX.Memo,
+  FMX.Colors,
   system.classes,
   Winsoft.FireMonkey.FComPort,
   Winsoft.FireMonkey.FComSignal,
-
+  system.UITypes,
 {$IFDEF android}
   Winsoft.Android.UsbSerial,
   Winsoft.Android.Usb,
@@ -18,75 +20,104 @@ uses
   system.SysUtils;
 
 type
-  TdmSerial = class(TDataModule)
-    Serial: TFComPort;
-    FComSignalRX: TFComSignal;
-    FComSignalCTS: TFComSignal;
-    FComSignalRing: TFComSignal;
-    FComSignalBreak: TFComSignal;
-    FComSignalRLSD: TFComSignal;
-    FComSignalDSR: TFComSignal;
-    FComSignalTX: TFComSignal;
-    procedure DataModuleCreate(Sender: TObject);
-    procedure DataModuleDestroy(Sender: TObject);
-    procedure FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
+  TdmSerialWindows = class(TdmSerialBase)
   private
     fError: String;
     fErrorCode: longint;
     fComFailure: boolean;
-
+    procedure FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
+  protected
+    procedure SetOnRxChar(value: TNotifyEvent); override;
+    procedure onAfterClose(ComPort: TFComPort);
+    procedure onAfterOpen(ComPort: TFComPort);
   public
-{$IFDEF win32}
-    // com: TFComPort;
-{$ENDIF}
-{$IFDEF android}
-    COM: TUsbSerial;
-{$ENDIF}
+    FComSignalCNX: TColorBox;
     onError: TNotifyEvent;
     fmemoDebug: tmemo;
-    Function Open(ComPort: String): boolean;
-    procedure Close;
 
-    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
-
-    function SendCommandOnly(cmd: string): String; // Just send command and move on
-
+{$IFDEF win32}
+    Serial: TFComPort;
+    FComSignalRX: TFComSignal;
+    FComSignalTX: TFComSignal;
+{$ENDIF}
+{$IFDEF android}
+    Serial: TUsbSerial;
+{$ENDIF}
+    ComPort: String;
+    constructor Create;
+    destructor destroy; override;
+    Function Open: boolean; override;
+    procedure Close; override;
+    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string; override;
+    function SendCommandOnly(cmd: string): String; override; // Just send command and move on
     function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
-      const count: byte = 1): string;
+      const count: byte = 1): string; override;
+
+    function ReadAnsiString: AnsiString; override;
+    function active: boolean; override;
 
     property Error: String read fError;
     property ErrorCode: longint read fErrorCode;
     property Failure: boolean read fComFailure;
-
   end;
-
-var
-  dmSerial: TdmSerial;
 
 implementation
 
-{%CLASSGROUP 'FMX.Controls.TControl'}
-{$R *.dfm}
-
-procedure TdmSerial.DataModuleCreate(Sender: TObject);
+constructor TdmSerialWindows.Create;
 begin
-  // for now only going to worry only about windows
+  inherited;
+{$IF defined(MSWINDOWS)}
+  Serial := TFComPort.Create(nil);
+  Serial.BeforeClose := onAfterClose;
+  Serial.BeforeOpen := onAfterOpen;
 
-  // but android did kind of work
+  FComSignalCNX := nil;
 
+  FComSignalRX := TFComSignal.Create(Serial);
+  FComSignalRX.ColorOff := talphacolorrec.Maroon;
+  FComSignalRX.ColorOn := talphacolorrec.Red;
+  FComSignalRX.Signal := tsignal.siRxChar;
+
+  FComSignalTX := TFComSignal.Create(Serial);
+  FComSignalTX.ColorOff := talphacolorrec.Darkgreen;
+  FComSignalTX.ColorOn := talphacolorrec.Green;
+  FComSignalTX.Signal := tsignal.siTxChar;
+
+  FComSignalRX.ComPort := Serial;
+  FComSignalTX.ComPort := Serial;
+{$ENDIF}
 {$IFDEF android}
   COM := TUsbSerial.Create;
 {$ENDIF}
 end;
 
-procedure TdmSerial.DataModuleDestroy(Sender: TObject);
+Destructor TdmSerialWindows.destroy;
 begin
-  freeandnil(Serial);
+  FComSignalRX.Free;
+  FComSignalTX.Free;
+  Serial.Free;
+  inherited;
 end;
 
-procedure TdmSerial.FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
+procedure TdmSerialWindows.onAfterClose(ComPort: TFComPort);
 begin
+  if assigned(FComSignalCNX) then
+    FComSignalCNX.Color := talphacolorrec.Olive;
+end;
 
+procedure TdmSerialWindows.onAfterOpen(ComPort: TFComPort);
+begin
+  if assigned(FComSignalCNX) then
+    FComSignalCNX.Color := talphacolorrec.Yellow;
+end;
+
+procedure TdmSerialWindows.SetOnRxChar(value: TNotifyEvent);
+begin
+  Serial.OnRxChar := value;
+end;
+
+procedure TdmSerialWindows.FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
+begin
   if E.ErrorCode = 22 then // when loose connection
   begin
     fError := E.Message;
@@ -96,10 +127,9 @@ begin
     if assigned(onError) then
       onError(self);
   end;
-
 end;
 
-Function TdmSerial.Open(ComPort: String): boolean;
+Function TdmSerialWindows.Open: boolean;
 
 begin
   try
@@ -111,7 +141,7 @@ begin
     except
     end;
     Serial.DeviceName := '\\.\' + ComPort;
-    Serial.Active := true;
+    Serial.active := true;
     result := true;
   except
     on E: Exception do
@@ -124,7 +154,7 @@ begin
   end;
 end;
 
-procedure TdmSerial.Close;
+procedure TdmSerialWindows.Close;
 begin
   try
     Serial.Close;
@@ -144,7 +174,7 @@ begin
   end;
 end;
 
-function TdmSerial.SendCommandOnly(cmd: string): String;
+function TdmSerialWindows.SendCommandOnly(cmd: string): String;
 begin
   try
     result := cmd;
@@ -162,7 +192,7 @@ begin
         fmemoDebug.EndUpdate;
       end;
 
-      Serial.WriteAnsiString(ansistring(cmd) + #13);
+      Serial.WriteAnsiString(AnsiString(cmd) + #13);
       Serial.WaitForWriteCompletion;
       Serial.WaitForReadCompletion;
     except
@@ -182,7 +212,8 @@ begin
   end;
 end;
 
-function TdmSerial.SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
+function TdmSerialWindows.SendCommand(cmd: string; const readtimeout: integer = 500;
+const waitfor: integer = 100): string;
 var
   sw: tstopwatch;
 begin
@@ -195,13 +226,13 @@ begin
       if assigned(fmemoDebug) then
         fmemoDebug.Lines.Add(cmd);
 
-      Serial.WriteAnsiString(ansistring(cmd) + #13);
+      Serial.WriteAnsiString(AnsiString(cmd) + #13);
       Serial.WaitForWriteCompletion;
       Serial.WaitForReadCompletion;
 
       repeat
         sleep(waitfor);
-      until (not Serial.ReadPending) or (not Serial.Active);
+      until (not Serial.ReadPending) or (not Serial.active);
 
       result := string(Serial.ReadAnsiString);
 
@@ -230,8 +261,13 @@ begin
   end;
 end;
 
-function TdmSerial.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
-const count: byte = 1): string;
+function TdmSerialWindows.ReadAnsiString: AnsiString;
+begin
+  result := Serial.ReadAnsiString;
+end;
+
+function TdmSerialWindows.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
+const waitfor: string = ''; const count: byte = 1): string;
 
 var
   timeout: boolean;
@@ -242,7 +278,7 @@ begin
     if assigned(fmemoDebug) then
       fmemoDebug.Lines.Add(cmd);
 
-    Serial.WriteAnsiString(ansistring(cmd) + #13);
+    Serial.WriteAnsiString(AnsiString(cmd) + #13);
     Serial.Timeouts.ReadInterval := readtimeout;
     timeout := false;
 
@@ -252,7 +288,7 @@ begin
       result := result + Serial.ReadAnsiString;
       if sw.ElapsedMilliseconds > readtimeout then
         timeout := true;
-    until (not Serial.Active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
+    until (not Serial.active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
 
     result := trim(result);
 
@@ -276,6 +312,11 @@ begin
         end);
     end;
   end;
+end;
+
+function TdmSerialWindows.active: boolean;
+begin
+  result := Serial.active;
 end;
 
 end.

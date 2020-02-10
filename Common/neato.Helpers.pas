@@ -10,6 +10,9 @@ uses
   Classes,
   System.sysutils,
   System.types,
+  StrUtils,
+  IOUtils,
+  Masks,
   fmx.extctrls,
   fmx.Grid,
   fmx.MaterialSources,
@@ -51,10 +54,29 @@ procedure LoadCSV(ScanData: String; sg: TStringGrid);
 procedure LoadImageID(id: String; img: TImage); overload;
 procedure LoadImageID(id: String; img: TImage3D); overload;
 
-function map(x, in_min, in_max, out_min, out_max: extended): extended;
-// Stole this code from Arduino as it is very handy!
+function map(x, in_min, in_max, out_min, out_max: extended): extended; // Stole this code from Arduino as it is very handy!
+function MyGetFiles(const Path, Masks: string): TStringDynArray; // Stole this code from https://stackoverflow.com/questions/12726756/how-to-pass-multiple-file-extensions-to-tdirectory-getfiles/12726969
 
 implementation
+
+function MyGetFiles(const Path, Masks: string): TStringDynArray;
+var
+  MaskArray: TStringDynArray;
+  Predicate: TDirectory.TFilterPredicate;
+begin
+  MaskArray := strutils.SplitString(Masks, ';');
+  Predicate :=
+    function(const Path: string; const SearchRec: TSearchRec): Boolean
+    var
+      Mask: string;
+    begin
+      for Mask in MaskArray do
+        if MatchesMask(SearchRec.Name, Mask) then
+          exit(True);
+      exit(False);
+    end;
+  Result := TDirectory.GetFiles(Path, Predicate);
+end;
 
 function GetAppVersionStr: string;
 var
@@ -93,6 +115,7 @@ begin
   except
     InStream := TResourceStream.Create(HInstance, 'NeatoLogo', RT_RCDATA);
   end;
+
   if assigned(InStream) then
   begin
     img.BeginUpdate;
@@ -103,6 +126,7 @@ begin
     img.Visible := true;
     img.Canvas.EndScene;
     img.EndUpdate;
+    InStream.Free;
   end;
 end;
 
@@ -115,9 +139,11 @@ begin
   except
     InStream := TResourceStream.Create(HInstance, 'NeatoLogo', RT_RCDATA);
   end;
+
   if assigned(InStream) then
   begin
     img.Bitmap.LoadFromStream(InStream);
+    InStream.Free;
   end;
 end;
 

@@ -113,8 +113,8 @@ inherited frameDXVPlaySound: TframeDXVPlaySound
     StyleLookup = 'gridstyle'
     TabOrder = 0
     Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 571.000000000000000000
-    Viewport.Height = 222.000000000000000000
+    Viewport.Width = 591.000000000000000000
+    Viewport.Height = 247.000000000000000000
     object sgPlaysoundID: TStringColumn
       Header = 'ID'
       Size.Width = 57.000000000000000000

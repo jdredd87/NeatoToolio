@@ -13,10 +13,14 @@ Type
   tNeatoSettings = class // application settings file, in JSON format
   private
     fAutoDetectNeato: boolean; // flag for auto detect neato serial port
+    fIP: String;
+    fPort: Integer;
   public
     //
   published
     property AutoDetectNeato: boolean read fAutoDetectNeato write fAutoDetectNeato;
+    property IP: String read fIP write fIP;
+    property PORT: Integer read fPort write fPort;
   end;
 
 var
@@ -47,12 +51,16 @@ begin
       begin
         NeatoSettings := tNeatoSettings.Create; // something bad happened!
         NeatoSettings.AutoDetectNeato := true;
+        NeatoSettings.fIP := '1.1.1.1';
+        NeatoSettings.fPort := 2167;
       end;
     except
       on e: Exception do
       begin
         NeatoSettings := tNeatoSettings.Create; // something bad happened!
         NeatoSettings.AutoDetectNeato := false;
+        NeatoSettings.fIP := '1.1.1.1';
+        NeatoSettings.fPort := 2167;
       end;
     end;
   finally
@@ -70,6 +78,7 @@ try
   saveSettingsFile.SaveToFile(INIFilePath);
 finally
   freeandnil(saveSettingsFile);
+  NeatoSettings.Free;
 end;
 
 end.

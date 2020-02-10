@@ -6,7 +6,11 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Left = 96
     Top = 72
   end
-  object lblGetUserSettingsLanguage: TLabel [1]
+  inherited lblFrameTitle: TLabel
+    Position.Y = 403.000000000000000000
+    Size.Width = 650.000000000000000000
+  end
+  object lblGetUserSettingsLanguage: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 8.000000000000000000
     Size.Width = 370.000000000000000000
@@ -16,7 +20,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Language'
     TabOrder = 28
   end
-  object lblGetUserSettingsLanguageValue: TLabel [2]
+  object lblGetUserSettingsLanguageValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 400.000000000000000000
@@ -27,7 +31,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = '0'
     TabOrder = 22
   end
-  object lblGetUserSettingsClickSounds: TLabel [3]
+  object lblGetUserSettingsClickSounds: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 32.000000000000000000
     Size.Width = 370.000000000000000000
@@ -37,7 +41,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'ClickSounds'
     TabOrder = 25
   end
-  object swGetUserSettingsClickSoundsValue: TSwitch [4]
+  object swGetUserSettingsClickSoundsValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 32.000000000000000000
@@ -46,7 +50,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 38
   end
-  object lblGetUserSettingsLED: TLabel [5]
+  object lblGetUserSettingsLED: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 56.000000000000000000
     Size.Width = 370.000000000000000000
@@ -56,7 +60,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'LED'
     TabOrder = 20
   end
-  object swGetUserSettingsLEDValue: TSwitch [6]
+  object swGetUserSettingsLEDValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 56.000000000000000000
@@ -65,7 +69,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 37
   end
-  object lblGetUserSettingsWallEnable: TLabel [7]
+  object lblGetUserSettingsWallEnable: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 80.000000000000000000
     Size.Width = 370.000000000000000000
@@ -75,7 +79,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Wall Enable'
     TabOrder = 26
   end
-  object swGetUserSettingsWallEnableValue: TSwitch [8]
+  object swGetUserSettingsWallEnableValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 80.000000000000000000
@@ -84,7 +88,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 36
   end
-  object lblGetUserSettingsEcoMode: TLabel [9]
+  object lblGetUserSettingsEcoMode: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 104.000000000000000000
     Size.Width = 370.000000000000000000
@@ -94,7 +98,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Eco Mode'
     TabOrder = 23
   end
-  object swGetUserSettingsEcoModeValue: TSwitch [10]
+  object swGetUserSettingsEcoModeValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 104.000000000000000000
@@ -103,7 +107,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 35
   end
-  object lblGetUserSettingsIntenseClean: TLabel [11]
+  object lblGetUserSettingsIntenseClean: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 370.000000000000000000
@@ -113,7 +117,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'IntenseClean'
     TabOrder = 10
   end
-  object swGetUserSettingsIntenseCleanValue: TSwitch [12]
+  object swGetUserSettingsIntenseCleanValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 128.000000000000000000
@@ -122,7 +126,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 34
   end
-  object lblGetUserSettingsWiFi: TLabel [13]
+  object lblGetUserSettingsWiFi: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 152.000000000000000000
     Size.Width = 370.000000000000000000
@@ -132,7 +136,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'WiFi'
     TabOrder = 27
   end
-  object swGetUserSettingsWiFiValue: TSwitch [14]
+  object swGetUserSettingsWiFiValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 152.000000000000000000
@@ -141,7 +145,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 33
   end
-  object lblGetUserSettingsMelodySounds: TLabel [15]
+  object lblGetUserSettingsMelodySounds: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 176.000000000000000000
     Size.Width = 370.000000000000000000
@@ -151,7 +155,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Melody Sounds'
     TabOrder = 24
   end
-  object swGetUserSettingsMelodySoundsValue: TSwitch [16]
+  object swGetUserSettingsMelodySoundsValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 176.000000000000000000
@@ -160,7 +164,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 32
   end
-  object lblGetUserSettingsWarningSounds: TLabel [17]
+  object lblGetUserSettingsWarningSounds: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 200.000000000000000000
     Size.Width = 370.000000000000000000
@@ -170,7 +174,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Warning Sounds'
     TabOrder = 18
   end
-  object swGetUserSettingsWarningSoundsValue: TSwitch [18]
+  object swGetUserSettingsWarningSoundsValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 200.000000000000000000
@@ -179,7 +183,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 31
   end
-  object lblGetUserSettingsBinFullDetect: TLabel [19]
+  object lblGetUserSettingsBinFullDetect: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 224.000000000000000000
     Size.Width = 370.000000000000000000
@@ -189,7 +193,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Bin Full Detect'
     TabOrder = 21
   end
-  object swGetUserSettingsBinFullDetectValue: TSwitch [20]
+  object swGetUserSettingsBinFullDetectValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 224.000000000000000000
@@ -198,7 +202,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 30
   end
-  object lblGetUserSettingsFilterChnageTimeseconds: TLabel [21]
+  object lblGetUserSettingsFilterChnageTimeseconds: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 248.000000000000000000
     Size.Width = 370.000000000000000000
@@ -208,7 +212,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Filter Change Time (seconds)'
     TabOrder = 19
   end
-  object lblGetUserSettingsFilterChnageTimesecondsValue: TLabel [22]
+  object lblGetUserSettingsFilterChnageTimesecondsValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 400.000000000000000000
@@ -219,7 +223,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = '0'
     TabOrder = 0
   end
-  object lblGetUserSettingsBrushChangeTimeseconds: TLabel [23]
+  object lblGetUserSettingsBrushChangeTimeseconds: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 272.000000000000000000
     Size.Width = 370.000000000000000000
@@ -229,7 +233,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Brush Change Time (seconds)'
     TabOrder = 7
   end
-  object lblGetUserSettingsBrushChangeTimesecondsValue: TLabel [24]
+  object lblGetUserSettingsBrushChangeTimesecondsValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 400.000000000000000000
@@ -240,7 +244,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = '0'
     TabOrder = 9
   end
-  object lblGetUserSettingsDirtBinAlertReminderIntervalminutes: TLabel [25]
+  object lblGetUserSettingsDirtBinAlertReminderIntervalminutes: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 296.000000000000000000
     Size.Width = 370.000000000000000000
@@ -250,7 +254,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Dirt Bin Alert Reminder Interval (minutes)'
     TabOrder = 5
   end
-  object lblGetUserSettingsDirtBinAlertReminderIntervalminutesValue: TLabel [26]
+  object lblGetUserSettingsDirtBinAlertReminderIntervalminutesValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 400.000000000000000000
@@ -261,7 +265,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = '0'
     TabOrder = 8
   end
-  object lblGetUserSettingsCurrentDirtBinRuntimeis: TLabel [27]
+  object lblGetUserSettingsCurrentDirtBinRuntimeis: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 320.000000000000000000
     Size.Width = 370.000000000000000000
@@ -271,7 +275,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Current Dirt Bin Alert Time is'
     TabOrder = 3
   end
-  object lblGetUserSettingsCurrentDirtBinRuntimeisValue: TLabel [28]
+  object lblGetUserSettingsCurrentDirtBinRuntimeisValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 400.000000000000000000
@@ -282,7 +286,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = '0'
     TabOrder = 6
   end
-  object lblGetUserSettingsNumberofCleaningwhereDustBinWasFullis: TLabel [29]
+  object lblGetUserSettingsNumberofCleaningwhereDustBinWasFullis: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 344.000000000000000000
     Size.Width = 370.000000000000000000
@@ -292,7 +296,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Number of Cleanings where Dust Bin was full is'
     TabOrder = 2
   end
-  object lblGetUserSettingsNumberofCleaningwhereDustBinWasFullisValue: TLabel [30]
+  object lblGetUserSettingsNumberofCleaningwhereDustBinWasFullisValue: TLabel
     AutoSize = True
     Margins.Left = 5.000000000000000000
     Position.X = 400.000000000000000000
@@ -303,7 +307,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = '0'
     TabOrder = 4
   end
-  object lblGetUserSettingsScheduleis: TLabel [31]
+  object lblGetUserSettingsScheduleis: TLabel
     Position.X = 8.000000000000000000
     Position.Y = 368.000000000000000000
     Size.Width = 370.000000000000000000
@@ -313,7 +317,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Text = 'Schedule is'
     TabOrder = 1
   end
-  object swGetUserSettingsScheduleisValue: TSwitch [32]
+  object swGetUserSettingsScheduleisValue: TSwitch
     IsChecked = False
     Position.X = 400.000000000000000000
     Position.Y = 368.000000000000000000
@@ -322,7 +326,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 29
   end
-  object CheckBox1: TCheckBox [33]
+  object CheckBox1: TCheckBox
     Enabled = False
     Position.X = 8.000000000000000000
     Position.Y = 406.000000000000000000
@@ -332,7 +336,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     TabOrder = 11
     Text = 'Sunday'
   end
-  object CheckBox2: TCheckBox [34]
+  object CheckBox2: TCheckBox
     Enabled = False
     Position.X = 96.000000000000000000
     Position.Y = 406.000000000000000000
@@ -342,7 +346,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     TabOrder = 17
     Text = 'Monday'
   end
-  object CheckBox3: TCheckBox [35]
+  object CheckBox3: TCheckBox
     Enabled = False
     Position.X = 192.000000000000000000
     Position.Y = 406.000000000000000000
@@ -352,7 +356,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     TabOrder = 16
     Text = 'Tuesday'
   end
-  object CheckBox4: TCheckBox [36]
+  object CheckBox4: TCheckBox
     Enabled = False
     Position.X = 288.000000000000000000
     Position.Y = 406.000000000000000000
@@ -362,7 +366,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     TabOrder = 15
     Text = 'Wednesday'
   end
-  object CheckBox5: TCheckBox [37]
+  object CheckBox5: TCheckBox
     Enabled = False
     Position.X = 408.000000000000000000
     Position.Y = 406.000000000000000000
@@ -372,7 +376,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     TabOrder = 14
     Text = 'Thursday'
   end
-  object CheckBox6: TCheckBox [38]
+  object CheckBox6: TCheckBox
     Enabled = False
     Position.X = 512.000000000000000000
     Position.Y = 406.000000000000000000
@@ -382,7 +386,7 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     TabOrder = 13
     Text = 'Friday'
   end
-  object CheckBox7: TCheckBox [39]
+  object CheckBox7: TCheckBox
     Enabled = False
     Position.X = 592.000000000000000000
     Position.Y = 406.000000000000000000
@@ -391,9 +395,5 @@ inherited frameDGetUserSettings: TframeDGetUserSettings
     Size.PlatformDefault = False
     TabOrder = 12
     Text = 'Saturday'
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 403.000000000000000000
-    Size.Width = 650.000000000000000000
   end
 end

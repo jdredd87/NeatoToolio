@@ -118,11 +118,11 @@ end;
 
 procedure TframeDSetUsage.check;
 begin
-  self.btnSetUsageMainBrush.Enabled := dm.com.Serial.Active;
-  self.btnSetUsageSideBrush.Enabled := dm.com.Serial.Active;
-  self.btnSetUsageDustBin.Enabled := dm.com.Serial.Active;
-  self.btnSetUsageFilter.Enabled := dm.com.Serial.Active;
-  self.sbSetUsageSeconds.Enabled := dm.com.Serial.Active;
+  self.btnSetUsageMainBrush.Enabled := dm.com.Active;
+  self.btnSetUsageSideBrush.Enabled := dm.com.Active;
+  self.btnSetUsageDustBin.Enabled := dm.com.Active;
+  self.btnSetUsageFilter.Enabled := dm.com.Active;
+  self.sbSetUsageSeconds.Enabled := dm.com.Active;
 end;
 
 end.

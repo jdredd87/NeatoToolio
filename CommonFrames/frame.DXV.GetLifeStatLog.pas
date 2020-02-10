@@ -95,7 +95,7 @@ end;
 
 procedure TframeDXVGetLifeStatLog.check;
 begin
- self.btnGetLifeStatLog.Enabled := dm.com.Serial.Active;
+ self.btnGetLifeStatLog.Enabled := dm.com.Active;
 end;
 
 end.

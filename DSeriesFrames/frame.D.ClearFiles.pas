@@ -78,9 +78,9 @@ end;
 
 procedure TframeDClearFiles.Check;
 begin
-  rbClearFilesBB.Enabled := dm.com.Serial.Active;
-  rbClearFilesALL.Enabled := dm.com.Serial.Active;
-  btnClearFiles.Enabled := dm.com.Serial.Active;
+  rbClearFilesBB.Enabled := dm.com.Active;
+  rbClearFilesALL.Enabled := dm.com.Active;
+  btnClearFiles.Enabled := dm.com.Active;
   rbClearFilesBB.IsChecked := false;
   rbClearFilesALL.IsChecked := false;
 end;

@@ -116,7 +116,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
     Timer_GetData.Enabled := false;
     exit;

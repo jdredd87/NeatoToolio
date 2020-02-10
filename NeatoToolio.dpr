@@ -10,9 +10,13 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   fmx.types,
-  dmSerial.Windows in 'dmSerial.Windows.pas' {dmSerial: TDataModule},
+
+  dmSerial.Windows in 'dmSerial.Windows.pas' {dmSerialWindows: TDataModule},
+  dmSerial.Base in 'dmSerial.Base.pas' {dmSerialBase: TDataModule},
+  dmSerial.TCPIP in 'dmSerial.TCPIP.pas' {dmSerialTCP: TDataModule},
   dmCommon in 'dmCommon.pas' {dm: TDataModule},
   formMain in 'formMain.pas' {frmMain},
+
   XSuperJSON in 'XSuperJSON\XSuperJSON.pas',
   XSuperObject in 'XSuperJSON\XSuperObject.pas',
   neato.Commands in 'common\neato.Commands.pas',
@@ -58,7 +62,6 @@ uses
   frame.XV.GetAnalogSensors in 'XVSeriesFrames\frame.XV.GetAnalogSensors.pas' {frameXVGetAnalogSensors: TFrame},
   frame.XV.GetDigitalSensors in 'XVSeriesFrames\frame.XV.GetDigitalSensors.pas' {frameXVGetDigitalSensors: TFrame},
   frame.D.GetSensors in 'DSeriesFrames\frame.D.GetSensors.pas' {frameDGetSensors: TFrame},
-  frame.Scripts in 'Scripts\frame.Scripts.pas' {frameScripts: TFrame},
   neato.XV.GetMotors in 'XVSeries\neato.XV.GetMotors.pas',
   frame.XV.GetMotors in 'XVSeriesFrames\frame.XV.GetMotors.pas' {frameXVGetMotors: TFrame},
   frame.XV.GetCalInfo in 'XVSeriesFrames\frame.XV.GetCalInfo.pas' {frameXVGetCalInfo: TFrame},
@@ -93,7 +96,6 @@ uses
   neato.XV.GetSchedule in 'XVSeries\neato.XV.GetSchedule.pas',
   frame.XV.GetSchedule in 'XVSeriesFrames\frame.XV.GetSchedule.pas' {frameXVGetSchedule: TFrame},
   frame.Master in 'CommonFrames\frame.Master.pas' {frameMaster: TFrame},
-  dmIP in 'dmIP.pas' {s: TDataModule},
   frame.DXV.SetSchedule in 'CommonFrames\frame.DXV.SetSchedule.pas' {frameXVSetSchedule: TFrame},
   neato.DXV.SetSchedule in 'Common\neato.DXV.SetSchedule.pas',
   frame.DXV.SetWallFollower in 'CommonFrames\frame.DXV.SetWallFollower.pas' {frameDXVSetWallFollower: TFrame},
@@ -119,7 +121,14 @@ uses
   frame.D.Clean in 'DSeriesFrames\frame.D.Clean.pas' {frameDClean: TFrame},
   frame.XV.SetLED in 'XVSeriesFrames\frame.XV.SetLED.pas' {frameXVSetLED: TFrame},
   frame.D.SetLED in 'DSeriesFrames\frame.D.SetLED.pas' {frameDSetLED: TFrame},
-  neato.D.SetLED in 'DSeries\neato.D.SetLED.pas';
+  neato.D.SetLED in 'DSeries\neato.D.SetLED.pas',
+  frame.D.SetNTPTime in 'DSeriesFrames\frame.D.SetNTPTime.pas' {frameDSetNTPTime: TFrame},
+  neato.D.SetNTPTime in 'DSeries\neato.D.SetNTPTime.pas',
+  frame.D.SetNavigationMode in 'DSeriesFrames\frame.D.SetNavigationMode.pas' {frameDSetNavigationMode: TFrame},
+  neato.D.SetNavigationMode in 'DSeries\neato.D.SetNavigationMode.pas',
+  neato.D.SetUsage in 'DSeries\neato.D.SetUsage.pas',
+  frame.D.SetUsage in 'DSeriesFrames\frame.D.SetUsage.pas' {frameDSetUsage: TFrame},
+  frame.ScriptEngine in 'Scripts\frame.ScriptEngine.pas' {frameScriptEngine: TFrame};
 
 {$R *.res}
 

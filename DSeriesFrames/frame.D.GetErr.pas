@@ -21,6 +21,7 @@ type
     { Private declarations }
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -41,7 +42,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -66,6 +67,11 @@ begin
 
   pReadData.Free;
   pGetErr.Free;
+end;
+
+procedure TFrameDGetErr.check;
+begin
+  //
 end;
 
 end.

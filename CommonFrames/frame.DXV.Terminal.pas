@@ -41,11 +41,11 @@ implementation
 
 procedure TframeDXVTerminal.check;
 begin
-  edDebugTerminalSend.Enabled := dm.COM.Serial.Active;
-  btnDebugTerminalSend.Enabled := dm.COM.Serial.Active;
-  btnDebugTerminalSendHex.Enabled := dm.COM.Serial.Active;
-  btnDebugTerminalClear.Enabled := dm.COM.Serial.Active;
-  btnDebugTerminalHelp.Enabled := dm.COM.Serial.Active;
+  edDebugTerminalSend.Enabled := dm.COM.Active;
+  btnDebugTerminalSend.Enabled := dm.COM.Active;
+  btnDebugTerminalSendHex.Enabled := dm.COM.Active;
+  btnDebugTerminalClear.Enabled := dm.COM.Active;
+  btnDebugTerminalHelp.Enabled := dm.COM.Active;
 end;
 
 procedure TframeDXVTerminal.btnDebugTerminalClearClick(Sender: TObject);
@@ -67,7 +67,8 @@ var
   Value: string;
 begin
 
-  dm.COM.Serial.OnRxChar := FComPortRxChar;
+  dm.COM.OnRxChar := FComPortRxChar;
+
   Value := trim(uppercase(edDebugTerminalSend.Text));
 
   if Sender = btnDebugTerminalSendHex then
@@ -117,16 +118,12 @@ procedure TframeDXVTerminal.FComPortRxChar(Sender: TObject);
 var
   Text: AnsiString;
 begin
-
   // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
-
   memoDebugTerminal.BeginUpdate;
   try
-   Text := dm.COM.Serial.ReadAnsiString;
+   Text := dm.COM.ReadAnsiString;
    text := stringreplace(text,#10,'',[rfreplaceall]);
-
-
-  except
+   except
     on E: Exception do
     begin
       Text := #10#13 + #10#13 + AnsiString(E.Message) + #10#13 + #1013;

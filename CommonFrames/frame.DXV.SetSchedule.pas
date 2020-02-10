@@ -33,6 +33,7 @@ type
   public
     { Private declarations }
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -41,8 +42,8 @@ implementation
 
 constructor TframeXVSetSchedule.Create(AOwner: TComponent);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited;
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeXVSetSchedule.btnSetScheduleApplyClick(Sender: TObject);
@@ -126,6 +127,11 @@ begin
   inherited;
   sbSetScheduleHour.Enabled := self.ckSetScheduleEnabled.IsChecked;
   sbSetScheduleMinutes.Enabled := self.ckSetScheduleEnabled.IsChecked;
+end;
+
+procedure TframeXVSetSchedule.check;
+begin
+  //
 end;
 
 end.

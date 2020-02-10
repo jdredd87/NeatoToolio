@@ -31,6 +31,7 @@ type
     { Private declarations }
   public
     constructor Create(AOwner: TComponent); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
@@ -51,7 +52,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Serial.Active = false) or (dm.ActiveTab <> Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     Timer_GetData.Enabled := false;
     exit;
@@ -77,7 +78,7 @@ begin
     lblTestLDSSerialValue.Text := pTestLDS.Serial;
     lblTestLDSCPUValue.Text := pTestLDS.CPU;
     lblTestLDSLoaderValue.Text := pTestLDS.Loader;
-    timer_getdata.Enabled := false;
+    Timer_GetData.Enabled := false;
   end
   else
   begin
@@ -90,6 +91,11 @@ begin
 
   pReadData.Free;
   pTestLDS.Free;
+end;
+
+procedure TframeDXVTestLDS.check;
+begin
+  //
 end;
 
 end.

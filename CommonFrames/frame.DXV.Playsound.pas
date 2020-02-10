@@ -149,10 +149,10 @@ begin
           dm.com.SendCommand('');
           dm.com.SendCommand('');
 
-          dm.com.Serial.WaitForReadCompletion;
-          dm.com.Serial.WaitForWriteCompletion;
-          dm.com.Serial.PurgeInput;
-          dm.com.Serial.PurgeOutput;
+          dm.com.WaitForReadCompletion;
+          dm.com.WaitForWriteCompletion;
+          dm.com.PurgeInput;
+          dm.com.PurgeOutput;
 
           fPlaySoundAborted := true;
           sgPlaysound.SetFocus;
@@ -167,10 +167,10 @@ end;
 
 procedure TframeDXVPlaySound.Check;
 begin
-  btnPlaySoundTest.Enabled := dm.com.Serial.Active;
-  btnSoundPlayTestAll.Enabled := dm.com.Serial.Active;
-  btnPlaySoundAbort.Enabled := dm.com.Serial.Active;
-  nbPlaySoundIDValue.Enabled := dm.com.Serial.Active;
+  btnPlaySoundTest.Enabled := dm.com.Active;
+  btnSoundPlayTestAll.Enabled := dm.com.Active;
+  btnPlaySoundAbort.Enabled := dm.com.Active;
+  nbPlaySoundIDValue.Enabled := dm.com.Active;
   sgPlaysound.Clear;
 end;
 

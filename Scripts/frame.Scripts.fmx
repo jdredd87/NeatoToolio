@@ -1,28 +1,163 @@
 object frameScripts: TframeScripts
-  Left = 0
-  Top = 0
-  ClientHeight = 480
-  ClientWidth = 640
-  FormFactor.Width = 320
-  FormFactor.Height = 480
-  FormFactor.Devices = [Desktop, iPhone, iPad]
-  DesignerMasterStyle = 0
-  object Memo1: TMemo
-    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-    DataDetectorTypes = []
-    Align = Left
-    Size.Width = 385.000000000000000000
-    Size.Height = 480.000000000000000000
+  Size.Width = 785.000000000000000000
+  Size.Height = 611.000000000000000000
+  Size.PlatformDefault = False
+  object TabControl1: TTabControl
+    Align = Client
+    Size.Width = 785.000000000000000000
+    Size.Height = 611.000000000000000000
     Size.PlatformDefault = False
+    TabIndex = 1
     TabOrder = 0
-    Viewport.Width = 381.000000000000000000
-    Viewport.Height = 476.000000000000000000
-  end
-  object Button1: TButton
-    Position.X = 400.000000000000000000
-    Position.Y = 8.000000000000000000
-    TabOrder = 1
-    Text = 'Run Script'
-    OnClick = Button1Click
+    TabPosition = PlatformDefault
+    Sizes = (
+      785s
+      585s
+      785s
+      585s)
+    object TabItem1: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 107.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Available Scripts'
+      ExplicitSize.cx = 107.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object lbScripts: TListBox
+        Align = Left
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 241.000000000000000000
+        Size.Height = 575.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        DisableFocusEffect = True
+        DefaultItemStyles.ItemStyle = ''
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        Viewport.Width = 237.000000000000000000
+        Viewport.Height = 571.000000000000000000
+      end
+      object lblScriptDescription: TLabel
+        Position.X = 251.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 346.000000000000000000
+        Size.Height = 18.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'lblScriptDescription'
+        TabOrder = 0
+      end
+      object btnScriptOpenEdit: TButton
+        Position.X = 256.000000000000000000
+        Position.Y = 40.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'Open to Edit'
+      end
+      object btnScriptRun: TButton
+        Position.X = 256.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Run Script'
+      end
+      object btnScriptNew: TButton
+        Position.X = 256.000000000000000000
+        Position.Y = 248.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Create NEW Script'
+      end
+    end
+    object tabScriptEditor: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 85.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Script Editor'
+      ExplicitSize.cx = 85.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object memoScript: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 775.000000000000000000
+        Size.Height = 525.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 771.000000000000000000
+        Viewport.Height = 521.000000000000000000
+      end
+      object Rectangle1: TRectangle
+        Align = Top
+        Sides = []
+        Size.Width = 785.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        object btnScriptSave: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Save'
+        end
+        object btnScriptEditorRun: TButton
+          Align = Left
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 95.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'Run'
+          OnClick = btnScriptEditorRunClick
+        end
+        object lblScriptFileName: TLabel
+          Align = Right
+          Position.X = 551.000000000000000000
+          Size.Width = 234.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = '-----'
+          TabOrder = 2
+        end
+      end
+    end
   end
 end

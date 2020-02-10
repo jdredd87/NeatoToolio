@@ -3,67 +3,87 @@ unit frame.Scripts;
 interface
 
 uses
-  frame.master,
-    atScripter,
-  atScript, FMX.StdCtrls, System.Classes, FMX.Types, FMX.Controls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo;
 
-type
-  TframeScripts = class(TframeMaster)
-    Memo1: TMemo;
-    Button1: TButton;
-    procedure Button1Click(Sender: TObject);
-
-  private
-    Scripter: TatScripter;
-  public
-    procedure init;
-  end;
-
-implementation
-
-uses
-
-  ScrmPS,
+  atScript,
+  atScripter,
+  System.ioutils,
   FMX.ScriptForm,
-  FMX.ScripterInit,
-  System.SysUtils,
-  System.Types,
-  System.UITypes,
-  System.Variants,
-  FMX.Dialogs,
-  FMX.Grid.Style,
-
+    FMX.ScripterInit,
+    FMX.Grid.Style,
   FMX.Colors,
   FMX.TMSChart,
   FMX.Edit,
   FMX.EditBox,
   FMX.SpinBox,
   FMX.Grid,
-  FMX.ListBox,
-  FMX.Objects,
-  FMX.Effects,
-  FMX.TabControl,
-  FMX.Layouts,
-  FMX.Forms,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Objects, FMX.ScrollBox, FMX.Memo,
+  FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, FMX.TabControl;
+
+type
+  TframeScripts = class(TFrame)
+    TabControl1: TTabControl;
+    TabItem1: TTabItem;
+    lbScripts: TListBox;
+    lblScriptDescription: TLabel;
+    btnScriptOpenEdit: TButton;
+    btnScriptRun: TButton;
+    btnScriptNew: TButton;
+    tabScriptEditor: TTabItem;
+    memoScript: TMemo;
+    Rectangle1: TRectangle;
+    btnScriptSave: TButton;
+    btnScriptEditorRun: TButton;
+    lblScriptFileName: TLabel;
+    procedure btnScriptEditorRunClick(Sender: TObject);
+  private
+    Scripter: TatScripter;
+    procedure populate;
+  public
+    procedure init;
+  end;
+
+implementation
+
+{$R *.fmx}
+
+uses
+  ScrmPS,
   XSuperObject,
   XSuperJson,
   System.Rtti,
   Generics.Collections,
   dmCommon,
   dmSerial.Windows,
+  ap_Classes, ap_Forms, ap_Dialogs;
 
-ap_Classes, ap_Forms, ap_Dialogs;
-
-{$R *.fmx}
-
-procedure TframeScripts.Button1Click(Sender: TObject);
+procedure TframeScripts.populate;
+var
+  searchPath: string;
+  filelist: TStringDynArray;
+  LSearchOption: TSearchOption;
+  S: String;
 begin
-  Scripter.SourceCode := Memo1.Lines;
+  searchPath := System.ioutils.TPath.GetHomePath + '\NeatoToolio\Scripts\*.NTO';
+  filelist := TDirectory.GetFiles(searchPath, 'NTO', LSearchOption);
+  lbScripts.BeginUpdate;
+  lbScripts.Clear;
+
+  for S in filelist do
+    lbScripts.Items.Add(S);
+
+end;
+
+
+procedure TframeScripts.btnScriptEditorRunClick(Sender: TObject);
+begin
+  Scripter.SourceCode := memoScript.Lines;
   Scripter.Execute;
 end;
 
 procedure TframeScripts.init;
 begin
+
   Scripter := TatScripter.Create(Self);
   Scripter.EventSupport := true;
 
@@ -93,6 +113,7 @@ begin
   Scripter.AddConstant('mrCancel', mrCancel);
 
   Scripter.AddDataModule(dm);
+  populate;
   resetfocus;
 end;
 
