@@ -43,7 +43,11 @@ implementation
 constructor TframeDXVTerminal.Create(AOwner: TComponent; Rect: trectangle);
 begin
   inherited Create(AOwner, Rect);
-  self.lblFrameTitle.Visible := false;
+  lblFrameTitle.Visible := false;
+  {$ifdef android}
+  pnlDebugTerminalBottom.Scale.Y := 2;
+  {$endif}
+
 end;
 
 procedure TframeDXVTerminal.check;

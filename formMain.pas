@@ -255,7 +255,6 @@ type
     lblSetupComPort: TLabel;
     cbCOM: TComboBox;
     chkAutoDetect: TCheckBox;
-    ckSerialConnect: TCheckBox;
     imgRobot: TImage;
     shadowBotImage: TShadowEffect;
     lblSetupRobotName: TLabel;
@@ -297,7 +296,6 @@ type
     RectangleaboutMemo: trectangle;
     memoAbout: TMemo;
     tabSetLanguage: TTabItem;
-    ckTCPIPConnect: TCheckBox;
     aniConnect: TAniIndicator;
     ColorBoxCNX: TColorBox;
     LabelCNX: TLabel;
@@ -345,6 +343,12 @@ type
     rectGetSchedule: trectangle;
     rectSetSchedule: trectangle;
     rectSetNTPTime: trectangle;
+    rectSerialConnect: trectangle;
+    ckSerialConnect: TCheckBox;
+    rectTCPConnect: trectangle;
+    ckTCPIPConnect: TCheckBox;
+    rectTestMode: trectangle;
+    VertScrollBox: TVertScrollBox;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -361,11 +365,25 @@ type
     procedure edIPAddressChange(Sender: TObject);
     procedure edIPPortChange(Sender: TObject);
     procedure memoDebugChange(Sender: TObject);
+    procedure rectSerialConnectClick(Sender: TObject);
+    procedure rectTCPConnectClick(Sender: TObject);
+    procedure rectTestModeClick(Sender: TObject);
 
   private
 
     fPlaySoundAborted: Boolean;
 
+{$IFDEF ANDROID}
+    // virtual keyboard stuff
+    FKBBounds: TRectF;
+    FNeedOffset: Boolean;
+    procedure CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
+    procedure RestorePosition;
+    procedure UpdateKBBounds;
+    procedure FormVirtualKeyboardHidden(Sender: TObject; KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormVirtualKeyboardShown(Sender: TObject; KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormFocusChanged(Sender: TObject);
+{$ENDIF}
     procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
 
     // COM Events
@@ -475,9 +493,16 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   idx: integer;
 begin
+
 {$IFDEF ANDROID}
   ScaledLayoutMain.Align := talignlayout.Client;
+  VKAutoShowMode := TVKAutoShowMode.Always;
+  VertScrollBox.OnCalcContentBounds := CalcContentBoundsProc;
+  OnVirtualKeyboardHidden := FormVirtualKeyboardHidden;
+  OnVirtualKeyboardShown := FormVirtualKeyboardShown;
+  self.OnFocusChanged := FormFocusChanged;
 {$ENDIF}
+
   dm.chkTestMode := chkTestMode;
 
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
@@ -561,13 +586,14 @@ begin
 {$ENDIF}
 
 {$IFDEF ANDROID}
-  pnlStatusBar.Height :=   pnlStatusBar.Height * 1.25; // make it a little taller
-  chkTestMode.Margins.Top := -10;
+  pnlStatusBar.Height := pnlStatusBar.Height * 1.25; // make it a little taller
 
   TdmSerialAndroid(COMAndroid).onError := FComPortError;
   self.chkAutoDetect.Visible := false; // just remove it for Android. Should have only 1 device anyways if any.
   cbCOM.Width := cbCOM.Width * 2; // big com port driver names it appears
   cbCOM.Position.Y := self.chkAutoDetect.Position.Y; // move it up so have some room to click
+
+  lblSetupComPort.Position.Y :=  cbCOM.Position.Y;
 
   COMAndroid.Serial.OnDeviceAttached := OnDeviceAttached;
   COMAndroid.Serial.OnDeviceDetached := OnDeviceDetached;
@@ -620,6 +646,69 @@ begin
 
 end;
 
+{$IFDEF ANDROID}
+
+procedure TfrmMain.CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
+begin
+  if FNeedOffset and (FKBBounds.Top > 0) then
+  begin
+    ContentBounds.Bottom := Max(ContentBounds.Bottom, 2 * ClientHeight - FKBBounds.Top);
+  end;
+end;
+
+procedure TfrmMain.RestorePosition;
+begin
+  VertScrollBox.ViewportPosition := PointF(VertScrollBox.ViewportPosition.X, 0);
+  ScaledLayoutMain.Align := talignlayout.Client;
+  VertScrollBox.RealignContent;
+end;
+
+procedure TfrmMain.UpdateKBBounds;
+var
+  LFocused: TControl;
+  LFocusRect: TRectF;
+begin
+  FNeedOffset := false;
+  if Assigned(Focused) then
+  begin
+    LFocused := TControl(Focused.GetObject);
+    LFocusRect := LFocused.AbsoluteRect;
+    LFocusRect.Offset(VertScrollBox.ViewportPosition);
+    if (LFocusRect.IntersectsWith(TRectF.Create(FKBBounds))) and (LFocusRect.Bottom > FKBBounds.Top) then
+    begin
+      FNeedOffset := True;
+      ScaledLayoutMain.Align := talignlayout.Horizontal;
+      VertScrollBox.RealignContent;
+      application.ProcessMessages;
+      VertScrollBox.ViewportPosition := PointF(VertScrollBox.ViewportPosition.X, LFocusRect.Bottom - FKBBounds.Top);
+    end;
+  end;
+  if not FNeedOffset then
+    RestorePosition;
+end;
+
+procedure TfrmMain.FormFocusChanged(Sender: TObject);
+begin
+  UpdateKBBounds;
+end;
+
+procedure TfrmMain.FormVirtualKeyboardHidden(Sender: TObject; KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+  FKBBounds.Create(0, 0, 0, 0);
+  FNeedOffset := false;
+  RestorePosition;
+end;
+
+procedure TfrmMain.FormVirtualKeyboardShown(Sender: TObject; KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+  FKBBounds := TRectF.Create(Bounds);
+  FKBBounds.TopLeft := ScreenToClient(FKBBounds.TopLeft);
+  FKBBounds.BottomRight := ScreenToClient(FKBBounds.BottomRight);
+  UpdateKBBounds;
+end;
+
+{$ENDIF}
+
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   // LoadImageID('NeatoLogo', self.imgRobot);
@@ -657,7 +746,7 @@ procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
   idx: integer;
 begin
-  if assigned(dm.COM) then
+  if Assigned(dm.COM) then
   begin
     if dm.COM.Active then
     begin
@@ -667,7 +756,7 @@ begin
     end;
   end;
 
-  stoptimers(true);
+  stoptimers(True);
   // make sure all onChange events are gone
   // as it seems these can trigger on closeing
 
@@ -702,7 +791,7 @@ begin
   finally
   end;
 
-  CanClose := true;
+  CanClose := True;
 end;
 
 {$IFDEF MSWINDOWS}
@@ -754,23 +843,21 @@ begin
 end;
 
 {$ENDIF}
-
 {$IFDEF ANDROID}
+
 procedure TfrmMain.OnDeviceAttached(Device: JUsbDevice);
 begin
- COMAndroid.OnDeviceAttached(Device);
- PopulateCOMPorts;
+  COMAndroid.OnDeviceAttached(Device);
+  PopulateCOMPorts;
 end;
 
 procedure TfrmMain.OnDeviceDetached(Device: JUsbDevice);
 begin
- COMAndroid.OnDeviceDetached(Device);
- PopulateCOMPorts;
+  COMAndroid.OnDeviceDetached(Device);
+  PopulateCOMPorts;
 end;
 
 {$ENDIF}
-
-
 
 procedure TfrmMain.FComPortError(Sender: TObject);
 begin
@@ -785,8 +872,8 @@ begin
   end;
 
   ckSerialConnect.IsChecked := false;
-  chkAutoDetect.Enabled := true;
-  cbCOM.Enabled := true;
+  chkAutoDetect.Enabled := True;
+  cbCOM.Enabled := True;
 end;
 
 procedure TfrmMain.ckSerialConnectChange(Sender: TObject);
@@ -818,18 +905,18 @@ end;
 
 procedure TfrmMain.chkTestModeChange(Sender: TObject);
 begin
-  if assigned(CurrentTimer) then
+  if Assigned(CurrentTimer) then
     CurrentTimer.Enabled := false;
 
   case chkTestMode.IsChecked of
-    true:
+    True:
       dm.COM.SendCommand('TestMode ON');
     false:
       dm.COM.SendCommand('TestMode OFF');
   end;
 
-  if assigned(CurrentTimer) then
-    CurrentTimer.Enabled := true;
+  if Assigned(CurrentTimer) then
+    CurrentTimer.Enabled := True;
 end;
 
 procedure TfrmMain.tabClickRepaint(Sender: TObject);
@@ -863,8 +950,8 @@ begin
   ResetTabs;
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
-  aniConnect.Visible := true;
-  aniConnect.Enabled := true;
+  aniConnect.Visible := True;
+  aniConnect.Enabled := True;
   ckSerialConnect.Enabled := false;
   ckTCPIPConnect.Enabled := false;
 
@@ -887,22 +974,22 @@ begin
           begin
             if showBoth then
             begin
-              ckSerialConnect.Enabled := true;
-              ckTCPIPConnect.Enabled := true;
+              ckSerialConnect.Enabled := True;
+              ckTCPIPConnect.Enabled := True;
             end
             else
             begin
 
               if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF} {$IFDEF ANDROID} TdmSerialAndroid{$ENDIF}) then
               begin
-                ckSerialConnect.Enabled := true;
+                ckSerialConnect.Enabled := True;
                 if dm.COM.Active then
                   ckTCPIPConnect.Enabled := false;
               end;
 
               if (dm.COM is TdmSerialTCPIP) then
               begin
-                ckTCPIPConnect.Enabled := true;
+                ckTCPIPConnect.Enabled := True;
                 if dm.COM.Active then
                   ckSerialConnect.Enabled := false;
               end;
@@ -961,7 +1048,7 @@ begin
 
         if cbCOM.ItemIndex = -1 then
         begin
-          stopAniConnect(true);
+          stopAniConnect(True);
           tthread.Synchronize(tthread.CurrentThread,
             procedure
             begin
@@ -985,24 +1072,28 @@ begin
       if not dm.COM.Open then // by now we have serial or tcpip COM object assigned
       begin
 
-        stopAniConnect(true);
+        stopAniConnect(True);
 
 {$IFDEF android}
-        // since we have to deal with permissions
-        if (NOT COMAndroid.HasPermission) then
+        // since we have to deal with permissions  and for Serial only do we care about
+        if dm.COM = COMAndroid then
         begin
-          tthread.CreateAnonymousThread(
-            procedure
-            begin
-              sleep(250);
-              tthread.Queue(nil,
-                procedure
-                begin
-                  comConnect; // lets call this again
-                end);
-            end).start;
-          exit; // and oh make sure to exit!
+          if (NOT COMAndroid.HasPermission) then
+          begin
+            tthread.CreateAnonymousThread(
+              procedure
+              begin
+                sleep(250);
+                tthread.Queue(nil,
+                  procedure
+                  begin
+                    comConnect; // lets call this again
+                  end);
+              end).start;
+            exit; // and oh make sure to exit!
+          end;
         end;
+
 {$ENDIF}
         tthread.Synchronize(tthread.CurrentThread,
           procedure
@@ -1159,8 +1250,8 @@ begin
             ckSerialConnect.IsChecked := false;
             ckTCPIPConnect.IsChecked := false;
 
-            chkAutoDetect.Enabled := true;
-            cbCOM.Enabled := true;
+            chkAutoDetect.Enabled := True;
+            cbCOM.Enabled := True;
           end;
           chkTestMode.Enabled := dm.COM.Active;
           ResetTabs;
@@ -1173,11 +1264,11 @@ end;
 
 procedure TfrmMain.comDisconnect;
 begin
-  aniConnect.Enabled := true;
-  aniConnect.Visible := true;
+  aniConnect.Enabled := True;
+  aniConnect.Visible := True;
 
   try
-    if assigned(dm.COM) then
+    if Assigned(dm.COM) then
     begin
       if dm.COM.Active then
       begin
@@ -1199,8 +1290,8 @@ begin
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
   LoadImageID('NeatoLogo', imgRobot);
-  ckSerialConnect.Enabled := true;
-  ckTCPIPConnect.Enabled := true;
+  ckSerialConnect.Enabled := True;
+  ckTCPIPConnect.Enabled := True;
   ResetTabs;
 end;
 
@@ -1239,7 +1330,7 @@ begin
   cbCOM.ItemIndex := idx;
   cbCOM.endupdate;
   comList.Free;
-  tabsMain.Enabled := true;
+  tabsMain.Enabled := True;
 end;
 
 procedure TfrmMain.tabControlChange(Sender: TObject);
@@ -1249,7 +1340,7 @@ var
   procedure SetNotSupported;
   begin
     lblNotSupported.Parent := TTabControl(Sender).ActiveTab;
-    lblNotSupported.Visible := true;
+    lblNotSupported.Visible := True;
   end;
 
 begin
@@ -1288,9 +1379,9 @@ begin
         begin
           DGetCharger.check;
           XVGetCharger.Layout.Visible := false;
-          DGetCharger.Layout.Visible := true;
+          DGetCharger.Layout.Visible := True;
           // SetTimer(DGetCharger.timer_GetData);
-          DGetCharger.timer_getdata.Enabled := true;
+          DGetCharger.timer_getdata.Enabled := True;
         end;
       XV:
         begin
@@ -1298,7 +1389,7 @@ begin
           // DGetCharger.Layout.Visible := false;
           // XVGetCharger.Layout.Visible := true;
           DGetCharger.Layout.Visible := false;
-          XVGetCharger.Layout.Visible := true;
+          XVGetCharger.Layout.Visible := True;
           SetTimer(XVGetCharger.timer_getdata);
         end;
     end;
@@ -1307,7 +1398,7 @@ begin
   if TTabControl(Sender).ActiveTab = tabGetAccel then
   begin
     DXVGetAccel.check;
-    DXVGetAccel.Layout.Visible := true;
+    DXVGetAccel.Layout.Visible := True;
     SetTimer(DXVGetAccel.timer_getdata);
   end;
 
@@ -1318,14 +1409,14 @@ begin
         begin
           DGetAnalogSensors.check; // toggles things based on BotVac type
           XVGetAnalogSensors.Layout.Visible := false;
-          DGetAnalogSensors.Layout.Visible := true;
+          DGetAnalogSensors.Layout.Visible := True;
           SetTimer(DGetAnalogSensors.timer_getdata);
         end;
       XV:
         begin
           XVGetAnalogSensors.check;
           DGetAnalogSensors.Layout.Visible := false;
-          XVGetAnalogSensors.Layout.Visible := true;
+          XVGetAnalogSensors.Layout.Visible := True;
           SetTimer(XVGetAnalogSensors.timer_getdata);
         end;
     end;
@@ -1338,14 +1429,14 @@ begin
         begin
           DGetDigitalSensors.check;
           XVGetDigitalSensors.Layout.Visible := false;
-          DGetDigitalSensors.Layout.Visible := true;
+          DGetDigitalSensors.Layout.Visible := True;
           SetTimer(DGetDigitalSensors.timer_getdata);
         end;
       XV:
         begin
           XVGetDigitalSensors.check;
           DGetDigitalSensors.Layout.Visible := false;
-          XVGetDigitalSensors.Layout.Visible := true;
+          XVGetDigitalSensors.Layout.Visible := True;
           SetTimer(XVGetDigitalSensors.timer_getdata);
         end;
     end;
@@ -1356,7 +1447,7 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetSensors.check;
-          DGetSensors.Layout.Visible := true;
+          DGetSensors.Layout.Visible := True;
           SetTimer(DGetSensors.timer_getdata);
         end;
       XV:
@@ -1372,14 +1463,14 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetMotors.check;
-          DGetMotors.Layout.Visible := true;
+          DGetMotors.Layout.Visible := True;
           XVGetMotors.Layout.Visible := false;
           SetTimer(DGetMotors.timer_getdata);
         end;
       XV:
         begin
           XVGetMotors.check;
-          XVGetMotors.Layout.Visible := true;
+          XVGetMotors.Layout.Visible := True;
           DGetMotors.Layout.Visible := false;
           SetTimer(XVGetMotors.timer_getdata);
         end;
@@ -1392,14 +1483,14 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetButtons.check;
-          DGetButtons.Layout.Visible := true;
+          DGetButtons.Layout.Visible := True;
           XVGetButtons.Layout.Visible := false;
           SetTimer(DGetButtons.timer_getdata);
         end;
       XV:
         begin
           XVGetButtons.check;
-          XVGetButtons.Layout.Visible := true;
+          XVGetButtons.Layout.Visible := True;
           DGetButtons.Layout.Visible := false;
           SetTimer(XVGetButtons.timer_getdata);
         end;
@@ -1412,7 +1503,7 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetCalInfo.check;
-          DGetCalInfo.Layout.Visible := true;
+          DGetCalInfo.Layout.Visible := True;
           DGetCalInfo.check;
           // toggles things based on BotVac type
           XVGetCalInfo.Layout.Visible := false;
@@ -1421,7 +1512,7 @@ begin
       XV:
         begin
           XVGetCalInfo.check;
-          XVGetCalInfo.Layout.Visible := true;
+          XVGetCalInfo.Layout.Visible := True;
           DGetCalInfo.Layout.Visible := false;
           SetTimer(XVGetCalInfo.timer_getdata);
         end;
@@ -1434,14 +1525,14 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetWarranty.check;
-          DGetWarranty.Layout.Visible := true;
+          DGetWarranty.Layout.Visible := True;
           XVGetWarranty.Layout.Visible := false;
           SetTimer(DGetWarranty.timer_getdata);
         end;
       XV:
         begin
           XVGetWarranty.check;
-          XVGetWarranty.Layout.Visible := true;
+          XVGetWarranty.Layout.Visible := True;
           DGetWarranty.Layout.Visible := false;
           SetTimer(XVGetWarranty.timer_getdata);
         end;
@@ -1454,14 +1545,14 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetErr.check;
-          DGetErr.Layout.Visible := true;
+          DGetErr.Layout.Visible := True;
           XVGetErr.Layout.Visible := false;
           SetTimer(DGetErr.timer_getdata);
         end;
       XV:
         begin
           XVGetErr.check;
-          XVGetErr.Layout.Visible := true;
+          XVGetErr.Layout.Visible := True;
           DGetErr.Layout.Visible := false;
           SetTimer(XVGetErr.timer_getdata);
         end;
@@ -1474,14 +1565,14 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetVersion.check;
-          DGetVersion.Layout.Visible := true;
+          DGetVersion.Layout.Visible := True;
           XVGetVersion.Layout.Visible := false;
           SetTimer(DGetVersion.timer_getdata);
         end;
       XV:
         begin
           XVGetVersion.check;
-          XVGetVersion.Layout.Visible := true;
+          XVGetVersion.Layout.Visible := True;
           DGetVersion.Layout.Visible := false;
           SetTimer(XVGetVersion.timer_getdata);
         end;
@@ -1494,7 +1585,7 @@ begin
       BotVacConnected:
         begin
           DGetUsage.check;
-          DGetUsage.Layout.Visible := true;
+          DGetUsage.Layout.Visible := True;
           SetTimer(DGetUsage.timer_getdata);
         end;
       BotVac, XV:
@@ -1511,7 +1602,7 @@ begin
       BotVacConnected:
         begin
           DGetUserSettings.check;
-          DGetUserSettings.Layout.Visible := true;
+          DGetUserSettings.Layout.Visible := True;
           SetTimer(DGetUserSettings.timer_getdata);
         end;
       BotVac, XV:
@@ -1534,7 +1625,7 @@ begin
       BotVac, XV:
         begin
           XVGetSchedule.check;
-          XVGetSchedule.Layout.Visible := true;
+          XVGetSchedule.Layout.Visible := True;
           SetTimer(XVGetSchedule.timer_getdata);
         end;
     end;
@@ -1552,7 +1643,7 @@ begin
       BotVac, XV:
         begin
           XVGetTime.check;
-          XVGetTime.Layout.Visible := true;
+          XVGetTime.Layout.Visible := True;
           SetTimer(XVGetTime.timer_getdata);
         end;
     end;
@@ -1565,13 +1656,13 @@ begin
         begin
           DClean.check;
           XVClean.Layout.Visible := false;
-          DClean.Layout.Visible := true;
+          DClean.Layout.Visible := True;
         end;
       XV:
         begin
           XVClean.check;
           DClean.Layout.Visible := false;
-          XVClean.Layout.Visible := true;
+          XVClean.Layout.Visible := True;
         end;
     end;
   end;
@@ -1579,25 +1670,25 @@ begin
   if TTabControl(Sender).ActiveTab = tabPlaySound then
   begin
     DXVPlaySound.check;
-    DXVPlaySound.Layout.Visible := true;
+    DXVPlaySound.Layout.Visible := True;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetFuelGauge then
   begin
     DXVSetFuelGauge.check;
-    DXVSetFuelGauge.Layout.Visible := true;
+    DXVSetFuelGauge.Layout.Visible := True;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetTime then
   begin
     DXVSetTime.check;
-    DXVSetTime.Layout.Visible := true;
+    DXVSetTime.Layout.Visible := True;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetSystemMode then
   begin
     DXVSetSystemMode.check;
-    DXVSetSystemMode.Layout.Visible := true;
+    DXVSetSystemMode.Layout.Visible := True;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetLCD then
@@ -1612,7 +1703,7 @@ begin
       XV:
         begin
           DXVSetLCD.check;
-          DXVSetLCD.Layout.Visible := true;
+          DXVSetLCD.Layout.Visible := True;
         end;
     end;
   end;
@@ -1628,7 +1719,7 @@ begin
       BotVac, XV:
         begin
           XVSetLED.check;
-          XVSetLED.Layout.Visible := true;
+          XVSetLED.Layout.Visible := True;
           // BotVac and XV are similar enough to share the XV code
         end;
     end;
@@ -1646,7 +1737,7 @@ begin
       BotVac, XV:
         begin
           DXVSetSchedule.check;
-          DXVSetSchedule.Layout.Visible := true;
+          DXVSetSchedule.Layout.Visible := True;
         end;
     end;
   end;
@@ -1662,7 +1753,7 @@ begin
       XV:
         begin
           DXVSetWallFollower.check;
-          DXVSetWallFollower.Layout.Visible := true;
+          DXVSetWallFollower.Layout.Visible := True;
         end;
     end;
   end;
@@ -1678,7 +1769,7 @@ begin
       XV:
         begin
           DXVSetDistanceCal.check;
-          DXVSetDistanceCal.Layout.Visible := true;
+          DXVSetDistanceCal.Layout.Visible := True;
         end;
     end;
   end;
@@ -1686,7 +1777,7 @@ begin
   if TTabControl(Sender).ActiveTab = tabSetIEC then
   begin
     DXVSetIEC.check;
-    DXVSetIEC.Layout.Visible := true;
+    DXVSetIEC.Layout.Visible := True;
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetLifeStatLog then
@@ -1700,45 +1791,45 @@ begin
       XV:
         begin
           DXVGetLifeStatLog.check;
-          DXVGetLifeStatLog.Layout.Visible := true;
+          DXVGetLifeStatLog.Layout.Visible := True;
         end;
     end;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetMotor then
-    if assigned(DXVSetMotor) then
+    if Assigned(DXVSetMotor) then
     begin
       DXVSetMotor.check;
-      DXVSetMotor.Layout.Visible := true;
+      DXVSetMotor.Layout.Visible := True;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetLDSScan then
   begin
     DXVGetLDSScan.check;
-    DXVGetLDSScan.Layout.Visible := true;
+    DXVGetLDSScan.Layout.Visible := True;
     SetTimer(DXVGetLDSScan.timer_getdata);
   end;
 
   if TTabControl(Sender).ActiveTab = tabLidarView then
-    if assigned(DXVLidarView) then
+    if Assigned(DXVLidarView) then
     begin
       DXVLidarView.check;
-      DXVLidarView.Layout.Visible := true;
+      DXVLidarView.Layout.Visible := True;
       SetTimer(DXVLidarView.timer_getdata);
     end;
 
   if TTabControl(Sender).ActiveTab = tabTestLDS then
   begin
     DXVTestLDS.check;
-    DXVTestLDS.Layout.Visible := true;
+    DXVTestLDS.Layout.Visible := True;
     SetTimer(DXVTestLDS.timer_getdata);
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetBatteryTest then
-    if assigned(DXVSetBatteryTest) then
+    if Assigned(DXVSetBatteryTest) then
     begin
       DXVSetBatteryTest.check;
-      DXVSetBatteryTest.Layout.Visible := true;
+      DXVSetBatteryTest.Layout.Visible := True;
     end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1748,7 +1839,7 @@ begin
       BotVacConnected, BotVac:
         begin
           DClearFiles.check;
-          DClearFiles.Layout.Visible := true;
+          DClearFiles.Layout.Visible := True;
         end;
       XV:
         begin
@@ -1768,7 +1859,7 @@ begin
       XV:
         begin
           XVRestoreDefaults.check;
-          XVRestoreDefaults.Layout.Visible := true;
+          XVRestoreDefaults.Layout.Visible := True;
         end;
     end;
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1778,7 +1869,7 @@ begin
       BotVacConnected:
         begin
           DGetWifiInfo.check;
-          DGetWifiInfo.Layout.Visible := true;
+          DGetWifiInfo.Layout.Visible := True;
         end;
       BotVac, XV:
         begin
@@ -1792,7 +1883,7 @@ begin
       BotVacConnected:
         begin
           DGetWifiStatus.check;
-          DGetWifiStatus.Layout.Visible := true;
+          DGetWifiStatus.Layout.Visible := True;
           SetTimer(DGetWifiStatus.timer_getdata);
         end;
       BotVac, XV:
@@ -1804,9 +1895,9 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabDebugTerminal then
   begin
-    if assigned(DXVTerminal) then
+    if Assigned(DXVTerminal) then
     begin
-      DXVTerminal.Layout.Visible := true;
+      DXVTerminal.Layout.Visible := True;
       if DXVTerminal.edDebugTerminalSend.CanFocus then
         DXVTerminal.edDebugTerminalSend.SetFocus;
       SetTimer(DXVTerminal.timer_getdata);
@@ -1818,7 +1909,7 @@ begin
       BotVac:
         begin
           DXVSetLanguage.check;
-          DXVSetLanguage.Layout.Visible := true;
+          DXVSetLanguage.Layout.Visible := True;
         end;
       BotVacConnected, XV:
         begin
@@ -1832,7 +1923,7 @@ begin
       BotVac, BotVacConnected: // maybe the connected ?
         begin
           DSetButton.check;
-          DSetButton.Layout.Visible := true;
+          DSetButton.Layout.Visible := True;
         end;
       XV:
         begin
@@ -1846,7 +1937,7 @@ begin
       BotVacConnected: // maybe the connected ?
         begin
           DSetNTPTime.check;
-          DSetNTPTime.Layout.Visible := true;
+          DSetNTPTime.Layout.Visible := True;
         end;
       BotVac, XV:
         begin
@@ -1860,7 +1951,7 @@ begin
       BotVacConnected: // maybe the connected ?
         begin
           DSetNavigationMode.check;
-          DSetNavigationMode.Layout.Visible := true;
+          DSetNavigationMode.Layout.Visible := True;
         end;
       BotVac, XV:
         begin
@@ -1874,7 +1965,7 @@ begin
       BotVacConnected: // maybe the connected ?
         begin
           DSetUsage.check;
-          DSetUsage.Layout.Visible := true;
+          DSetUsage.Layout.Visible := True;
         end;
       BotVac, XV:
         begin
@@ -1956,6 +2047,24 @@ begin
   Scripts.Align := talignlayout.Client;
   Scripts.init;
 {$ENDIF}
+end;
+
+procedure TfrmMain.rectSerialConnectClick(Sender: TObject);
+begin
+  if ckSerialConnect.Enabled then
+    ckSerialConnect.IsChecked := not ckSerialConnect.IsChecked;
+end;
+
+procedure TfrmMain.rectTCPConnectClick(Sender: TObject);
+begin
+  if ckTCPIPConnect.Enabled then
+    ckTCPIPConnect.IsChecked := not ckTCPIPConnect.IsChecked;
+end;
+
+procedure TfrmMain.rectTestModeClick(Sender: TObject);
+begin
+  if chkTestMode.Enabled then
+    chkTestMode.IsChecked := not chkTestMode.IsChecked;
 end;
 
 procedure TfrmMain.ResetTabs;

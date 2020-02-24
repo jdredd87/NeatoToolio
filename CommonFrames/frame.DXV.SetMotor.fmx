@@ -11,7 +11,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     inherited lblFrameTitle: TLabel
       Position.Y = 507.000000000000000000
       Size.Width = 878.000000000000000000
-      TabOrder = 56
+      TabOrder = 55
     end
     object btnSetMotorLeftWheelDisable: TButton
       Position.X = 504.000000000000000000
@@ -19,7 +19,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 57
+      TabOrder = 56
       Text = 'Disable'
       OnClick = btnSetMotorLeftWheelDisableClick
     end
@@ -29,7 +29,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 58
+      TabOrder = 57
       Text = 'Enable'
       OnClick = btnSetMotorLeftheelEnableClick
     end
@@ -39,7 +39,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 59
+      TabOrder = 58
       Text = 'Disable'
       OnClick = btnSetMotorMainBrushDisableClick
     end
@@ -49,7 +49,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 60
+      TabOrder = 59
       Text = 'Enable'
       OnClick = btnSetMotorMainBrushEnableClick
     end
@@ -59,7 +59,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 61
+      TabOrder = 60
       Text = 'Disable'
       OnClick = btnSetMotorRightWheelDisableClick
     end
@@ -69,7 +69,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 62
+      TabOrder = 61
       Text = 'Enable'
       OnClick = btnSetMotorRightWheelEnableClick
     end
@@ -79,7 +79,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 63
+      TabOrder = 62
       Text = 'Disable'
       OnClick = btnSetMotorSideBrushDisableClick
     end
@@ -89,7 +89,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 64
+      TabOrder = 63
       Text = 'Enable'
       OnClick = btnSetMotorSideBrushEnableClick
     end
@@ -121,7 +121,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 66
+      TabOrder = 65
       Text = 'Disable'
       OnClick = btnSetMotorVacuumDisableClick
     end
@@ -131,7 +131,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Width = 70.000000000000000000
       Size.Height = 30.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 67
+      TabOrder = 66
       Text = 'Enable'
       OnClick = btnSetMotorVacuumEnableClick
     end
@@ -317,17 +317,6 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
         ShadowColor = claBlack
       end
     end
-    object ckUsePlotterXY: TCheckBox
-      IsChecked = True
-      Position.X = 312.000000000000000000
-      Position.Y = 448.000000000000000000
-      Size.Width = 257.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 69
-      Text = 'Use PlotterXY Lidar View'
-      OnChange = ckUsePlotterXYChange
-    end
     object lblBtnPosition: TLabel
       Position.X = 8.000000000000000000
       Position.Y = 228.000000000000000000
@@ -335,7 +324,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Height = 29.000000000000000000
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Center
-      TabOrder = 70
+      TabOrder = 68
     end
     object lblLeftWheel: TLabel
       Position.X = 311.000000000000000000
@@ -345,7 +334,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Trailing
       Text = 'Left Wheel'
-      TabOrder = 71
+      TabOrder = 69
     end
     object lblMainBrush: TLabel
       Position.X = 311.000000000000000000
@@ -355,7 +344,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Trailing
       Text = 'Main Brush'
-      TabOrder = 72
+      TabOrder = 70
     end
     object lblMainBrushRPM: TLabel
       Position.X = 591.000000000000000000
@@ -364,7 +353,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       Text = 'Main Brush RPM'
-      TabOrder = 73
+      TabOrder = 71
     end
     object lblRightWheel: TLabel
       Position.X = 311.000000000000000000
@@ -374,7 +363,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Trailing
       Text = 'Right Wheel'
-      TabOrder = 74
+      TabOrder = 72
     end
     object lblSideBrush: TLabel
       Position.X = 311.000000000000000000
@@ -384,7 +373,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Trailing
       Text = 'Side Brush'
-      TabOrder = 75
+      TabOrder = 73
     end
     object lblSideBrushPower: TLabel
       Position.X = 591.000000000000000000
@@ -393,7 +382,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       Text = 'Side Brush maximum power in milliwatts'
-      TabOrder = 76
+      TabOrder = 74
     end
     object lblVacuum: TLabel
       Position.X = 311.000000000000000000
@@ -403,7 +392,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Trailing
       Text = 'Vacuum'
-      TabOrder = 77
+      TabOrder = 75
     end
     object lblVacuumSpeed: TLabel
       Position.X = 592.000000000000000000
@@ -412,7 +401,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       Text = ' Vacuum speed in percent'
-      TabOrder = 78
+      TabOrder = 76
     end
     object lblWheelSpeed: TLabel
       Position.X = 592.000000000000000000
@@ -421,7 +410,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
       Size.Height = 25.000000000000000000
       Size.PlatformDefault = False
       Text = 'Speed and Distance in millimeters '
-      TabOrder = 79
+      TabOrder = 77
     end
     object rectLidar: TRectangle
       Fill.Color = claWhite
@@ -433,7 +422,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     end
     object sbBrushRPMValue: TSpinBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 81
+      TabOrder = 79
       Cursor = crIBeam
       Max = 1000.000000000000000000
       Value = 1000.000000000000000000
@@ -443,7 +432,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     end
     object sbSideBrushMillwattsValue: TSpinBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 82
+      TabOrder = 80
       Cursor = crIBeam
       Max = 5000.000000000000000000
       Value = 2500.000000000000000000
@@ -453,7 +442,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     end
     object sbVacuumSpeedValue: TSpinBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 83
+      TabOrder = 81
       Cursor = crIBeam
       Value = 50.000000000000000000
       Position.X = 592.000000000000000000
@@ -462,7 +451,7 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     end
     object sbWheelDistance: TSpinBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 84
+      TabOrder = 82
       Cursor = crIBeam
       Max = 10000.000000000000000000
       Value = 150.000000000000000000
@@ -471,12 +460,42 @@ inherited frameDXVSetMotor: TframeDXVSetMotor
     end
     object spWheelSpeed: TSpinBox
       Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 85
+      TabOrder = 83
       Cursor = crIBeam
       Max = 300.000000000000000000
       Value = 150.000000000000000000
       Position.X = 592.000000000000000000
       Position.Y = 56.000000000000000000
+    end
+    object rectUserPlotterXY: TRectangle
+      Fill.Color = claNull
+      Position.X = 312.000000000000000000
+      Position.Y = 440.000000000000000000
+      Sides = []
+      Size.Width = 265.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = rectUserPlotterXYClick
+      object ckUsePlotterXY: TCheckBox
+        Align = Client
+        IsChecked = True
+        Size.Width = 265.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Use PlotterXY Lidar View'
+        OnChange = ckUsePlotterXYChange
+      end
+    end
+    object rectAutoScale: TRectangle
+      Fill.Color = claNull
+      Position.X = 312.000000000000000000
+      Position.Y = 288.000000000000000000
+      Sides = []
+      Size.Width = 265.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = rectUserPlotterXYClick
     end
   end
 end

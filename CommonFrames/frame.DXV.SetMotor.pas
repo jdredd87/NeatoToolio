@@ -59,7 +59,9 @@ type
     btnSetMotorSTOP: TCircle;
     lblSetMotorSTOP: TLabel;
     rectLidar: TRectangle;
+    rectUserPlotterXY: TRectangle;
     ckUsePlotterXY: TCheckBox;
+    rectAutoScale: TRectangle;
     procedure btnCircleMouseEnter(Sender: TObject);
     procedure btnCircleMouseLeave(Sender: TObject);
     procedure btnSetMotorLeftheelEnableClick(Sender: TObject);
@@ -81,6 +83,7 @@ type
     procedure btnSetMotorSTOPClick(Sender: TObject);
     procedure timer_getdataTimer(Sender: TObject);
     procedure ckUsePlotterXYChange(Sender: TObject);
+    procedure rectUserPlotterXYClick(Sender: TObject);
   private
     fPlaySoundAborted: Boolean;
     fLidar: TframeDXVLidarView;
@@ -119,15 +122,16 @@ begin
   fLidar.polarLidar.Align := talignlayout.Client;
   fLidar.polarLidar.Visible := false;
 
-  fLidar.ckAutoScaleGraphs.Parent := layout;
-  fLidar.ckAutoScaleGraphs.Align := talignlayout.None;
-  fLidar.ckAutoScaleGraphs.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
-  fLidar.ckAutoScaleGraphs.Position.y := rectLidar.Position.y + 35;
+  fLidar.ckAutoScaleGraphs.Parent := rectAutoScale;
+  fLidar.ckAutoScaleGraphs.Align := talignlayout.Client;
+  fLidar.ckAutoScaleGraphs.Margins.Left := 0;
+  //fLidar.ckAutoScaleGraphs.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
+  //fLidar.ckAutoScaleGraphs.Position.y := rectLidar.Position.y + 35;
 
   fLidar.lblMaxDistance.Parent := layout;
   fLidar.lblMaxDistance.Align := talignlayout.None;
   fLidar.lblMaxDistance.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
-  fLidar.lblMaxDistance.Position.y := fLidar.ckAutoScaleGraphs.Position.y + 35;
+  fLidar.lblMaxDistance.Position.y := rectAutoScale.Position.y + 35;
   fLidar.lblMaxDistance.Width := 150;
 
   fLidar.sbMaxDistance.Parent := layout;
@@ -136,6 +140,13 @@ begin
   fLidar.sbMaxDistance.Position.y := fLidar.lblMaxDistance.Position.y + 35;
   fLidar.sbMaxDistance.Width := 150;
 
+end;
+
+procedure TframeDXVSetMotor.rectUserPlotterXYClick(Sender: TObject);
+begin
+  inherited;
+  if ckUsePlotterXY.Enabled then
+    ckUsePlotterXY.IsChecked := not ckUsePlotterXY.IsChecked;
 end;
 
 procedure TframeDXVSetMotor.ckUsePlotterXYChange(Sender: TObject);

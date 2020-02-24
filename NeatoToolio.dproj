@@ -385,10 +385,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android)'!=''">
-        <VerInfo_Build>1</VerInfo_Build>
-        <VerInfo_Keys>package=com.Chesser.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
-        <Android_SplashGravity>center</Android_SplashGravity>
-        <Android_NotificationAccentColor>#0000FF</Android_NotificationAccentColor>
+        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Keys>package=com.Chesser.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=2;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=No TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -811,9 +809,9 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Images\notification-36x36.png" Configuration="Debug" Class="Android_LauncherIcon36">
+                <DeployFile LocalName="Images\notification-96x96.png" Configuration="Debug" Class="Android_NotificationIcon96">
                     <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
+                        <RemoteName>ic_notification.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -829,12 +827,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-72x72.png" Configuration="Debug" Class="Android_LauncherIcon72">
-                    <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Android\Debug\libNeatoToolio.so" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Android">
                         <RemoteName>libNeatoToolio.so</RemoteName>
@@ -847,9 +839,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\neato-toolio-splash-426x320.png" Configuration="Debug" Class="Android_SplashImage426">
+                <DeployFile LocalName="Images\notification-72x72.png" Configuration="Debug" Class="Android_NotificationIcon72">
                     <Platform Name="Android">
-                        <RemoteName>splash_image.png</RemoteName>
+                        <RemoteName>ic_notification.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -871,9 +863,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-36x36.png" Configuration="Debug" Class="Android_NotificationIcon36">
+                <DeployFile LocalName="Images\notification-144x144.png" Configuration="Debug" Class="Android_LauncherIcon144">
                     <Platform Name="Android">
-                        <RemoteName>ic_notification.png</RemoteName>
+                        <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\neato-toolio-splash-470x320.png" Configuration="Debug" Class="Android_SplashImage470">
+                    <Platform Name="Android">
+                        <RemoteName>splash_image.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -888,15 +886,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\Neato.D6.png" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
+                <DeployFile LocalName="Images\neato-toolio-splash-960x720.png" Configuration="Debug" Class="Android_SplashImage960">
+                    <Platform Name="Android">
+                        <RemoteName>splash_image.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-96x96.png" Configuration="Debug" Class="Android_NotificationIcon96">
-                    <Platform Name="Android">
-                        <RemoteName>ic_notification.png</RemoteName>
+                <DeployFile LocalName="Images\Neato.D6.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -905,15 +903,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-144x144.png" Configuration="Debug" Class="Android_LauncherIcon144">
-                    <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Images\Neato.XV16.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
                         <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeArmeabiFile">
+                    <Platform Name="Android">
+                        <RemoteName>libNeatoToolio.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -931,18 +929,6 @@
                 <DeployFile LocalName="Images\Neato.XV.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
                         <RemoteDir>.\assets\internal\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeArmeabiFile">
-                    <Platform Name="Android">
-                        <RemoteName>libNeatoToolio.so</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Images\notification-24x24.png" Configuration="Debug" Class="Android_NotificationIcon24">
-                    <Platform Name="Android">
-                        <RemoteName>ic_notification.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -968,18 +954,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-96x96.png" Configuration="Debug" Class="Android_LauncherIcon96">
-                    <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Images\notification-48x48.png" Configuration="Debug" Class="Android_NotificationIcon48">
-                    <Platform Name="Android">
-                        <RemoteName>ic_notification.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Images\Stop.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
                         <RemoteDir>.\assets\internal\</RemoteDir>
@@ -1010,9 +984,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\Neato.D7.png" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="Images\notification-36x36.png" Configuration="Debug" Class="Android_NotificationIcon36">
                     <Platform Name="Android">
-                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <RemoteName>ic_notification.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android\Debug\strings.xml" Configuration="Debug" Class="Android_Strings">
+                    <Platform Name="Android">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1034,14 +1013,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-72x72.png" Configuration="Debug" Class="Android_NotificationIcon72">
+                <DeployFile LocalName="Images\Neato.D7.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
-                        <RemoteName>ic_notification.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Android\Debug\strings.xml" Configuration="Debug" Class="Android_Strings">
-                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1057,21 +1031,21 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\neato-toolio-splash-640x480.png" Configuration="Debug" Class="Android_SplashImage640">
+                <DeployFile LocalName="Images\notification-48x48.png" Configuration="Debug" Class="Android_NotificationIcon48">
                     <Platform Name="Android">
-                        <RemoteName>splash_image.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Images\neato-toolio-splash-960x720.png" Configuration="Debug" Class="Android_SplashImage960">
-                    <Platform Name="Android">
-                        <RemoteName>splash_image.png</RemoteName>
+                        <RemoteName>ic_notification.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Win64\Debug\NeatoToolio.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>NeatoToolio.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\notification-24x24.png" Configuration="Debug" Class="Android_NotificationIcon24">
+                    <Platform Name="Android">
+                        <RemoteName>ic_notification.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1087,9 +1061,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-48x48.png" Configuration="Debug" Class="Android_LauncherIcon48">
+                <DeployFile LocalName="Images\neato-toolio-splash-640x480.png" Configuration="Debug" Class="Android_SplashImage640">
                     <Platform Name="Android">
-                        <RemoteName>ic_launcher.png</RemoteName>
+                        <RemoteName>splash_image.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Images\neato-toolio-splash-426x320.png" Configuration="Debug" Class="Android_SplashImage426">
+                    <Platform Name="Android">
+                        <RemoteName>splash_image.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1141,12 +1121,6 @@
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Images\neato-toolio-splash-470x320.png" Configuration="Debug" Class="Android_SplashImage470">
-                    <Platform Name="Android">
-                        <RemoteName>splash_image.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

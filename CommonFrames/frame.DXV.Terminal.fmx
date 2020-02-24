@@ -1,9 +1,6 @@
 inherited frameDXVTerminal: TframeDXVTerminal
   ClientWidth = 847
   DesignerMasterStyle = 3
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-  end
   inherited Layout: TScaledLayout
     OriginalWidth = 847.000000000000000000
     Size.Width = 847.000000000000000000
