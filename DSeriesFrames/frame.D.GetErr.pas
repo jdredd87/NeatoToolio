@@ -6,10 +6,10 @@ uses
   frame.master,
   dmCommon,
   neato.D.GetErr,
-  FMX.TabControl,
+  FMX.TabControl, FMX.objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.Controls.Presentation, FMX.ScrollBox;
+  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Layouts;
 
 type
   TFrameDGetErr = class(TframeMaster)
@@ -20,7 +20,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -28,9 +28,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TFrameDGetErr.Create(AOwner: TComponent);
+constructor TFrameDGetErr.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

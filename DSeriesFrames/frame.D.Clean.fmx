@@ -1,198 +1,204 @@
 inherited frameDClean: TframeDClean
-  Size.Width = 645.000000000000000000
-  Size.Height = 522.000000000000000000
+  ClientHeight = 514
+  ClientWidth = 554
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 424
-    Top = 200
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 491.000000000000000000
-    Size.Width = 625.000000000000000000
-    TabOrder = 58
-  end
-  object lblCleanError: TLabel
-    Align = Top
-    Position.Y = 442.000000000000000000
-    Size.Width = 645.000000000000000000
-    Size.Height = 33.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 61
-  end
-  object rectTop: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 645.000000000000000000
-    Size.Height = 409.000000000000000000
-    Size.PlatformDefault = False
-    object btnClean: TButton
-      Position.X = 24.000000000000000000
-      Position.Y = 312.000000000000000000
-      Size.Width = 193.000000000000000000
+  inherited Layout: TScaledLayout
+    OriginalWidth = 554.000000000000000000
+    OriginalHeight = 514.000000000000000000
+    Size.Width = 554.000000000000000000
+    Size.Height = 514.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 483.000000000000000000
+      Size.Width = 534.000000000000000000
+      TabOrder = 58
+    end
+    object lblCleanError: TLabel
+      Align = Top
+      Size.Width = 554.000000000000000000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'Clean'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
+      TabOrder = 59
     end
-    object btnCleanAutoCycle: TButton
-      Position.X = 16.000000000000000000
-      Position.Y = 200.000000000000000000
-      Size.Width = 193.000000000000000000
+    object lblCleanMessage: TLabel
+      Align = Top
+      Position.Y = 442.000000000000000000
+      Size.Width = 554.000000000000000000
       Size.Height = 33.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'AutoCycle'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
+      TabOrder = 60
     end
-    object btnCleanExplore: TButton
-      Position.X = 16.000000000000000000
-      Position.Y = 56.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      Text = 'Explore'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
-    end
-    object btnCleanHouse: TButton
-      Position.X = 16.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 3
-      Text = 'House'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
-    end
-    object btnCleanPersistent: TButton
-      Position.X = 16.000000000000000000
-      Position.Y = 152.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 4
-      Text = 'Persistent'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
-    end
-    object btnCleanSpot: TButton
-      Position.X = 16.000000000000000000
-      Position.Y = 104.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 5
-      Text = 'Spot'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
-    end
-    object btnCleanStop: TButton
-      Position.X = 24.000000000000000000
-      Position.Y = 360.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 6
-      Text = 'Stop'
-      OnClick = btnCleanClick
-      OnMouseEnter = btnCleanMouseEnter
-      OnMouseLeave = btnCleanMouseLeave
-    end
-    object ckCleanForever: TCheckBox
-      Position.X = 232.000000000000000000
-      Position.Y = 208.000000000000000000
-      Size.Width = 185.000000000000000000
-      Size.Height = 25.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 7
-      Text = 'Clean Forever'
-    end
-    object lblCleanHeight: TLabel
-      Position.X = 376.000000000000000000
-      Position.Y = 96.000000000000000000
-      Text = 'Height in CM'
-      TabOrder = 8
-    end
-    object lblCleanMaxCycles: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 248.000000000000000000
-      Size.Width = 185.000000000000000000
+    object lblCleanWarning: TLabel
+      Position.X = 223.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 417.000000000000000000
       Size.Height = 17.000000000000000000
       Size.PlatformDefault = False
-      Text = 'Max Number of Cycles'
-      TabOrder = 9
+      Text = 'Experimental. This is very temperamental.'
+      TabOrder = 61
     end
-    object lblCleanWidth: TLabel
-      Position.X = 224.000000000000000000
-      Position.Y = 96.000000000000000000
-      Text = 'Width in CM'
-      TabOrder = 10
-    end
-    object sbCleanHeight: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 11
-      Cursor = crIBeam
-      Min = -1.000000000000000000
-      Max = 500.000000000000000000
-      Value = 500.000000000000000000
-      Position.X = 376.000000000000000000
-      Position.Y = 128.000000000000000000
-      Size.Width = 121.000000000000000000
-      Size.Height = 22.000000000000000000
+    object rectTop: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Position.Y = 33.000000000000000000
+      Sides = []
+      Size.Width = 554.000000000000000000
+      Size.Height = 409.000000000000000000
       Size.PlatformDefault = False
+      object btnClean: TButton
+        Position.X = 24.000000000000000000
+        Position.Y = 312.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Clean'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object btnCleanAutoCycle: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 200.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'AutoCycle'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object btnCleanExplore: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 56.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Explore'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object btnCleanHouse: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'House'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object btnCleanPersistent: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 152.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'Persistent'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object btnCleanSpot: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 104.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Text = 'Spot'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object btnCleanStop: TButton
+        Position.X = 24.000000000000000000
+        Position.Y = 360.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        Text = 'Stop'
+        OnClick = btnCleanClick
+        OnMouseEnter = btnCleanMouseEnter
+        OnMouseLeave = btnCleanMouseLeave
+      end
+      object ckCleanForever: TCheckBox
+        Position.X = 232.000000000000000000
+        Position.Y = 208.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        Text = 'Clean Forever'
+      end
+      object lblCleanHeight: TLabel
+        Position.X = 376.000000000000000000
+        Position.Y = 96.000000000000000000
+        Text = 'Height in CM'
+        TabOrder = 8
+      end
+      object lblCleanMaxCycles: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 248.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Max Number of Cycles'
+        TabOrder = 9
+      end
+      object lblCleanWidth: TLabel
+        Position.X = 224.000000000000000000
+        Position.Y = 96.000000000000000000
+        Text = 'Width in CM'
+        TabOrder = 10
+      end
+      object sbCleanHeight: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 11
+        Cursor = crIBeam
+        Min = -1.000000000000000000
+        Max = 500.000000000000000000
+        Value = 500.000000000000000000
+        Position.X = 376.000000000000000000
+        Position.Y = 128.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object sbCleanWidth: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 12
+        Cursor = crIBeam
+        Min = -1.000000000000000000
+        Max = 500.000000000000000000
+        Value = 500.000000000000000000
+        Position.X = 224.000000000000000000
+        Position.Y = 128.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object sbNumberOfCycles: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 13
+        Cursor = crIBeam
+        Max = 32767.000000000000000000
+        Value = 1.000000000000000000
+        Position.X = 232.000000000000000000
+        Position.Y = 280.000000000000000000
+        Size.Width = 121.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
     end
-    object sbCleanWidth: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 12
-      Cursor = crIBeam
-      Min = -1.000000000000000000
-      Max = 500.000000000000000000
-      Value = 500.000000000000000000
-      Position.X = 224.000000000000000000
-      Position.Y = 128.000000000000000000
-      Size.Width = 121.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object sbNumberOfCycles: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 13
-      Cursor = crIBeam
-      Max = 32767.000000000000000000
-      Value = 1.000000000000000000
-      Position.X = 232.000000000000000000
-      Position.Y = 280.000000000000000000
-      Size.Width = 121.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-  end
-  object lblCleanMessage: TLabel
-    Align = Top
-    Position.Y = 409.000000000000000000
-    Size.Width = 645.000000000000000000
-    Size.Height = 33.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 60
-  end
-  object lblCleanWarning: TLabel
-    Position.X = 224.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 417.000000000000000000
-    Size.Height = 17.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'Experimental. This is very temperamental.'
-    TabOrder = 64
   end
 end

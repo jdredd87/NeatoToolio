@@ -1,290 +1,292 @@
 inherited frameXVGetTime: TframeXVGetTime
-  Size.Width = 550.000000000000000000
-  Size.Height = 540.000000000000000000
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-    Left = 40
-    Top = 56
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 509.000000000000000000
-    Size.Width = 530.000000000000000000
-  end
-  object lblGetTime: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Size.Width = 550.000000000000000000
-    Size.Height = 40.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    Text = 'Sunday 00:00:00'
-    TabOrder = 49
-  end
-  object ScaledLayout1: TScaledLayout
-    Align = Client
-    OriginalWidth = 550.000000000000000000
-    OriginalHeight = 464.000000000000000000
-    Size.Width = 550.000000000000000000
-    Size.Height = 464.000000000000000000
-    Size.PlatformDefault = False
-    object circleGetTime: TCircle
-      Fill.Kind = Gradient
-      Fill.Gradient.Points = <
-        item
-          Color = xFF2D92BF
-          Offset = 0.341614902019500700
-        end
-        item
-          Color = claWhite
-          Offset = 1.000000000000000000
-        end>
-      Fill.Gradient.StartPosition.X = 0.500000000000000000
-      Fill.Gradient.StartPosition.Y = 1.000000000000000000
-      Fill.Gradient.StopPosition.X = 0.499999970197677600
-      Fill.Gradient.StopPosition.Y = 0.000000000000000000
-      Position.X = 75.000000000000000000
-      Position.Y = 50.000000000000000000
-      Size.Width = 400.000000000000000000
-      Size.Height = 400.000000000000000000
+  ClientHeight = 554
+  ClientWidth = 556
+  DesignerMasterStyle = 0
+  inherited Layout: TScaledLayout
+    OriginalWidth = 556.000000000000000000
+    OriginalHeight = 554.000000000000000000
+    Size.Width = 556.000000000000000000
+    Size.Height = 554.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 523.000000000000000000
+      Size.Width = 536.000000000000000000
+    end
+    object lblGetTime: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Size.Width = 556.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
-      Stroke.Thickness = 3.000000000000000000
-      OnDblClick = circleGetTimeDblClick
-      object Layout12GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        Size.Width = 50.000000000000000000
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      Text = 'Sunday 00:00:00'
+      TabOrder = 1
+    end
+    object PixelateEffect1: TPixelateEffect
+      Enabled = False
+      BlockCount = 1000.000000000000000000
+    end
+    object ScaledLayout1: TScaledLayout
+      Align = Client
+      OriginalWidth = 556.000000000000000000
+      OriginalHeight = 478.000000000000000000
+      Size.Width = 556.000000000000000000
+      Size.Height = 478.000000000000000000
+      Size.PlatformDefault = False
+      object circleGetTime: TCircle
+        Fill.Kind = Gradient
+        Fill.Gradient.Points = <
+          item
+            Color = xFF2D92BF
+            Offset = 0.341614902019500700
+          end
+          item
+            Color = claWhite
+            Offset = 1.000000000000000000
+          end>
+        Fill.Gradient.StartPosition.X = 0.500000000000000000
+        Fill.Gradient.StartPosition.Y = 1.000000000000000000
+        Fill.Gradient.StopPosition.X = 0.499999970197677600
+        Fill.Gradient.StopPosition.Y = 0.000000000000000000
+        Position.X = 75.000000000000000000
+        Position.Y = 50.000000000000000000
+        Size.Width = 400.000000000000000000
         Size.Height = 400.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 0
-        object Text_12: TText
-          Align = Top
-          Text = '12'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        Stroke.Thickness = 3.000000000000000000
+        OnDblClick = circleGetTimeDblClick
+        object Layout12GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Text_12: TText
+            Align = Top
+            Text = '12'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object rrHour: TRoundRect
-        Fill.Color = claBlack
-        Position.X = 192.000000000000000000
-        Position.Y = 94.000000000000000000
-        RotationCenter.Y = 1.000000000000000000
-        Size.Width = 16.000000000000000000
-        Size.Height = 110.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object rrMin: TRoundRect
-        Fill.Color = claBlack
-        Position.X = 193.000000000000000000
-        Position.Y = 55.000000000000000000
-        RotationCenter.Y = 1.000000000000000000
-        Size.Width = 14.000000000000000000
-        Size.Height = 151.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object rrSec: TRoundRect
-        Fill.Color = claCrimson
-        Position.X = 196.000000000000000000
-        Position.Y = 40.000000000000000000
-        RotationCenter.Y = 1.000000000000000000
-        Size.Width = 8.000000000000000000
-        Size.Height = 164.000000000000000000
-        Size.PlatformDefault = False
-      end
-      object Layout1GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 30.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 1
-        object Text_1: TText
-          Align = Top
-          RotationAngle = -30.000000000000000000
-          Text = '1'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object rrHour: TRoundRect
+          Fill.Color = claBlack
+          Position.X = 192.000000000000000000
+          Position.Y = 94.000000000000000000
+          RotationCenter.Y = 1.000000000000000000
+          Size.Width = 16.000000000000000000
+          Size.Height = 110.000000000000000000
+          Size.PlatformDefault = False
         end
-      end
-      object Layout2GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 60.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        object Text_2: TText
-          Align = Top
-          RotationAngle = -60.000000000000000000
-          Text = '2'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object rrMin: TRoundRect
+          Fill.Color = claBlack
+          Position.X = 193.000000000000000000
+          Position.Y = 55.000000000000000000
+          RotationCenter.Y = 1.000000000000000000
+          Size.Width = 14.000000000000000000
+          Size.Height = 151.000000000000000000
+          Size.PlatformDefault = False
         end
-      end
-      object Layout3GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 90.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 3
-        object Text_3: TText
-          Align = Top
-          RotationAngle = -90.000000000000000000
-          Text = '3'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object rrSec: TRoundRect
+          Fill.Color = claCrimson
+          Position.X = 196.000000000000000000
+          Position.Y = 40.000000000000000000
+          RotationCenter.Y = 1.000000000000000000
+          Size.Width = 8.000000000000000000
+          Size.Height = 164.000000000000000000
+          Size.PlatformDefault = False
         end
-      end
-      object Layout4GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 120.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 4
-        object Text_4: TText
-          Align = Top
-          RotationAngle = -120.000000000000000000
-          Text = '4'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout1GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 30.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object Text_1: TText
+            Align = Top
+            RotationAngle = -30.000000000000000000
+            Text = '1'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout5GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 150.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 5
-        object Text_5: TText
-          Align = Top
-          RotationAngle = -150.000000000000000000
-          Text = '5'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout2GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 60.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Text_2: TText
+            Align = Top
+            RotationAngle = -60.000000000000000000
+            Text = '2'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout6GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 180.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 6
-        object Text_6: TText
-          Align = Top
-          RotationAngle = -180.000000000000000000
-          Text = '6'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout3GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 90.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+          object Text_3: TText
+            Align = Top
+            RotationAngle = -90.000000000000000000
+            Text = '3'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout7GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 210.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 7
-        object Text_7: TText
-          Align = Top
-          RotationAngle = -210.000000000000000000
-          Text = '7'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout4GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 120.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 4
+          object Text_4: TText
+            Align = Top
+            RotationAngle = -120.000000000000000000
+            Text = '4'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout8GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 240.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 8
-        object Text_8: TText
-          Align = Top
-          RotationAngle = -240.000000000000000000
-          Text = '8'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout5GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 150.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          object Text_5: TText
+            Align = Top
+            RotationAngle = -150.000000000000000000
+            Text = '5'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout9GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 270.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 9
-        object Text_9: TText
-          Align = Top
-          RotationAngle = -270.000000000000000000
-          Text = '9'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout6GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 180.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          object Text_6: TText
+            Align = Top
+            RotationAngle = -180.000000000000000000
+            Text = '6'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout10GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 300.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 10
-        object Text_10: TText
-          Align = Top
-          RotationAngle = -300.000000000000000000
-          Text = '10'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout7GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 210.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 7
+          object Text_7: TText
+            Align = Top
+            RotationAngle = -210.000000000000000000
+            Text = '7'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object Layout11GetTime: TLayout
-        StyleName = 'clocknumber'
-        Align = Center
-        RotationAngle = 330.000000000000000000
-        Size.Width = 50.000000000000000000
-        Size.Height = 400.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 11
-        object text_11: TText
-          Align = Top
-          RotationAngle = -330.000000000000000000
-          Text = '11'
-          TextSettings.Font.Size = 24.000000000000000000
-          TextSettings.Font.StyleExt = {00070000000000000004000000}
+        object Layout8GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 240.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 8
+          object Text_8: TText
+            Align = Top
+            RotationAngle = -240.000000000000000000
+            Text = '8'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
         end
-      end
-      object ShadowEffect1: TShadowEffect
-        Distance = 25.000000000000000000
-        Direction = 45.000000000000000000
-        Softness = 0.300000011920929000
-        Opacity = 0.600000023841857900
-        ShadowColor = claBlack
+        object Layout9GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 270.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 9
+          object Text_9: TText
+            Align = Top
+            RotationAngle = -270.000000000000000000
+            Text = '9'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        object Layout10GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 300.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 10
+          object Text_10: TText
+            Align = Top
+            RotationAngle = -300.000000000000000000
+            Text = '10'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        object Layout11GetTime: TLayout
+          StyleName = 'clocknumber'
+          Align = Center
+          RotationAngle = 330.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 11
+          object text_11: TText
+            Align = Top
+            RotationAngle = -330.000000000000000000
+            Text = '11'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+          end
+        end
+        object ShadowEffect1: TShadowEffect
+          Distance = 25.000000000000000000
+          Direction = 45.000000000000000000
+          Softness = 0.300000011920929000
+          Opacity = 0.600000023841857900
+          ShadowColor = claBlack
+        end
       end
     end
-  end
-  object PixelateEffect1: TPixelateEffect
-    Enabled = False
-    BlockCount = 1000.000000000000000000
-  end
-  object timer_Pixelate: TTimer
-    Enabled = False
-    Interval = 32
-    OnTimer = timer_PixelateTimer
-    Left = 440
-    Top = 56
+    object timer_Pixelate: TTimer
+      Enabled = False
+      Interval = 32
+      OnTimer = timer_PixelateTimer
+      Left = 440
+      Top = 56
+    end
   end
 end

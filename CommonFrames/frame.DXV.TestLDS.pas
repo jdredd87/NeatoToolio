@@ -10,7 +10,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
-  FMX.ScrollBox, FMX.Memo, FMX.Objects;
+  FMX.ScrollBox, FMX.Memo, FMX.Objects, FMX.Layouts;
 
 type
   TframeDXVTestLDS = class(TframeMaster)
@@ -25,12 +25,12 @@ type
     lblTestLDSLastCalValue: TLabel;
     lblGetAccelZInG: TLabel;
     lblTestLDSRuntimeValue: TLabel;
-    Label1: TLabel;
+    lblWarning: TLabel;
     procedure Timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -38,9 +38,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVTestLDS.Create(AOwner: TComponent);
+constructor TframeDXVTestLDS.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

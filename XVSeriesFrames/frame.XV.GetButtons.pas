@@ -6,9 +6,9 @@ uses
   frame.master,
   dmCommon,
   neato.xv.getbuttons,
-  FMX.TabControl,
+  FMX.TabControl, FMX.Objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts;
 
 type
   TframeXVGetButtons = class(TframeMaster)
@@ -26,7 +26,7 @@ type
   private
     { Private declarations }
   public
-      constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
       procedure check;
   end;
 
@@ -34,9 +34,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeXVGetButtons.Create(AOwner: TComponent);
+constructor TframeXVGetButtons.Create(AOwner: TComponent; rect: trectangle);
 begin
- inherited;
+ inherited create(aowner, rect);
  lblFrameTitle.Text := sDescription;
 end;
 

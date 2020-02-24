@@ -1,127 +1,128 @@
 inherited frameDXVPlaySound: TframeDXVPlaySound
-  Size.Width = 803.000000000000000000
-  Size.Height = 373.000000000000000000
-  inherited timer_getdata: TTimer
-    Left = 552
-    Top = 160
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 342.000000000000000000
-    Size.Width = 783.000000000000000000
-  end
-  object pnlPlaySoundTop: TRectangle
-    Align = Top
-    Fill.Color = xFF2D92BF
-    Sides = []
-    Size.Width = 803.000000000000000000
-    Size.Height = 70.000000000000000000
-    Size.PlatformDefault = False
-    object lblPlaySoundID: TLabel
-      Align = Left
-      Margins.Left = 10.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 10.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      Text = 'PlaySound ID #'
-      TabOrder = 0
+  ClientHeight = 591
+  ClientWidth = 789
+  DesignerMasterStyle = 0
+  inherited Layout: TScaledLayout
+    OriginalWidth = 789.000000000000000000
+    OriginalHeight = 591.000000000000000000
+    Size.Width = 789.000000000000000000
+    Size.Height = 591.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 560.000000000000000000
+      Size.Width = 769.000000000000000000
     end
-    object nbPlaySoundIDValue: TNumberBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Left
-      TabOrder = 1
-      Cursor = crIBeam
-      DecimalDigits = 0
-      Max = 64.000000000000000000
-      Position.X = 150.000000000000000000
-      Position.Y = 10.000000000000000000
-      Enabled = False
-      Margins.Left = 10.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Size.Width = 57.000000000000000000
-      Size.Height = 50.000000000000000000
+    object pnlPlaySoundTop: TRectangle
+      Align = Top
+      Fill.Color = xFF2D92BF
+      Sides = []
+      Size.Width = 789.000000000000000000
+      Size.Height = 70.000000000000000000
       Size.PlatformDefault = False
+      object lblPlaySoundID: TLabel
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'PlaySound ID #'
+        TabOrder = 0
+      end
+      object nbPlaySoundIDValue: TNumberBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Left
+        TabOrder = 1
+        Cursor = crIBeam
+        DecimalDigits = 0
+        Max = 64.000000000000000000
+        Position.X = 150.000000000000000000
+        Position.Y = 19.000000000000000000
+        Enabled = False
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 57.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object btnPlaySoundTest: TButton
+        Align = Left
+        Enabled = False
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 227.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 137.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Test Sound ID'
+        OnClick = btnPlaySoundTestClick
+      end
+      object btnSoundPlayTestAll: TButton
+        Align = Left
+        Enabled = False
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 384.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Test all Sound ID Codes'
+        OnClick = btnSoundPlayTestAllClick
+      end
+      object btnPlaySoundAbort: TButton
+        Align = Left
+        Enabled = False
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 589.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Text = 'Abort'
+        OnClick = btnPlaySoundAbortClick
+      end
     end
-    object btnPlaySoundTest: TButton
-      Align = Left
-      Enabled = False
+    object sgPlaysound: TStringGrid
+      Align = Client
+      CanFocus = True
+      ClipChildren = True
       Margins.Left = 10.000000000000000000
       Margins.Top = 10.000000000000000000
       Margins.Right = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
-      Position.X = 227.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 137.000000000000000000
-      Size.Height = 50.000000000000000000
+      Size.Width = 769.000000000000000000
+      Size.Height = 465.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 3
-      Text = 'Test Sound ID'
-      OnClick = btnPlaySoundTestClick
-    end
-    object btnSoundPlayTestAll: TButton
-      Align = Left
-      Enabled = False
-      Margins.Left = 10.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 384.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 185.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
+      StyleLookup = 'gridstyle'
       TabOrder = 2
-      Text = 'Test all Sound ID Codes'
-      OnClick = btnSoundPlayTestAllClick
-    end
-    object btnPlaySoundAbort: TButton
-      Align = Left
-      Enabled = False
-      Margins.Left = 10.000000000000000000
-      Margins.Top = 10.000000000000000000
-      Margins.Right = 10.000000000000000000
-      Margins.Bottom = 10.000000000000000000
-      Position.X = 589.000000000000000000
-      Position.Y = 10.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 5
-      Text = 'Abort'
-      OnClick = btnPlaySoundAbortClick
-    end
-  end
-  object sgPlaysound: TStringGrid
-    Align = Left
-    CanFocus = True
-    ClipChildren = True
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 80.000000000000000000
-    Size.Width = 591.000000000000000000
-    Size.Height = 247.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'gridstyle'
-    TabOrder = 0
-    Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 591.000000000000000000
-    Viewport.Height = 247.000000000000000000
-    object sgPlaysoundID: TStringColumn
-      Header = 'ID'
-      Size.Width = 57.000000000000000000
-    end
-    object sgPlaySoundResponse: TStringColumn
-      Header = 'Response'
-      Size.Width = 391.000000000000000000
+      Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+      Viewport.Width = 749.000000000000000000
+      Viewport.Height = 440.000000000000000000
+      object sgPlaysoundID: TStringColumn
+        Header = 'ID'
+        Size.Width = 105.000000000000000000
+      end
+      object sgPlaySoundResponse: TStringColumn
+        Header = 'Response'
+        Size.Width = 391.000000000000000000
+      end
     end
   end
 end

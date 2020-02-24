@@ -12,7 +12,13 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, system.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
   system.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox,
-  FMXTee.Engine, FMXTee.Series, FMXTee.Series.Polar, FMXTee.Tools, FMXTee.Functions.Stats, FMXTee.Procs, FMXTee.Chart;
+  FMXTee.Engine,
+  FMXTee.Series,
+  FMXTee.Series.Polar,
+  FMXTee.Tools,
+  FMXTee.Functions.Stats,
+  FMXTee.Procs,
+  FMXTee.Chart, FMX.Layouts;
 
 type
   TPlotPoint = Record
@@ -93,7 +99,7 @@ type
     procedure SetBadPointSize(Value: byte);
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: trectangle); reintroduce; overload;
     destructor destroy; reintroduce; overload;
     property GoodPointSize: byte read fGoodPointSize write SetGoodPointSize;
     property BadPointSize: byte read fBadPointSize write SetBadPointSize;
@@ -103,11 +109,11 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVLidarView.Create(AOwner: TComponent);
+constructor TframeDXVLidarView.Create(AOwner: TComponent; Rect: trectangle);
 var
   idx: Integer;
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   fFPS := TStopWatch.Create;
 
   fMaxDistance := 8000; // 8000mm
@@ -123,7 +129,7 @@ begin
   for idx := 0 to 359 do
   begin
     PlotPoints[idx].Point := trectangle.Create(rectPlotPoints);
-    PlotPoints[idx].Point.Parent := rectPlotPoints;
+    // PlotPoints[idx].Point.Parent := rectPlotPoints;
 
     if idx > 0 then
     begin
@@ -131,7 +137,7 @@ begin
       PlotPoints[idx].Point.Position.Y := PlotPoints[idx - 1].Point.Position.Y;
     end;
 
-    PlotPoints[idx].Point.Align := talignlayout.Left;
+    self.PlotPoints[idx].Point.Align := talignlayout.Left;
     PlotPoints[idx].Point.Width := rectPlotPoints.Width / 360;
     PlotPoints[idx].Point.Sides := [];
     PlotPoints[idx].Point.Fill.Color := talphacolorrec.Silver;
@@ -146,9 +152,22 @@ begin
     PlotPoints[idx].intensity := 0;
   end;
 
+  rectPlotPoints.BeginUpdate;
+  for idx := 0 to 359 do
+    PlotPoints[idx].Point.Parent := rectPlotPoints;
+  rectPlotPoints.EndUpdate;
+
   sgLIDAR.RowCount := 360;
 
   self.ckAutoScaleGraphs.IsChecked := true;
+
+  BadPointSize := 4;
+  GoodPointSize := 4;
+
+{$IFDEF ANDROID}
+  BadPointSize := BadPointSize +1;  // make just a tad bigger
+  GoodPointSize := GoodPointSize +1;
+{$ENDIF}
 end;
 
 destructor TframeDXVLidarView.destroy;

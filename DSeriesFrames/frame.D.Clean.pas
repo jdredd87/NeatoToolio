@@ -9,7 +9,7 @@ uses
   neato.errors, FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects,
-  FMX.Edit, FMX.EditBox, FMX.SpinBox;
+  FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.Layouts;
 
 type
   TframeDClean = class(TframeMaster)
@@ -38,21 +38,28 @@ type
     procedure btnCleanClick(Sender: TObject);
     procedure btnCleanMouseEnter(Sender: TObject);
     procedure btnCleanMouseLeave(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure Check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDClean.Create(AOwner: TComponent);
+constructor TframeDClean.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDClean.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDClean.btnCleanClick(Sender: TObject);

@@ -1,542 +1,539 @@
 inherited frameDGetAnalogSensors: TframeDGetAnalogSensors
-  Size.Width = 506.000000000000000000
-  Size.Height = 465.000000000000000000
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 434.000000000000000000
-    Size.Width = 486.000000000000000000
-  end
-  object lblGetAnalogSensorsBatteryVoltage: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'BatteryVoltage'
-    TabOrder = 40
-  end
-  object pbGetAnalogSensorsBatteryVoltageValue: TProgressBar
-    Max = 24576.000000000000000000
-    Orientation = Vertical
-    Position.X = 30.000000000000000000
-    Position.Y = 40.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 12288.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetAnalogSensorsBatteryVoltageValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+  inherited Layout: TScaledLayout
+    object lblGetAnalogSensorsAccelerometerX: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 226.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'AccelerometerX'
+      TabOrder = 1
+    end
+    object lblGetAnalogSensorsAccelerometerXValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 226.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 2
+    end
+    object lblGetAnalogSensorsAccelerometerY: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 250.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'AccelerometerY'
+      TabOrder = 3
+    end
+    object lblGetAnalogSensorsAccelerometerYValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 250.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 4
+    end
+    object lblGetAnalogSensorsAccelerometerZ: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 274.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'AccelerometerZ'
+      TabOrder = 5
+    end
+    object lblGetAnalogSensorsAccelerometerZValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 274.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 6
+    end
+    object lblGetAnalogSensorsBatteryCurrent: TLabel
+      Position.X = 104.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'BatteryCurrent'
+      TabOrder = 7
+    end
+    object lblGetAnalogSensorsBatteryTemperature: TLabel
+      Position.X = 192.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 145.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'BatteryTemperature'
+      TabOrder = 8
+    end
+    object lblGetAnalogSensorsBatteryVoltage: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'BatteryVoltage'
+      TabOrder = 9
+    end
+    object lblGetAnalogSensorsCompassmeterX: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 298.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'CompassmeterX'
+      TabOrder = 10
+    end
+    object lblGetAnalogSensorsCompassmeterXValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 298.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 11
+    end
+    object lblGetAnalogSensorsCompassmeterY: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'CompassmeterY'
+      TabOrder = 12
+    end
+    object lblGetAnalogSensorsCompassmeterYValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 13
+    end
+    object lblGetAnalogSensorsCompassmeterZ: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 346.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'CompassmeterZ'
+      TabOrder = 14
+    end
+    object lblGetAnalogSensorsCompassmeterZValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 346.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 15
+    end
+    object lblGetAnalogSensorsDropSensorLeft: TLabel
+      Position.X = 320.000000000000000000
+      Position.Y = 370.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'DropSensorLeft'
+      TabOrder = 16
+    end
+    object lblGetAnalogSensorsDropSensorLeftValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 370.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 17
+    end
+    object lblGetAnalogSensorsDropSensorRight: TLabel
+      Position.X = 304.000000000000000000
+      Position.Y = 394.000000000000000000
+      Size.Width = 136.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'DropSensorRight'
+      TabOrder = 18
+    end
+    object lblGetAnalogSensorsDropSensorRightValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 394.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 19
+    end
+    object lblGetAnalogSensorsExternalVoltage: TLabel
+      Position.X = 296.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ExternalVoltage'
+      TabOrder = 20
+    end
+    object lblGetAnalogSensorsGyroscopeX: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 370.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'GyroscopeX'
+      TabOrder = 21
+    end
+    object lblGetAnalogSensorsGyroscopeXValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 370.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 22
+    end
+    object lblGetAnalogSensorsGyroscopeY: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 394.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'GyroscopeY'
+      TabOrder = 23
+    end
+    object lblGetAnalogSensorsGyroscopeYValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 394.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 24
+    end
+    object lblGetAnalogSensorsGyroscopeZ: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 418.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'GyroscopeZ'
+      TabOrder = 25
+    end
+    object lblGetAnalogSensorsGyroscopeZValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 141.000000000000000000
+      Position.Y = 418.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 26
+    end
+    object lblGetAnalogSensorsIMUAccelerometerX: TLabel
+      Position.X = 288.000000000000000000
+      Position.Y = 226.000000000000000000
+      Size.Width = 150.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'IMUAccelerometerX'
+      TabOrder = 27
+    end
+    object lblGetAnalogSensorsIMUAccelerometerXValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 226.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 28
+    end
+    object lblGetAnalogSensorsIMUAccelerometerY: TLabel
+      Position.X = 288.000000000000000000
+      Position.Y = 250.000000000000000000
+      Size.Width = 150.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'IMUAccelerometerY'
+      TabOrder = 29
+    end
+    object lblGetAnalogSensorsIMUAccelerometerYValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 250.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 30
+    end
+    object lblGetAnalogSensorsIMUAccelerometerZ: TLabel
+      Position.X = 288.000000000000000000
+      Position.Y = 274.000000000000000000
+      Size.Width = 150.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'IMUAccelerometerZ'
+      TabOrder = 31
+    end
+    object lblGetAnalogSensorsIMUAccelerometerZValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 274.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 32
+    end
+    object lblGetAnalogSensorsMagSensorLeft: TLabel
+      Position.X = 408.000000000000000000
+      Position.Y = 26.000000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'MagSensorLeft'
+      TabOrder = 33
+    end
+    object lblGetAnalogSensorsMagSensorRight: TLabel
+      Position.X = 400.000000000000000000
+      Position.Y = 90.000000000000000000
+      Size.Width = 121.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'MagSensorRight'
+      TabOrder = 34
+    end
+    object lblGetAnalogSensorsSideBrushCurrent: TLabel
+      Position.X = 304.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 136.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'SideBrushCurrent'
+      TabOrder = 35
+    end
+    object lblGetAnalogSensorsSideBrushCurrentValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 36
+    end
+    object lblGetAnalogSensorsVacuumCurrent: TLabel
+      Position.X = 320.000000000000000000
+      Position.Y = 298.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'VacuumCurrent'
+      TabOrder = 37
+    end
+    object lblGetAnalogSensorsVacuumCurrentValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 298.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 38
+    end
+    object lblGetAnalogSensorsWallSensor: TLabel
+      Position.X = 352.000000000000000000
+      Position.Y = 346.000000000000000000
+      Size.Width = 88.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'WallSensor'
+      TabOrder = 39
+    end
+    object lblGetAnalogSensorsWallSensorValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 453.000000000000000000
+      Position.Y = 346.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 40
+    end
+    object pbGetAnalogSensorsBatteryCurrentValue: TProgressBar
+      Max = 1024.000000000000000000
+      Min = -1024.000000000000000000
+      Orientation = Vertical
+      Position.X = 134.000000000000000000
+      Position.Y = 40.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '12288 mV'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetAnalogSensorsBatteryCurrentValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '0 mA'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetAnalogSensorsBatteryCurrentValue: TProgressBar
-    Max = 1024.000000000000000000
-    Min = -1024.000000000000000000
-    Orientation = Vertical
-    Position.X = 134.000000000000000000
-    Position.Y = 40.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetAnalogSensorsBatteryCurrentValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetAnalogSensorsBatteryTemperatureValue: TProgressBar
+      Max = 73728.000000000000000000
+      Orientation = Vertical
+      Position.X = 238.000000000000000000
+      Position.Y = 40.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '0 mA'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 9216.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetAnalogSensorsBatteryTemperatureValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '19216 mC'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetAnalogSensorsBatteryTemperatureValue: TProgressBar
-    Max = 73728.000000000000000000
-    Orientation = Vertical
-    Position.X = 238.000000000000000000
-    Position.Y = 40.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 9216.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetAnalogSensorsBatteryTemperatureValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetAnalogSensorsBatteryVoltageValue: TProgressBar
+      Max = 24576.000000000000000000
+      Orientation = Vertical
+      Position.X = 30.000000000000000000
+      Position.Y = 40.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '19216 mC'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 12288.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetAnalogSensorsBatteryVoltageValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '12288 mV'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetAnalogSensorsExternalVoltageValue: TProgressBar
-    Max = 24576.000000000000000000
-    Orientation = Vertical
-    Position.X = 334.000000000000000000
-    Position.Y = 40.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 12288.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetAnalogSensorsExternalVoltageValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetAnalogSensorsExternalVoltageValue: TProgressBar
+      Max = 24576.000000000000000000
+      Orientation = Vertical
+      Position.X = 334.000000000000000000
+      Position.Y = 40.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '12288 mV'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 12288.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetAnalogSensorsExternalVoltageValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '12288 mV'
+        TabOrder = 0
+      end
     end
-  end
-  object lblGetAnalogSensorsBatteryCurrent: TLabel
-    Position.X = 104.000000000000000000
-    Position.Y = 176.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'BatteryCurrent'
-    TabOrder = 37
-  end
-  object lblGetAnalogSensorsBatteryTemperature: TLabel
-    Position.X = 192.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 145.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'BatteryTemperature'
-    TabOrder = 35
-  end
-  object lblGetAnalogSensorsExternalVoltage: TLabel
-    Position.X = 296.000000000000000000
-    Position.Y = 176.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'ExternalVoltage'
-    TabOrder = 31
-  end
-  object lblGetAnalogSensorsAccelerometerX: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 226.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'AccelerometerX'
-    TabOrder = 20
-  end
-  object lblGetAnalogSensorsAccelerometerXValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 226.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 39
-  end
-  object lblGetAnalogSensorsAccelerometerY: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 250.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'AccelerometerY'
-    TabOrder = 41
-  end
-  object lblGetAnalogSensorsAccelerometerYValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 250.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 29
-  end
-  object lblGetAnalogSensorsAccelerometerZ: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 274.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'AccelerometerZ'
-    TabOrder = 33
-  end
-  object lblGetAnalogSensorsAccelerometerZValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 274.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 6
-  end
-  object lblGetAnalogSensorsCompassmeterX: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 298.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'CompassmeterX'
-    TabOrder = 13
-  end
-  object lblGetAnalogSensorsCompassmeterXValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 298.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 32
-  end
-  object lblGetAnalogSensorsCompassmeterY: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'CompassmeterY'
-    TabOrder = 34
-  end
-  object lblGetAnalogSensorsCompassmeterYValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 16
-  end
-  object lblGetAnalogSensorsCompassmeterZ: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 346.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'CompassmeterZ'
-    TabOrder = 22
-  end
-  object lblGetAnalogSensorsCompassmeterZValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 346.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 2
-  end
-  object lblGetAnalogSensorsGyroscopeX: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 370.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'GyroscopeX'
-    TabOrder = 7
-  end
-  object lblGetAnalogSensorsGyroscopeXValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 370.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 21
-  end
-  object lblGetAnalogSensorsGyroscopeY: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 394.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'GyroscopeY'
-    TabOrder = 28
-  end
-  object lblGetAnalogSensorsGyroscopeYValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 394.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 9
-  end
-  object lblGetAnalogSensorsGyroscopeZ: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 418.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'GyroscopeZ'
-    TabOrder = 14
-  end
-  object lblGetAnalogSensorsGyroscopeZValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 141.000000000000000000
-    Position.Y = 418.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 0
-  end
-  object lblGetAnalogSensorsMagSensorLeft: TLabel
-    Position.X = 408.000000000000000000
-    Position.Y = 26.000000000000000000
-    Size.Width = 113.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'MagSensorLeft'
-    TabOrder = 19
-  end
-  object lblGetAnalogSensorsIMUAccelerometerXValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 226.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 36
-  end
-  object lblGetAnalogSensorsIMUAccelerometerY: TLabel
-    Position.X = 288.000000000000000000
-    Position.Y = 250.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'IMUAccelerometerY'
-    TabOrder = 38
-  end
-  object lblGetAnalogSensorsIMUAccelerometerYValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 250.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 24
-  end
-  object lblGetAnalogSensorsIMUAccelerometerZ: TLabel
-    Position.X = 288.000000000000000000
-    Position.Y = 274.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'IMUAccelerometerZ'
-    TabOrder = 30
-  end
-  object lblGetAnalogSensorsIMUAccelerometerZValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 274.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 5
-  end
-  object lblGetAnalogSensorsVacuumCurrent: TLabel
-    Position.X = 320.000000000000000000
-    Position.Y = 298.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'VacuumCurrent'
-    TabOrder = 8
-  end
-  object lblGetAnalogSensorsVacuumCurrentValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 298.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 23
-  end
-  object lblGetAnalogSensorsSideBrushCurrent: TLabel
-    Position.X = 304.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 136.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'SideBrushCurrent'
-    TabOrder = 27
-  end
-  object lblGetAnalogSensorsSideBrushCurrentValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 11
-  end
-  object lblGetAnalogSensorsWallSensor: TLabel
-    Position.X = 352.000000000000000000
-    Position.Y = 346.000000000000000000
-    Size.Width = 88.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'WallSensor'
-    TabOrder = 15
-  end
-  object lblGetAnalogSensorsWallSensorValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 346.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 1
-  end
-  object lblGetAnalogSensorsDropSensorLeft: TLabel
-    Position.X = 320.000000000000000000
-    Position.Y = 370.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'DropSensorLeft'
-    TabOrder = 3
-  end
-  object lblGetAnalogSensorsDropSensorLeftValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 370.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 10
-  end
-  object lblGetAnalogSensorsDropSensorRight: TLabel
-    Position.X = 304.000000000000000000
-    Position.Y = 394.000000000000000000
-    Size.Width = 136.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'DropSensorRight'
-    TabOrder = 12
-  end
-  object lblGetAnalogSensorsDropSensorRightValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 453.000000000000000000
-    Position.Y = 394.000000000000000000
-    Size.Width = 70.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 4
-  end
-  object swGetAnalogSensorsMagSensorLeftValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 432.000000000000000000
-    Position.Y = 56.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 26
-  end
-  object swGetAnalogSensorsMagSensorRightValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 432.000000000000000000
-    Position.Y = 120.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 25
-  end
-  object lblGetAnalogSensorsIMUAccelerometerX: TLabel
-    Position.X = 288.000000000000000000
-    Position.Y = 226.000000000000000000
-    Size.Width = 150.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'IMUAccelerometerX'
-    TabOrder = 17
-  end
-  object lblGetAnalogSensorsMagSensorRight: TLabel
-    Position.X = 400.000000000000000000
-    Position.Y = 90.000000000000000000
-    Size.Width = 121.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'MagSensorRight'
-    TabOrder = 18
+    object swGetAnalogSensorsMagSensorLeftValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 432.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 45
+    end
+    object swGetAnalogSensorsMagSensorRightValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 432.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 46
+    end
   end
 end

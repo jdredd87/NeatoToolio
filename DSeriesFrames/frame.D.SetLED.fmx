@@ -1,108 +1,113 @@
 inherited frameDSetLED: TframeDSetLED
-  Align = Client
-  Size.Width = 796.000000000000000000
-  Size.Height = 443.000000000000000000
+  ClientHeight = 330
+  ClientWidth = 794
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 528
-    Top = 272
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 412.000000000000000000
-    Size.Width = 776.000000000000000000
-    TabOrder = 56
-  end
-  object lblSetLEDError: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 332.000000000000000000
-    Size.Width = 796.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 5
-  end
-  object rectSetLCDTop: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 796.000000000000000000
-    Size.Height = 265.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetLEDBacklightOn: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 70.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'home'
-      OnClick = btnSetLEDOnClick
-      OnMouseEnter = btnSetLEDBacklightOnMouseEnter
-      OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+  inherited Layout: TScaledLayout
+    OriginalWidth = 794.000000000000000000
+    OriginalHeight = 330.000000000000000000
+    Size.Width = 794.000000000000000000
+    Size.Height = 330.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 299.000000000000000000
+      Size.Width = 774.000000000000000000
+      TabOrder = 56
     end
-    object btnSetLEDBacklightOff: TButton
-      Position.X = 168.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 70.000000000000000000
+    object lblSetLEDError: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 332.000000000000000000
+      Size.Width = 794.000000000000000000
+      Size.Height = 52.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'spot'
-      OnClick = btnSetLEDOnClick
-      OnMouseEnter = btnSetLEDBacklightOnMouseEnter
-      OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      TabOrder = 57
     end
-  end
-  object lblSetLEDMessage: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 270.000000000000000000
-    Size.Width = 796.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 4
-  end
-  object btnSetLEDButtonAmber: TButton
-    Position.X = 328.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 140.000000000000000000
-    Size.Height = 70.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 3
-    Text = 'info'
-    OnClick = btnSetLEDOnClick
-    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
-    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
-  end
-  object btnSetLEDLEDRed: TButton
-    Position.X = 648.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 140.000000000000000000
-    Size.Height = 70.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 2
-    Text = 'battery'
-    OnClick = btnSetLEDOnClick
-    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
-    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
-  end
-  object btnSetLEDButtonGreen: TButton
-    Position.X = 488.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 140.000000000000000000
-    Size.Height = 70.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 1
-    Text = 'wifi'
-    OnClick = btnSetLEDOnClick
-    OnMouseEnter = btnSetLEDBacklightOnMouseEnter
-    OnMouseLeave = btnSetLEDBacklightOnMouseLeave
+    object lblSetLEDMessage: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 270.000000000000000000
+      Size.Width = 794.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      TabOrder = 58
+    end
+    object rectSetLCDTop: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 794.000000000000000000
+      Size.Height = 265.000000000000000000
+      Size.PlatformDefault = False
+      object btnSetLEDhome: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 70.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'home'
+        OnClick = btnSetLEDOnClick
+        OnMouseEnter = btnSetLEDhomeMouseEnter
+        OnMouseLeave = btnSetLEDhomeMouseLeave
+      end
+      object btnSetLEDspot: TButton
+        Position.X = 168.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 70.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'spot'
+        OnClick = btnSetLEDOnClick
+        OnMouseEnter = btnSetLEDhomeMouseEnter
+        OnMouseLeave = btnSetLEDhomeMouseLeave
+      end
+      object btnSetLEDinfo: TButton
+        Position.X = 328.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 70.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'info'
+        OnClick = btnSetLEDOnClick
+        OnMouseEnter = btnSetLEDhomeMouseEnter
+        OnMouseLeave = btnSetLEDhomeMouseLeave
+      end
+      object btnSetLEDwifi: TButton
+        Position.X = 488.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 70.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'wifi'
+        OnClick = btnSetLEDOnClick
+        OnMouseEnter = btnSetLEDhomeMouseEnter
+        OnMouseLeave = btnSetLEDhomeMouseLeave
+      end
+      object btnSetLEDbattery: TButton
+        Position.X = 644.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 70.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Text = 'battery'
+        OnClick = btnSetLEDOnClick
+        OnMouseEnter = btnSetLEDhomeMouseEnter
+        OnMouseLeave = btnSetLEDhomeMouseLeave
+      end
+    end
   end
 end

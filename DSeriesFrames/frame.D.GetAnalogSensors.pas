@@ -5,10 +5,10 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetAnalogSensors,
+  neato.D.GetAnalogSensors, FMX.Objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.TabControl;
+  FMX.TabControl, FMX.Layouts;
 
 type
   TframeDGetAnalogSensors = class(TframeMaster)
@@ -67,16 +67,16 @@ type
     { Private declarations }
   public
     procedure Check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDGetAnalogSensors.Create(AOwner: TComponent);
+constructor TframeDGetAnalogSensors.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

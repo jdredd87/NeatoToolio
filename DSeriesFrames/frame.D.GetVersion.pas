@@ -5,12 +5,12 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.Getversion,
-  FMX.TabControl,
+  neato.D.GetVersion,
+  FMX.TabControl, FMX.objects,
   neato.Helpers,
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.Controls.Presentation, FMX.ScrollBox;
+  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Layouts;
 
 type
   TframeDGetVersion = class(TframeMaster)
@@ -25,18 +25,18 @@ type
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
-   procedure check;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDGetVersion.Create(AOwner: TComponent);
+constructor TframeDGetVersion.Create(AOwner: TComponent; Rect: TRectangle);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
 end;
 
 procedure TframeDGetVersion.timer_GetDataTimer(Sender: TObject);
@@ -57,7 +57,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Active = false) or (dm.ActiveTab<>tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -127,10 +127,9 @@ begin
   pGetVersion.Free;
 end;
 
-
 procedure TframeDGetVersion.check;
 begin
-//
+  //
 end;
 
 end.

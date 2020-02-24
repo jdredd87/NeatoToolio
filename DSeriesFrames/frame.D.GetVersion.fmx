@@ -1,55 +1,57 @@
 inherited frameDGetVersion: TframeDGetVersion
-  Size.Width = 887.000000000000000000
-  Size.Height = 401.000000000000000000
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-    Left = 176
-    Top = 224
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 370.000000000000000000
-    Size.Width = 867.000000000000000000
-  end
-  object sgGetVersion: TStringGrid
-    Align = Client
-    CanFocus = True
-    ClipChildren = True
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Size.Width = 877.000000000000000000
-    Size.Height = 355.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'gridstyle'
-    TabOrder = 0
-    RowCount = 6
-    Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 877.000000000000000000
-    Viewport.Height = 355.000000000000000000
-    object scGetVersionComponent: TStringColumn
-      Header = 'Component'
-      Size.Width = 241.000000000000000000
+  ClientHeight = 524
+  ClientWidth = 898
+  DesignerMasterStyle = 0
+  inherited Layout: TScaledLayout
+    OriginalWidth = 898.000000000000000000
+    OriginalHeight = 524.000000000000000000
+    Size.Width = 898.000000000000000000
+    Size.Height = 524.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 493.000000000000000000
+      Size.Width = 878.000000000000000000
     end
-    object scGerVersionMajor: TStringColumn
-      Header = 'Major'
-      Size.Width = 190.000000000000000000
-    end
-    object scGetVersionMinor: TStringColumn
-      Header = 'Minor'
-      Size.Width = 190.000000000000000000
-    end
-    object scGetVersionBuild: TStringColumn
-      Header = 'Build'
-      Size.Width = 50.000000000000000000
-    end
-    object scGetVersionAux: TStringColumn
-      Header = 'Aux'
-      Size.Width = 85.000000000000000000
-    end
-    object scGetGetVersionAUX2: TStringColumn
-      Header = 'Aux2'
-      Size.Width = 85.000000000000000000
+    object sgGetVersion: TStringGrid
+      Align = Client
+      CanFocus = True
+      ClipChildren = True
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 888.000000000000000000
+      Size.Height = 478.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'gridstyle'
+      TabOrder = 1
+      RowCount = 6
+      Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+      Viewport.Width = 888.000000000000000000
+      Viewport.Height = 478.000000000000000000
+      object scGetVersionComponent: TStringColumn
+        Header = 'Component'
+        Size.Width = 241.000000000000000000
+      end
+      object scGerVersionMajor: TStringColumn
+        Header = 'Major'
+        Size.Width = 190.000000000000000000
+      end
+      object scGetVersionMinor: TStringColumn
+        Header = 'Minor'
+        Size.Width = 190.000000000000000000
+      end
+      object scGetVersionBuild: TStringColumn
+        Header = 'Build'
+        Size.Width = 50.000000000000000000
+      end
+      object scGetVersionAux: TStringColumn
+        Header = 'Aux'
+        Size.Width = 85.000000000000000000
+      end
+      object scGetGetVersionAUX2: TStringColumn
+        Header = 'Aux2'
+        Size.Width = 85.000000000000000000
+      end
     end
   end
 end

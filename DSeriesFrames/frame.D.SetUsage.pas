@@ -9,7 +9,7 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects,
-  FMX.Edit, FMX.EditBox, FMX.SpinBox;
+  FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.Layouts;
 
 type
   TframeDSetUsage = class(TframeMaster)
@@ -25,21 +25,28 @@ type
     procedure btnSetNavigationModeClick(Sender: TObject);
     procedure btnSetNavigationModeMouseEnter(Sender: TObject);
     procedure btnSetNavigationModeMouseLeave(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDSetUsage.Create(AOwner: TComponent);
+constructor TframeDSetUsage.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDSetUsage.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDSetUsage.btnSetNavigationModeClick(Sender: TObject);
@@ -70,7 +77,7 @@ begin
     pReadData := tstringlist.Create;
     pSetUsage := tSetUsage.Create;
 
-    pReadData.Text := dm.com.SendCommand(sSetUsage + ' ' + cmd+' '+self.sbSetUsageSeconds.Value.ToString);
+    pReadData.Text := dm.com.SendCommand(sSetUsage + ' ' + cmd + ' ' + self.sbSetUsageSeconds.Value.ToString);
 
     r := pSetUsage.ParseText(pReadData);
 

@@ -1,73 +1,79 @@
 inherited frameDSetNTPTime: TframeDSetNTPTime
-  Size.Width = 578.000000000000000000
-  Size.Height = 321.000000000000000000
+  ClientHeight = 329
+  ClientWidth = 596
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 328
-    Top = 32
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 290.000000000000000000
-    Size.Width = 558.000000000000000000
-    TabOrder = 38
-  end
-  object rectTop: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 578.000000000000000000
-    Size.Height = 129.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetNTPTime: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'SetNTPTime'
-      OnClick = btnSetNTPTimeClick
-      OnMouseEnter = btnSetNTPTimeMouseEnter
-      OnMouseLeave = btnSetNTPTimeMouseLeave
+  inherited Layout: TScaledLayout
+    OriginalWidth = 596.000000000000000000
+    OriginalHeight = 329.000000000000000000
+    Size.Width = 596.000000000000000000
+    Size.Height = 329.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 298.000000000000000000
+      Size.Width = 576.000000000000000000
+      TabOrder = 38
     end
-    object btnSetNTPTimeBrief: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 72.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
+    object lblSetNTPTimeDescription: TLabel
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 134.000000000000000000
+      Size.Width = 576.000000000000000000
+      Size.Height = 43.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'SetNTPTime Brief'
-      OnClick = btnSetNTPTimeClick
-      OnMouseEnter = btnSetNTPTimeMouseEnter
-      OnMouseLeave = btnSetNTPTimeMouseLeave
+      TextSettings.HorzAlign = Center
+      TabOrder = 39
     end
-  end
-  object lblSetNTPTimeDescription: TLabel
-    Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 134.000000000000000000
-    Size.Width = 558.000000000000000000
-    Size.Height = 43.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Center
-    TabOrder = 37
-  end
-  object lblSetNTPTimeError: TLabel
-    Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 187.000000000000000000
-    Size.Width = 558.000000000000000000
-    Size.Height = 43.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    TabOrder = 36
+    object lblSetNTPTimeError: TLabel
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 187.000000000000000000
+      Size.Width = 576.000000000000000000
+      Size.Height = 43.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      TabOrder = 40
+    end
+    object rectTop: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 596.000000000000000000
+      Size.Height = 129.000000000000000000
+      Size.PlatformDefault = False
+      object btnSetNTPTime: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'SetNTPTime'
+        OnClick = btnSetNTPTimeClick
+        OnMouseEnter = btnSetNTPTimeMouseEnter
+        OnMouseLeave = btnSetNTPTimeMouseLeave
+      end
+      object btnSetNTPTimeBrief: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'SetNTPTime Brief'
+        OnClick = btnSetNTPTimeClick
+        OnMouseEnter = btnSetNTPTimeMouseEnter
+        OnMouseLeave = btnSetNTPTimeMouseLeave
+      end
+    end
   end
 end

@@ -10,7 +10,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
-  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
+  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox,
+  FMX.Layouts;
 
 type
   TframeDXVGetLifeStatLog = class(TframeMaster)
@@ -28,22 +29,29 @@ type
     aniGetLifeStatLog: TAniIndicator;
 
     procedure btnGetLifeStatLogClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
 
   private
     { Private declarations }
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDXVGetLifeStatLog.Create(AOwner: TComponent);
+constructor TframeDXVGetLifeStatLog.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVGetLifeStatLog.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDXVGetLifeStatLog.btnGetLifeStatLogClick(Sender: TObject);
@@ -95,7 +103,7 @@ end;
 
 procedure TframeDXVGetLifeStatLog.check;
 begin
- self.btnGetLifeStatLog.Enabled := dm.com.Active;
+  self.btnGetLifeStatLog.Enabled := dm.com.Active;
 end;
 
 end.

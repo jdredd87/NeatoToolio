@@ -1,97 +1,103 @@
 inherited frameDSetNavigationMode: TframeDSetNavigationMode
-  Size.Width = 578.000000000000000000
-  Size.Height = 321.000000000000000000
+  ClientHeight = 370
+  ClientWidth = 448
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 328
-    Top = 32
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 290.000000000000000000
-    Size.Width = 558.000000000000000000
-    TabOrder = 38
-  end
-  object rectTop: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 578.000000000000000000
-    Size.Height = 265.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetNavigationModeNormal: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'Normal'
-      OnClick = btnSetNavigationModeClick
-      OnMouseEnter = btnSetNavigationModeMouseEnter
-      OnMouseLeave = btnSetNavigationModeMouseLeave
+  inherited Layout: TScaledLayout
+    OriginalWidth = 448.000000000000000000
+    OriginalHeight = 370.000000000000000000
+    Size.Width = 448.000000000000000000
+    Size.Height = 370.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 339.000000000000000000
+      Size.Width = 428.000000000000000000
+      TabOrder = 38
     end
-    object btnSetNavigationModeGentle: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 72.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
+    object lblSetNavigationModeDescription: TLabel
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 270.000000000000000000
+      Size.Width = 428.000000000000000000
+      Size.Height = 43.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'Gentle'
-      OnClick = btnSetNavigationModeClick
-      OnMouseEnter = btnSetNavigationModeMouseEnter
-      OnMouseLeave = btnSetNavigationModeMouseLeave
+      TextSettings.HorzAlign = Center
+      TabOrder = 39
     end
-  end
-  object lblSetNavigationModeDescription: TLabel
-    Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 270.000000000000000000
-    Size.Width = 558.000000000000000000
-    Size.Height = 43.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Center
-    TabOrder = 37
-  end
-  object lblSetNavigationModeError: TLabel
-    Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 323.000000000000000000
-    Size.Width = 558.000000000000000000
-    Size.Height = 43.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    TabOrder = 36
-  end
-  object btnSetNavigationModeDeep: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 120.000000000000000000
-    Size.Width = 193.000000000000000000
-    Size.Height = 33.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    Text = 'Deep'
-    OnClick = btnSetNavigationModeClick
-    OnMouseEnter = btnSetNavigationModeMouseEnter
-    OnMouseLeave = btnSetNavigationModeMouseLeave
-  end
-  object btnSetNavigationModeQuick: TButton
-    Position.X = 8.000000000000000000
-    Position.Y = 168.000000000000000000
-    Size.Width = 193.000000000000000000
-    Size.Height = 33.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 1
-    Text = 'Quick'
-    OnClick = btnSetNavigationModeClick
-    OnMouseEnter = btnSetNavigationModeMouseEnter
-    OnMouseLeave = btnSetNavigationModeMouseLeave
+    object lblSetNavigationModeError: TLabel
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 323.000000000000000000
+      Size.Width = 428.000000000000000000
+      Size.Height = 43.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      TabOrder = 40
+    end
+    object rectTop: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 448.000000000000000000
+      Size.Height = 265.000000000000000000
+      Size.PlatformDefault = False
+      object btnSetNavigationModeNormal: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Normal'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object btnSetNavigationModeGentle: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 160.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Gentle'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object btnSetNavigationModeDeep: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 109.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Deep'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object btnSetNavigationModeQuick: TButton
+        Position.X = 16.000000000000000000
+        Position.Y = 58.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Quick'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+    end
   end
 end

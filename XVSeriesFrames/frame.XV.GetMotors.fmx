@@ -1,305 +1,447 @@
 inherited frameXVGetMotors: TframeXVGetMotors
-  Size.Width = 336.000000000000000000
-  Size.Height = 510.000000000000000000
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 479.000000000000000000
-    Size.Width = 316.000000000000000000
-  end
-  object lblGetMotorsBrush_RPM: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Brush_RPM'
-    TabOrder = 23
-  end
-  object lblGetMotorsBrush_RPMValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 17
-  end
-  object lblGetMotorsBrush_mA: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Brush_mA'
-    TabOrder = 21
-  end
-  object lblGetMotorsBrush_mAValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 11
-  end
-  object lblGetMotorsVacuum_RPM: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 90.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Vacuum_RPM'
-    TabOrder = 13
-  end
-  object lblGetMotorsVacuum_RPMValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 90.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 20
-  end
-  object lblGetMotorsVacuum_mA: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 114.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Vacuum_mA'
-    TabOrder = 22
-  end
-  object lblGetMotorsVacuum_mAValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 114.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 15
-  end
-  object lblGetMotorsLeftWheel_RPM: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 162.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'LeftWheel_RPM'
-    TabOrder = 19
-  end
-  object lblGetMotorsLeftWheel_RPMValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 162.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 8
-  end
-  object lblGetMotorsLeftWheel_Load: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 186.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'LeftWheel_Load%'
-    TabOrder = 10
-  end
-  object lblGetMotorsLeftWheel_LoadValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 186.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 12
-  end
-  object lblGetMotorsLeftWheel_PositionInMM: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 208.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'LeftWheel_PositionInMM'
-    TabOrder = 34
-  end
-  object lblGetMotorsLeftWheel_PositionInMMValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 208.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 26
-  end
-  object lblGetMotorsLeftWheel_Speed: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 232.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'LeftWheel_Speed'
-    TabOrder = 30
-  end
-  object lblGetMotorsLeftWheel_SpeedValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 232.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 14
-  end
-  object lblGetMotorsRightWheel_RPM: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 298.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'RightWheel_RPM'
-    TabOrder = 24
-  end
-  object lblGetMotorsRightWheel_RPMValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 298.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 16
-  end
-  object lblGetMotorsRightWheel_Load: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'RightWheel_Load%'
-    TabOrder = 18
-  end
-  object lblGetMotorsRightWheel_LoadValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 0
-  end
-  object lblGetMotorsRightWheel_PositionInMM: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 346.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'RightWheel_PositionInMM'
-    TabOrder = 6
-  end
-  object lblGetMotorsRightWheel_PositionInMMValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 346.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 9
-  end
-  object lblGetMotorsRightWheel_Speed: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 370.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'RightWheel_Speed'
-    TabOrder = 3
-  end
-  object lblGetMotorsRightWheel_SpeedValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 370.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 7
-  end
-  object lblGetMotorsSideBrush_mA: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 458.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'SideBrush_mA'
-    TabOrder = 1
-  end
-  object lblGetMotorsSideBrush_mAValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 458.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 4
-  end
-  object lblGetMotorsCharger_mAH: TLabel
-    Position.X = 16.000000000000000000
-    Position.Y = 418.000000000000000000
-    Size.Width = 190.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Charger_mAH'
-    TabOrder = 2
-  end
-  object lblGetMotorsCharger_mAHValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 221.000000000000000000
-    Position.Y = 418.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 5
+  ClientHeight = 518
+  ClientWidth = 795
+  DesignerMasterStyle = 0
+  inherited Layout: TScaledLayout
+    OriginalWidth = 795.000000000000000000
+    OriginalHeight = 518.000000000000000000
+    Size.Width = 795.000000000000000000
+    Size.Height = 518.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 487.000000000000000000
+      Size.Width = 775.000000000000000000
+    end
+    object lblGetMotorsBrush_mA: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Brush_mA'
+      TabOrder = 1
+    end
+    object lblGetMotorsBrush_mAValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 50.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 2
+    end
+    object lblGetMotorsBrush_RPM: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Brush_RPM'
+      TabOrder = 3
+    end
+    object lblGetMotorsBrush_RPMValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 26.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 4
+    end
+    object lblGetMotorsCharger_mAH: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 418.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Charger_mAH'
+      TabOrder = 5
+    end
+    object lblGetMotorsCharger_mAHValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 420.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 6
+    end
+    object lblGetMotorsLeftWheel_Load: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 186.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'LeftWheel_Load%'
+      TabOrder = 7
+    end
+    object lblGetMotorsLeftWheel_LoadValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 188.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 8
+    end
+    object lblGetMotorsLeftWheel_PositionInMM: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 208.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'LeftWheel_PositionInMM'
+      TabOrder = 9
+    end
+    object lblGetMotorsLeftWheel_PositionInMMValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 210.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 10
+    end
+    object lblGetMotorsLeftWheel_RPM: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 162.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'LeftWheel_RPM'
+      TabOrder = 11
+    end
+    object lblGetMotorsLeftWheel_RPMValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 164.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 12
+    end
+    object lblGetMotorsLeftWheel_Speed: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'LeftWheel_Speed'
+      TabOrder = 13
+    end
+    object lblGetMotorsLeftWheel_SpeedValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 234.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 14
+    end
+    object lblGetMotorsRightWheel_Load: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'RightWheel_Load%'
+      TabOrder = 15
+    end
+    object lblGetMotorsRightWheel_LoadValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 324.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 16
+    end
+    object lblGetMotorsRightWheel_PositionInMM: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 346.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'RightWheel_PositionInMM'
+      TabOrder = 17
+    end
+    object lblGetMotorsRightWheel_PositionInMMValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 348.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 18
+    end
+    object lblGetMotorsRightWheel_RPM: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 298.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'RightWheel_RPM'
+      TabOrder = 19
+    end
+    object lblGetMotorsRightWheel_RPMValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 300.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 20
+    end
+    object lblGetMotorsRightWheel_Speed: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 370.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'RightWheel_Speed'
+      TabOrder = 21
+    end
+    object lblGetMotorsRightWheel_SpeedValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 372.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 22
+    end
+    object lblGetMotorsSideBrush_mA: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 458.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'SideBrush_mA'
+      TabOrder = 23
+    end
+    object lblGetMotorsSideBrush_mAValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 460.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 24
+    end
+    object lblGetMotorsVacuum_mA: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 114.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Vacuum_mA'
+      TabOrder = 25
+    end
+    object lblGetMotorsVacuum_mAValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 26
+    end
+    object lblGetMotorsVacuum_RPM: TLabel
+      Position.X = 16.000000000000000000
+      Position.Y = 90.000000000000000000
+      Size.Width = 190.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Vacuum_RPM'
+      TabOrder = 27
+    end
+    object lblGetMotorsVacuum_RPMValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 221.000000000000000000
+      Position.Y = 92.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 28
+    end
+    object rectScopes: TRectangle
+      Fill.Color = claWheat
+      Position.X = 336.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 441.000000000000000000
+      Size.Height = 449.000000000000000000
+      Size.PlatformDefault = False
+      object scopeBrush: TTMSFMXScope
+        Align = Top
+        ClipChildren = True
+        DisableFocusEffect = False
+        Position.Y = 17.000000000000000000
+        TabOrder = 0
+        Size.Width = 441.000000000000000000
+        Size.Height = 95.000000000000000000
+        Size.PlatformDefault = False
+        YAxis.Format = '%.2f'
+        YAxis.Size = 75.000000000000000000
+        Interval = 100
+        MaxValue = 5000.000000000000000000
+        MinValue = 0.000000000000000000
+        Channels = <
+          item
+          end
+          item
+            Color = claLightgreen
+          end>
+        Fill.Color = claBlack
+        Fill.Kind = Solid
+      end
+      object scopeVacuummA: TTMSFMXScope
+        Align = Top
+        ClipChildren = True
+        DisableFocusEffect = False
+        Position.Y = 241.000000000000000000
+        TabOrder = 1
+        Size.Width = 441.000000000000000000
+        Size.Height = 95.000000000000000000
+        Size.PlatformDefault = False
+        YAxis.Format = '%.2f'
+        YAxis.Size = 75.000000000000000000
+        Interval = 100
+        MaxValue = 2000.000000000000000000
+        MinValue = 0.000000000000000000
+        Channels = <
+          item
+            Color = claLightgreen
+          end>
+        Fill.Color = claBlack
+        Fill.Kind = Solid
+      end
+      object scopeLeftRightWheelRPM: TTMSFMXScope
+        Align = Top
+        ClipChildren = True
+        DisableFocusEffect = False
+        Position.Y = 353.000000000000000000
+        TabOrder = 2
+        Size.Width = 441.000000000000000000
+        Size.Height = 95.000000000000000000
+        Size.PlatformDefault = False
+        YAxis.Format = '%.2f'
+        YAxis.Size = 75.000000000000000000
+        Interval = 100
+        MaxValue = 8000.000000000000000000
+        MinValue = 0.000000000000000000
+        Channels = <
+          item
+          end
+          item
+            Color = claLightgreen
+          end>
+        Fill.Color = claBlack
+        Fill.Kind = Solid
+      end
+      object scopeVacuumRPM: TTMSFMXScope
+        Align = Top
+        ClipChildren = True
+        DisableFocusEffect = False
+        Position.Y = 129.000000000000000000
+        TabOrder = 3
+        Size.Width = 441.000000000000000000
+        Size.Height = 95.000000000000000000
+        Size.PlatformDefault = False
+        YAxis.Format = '%.2f'
+        YAxis.Size = 75.000000000000000000
+        Interval = 100
+        MaxValue = 20000.000000000000000000
+        MinValue = 0.000000000000000000
+        Channels = <
+          item
+          end>
+        Fill.Color = claBlack
+        Fill.Kind = Solid
+      end
+      object lblBrushCaption: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 441.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'Brush RPM (Yellow) Brush mA (Green)'
+        TabOrder = 4
+      end
+      object lblVacuumRPM: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style]
+        Position.Y = 112.000000000000000000
+        Size.Width = 441.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'Vacuum RPM'
+        TabOrder = 5
+      end
+      object lblVacuummA: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style]
+        Position.Y = 224.000000000000000000
+        Size.Width = 441.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'Vacuum mA'
+        TabOrder = 6
+      end
+      object lblLeftAndRightWheelRPM: TLabel
+        Align = Top
+        StyledSettings = [Family, Size, Style]
+        Position.Y = 336.000000000000000000
+        Size.Width = 441.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'Left Wheel RPM (Yellow) Right Wheel RPM  (Green)'
+        TabOrder = 7
+      end
+    end
   end
 end

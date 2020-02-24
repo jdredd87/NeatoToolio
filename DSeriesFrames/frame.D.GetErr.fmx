@@ -1,39 +1,44 @@
 inherited FrameDGetErr: TFrameDGetErr
-  Size.Width = 894.000000000000000000
-  Size.Height = 237.000000000000000000
+  ClientHeight = 523
+  ClientWidth = 915
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
-    Left = 560
-    Top = 120
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 206.000000000000000000
-    Size.Width = 874.000000000000000000
-  end
-  object sgGetErr: TStringGrid
-    Align = Client
-    CanFocus = True
-    ClipChildren = True
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Size.Width = 884.000000000000000000
-    Size.Height = 191.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'gridstyle'
-    TabOrder = 0
-    RowCount = 6
-    Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 884.000000000000000000
-    Viewport.Height = 191.000000000000000000
-    object scGetErrName: TStringColumn
-      Header = 'Code'
-      Size.Width = 200.000000000000000000
+  inherited Layout: TScaledLayout
+    OriginalWidth = 915.000000000000000000
+    OriginalHeight = 523.000000000000000000
+    Size.Width = 915.000000000000000000
+    Size.Height = 523.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 492.000000000000000000
+      Size.Width = 895.000000000000000000
     end
-    object scGetErrValue: TStringColumn
-      Header = 'Description'
-      Size.Width = 672.000000000000000000
+    object sgGetErr: TStringGrid
+      Align = Client
+      CanFocus = True
+      ClipChildren = True
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 905.000000000000000000
+      Size.Height = 477.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'gridstyle'
+      TabOrder = 1
+      RowCount = 6
+      Options = [ColumnResize, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+      Viewport.Width = 901.000000000000000000
+      Viewport.Height = 452.000000000000000000
+      object scGetErrName: TStringColumn
+        Header = 'Code'
+        Size.Width = 200.000000000000000000
+      end
+      object scGetErrValue: TStringColumn
+        Header = 'Description'
+        Size.Width = 672.000000000000000000
+      end
     end
   end
 end

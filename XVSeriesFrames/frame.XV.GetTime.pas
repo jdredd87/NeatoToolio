@@ -5,11 +5,11 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.XV.GetTime,
-  FMX.TabControl,
+  neato.XV.GetTime, fmx.objects,
+  fmx.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.DateTimeCtrls, FMX.Objects, FMX.Layouts, FMX.Effects, FMX.Filter.Effects;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, fmx.Controls.Presentation,
+  fmx.DateTimeCtrls,  fmx.Layouts, fmx.Effects, fmx.Filter.Effects;
 
 type
   // https://www.youtube.com/watch?v=QL5SdJAiWGE
@@ -55,7 +55,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -63,9 +63,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeXVGetTime.Create(AOwner: TComponent);
+constructor TframeXVGetTime.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

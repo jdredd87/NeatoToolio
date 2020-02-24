@@ -8,7 +8,8 @@ uses
   neato.D.SetNavigationMode,
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects,
+  FMX.Layouts;
 
 type
   TframeDSetNavigationMode = class(TframeMaster)
@@ -22,21 +23,29 @@ type
     procedure btnSetNavigationModeClick(Sender: TObject);
     procedure btnSetNavigationModeMouseEnter(Sender: TObject);
     procedure btnSetNavigationModeMouseLeave(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
+
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDSetNavigationMode.Create(AOwner: TComponent);
+constructor TframeDSetNavigationMode.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDSetNavigationMode.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDSetNavigationMode.btnSetNavigationModeClick(Sender: TObject);
@@ -67,7 +76,7 @@ begin
     pReadData := tstringlist.Create;
     pSetNavigationMode := tSetNavigationMode.Create;
 
-    pReadData.Text := dm.com.SendCommand(sSetNavigationMode+' '+cmd);
+    pReadData.Text := dm.com.SendCommand(sSetNavigationMode + ' ' + cmd);
 
     r := pSetNavigationMode.ParseText(pReadData);
 
@@ -115,10 +124,10 @@ end;
 
 procedure TframeDSetNavigationMode.check;
 begin
- btnSetNavigationModeNormal.Enabled := dm.com.Active;
- btnSetNavigationModeGentle.Enabled := dm.com.Active;
- btnSetNavigationModeDeep.Enabled := dm.com.Active;
- btnSetNavigationModeQuick.Enabled := dm.com.Active;
+  btnSetNavigationModeNormal.Enabled := dm.com.Active;
+  btnSetNavigationModeGentle.Enabled := dm.com.Active;
+  btnSetNavigationModeDeep.Enabled := dm.com.Active;
+  btnSetNavigationModeQuick.Enabled := dm.com.Active;
 end;
 
 end.

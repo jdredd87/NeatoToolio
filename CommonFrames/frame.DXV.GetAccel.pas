@@ -7,9 +7,11 @@ uses
   dmCommon,
   neato.DXV.GetAccel,
   FMX.TabControl,
+  FMX.Objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
-  FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D;
+  FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
+  FMX.Layouts;
 
 type
   TframeDXVGetAccel = class(TframeMaster)
@@ -31,7 +33,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -39,9 +41,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVGetAccel.Create(AOwner: TComponent);
+constructor TframeDXVGetAccel.Create(AOwner: TComponent; rect:trectangle);
 begin
-  inherited;
+  inherited create(aowner,rect);
   lblFrameTitle.Text := sDescription;
 end;
 

@@ -9,7 +9,7 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox, FMX.ScrollBox, FMX.Memo;
+  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox, FMX.ScrollBox, FMX.Memo, FMX.Layouts;
 
 type
   TframeDXVSetBatteryTest = class(TframeMaster)
@@ -20,20 +20,27 @@ type
     lblSetBatteryTest: TLabel;
     memoSetBatteryTest: TMemo;
     procedure btnSetWallFollowerClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetBatteryTest.Create(AOwner: TComponent);
+constructor TframeDXVSetBatteryTest.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVSetBatteryTest.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDXVSetBatteryTest.btnSetWallFollowerClick(Sender: TObject);
@@ -79,8 +86,8 @@ procedure TframeDXVSetBatteryTest.check;
 begin
   btnSetBateryTestEnabled.Enabled := dm.com.Active;
   btnSetBatteryTestDisabled.Enabled := dm.com.Active;
-  if dm.COM.Active then
-   dm.chkTestmode.IsChecked := true;
+  if dm.com.Active then
+    dm.chkTestmode.IsChecked := true;
 end;
 
 end.

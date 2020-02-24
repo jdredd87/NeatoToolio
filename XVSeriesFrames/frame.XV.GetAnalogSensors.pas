@@ -4,11 +4,11 @@ interface
 
 uses
   frame.master,
-  dmCommon,
+  dmCommon, fmx.objects,
   neato.XV.GetAnalogSensors,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.TabControl;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, fmx.Controls.Presentation,
+  fmx.TabControl, fmx.Layouts;
 
 type
   TframeXVGetAnalogSensors = class(TframeMaster)
@@ -62,7 +62,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -70,9 +70,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeXVGetAnalogSensors.Create(AOwner: TComponent);
+constructor TframeXVGetAnalogSensors.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 
@@ -99,7 +99,7 @@ begin
   if r then
   begin
 
-    lblGetAnalogSensorsBatteryVoltageInValue.Text := pGetAnalogSensors.BatteryVoltageInmV.ToString +  'mV';
+    lblGetAnalogSensorsBatteryVoltageInValue.Text := pGetAnalogSensors.BatteryVoltageInmV.ToString + 'mV';
     pbGetAnalogSensorsBatteryVoltageInValue.Value := pGetAnalogSensors.BatteryVoltageInmV;
 
     lblGetAnalogSensorsBatteryTemp0InCValue.Text := pGetAnalogSensors.BatteryTemp0InC.ToString + ' *C';
@@ -114,10 +114,10 @@ begin
     lblGetAnalogSensorsChargeVoltInmVValue.Text := pGetAnalogSensors.VacuumCurrentInmA.ToString + ' mA';
     pbGetAnalogSensorsChargeVoltInmVValue.Value := pGetAnalogSensors.VacuumCurrentInmA;
 
-    lblGetAnalogSensorsCurrentInmAValue.Text := pGetAnalogSensors.CurrentInmA.ToString +' mA';
+    lblGetAnalogSensorsCurrentInmAValue.Text := pGetAnalogSensors.CurrentInmA.ToString + ' mA';
     pbGetAnalogSensorsCurrentInmAValue.Value := pGetAnalogSensors.CurrentInmA;
 
-    lblGetAnalogSensorsSideBrushCurrentInmAValue.Text := pGetAnalogSensors.SideBrushCurrentInmA.ToString +' mA';
+    lblGetAnalogSensorsSideBrushCurrentInmAValue.Text := pGetAnalogSensors.SideBrushCurrentInmA.ToString + ' mA';
     pnGetAnalogSensorsSideBrushCurrentInmAValue.Value := pGetAnalogSensors.SideBrushCurrentInmA;
 
     lblGetAnalogSensorsVoltageReferenceInmVValue.Text := pGetAnalogSensors.VoltageReferenceInmV.ToString + ' mV';
@@ -143,7 +143,7 @@ end;
 
 procedure TframeXVGetAnalogSensors.check;
 begin
-//
+  //
 end;
 
 end.

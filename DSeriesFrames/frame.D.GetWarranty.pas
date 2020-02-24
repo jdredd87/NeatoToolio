@@ -5,10 +5,11 @@ interface
 uses
   frame.master,
   dmCommon,
+  fmx.objects,
   neato.D.GetWarranty,
-  FMX.TabControl,
+  fmx.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, fmx.Controls.Presentation, fmx.Layouts;
 
 type
   TframeDGetWarranty = class(TframeMaster)
@@ -22,7 +23,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -30,9 +31,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDGetWarranty.Create(AOwner: TComponent);
+constructor TframeDGetWarranty.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

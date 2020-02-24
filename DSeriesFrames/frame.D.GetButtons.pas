@@ -5,10 +5,10 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetButtons,
+  neato.D.GetButtons, FMX.Objects,
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts;
 
 type
   TframeDGetButtons = class(TframeMaster)
@@ -48,7 +48,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -56,9 +56,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDGetButtons.Create(AOwner: TComponent);
+constructor TframeDGetButtons.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

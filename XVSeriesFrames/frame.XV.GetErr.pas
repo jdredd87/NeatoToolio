@@ -5,11 +5,11 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.XV.GetErr,
-  FMX.TabControl,
+  neato.XV.GetErr, fmx.objects,
+  fmx.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.Controls.Presentation, FMX.ScrollBox;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, System.Rtti, fmx.Grid.Style, fmx.Grid,
+  fmx.Controls.Presentation, fmx.ScrollBox, fmx.Layouts;
 
 type
   TFrameXVGetErr = class(TframeMaster)
@@ -20,7 +20,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -28,9 +28,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TFrameXVGetErr.Create(AOwner: TComponent);
+constructor TFrameXVGetErr.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

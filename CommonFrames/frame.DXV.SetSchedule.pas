@@ -4,12 +4,12 @@ interface
 
 uses
   frame.master,
-  dmCommon,
+  dmCommon, fmx.objects,
   neato.DXV.SetSchedule,
-  FMX.TabControl,
+  fmx.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, fmx.Controls.Presentation,
+  fmx.DateTimeCtrls, fmx.Edit, fmx.EditBox, fmx.SpinBox, fmx.ListBox, fmx.Layouts;
 
 type
   TframeXVSetSchedule = class(TframeMaster)
@@ -30,9 +30,10 @@ type
     procedure ckSetScheduleEnabledChange(Sender: TObject);
     procedure cbSetScheduleDayChange(Sender: TObject);
     procedure btnSetScheduleModeONClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   public
     { Private declarations }
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -40,10 +41,16 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeXVSetSchedule.Create(AOwner: TComponent);
+constructor TframeXVSetSchedule.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeXVSetSchedule.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeXVSetSchedule.btnSetScheduleApplyClick(Sender: TObject);

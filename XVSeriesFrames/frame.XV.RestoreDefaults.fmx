@@ -1,27 +1,33 @@
 inherited frameXVRestoreDefaults: TframeXVRestoreDefaults
-  Size.Width = 738.000000000000000000
-  Size.Height = 159.000000000000000000
+  ClientHeight = 410
+  ClientWidth = 469
+  DesignerMasterStyle = 3
   inherited timer_getdata: TTimer
-    Left = 504
-    Top = 64
+    Left = 24
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 128.000000000000000000
-    Size.Width = 718.000000000000000000
-  end
-  object btnRestoreDefaults: TButton
-    Enabled = False
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 16.000000000000000000
-    Size.Width = 151.000000000000000000
-    Size.Height = 70.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    Text = 'Restore Defaults'
-    OnClick = btnRestoreDefaultsClick
+  inherited Layout: TScaledLayout
+    OriginalWidth = 469.000000000000000000
+    OriginalHeight = 410.000000000000000000
+    Size.Width = 469.000000000000000000
+    Size.Height = 410.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 379.000000000000000000
+      Size.Width = 449.000000000000000000
+    end
+    object btnRestoreDefaults: TButton
+      Enabled = False
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 151.000000000000000000
+      Size.Height = 70.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Restore Defaults'
+      OnClick = btnRestoreDefaultsClick
+    end
   end
 end

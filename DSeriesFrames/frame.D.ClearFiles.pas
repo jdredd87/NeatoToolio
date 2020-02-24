@@ -5,10 +5,10 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.ClearFiles,
-  FMX.TabControl,
+  neato.D.ClearFiles, fmx.objects,
+  fmx.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, fmx.Controls.Presentation, fmx.Layouts;
 
 type
   TframeDClearFiles = class(TframeMaster)
@@ -18,20 +18,21 @@ type
     btnClearFiles: TButton;
     procedure rbClearFilesBBChange(Sender: TObject);
     procedure btnClearFilesClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure Check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDClearFiles.Create(AOwner: TComponent);
+constructor TframeDClearFiles.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 
@@ -74,6 +75,12 @@ procedure TframeDClearFiles.rbClearFilesBBChange(Sender: TObject);
 begin
   btnClearFiles.Enabled := gbClearFiles.Index > -1;
   resetfocus;
+end;
+
+procedure TframeDClearFiles.timer_getdataTimer(Sender: TObject);
+begin
+  inherited;
+//
 end;
 
 procedure TframeDClearFiles.Check;

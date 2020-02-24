@@ -9,7 +9,7 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox;
+  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox, FMX.Layouts;
 
 Const
   sCommandWait = 'These commands take a few seconds to complete.';
@@ -47,11 +47,12 @@ type
     procedure btnSetDistanceCalClick(Sender: TObject);
     procedure btnSetDistanceCalWallMinimumMouseEnter(Sender: TObject);
     procedure btnSetDistanceCalDropMinimumMouseLeave(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     { Private declarations }
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -59,10 +60,16 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetDistanceCal.Create(AOwner: TComponent);
+constructor TframeDXVSetDistanceCal.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVSetDistanceCal.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDXVSetDistanceCal.btnSetDistanceCalClick(Sender: TObject);
@@ -193,7 +200,7 @@ end;
 
 procedure TframeDXVSetDistanceCal.check;
 begin
-//
+  //
 end;
 
 end.

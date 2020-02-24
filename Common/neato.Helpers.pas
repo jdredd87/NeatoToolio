@@ -34,8 +34,12 @@ type
 
   TStringArray = array of string; // for splitString
   TIntegerArray = array of Integer; // for splitString
-  TCharSet = set of AnsiChar;
 
+{$IFDEF MSWINDOWS}
+  TCharSet = set of AnsiChar;
+{$ELSE}
+  TCharSet = set of Char;
+{$ENDIF}
 function GetSubData(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String; _Type: TVarType): Boolean;
 
 function GetSubDataNameValuePair(dStr: tstringlist; var item: tNeatoNameValuePair; LookFor: String;
@@ -45,8 +49,14 @@ function HEX_TimeInSecs_asHours(HexValue: string): Double; // some values have H
 function String_TimeInSecs_asHours(HexValue: string): Double; // some values have string number to represent time
 function splitString(const Str: string; const delims: TCharSet; RemoveBlanks: Boolean = false): tstringlist;
 function OccurrencesOfChar(const S: string; const C: Char): Integer;
+
+{$IFDEF MSWINDOWS}
 function Hex2String(const Buffer: string): AnsiString;
 function String2Hex(const Buffer: AnsiString): string;
+{$ELSE}
+function Hex2String(const Buffer: string): String;
+function String2Hex(const Buffer: String): string;
+{$ENDIF}
 function FixStringCommaTwoPart(InputStr: string): String;
 function GetAppVersionStr: string;
 
@@ -54,8 +64,10 @@ procedure LoadCSV(ScanData: String; sg: TStringGrid);
 procedure LoadImageID(id: String; img: TImage); overload;
 procedure LoadImageID(id: String; img: TImage3D); overload;
 
-function map(x, in_min, in_max, out_min, out_max: extended): extended; // Stole this code from Arduino as it is very handy!
-function MyGetFiles(const Path, Masks: string): TStringDynArray; // Stole this code from https://stackoverflow.com/questions/12726756/how-to-pass-multiple-file-extensions-to-tdirectory-getfiles/12726969
+function map(x, in_min, in_max, out_min, out_max: extended): extended;
+// Stole this code from Arduino as it is very handy!
+function MyGetFiles(const Path, Masks: string): TStringDynArray;
+// Stole this code from https://stackoverflow.com/questions/12726756/how-to-pass-multiple-file-extensions-to-tdirectory-getfiles/12726969
 
 implementation
 
@@ -64,19 +76,20 @@ var
   MaskArray: TStringDynArray;
   Predicate: TDirectory.TFilterPredicate;
 begin
-  MaskArray := strutils.SplitString(Masks, ';');
-  Predicate :=
-    function(const Path: string; const SearchRec: TSearchRec): Boolean
+  MaskArray := StrUtils.splitString(Masks, ';');
+  Predicate := function(const Path: string; const SearchRec: TSearchRec): Boolean
     var
       Mask: string;
     begin
       for Mask in MaskArray do
         if MatchesMask(SearchRec.Name, Mask) then
           exit(True);
-      exit(False);
+      exit(false);
     end;
   Result := TDirectory.GetFiles(Path, Predicate);
 end;
+
+{$IFDEF MSWINDOWS}
 
 function GetAppVersionStr: string;
 var
@@ -99,6 +112,14 @@ begin
     LongRec(FixedPtr.dwFileVersionLS).Hi, // release
     LongRec(FixedPtr.dwFileVersionLS).Lo]) // build
 end;
+{$ELSE}
+
+function GetAppVersionStr: string;
+begin
+  Result := '0.0.0';
+end;
+
+{$ENDIF}
 
 Function FixStringCommaTwoPart(InputStr: string): String;
 begin
@@ -110,10 +131,14 @@ procedure LoadImageID(id: String; img: TImage);
 var
   InStream: TResourceStream;
 begin
+
   try
-    InStream := TResourceStream.Create(HInstance, id, RT_RCDATA);
-  except
-    InStream := TResourceStream.Create(HInstance, 'NeatoLogo', RT_RCDATA);
+    try
+      InStream := TResourceStream.Create(HInstance, id, RT_RCDATA);
+    except
+      InStream := TResourceStream.Create(HInstance, 'NeatoLogo', RT_RCDATA);
+    end;
+  finally
   end;
 
   if assigned(InStream) then
@@ -123,7 +148,7 @@ begin
     img.Bitmap.LoadFromStream(InStream);
     img.Width := img.Bitmap.Width;
     img.Height := img.Bitmap.Height;
-    img.Visible := true;
+    img.Visible := True;
     img.Canvas.EndScene;
     img.EndUpdate;
     InStream.Free;
@@ -135,9 +160,12 @@ var
   InStream: TResourceStream;
 begin
   try
-    InStream := TResourceStream.Create(HInstance, id, RT_RCDATA);
-  except
-    InStream := TResourceStream.Create(HInstance, 'NeatoLogo', RT_RCDATA);
+    try
+      InStream := TResourceStream.Create(HInstance, id, RT_RCDATA);
+    except
+      InStream := TResourceStream.Create(HInstance, 'NeatoLogo', RT_RCDATA);
+    end;
+  finally
   end;
 
   if assigned(InStream) then
@@ -146,6 +174,8 @@ begin
     InStream.Free;
   end;
 end;
+
+{$IFDEF MSWINDOWS}
 
 function String2Hex(const Buffer: AnsiString): string;
 begin
@@ -158,6 +188,21 @@ begin
   SetLength(Result, Length(Buffer) div 2);
   HexToBin(PChar(Buffer), PAnsiChar(Result), Length(Result));
 end;
+{$ELSE}
+
+function String2Hex(const Buffer: String): string;
+begin
+  SetLength(Result, Length(Buffer));
+  // showmessage('String2Hex broke');
+  // BinToHex(PChar(Buffer), PChar(Result), Length(Buffer));
+end;
+
+function Hex2String(const Buffer: string): String;
+begin
+  SetLength(Result, Length(Buffer));
+  // HexToBin(PChar(Buffer), PChar(Result), Length(Result));
+end;
+{$ENDIF}
 
 function OccurrencesOfChar(const S: string; const C: Char): Integer;
 var
@@ -185,7 +230,7 @@ begin
   for i := 1 to Length(Str) do
   begin
     if Str[i] = '(' then
-      tq := true;
+      tq := True;
     if Str[i] = ')' then
       tq := false;
     if (Str[i] in delims) and (tq = false) then
@@ -249,7 +294,12 @@ var
   value: longint;
 begin
   value := 0;
+{$IFDEF MSWINDOWS}
   trystrtoint('$' + HexValue, value);
+{$ELSE}
+  // trystrtoint('$' + HexValue, value);
+  value := 1;
+{$ENDIF}
   value := (value div 60) div 60;
   Result := value;
 end;

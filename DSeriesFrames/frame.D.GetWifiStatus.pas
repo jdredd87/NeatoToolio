@@ -6,9 +6,9 @@ uses
   frame.master,
   dmCommon,
   neato.D.GetWifiStatus,
-  FMX.TabControl,
+  FMX.TabControl, FMX.objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts;
 
 type
   TframeDGetWifiStatus = class(TframeMaster)
@@ -55,7 +55,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -63,9 +63,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDGetWifiStatus.Create(AOwner: TComponent);
+constructor TframeDGetWifiStatus.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

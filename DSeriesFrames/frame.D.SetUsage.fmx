@@ -1,114 +1,123 @@
 inherited frameDSetUsage: TframeDSetUsage
-  Size.Width = 578.000000000000000000
-  Size.Height = 321.000000000000000000
+  ClientHeight = 397
+  ClientWidth = 468
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 520
-    Top = 24
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 290.000000000000000000
-    Size.Width = 558.000000000000000000
-    TabOrder = 36
-  end
-  object rectTop: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 578.000000000000000000
-    Size.Height = 217.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetUsageMainBrush: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
+  inherited Layout: TScaledLayout
+    OriginalWidth = 468.000000000000000000
+    OriginalHeight = 397.000000000000000000
+    Size.Width = 468.000000000000000000
+    Size.Height = 397.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 366.000000000000000000
+      Size.Width = 448.000000000000000000
+      TabOrder = 36
+    end
+    object lblSetUsageError: TLabel
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 275.000000000000000000
+      Size.Width = 448.000000000000000000
+      Size.Height = 43.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'MainBrush'
-      OnClick = btnSetNavigationModeClick
-      OnMouseEnter = btnSetNavigationModeMouseEnter
-      OnMouseLeave = btnSetNavigationModeMouseLeave
+      TextSettings.HorzAlign = Trailing
+      TabOrder = 37
     end
-    object btnSetUsageSideBrush: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 72.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
+    object rectTop: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 468.000000000000000000
+      Size.Height = 217.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 1
-      Text = 'SideBrush'
-      OnClick = btnSetNavigationModeClick
-      OnMouseEnter = btnSetNavigationModeMouseEnter
-      OnMouseLeave = btnSetNavigationModeMouseLeave
+      object btnSetUsageMainBrush: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'MainBrush'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object btnSetUsageSideBrush: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'SideBrush'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object btnSetUsageDustBin: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 120.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Dustbin'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object btnSetUsageFilter: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 168.000000000000000000
+        Size.Width = 193.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        Text = 'Quick'
+        OnClick = btnSetNavigationModeClick
+        OnMouseEnter = btnSetNavigationModeMouseEnter
+        OnMouseLeave = btnSetNavigationModeMouseLeave
+      end
+      object sbSetUsageSeconds: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 4
+        Cursor = crIBeam
+        Max = 3686400.000000000000000000
+        Position.X = 248.000000000000000000
+        Position.Y = 104.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object lblSetUsageLifeTime: TLabel
+        Position.X = 248.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 177.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Life time in seconds'
+        TabOrder = 5
+      end
     end
-    object btnSetUsageDustBin: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 120.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
+    object lblSetUsageDescription: TLabel
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 222.000000000000000000
+      Size.Width = 448.000000000000000000
+      Size.Height = 43.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
-      Text = 'Dustbin'
-      OnClick = btnSetNavigationModeClick
-      OnMouseEnter = btnSetNavigationModeMouseEnter
-      OnMouseLeave = btnSetNavigationModeMouseLeave
+      TextSettings.HorzAlign = Center
+      TabOrder = 39
     end
-    object btnSetUsageFilter: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 168.000000000000000000
-      Size.Width = 193.000000000000000000
-      Size.Height = 33.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 3
-      Text = 'Quick'
-      OnClick = btnSetNavigationModeClick
-      OnMouseEnter = btnSetNavigationModeMouseEnter
-      OnMouseLeave = btnSetNavigationModeMouseLeave
-    end
-    object sbSetUsageSeconds: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 4
-      Cursor = crIBeam
-      Max = 3686400.000000000000000000
-      Position.X = 248.000000000000000000
-      Position.Y = 104.000000000000000000
-      Size.Width = 153.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object lblSetUsageLifeTime: TLabel
-      Position.X = 248.000000000000000000
-      Position.Y = 72.000000000000000000
-      Text = 'Life time in seconds'
-      TabOrder = 5
-    end
-  end
-  object lblSetUsageDescription: TLabel
-    Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 222.000000000000000000
-    Size.Width = 558.000000000000000000
-    Size.Height = 43.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Center
-    TabOrder = 35
-  end
-  object lblSetUsageError: TLabel
-    Align = Top
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 10.000000000000000000
-    Position.Y = 275.000000000000000000
-    Size.Width = 558.000000000000000000
-    Size.Height = 43.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    TabOrder = 34
   end
 end

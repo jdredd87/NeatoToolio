@@ -1,415 +1,420 @@
 inherited frameDGetCharger: TframeDGetCharger
-  Align = Client
-  Size.Width = 539.000000000000000000
-  Size.Height = 412.000000000000000000
+  ClientHeight = 385
+  ClientWidth = 535
+  DesignerMasterStyle = 3
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
-    Left = 456
-    Top = 240
+    Left = 136
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 381.000000000000000000
-    Size.Width = 519.000000000000000000
-  end
-  object pbGetChargerFuelPercentValue: TProgressBar
-    Orientation = Vertical
-    Position.X = 22.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 50.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetChargerFuelPercentValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+  inherited Layout: TScaledLayout
+    OriginalWidth = 535.000000000000000000
+    OriginalHeight = 385.000000000000000000
+    Size.Width = 535.000000000000000000
+    Size.Height = 385.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 354.000000000000000000
+      Size.Width = 515.000000000000000000
+    end
+    object lblGetChargerBatteryFailure: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 145.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'BatteryFailure'
+      TabOrder = 1
+    end
+    object lblGetChargerBatteryOverTemp: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 210.000000000000000000
+      Size.Width = 145.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'BatteryOverTemp'
+      TabOrder = 2
+    end
+    object lblGetChargerBattTempCAvg: TLabel
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 80.000000000000000000
+      Position.Y = 180.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'BattTempCAvg'
+      TabOrder = 3
+    end
+    object lblGetChargerChargermAH: TLabel
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 344.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 90.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Charger mAH'
+      TabOrder = 4
+    end
+    object lblGetChargerChargingActive: TLabel
+      AutoSize = True
+      Position.X = 176.000000000000000000
+      Position.Y = 210.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ChargingActive'
+      TabOrder = 5
+    end
+    object lblGetChargerChargingEnabled: TLabel
+      AutoSize = True
+      Position.X = 328.000000000000000000
+      Position.Y = 210.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ChargingEnabled'
+      TabOrder = 6
+    end
+    object lblGetChargerConfidentOnFuel: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 266.000000000000000000
+      Size.Width = 145.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ConfidentOnFuel'
+      TabOrder = 7
+    end
+    object lblGetChargerDischargermAH: TLabel
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 424.000000000000000000
+      Position.Y = 180.000000000000000000
+      Size.Width = 110.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Discharger mAH'
+      TabOrder = 8
+    end
+    object lblGetChargerEmptyFuel: TLabel
+      AutoSize = True
+      Position.X = 328.000000000000000000
+      Position.Y = 266.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'EmptyFuel'
+      TabOrder = 9
+    end
+    object lblGetChargerExtPwrPresent: TLabel
+      AutoSize = True
+      Position.X = 176.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ExtPwrPresent'
+      TabOrder = 10
+    end
+    object lblGetChargerFuelPercent: TLabel
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 85.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'FuelPercent'
+      TabOrder = 11
+    end
+    object lblGetChargerOnReservedFuel: TLabel
+      AutoSize = True
+      Position.X = 176.000000000000000000
+      Position.Y = 266.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'OnReservedFuel'
+      TabOrder = 12
+    end
+    object lblGetChargerThermistorPresent: TLabel
+      AutoSize = True
+      Position.X = 328.000000000000000000
+      Position.Y = 322.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'ThermistorPresent'
+      TabOrder = 13
+    end
+    object lblGetChargerVBattV: TLabel
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 190.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'VBattV'
+      TabOrder = 14
+    end
+    object lblGetChargerVExtV: TLabel
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 280.000000000000000000
+      Position.Y = 180.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'VExtV'
+      TabOrder = 15
+    end
+    object pbGetChargerBattTempCAvgValue: TProgressBar
+      Max = 110.000000000000000000
+      Orientation = Vertical
+      Position.X = 102.000000000000000000
+      Position.Y = 48.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '50%'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 55.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetChargerBattTempCAvgValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '55*'
+        TabOrder = 0
+      end
     end
-  end
-  object lblGetChargerFuelPercent: TLabel
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 8.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 73.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
-    Text = 'FuelPercent'
-    TabOrder = 6
-  end
-  object pbGetChargerBattTempCAvgValue: TProgressBar
-    Max = 110.000000000000000000
-    Orientation = Vertical
-    Position.X = 102.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 55.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetChargerBattTempCAvgValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetChargerChargermAHValue: TProgressBar
+      Max = 4096.000000000000000000
+      Orientation = Vertical
+      Position.X = 374.000000000000000000
+      Position.Y = 48.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '55*'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 2096.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetChargerChargermAHValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '2096'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetChargerVBattVValue: TProgressBar
-    Max = 24.000000000000000000
-    Orientation = Vertical
-    Position.X = 190.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 12.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetChargerVbattVValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetChargerDischargermAHValue: TProgressBar
+      Max = 4096.000000000000000000
+      Orientation = Vertical
+      Position.X = 454.000000000000000000
+      Position.Y = 48.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '12v'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 2096.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetChargerDischargermAHValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '2096'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetChargerVextVValue: TProgressBar
-    Max = 24.000000000000000000
-    Orientation = Vertical
-    Position.X = 278.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 12.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetChargerVextVValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetChargerFuelPercentValue: TProgressBar
+      Orientation = Vertical
+      Position.X = 22.000000000000000000
+      Position.Y = 48.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '12v'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 50.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetChargerFuelPercentValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '50%'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetChargerChargermAHValue: TProgressBar
-    Max = 4096.000000000000000000
-    Orientation = Vertical
-    Position.X = 374.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 2096.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetChargerChargermAHValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetChargerVBattVValue: TProgressBar
+      Max = 24.000000000000000000
+      Orientation = Vertical
+      Position.X = 190.000000000000000000
+      Position.Y = 48.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '2096'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 12.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetChargerVbattVValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '12v'
+        TabOrder = 0
+      end
     end
-  end
-  object pbGetChargerDischargermAHValue: TProgressBar
-    Max = 4096.000000000000000000
-    Orientation = Vertical
-    Position.X = 454.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 43.000000000000000000
-    Size.Height = 131.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'progressbarstyle'
-    Value = 2096.000000000000000000
-    ParentShowHint = False
-    ShowHint = False
-    object lblGetChargerDischargermAHValue: TLabel
-      Align = Client
-      StyledSettings = [Family, Style]
+    object pbGetChargerVextVValue: TProgressBar
+      Max = 24.000000000000000000
+      Orientation = Vertical
+      Position.X = 278.000000000000000000
+      Position.Y = 48.000000000000000000
       Size.Width = 43.000000000000000000
       Size.Height = 131.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.Font.Size = 11.000000000000000000
-      TextSettings.FontColor = claWhite
-      TextSettings.HorzAlign = Center
-      Text = '2096'
-      TabOrder = 0
+      StyleLookup = 'progressbarstyle'
+      Value = 12.000000000000000000
+      ParentShowHint = False
+      ShowHint = False
+      object lblGetChargerVextVValue: TLabel
+        Align = Client
+        StyledSettings = [Family, Style]
+        Size.Width = 43.000000000000000000
+        Size.Height = 131.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = '12v'
+        TabOrder = 0
+      end
     end
-  end
-  object lblGetChargerBattTempCAvg: TLabel
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 80.000000000000000000
-    Position.Y = 180.000000000000000000
-    Size.Width = 100.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
-    Text = 'BattTempCAvg'
-    TabOrder = 5
-  end
-  object lblGetChargerVBattV: TLabel
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 190.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 50.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
-    Text = 'VBattV'
-    TabOrder = 4
-  end
-  object lblGetChargerVExtV: TLabel
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 280.000000000000000000
-    Position.Y = 180.000000000000000000
-    Size.Width = 50.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
-    Text = 'VExtV'
-    TabOrder = 3
-  end
-  object lblGetChargerChargermAH: TLabel
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 344.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 90.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
-    Text = 'Charger mAH'
-    TabOrder = 2
-  end
-  object lblGetChargerDischargermAH: TLabel
-    AutoSize = True
-    StyledSettings = [Family, Style, FontColor]
-    Position.X = 424.000000000000000000
-    Position.Y = 180.000000000000000000
-    Size.Width = 110.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 14.000000000000000000
-    Text = 'Discharger mAH'
-    TabOrder = 1
-  end
-  object swGetChargerBatteryOverTempValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 240.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 23
-  end
-  object swGetChargerChargingActiveValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 176.000000000000000000
-    Position.Y = 240.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 21
-  end
-  object swGetChargerChargingEnabledValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 328.000000000000000000
-    Position.Y = 240.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 15
-  end
-  object lblGetChargerBatteryOverTemp: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 210.000000000000000000
-    Size.Width = 145.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'BatteryOverTemp'
-    TabOrder = 27
-  end
-  object lblGetChargerChargingActive: TLabel
-    AutoSize = True
-    Position.X = 176.000000000000000000
-    Position.Y = 210.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'ChargingActive'
-    TabOrder = 28
-  end
-  object lblGetChargerChargingEnabled: TLabel
-    AutoSize = True
-    Position.X = 328.000000000000000000
-    Position.Y = 210.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'ChargingEnabled'
-    TabOrder = 29
-  end
-  object lblGetChargerConfidentOnFuel: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 266.000000000000000000
-    Size.Width = 145.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'ConfidentOnFuel'
-    TabOrder = 26
-  end
-  object swGetChargerConfidentOnFuelValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 296.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 22
-  end
-  object lblGetChargerOnReservedFuel: TLabel
-    AutoSize = True
-    Position.X = 176.000000000000000000
-    Position.Y = 266.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'OnReservedFuel'
-    TabOrder = 25
-  end
-  object swGetChargerOnReservedFuelValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 176.000000000000000000
-    Position.Y = 296.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 17
-  end
-  object lblGetChargerEmptyFuel: TLabel
-    AutoSize = True
-    Position.X = 328.000000000000000000
-    Position.Y = 266.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'EmptyFuel'
-    TabOrder = 24
-  end
-  object swGetChargerEmptyFuelValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 328.000000000000000000
-    Position.Y = 296.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 13
-  end
-  object lblGetChargerBatteryFailure: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 145.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'BatteryFailure'
-    TabOrder = 20
-  end
-  object swGetChargerBatteryFailureValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 352.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 16
-  end
-  object lblGetChargerExtPwrPresent: TLabel
-    AutoSize = True
-    Position.X = 176.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 120.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'ExtPwrPresent'
-    TabOrder = 19
-  end
-  object swGetChargerExtPwrPresentValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 176.000000000000000000
-    Position.Y = 352.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 14
-  end
-  object lblGetChargerThermistorPresent: TLabel
-    AutoSize = True
-    Position.X = 328.000000000000000000
-    Position.Y = 322.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'ThermistorPresent'
-    TabOrder = 18
-  end
-  object swGetChargerThermistorPresentValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 328.000000000000000000
-    Position.Y = 352.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 12
+    object swGetChargerBatteryFailureValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 352.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 22
+    end
+    object swGetChargerBatteryOverTempValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 240.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 23
+    end
+    object swGetChargerChargingActiveValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 176.000000000000000000
+      Position.Y = 240.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 24
+    end
+    object swGetChargerChargingEnabledValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 328.000000000000000000
+      Position.Y = 240.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 25
+    end
+    object swGetChargerConfidentOnFuelValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 296.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 26
+    end
+    object swGetChargerEmptyFuelValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 328.000000000000000000
+      Position.Y = 296.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 27
+    end
+    object swGetChargerExtPwrPresentValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 176.000000000000000000
+      Position.Y = 352.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 28
+    end
+    object swGetChargerOnReservedFuelValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 176.000000000000000000
+      Position.Y = 296.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 29
+    end
+    object swGetChargerThermistorPresentValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 328.000000000000000000
+      Position.Y = 352.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 30
+    end
   end
 end

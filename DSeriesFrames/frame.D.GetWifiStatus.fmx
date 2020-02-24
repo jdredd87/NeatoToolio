@@ -1,402 +1,407 @@
 inherited frameDGetWifiStatus: TframeDGetWifiStatus
-  Size.Width = 508.000000000000000000
-  Size.Height = 489.000000000000000000
+  ClientHeight = 532
+  ClientWidth = 797
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
     OnTimer = timer_getdataTimer
-    Left = 384
-    Top = 304
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 458.000000000000000000
-    Size.Width = 488.000000000000000000
-  end
-  object lblGetWifiStatusEnabled: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Enabled'
-    TabOrder = 35
-  end
-  object swGetWifiStatusEnabledValue: TSwitch
-    IsChecked = False
-    Position.X = 210.000000000000000000
-    Position.Y = 8.000000000000000000
-    Size.Width = 78.000000000000000000
-    Size.Height = 20.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 49
-  end
-  object lblGetWifiStatusIPADDR: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 33.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'IPADDR'
-    TabOrder = 39
-  end
-  object lblGetWifiStatusIPADDRValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 33.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 30
-  end
-  object lblGetWifiStatusWifiMode: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 58.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Wifi Mode'
-    TabOrder = 38
-  end
-  object lblGetWifiStatusWifiModeValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 59.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 29
-  end
-  object lblGetWifiStatusWifiOnInit: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 83.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Wifi On Init'
-    TabOrder = 34
-  end
-  object swGetWifiStatusWifiOnInitValue: TSwitch
-    IsChecked = False
-    Position.X = 210.000000000000000000
-    Position.Y = 84.000000000000000000
-    Size.Width = 78.000000000000000000
-    Size.Height = 20.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 47
-  end
-  object lblGetWifiStatusAPShutoffin: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 108.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'AP Shutoff in'
-    TabOrder = 37
-  end
-  object lblGetWifiStatusAPShutoffinValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 106.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 28
-  end
-  object lblGetWifiStatusAPDesired: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 134.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'AP Desired'
-    TabOrder = 33
-  end
-  object swGetWifiStatusAPDesiredValue: TSwitch
-    IsChecked = False
-    Position.X = 210.000000000000000000
-    Position.Y = 136.000000000000000000
-    Size.Width = 78.000000000000000000
-    Size.Height = 20.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 46
-  end
-  object lblGetWifiStatusLinkToBeehive: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 159.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Linked to Beehive'
-    TabOrder = 32
-  end
-  object swGetWifiStatusLinkToBeehiveValue: TSwitch
-    IsChecked = False
-    Position.X = 210.000000000000000000
-    Position.Y = 161.000000000000000000
-    Size.Width = 78.000000000000000000
-    Size.Height = 20.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 45
-  end
-  object lblGetWifiStatusNucleoConnected: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 184.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Nucleo Connected'
-    TabOrder = 31
-  end
-  object swGetWifiStatusNucleoConnectedValue: TSwitch
-    IsChecked = False
-    Position.X = 210.000000000000000000
-    Position.Y = 187.000000000000000000
-    Size.Width = 78.000000000000000000
-    Size.Height = 20.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 44
-  end
-  object lblGetWifiStatusEZConnectMessage: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 209.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'EZ-Connect Message'
-    TabOrder = 36
-  end
-  object lblGetWifiStatusEZConnectMessageValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 212.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 27
-  end
-  object lblGetWifiStatusRobotName: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 235.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Robot Name'
-    TabOrder = 15
-  end
-  object lblGetWifiStatusRobotNameValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 236.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 25
-  end
-  object lblGetWifiStatusSSID: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 260.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'SSID'
-    TabOrder = 20
-  end
-  object lblGetWifiStatusSSIDValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 260.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 26
-  end
-  object lblGetWifiStatusScanning: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 285.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Scanning'
-    TabOrder = 19
-  end
-  object lblGetWifiStatusScanningValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 285.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 23
-  end
-  object lblGetWifiStatusSignalStrength: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 310.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Signal Strength'
-    TabOrder = 12
-  end
-  object lblGetWifiStatusSignalStrengthValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 310.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 24
-  end
-  object lblGetWifiStatusBSSID: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 335.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'BSSID'
-    TabOrder = 9
-  end
-  object lblGetWifiStatusBSSIDValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 335.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 21
-  end
-  object lblGetWifiStatusBeehiveURL: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 361.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Beehive URL'
-    TabOrder = 10
-  end
-  object lblGetWifiStatusBeehiveURLValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 361.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 22
-  end
-  object lblGetWifiStatusNucleoURL: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 386.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Nucleo URL'
-    TabOrder = 16
-  end
-  object lblGetWifiStatusNucleoURLValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 386.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 17
-  end
-  object lblGetWifiStatusNTPURL: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 411.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'NTP URL'
-    TabOrder = 11
-  end
-  object lblGetWifiStatusNTPURLValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 411.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 18
-  end
-  object lblGetWifiStatusUTCOffset: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 436.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'UTC Offset'
-    TabOrder = 7
-  end
-  object lblGetWifiStatusUTCOffsetValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 436.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 13
-  end
-  object lblGetWifiStatusTimeZone: TLabel
-    Position.X = 8.000000000000000000
-    Position.Y = 462.000000000000000000
-    Size.Width = 185.000000000000000000
-    Size.Height = 25.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'Time Zone'
-    TabOrder = 8
-  end
-  object lblGetWifiStatusTimeZoneValue: TLabel
-    AutoSize = True
-    Margins.Left = 5.000000000000000000
-    Position.X = 210.000000000000000000
-    Position.Y = 462.000000000000000000
-    Size.Width = 265.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0'
-    TabOrder = 14
+  inherited Layout: TScaledLayout
+    OriginalWidth = 797.000000000000000000
+    OriginalHeight = 532.000000000000000000
+    Size.Width = 797.000000000000000000
+    Size.Height = 532.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 501.000000000000000000
+      Size.Width = 777.000000000000000000
+    end
+    object lblGetWifiStatusAPDesired: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 134.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'AP Desired'
+      TabOrder = 1
+    end
+    object lblGetWifiStatusAPShutoffin: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 108.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'AP Shutoff in'
+      TabOrder = 2
+    end
+    object lblGetWifiStatusAPShutoffinValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 106.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 3
+    end
+    object lblGetWifiStatusBeehiveURL: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 361.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Beehive URL'
+      TabOrder = 4
+    end
+    object lblGetWifiStatusBeehiveURLValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 361.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 5
+    end
+    object lblGetWifiStatusBSSID: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 335.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'BSSID'
+      TabOrder = 6
+    end
+    object lblGetWifiStatusBSSIDValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 335.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 7
+    end
+    object lblGetWifiStatusEnabled: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Enabled'
+      TabOrder = 8
+    end
+    object lblGetWifiStatusEZConnectMessage: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 209.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'EZ-Connect Message'
+      TabOrder = 9
+    end
+    object lblGetWifiStatusEZConnectMessageValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 212.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 10
+    end
+    object lblGetWifiStatusIPADDR: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 33.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'IPADDR'
+      TabOrder = 11
+    end
+    object lblGetWifiStatusIPADDRValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 33.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 12
+    end
+    object lblGetWifiStatusLinkToBeehive: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 159.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Linked to Beehive'
+      TabOrder = 13
+    end
+    object lblGetWifiStatusNTPURL: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 411.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'NTP URL'
+      TabOrder = 14
+    end
+    object lblGetWifiStatusNTPURLValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 411.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 15
+    end
+    object lblGetWifiStatusNucleoConnected: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Nucleo Connected'
+      TabOrder = 16
+    end
+    object lblGetWifiStatusNucleoURL: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 386.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Nucleo URL'
+      TabOrder = 17
+    end
+    object lblGetWifiStatusNucleoURLValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 386.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 18
+    end
+    object lblGetWifiStatusRobotName: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 235.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Robot Name'
+      TabOrder = 19
+    end
+    object lblGetWifiStatusRobotNameValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 236.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 20
+    end
+    object lblGetWifiStatusScanning: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 285.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Scanning'
+      TabOrder = 21
+    end
+    object lblGetWifiStatusScanningValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 285.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 22
+    end
+    object lblGetWifiStatusSignalStrength: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 310.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Signal Strength'
+      TabOrder = 23
+    end
+    object lblGetWifiStatusSignalStrengthValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 310.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 24
+    end
+    object lblGetWifiStatusSSID: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 260.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'SSID'
+      TabOrder = 25
+    end
+    object lblGetWifiStatusSSIDValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 260.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 26
+    end
+    object lblGetWifiStatusTimeZone: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 462.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Time Zone'
+      TabOrder = 27
+    end
+    object lblGetWifiStatusTimeZoneValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 462.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 28
+    end
+    object lblGetWifiStatusUTCOffset: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 436.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'UTC Offset'
+      TabOrder = 29
+    end
+    object lblGetWifiStatusUTCOffsetValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 436.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 30
+    end
+    object lblGetWifiStatusWifiMode: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 58.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Wifi Mode'
+      TabOrder = 31
+    end
+    object lblGetWifiStatusWifiModeValue: TLabel
+      AutoSize = True
+      Margins.Left = 5.000000000000000000
+      Position.X = 210.000000000000000000
+      Position.Y = 59.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0'
+      TabOrder = 32
+    end
+    object lblGetWifiStatusWifiOnInit: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 83.000000000000000000
+      Size.Width = 185.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'Wifi On Init'
+      TabOrder = 33
+    end
+    object swGetWifiStatusAPDesiredValue: TSwitch
+      IsChecked = False
+      Position.X = 210.000000000000000000
+      Position.Y = 136.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 34
+    end
+    object swGetWifiStatusEnabledValue: TSwitch
+      IsChecked = False
+      Position.X = 210.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 35
+    end
+    object swGetWifiStatusLinkToBeehiveValue: TSwitch
+      IsChecked = False
+      Position.X = 210.000000000000000000
+      Position.Y = 161.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 36
+    end
+    object swGetWifiStatusNucleoConnectedValue: TSwitch
+      IsChecked = False
+      Position.X = 210.000000000000000000
+      Position.Y = 187.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 37
+    end
+    object swGetWifiStatusWifiOnInitValue: TSwitch
+      IsChecked = False
+      Position.X = 210.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 38
+    end
   end
 end

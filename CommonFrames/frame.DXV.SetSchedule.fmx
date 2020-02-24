@@ -1,139 +1,142 @@
 inherited frameXVSetSchedule: TframeXVSetSchedule
-  Size.Width = 653.000000000000000000
-  Size.Height = 431.000000000000000000
-  inherited timer_getdata: TTimer
-    Left = 64
-    Top = 224
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 400.000000000000000000
-    Size.Width = 633.000000000000000000
-  end
-  object sbSetScheduleHour: TSpinBox
-    Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 60
-    Cursor = crIBeam
-    Max = 23.000000000000000000
-    Position.X = 320.000000000000000000
-    Position.Y = 144.000000000000000000
-    Enabled = False
-  end
-  object sbSetScheduleMinutes: TSpinBox
-    Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 58
-    Cursor = crIBeam
-    Max = 59.000000000000000000
-    Position.X = 320.000000000000000000
-    Position.Y = 208.000000000000000000
-    Enabled = False
-  end
-  object lblSetScheduleError: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 326.000000000000000000
-    Size.Width = 653.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 1
-  end
-  object Rectangle1: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 653.000000000000000000
-    Size.Height = 321.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetScheduleApply: TButton
-      Enabled = False
-      Position.X = 320.000000000000000000
-      Position.Y = 256.000000000000000000
-      Size.Width = 97.000000000000000000
-      Size.Height = 41.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'Apply'
-      OnClick = btnSetScheduleApplyClick
+  ClientHeight = 373
+  ClientWidth = 533
+  DesignerMasterStyle = 3
+  inherited Layout: TScaledLayout
+    OriginalWidth = 533.000000000000000000
+    OriginalHeight = 373.000000000000000000
+    Size.Width = 533.000000000000000000
+    Size.Height = 373.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 342.000000000000000000
+      Size.Width = 513.000000000000000000
     end
-    object btnSetScheduleModeOFF: TButton
-      Position.X = 320.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 80.000000000000000000
-      Size.Height = 33.000000000000000000
+    object lblSetScheduleError: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 326.000000000000000000
+      Size.Width = 533.000000000000000000
+      Size.Height = 52.000000000000000000
       Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
       TabOrder = 1
-      Text = 'OFF'
-      OnClick = btnSetScheduleModeONClick
     end
-    object btnSetScheduleModeON: TButton
-      Position.X = 216.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 80.000000000000000000
-      Size.Height = 33.000000000000000000
+    object Rectangle1: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 533.000000000000000000
+      Size.Height = 321.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
-      Text = 'ON'
-      OnClick = btnSetScheduleModeONClick
-    end
-    object cbSetScheduleDay: TComboBox
-      Items.Strings = (
-        'Sunday'
-        'Monday'
-        'Tuesday'
-        'Wednesday'
-        'Thursday'
-        'Friday'
-        'Saturday')
-      Position.X = 120.000000000000000000
-      Position.Y = 88.000000000000000000
-      Size.Width = 169.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 3
-      OnChange = cbSetScheduleDayChange
-    end
-    object ckSetScheduleEnabled: TCheckBox
-      Enabled = False
-      Position.X = 320.000000000000000000
-      Position.Y = 88.000000000000000000
-      TabOrder = 4
-      Text = 'Enabled'
-      OnChange = ckSetScheduleEnabledChange
-    end
-    object lblSetSchedule: TLabel
-      Position.X = 16.000000000000000000
-      Position.Y = 88.000000000000000000
-      Size.Width = 97.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'Select Day'
-      TabOrder = 5
-    end
-    object lblSetScheduleHour: TLabel
-      Position.X = 320.000000000000000000
-      Position.Y = 120.000000000000000000
-      Text = 'Hour'
-      TabOrder = 6
-    end
-    object lblSetScheduleMinutes: TLabel
-      Position.X = 320.000000000000000000
-      Position.Y = 184.000000000000000000
-      Text = 'Minutes'
-      TabOrder = 7
-    end
-    object lblSetScheduleSetOnorOff: TLabel
-      Position.X = 64.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 145.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'Set Schedule Mode'
-      TabOrder = 8
+      object btnSetScheduleApply: TButton
+        Enabled = False
+        Position.X = 320.000000000000000000
+        Position.Y = 256.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Apply'
+        OnClick = btnSetScheduleApplyClick
+      end
+      object btnSetScheduleModeOFF: TButton
+        Position.X = 320.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'OFF'
+        OnClick = btnSetScheduleModeONClick
+      end
+      object btnSetScheduleModeON: TButton
+        Position.X = 216.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'ON'
+        OnClick = btnSetScheduleModeONClick
+      end
+      object cbSetScheduleDay: TComboBox
+        Items.Strings = (
+          'Sunday'
+          'Monday'
+          'Tuesday'
+          'Wednesday'
+          'Thursday'
+          'Friday'
+          'Saturday')
+        Position.X = 120.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 169.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        OnChange = cbSetScheduleDayChange
+      end
+      object ckSetScheduleEnabled: TCheckBox
+        Enabled = False
+        Position.X = 320.000000000000000000
+        Position.Y = 88.000000000000000000
+        TabOrder = 4
+        Text = 'Enabled'
+        OnChange = ckSetScheduleEnabledChange
+      end
+      object lblSetSchedule: TLabel
+        Position.X = 16.000000000000000000
+        Position.Y = 88.000000000000000000
+        Size.Width = 97.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Select Day'
+        TabOrder = 5
+      end
+      object lblSetScheduleHour: TLabel
+        Position.X = 320.000000000000000000
+        Position.Y = 120.000000000000000000
+        Text = 'Hour'
+        TabOrder = 6
+      end
+      object lblSetScheduleMinutes: TLabel
+        Position.X = 320.000000000000000000
+        Position.Y = 184.000000000000000000
+        Text = 'Minutes'
+        TabOrder = 7
+      end
+      object lblSetScheduleSetOnorOff: TLabel
+        Position.X = 64.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Set Schedule Mode'
+        TabOrder = 8
+      end
+      object sbSetScheduleHour: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 9
+        Cursor = crIBeam
+        Max = 23.000000000000000000
+        Position.X = 320.000000000000000000
+        Position.Y = 147.000000000000000000
+        Enabled = False
+      end
+      object sbSetScheduleMinutes: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 10
+        Cursor = crIBeam
+        Max = 59.000000000000000000
+        Position.X = 320.000000000000000000
+        Position.Y = 211.000000000000000000
+        Enabled = False
+      end
     end
   end
 end

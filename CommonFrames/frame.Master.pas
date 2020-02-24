@@ -12,18 +12,23 @@ unit frame.Master;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, FMX.Objects,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.TabControl,
-  FMX.Controls.Presentation;
+  FMX.Controls.Presentation, FMX.Layouts;
 
 type
-  TframeMaster = class(TFrame)
+  TframeMaster = class(TForm)
     timer_getdata: TTimer;
     lblFrameTitle: TLabel;
+    Layout: TScaledLayout;
+    StyleBook: TStyleBook;
+    procedure timer_getdataTimer(Sender: TObject);
   private
   public
     Tab: TTabItem;
-    constructor Create(AOwner: TComponent); override;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); overload;
+
+    procedure resetfocus;
   end;
 
 implementation
@@ -32,9 +37,9 @@ uses dmCommon;
 
 {$R *.fmx}
 
-constructor TframeMaster.Create(AOwner: TComponent);
+constructor TframeMaster.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner);
 
   timer_getdata.Enabled := false;
 
@@ -45,13 +50,38 @@ begin
   else
     Tab := nil;
 
-  Parent := Tab;
-  position.X := 0;
-  position.Y := 0;
-  align := talignlayout.Client;
-  visible := false;
+  Layout.Position.X := 0;
+  Layout.Position.Y := 0;
+  Layout.Align := talignlayout.Client;
+  Layout.Parent := Rect;
+  Layout.Visible := false;
 
-//  dmCommon.TimerList.Add(timer_getdata);
+  {
+    Parent := Tab;
+    position.X := 0;
+    position.Y := 0;
+    align := talignlayout.Client;
+    visible := false;
+  }
+  // dmCommon.TimerList.Add(timer_getdata);
+end;
+
+procedure TframeMaster.resetfocus;
+begin
+  try
+    BeginUpdate;
+    try
+      ActiveControl := nil;
+    except
+    end;
+  finally
+   endupdate;
+  end;
+end;
+
+procedure TframeMaster.timer_getdataTimer(Sender: TObject);
+begin
+  //
 end;
 
 end.

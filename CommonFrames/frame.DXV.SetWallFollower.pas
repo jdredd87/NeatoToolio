@@ -37,7 +37,7 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox;
+  FMX.DateTimeCtrls, FMX.Objects, FMX.Edit, FMX.EditBox, FMX.SpinBox, FMX.ListBox, FMX.Layouts;
 
 type
   TframeDXVSetWallFollower = class(TframeMaster)
@@ -47,9 +47,10 @@ type
     btnSetWallFollowerEnabled: TButton;
     btnSetWallFollowerDisabled: TButton;
     procedure btnSetWallFollowerClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -57,10 +58,16 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetWallFollower.Create(AOwner: TComponent);
+constructor TframeDXVSetWallFollower.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVSetWallFollower.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDXVSetWallFollower.btnSetWallFollowerClick(Sender: TObject);

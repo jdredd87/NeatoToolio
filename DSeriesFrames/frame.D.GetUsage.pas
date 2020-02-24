@@ -6,9 +6,9 @@ uses
   frame.master,
   dmCommon,
   neato.D.GetUsage,
-  FMX.TabControl,
+  FMX.TabControl, FMX.objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts;
 
 type
   TframeDGetUsage = class(TframeMaster)
@@ -28,7 +28,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -36,9 +36,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDGetUsage.Create(AOwner: TComponent);
+constructor TframeDGetUsage.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

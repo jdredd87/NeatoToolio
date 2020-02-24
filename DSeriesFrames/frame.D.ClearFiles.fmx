@@ -1,73 +1,76 @@
 inherited frameDClearFiles: TframeDClearFiles
-  Size.Width = 738.000000000000000000
-  Size.Height = 159.000000000000000000
-  inherited timer_getdata: TTimer
-    Left = 576
-    Top = 24
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 128.000000000000000000
-    Size.Width = 718.000000000000000000
-  end
-  object gbClearFiles: TGroupBox
-    Margins.Left = 5.000000000000000000
-    Margins.Top = 5.000000000000000000
-    Margins.Right = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.X = 5.000000000000000000
-    Position.Y = 5.000000000000000000
-    Size.Width = 636.000000000000000000
-    Size.Height = 140.000000000000000000
-    Size.PlatformDefault = False
-    StyleLookup = 'groupboxstyle'
-    Text = 'Option'
-    TabOrder = 1
-    object rbClearFilesBB: TRadioButton
-      Align = Top
-      Margins.Left = 15.000000000000000000
-      Margins.Top = 35.000000000000000000
-      Margins.Right = 15.000000000000000000
-      Margins.Bottom = 15.000000000000000000
-      Position.X = 15.000000000000000000
-      Position.Y = 35.000000000000000000
-      Size.Width = 606.000000000000000000
-      Size.Height = 25.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = ' ( BB ) - Clears Managed Logs in BlackBox Directory.'
-      OnChange = rbClearFilesBBChange
+  ClientHeight = 344
+  ClientWidth = 799
+  DesignerMasterStyle = 0
+  inherited Layout: TScaledLayout
+    OriginalWidth = 799.000000000000000000
+    OriginalHeight = 344.000000000000000000
+    Size.Width = 799.000000000000000000
+    Size.Height = 344.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 313.000000000000000000
+      Size.Width = 779.000000000000000000
     end
-    object rbClearFilesALL: TRadioButton
-      Align = Top
-      Margins.Left = 15.000000000000000000
-      Margins.Top = 15.000000000000000000
-      Margins.Right = 15.000000000000000000
-      Margins.Bottom = 15.000000000000000000
-      Position.X = 15.000000000000000000
-      Position.Y = 90.000000000000000000
-      Size.Width = 606.000000000000000000
-      Size.Height = 25.000000000000000000
+    object btnClearFiles: TButton
+      Enabled = False
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 696.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 70.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Text = 
-        ' ( ALL ) - Additionally clears unmanaged files (Crash, ...) in t' +
-        'he specified directories.'
-      OnChange = rbClearFilesBBChange
+      Text = 'Clear'
+      OnClick = btnClearFilesClick
     end
-  end
-  object btnClearFiles: TButton
-    Enabled = False
-    Margins.Left = 10.000000000000000000
-    Margins.Top = 10.000000000000000000
-    Margins.Right = 10.000000000000000000
-    Margins.Bottom = 10.000000000000000000
-    Position.X = 650.000000000000000000
-    Position.Y = 40.000000000000000000
-    Size.Width = 80.000000000000000000
-    Size.Height = 70.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    Text = 'Clear'
-    OnClick = btnClearFilesClick
+    object gbClearFiles: TGroupBox
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 12.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 661.000000000000000000
+      Size.Height = 140.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'groupboxstyle'
+      Text = 'Option'
+      TabOrder = 2
+      object rbClearFilesBB: TRadioButton
+        Align = Top
+        Margins.Left = 15.000000000000000000
+        Margins.Top = 35.000000000000000000
+        Margins.Right = 15.000000000000000000
+        Margins.Bottom = 15.000000000000000000
+        Position.X = 15.000000000000000000
+        Position.Y = 35.000000000000000000
+        Size.Width = 631.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = ' ( BB ) - Clears Managed Logs in BlackBox Directory.'
+        OnChange = rbClearFilesBBChange
+      end
+      object rbClearFilesALL: TRadioButton
+        Align = Top
+        Margins.Left = 15.000000000000000000
+        Margins.Top = 15.000000000000000000
+        Margins.Right = 15.000000000000000000
+        Margins.Bottom = 15.000000000000000000
+        Position.X = 15.000000000000000000
+        Position.Y = 90.000000000000000000
+        Size.Width = 631.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 
+          ' ( ALL ) - Additionally clears unmanaged files (Crash, ...) in t' +
+          'he specified directories.'
+        OnChange = rbClearFilesBBChange
+      end
+    end
   end
 end

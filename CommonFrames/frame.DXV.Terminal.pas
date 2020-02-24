@@ -5,10 +5,10 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.Helpers,   FMX.TabControl,
+  neato.Helpers, FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.ScrollBox, FMX.Memo, FMX.Edit,
-  FMX.ComboEdit, FMX.Controls.Presentation, FMX.Objects;
+  FMX.ComboEdit, FMX.Controls.Presentation, FMX.Objects, FMX.Layouts;
 
 type
   TframeDXVTerminal = class(TframeMaster)
@@ -33,11 +33,18 @@ type
     procedure check;
     procedure FComPortRxChar(Sender: TObject);
     procedure FComPortEOL(Sender: TObject);
+    constructor Create(AOwner: TComponent; Rect: trectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
+
+constructor TframeDXVTerminal.Create(AOwner: TComponent; Rect: trectangle);
+begin
+  inherited Create(AOwner, Rect);
+  self.lblFrameTitle.Visible := false;
+end;
 
 procedure TframeDXVTerminal.check;
 begin
@@ -114,6 +121,8 @@ begin
   //
 end;
 
+{$IFDEF MSWINDOWS}
+
 procedure TframeDXVTerminal.FComPortRxChar(Sender: TObject);
 var
   Text: AnsiString;
@@ -121,9 +130,9 @@ begin
   // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
   memoDebugTerminal.BeginUpdate;
   try
-   Text := dm.COM.ReadAnsiString;
-   text := stringreplace(text,#10,'',[rfreplaceall]);
-   except
+    Text := dm.COM.ReadString;
+    Text := stringreplace(Text, #10, '', [rfreplaceall]);
+  except
     on E: Exception do
     begin
       Text := #10#13 + #10#13 + AnsiString(E.Message) + #10#13 + #1013;
@@ -139,6 +148,34 @@ begin
 
   memoDebugTerminal.EndUpdate;
 end;
+{$ENDIF}
+{$IFDEF ANDROID}
+
+procedure TframeDXVTerminal.FComPortRxChar(Sender: TObject);
+begin
+  { // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
+    memoDebugTerminal.BeginUpdate;
+    try
+    Text := dm.COM.ReadString;
+    text := stringreplace(text,#10,'',[rfreplaceall]);
+    except
+    on E: Exception do
+    begin
+    Text := #10#13 + #10#13 + AnsiString(E.Message) + #10#13 + #1013;
+    end;
+
+    end;
+
+    if pos(^Z, string(Text)) > 0 then
+    FComPortEOL(Sender);
+
+    memoDebugTerminal.Text := memoDebugTerminal.Text + string(Text);
+    memoDebugTerminal.GoToTextEnd;
+
+    memoDebugTerminal.EndUpdate;
+  }
+end;
+{$ENDIF}
 
 procedure TframeDXVTerminal.timer_GetDataTimer(Sender: TObject);
 begin

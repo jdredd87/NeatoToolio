@@ -10,7 +10,7 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.ScrollBox, FMX.Controls.Presentation, FMX.Objects;
+  FMX.ScrollBox, FMX.Controls.Presentation, FMX.Objects, FMX.Layouts;
 
 type
   TframeDGetWifiInfo = class(TframeMaster)
@@ -23,23 +23,29 @@ type
     sgGetWifiInfoFrequency: TStringColumn;
     sgGetWifiInfoBSSID: TStringColumn;
     procedure btnGetWifiInfoScanClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure Check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: trectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDGetWifiInfo.Create(AOwner: TComponent);
+constructor TframeDGetWifiInfo.Create(AOwner: TComponent; Rect: trectangle);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
 end;
 
+procedure TframeDGetWifiInfo.timer_getdataTimer(Sender: TObject);
+begin
+  inherited;
+  //
+end;
 
 procedure TframeDGetWifiInfo.btnGetWifiInfoScanClick(Sender: TObject);
 begin

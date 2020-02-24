@@ -1,95 +1,100 @@
 inherited frameDXVSetSystemMode: TframeDXVSetSystemMode
-  Align = Client
-  Size.Width = 808.000000000000000000
-  Size.Height = 356.000000000000000000
+  ClientHeight = 356
+  ClientWidth = 644
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 728
-    Top = 16
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 325.000000000000000000
-    Size.Width = 788.000000000000000000
-  end
-  object lblSetSystemModeError: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 220.000000000000000000
-    Size.Width = 808.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 2
-  end
-  object Rectangle1: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 808.000000000000000000
-    Size.Height = 153.000000000000000000
-    Size.PlatformDefault = False
-  end
-  object btnSetSystemModeShutdown: TButton
-    Position.X = 16.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 129.000000000000000000
-    Size.Height = 97.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 56
-    Text = 'Shutdown'
-    OnClick = btnSetSystemModeClick
-    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
-    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
-  end
-  object btnSetSystemModeHibernate: TButton
-    Position.X = 176.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 129.000000000000000000
-    Size.Height = 97.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 55
-    Text = 'Hibernate'
-    OnClick = btnSetSystemModeClick
-    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
-    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
-  end
-  object btnSetSystemModeStandby: TButton
-    Position.X = 336.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 129.000000000000000000
-    Size.Height = 97.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 54
-    Text = 'Standby'
-    OnClick = btnSetSystemModeClick
-    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
-    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
-  end
-  object btnSetSystemModePowerCycle: TButton
-    Position.X = 496.000000000000000000
-    Position.Y = 24.000000000000000000
-    Size.Width = 129.000000000000000000
-    Size.Height = 97.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 53
-    Text = 'PowerCycle'
-    OnClick = btnSetSystemModeClick
-    OnMouseEnter = btnSetSystemModeShutdownMouseEnter
-    OnMouseLeave = btnSetSystemModeShutdownMouseLeave
-  end
-  object lblSetSystemModeMessage: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 158.000000000000000000
-    Size.Width = 808.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 1
+  inherited Layout: TScaledLayout
+    OriginalWidth = 644.000000000000000000
+    OriginalHeight = 356.000000000000000000
+    Size.Width = 644.000000000000000000
+    Size.Height = 356.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 325.000000000000000000
+      Size.Width = 624.000000000000000000
+    end
+    object btnSetSystemModeHibernate: TButton
+      Position.X = 176.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 97.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Hibernate'
+      OnClick = btnSetSystemModeClick
+      OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+      OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+    end
+    object btnSetSystemModePowerCycle: TButton
+      Position.X = 496.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 97.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'PowerCycle'
+      OnClick = btnSetSystemModeClick
+      OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+      OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+    end
+    object btnSetSystemModeShutdown: TButton
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 97.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Shutdown'
+      OnClick = btnSetSystemModeClick
+      OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+      OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+    end
+    object btnSetSystemModeStandby: TButton
+      Position.X = 336.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 129.000000000000000000
+      Size.Height = 97.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'Standby'
+      OnClick = btnSetSystemModeClick
+      OnMouseEnter = btnSetSystemModeShutdownMouseEnter
+      OnMouseLeave = btnSetSystemModeShutdownMouseLeave
+    end
+    object lblSetSystemModeError: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 158.000000000000000000
+      Size.Width = 644.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      TabOrder = 5
+    end
+    object lblSetSystemModeMessage: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 220.000000000000000000
+      Size.Width = 644.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      TabOrder = 6
+    end
+    object Rectangle1: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 644.000000000000000000
+      Size.Height = 153.000000000000000000
+      Size.PlatformDefault = False
+    end
   end
 end

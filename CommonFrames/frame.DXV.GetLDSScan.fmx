@@ -1,66 +1,68 @@
 inherited frameDXVGetLDSScan: TframeDXVGetLDSScan
-  Size.Width = 821.000000000000000000
+  ClientWidth = 536
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Interval = 250
     OnTimer = timer_getdataTimer
-    Left = 616
-    Top = 160
   end
-  inherited lblFrameTitle: TLabel
-    Size.Width = 801.000000000000000000
-    TabOrder = 61
-  end
-  object sgGetLDSScan: TStringGrid
-    Align = Left
-    CanFocus = True
-    ClipChildren = True
-    Size.Width = 537.000000000000000000
-    Size.Height = 483.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 4
-    OnDrawColumnCell = sgGetLDSScanDrawColumnCell
-    Viewport.Width = 537.000000000000000000
-    Viewport.Height = 483.000000000000000000
-    object sgGetLDSScanColumnAngleInDegrees: TStringColumn
-      Header = 'AngleInDegrees'
-      Size.Width = 125.000000000000000000
-      object FloatAnimation1: TFloatAnimation
-        Duration = 0.200000002980232200
-        PropertyName = 'Width'
-        StartValue = 0.000000000000000000
-        StopValue = 0.000000000000000000
+  inherited Layout: TScaledLayout
+    OriginalWidth = 536.000000000000000000
+    Size.Width = 536.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Size.Width = 516.000000000000000000
+      TabOrder = 61
+    end
+    object lblGetLDSScanRotationSpeed: TLabel
+      Position.X = 65.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Trailing
+      Text = 'ROTATION_SPEED'
+      TabOrder = 62
+    end
+    object lblGetLDSScanRotationSpeedValue: TLabel
+      Position.X = 193.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 41.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = '0.00'
+      TabOrder = 63
+    end
+    object sgGetLDSScan: TStringGrid
+      Align = Left
+      CanFocus = True
+      ClipChildren = True
+      Size.Width = 537.000000000000000000
+      Size.Height = 484.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 64
+      OnDrawColumnCell = sgGetLDSScanDrawColumnCell
+      Viewport.Width = 517.000000000000000000
+      Viewport.Height = 459.000000000000000000
+      object sgGetLDSScanColumnAngleInDegrees: TStringColumn
+        Header = 'AngleInDegrees'
+        Size.Width = 125.000000000000000000
+        object FloatAnimation1: TFloatAnimation
+          Duration = 0.200000002980232200
+          PropertyName = 'Width'
+          StartValue = 0.000000000000000000
+          StopValue = 0.000000000000000000
+        end
+      end
+      object sgGetLDSScanColumnDistInMM: TStringColumn
+        Header = 'DistInMM'
+        Size.Width = 125.000000000000000000
+      end
+      object sgGetLDSScanColumnIntensity: TStringColumn
+        Header = 'Intensity'
+        Size.Width = 125.000000000000000000
+      end
+      object sgGetLDSScanColumnErrorCodeHEX: TStringColumn
+        Header = 'ErrorCodeHEX'
+        Size.Width = 125.000000000000000000
       end
     end
-    object sgGetLDSScanColumnDistInMM: TStringColumn
-      Header = 'DistInMM'
-      Size.Width = 125.000000000000000000
-    end
-    object sgGetLDSScanColumnIntensity: TStringColumn
-      Header = 'Intensity'
-      Size.Width = 125.000000000000000000
-    end
-    object sgGetLDSScanColumnErrorCodeHEX: TStringColumn
-      Header = 'ErrorCodeHEX'
-      Size.Width = 125.000000000000000000
-    end
-  end
-  object lblGetLDSScanRotationSpeed: TLabel
-    Position.X = 544.000000000000000000
-    Position.Y = 80.000000000000000000
-    Size.Width = 169.000000000000000000
-    Size.Height = 17.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.HorzAlign = Trailing
-    Text = 'ROTATION_SPEED'
-    TabOrder = 5
-  end
-  object lblGetLDSScanRotationSpeedValue: TLabel
-    Position.X = 728.000000000000000000
-    Position.Y = 80.000000000000000000
-    Size.Width = 41.000000000000000000
-    Size.Height = 17.000000000000000000
-    Size.PlatformDefault = False
-    Text = '0.00'
-    TabOrder = 6
   end
 end

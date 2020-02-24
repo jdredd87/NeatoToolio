@@ -12,36 +12,46 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
-  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
+  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox,
+  FMX.Layouts;
 
 type
   TframeDSetLED = class(TframeMaster)
     lblSetLEDError: TLabel;
     rectSetLCDTop: TRectangle;
     lblSetLEDMessage: TLabel;
-    btnSetLEDBacklightOn: TButton;
-    btnSetLEDBacklightOff: TButton;
-    btnSetLEDButtonAmber: TButton;
-    btnSetLEDLEDRed: TButton;
-    btnSetLEDButtonGreen: TButton;
-    procedure btnSetLEDBacklightOnMouseEnter(Sender: TObject);
-    procedure btnSetLEDBacklightOnMouseLeave(Sender: TObject);
+
+    btnSetLEDhome: TButton;
+    btnSetLEDspot: TButton;
+    btnSetLEDinfo: TButton;
+    btnSetLEDbattery: TButton;
+    btnSetLEDwifi: TButton;
+    procedure btnSetLEDhomeMouseEnter(Sender: TObject);
+    procedure btnSetLEDhomeMouseLeave(Sender: TObject);
     procedure btnSetLEDOnClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
+
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDSetLED.Create(AOwner: TComponent);
+constructor TframeDSetLED.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDSetLED.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDSetLED.btnSetLEDOnClick(Sender: TObject);
@@ -108,7 +118,7 @@ end;
   end;
 }
 
-procedure TframeDSetLED.btnSetLEDBacklightOnMouseEnter(Sender: TObject);
+procedure TframeDSetLED.btnSetLEDhomeMouseEnter(Sender: TObject);
 var
   msg: string;
 begin
@@ -141,18 +151,19 @@ begin
   lblSetLEDMessage.Text := msg;
 end;
 
-procedure TframeDSetLED.btnSetLEDBacklightOnMouseLeave(Sender: TObject);
+procedure TframeDSetLED.btnSetLEDhomeMouseLeave(Sender: TObject);
 begin
   lblSetLEDMessage.Text := '';
 end;
 
 procedure TframeDSetLED.check;
 begin
-  btnSetLEDBacklightOn.Enabled := dm.COM.Active;
-  btnSetLEDBacklightOff.Enabled := dm.COM.Active;
-  btnSetLEDButtonAmber.Enabled := dm.COM.Active;
-  btnSetLEDLEDRed.Enabled := dm.COM.Active;
-  btnSetLEDButtonGreen.Enabled := dm.COM.Active;
+
+  btnSetLEDhome.Enabled := dm.COM.Active;
+  btnSetLEDspot.Enabled := dm.COM.Active;
+  btnSetLEDinfo.Enabled := dm.COM.Active;
+  btnSetLEDbattery.Enabled := dm.COM.Active;
+  btnSetLEDwifi.Enabled := dm.COM.Active;
 
   if dm.COM.Active then
     dm.chkTestmode.IsChecked := true;

@@ -5,10 +5,11 @@ interface
 uses
   frame.master,
   dmCommon,
-  neato.D.GetMotors,
-  FMX.TabControl,
+  neato.D.GetMotors, fmx.objects,
+  fmx.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  fmx.Types, fmx.Graphics, fmx.Controls, fmx.Forms, fmx.Dialogs, fmx.StdCtrls, fmx.Controls.Presentation, fmx.Layouts,
+  FMXTee.Engine, FMXTee.Procs, FMXTee.Chart, FMXTee.Series, fmx.TMSBaseControl, fmx.TMSScope;
 
 type
   TframeDGetMotors = class(TframeMaster)
@@ -44,21 +45,30 @@ type
     lblGetMotorsROTATION_SPEEDValue: TLabel;
     lblGetMotorsSideBrush_mA: TLabel;
     lblGetMotorsSideBrush_mAValue: TLabel;
+    rectScopes: TRectangle;
+    scopeBrush: TTMSFMXScope;
+    scopeVacuummA: TTMSFMXScope;
+    scopeVacuumRPM: TTMSFMXScope;
+    scopeLeftRightWheelRPM: TTMSFMXScope;
+    lblBrushCaption: TLabel;
+    lblVacuumRPM: TLabel;
+    lblVacuummA: TLabel;
+    lblLeftAndRightWheelRPM: TLabel;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure Check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDGetMotors.Create(AOwner: TComponent);
+constructor TframeDGetMotors.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 
@@ -86,24 +96,35 @@ begin
   begin
     lblGetMotorsBrush_RPMValue.Text := pGetMotors.Brush_RPM.ToString;
     lblGetMotorsBrush_mAValue.Text := pGetMotors.Brush_mA.ToString;
-
     lblGetMotorsVacuum_RPMValue.Text := pGetMotors.Vacuum_RPM.ToString;
     lblGetMotorsVacuum_mAValue.Text := pGetMotors.Vacuum_mA.ToString;
-
     lblGetMotorsLeftWheel_RPMValue.Text := pGetMotors.LeftWheel_RPM.ToString;
     lblGetMotorsLeftWheel_LoadValue.Text := pGetMotors.LeftWheel_Load.ToString;
     lblGetMotorsLeftWheel_PositionInMMValue.Text := pGetMotors.LeftWheel_PositionInMM.ToString;
     lblGetMotorsLeftWheel_SpeedValue.Text := pGetMotors.LeftWheel_Speed.ToString;
     lblGetMotorsLeftWheel_directionValue.Text := pGetMotors.LeftWheel_direction.ToString;
-
     lblGetMotorsRightWheel_RPMValue.Text := pGetMotors.RightWheel_RPM.ToString;
     lblGetMotorsRightWheel_LoadValue.Text := pGetMotors.RightWheel_Load.ToString;
     lblGetMotorsRightWheel_PositionInMMValue.Text := pGetMotors.RightWheel_PositionInMM.ToString;
     lblGetMotorsRightWheel_SpeedValue.Text := pGetMotors.RightWheel_Speed.ToString;
     lblGetMotorsRightWheel_directionValue.Text := pGetMotors.RightWheel_direction.ToString;
-
     lblGetMotorsROTATION_SPEEDValue.Text := pGetMotors.ROTATION_SPEED.ToString;
     lblGetMotorsSideBrush_mAValue.Text := pGetMotors.SideBrush_mA.ToString;
+
+    scopeBrush.UpdateData(0, pGetMotors.Brush_RPM);
+    scopeBrush.UpdateData(1, pGetMotors.Brush_mA);
+    scopeBrush.AddData;
+
+    scopeVacuumRPM.UpdateData(0, pGetMotors.Vacuum_RPM);
+    scopeVacuumRPM.AddData;
+
+    scopeVacuummA.UpdateData(1, pGetMotors.Vacuum_mA);
+    scopeVacuummA.AddData;
+
+    scopeLeftRightWheelRPM.UpdateData(0, abs(pGetMotors.LeftWheel_RPM));
+    scopeLeftRightWheelRPM.UpdateData(1, abs(pGetMotors.RightWheel_RPM));
+    scopeLeftRightWheelRPM.AddData;
+
   end;
 
   pReadData.Free;
@@ -112,13 +133,14 @@ end;
 
 procedure TframeDGetMotors.Check;
 begin
- lblGetMotorsROTATION_SPEEDValue.Enabled := neatotype = BotVacConnected;
- lblGetMotorsRightWheel_directionValue.Enabled := neatotype = BotVacConnected;
- lblGetMotorsLeftWheel_directionValue.Enabled := neatotype = BotVacConnected;
 
- lblGetMotorsROTATION_SPEED.Enabled := neatotype = BotVacConnected;
- lblGetMotorsRightWheel_direction.Enabled := neatotype = BotVacConnected;
- lblGetMotorsLeftWheel_direction.Enabled := neatotype = BotVacConnected;
+  lblGetMotorsROTATION_SPEEDValue.Enabled := neatotype = BotVacConnected;
+  lblGetMotorsRightWheel_directionValue.Enabled := neatotype = BotVacConnected;
+  lblGetMotorsLeftWheel_directionValue.Enabled := neatotype = BotVacConnected;
+
+  lblGetMotorsROTATION_SPEED.Enabled := neatotype = BotVacConnected;
+  lblGetMotorsRightWheel_direction.Enabled := neatotype = BotVacConnected;
+  lblGetMotorsLeftWheel_direction.Enabled := neatotype = BotVacConnected;
 
 end;
 

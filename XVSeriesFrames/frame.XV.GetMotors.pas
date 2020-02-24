@@ -6,9 +6,10 @@ uses
   frame.master,
   dmCommon,
   neato.XV.GetMotors,
-  FMX.TabControl,
+  FMX.TabControl, FMX.Objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts,
+  FMXTee.Engine, FMXTee.Series, FMXTee.Procs, FMXTee.Chart, FMX.TMSBaseControl, FMX.TMSScope;
 
 type
   TframeXVGetMotors = class(TframeMaster)
@@ -40,24 +41,32 @@ type
     lblGetMotorsSideBrush_mAValue: TLabel;
     lblGetMotorsCharger_mAH: TLabel;
     lblGetMotorsCharger_mAHValue: TLabel;
+    rectScopes: TRectangle;
+    scopeBrush: TTMSFMXScope;
+    scopeVacuummA: TTMSFMXScope;
+    scopeLeftRightWheelRPM: TTMSFMXScope;
+    scopeVacuumRPM: TTMSFMXScope;
+    lblBrushCaption: TLabel;
+    lblVacuumRPM: TLabel;
+    lblVacuummA: TLabel;
+    lblLeftAndRightWheelRPM: TLabel;
     procedure timer_GetDataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-   constructor Create(AOwner: TComponent); reintroduce; overload;
-   procedure check;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
+    procedure check;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeXVGetMotors.Create(AOwner: TComponent);
+constructor TframeXVGetMotors.Create(AOwner: TComponent; Rect: TRectangle);
 begin
- inherited;
- lblFrameTitle.Text := sDescription;
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
 end;
-
 
 procedure TframeXVGetMotors.timer_GetDataTimer(Sender: TObject);
 var
@@ -66,7 +75,7 @@ var
   r: Boolean;
 begin
 
-  if (dm.com.Active = false) or (dm.ActiveTab<>Tab) then
+  if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
     timer_GetData.Enabled := false;
     exit;
@@ -81,6 +90,7 @@ begin
 
   if r then
   begin
+
     lblGetMotorsBrush_RPMValue.Text := pGetMotors.Brush_RPM.ToString;
     lblGetMotorsBrush_mAValue.Text := pGetMotors.Brush_mA.ToString;
 
@@ -99,6 +109,20 @@ begin
 
     lblGetMotorsCharger_mAHValue.Text := pGetMotors.Charger_mAH.ToString;
     lblGetMotorsSideBrush_mAValue.Text := pGetMotors.SideBrush_mA.ToString;
+
+    scopeBrush.UpdateData(0, pGetMotors.Brush_RPM);
+    scopeBrush.UpdateData(1, pGetMotors.Brush_mA);
+    scopeBrush.AddData;
+
+    scopeVacuumRPM.UpdateData(0, pGetMotors.Vacuum_RPM);
+    scopeVacuumRPM.AddData;
+
+    scopeVacuummA.UpdateData(1, pGetMotors.Vacuum_mA);
+    scopeVacuummA.AddData;
+
+    scopeLeftRightWheelRPM.UpdateData(0, abs(pGetMotors.LeftWheel_RPM));
+    scopeLeftRightWheelRPM.UpdateData(1, abs(pGetMotors.RightWheel_RPM));
+    scopeLeftRightWheelRPM.AddData;
   end;
 
   pReadData.Free;
@@ -107,8 +131,7 @@ end;
 
 procedure TframeXVGetMotors.check;
 begin
-//
+  //
 end;
-
 
 end.

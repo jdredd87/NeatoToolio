@@ -60,7 +60,7 @@ type
     function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 5000; const waitfor: string = '';
       const count: byte = 1): string; override;
 
-    function ReadAnsiString: AnsiString; override;
+    function ReadString: String; override;
     function active: boolean; override;
 
     procedure PurgeInput;
@@ -342,7 +342,7 @@ begin
   end;
 end;
 
-function TdmSerialTCPIP.ReadAnsiString: AnsiString;
+function TdmSerialTCPIP.ReadString: String;
 begin
   result := Serial.Socket.ReadLn;
 end;

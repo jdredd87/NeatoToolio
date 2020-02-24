@@ -16,15 +16,19 @@ uses
   dmSerial.Windows,
   WinAPI.Windows,
   FMX.Platform.WIN,
+  {Script Engine}
+  frame.ScriptEngine,
 {$ENDIF}
+{$IFDEF ANDROID}
+  dmSerial.Android,
+  Winsoft.Android.Usb,
+{$ENDIF}
+  frame.Master,
   dmSerial.Base,
   dmSerial.TCPIP,
   {Common neato units}
   Neato.Helpers,
   Neato.Settings,
-
-  {Script Engine}
-  frame.ScriptEngine,
 
   {D3-D7, DSeries Units}
   Neato.D.GetCharger,
@@ -177,8 +181,16 @@ uses
   FMXTee.Engine,
   FMXTee.Series,
   FMXTee.Procs,
-  FMXTee.Chart, FMXTee.Series.Polar, FMXTee.Functions.Stats, FMXTee.Tools, IdTelnet, IdGlobal, IdComponent,
-  IdBaseComponent, IdTCPConnection, IdTCPClient;
+  FMXTee.Chart,
+  FMXTee.Series.Polar,
+  FMXTee.Functions.Stats,
+  FMXTee.Tools,
+  IdTelnet,
+  IdGlobal,
+  IdComponent,
+  IdBaseComponent,
+  IdTCPConnection,
+  IdTCPClient;
 
 type
 
@@ -280,8 +292,6 @@ type
     edIPAddress: TEdit;
     lblConnectIP: TLabel;
     edIPPort: TSpinBox;
-    lblConnectPort: TLabel;
-    lblConnectIPEnabled: TLabel;
     tabAbout: TTabItem;
     ShadowEffectmemoAbout: TShadowEffect;
     RectangleaboutMemo: trectangle;
@@ -291,8 +301,50 @@ type
     aniConnect: TAniIndicator;
     ColorBoxCNX: TColorBox;
     LabelCNX: TLabel;
-    StyleBook: TStyleBook;
     lblVersion: TLabel;
+    RectGetCharger: trectangle;
+    rectTerminal: trectangle;
+    rectSetFuelGauge: trectangle;
+    rectSetSystemMode: trectangle;
+    rectSetBatteryTest: trectangle;
+    rectGetSensor: trectangle;
+    rectGetAccel: trectangle;
+    rectGetAnalogSensors: trectangle;
+    rectGetDigitalSensors: trectangle;
+    rectGetcalInfo: trectangle;
+    rectSetWallFollower: trectangle;
+    rectSetDistanceCal: trectangle;
+    rectGetButtons: trectangle;
+    rectSetButton: trectangle;
+    rectSetLCD: trectangle;
+    rectSetLED: trectangle;
+    rectGetMotors: trectangle;
+    rectSetMotor: trectangle;
+    rectGetLDSScan: trectangle;
+    rectLidarView: trectangle;
+    rectTestLDS: trectangle;
+    rectGetWarranty: trectangle;
+    rectGetErr: trectangle;
+    rectGetVersion: trectangle;
+    rectGetUsage: trectangle;
+    rectGetUserSettings: trectangle;
+    rectSetUsage: trectangle;
+    rectGetLifeStatLog: trectangle;
+    rectClearFiles: trectangle;
+    rectRestoreDefaults: trectangle;
+    rectClean: trectangle;
+    rectDiagTest: trectangle;
+    rectSetIEC: trectangle;
+    rectSetNavigationMode: trectangle;
+    rectPlaySound: trectangle;
+    rectSetLanguage: trectangle;
+    rectGetWifiInfo: trectangle;
+    rectGetWifiStatus: trectangle;
+    rectGetTime: trectangle;
+    rectSetTime: trectangle;
+    rectGetSchedule: trectangle;
+    rectSetSchedule: trectangle;
+    rectSetNTPTime: trectangle;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -314,17 +366,21 @@ type
 
     fPlaySoundAborted: Boolean;
 
-    // fActiveTabControl: TTabControl;
-    // form events
-
     procedure onIDLE(Sender: TObject; var done: Boolean); // our idle code
 
     // COM Events
+
+{$IFDEF MSWINDOWS}
     procedure FComPortAfterOpen(ComPort: TFComPort);
     procedure FComPortAfterClose(ComPort: TFComPort);
     procedure FComPortLineError(Sender: TObject; LineErrors: TLineErrors);
-    procedure FComPortError(Sender: TObject); // mine not winsofts
     procedure FComPortDeviceUpdate(Sender: TObject; const DeviceName: string);
+{$ENDIF}
+{$IFDEF ANDROID}
+    procedure OnDeviceAttached(Device: JUsbDevice);
+    procedure OnDeviceDetached(Device: JUsbDevice);
+{$ENDIF}
+    procedure FComPortError(Sender: TObject); // mine not winsofts
 
     procedure comConnect; // serial connect
     procedure comDisconnect; // serial disconnect
@@ -392,9 +448,13 @@ type
 
     ///
 
-    Scripts: TframeScriptEngine;
-
+{$IFDEF MSWINDOWS}
+    Scripts: TframeScriptEngine; // currently just want this for windows until its "done"
     COMWin32: TdmSerialWindows;
+{$ENDIF}
+{$IFDEF ANDROID}
+    COMAndroid: TdmSerialAndroid;
+{$ENDIF}
     COMTCPIP: TdmSerialTCPIP;
 
     Procedure StageTabs; // create and place our tabs depending on model
@@ -415,7 +475,9 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 var
   idx: integer;
 begin
-
+{$IFDEF ANDROID}
+  ScaledLayoutMain.Align := talignlayout.Client;
+{$ENDIF}
   dm.chkTestMode := chkTestMode;
 
   memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
@@ -451,7 +513,12 @@ begin
   ResetTabs;
   StageTabs;
 
+{$IFDEF MSWINDOWS}
   COMWin32 := TdmSerialWindows.Create;
+{$ENDIF}
+{$IFDEF ANDROID}
+  COMAndroid := TdmSerialAndroid.Create;
+{$ENDIF}
   COMTCPIP := TdmSerialTCPIP.Create;
 
   COMTCPIP.FComSignalRX := self.ColorBoxRX;
@@ -460,14 +527,19 @@ begin
 
   COMTCPIP.fmemoDebug := memoDebug;
 
+{$IFDEF MSWINDOWS}
   dm.COM := COMWin32; // default as this will be the most use case
-
+{$ENDIF}
+{$IFDEF ANDROID}
+  dm.COM := COMAndroid;
+{$ENDIF}
   chkAutoDetect.IsChecked := neatoSettings.AutoDetectNeato;
   chkAutoDetectChange(nil);
 
   edIPAddress.Text := neatoSettings.IP;
   edIPPort.Text := neatoSettings.PORT.ToString;
 
+{$IFDEF MSWINDOWS}
   TdmSerialWindows(COMWin32).onError := FComPortError;
 
   with TdmSerialWindows(COMWin32).Serial do
@@ -484,12 +556,36 @@ begin
     FComSignalRX.ColorBox := self.ColorBoxRX;
     FComSignalTX.ColorBox := self.ColorBoxTX;
     FComSignalCNX := self.ColorBoxCNX;
-
     fmemoDebug := memoDebug;
   end;
+{$ENDIF}
 
+{$IFDEF ANDROID}
+  pnlStatusBar.Height :=   pnlStatusBar.Height * 1.25; // make it a little taller
+  chkTestMode.Margins.Top := -10;
+
+  TdmSerialAndroid(COMAndroid).onError := FComPortError;
+  self.chkAutoDetect.Visible := false; // just remove it for Android. Should have only 1 device anyways if any.
+  cbCOM.Width := cbCOM.Width * 2; // big com port driver names it appears
+  cbCOM.Position.Y := self.chkAutoDetect.Position.Y; // move it up so have some room to click
+
+  COMAndroid.Serial.OnDeviceAttached := OnDeviceAttached;
+  COMAndroid.Serial.OnDeviceDetached := OnDeviceDetached;
+
+  COMAndroid.FComSignalRX := self.ColorBoxRX;
+  COMAndroid.FComSignalTX := self.ColorBoxTX;
+  COMAndroid.FComSignalCNX := self.ColorBoxCNX;
+  COMAndroid.fmemoDebug := memoDebug;
+{$ENDIF}
   for idx := 0 to self.ComponentCount - 1 do
   begin
+{$IFDEF android}
+    if components[idx] is TCheckBox then
+    begin // make checkboxes slightly bigger
+      TCheckBox(components[idx]).Scale.X := TCheckBox(components[idx]).Scale.X * 1.55;
+      TCheckBox(components[idx]).Scale.Y := TCheckBox(components[idx]).Scale.Y * 1.55;
+    end;
+{$ENDIF}
     if components[idx] is TTabItem then
       TTabItem(components[idx]).OnClick := tabClickRepaint;
 
@@ -497,6 +593,9 @@ begin
     begin
       TTabControl(components[idx]).OnChange := tabControlChange;
       TTabControl(components[idx]).ActiveTab := nil;
+{$IFDEF android}
+      TTabControl(components[idx]).TabHeight := TTabControl(components[idx]).TabHeight * 1.25;
+{$ENDIF}
     end;
   end;
 
@@ -523,9 +622,8 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  LoadImageID('NeatoLogo', self.imgRobot);
+  // LoadImageID('NeatoLogo', self.imgRobot);
   lblVersion.Text := Neato.Helpers.GetAppVersionStr;
-
 end;
 
 procedure TfrmMain.memoDebugChange(Sender: TObject);
@@ -595,12 +693,19 @@ begin
   end;
 
   try
+{$IFDEF MSWINDOWS}
     COMWin32.close;
+{$ENDIF}
+{$IFDEF ANDROID}
+    COMAndroid.close;
+{$ENDIF}
   finally
   end;
 
   CanClose := true;
 end;
+
+{$IFDEF MSWINDOWS}
 
 procedure TfrmMain.FComPortAfterClose(ComPort: TFComPort);
 begin
@@ -640,6 +745,33 @@ begin
     FMX.Dialogs.MessageDlg('Transmitter full', TMsgDlgType.mtError, [TMsgDlgBtn.mbOK], 0);
 end;
 
+procedure TfrmMain.FComPortDeviceUpdate(Sender: TObject; const DeviceName: string);
+begin
+  if cbCOM.DroppedDown then
+    cbCOM.DropDown;
+  cbCOM.ItemIndex := -1;
+  PopulateCOMPorts;
+end;
+
+{$ENDIF}
+
+{$IFDEF ANDROID}
+procedure TfrmMain.OnDeviceAttached(Device: JUsbDevice);
+begin
+ COMAndroid.OnDeviceAttached(Device);
+ PopulateCOMPorts;
+end;
+
+procedure TfrmMain.OnDeviceDetached(Device: JUsbDevice);
+begin
+ COMAndroid.OnDeviceDetached(Device);
+ PopulateCOMPorts;
+end;
+
+{$ENDIF}
+
+
+
 procedure TfrmMain.FComPortError(Sender: TObject);
 begin
   stoptimers;
@@ -657,17 +789,10 @@ begin
   cbCOM.Enabled := true;
 end;
 
-procedure TfrmMain.FComPortDeviceUpdate(Sender: TObject; const DeviceName: string);
-begin
-  if cbCOM.DroppedDown then
-    cbCOM.DropDown;
-  cbCOM.ItemIndex := -1;
-  PopulateCOMPorts;
-end;
-
 procedure TfrmMain.ckSerialConnectChange(Sender: TObject);
 begin
-  dm.COM := COMWin32; // default as this will be the most use case
+  dm.COM := {$IFDEF MSWindows} COMWin32; {$ENDIF} {$IFDEF ANDROID} COMAndroid; {$ENDIF}
+  // default as this will be the most use case
   stoptimers;
   toggleComs(ckSerialConnect.IsChecked);
 end;
@@ -767,7 +892,8 @@ begin
             end
             else
             begin
-              if (dm.COM is TdmSerialWindows) then
+
+              if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF} {$IFDEF ANDROID} TdmSerialAndroid{$ENDIF}) then
               begin
                 ckSerialConnect.Enabled := true;
                 if dm.COM.Active then
@@ -795,14 +921,22 @@ begin
         COMTCPIP.IP := self.edIPAddress.Text;
         COMTCPIP.PORT := ROUND(self.edIPPort.Value);
       end
-      else if (dm.COM is TdmSerialWindows) then // if we are serial, then we can hunt down a port or go directly to one
+      else if (dm.COM is {$IFDEF MSWINDOWS}TdmSerialWindows{$ENDIF} {$IFDEF ANDROID}TdmSerialAndroid{$ENDIF}) then
+      // if we are serial, then we can hunt down a port or go directly to one
       begin
         if chkAutoDetect.IsChecked then
         begin
           dm.COM.onError := nil;
           for idx := 0 to cbCOM.Items.Count - 1 do
           begin
-            TdmSerialWindows(COMWin32).ComPort := cbCOM.Items[idx];
+{$IFDEF MSWINDOWS}
+            COMWin32.ComPort := cbCOM.Items[idx];
+{$ENDIF}
+{$IFDEF ANDORID}
+            // if not COMAndroid.CheckPermission then
+            // COMAndroid.RequestPermission;
+            COMAndroid.ComPort := idx; // auto detect is off for android, but just in case i forget this
+{$ENDIF}
             if not dm.COM.Open then
               continue;
 
@@ -816,7 +950,11 @@ begin
                 end);
               break;
             end;
-            dm.COM.close;
+            try
+              dm.COM.close;
+            finally
+            end;
+
           end;
           dm.COM.onError := FComPortError;
         end;
@@ -834,12 +972,38 @@ begin
           exit;
         end
         else
-          TdmSerialWindows(COMWin32).ComPort := cbCOM.Items[cbCOM.ItemIndex];
+        begin
+{$IFDEF MSWINDOWS}
+          COMWin32.ComPort := cbCOM.Items[cbCOM.ItemIndex];
+{$ENDIF}
+{$IFDEF ANDROID}
+          COMAndroid.ComPort := cbCOM.ItemIndex; // should have access by now
+{$ENDIF}
+        end;
       end;
 
       if not dm.COM.Open then // by now we have serial or tcpip COM object assigned
       begin
+
         stopAniConnect(true);
+
+{$IFDEF android}
+        // since we have to deal with permissions
+        if (NOT COMAndroid.HasPermission) then
+        begin
+          tthread.CreateAnonymousThread(
+            procedure
+            begin
+              sleep(250);
+              tthread.Queue(nil,
+                procedure
+                begin
+                  comConnect; // lets call this again
+                end);
+            end).start;
+          exit; // and oh make sure to exit!
+        end;
+{$ENDIF}
         tthread.Synchronize(tthread.CurrentThread,
           procedure
           begin
@@ -858,8 +1022,9 @@ begin
           if (dm.COM is TdmSerialTCPIP) then
             ckSerialConnect.Enabled := false;
 
-          if (dm.COM is TdmSerialWindows) then
+          if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF}{$IFDEF ANDROID} TdmSerialAndroid{$ENDIF} ) then
             ckTCPIPConnect.Enabled := false;
+
         end);
 
       R := dm.COM.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
@@ -867,7 +1032,7 @@ begin
       if pos('BotVac', R) > 0 then
       begin
         if (pos('BotVacD3', R) > 0) or (pos('BotVacD4', R) > 0) or (pos('BotVacD5', R) > 0) or (pos('BotVacD6', R) > 0)
-          or (pos('BotVacD7', R) > 0) then
+          or (pos('BotVacD7', R) > 0) or (pos('BotVacConnected', R) > 0) then
         begin
           neatoType := BotVacConnected;
         end
@@ -966,8 +1131,9 @@ begin
               if pos('XV16', gGetVersionXV.ModelID.Minor) > 0 then
               begin
                 LoadImageID('XV16', imgRobot);
+              end
+              else
                 LoadImageID('NeatoXV', DXVGetAccel._3DGetAccel); // generic model
-              end;
 
             end);
         end;
@@ -1010,35 +1176,32 @@ begin
   aniConnect.Enabled := true;
   aniConnect.Visible := true;
 
-  tthread.CreateAnonymousThread(
-    procedure
+  try
+    if assigned(dm.COM) then
     begin
-      try
-        if assigned(dm.COM) then
-        begin
-          if dm.COM.Active then
-          begin
-            dm.COM.SendCommand('TESTMODE OFF');
-            dm.COM.SendCommand('TESTMODE OFF');
-            dm.COM.SendCommand('TESTMODE OFF');
-          end;
-          dm.COM.close;
-        end;
-      finally
-        tthread.Synchronize(tthread.CurrentThread,
-          procedure
-          begin
-            aniConnect.Enabled := false;
-            aniConnect.Visible := false;
-            lblSetupRobotName.Text := '';
-            lblRobotModel.Text := '';
-            LoadImageID('NeatoLogo', imgRobot);
-            ckSerialConnect.Enabled := true;
-            ckTCPIPConnect.Enabled := true;
-            ResetTabs;
-          end);
+      if dm.COM.Active then
+      begin
+        dm.COM.SendCommand('TESTMODE OFF');
+        dm.COM.SendCommand('TESTMODE OFF');
+        dm.COM.SendCommand('TESTMODE OFF');
+        dm.COM.close;
       end;
-    end).start;
+    end;
+  except
+    on e: Exception do
+    begin
+      showmessage('Error on disconnect : ' + e.message);
+    end;
+  end;
+
+  aniConnect.Enabled := false;
+  aniConnect.Visible := false;
+  lblSetupRobotName.Text := '';
+  lblRobotModel.Text := '';
+  LoadImageID('NeatoLogo', imgRobot);
+  ckSerialConnect.Enabled := true;
+  ckTCPIPConnect.Enabled := true;
+  ResetTabs;
 end;
 
 procedure TfrmMain.edIPAddressChange(Sender: TObject);
@@ -1054,7 +1217,9 @@ end;
 procedure TfrmMain.PopulateCOMPorts;
 var
   comList: TStringList;
+  idx: integer;
 begin
+  idx := -1;
   try
     ckSerialConnect.IsChecked := false;
     stoptimers;
@@ -1063,10 +1228,15 @@ begin
   end;
   comList := TStringList.Create;
 
+{$IFDEF MSWINDOWS}
   TdmSerialWindows(COMWin32).Serial.EnumComDevices(comList);
-
+{$ENDIF}
+{$IFDEF ANDROID}
+  TdmSerialAndroid(COMAndroid).RefreshDevices(idx, comList);
+{$ENDIF}
   cbCOM.BeginUpdate;
   cbCOM.Items.Assign(comList);
+  cbCOM.ItemIndex := idx;
   cbCOM.endupdate;
   comList.Free;
   tabsMain.Enabled := true;
@@ -1089,7 +1259,10 @@ begin
   TTabControl(Sender).BeginUpdate;
 
   stoptimers;
-  timerStarter := nil;
+
+  SetTimer(nil);
+
+  // timerStarter := nil;
 
   lblNotSupported.Visible := false;
 
@@ -1114,16 +1287,19 @@ begin
       BotVac, BotVacConnected:
         begin
           DGetCharger.check;
-          XVGetCharger.Visible := false;
-          DGetCharger.Visible := true;
-          timerStarter := DGetCharger.timer_GetData;
+          XVGetCharger.Layout.Visible := false;
+          DGetCharger.Layout.Visible := true;
+          // SetTimer(DGetCharger.timer_GetData);
+          DGetCharger.timer_getdata.Enabled := true;
         end;
       XV:
         begin
           XVGetCharger.check;
-          DGetCharger.Visible := false;
-          XVGetCharger.Visible := true;
-          timerStarter := XVGetCharger.timer_GetData;
+          // DGetCharger.Layout.Visible := false;
+          // XVGetCharger.Layout.Visible := true;
+          DGetCharger.Layout.Visible := false;
+          XVGetCharger.Layout.Visible := true;
+          SetTimer(XVGetCharger.timer_getdata);
         end;
     end;
   end;
@@ -1131,8 +1307,8 @@ begin
   if TTabControl(Sender).ActiveTab = tabGetAccel then
   begin
     DXVGetAccel.check;
-    DXVGetAccel.Visible := true;
-    timerStarter := DXVGetAccel.timer_GetData;
+    DXVGetAccel.Layout.Visible := true;
+    SetTimer(DXVGetAccel.timer_getdata);
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetAnalogSensors then
@@ -1141,16 +1317,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetAnalogSensors.check; // toggles things based on BotVac type
-          XVGetAnalogSensors.Visible := false;
-          DGetAnalogSensors.Visible := true;
-          timerStarter := DGetAnalogSensors.timer_GetData;
+          XVGetAnalogSensors.Layout.Visible := false;
+          DGetAnalogSensors.Layout.Visible := true;
+          SetTimer(DGetAnalogSensors.timer_getdata);
         end;
       XV:
         begin
           XVGetAnalogSensors.check;
-          DGetAnalogSensors.Visible := false;
-          XVGetAnalogSensors.Visible := true;
-          timerStarter := XVGetAnalogSensors.timer_GetData;
+          DGetAnalogSensors.Layout.Visible := false;
+          XVGetAnalogSensors.Layout.Visible := true;
+          SetTimer(XVGetAnalogSensors.timer_getdata);
         end;
     end;
   end;
@@ -1161,16 +1337,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetDigitalSensors.check;
-          XVGetDigitalSensors.Visible := false;
-          DGetDigitalSensors.Visible := true;
-          timerStarter := DGetDigitalSensors.timer_GetData;
+          XVGetDigitalSensors.Layout.Visible := false;
+          DGetDigitalSensors.Layout.Visible := true;
+          SetTimer(DGetDigitalSensors.timer_getdata);
         end;
       XV:
         begin
           XVGetDigitalSensors.check;
-          DGetDigitalSensors.Visible := false;
-          XVGetDigitalSensors.Visible := true;
-          timerStarter := XVGetDigitalSensors.timer_GetData;
+          DGetDigitalSensors.Layout.Visible := false;
+          XVGetDigitalSensors.Layout.Visible := true;
+          SetTimer(XVGetDigitalSensors.timer_getdata);
         end;
     end;
   end;
@@ -1180,12 +1356,12 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetSensors.check;
-          DGetSensors.Visible := true;
-          timerStarter := DGetSensors.timer_GetData;
+          DGetSensors.Layout.Visible := true;
+          SetTimer(DGetSensors.timer_getdata);
         end;
       XV:
         begin
-          DGetSensors.Visible := false;
+          DGetSensors.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1196,16 +1372,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetMotors.check;
-          DGetMotors.Visible := true;
-          XVGetMotors.Visible := false;
-          timerStarter := DGetMotors.timer_GetData;
+          DGetMotors.Layout.Visible := true;
+          XVGetMotors.Layout.Visible := false;
+          SetTimer(DGetMotors.timer_getdata);
         end;
       XV:
         begin
           XVGetMotors.check;
-          XVGetMotors.Visible := true;
-          DGetMotors.Visible := false;
-          timerStarter := XVGetMotors.timer_GetData;
+          XVGetMotors.Layout.Visible := true;
+          DGetMotors.Layout.Visible := false;
+          SetTimer(XVGetMotors.timer_getdata);
         end;
     end;
   end;
@@ -1216,16 +1392,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetButtons.check;
-          DGetButtons.Visible := true;
-          XVGetButtons.Visible := false;
-          timerStarter := DGetButtons.timer_GetData;
+          DGetButtons.Layout.Visible := true;
+          XVGetButtons.Layout.Visible := false;
+          SetTimer(DGetButtons.timer_getdata);
         end;
       XV:
         begin
           XVGetButtons.check;
-          XVGetButtons.Visible := true;
-          DGetButtons.Visible := false;
-          timerStarter := XVGetButtons.timer_GetData;
+          XVGetButtons.Layout.Visible := true;
+          DGetButtons.Layout.Visible := false;
+          SetTimer(XVGetButtons.timer_getdata);
         end;
     end;
   end;
@@ -1236,17 +1412,18 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetCalInfo.check;
-          DGetCalInfo.Visible := true;
-          DGetCalInfo.check; // toggles things based on BotVac type
-          XVGetCalInfo.Visible := false;
-          timerStarter := DGetCalInfo.timer_GetData;
+          DGetCalInfo.Layout.Visible := true;
+          DGetCalInfo.check;
+          // toggles things based on BotVac type
+          XVGetCalInfo.Layout.Visible := false;
+          SetTimer(DGetCalInfo.timer_getdata);
         end;
       XV:
         begin
           XVGetCalInfo.check;
-          XVGetCalInfo.Visible := true;
-          DGetCalInfo.Visible := false;
-          timerStarter := XVGetCalInfo.timer_GetData;
+          XVGetCalInfo.Layout.Visible := true;
+          DGetCalInfo.Layout.Visible := false;
+          SetTimer(XVGetCalInfo.timer_getdata);
         end;
     end;
   end;
@@ -1257,16 +1434,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetWarranty.check;
-          DGetWarranty.Visible := true;
-          XVGetWarranty.Visible := false;
-          timerStarter := DGetWarranty.timer_GetData;
+          DGetWarranty.Layout.Visible := true;
+          XVGetWarranty.Layout.Visible := false;
+          SetTimer(DGetWarranty.timer_getdata);
         end;
       XV:
         begin
           XVGetWarranty.check;
-          XVGetWarranty.Visible := true;
-          DGetWarranty.Visible := false;
-          timerStarter := XVGetWarranty.timer_GetData;
+          XVGetWarranty.Layout.Visible := true;
+          DGetWarranty.Layout.Visible := false;
+          SetTimer(XVGetWarranty.timer_getdata);
         end;
     end;
   end;
@@ -1277,16 +1454,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetErr.check;
-          DGetErr.Visible := true;
-          XVGetErr.Visible := false;
-          timerStarter := DGetErr.timer_GetData;
+          DGetErr.Layout.Visible := true;
+          XVGetErr.Layout.Visible := false;
+          SetTimer(DGetErr.timer_getdata);
         end;
       XV:
         begin
           XVGetErr.check;
-          XVGetErr.Visible := true;
-          DGetErr.Visible := false;
-          timerStarter := XVGetErr.timer_GetData;
+          XVGetErr.Layout.Visible := true;
+          DGetErr.Layout.Visible := false;
+          SetTimer(XVGetErr.timer_getdata);
         end;
     end;
   end;
@@ -1297,16 +1474,16 @@ begin
       BotVacConnected, BotVac:
         begin
           DGetVersion.check;
-          DGetVersion.Visible := true;
-          XVGetVersion.Visible := false;
-          timerStarter := DGetVersion.timer_GetData;
+          DGetVersion.Layout.Visible := true;
+          XVGetVersion.Layout.Visible := false;
+          SetTimer(DGetVersion.timer_getdata);
         end;
       XV:
         begin
           XVGetVersion.check;
-          XVGetVersion.Visible := true;
-          DGetVersion.Visible := false;
-          timerStarter := XVGetVersion.timer_GetData;
+          XVGetVersion.Layout.Visible := true;
+          DGetVersion.Layout.Visible := false;
+          SetTimer(XVGetVersion.timer_getdata);
         end;
     end;
   end;
@@ -1317,12 +1494,12 @@ begin
       BotVacConnected:
         begin
           DGetUsage.check;
-          DGetUsage.Visible := true;
-          timerStarter := DGetUsage.timer_GetData;
+          DGetUsage.Layout.Visible := true;
+          SetTimer(DGetUsage.timer_getdata);
         end;
       BotVac, XV:
         begin
-          DGetUsage.Visible := false;
+          DGetUsage.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1334,12 +1511,12 @@ begin
       BotVacConnected:
         begin
           DGetUserSettings.check;
-          DGetUserSettings.Visible := true;
-          timerStarter := DGetUserSettings.timer_GetData;
+          DGetUserSettings.Layout.Visible := true;
+          SetTimer(DGetUserSettings.timer_getdata);
         end;
       BotVac, XV:
         begin
-          DGetUserSettings.Visible := false;
+          DGetUserSettings.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1348,16 +1525,17 @@ begin
   if TTabControl(Sender).ActiveTab = tabGetSchedule then
   begin
     case neatoType of
-      BotVacConnected: // there is a GetSchedule but appears not usable
+      BotVacConnected:
+        // there is a GetSchedule but appears not usable
         begin
-          XVGetSchedule.Visible := false;
+          XVGetSchedule.Layout.Visible := false;
           SetNotSupported;
         end;
       BotVac, XV:
         begin
           XVGetSchedule.check;
-          XVGetSchedule.Visible := true;
-          timerStarter := XVGetSchedule.timer_GetData;
+          XVGetSchedule.Layout.Visible := true;
+          SetTimer(XVGetSchedule.timer_getdata);
         end;
     end;
   end;
@@ -1365,16 +1543,17 @@ begin
   if TTabControl(Sender).ActiveTab = tabGetTime then
   begin
     case neatoType of
-      BotVacConnected: // there is a GetSchedule but appears not usable
+      BotVacConnected:
+        // there is a GetSchedule but appears not usable
         begin
-          XVGetTime.Visible := false;
+          XVGetTime.Layout.Visible := false;
           SetNotSupported;
         end;
       BotVac, XV:
         begin
           XVGetTime.check;
-          XVGetTime.Visible := true;
-          timerStarter := XVGetTime.timer_GetData;
+          XVGetTime.Layout.Visible := true;
+          SetTimer(XVGetTime.timer_getdata);
         end;
     end;
   end;
@@ -1385,14 +1564,14 @@ begin
       BotVacConnected, BotVac:
         begin
           DClean.check;
-          XVClean.Visible := false;
-          DClean.Visible := true;
+          XVClean.Layout.Visible := false;
+          DClean.Layout.Visible := true;
         end;
       XV:
         begin
           XVClean.check;
-          DClean.Visible := false;
-          XVClean.Visible := true;
+          DClean.Layout.Visible := false;
+          XVClean.Layout.Visible := true;
         end;
     end;
   end;
@@ -1400,39 +1579,40 @@ begin
   if TTabControl(Sender).ActiveTab = tabPlaySound then
   begin
     DXVPlaySound.check;
-    DXVPlaySound.Visible := true;
+    DXVPlaySound.Layout.Visible := true;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetFuelGauge then
   begin
     DXVSetFuelGauge.check;
-    DXVSetFuelGauge.Visible := true;
+    DXVSetFuelGauge.Layout.Visible := true;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetTime then
   begin
     DXVSetTime.check;
-    DXVSetTime.Visible := true;
+    DXVSetTime.Layout.Visible := true;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetSystemMode then
   begin
     DXVSetSystemMode.check;
-    DXVSetSystemMode.Visible := true;
+    DXVSetSystemMode.Layout.Visible := true;
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetLCD then
   begin
     case neatoType of
-      BotVacConnected, BotVac: // there IS a SetLCD available, but can't figure it out as no HELP for it
+      BotVacConnected, BotVac:
+        // there IS a SetLCD available, but can't figure it out as no HELP for it
         begin
-          DXVSetLCD.Visible := false;
+          DXVSetLCD.Layout.Visible := false;
           SetNotSupported;
         end;
       XV:
         begin
           DXVSetLCD.check;
-          DXVSetLCD.Visible := true;
+          DXVSetLCD.Layout.Visible := true;
         end;
     end;
   end;
@@ -1442,13 +1622,14 @@ begin
     case neatoType of
       BotVacConnected: // there IS a setLED but can't seem to get anything to respond
         begin
-          XVSetLED.Visible := false;
+          XVSetLED.Layout.Visible := false;
           SetNotSupported;
         end;
       BotVac, XV:
         begin
           XVSetLED.check;
-          XVSetLED.Visible := true; // BotVac and XV are similar enough to share the XV code
+          XVSetLED.Layout.Visible := true;
+          // BotVac and XV are similar enough to share the XV code
         end;
     end;
   end;
@@ -1456,15 +1637,16 @@ begin
   if TTabControl(Sender).ActiveTab = tabSetSchedule then
   begin
     case neatoType of
-      BotVacConnected: // there IS a SetSchedule for D3-D7 but it appears not used anymore
+      BotVacConnected:
+        // there IS a SetSchedule for D3-D7 but it appears not used anymore
         begin
-          DXVSetSchedule.Visible := false;
+          DXVSetSchedule.Layout.Visible := false;
           SetNotSupported;
         end;
       BotVac, XV:
         begin
           DXVSetSchedule.check;
-          DXVSetSchedule.Visible := true;
+          DXVSetSchedule.Layout.Visible := true;
         end;
     end;
   end;
@@ -1474,13 +1656,13 @@ begin
     case neatoType of
       BotVac, BotVacConnected:
         begin
-          DXVSetWallFollower.Visible := false;
+          DXVSetWallFollower.Layout.Visible := false;
           SetNotSupported;
         end;
       XV:
         begin
           DXVSetWallFollower.check;
-          DXVSetWallFollower.Visible := true;
+          DXVSetWallFollower.Layout.Visible := true;
         end;
     end;
   end;
@@ -1490,13 +1672,13 @@ begin
     case neatoType of
       BotVac, BotVacConnected:
         begin
-          DXVSetDistanceCal.Visible := false;
+          DXVSetDistanceCal.Layout.Visible := false;
           SetNotSupported;
         end;
       XV:
         begin
           DXVSetDistanceCal.check;
-          DXVSetDistanceCal.Visible := true;
+          DXVSetDistanceCal.Layout.Visible := true;
         end;
     end;
   end;
@@ -1504,7 +1686,7 @@ begin
   if TTabControl(Sender).ActiveTab = tabSetIEC then
   begin
     DXVSetIEC.check;
-    DXVSetIEC.Visible := true;
+    DXVSetIEC.Layout.Visible := true;
   end;
 
   if TTabControl(Sender).ActiveTab = tabGetLifeStatLog then
@@ -1512,13 +1694,13 @@ begin
     case neatoType of
       BotVac, BotVacConnected:
         begin
-          DXVGetLifeStatLog.Visible := false;
+          DXVGetLifeStatLog.Layout.Visible := false;
           SetNotSupported;
         end;
       XV:
         begin
           DXVGetLifeStatLog.check;
-          DXVGetLifeStatLog.Visible := true;
+          DXVGetLifeStatLog.Layout.Visible := true;
         end;
     end;
   end;
@@ -1527,36 +1709,36 @@ begin
     if assigned(DXVSetMotor) then
     begin
       DXVSetMotor.check;
-      DXVSetMotor.Visible := true;
+      DXVSetMotor.Layout.Visible := true;
     end;
 
   if TTabControl(Sender).ActiveTab = tabGetLDSScan then
   begin
     DXVGetLDSScan.check;
-    DXVGetLDSScan.Visible := true;
-    timerStarter := DXVGetLDSScan.timer_GetData;
+    DXVGetLDSScan.Layout.Visible := true;
+    SetTimer(DXVGetLDSScan.timer_getdata);
   end;
 
   if TTabControl(Sender).ActiveTab = tabLidarView then
     if assigned(DXVLidarView) then
     begin
       DXVLidarView.check;
-      DXVLidarView.Visible := true;
-      timerStarter := DXVLidarView.timer_GetData;
+      DXVLidarView.Layout.Visible := true;
+      SetTimer(DXVLidarView.timer_getdata);
     end;
 
   if TTabControl(Sender).ActiveTab = tabTestLDS then
   begin
     DXVTestLDS.check;
-    DXVTestLDS.Visible := true;
-    timerStarter := DXVTestLDS.timer_GetData;
+    DXVTestLDS.Layout.Visible := true;
+    SetTimer(DXVTestLDS.timer_getdata);
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetBatteryTest then
     if assigned(DXVSetBatteryTest) then
     begin
       DXVSetBatteryTest.check;
-      DXVSetBatteryTest.Visible := true;
+      DXVSetBatteryTest.Layout.Visible := true;
     end;
 
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1566,11 +1748,11 @@ begin
       BotVacConnected, BotVac:
         begin
           DClearFiles.check;
-          DClearFiles.Visible := true;
+          DClearFiles.Layout.Visible := true;
         end;
       XV:
         begin
-          DClearFiles.Visible := false;
+          DClearFiles.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1580,13 +1762,13 @@ begin
       BotVacConnected, BotVac:
         begin
           XVRestoreDefaults.check;
-          XVRestoreDefaults.Visible := false;
+          XVRestoreDefaults.Layout.Visible := false;
           SetNotSupported;
         end;
       XV:
         begin
           XVRestoreDefaults.check;
-          XVRestoreDefaults.Visible := true;
+          XVRestoreDefaults.Layout.Visible := true;
         end;
     end;
   /// ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1596,11 +1778,11 @@ begin
       BotVacConnected:
         begin
           DGetWifiInfo.check;
-          DGetWifiInfo.Visible := true;
+          DGetWifiInfo.Layout.Visible := true;
         end;
       BotVac, XV:
         begin
-          DGetWifiInfo.Visible := false;
+          DGetWifiInfo.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1610,12 +1792,12 @@ begin
       BotVacConnected:
         begin
           DGetWifiStatus.check;
-          DGetWifiStatus.Visible := true;
-          timerStarter := DGetWifiStatus.timer_GetData;
+          DGetWifiStatus.Layout.Visible := true;
+          SetTimer(DGetWifiStatus.timer_getdata);
         end;
       BotVac, XV:
         begin
-          DGetWifiStatus.Visible := false;
+          DGetWifiStatus.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1624,10 +1806,10 @@ begin
   begin
     if assigned(DXVTerminal) then
     begin
-      DXVTerminal.Visible := true;
+      DXVTerminal.Layout.Visible := true;
       if DXVTerminal.edDebugTerminalSend.CanFocus then
         DXVTerminal.edDebugTerminalSend.SetFocus;
-      timerStarter := DXVTerminal.timer_GetData;
+      SetTimer(DXVTerminal.timer_getdata);
     end;
   end;
 
@@ -1636,11 +1818,11 @@ begin
       BotVac:
         begin
           DXVSetLanguage.check;
-          DXVSetLanguage.Visible := true;
+          DXVSetLanguage.Layout.Visible := true;
         end;
       BotVacConnected, XV:
         begin
-          DXVSetLanguage.Visible := false;
+          DXVSetLanguage.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1650,11 +1832,11 @@ begin
       BotVac, BotVacConnected: // maybe the connected ?
         begin
           DSetButton.check;
-          DSetButton.Visible := true;
+          DSetButton.Layout.Visible := true;
         end;
       XV:
         begin
-          DSetButton.Visible := false;
+          DSetButton.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1664,11 +1846,11 @@ begin
       BotVacConnected: // maybe the connected ?
         begin
           DSetNTPTime.check;
-          DSetNTPTime.Visible := true;
+          DSetNTPTime.Layout.Visible := true;
         end;
       BotVac, XV:
         begin
-          DSetNTPTime.Visible := false;
+          DSetNTPTime.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1678,11 +1860,11 @@ begin
       BotVacConnected: // maybe the connected ?
         begin
           DSetNavigationMode.check;
-          DSetNavigationMode.Visible := true;
+          DSetNavigationMode.Layout.Visible := true;
         end;
       BotVac, XV:
         begin
-          DSetNavigationMode.Visible := false;
+          DSetNavigationMode.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
@@ -1692,28 +1874,16 @@ begin
       BotVacConnected: // maybe the connected ?
         begin
           DSetUsage.check;
-          DSetUsage.Visible := true;
+          DSetUsage.Layout.Visible := true;
         end;
       BotVac, XV:
         begin
-          DSetUsage.Visible := false;
+          DSetUsage.Layout.Visible := false;
           SetNotSupported;
         end;
     end;
 
-  if assigned(timerStarter) then
-  begin
-    tthread.CreateAnonymousThread(
-      procedure
-      begin
-        sleep(1000);
-        tthread.Synchronize(tthread.CurrentThread,
-          procedure
-          begin
-            timerStarter.Enabled := true;
-          end);
-      end).start;
-  end;
+  StartTimer;
 
   TTabControl(Sender).endupdate;
 end;
@@ -1723,68 +1893,69 @@ begin
   // create a whole bunch of tabs!
   dm.log := self.memoDebug;
 
-  DGetCharger := TframeDGetCharger.Create(tabGetCharger);
-  DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel);
-  DGetAnalogSensors := TframeDGetAnalogSensors.Create(tabGetAnalogSensors);
-  DGetDigitalSensors := TframeDGetDigitalSensors.Create(tabGetDigitalSensors);
-  DGetSensors := TframeDGetSensors.Create(tabGetSensor);
-  DGetMotors := TframeDGetMotors.Create(tabGetMotors);
-  DGetButtons := TframeDGetButtons.Create(tabGetButtons);
-  DGetCalInfo := TframeDGetCalInfo.Create(tabGetCalInfo);
-  DGetWarranty := TframeDGetWarranty.Create(tabGetWarranty);
-  DGetErr := TframeDGetErr.Create(tabGetErr);
-  DGetVersion := TframeDGetVersion.Create(tabGetVersion);
-  DGetUsage := TframeDGetUsage.Create(tabGetUsage);
-  DGetUserSettings := TframeDGetUserSettings.Create(tabGetUserSettings);
-  DClearFiles := TframeDClearFiles.Create(tabClearFiles);
-  DGetWifiInfo := TframeDGetWifiInfo.Create(tabGetWifiInfo);
-  DGetWifiStatus := TframeDGetWifiStatus.Create(tabGetWifiStatus);
-  DSetNavigationMode := TframeDSetNavigationMode.Create(tabSetNavigationMode);
-  DSetUsage := TframeDSetUsage.Create(tabSetUsage);
+  DGetCharger := TframeDGetCharger.Create(tabGetCharger, RectGetCharger);
+  DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel, rectGetAccel);
+  DGetAnalogSensors := TframeDGetAnalogSensors.Create(tabGetAnalogSensors, rectGetAnalogSensors);
+  DGetDigitalSensors := TframeDGetDigitalSensors.Create(tabGetDigitalSensors, rectGetDigitalSensors);
+  DGetSensors := TframeDGetSensors.Create(tabGetSensor, rectGetSensor);
+  DGetMotors := TframeDGetMotors.Create(tabGetMotors, rectGetMotors);
+  DGetButtons := TframeDGetButtons.Create(tabGetButtons, rectGetButtons);
+  DGetCalInfo := TframeDGetCalInfo.Create(tabGetCalInfo, rectGetcalInfo);
+  DGetWarranty := TframeDGetWarranty.Create(tabGetWarranty, rectGetWarranty);
+  DGetErr := TframeDGetErr.Create(tabGetErr, rectGetErr);
+  DGetVersion := TframeDGetVersion.Create(tabGetVersion, rectGetVersion);
+  DGetUsage := TframeDGetUsage.Create(tabGetUsage, rectGetUsage);
+  DGetUserSettings := TframeDGetUserSettings.Create(tabGetUserSettings, rectGetUserSettings);
+  DClearFiles := TframeDClearFiles.Create(tabClearFiles, rectClearFiles);
+  DGetWifiInfo := TframeDGetWifiInfo.Create(tabGetWifiInfo, rectGetWifiInfo);
+  DGetWifiStatus := TframeDGetWifiStatus.Create(tabGetWifiStatus, rectGetWifiStatus);
+  DSetNavigationMode := TframeDSetNavigationMode.Create(tabSetNavigationMode, rectSetNavigationMode);
+  DSetUsage := TframeDSetUsage.Create(tabSetUsage, rectSetUsage);
 
-  XVGetCharger := TframeXVGetCharger.Create(tabGetCharger);
-  XVGetAnalogSensors := TframeXVGetAnalogSensors.Create(tabGetAnalogSensors);
-  XVGetDigitalSensors := TframeXVGetDigitalSensors.Create(tabGetDigitalSensors);
-  XVGetMotors := TframeXVGetMotors.Create(tabGetMotors);
-  XVGetButtons := TframeXVGetButtons.Create(tabGetButtons);
-  XVGetCalInfo := TframeXVGetCalInfo.Create(tabGetCalInfo);
-  XVGetWarranty := TframeXVGetWarranty.Create(tabGetWarranty);
-  XVGetErr := TframeXVGetErr.Create(tabGetErr);
-  XVGetVersion := TframeXVGetVersion.Create(tabGetVersion);
-  XVRestoreDefaults := TframeXVRestoreDefaults.Create(tabRestoreDefaults);
-  XVGetSchedule := TframeXVGetSchedule.Create(tabGetSchedule);
-  XVGetTime := TframeXVGetTime.Create(tabGetTime);
-  XVClean := TFrameXVClean.Create(tabClean);
-  XVSetLED := TframeXVSetLED.Create(tabSetLED);
+  XVGetCharger := TframeXVGetCharger.Create(tabGetCharger, RectGetCharger);
+  XVGetAnalogSensors := TframeXVGetAnalogSensors.Create(tabGetAnalogSensors, rectGetAnalogSensors);
+  XVGetDigitalSensors := TframeXVGetDigitalSensors.Create(tabGetDigitalSensors, rectGetDigitalSensors);
+  XVGetMotors := TframeXVGetMotors.Create(tabGetMotors, rectGetMotors);
+  XVGetButtons := TframeXVGetButtons.Create(tabGetButtons, rectGetButtons);
+  XVGetCalInfo := TframeXVGetCalInfo.Create(tabGetCalInfo, rectGetcalInfo);
+  XVGetWarranty := TframeXVGetWarranty.Create(tabGetWarranty, rectGetWarranty);
+  XVGetErr := TframeXVGetErr.Create(tabGetErr, rectGetErr);
+  XVGetVersion := TframeXVGetVersion.Create(tabGetVersion, rectGetVersion);
+  XVRestoreDefaults := TframeXVRestoreDefaults.Create(tabRestoreDefaults, rectRestoreDefaults);
+  XVGetSchedule := TframeXVGetSchedule.Create(tabGetSchedule, rectGetSchedule);
+  XVGetTime := TframeXVGetTime.Create(tabGetTime, rectGetTime);
+  XVClean := TFrameXVClean.Create(tabClean, rectClean);
+  XVSetLED := TframeXVSetLED.Create(tabSetLED, rectSetLED);
 
-  DXVPlaySound := TframeDXVPlaySound.Create(tabPlaySound);
-  DXVTerminal := TframeDXVTerminal.Create(tabDebugTerminal);
-  DXVGetLDSScan := TframeDXVGetLDSScan.Create(tabGetLDSScan);
-  DXVSetFuelGauge := TframeDXVSetFuelGauge.Create(tabSetFuelGauge);
-  DXVSetTime := TframeDXVSetTime.Create(tabSetTime);
-  DXVSetSystemMode := TframeDXVSetSystemMode.Create(tabSetSystemMode);
-  DXVSetLCD := TframeDXVSetLCD.Create(tabSetLCD);
-  DXVSetSchedule := TframeXVSetSchedule.Create(tabSetSchedule);
-  DXVSetWallFollower := TframeDXVSetWallFollower.Create(tabSetWallFollower);
-  DXVSetDistanceCal := TframeDXVSetDistanceCal.Create(tabSetDistanceCal);
-  DXVSetIEC := TframeDXVSetIEC.Create(tabSetIEC);
-  DXVGetLifeStatLog := TframeDXVGetLifeStatLog.Create(tabGetLifeStatLog);
-  DXVSetMotor := TframeDXVSetMotor.Create(tabSetMotor);
-  DXVLidarView := TframeDXVLidarView.Create(tabLidarView);
-  DXVTestLDS := TframeDXVTestLDS.Create(tabTestLDS);
-  DXVSetBatteryTest := TframeDXVSetBatteryTest.Create(tabSetBatteryTest);
-  DXVSetLanguage := TframeDXVSetLanguage.Create(tabSetLanguage);
-  DSetButton := TframeDSetButton.Create(tabSetButton);
-  DClean := TframeDClean.Create(tabClean);
-  DSetNTPTime := TframeDSetNTPTime.Create(tabSetNTPTime);
+  DXVPlaySound := TframeDXVPlaySound.Create(tabPlaySound, rectPlaySound);
+  DXVTerminal := TframeDXVTerminal.Create(tabDebugTerminal, rectTerminal);
+  DXVGetLDSScan := TframeDXVGetLDSScan.Create(tabGetLDSScan, rectGetLDSScan);
+  DXVSetFuelGauge := TframeDXVSetFuelGauge.Create(tabSetFuelGauge, rectSetFuelGauge);
+  DXVSetTime := TframeDXVSetTime.Create(tabSetTime, rectSetTime);
+  DXVSetSystemMode := TframeDXVSetSystemMode.Create(tabSetSystemMode, rectSetSystemMode);
+  DXVSetLCD := TframeDXVSetLCD.Create(tabSetLCD, rectSetLCD);
+  DXVSetSchedule := TframeXVSetSchedule.Create(tabSetSchedule, rectSetSchedule);
+  DXVSetWallFollower := TframeDXVSetWallFollower.Create(tabSetWallFollower, rectSetWallFollower);
+  DXVSetDistanceCal := TframeDXVSetDistanceCal.Create(tabSetDistanceCal, rectSetDistanceCal);
+  DXVSetIEC := TframeDXVSetIEC.Create(tabSetIEC, rectSetIEC);
+  DXVGetLifeStatLog := TframeDXVGetLifeStatLog.Create(tabGetLifeStatLog, rectGetLifeStatLog);
+  DXVSetMotor := TframeDXVSetMotor.Create(tabSetMotor, rectSetMotor);
+  DXVLidarView := TframeDXVLidarView.Create(tabLidarView, rectLidarView);
+  DXVTestLDS := TframeDXVTestLDS.Create(tabTestLDS, rectTestLDS);
+  DXVSetBatteryTest := TframeDXVSetBatteryTest.Create(tabSetBatteryTest, rectSetBatteryTest);
+  DXVSetLanguage := TframeDXVSetLanguage.Create(tabSetLanguage, rectSetLanguage);
+  DSetButton := TframeDSetButton.Create(tabSetButton, rectSetButton);
+  DClean := TframeDClean.Create(tabClean, rectClean);
+  DSetNTPTime := TframeDSetNTPTime.Create(tabSetNTPTime, rectSetNTPTime);
 
+{$IFDEF MSWINDOWS}
   Scripts := TframeScriptEngine.Create(tabScripts);
   Scripts.Parent := tabScripts;
   Scripts.Position.X := 0;
   Scripts.Position.Y := 0;
   Scripts.Align := talignlayout.Client;
   Scripts.init;
-
+{$ENDIF}
 end;
 
 procedure TfrmMain.ResetTabs;

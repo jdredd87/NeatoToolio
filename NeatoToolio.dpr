@@ -1,4 +1,5 @@
 program NeatoToolio;
+
 {$R *.dres}
 
 uses
@@ -9,14 +10,23 @@ uses
   madListModules,
   System.StartUpCopy,
   FMX.Forms,
-  fmx.types,
-
-  dmSerial.Windows in 'dmSerial.Windows.pas' {dmSerialWindows: TDataModule},
+  FMX.types,
   dmSerial.Base in 'dmSerial.Base.pas' {dmSerialBase: TDataModule},
   dmSerial.TCPIP in 'dmSerial.TCPIP.pas' {dmSerialTCP: TDataModule},
+  {$IFDEF android}
+  dmSerial.Android in 'dmSerial.Android.pas',
+  {$ENDIF }
+  {$IFDEF MSWINDOWS}
+  dmSerial.Windows in 'dmSerial.Windows.pas',
+  {$ENDIF }
+  {$IFDEF MSWINDOWS}
+  frame.ScriptEngine in 'Scripts\frame.ScriptEngine.pas' {frameScriptEngine: TFrame},
+  {$ENDIF }
+  {$IFDEF MSWINDOWS}
+  frame.Scripts in 'Scripts\frame.Scripts.pas' {frameScripts: TFrame},
+  {$ENDIF }
   dmCommon in 'dmCommon.pas' {dm: TDataModule},
   formMain in 'formMain.pas' {frmMain},
-
   XSuperJSON in 'XSuperJSON\XSuperJSON.pas',
   XSuperObject in 'XSuperJSON\XSuperObject.pas',
   neato.Commands in 'common\neato.Commands.pas',
@@ -127,13 +137,13 @@ uses
   frame.D.SetNavigationMode in 'DSeriesFrames\frame.D.SetNavigationMode.pas' {frameDSetNavigationMode: TFrame},
   neato.D.SetNavigationMode in 'DSeries\neato.D.SetNavigationMode.pas',
   neato.D.SetUsage in 'DSeries\neato.D.SetUsage.pas',
-  frame.D.SetUsage in 'DSeriesFrames\frame.D.SetUsage.pas' {frameDSetUsage: TFrame},
-  frame.ScriptEngine in 'Scripts\frame.ScriptEngine.pas' {frameScriptEngine: TFrame};
+  frame.D.SetUsage in 'DSeriesFrames\frame.D.SetUsage.pas' {frameDSetUsage: TFrame};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  Application.FormFactor.Orientations := [TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmMain, frmMain);
   Application.Run;

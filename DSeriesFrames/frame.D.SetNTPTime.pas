@@ -8,7 +8,8 @@ uses
   neato.D.SetNTPTime,
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Objects,
+  FMX.Layouts;
 
 type
   TframeDSetNTPTime = class(TframeMaster)
@@ -20,21 +21,29 @@ type
     procedure btnSetNTPTimeClick(Sender: TObject);
     procedure btnSetNTPTimeMouseEnter(Sender: TObject);
     procedure btnSetNTPTimeMouseLeave(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
+
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDSetNTPTime.Create(AOwner: TComponent);
+constructor TframeDSetNTPTime.Create(AOwner: TComponent; Rect: TRectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDSetNTPTime.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+//
 end;
 
 procedure TframeDSetNTPTime.btnSetNTPTimeClick(Sender: TObject);

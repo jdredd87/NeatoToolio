@@ -6,10 +6,10 @@ uses
   frame.master,
   dmCommon,
   neato.XV.GetSchedule,
-  FMX.TabControl,
+  FMX.TabControl, FMX.Objects,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation,
-  FMX.DateTimeCtrls, FMX.Objects;
+  FMX.DateTimeCtrls, FMX.Layouts;
 
 type
   TframeXVGetSchedule = class(TframeMaster)
@@ -40,7 +40,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -48,9 +48,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeXVGetSchedule.Create(AOwner: TComponent);
+constructor TframeXVGetSchedule.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 

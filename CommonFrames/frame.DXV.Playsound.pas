@@ -10,7 +10,7 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects;
+  FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects, FMX.Layouts;
 
 type
   TframeDXVPlaySound = class(TframeMaster)
@@ -26,22 +26,30 @@ type
     procedure btnPlaySoundTestClick(Sender: TObject);
     procedure btnSoundPlayTestAllClick(Sender: TObject);
     procedure btnPlaySoundAbortClick(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     fPlaySoundAborted: Boolean;
   public
     procedure Check;
     property PlaySoundAborted: Boolean read fPlaySoundAborted;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: trectangle); reintroduce; overload;
+
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDXVPlaySound.Create(AOwner: TComponent);
+constructor TframeDXVPlaySound.Create(AOwner: TComponent; Rect: trectangle);
+begin
+  inherited Create(AOwner, Rect);
+  lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVPlaySound.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-  lblFrameTitle.Text := sDescription;
+  //
 end;
 
 procedure TframeDXVPlaySound.btnPlaySoundAbortClick(Sender: TObject);
@@ -172,6 +180,8 @@ begin
   btnPlaySoundAbort.Enabled := dm.com.Active;
   nbPlaySoundIDValue.Enabled := dm.com.Active;
   sgPlaysound.Clear;
+  sgPlaysound.Columns[0].Width := 100;
+  sgPlaysound.Columns[1].Width := 300;
 end;
 
 end.

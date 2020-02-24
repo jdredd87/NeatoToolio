@@ -1,171 +1,177 @@
 inherited frameDXVSetTime: TframeDXVSetTime
-  Align = Client
-  Size.Width = 808.000000000000000000
-  Size.Height = 356.000000000000000000
+  ClientHeight = 331
+  ClientWidth = 611
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 544
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 325.000000000000000000
-    Size.Width = 788.000000000000000000
-    TabOrder = 52
-  end
-  object Rectangle1: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 808.000000000000000000
-    Size.Height = 249.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetTimeApply: TButton
-      Enabled = False
-      Position.X = 400.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 113.000000000000000000
-      Size.Height = 81.000000000000000000
+  inherited Layout: TScaledLayout
+    OriginalWidth = 611.000000000000000000
+    OriginalHeight = 331.000000000000000000
+    Size.Width = 611.000000000000000000
+    Size.Height = 331.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 300.000000000000000000
+      Size.Width = 591.000000000000000000
+      TabOrder = 52
+    end
+    object lblSetTimeError: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 254.000000000000000000
+      Size.Width = 611.000000000000000000
+      Size.Height = 52.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'Apply'
-      OnClick = btnSetTimeApplyClick
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      TabOrder = 53
     end
-    object ckSetTimeFri: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 176.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
+    object Rectangle1: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 611.000000000000000000
+      Size.Height = 249.000000000000000000
       Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 1
-      Text = 'Friday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
+      object btnSetTimeApply: TButton
+        Enabled = False
+        Position.X = 400.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 113.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Apply'
+        OnClick = btnSetTimeApplyClick
+      end
+      object ckSetTimeFri: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 176.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 1
+        Text = 'Friday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object ckSetTimeMon: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 2
+        Text = 'Monday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object ckSetTimeSat: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 208.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 3
+        Text = 'Saturday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object ckSetTimeSun: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 4
+        Text = 'Sunday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object ckSetTimeThu: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 5
+        Text = 'Thursday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object ckSetTimeTue: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 6
+        Text = 'Tuesday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object ckSetTimeWed: TRadioButton
+        Position.X = 16.000000000000000000
+        Position.Y = 112.000000000000000000
+        Size.Width = 120.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'checkboxstyle'
+        TabOrder = 7
+        Text = 'Wednesday'
+        TextSettings.HorzAlign = Trailing
+        OnChange = ckSetTimeSunChange
+      end
+      object lblSetTimeHour: TLabel
+        Position.X = 256.000000000000000000
+        Position.Y = 16.000000000000000000
+        Text = 'Hour'
+        TabOrder = 8
+      end
+      object lblSetTimeMinutes: TLabel
+        Position.X = 256.000000000000000000
+        Position.Y = 80.000000000000000000
+        Text = 'Minutes'
+        TabOrder = 9
+      end
+      object lblSetTimeSeconds: TLabel
+        Position.X = 256.000000000000000000
+        Position.Y = 144.000000000000000000
+        Text = 'Seconds'
+        TabOrder = 10
+      end
+      object sbSetTimeHour: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 11
+        Cursor = crIBeam
+        Max = 23.000000000000000000
+        Position.X = 256.000000000000000000
+        Position.Y = 40.000000000000000000
+      end
+      object sbSetTimeMinutes: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 12
+        Cursor = crIBeam
+        Max = 59.000000000000000000
+        Position.X = 256.000000000000000000
+        Position.Y = 104.000000000000000000
+      end
+      object sbSetTimeSeconds: TSpinBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 13
+        Cursor = crIBeam
+        Max = 59.000000000000000000
+        Position.X = 256.000000000000000000
+        Position.Y = 168.000000000000000000
+      end
     end
-    object ckSetTimeMon: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 48.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 2
-      Text = 'Monday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
-    end
-    object ckSetTimeSat: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 208.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 3
-      Text = 'Saturday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
-    end
-    object ckSetTimeSun: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 4
-      Text = 'Sunday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
-    end
-    object ckSetTimeThu: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 144.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 5
-      Text = 'Thursday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
-    end
-    object ckSetTimeTue: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 6
-      Text = 'Tuesday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
-    end
-    object ckSetTimeWed: TRadioButton
-      Position.X = 16.000000000000000000
-      Position.Y = 112.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 19.000000000000000000
-      Size.PlatformDefault = False
-      StyleLookup = 'checkboxstyle'
-      TabOrder = 7
-      Text = 'Wednesday'
-      TextSettings.HorzAlign = Trailing
-      OnChange = ckSetTimeSunChange
-    end
-    object lblSetTimeHour: TLabel
-      Position.X = 256.000000000000000000
-      Position.Y = 16.000000000000000000
-      Text = 'Hour'
-      TabOrder = 8
-    end
-    object lblSetTimeMinutes: TLabel
-      Position.X = 256.000000000000000000
-      Position.Y = 80.000000000000000000
-      Text = 'Minutes'
-      TabOrder = 9
-    end
-    object lblSetTimeSeconds: TLabel
-      Position.X = 256.000000000000000000
-      Position.Y = 144.000000000000000000
-      Text = 'Seconds'
-      TabOrder = 10
-    end
-    object sbSetTimeHour: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 11
-      Cursor = crIBeam
-      Max = 23.000000000000000000
-      Position.X = 256.000000000000000000
-      Position.Y = 40.000000000000000000
-    end
-    object sbSetTimeMinutes: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 12
-      Cursor = crIBeam
-      Max = 59.000000000000000000
-      Position.X = 256.000000000000000000
-      Position.Y = 104.000000000000000000
-    end
-    object sbSetTimeSeconds: TSpinBox
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      TabOrder = 13
-      Cursor = crIBeam
-      Max = 59.000000000000000000
-      Position.X = 256.000000000000000000
-      Position.Y = 168.000000000000000000
-    end
-  end
-  object lblSetTimeError: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 254.000000000000000000
-    Size.Width = 808.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 53
   end
 end

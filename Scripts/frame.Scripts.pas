@@ -104,7 +104,7 @@ begin
   Scripter.DefineClassByRTTI(TRadioButton);
   Scripter.DefineClassByRTTI(TComboBox);
 
-  Scripter.DefineClassByRTTI(TdmSerial);
+  Scripter.DefineClassByRTTI(TdmSerialWindows);
   Scripter.DefineClassByRTTI(tdm);
 
   Scripter.AddObject('dm', dm);

@@ -34,7 +34,8 @@ type
     procedure Close; virtual;
     function Open: boolean; virtual;
     function Active: boolean; virtual;
-    function ReadAnsiString: AnsiString; Virtual;
+
+    function ReadString: String; Virtual;
 
     function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string; virtual;
     function SendCommandOnly(cmd: string): String; virtual;
@@ -72,7 +73,7 @@ procedure TdmSerialBase.Close;
 begin
 end;
 
-function TdmSerialBase.ReadAnsiString: AnsiString;
+function TdmSerialBase.ReadString: String;
 begin
 end;
 

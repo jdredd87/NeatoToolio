@@ -1,63 +1,69 @@
 inherited frameDXVSetWallFollower: TframeDXVSetWallFollower
-  Size.Width = 653.000000000000000000
-  Size.Height = 431.000000000000000000
+  ClientHeight = 218
+  ClientWidth = 708
+  DesignerMasterStyle = 3
   inherited timer_getdata: TTimer
-    Left = 136
-    Top = 256
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 400.000000000000000000
-    Size.Width = 633.000000000000000000
-  end
-  object lblSetWallFollowerError: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 142.000000000000000000
-    Size.Width = 653.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 1
-  end
-  object Rectangle1: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 653.000000000000000000
-    Size.Height = 137.000000000000000000
-    Size.PlatformDefault = False
-    object Label1: TLabel
-      Position.X = 8.000000000000000000
-      Position.Y = 24.000000000000000000
-      Size.Width = 281.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'Enables/Disables wall follower'
-      TabOrder = 0
+  inherited Layout: TScaledLayout
+    OriginalWidth = 708.000000000000000000
+    OriginalHeight = 218.000000000000000000
+    Size.Width = 708.000000000000000000
+    Size.Height = 218.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 187.000000000000000000
+      Size.Width = 688.000000000000000000
     end
-    object btnSetWallFollowerDisabled: TButton
-      Position.X = 408.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 80.000000000000000000
-      Size.Height = 33.000000000000000000
+    object lblSetWallFollowerError: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 142.000000000000000000
+      Size.Width = 708.000000000000000000
+      Size.Height = 52.000000000000000000
       Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
       TabOrder = 1
-      Text = 'Disabled'
-      OnClick = btnSetWallFollowerClick
     end
-    object btnSetWallFollowerEnabled: TButton
-      Position.X = 304.000000000000000000
-      Position.Y = 16.000000000000000000
-      Size.Width = 80.000000000000000000
-      Size.Height = 33.000000000000000000
+    object Rectangle1: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 708.000000000000000000
+      Size.Height = 137.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 2
-      Text = 'Enabled'
-      OnClick = btnSetWallFollowerClick
+      object Label1: TLabel
+        Position.X = 8.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 281.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'Enables/Disables wall follower'
+        TabOrder = 0
+      end
+      object btnSetWallFollowerDisabled: TButton
+        Position.X = 408.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Disabled'
+        OnClick = btnSetWallFollowerClick
+      end
+      object btnSetWallFollowerEnabled: TButton
+        Position.X = 304.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 80.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Enabled'
+        OnClick = btnSetWallFollowerClick
+      end
     end
   end
 end

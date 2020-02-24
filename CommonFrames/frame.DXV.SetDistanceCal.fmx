@@ -1,263 +1,269 @@
 inherited frameDXVSetDistanceCal: TframeDXVSetDistanceCal
-  Size.Width = 653.000000000000000000
-  Size.Height = 538.000000000000000000
+  ClientHeight = 477
+  ClientWidth = 664
+  DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    Left = 448
-    Top = 352
+    OnTimer = timer_getdataTimer
   end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 507.000000000000000000
-    Size.Width = 633.000000000000000000
-  end
-  object lblSetDistanceCalError: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 444.000000000000000000
-    Size.Width = 653.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    TabOrder = 1
-  end
-  object Rectangle1: TRectangle
-    Align = Top
-    Fill.Color = claNull
-    Sides = []
-    Size.Width = 653.000000000000000000
-    Size.Height = 377.000000000000000000
-    Size.PlatformDefault = False
-    object btnSetDistanceCalDropMinimum: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      Text = 'DropMinimum'
-      OnClick = btnSetDistanceCalClick
-      OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
-      OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+  inherited Layout: TScaledLayout
+    OriginalWidth = 664.000000000000000000
+    OriginalHeight = 477.000000000000000000
+    Size.Width = 664.000000000000000000
+    Size.Height = 477.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 446.000000000000000000
+      Size.Width = 644.000000000000000000
     end
-    object lblSetDistanceCalWallCalA2DMinValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 288.000000000000000000
-      Text = '0'
+    object lblSetDistanceCalError: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 382.000000000000000000
+      Size.Width = 664.000000000000000000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
       TabOrder = 1
     end
-    object lblSetDistanceCalWallCalA2DMidValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 312.000000000000000000
-      Text = '0'
+    object lblSetDistanceCalMessage: TLabel
+      Align = Top
+      StyledSettings = [Family, Style, FontColor]
+      Margins.Top = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 419.000000000000000000
+      Size.Width = 664.000000000000000000
+      Size.Height = 52.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.HorzAlign = Center
+      Text = 'These commands take a few seconds to complete.'
       TabOrder = 2
     end
-    object lblSetDistanceCalWallCalA2DMid: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 312.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
+    object Rectangle1: TRectangle
+      Align = Top
+      Fill.Color = claNull
+      Sides = []
+      Size.Width = 664.000000000000000000
+      Size.Height = 377.000000000000000000
       Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'WallCalA2DMid'
-      TabOrder = 3
+      object btnSetDistanceCalDropMinimum: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'DropMinimum'
+        OnClick = btnSetDistanceCalClick
+        OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
+        OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+      end
+      object lblSetDistanceCalWallCalA2DMinValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 288.000000000000000000
+        Text = '0'
+        TabOrder = 1
+      end
+      object lblSetDistanceCalWallCalA2DMidValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 312.000000000000000000
+        Text = '0'
+        TabOrder = 2
+      end
+      object lblSetDistanceCalWallCalA2DMid: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 312.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'WallCalA2DMid'
+        TabOrder = 3
+      end
+      object lblSetDistanceCalWallCalA2DMax: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'WallCalA2DMax'
+        TabOrder = 4
+      end
+      object lblSetDistanceCalWallCalA2DMaxValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 336.000000000000000000
+        Text = '0'
+        TabOrder = 5
+      end
+      object lblSetDistanceCalRDropCalA2DMinValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 144.000000000000000000
+        Text = '0'
+        TabOrder = 6
+      end
+      object lblSetDistanceCalRDropCalA2DMid: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 168.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'RDropCalA2DMid'
+        TabOrder = 7
+      end
+      object lblSetDistanceCalRDropCalA2DMidValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 168.000000000000000000
+        Text = '0'
+        TabOrder = 8
+      end
+      object lblSetDistanceCalRDropCalA2DMax: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 192.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'RDropCalA2DMax'
+        TabOrder = 9
+      end
+      object lblSetDistanceCalRDropCalA2DMaxValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 192.000000000000000000
+        Text = '0'
+        TabOrder = 10
+      end
+      object lblSetDistanceCalLDropCalA2DMinValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 216.000000000000000000
+        Text = '0'
+        TabOrder = 11
+      end
+      object lblSetDistanceCalLDropCalA2DMin: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 216.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'LDropCalA2DMin'
+        TabOrder = 12
+      end
+      object lblSetDistanceCalLDropCalA2DMid: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 240.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'LDropCalA2DMid'
+        TabOrder = 13
+      end
+      object btnSetDistanceCalDropMiddle: TButton
+        Position.X = 176.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 14
+        Text = 'DropMiddle'
+        OnClick = btnSetDistanceCalClick
+        OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
+        OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+      end
+      object btnSetDistanceCalDropMaximum: TButton
+        Position.X = 344.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 15
+        Text = 'DropMaximum'
+        OnClick = btnSetDistanceCalClick
+        OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
+        OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+      end
+      object btnSetDistanceCalWallMinimum: TButton
+        Position.X = 8.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 16
+        Text = 'WallMinimum'
+        OnClick = btnSetDistanceCalClick
+        OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
+        OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+      end
+      object btnSetDistanceCalWallMiddle: TButton
+        Position.X = 176.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 17
+        Text = 'WallMiddle'
+        OnClick = btnSetDistanceCalClick
+        OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
+        OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+      end
+      object btnSetDistanceCalWallMaximum: TButton
+        Position.X = 344.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 18
+        Text = 'WallMaximum'
+        OnClick = btnSetDistanceCalClick
+        OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
+        OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
+      end
+      object lblSetDistanceCalRDropCalA2DMin: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'RDropCalA2DMin'
+        TabOrder = 19
+      end
+      object lblSetDistanceCalLDropCalA2DMidValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 240.000000000000000000
+        Text = '0'
+        TabOrder = 20
+      end
+      object lblSetDistanceCalLDropCalA2DMaxValue: TLabel
+        Position.X = 232.000000000000000000
+        Position.Y = 264.000000000000000000
+        Text = '0'
+        TabOrder = 21
+      end
+      object lblSetDistanceCalLDropCalA2DMax: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 264.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'LDropCalA2DMax'
+        TabOrder = 22
+      end
+      object lblSetDistanceCalWallCalA2DMin: TLabel
+        Position.X = 24.000000000000000000
+        Position.Y = 288.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Trailing
+        Text = 'WallCalA2DMin'
+        TabOrder = 23
+      end
     end
-    object lblSetDistanceCalWallCalA2DMax: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 336.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'WallCalA2DMax'
-      TabOrder = 4
-    end
-    object lblSetDistanceCalWallCalA2DMaxValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 336.000000000000000000
-      Text = '0'
-      TabOrder = 5
-    end
-    object lblSetDistanceCalRDropCalA2DMinValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 144.000000000000000000
-      Text = '0'
-      TabOrder = 6
-    end
-    object lblSetDistanceCalRDropCalA2DMid: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 168.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'RDropCalA2DMid'
-      TabOrder = 7
-    end
-    object lblSetDistanceCalRDropCalA2DMidValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 168.000000000000000000
-      Text = '0'
-      TabOrder = 8
-    end
-    object lblSetDistanceCalRDropCalA2DMax: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 192.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'RDropCalA2DMax'
-      TabOrder = 9
-    end
-    object lblSetDistanceCalRDropCalA2DMaxValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 192.000000000000000000
-      Text = '0'
-      TabOrder = 10
-    end
-    object lblSetDistanceCalLDropCalA2DMinValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 216.000000000000000000
-      Text = '0'
-      TabOrder = 11
-    end
-    object lblSetDistanceCalLDropCalA2DMin: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 216.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'LDropCalA2DMin'
-      TabOrder = 12
-    end
-    object lblSetDistanceCalLDropCalA2DMid: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 240.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'LDropCalA2DMid'
-      TabOrder = 13
-    end
-    object btnSetDistanceCalDropMiddle: TButton
-      Position.X = 176.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 14
-      Text = 'DropMiddle'
-      OnClick = btnSetDistanceCalClick
-      OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
-      OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
-    end
-    object btnSetDistanceCalDropMaximum: TButton
-      Position.X = 344.000000000000000000
-      Position.Y = 8.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 15
-      Text = 'DropMaximum'
-      OnClick = btnSetDistanceCalClick
-      OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
-      OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
-    end
-    object btnSetDistanceCalWallMinimum: TButton
-      Position.X = 8.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 16
-      Text = 'WallMinimum'
-      OnClick = btnSetDistanceCalClick
-      OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
-      OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
-    end
-    object btnSetDistanceCalWallMiddle: TButton
-      Position.X = 176.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 17
-      Text = 'WallMiddle'
-      OnClick = btnSetDistanceCalClick
-      OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
-      OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
-    end
-    object btnSetDistanceCalWallMaximum: TButton
-      Position.X = 344.000000000000000000
-      Position.Y = 80.000000000000000000
-      Size.Width = 140.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 18
-      Text = 'WallMaximum'
-      OnClick = btnSetDistanceCalClick
-      OnMouseEnter = btnSetDistanceCalWallMinimumMouseEnter
-      OnMouseLeave = btnSetDistanceCalDropMinimumMouseLeave
-    end
-    object lblSetDistanceCalRDropCalA2DMin: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 144.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'RDropCalA2DMin'
-      TabOrder = 19
-    end
-    object lblSetDistanceCalLDropCalA2DMidValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 240.000000000000000000
-      Text = '0'
-      TabOrder = 20
-    end
-    object lblSetDistanceCalLDropCalA2DMaxValue: TLabel
-      Position.X = 232.000000000000000000
-      Position.Y = 264.000000000000000000
-      Text = '0'
-      TabOrder = 21
-    end
-    object lblSetDistanceCalLDropCalA2DMax: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 264.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'LDropCalA2DMax'
-      TabOrder = 22
-    end
-    object lblSetDistanceCalWallCalA2DMin: TLabel
-      Position.X = 24.000000000000000000
-      Position.Y = 288.000000000000000000
-      Size.Width = 190.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.HorzAlign = Trailing
-      Text = 'WallCalA2DMin'
-      TabOrder = 23
-    end
-  end
-  object lblSetDistanceCalMessage: TLabel
-    Align = Top
-    StyledSettings = [Family, Style, FontColor]
-    Margins.Top = 5.000000000000000000
-    Margins.Bottom = 5.000000000000000000
-    Position.Y = 382.000000000000000000
-    Size.Width = 653.000000000000000000
-    Size.Height = 52.000000000000000000
-    Size.PlatformDefault = False
-    TextSettings.Font.Size = 18.000000000000000000
-    TextSettings.HorzAlign = Center
-    Text = 'These commands take a few seconds to complete.'
-    TabOrder = 0
   end
 end

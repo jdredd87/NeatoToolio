@@ -1,173 +1,171 @@
 inherited frameXVGetDigitalSensors: TframeXVGetDigitalSensors
-  Size.Width = 354.000000000000000000
-  Size.Height = 294.000000000000000000
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-    Left = 168
-    Top = 56
-  end
-  inherited lblFrameTitle: TLabel
-    Position.Y = 263.000000000000000000
-    Size.Width = 334.000000000000000000
-  end
-  object swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 22
-  end
-  object lblGetDigitalSensorsSNSR_DC_JACK_IS_IN: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 18.000000000000000000
-    Size.Width = 177.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'SNSR_DC_JACK_IS_IN'
-    TabOrder = 39
-  end
-  object lblGetDigitalSensorsSNSR_DUSTBIN_IS_IN: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 82.000000000000000000
-    Size.Width = 161.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'SNSR_DUSTBIN_IS_IN'
-    TabOrder = 38
-  end
-  object swGetDigitalSensorsSNSR_DUSTBIN_IS_INValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 112.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 21
-  end
-  object lblGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDED: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 154.000000000000000000
-    Size.Width = 233.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'SNSR_LEFT_WHEEL_EXTENDED'
-    TabOrder = 37
-  end
-  object swGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDEDValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 184.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 20
-  end
-  object lblGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDED: TLabel
-    AutoSize = True
-    Position.X = 24.000000000000000000
-    Position.Y = 226.000000000000000000
-    Size.Width = 233.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'SNSR_RIGHT_WHEEL_EXTENDED'
-    TabOrder = 36
-  end
-  object swGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDEDValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 24.000000000000000000
-    Position.Y = 256.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 19
-  end
-  object swGetDigitalSensorsLFRONTBITValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 280.000000000000000000
-    Position.Y = 112.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 17
-  end
-  object lblGetDigitalSensorsLFRONTBIT: TLabel
-    AutoSize = True
-    Position.X = 280.000000000000000000
-    Position.Y = 82.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'LFRONTBIT'
-    TabOrder = 35
-  end
-  object swGetDigitalSensorsLSIDEBITValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 280.000000000000000000
-    Position.Y = 48.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 18
-  end
-  object lblGetDigitalSensorsLSIDEBIT: TLabel
-    AutoSize = True
-    Position.X = 280.000000000000000000
-    Position.Y = 18.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'LSIDEBIT'
-    TabOrder = 34
-  end
-  object swGetDigitalSensorsRFRONTBITValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 280.000000000000000000
-    Position.Y = 256.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 15
-  end
-  object lblGetDigitalSensorsRFRONTBIT: TLabel
-    AutoSize = True
-    Position.X = 281.000000000000000000
-    Position.Y = 226.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'RFRONTBIT'
-    TabOrder = 33
-  end
-  object swGetDigitalSensorsRSIDEBITValue: TSwitch
-    HitTest = False
-    IsChecked = False
-    Position.X = 280.000000000000000000
-    Position.Y = 184.000000000000000000
-    Size.Width = 55.000000000000000000
-    Size.Height = 19.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 16
-  end
-  object lblGetDigitalSensorsRSIDEBIT: TLabel
-    AutoSize = True
-    Position.X = 281.000000000000000000
-    Position.Y = 154.000000000000000000
-    Size.Width = 137.000000000000000000
-    Size.Height = 16.000000000000000000
-    Size.PlatformDefault = False
-    Text = 'RSIDEBIT'
-    TabOrder = 31
+  ClientHeight = 343
+  DesignerMasterStyle = 0
+  inherited Layout: TScaledLayout
+    OriginalHeight = 343.000000000000000000
+    Size.Height = 343.000000000000000000
+    inherited lblFrameTitle: TLabel
+      Position.Y = 312.000000000000000000
+    end
+    object lblGetDigitalSensorsLFRONTBIT: TLabel
+      AutoSize = True
+      Position.X = 280.000000000000000000
+      Position.Y = 82.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'LFRONTBIT'
+      TabOrder = 1
+    end
+    object lblGetDigitalSensorsLSIDEBIT: TLabel
+      AutoSize = True
+      Position.X = 280.000000000000000000
+      Position.Y = 18.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'LSIDEBIT'
+      TabOrder = 2
+    end
+    object lblGetDigitalSensorsRFRONTBIT: TLabel
+      AutoSize = True
+      Position.X = 281.000000000000000000
+      Position.Y = 226.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'RFRONTBIT'
+      TabOrder = 3
+    end
+    object lblGetDigitalSensorsRSIDEBIT: TLabel
+      AutoSize = True
+      Position.X = 281.000000000000000000
+      Position.Y = 154.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'RSIDEBIT'
+      TabOrder = 4
+    end
+    object lblGetDigitalSensorsSNSR_DC_JACK_IS_IN: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 18.000000000000000000
+      Size.Width = 177.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'SNSR_DC_JACK_IS_IN'
+      TabOrder = 5
+    end
+    object lblGetDigitalSensorsSNSR_DUSTBIN_IS_IN: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 82.000000000000000000
+      Size.Width = 161.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'SNSR_DUSTBIN_IS_IN'
+      TabOrder = 6
+    end
+    object lblGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDED: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 154.000000000000000000
+      Size.Width = 233.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'SNSR_LEFT_WHEEL_EXTENDED'
+      TabOrder = 7
+    end
+    object lblGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDED: TLabel
+      AutoSize = True
+      Position.X = 24.000000000000000000
+      Position.Y = 226.000000000000000000
+      Size.Width = 233.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'SNSR_RIGHT_WHEEL_EXTENDED'
+      TabOrder = 8
+    end
+    object swGetDigitalSensorsLFRONTBITValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 280.000000000000000000
+      Position.Y = 112.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+    end
+    object swGetDigitalSensorsLSIDEBITValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 280.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+    end
+    object swGetDigitalSensorsRFRONTBITValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 280.000000000000000000
+      Position.Y = 256.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 11
+    end
+    object swGetDigitalSensorsRSIDEBITValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 280.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 12
+    end
+    object swGetDigitalSensorsSNSR_DC_JACK_IS_INValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 13
+    end
+    object swGetDigitalSensorsSNSR_DUSTBIN_IS_INValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 112.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 14
+    end
+    object swGetDigitalSensorsSNSR_LEFT_WHEEL_EXTENDEDValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 184.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 15
+    end
+    object swGetDigitalSensorsSNSR_RIGHT_WHEEL_EXTENDEDValue: TSwitch
+      HitTest = False
+      IsChecked = False
+      Position.X = 24.000000000000000000
+      Position.Y = 256.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 16
+    end
   end
 end

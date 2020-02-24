@@ -98,7 +98,9 @@ begin
     // Simple test to make sure we got data
     data.CaseSensitive := false;
 
-    if pos(sscanResultsReady, data.Text) > 0 then // kind of lazy in this case with the bad response layout
+
+    if (pos(sscanResultsReady, data.Text) > 0) or (pos(^Z, data.Text) > 0) then
+    // kind of lazy in this case with the bad response layout
     begin
       idx := data.IndexOf(sscanResultsReady);
 

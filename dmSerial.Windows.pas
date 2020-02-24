@@ -12,10 +12,6 @@ uses
   Winsoft.FireMonkey.FComPort,
   Winsoft.FireMonkey.FComSignal,
   system.UITypes,
-{$IFDEF android}
-  Winsoft.Android.UsbSerial,
-  Winsoft.Android.Usb,
-{$ENDIF}
   neato.helpers,
   system.SysUtils;
 
@@ -34,15 +30,9 @@ type
     FComSignalCNX: TColorBox;
     onError: TNotifyEvent;
     fmemoDebug: tmemo;
-
-{$IFDEF win32}
     Serial: TFComPort;
     FComSignalRX: TFComSignal;
     FComSignalTX: TFComSignal;
-{$ENDIF}
-{$IFDEF android}
-    Serial: TUsbSerial;
-{$ENDIF}
     ComPort: String;
     constructor Create;
     destructor destroy; override;
@@ -53,7 +43,7 @@ type
     function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
       const count: byte = 1): string; override;
 
-    function ReadAnsiString: AnsiString; override;
+    function ReadString: String; override;
     function active: boolean; override;
 
     property Error: String read fError;
@@ -66,7 +56,6 @@ implementation
 constructor TdmSerialWindows.Create;
 begin
   inherited;
-{$IF defined(MSWINDOWS)}
   Serial := TFComPort.Create(nil);
   Serial.BeforeClose := onAfterClose;
   Serial.BeforeOpen := onAfterOpen;
@@ -85,10 +74,6 @@ begin
 
   FComSignalRX.ComPort := Serial;
   FComSignalTX.ComPort := Serial;
-{$ENDIF}
-{$IFDEF android}
-  COM := TUsbSerial.Create;
-{$ENDIF}
 end;
 
 Destructor TdmSerialWindows.destroy;
@@ -164,7 +149,7 @@ begin
       fError := E.Message;
       if assigned(onError) then
       begin
-        tthread.Queue(nil, // Queue Syncronize
+        tthread.Synchronize(tthread.currentthread, // Queue Syncronize
           procedure
           begin
             onError(self);
@@ -198,7 +183,7 @@ begin
     except
       on E: Exception do
       begin
-        tthread.Queue(nil, // Queue Syncronize
+        tthread.Synchronize(tthread.currentthread, // Queue Syncronize
           procedure
           begin
             fError := E.Message;
@@ -247,7 +232,7 @@ begin
     except
       on E: Exception do
       begin
-        tthread.Queue(nil, // Queue Syncronize
+        tthread.Synchronize(tthread.currentthread, // Queue Syncronize
           procedure
           begin
             fError := E.Message;
@@ -261,7 +246,7 @@ begin
   end;
 end;
 
-function TdmSerialWindows.ReadAnsiString: AnsiString;
+function TdmSerialWindows.ReadString: String;
 begin
   result := Serial.ReadAnsiString;
 end;
@@ -303,7 +288,7 @@ begin
   except
     on E: Exception do
     begin
-      tthread.Queue(nil, // Queue Syncronize
+      tthread.Synchronize(tthread.currentthread, // Queue Syncronize
         procedure
         begin
           fError := E.Message;

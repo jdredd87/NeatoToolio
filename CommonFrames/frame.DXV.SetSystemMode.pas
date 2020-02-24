@@ -10,7 +10,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
-  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox;
+  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Edit, FMX.EditBox, FMX.SpinBox,
+  FMX.Layouts;
 
 type
   TframeDXVSetSystemMode = class(TframeMaster)
@@ -24,22 +25,29 @@ type
     procedure btnSetSystemModeClick(Sender: TObject);
     procedure btnSetSystemModeShutdownMouseEnter(Sender: TObject);
     procedure btnSetSystemModeShutdownMouseLeave(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
 
   private
     { Private declarations }
   public
     procedure check;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetSystemMode.Create(AOwner: TComponent);
+constructor TframeDXVSetSystemMode.Create(AOwner: TComponent; Rect: TRectangle);
 begin
   inherited;
   lblFrameTitle.Text := sDescription;
+end;
+
+procedure TframeDXVSetSystemMode.timer_getdataTimer(Sender: TObject);
+begin
+  inherited;
+//
 end;
 
 procedure TframeDXVSetSystemMode.btnSetSystemModeClick(Sender: TObject);

@@ -5,12 +5,13 @@ interface
 uses
   frame.master,
   dmCommon,
+  FMX.objects,
   neato.XV.GetVersion,
   FMX.TabControl,
   neato.Helpers,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.Controls.Presentation, FMX.ScrollBox;
+  FMX.Controls.Presentation, FMX.ScrollBox, FMX.Layouts;
 
 type
   TframeXVGetVersion = class(TframeMaster)
@@ -23,7 +24,7 @@ type
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -31,9 +32,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeXVGetVersion.Create(AOwner: TComponent);
+constructor TframeXVGetVersion.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 
@@ -103,7 +104,7 @@ end;
 
 procedure TframeXVGetVersion.check;
 begin
-//
+  //
 end;
 
 end.

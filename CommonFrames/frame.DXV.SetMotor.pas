@@ -10,7 +10,8 @@ uses
   FMX.TabControl,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Rtti, FMX.Grid.Style, FMX.Grid,
-  FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects, FMX.Effects, FMX.SpinBox;
+  FMX.ScrollBox, FMX.Edit, FMX.EditBox, FMX.NumberBox, FMX.Controls.Presentation, FMX.Objects, FMX.Effects, FMX.SpinBox,
+  FMX.Layouts;
 
 type
   TframeDXVSetMotor = class(TframeMaster)
@@ -86,7 +87,7 @@ type
   public
     procedure Check;
     property PlaySoundAborted: Boolean read fPlaySoundAborted;
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
   end;
 
 Const
@@ -100,11 +101,11 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetMotor.Create(AOwner: TComponent);
+constructor TframeDXVSetMotor.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
-  fLidar := TframeDXVLidarView.Create(self);
+  fLidar := TframeDXVLidarView.Create(layout,rect);
 
   fLidar.Tab := Tab;
 
@@ -118,18 +119,18 @@ begin
   fLidar.polarLidar.Align := talignlayout.Client;
   fLidar.polarLidar.Visible := false;
 
-  fLidar.ckAutoScaleGraphs.Parent := self;
+  fLidar.ckAutoScaleGraphs.Parent := layout;
   fLidar.ckAutoScaleGraphs.Align := talignlayout.None;
   fLidar.ckAutoScaleGraphs.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
   fLidar.ckAutoScaleGraphs.Position.y := rectLidar.Position.y + 35;
 
-  fLidar.lblMaxDistance.Parent := self;
+  fLidar.lblMaxDistance.Parent := layout;
   fLidar.lblMaxDistance.Align := talignlayout.None;
   fLidar.lblMaxDistance.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
   fLidar.lblMaxDistance.Position.y := fLidar.ckAutoScaleGraphs.Position.y + 35;
   fLidar.lblMaxDistance.Width := 150;
 
-  fLidar.sbMaxDistance.Parent := self;
+  fLidar.sbMaxDistance.Parent := layout;
   fLidar.sbMaxDistance.Align := talignlayout.None;
   fLidar.sbMaxDistance.Position.x := rectLidar.Position.x + rectLidar.Width + 10;
   fLidar.sbMaxDistance.Position.y := fLidar.lblMaxDistance.Position.y + 35;
@@ -144,13 +145,17 @@ begin
   begin
     fLidar.tabsLidarViewOptions.ActiveTab := fLidar.tabLidarPlotXY;
     fLidar.polarLidar.Visible := false;
-    fLidar.plotLidar.Visible := true
+    fLidar.plotLidar.Visible := true;
+    fLidar.ckAutoScaleGraphs.IsChecked := true;
+    fLidar.ckAutoScaleGraphs.Enabled := true;
   end
   else
   begin
     fLidar.tabsLidarViewOptions.ActiveTab := fLidar.tablidarpolar;
     fLidar.polarLidar.Visible := true;
     fLidar.plotLidar.Visible := false;
+    fLidar.ckAutoScaleGraphs.IsChecked := true;
+    fLidar.ckAutoScaleGraphs.Enabled := false;
   end;
 end;
 
@@ -378,6 +383,7 @@ begin
     sbSideBrushMillwattsValue.Min := 500;
   end;
 
+  fLidar.Tab := self.Tab;
   fLidar.Check;
   fLidar.GoodPointSize := 2;
   fLidar.BadPointSize := 4;

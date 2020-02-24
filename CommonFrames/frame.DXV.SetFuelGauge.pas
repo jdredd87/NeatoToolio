@@ -10,7 +10,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, System.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
-  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani;
+  System.Rtti, FMX.Grid.Style, FMX.Grid, FMX.ScrollBox, FMX.Objects, FMX.Ani, FMX.Layouts;
 
 type
   TframeDXVSetFuelGauge = class(TframeMaster)
@@ -18,10 +18,11 @@ type
     lblSetFuelGauge: TLabel;
     lblSetFuelGaugeError: TLabel;
     procedure tbSetFuelGaugeChange(Sender: TObject);
+    procedure timer_getdataTimer(Sender: TObject);
   private
     { Private declarations }
   public
-    constructor Create(AOwner: TComponent); reintroduce; overload;
+    constructor Create(AOwner: TComponent; Rect: TRectangle); reintroduce; overload;
     procedure check;
   end;
 
@@ -29,9 +30,9 @@ implementation
 
 {$R *.fmx}
 
-constructor TframeDXVSetFuelGauge.Create(AOwner: TComponent);
+constructor TframeDXVSetFuelGauge.Create(AOwner: TComponent; Rect: TRectangle);
 begin
-  inherited;
+  inherited Create(AOwner, Rect);
   lblFrameTitle.Text := sDescription;
 end;
 
@@ -62,6 +63,12 @@ begin
   pReadData.Free;
   pSetFuelGauge.Free;
 
+end;
+
+procedure TframeDXVSetFuelGauge.timer_getdataTimer(Sender: TObject);
+begin
+  inherited;
+//
 end;
 
 procedure TframeDXVSetFuelGauge.check;
