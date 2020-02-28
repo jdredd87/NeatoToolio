@@ -16,7 +16,6 @@ type
     lblDebugTerminalCMD: TLabel;
     edDebugTerminalSend: TComboEdit;
     btnDebugTerminalSend: TButton;
-    btnDebugTerminalSendHex: TButton;
     pnlDebugTerminalTop: trectangle;
     btnDebugTerminalClear: TButton;
     btnDebugTerminalHelp: TButton;
@@ -24,7 +23,6 @@ type
     procedure btnDebugTerminalClearClick(Sender: TObject);
     procedure btnDebugTerminalHelpClick(Sender: TObject);
     procedure btnDebugTerminalSendClick(Sender: TObject);
-    procedure btnDebugTerminalSendHexClick(Sender: TObject);
     procedure edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
     procedure timer_GetDataTimer(Sender: TObject);
   private
@@ -54,7 +52,6 @@ procedure TframeDXVTerminal.check;
 begin
   edDebugTerminalSend.Enabled := dm.COM.Active;
   btnDebugTerminalSend.Enabled := dm.COM.Active;
-  btnDebugTerminalSendHex.Enabled := dm.COM.Active;
   btnDebugTerminalClear.Enabled := dm.COM.Active;
   btnDebugTerminalHelp.Enabled := dm.COM.Active;
 end;
@@ -82,12 +79,6 @@ begin
 
   Value := trim(uppercase(edDebugTerminalSend.Text));
 
-  if Sender = btnDebugTerminalSendHex then
-  begin
-    Value := uppercase(stringreplace(Value, ' ', '', [rfreplaceall]));
-    Value := string(Hex2String(Value));
-  end;
-
   if edDebugTerminalSend.Items.IndexOf(edDebugTerminalSend.Text) = -1 then
     if trim(edDebugTerminalSend.Text) <> '' then
 
@@ -97,15 +88,13 @@ begin
   memoDebugTerminal.GoToTextEnd;
 
   edDebugTerminalSend.Text := '';
-  edDebugTerminalSend.SetFocus;
+
+  {$IFDEF MSWINDOWS}
+  edDebugTerminalSend.SetFocus; // we only need to set focus for windows
+  {$ENDIF}
 
   dm.COM.SendCommandOnly(Value);
   resetfocus;
-end;
-
-procedure TframeDXVTerminal.btnDebugTerminalSendHexClick(Sender: TObject);
-begin
-  resetfocus; //
 end;
 
 procedure TframeDXVTerminal.edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;

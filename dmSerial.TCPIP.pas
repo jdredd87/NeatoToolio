@@ -27,7 +27,7 @@ type
   TdmSerialTCPIP = class(TdmSerialBase)
   private
     fError: String;
-    fErrorCode: longint;
+    fErrorCode: integer;
     fComFailure: boolean;
     fDataBuffer: String;
 
@@ -69,7 +69,7 @@ type
     procedure WaitForReadCompletion;
 
     property Error: String read fError;
-    property ErrorCode: longint read fErrorCode;
+    property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
   end;
 

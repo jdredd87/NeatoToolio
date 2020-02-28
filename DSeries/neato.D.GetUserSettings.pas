@@ -118,10 +118,10 @@ type
     fMelody_Sounds: boolean;
     fWarning_Sounds: boolean;
     fBin_Full_Detect: boolean;
-    fFilter_Change_Time_seconds: longint;
-    fBrush_Change_Time_seconds: longint;
+    fFilter_Change_Time_seconds: integer;
+    fBrush_Change_Time_seconds: integer;
     fDirt_Bin_Alert_Reminder_Interval_minutes: integer;
-    fCurrent_Dirt_Bin_Runtime_is: longint;
+    fCurrent_Dirt_Bin_Runtime_is: integer;
     fNumber_of_Cleanings_where_Dust_Bin_was_Full_is: integer;
     fSchedule_is: boolean;
 
@@ -146,11 +146,11 @@ type
     property Melody_Sounds: boolean read fMelody_Sounds write fMelody_Sounds;
     property Warning_Sounds: boolean read fWarning_Sounds write fWarning_Sounds;
     property Bin_Full_Detect: boolean read fBin_Full_Detect write fBin_Full_Detect;
-    property Filter_Change_Time_seconds: longint read fFilter_Change_Time_seconds write fFilter_Change_Time_seconds;
-    property Brush_Change_Time_seconds: longint read fBrush_Change_Time_seconds write fBrush_Change_Time_seconds;
+    property Filter_Change_Time_seconds: integer read fFilter_Change_Time_seconds write fFilter_Change_Time_seconds;
+    property Brush_Change_Time_seconds: integer read fBrush_Change_Time_seconds write fBrush_Change_Time_seconds;
     property Dirt_Bin_Alert_Reminder_Interval_minutes: integer read fDirt_Bin_Alert_Reminder_Interval_minutes
       write fDirt_Bin_Alert_Reminder_Interval_minutes;
-    property Current_Dirt_Bin_Runtime_is: longint read fCurrent_Dirt_Bin_Runtime_is write fCurrent_Dirt_Bin_Runtime_is;
+    property Current_Dirt_Bin_Runtime_is: integer read fCurrent_Dirt_Bin_Runtime_is write fCurrent_Dirt_Bin_Runtime_is;
     property Number_of_Cleanings_where_Dust_Bin_was_Full_is: integer
       read fNumber_of_Cleanings_where_Dust_Bin_was_Full_is write fNumber_of_Cleanings_where_Dust_Bin_was_Full_is;
     property Schedule_is: boolean read fSchedule_is write fSchedule_is;

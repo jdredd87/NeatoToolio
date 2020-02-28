@@ -25,7 +25,7 @@ type
   TdmSerialAndroid = class(TdmSerialBase)
   private
     fError: String;
-    fErrorCode: longint;
+    fErrorCode: integer;
     fComFailure: boolean;
     fDataBuffer: String;
     fTimerPermission: TTimer;
@@ -74,7 +74,7 @@ type
     procedure OnDeviceDetached(Device: JUsbDevice);
 
     property Error: String read fError;
-    property ErrorCode: longint read fErrorCode;
+    property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
     property didPermissionRequest : boolean read fdidPermissionRequest;
     property HasPermission : boolean read fHasPermission;

@@ -2,9 +2,6 @@ inherited frameDClean: TframeDClean
   ClientHeight = 514
   ClientWidth = 554
   DesignerMasterStyle = 0
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-  end
   inherited Layout: TScaledLayout
     OriginalWidth = 554.000000000000000000
     OriginalHeight = 514.000000000000000000
@@ -200,5 +197,10 @@ inherited frameDClean: TframeDClean
         Size.PlatformDefault = False
       end
     end
+  end
+  inherited LangFrame: TLang
+    Lang = 'en'
+    Left = 464
+    Top = 376
   end
 end

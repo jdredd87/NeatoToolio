@@ -19,7 +19,7 @@ type
   TdmSerialBase = class(tobject)
   private
     fError: String;
-    fErrorCode: longint;
+    fErrorCode: integer;
     fComFailure: boolean;
     fOnRxChar: TNotifyEvent;
   protected
@@ -47,7 +47,7 @@ type
     procedure WaitForWriteCompletion;
 
     property Error: String read fError;
-    property ErrorCode: longint read fErrorCode;
+    property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
     property OnRXChar: TNotifyEvent read fOnRxChar write SetOnRxChar;
 

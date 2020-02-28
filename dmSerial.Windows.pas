@@ -19,7 +19,7 @@ type
   TdmSerialWindows = class(TdmSerialBase)
   private
     fError: String;
-    fErrorCode: longint;
+    fErrorCode: integer;
     fComFailure: boolean;
     procedure FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
   protected
@@ -47,7 +47,7 @@ type
     function active: boolean; override;
 
     property Error: String read fError;
-    property ErrorCode: longint read fErrorCode;
+    property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
   end;
 

@@ -148,6 +148,7 @@ uses
   XSuperObject,
   XSuperJson,
 
+  System.IOUtils,
   System.SysUtils,
   System.Types,
   System.UITypes,
@@ -349,6 +350,9 @@ type
     ckTCPIPConnect: TCheckBox;
     rectTestMode: trectangle;
     VertScrollBox: TVertScrollBox;
+    Lang: TLang;
+    cbLanguages: TComboBox;
+    lblLanguages: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -368,6 +372,7 @@ type
     procedure rectSerialConnectClick(Sender: TObject);
     procedure rectTCPConnectClick(Sender: TObject);
     procedure rectTestModeClick(Sender: TObject);
+    procedure cbLanguagesChange(Sender: TObject);
 
   private
 
@@ -490,9 +495,47 @@ implementation
 {$R *.fmx}
 
 procedure TfrmMain.FormCreate(Sender: TObject);
+  procedure FindLanguages;
+
+  var
+    LList: TStringDynArray;
+    I: Integer;
+    LSearchOption: TSearchOption;
+    langCode: string;
+    idx: Integer;
+  begin
+
+    cbLanguages.clear;
+    LSearchOption := TSearchOption.soTopDirectoryOnly;
+    LList := TDirectory.GetFiles(System.IOUtils.TPath.GetHomePath + '\NeatoToolio\Languages\', '*.lang', LSearchOption);
+
+    for I := 0 to Length(LList) - 1 do
+    begin
+      idx := pos('.lang', lowercase(LList[I]));
+      langCode := LList[I];
+      delete(langCode, 1, idx - 3);
+      setlength(langCode, 2);
+      cbLanguages.items.add(langCode);
+    end;
+
+    if cbLanguages.items.count = 0 then
+    begin
+      cbLanguages.enabled := false;
+    end
+    else
+    begin
+      idx := cbLanguages.items.IndexOf(neatosettings.Language);
+      if idx = -1 then
+        idx := cbLanguages.items.IndexOf('en'); // english
+      cbLanguages.itemindex := idx
+    end;
+  end;
+
 var
-  idx: integer;
+  idx: Integer;
 begin
+
+  FindLanguages;
 
 {$IFDEF ANDROID}
   ScaledLayoutMain.Align := talignlayout.Client;
@@ -502,25 +545,24 @@ begin
   OnVirtualKeyboardShown := FormVirtualKeyboardShown;
   self.OnFocusChanged := FormFocusChanged;
 {$ENDIF}
-
   dm.chkTestMode := chkTestMode;
 
-  memoAbout.Lines.Add('Neato Toolio Version : ' + GetAppVersionStr);
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('Created by Steven Chesser');
-  memoAbout.Lines.Add('Contact : NeatoToolio@twc.com');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('Thanks to the Neato group at @ http://www.robotreviews.com/chat/viewforum.php?f=20');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('Thanks to Ed Vickery for loaning out an XV for testing!');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('Neato Toolio is free.  It is open-source (mostly).  It comes with no guarantee.');
-  memoAbout.Lines.Add('Github @ https://github.com/jdredd87/NeatoToolio');
-  memoAbout.Lines.Add('');
-  memoAbout.Lines.Add('Neato Toolio is use at your own risk!');
+  memoAbout.Lines.add('Neato Toolio Version : ' + GetAppVersionStr);
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('Created by Steven Chesser');
+  memoAbout.Lines.add('Contact : NeatoToolio@twc.com');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('Thanks to the Neato group at @ http://www.robotreviews.com/chat/viewforum.php?f=20');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('Thanks to Ed Vickery for loaning out an XV for testing!');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('Neato Toolio is free.  It is open-source (mostly).  It comes with no guarantee.');
+  memoAbout.Lines.add('Github @ https://github.com/jdredd87/NeatoToolio');
+  memoAbout.Lines.add('');
+  memoAbout.Lines.add('Neato Toolio is use at your own risk!');
 
 {$IFDEF ANDORID}
   application.onException := self.onException;
@@ -558,11 +600,11 @@ begin
 {$IFDEF ANDROID}
   dm.COM := COMAndroid;
 {$ENDIF}
-  chkAutoDetect.IsChecked := neatoSettings.AutoDetectNeato;
+  chkAutoDetect.IsChecked := neatosettings.AutoDetectNeato;
   chkAutoDetectChange(nil);
 
-  edIPAddress.Text := neatoSettings.IP;
-  edIPPort.Text := neatoSettings.PORT.ToString;
+  edIPAddress.Text := neatosettings.IP;
+  edIPPort.Text := neatosettings.PORT.ToString;
 
 {$IFDEF MSWINDOWS}
   TdmSerialWindows(COMWin32).onError := FComPortError;
@@ -584,7 +626,6 @@ begin
     fmemoDebug := memoDebug;
   end;
 {$ENDIF}
-
 {$IFDEF ANDROID}
   pnlStatusBar.Height := pnlStatusBar.Height * 1.25; // make it a little taller
 
@@ -593,7 +634,7 @@ begin
   cbCOM.Width := cbCOM.Width * 2; // big com port driver names it appears
   cbCOM.Position.Y := self.chkAutoDetect.Position.Y; // move it up so have some room to click
 
-  lblSetupComPort.Position.Y :=  cbCOM.Position.Y;
+  lblSetupComPort.Position.Y := cbCOM.Position.Y;
 
   COMAndroid.Serial.OnDeviceAttached := OnDeviceAttached;
   COMAndroid.Serial.OnDeviceDetached := OnDeviceDetached;
@@ -717,8 +758,8 @@ end;
 
 procedure TfrmMain.memoDebugChange(Sender: TObject);
 begin
-  if memoDebug.Lines.Count > 10000 then
-    memoDebug.Lines.Clear;
+  if memoDebug.Lines.count > 10000 then
+    memoDebug.Lines.clear;
 end;
 
 // can use this event that when IDLE happens, which is very often and fast
@@ -744,7 +785,7 @@ end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 var
-  idx: integer;
+  idx: Integer;
 begin
   if Assigned(dm.COM) then
   begin
@@ -838,7 +879,7 @@ procedure TfrmMain.FComPortDeviceUpdate(Sender: TObject; const DeviceName: strin
 begin
   if cbCOM.DroppedDown then
     cbCOM.DropDown;
-  cbCOM.ItemIndex := -1;
+  cbCOM.itemindex := -1;
   PopulateCOMPorts;
 end;
 
@@ -872,8 +913,8 @@ begin
   end;
 
   ckSerialConnect.IsChecked := false;
-  chkAutoDetect.Enabled := True;
-  cbCOM.Enabled := True;
+  chkAutoDetect.enabled := True;
+  cbCOM.enabled := True;
 end;
 
 procedure TfrmMain.ckSerialConnectChange(Sender: TObject);
@@ -891,22 +932,41 @@ begin
   toggleComs(ckTCPIPConnect.IsChecked);
 end;
 
+procedure TfrmMain.cbLanguagesChange(Sender: TObject);
+var
+  l: string;
+  languageFN: string;
+begin
+  l := cbLanguages.items[cbLanguages.itemindex];
+
+  languageFN := System.IOUtils.TPath.GetHomePath + '\NeatoToolio\Languages\neatotoolio.' + l + '.lang';
+
+  if fileexists(languageFN) then
+  begin
+    self.BeginUpdate;
+    LoadLangFromFile(languageFN);
+    neatosettings.Language := l;
+    self.EndUpdate;
+  end;
+
+end;
+
 procedure TfrmMain.btnDebugRawDataClearClick(Sender: TObject);
 begin
-  memoDebug.Lines.Clear;
+  memoDebug.Lines.clear;
 end;
 
 procedure TfrmMain.chkAutoDetectChange(Sender: TObject);
 begin
-  cbCOM.Enabled := NOT chkAutoDetect.IsChecked;
+  cbCOM.enabled := NOT chkAutoDetect.IsChecked;
   ckSerialConnect.IsChecked := false;
-  neatoSettings.AutoDetectNeato := chkAutoDetect.IsChecked;
+  neatosettings.AutoDetectNeato := chkAutoDetect.IsChecked;
 end;
 
 procedure TfrmMain.chkTestModeChange(Sender: TObject);
 begin
   if Assigned(CurrentTimer) then
-    CurrentTimer.Enabled := false;
+    CurrentTimer.enabled := false;
 
   case chkTestMode.IsChecked of
     True:
@@ -916,7 +976,7 @@ begin
   end;
 
   if Assigned(CurrentTimer) then
-    CurrentTimer.Enabled := True;
+    CurrentTimer.enabled := True;
 end;
 
 procedure TfrmMain.tabClickRepaint(Sender: TObject);
@@ -931,13 +991,13 @@ end;
 
 procedure TfrmMain.toggleComs(disable: Boolean);
 begin
-  chkAutoDetect.Enabled := not disable;
-  cbCOM.Enabled := not disable;
-  chkTestMode.Enabled := false;
+  chkAutoDetect.enabled := not disable;
+  cbCOM.enabled := not disable;
+  chkTestMode.enabled := false;
   chkTestMode.IsChecked := false;
 
-  edIPAddress.Enabled := not disable;
-  edIPPort.Enabled := not disable;
+  edIPAddress.enabled := not disable;
+  edIPPort.enabled := not disable;
 
   if disable then
     comConnect
@@ -951,15 +1011,15 @@ begin
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
   aniConnect.Visible := True;
-  aniConnect.Enabled := True;
-  ckSerialConnect.Enabled := false;
-  ckTCPIPConnect.Enabled := false;
+  aniConnect.enabled := True;
+  ckSerialConnect.enabled := false;
+  ckTCPIPConnect.enabled := false;
 
   tthread.CreateAnonymousThread(
     procedure
 
     var
-      idx: integer;
+      idx: Integer;
       R: string;
       gGetWifiStatusD: tGetWifiStatusD;
       gGetVersionD: tGetVersionD;
@@ -974,29 +1034,29 @@ begin
           begin
             if showBoth then
             begin
-              ckSerialConnect.Enabled := True;
-              ckTCPIPConnect.Enabled := True;
+              ckSerialConnect.enabled := True;
+              ckTCPIPConnect.enabled := True;
             end
             else
             begin
 
               if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF} {$IFDEF ANDROID} TdmSerialAndroid{$ENDIF}) then
               begin
-                ckSerialConnect.Enabled := True;
+                ckSerialConnect.enabled := True;
                 if dm.COM.Active then
-                  ckTCPIPConnect.Enabled := false;
+                  ckTCPIPConnect.enabled := false;
               end;
 
               if (dm.COM is TdmSerialTCPIP) then
               begin
-                ckTCPIPConnect.Enabled := True;
+                ckTCPIPConnect.enabled := True;
                 if dm.COM.Active then
-                  ckSerialConnect.Enabled := false;
+                  ckSerialConnect.enabled := false;
               end;
 
             end;
             aniConnect.Visible := false;
-            aniConnect.Enabled := false;
+            aniConnect.enabled := false;
           end);
       end;
 
@@ -1014,10 +1074,10 @@ begin
         if chkAutoDetect.IsChecked then
         begin
           dm.COM.onError := nil;
-          for idx := 0 to cbCOM.Items.Count - 1 do
+          for idx := 0 to cbCOM.items.count - 1 do
           begin
 {$IFDEF MSWINDOWS}
-            COMWin32.ComPort := cbCOM.Items[idx];
+            COMWin32.ComPort := cbCOM.items[idx];
 {$ENDIF}
 {$IFDEF ANDORID}
             // if not COMAndroid.CheckPermission then
@@ -1033,7 +1093,7 @@ begin
               tthread.Synchronize(tthread.CurrentThread,
                 procedure
                 begin
-                  cbCOM.ItemIndex := idx;
+                  cbCOM.itemindex := idx;
                 end);
               break;
             end;
@@ -1046,7 +1106,7 @@ begin
           dm.COM.onError := FComPortError;
         end;
 
-        if cbCOM.ItemIndex = -1 then
+        if cbCOM.itemindex = -1 then
         begin
           stopAniConnect(True);
           tthread.Synchronize(tthread.CurrentThread,
@@ -1061,10 +1121,10 @@ begin
         else
         begin
 {$IFDEF MSWINDOWS}
-          COMWin32.ComPort := cbCOM.Items[cbCOM.ItemIndex];
+          COMWin32.ComPort := cbCOM.items[cbCOM.itemindex];
 {$ENDIF}
 {$IFDEF ANDROID}
-          COMAndroid.ComPort := cbCOM.ItemIndex; // should have access by now
+          COMAndroid.ComPort := cbCOM.itemindex; // should have access by now
 {$ENDIF}
         end;
       end;
@@ -1111,10 +1171,10 @@ begin
         procedure
         begin
           if (dm.COM is TdmSerialTCPIP) then
-            ckSerialConnect.Enabled := false;
+            ckSerialConnect.enabled := false;
 
           if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF}{$IFDEF ANDROID} TdmSerialAndroid{$ENDIF} ) then
-            ckTCPIPConnect.Enabled := false;
+            ckTCPIPConnect.enabled := false;
 
         end);
 
@@ -1250,10 +1310,10 @@ begin
             ckSerialConnect.IsChecked := false;
             ckTCPIPConnect.IsChecked := false;
 
-            chkAutoDetect.Enabled := True;
-            cbCOM.Enabled := True;
+            chkAutoDetect.enabled := True;
+            cbCOM.enabled := True;
           end;
-          chkTestMode.Enabled := dm.COM.Active;
+          chkTestMode.enabled := dm.COM.Active;
           ResetTabs;
         end);
 
@@ -1264,7 +1324,7 @@ end;
 
 procedure TfrmMain.comDisconnect;
 begin
-  aniConnect.Enabled := True;
+  aniConnect.enabled := True;
   aniConnect.Visible := True;
 
   try
@@ -1285,30 +1345,30 @@ begin
     end;
   end;
 
-  aniConnect.Enabled := false;
+  aniConnect.enabled := false;
   aniConnect.Visible := false;
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
   LoadImageID('NeatoLogo', imgRobot);
-  ckSerialConnect.Enabled := True;
-  ckTCPIPConnect.Enabled := True;
+  ckSerialConnect.enabled := True;
+  ckTCPIPConnect.enabled := True;
   ResetTabs;
 end;
 
 procedure TfrmMain.edIPAddressChange(Sender: TObject);
 begin
-  neatoSettings.IP := edIPAddress.Text;
+  neatosettings.IP := edIPAddress.Text;
 end;
 
 procedure TfrmMain.edIPPortChange(Sender: TObject);
 begin
-  neatoSettings.PORT := ROUND(edIPPort.Value);
+  neatosettings.PORT := ROUND(edIPPort.Value);
 end;
 
 procedure TfrmMain.PopulateCOMPorts;
 var
   comList: TStringList;
-  idx: integer;
+  idx: Integer;
 begin
   idx := -1;
   try
@@ -1326,11 +1386,11 @@ begin
   TdmSerialAndroid(COMAndroid).RefreshDevices(idx, comList);
 {$ENDIF}
   cbCOM.BeginUpdate;
-  cbCOM.Items.Assign(comList);
-  cbCOM.ItemIndex := idx;
-  cbCOM.endupdate;
+  cbCOM.items.Assign(comList);
+  cbCOM.itemindex := idx;
+  cbCOM.EndUpdate;
   comList.Free;
-  tabsMain.Enabled := True;
+  tabsMain.enabled := True;
 end;
 
 procedure TfrmMain.tabControlChange(Sender: TObject);
@@ -1381,7 +1441,7 @@ begin
           XVGetCharger.Layout.Visible := false;
           DGetCharger.Layout.Visible := True;
           // SetTimer(DGetCharger.timer_GetData);
-          DGetCharger.timer_getdata.Enabled := True;
+          DGetCharger.timer_getdata.enabled := True;
         end;
       XV:
         begin
@@ -1976,7 +2036,7 @@ begin
 
   StartTimer;
 
-  TTabControl(Sender).endupdate;
+  TTabControl(Sender).EndUpdate;
 end;
 
 procedure TfrmMain.StageTabs;
@@ -2051,19 +2111,19 @@ end;
 
 procedure TfrmMain.rectSerialConnectClick(Sender: TObject);
 begin
-  if ckSerialConnect.Enabled then
+  if ckSerialConnect.enabled then
     ckSerialConnect.IsChecked := not ckSerialConnect.IsChecked;
 end;
 
 procedure TfrmMain.rectTCPConnectClick(Sender: TObject);
 begin
-  if ckTCPIPConnect.Enabled then
+  if ckTCPIPConnect.enabled then
     ckTCPIPConnect.IsChecked := not ckTCPIPConnect.IsChecked;
 end;
 
 procedure TfrmMain.rectTestModeClick(Sender: TObject);
 begin
-  if chkTestMode.Enabled then
+  if chkTestMode.enabled then
     chkTestMode.IsChecked := not chkTestMode.IsChecked;
 end;
 

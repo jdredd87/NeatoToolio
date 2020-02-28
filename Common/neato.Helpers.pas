@@ -69,7 +69,20 @@ function map(x, in_min, in_max, out_min, out_max: extended): extended;
 function MyGetFiles(const Path, Masks: string): TStringDynArray;
 // Stole this code from https://stackoverflow.com/questions/12726756/how-to-pass-multiple-file-extensions-to-tdirectory-getfiles/12726969
 
+function getISOCountryCode: string;
+
 implementation
+
+{$IFDEF MSINWDOWS}
+function LCIDToLocaleName(Locale: LCID; lpName: LPWSTR; cchName: Integer; dwFlags: DWORD): Integer; stdcall;
+  external kernel32 name 'LCIDToLocaleName';
+{$ENDIF}
+
+function getISOCountryCode: string;
+
+begin
+
+end;
 
 function MyGetFiles(const Path, Masks: string): TStringDynArray;
 var

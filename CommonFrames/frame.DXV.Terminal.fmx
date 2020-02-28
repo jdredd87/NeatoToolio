@@ -5,7 +5,7 @@ inherited frameDXVTerminal: TframeDXVTerminal
     OriginalWidth = 847.000000000000000000
     Size.Width = 847.000000000000000000
     inherited lblFrameTitle: TLabel
-      Position.Y = 442.000000000000000000
+      Position.Y = 449.000000000000000000
       Size.Width = 827.000000000000000000
     end
     object memoDebugTerminal: TMemo
@@ -19,65 +19,59 @@ inherited frameDXVTerminal: TframeDXVTerminal
       Margins.Right = 10.000000000000000000
       Margins.Bottom = 10.000000000000000000
       Size.Width = 827.000000000000000000
-      Size.Height = 347.000000000000000000
+      Size.Height = 354.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
       Viewport.Width = 823.000000000000000000
-      Viewport.Height = 343.000000000000000000
+      Viewport.Height = 350.000000000000000000
     end
     object pnlDebugTerminalBottom: TRectangle
       Align = Bottom
       Fill.Color = xFF2D92BF
-      Position.Y = 473.000000000000000000
+      Position.Y = 480.000000000000000000
       Sides = []
       Size.Width = 847.000000000000000000
-      Size.Height = 47.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       object lblDebugTerminalCMD: TLabel
-        Position.X = 8.000000000000000000
-        Position.Y = 14.000000000000000000
+        Align = Left
+        Margins.Left = 10.000000000000000000
+        Position.X = 10.000000000000000000
         Size.Width = 81.000000000000000000
-        Size.Height = 17.000000000000000000
+        Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         Text = 'Command'
-        TabOrder = 3
+        TabOrder = 2
       end
       object edDebugTerminalSend: TComboEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
-        TabOrder = 8
+        Align = Client
+        TabOrder = 7
         ItemHeight = 19.000000000000000000
         ItemIndex = -1
-        Position.X = 104.000000000000000000
-        Position.Y = 7.000000000000000000
         Enabled = False
-        Size.Width = 521.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Size.Width = 649.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
         OnKeyDown = edDebugTerminalSendKeyDown
       end
       object btnDebugTerminalSend: TButton
+        Align = Right
         Enabled = False
         Hint = 'Send command as it is typed'
-        Position.X = 632.000000000000000000
-        Position.Y = 6.000000000000000000
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 745.000000000000000000
+        Position.Y = 5.000000000000000000
         Size.Width = 97.000000000000000000
-        Size.Height = 33.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 2
-        Text = 'Send'
-        OnClick = btnDebugTerminalSendClick
-      end
-      object btnDebugTerminalSendHex: TButton
-        Enabled = False
-        Hint = 'Assumes command is in HEX and will convert it before sending'
-        Position.X = 744.000000000000000000
-        Position.Y = 6.000000000000000000
-        Size.Width = 97.000000000000000000
-        Size.Height = 33.000000000000000000
+        Size.Height = 30.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
-        Text = 'HEX Send'
-        OnClick = btnDebugTerminalSendHexClick
+        Text = 'Send'
+        OnClick = btnDebugTerminalSendClick
       end
     end
     object pnlDebugTerminalTop: TRectangle

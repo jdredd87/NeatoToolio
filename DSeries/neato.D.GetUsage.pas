@@ -44,12 +44,12 @@ type
   private
     // these look to be big numbers, no decimals
 
-    fTotal_cleaning_time: longint;
-    fTotal_cleaned_area: longint;
-    fMainBrushRunTimeinSec: longint;
-    fSideBrushRunTimeinSec: longint;
-    fDirtbinRunTimeinSec: longint;
-    fFilterTimeinSec: longint;
+    fTotal_cleaning_time: integer;
+    fTotal_cleaned_area: integer;
+    fMainBrushRunTimeinSec: integer;
+    fSideBrushRunTimeinSec: integer;
+    fDirtbinRunTimeinSec: integer;
+    fFilterTimeinSec: integer;
 
   public
     constructor Create;
@@ -57,12 +57,12 @@ type
     procedure Reset; override;
     function ParseText(data: tstringlist): boolean; override;
 
-    property Total_Cleaning_Time: longint read fTotal_cleaning_time;
-    property Total_Cleaned_Area: longint read fTotal_cleaned_area;
-    property MainBrushRunTimeinSec: longint read fMainBrushRunTimeinSec;
-    property SideBrushRunTimeinSec: longint read fSideBrushRunTimeinSec;
-    property DirtbinRunTimeinSec: longint read fDirtbinRunTimeinSec;
-    property FilterTimeinSec: longint read fFilterTimeinSec;
+    property Total_Cleaning_Time: integer read fTotal_cleaning_time;
+    property Total_Cleaned_Area: integer read fTotal_cleaned_area;
+    property MainBrushRunTimeinSec: integer read fMainBrushRunTimeinSec;
+    property SideBrushRunTimeinSec: integer read fSideBrushRunTimeinSec;
+    property DirtbinRunTimeinSec: integer read fDirtbinRunTimeinSec;
+    property FilterTimeinSec: integer read fFilterTimeinSec;
   end;
 
 implementation

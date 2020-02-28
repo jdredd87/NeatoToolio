@@ -51,7 +51,7 @@ type
     fDrop_Sensors: boolean;
     fsensor_Status: integer;
     fleft_drop_Status: integer;
-    fright_drop_Status: longint;
+    fright_drop_Status: integer;
     fwall_right_Status: integer;
     fwheel_drop_Status: integer;
     fleft_drop_mm: integer;
@@ -71,7 +71,7 @@ type
     property Drop_Sensors: boolean read fDrop_Sensors write fDrop_Sensors;
     property sensor_Status: integer read fsensor_Status write fsensor_Status;
     property left_drop_Status: integer read fleft_drop_Status write fleft_drop_Status;
-    property right_drop_Status: longint read fright_drop_Status write fright_drop_Status;
+    property right_drop_Status: integer read fright_drop_Status write fright_drop_Status;
     property wall_right_Status: integer read fwall_right_Status write fwall_right_Status;
     property wheel_drop_Status: integer read fwheel_drop_Status write fwheel_drop_Status;
     property left_drop_mm: integer read fleft_drop_mm write fleft_drop_mm;

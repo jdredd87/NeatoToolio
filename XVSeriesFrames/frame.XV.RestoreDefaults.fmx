@@ -30,4 +30,7 @@ inherited frameXVRestoreDefaults: TframeXVRestoreDefaults
       OnClick = btnRestoreDefaultsClick
     end
   end
+  inherited LangFrame: TLang
+    Lang = 'en'
+  end
 end

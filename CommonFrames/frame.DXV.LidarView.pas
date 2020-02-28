@@ -88,9 +88,9 @@ type
     fActivePoint: trectangle;
     fMaxDistance: Integer;
     fFPS: TStopWatch;
-    fFPSCount: Longint;
-    fFPSDroppedPacketCount: Longint;
-    fTotalFrames: Longint;
+    fFPSCount: integer;
+    fFPSDroppedPacketCount: integer;
+    fTotalFrames: integer;
     fGoodPointSize: byte;
     fBadPointSize: byte;
     procedure rectPlotPointsMouseEnter(Sender: TObject);

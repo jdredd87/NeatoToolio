@@ -22,6 +22,7 @@ type
     lblFrameTitle: TLabel;
     Layout: TScaledLayout;
     StyleBook: TStyleBook;
+    LangFrame: TLang;
     procedure timer_getdataTimer(Sender: TObject);
   private
   public
@@ -85,3 +86,4 @@ begin
 end;
 
 end.
+

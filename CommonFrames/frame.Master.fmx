@@ -25617,4 +25617,8 @@ object frameMaster: TframeMaster
       Top = 88
     end
   end
+  object LangFrame: TLang
+    Left = 368
+    Top = 248
+  end
 end

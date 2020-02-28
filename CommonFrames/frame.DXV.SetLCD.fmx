@@ -3,7 +3,6 @@ inherited frameDXVSetLCD: TframeDXVSetLCD
   ClientWidth = 832
   DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
     Left = 16
     Top = 16
   end

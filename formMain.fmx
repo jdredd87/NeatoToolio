@@ -294,7 +294,7 @@ object frmMain: TfrmMain
                 TextSettings.Font.Size = 24.000000000000000000
                 TextSettings.HorzAlign = Center
                 Text = 'RobotName'
-                TabOrder = 31
+                TabOrder = 30
                 object GlowEffect1: TGlowEffect
                   Softness = 0.400000005960464500
                   GlowColor = claGold
@@ -312,7 +312,7 @@ object frmMain: TfrmMain
                 TextSettings.Font.Size = 48.000000000000000000
                 TextSettings.HorzAlign = Center
                 Text = 'Model Name'
-                TabOrder = 7
+                TabOrder = 6
                 object ShadowEffect2: TShadowEffect
                   Distance = 3.000000000000000000
                   Direction = 45.000000000000000000
@@ -341,7 +341,7 @@ object frmMain: TfrmMain
                 Size.Height = 515.000000000000000000
                 Size.PlatformDefault = False
                 TabHeight = 49.000000000000000000
-                TabIndex = 1
+                TabIndex = 0
                 TabOrder = 0
                 TabPosition = PlatformDefault
                 OnChange = tabControlChange
@@ -354,7 +354,7 @@ object frmMain: TfrmMain
                   CustomIcon = <
                     item
                     end>
-                  IsSelected = False
+                  IsSelected = True
                   Size.Width = 81.000000000000000000
                   Size.Height = 49.000000000000000000
                   Size.PlatformDefault = False
@@ -376,7 +376,7 @@ object frmMain: TfrmMain
                   CustomIcon = <
                     item
                     end>
-                  IsSelected = True
+                  IsSelected = False
                   Size.Width = 88.000000000000000000
                   Size.Height = 49.000000000000000000
                   Size.PlatformDefault = False
@@ -464,7 +464,7 @@ object frmMain: TfrmMain
             Size.Height = 564.000000000000000000
             Size.PlatformDefault = False
             TabHeight = 49.000000000000000000
-            TabIndex = 3
+            TabIndex = 0
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
@@ -480,7 +480,7 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = False
+              IsSelected = True
               Size.Width = 103.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
@@ -546,7 +546,7 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = True
+              IsSelected = False
               Size.Width = 121.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
@@ -923,7 +923,7 @@ object frmMain: TfrmMain
             Size.Height = 564.000000000000000000
             Size.PlatformDefault = False
             TabHeight = 49.000000000000000000
-            TabIndex = 0
+            TabIndex = 1
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
@@ -935,7 +935,7 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = True
+              IsSelected = False
               Size.Width = 97.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
@@ -957,7 +957,7 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = False
+              IsSelected = True
               Size.Width = 88.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
@@ -1865,9 +1865,10 @@ object frmMain: TfrmMain
           end
         end
         object rectTestMode: TRectangle
-          Align = HorzCenter
+          Align = Left
           Fill.Color = claNull
-          Position.X = 451.000000000000000000
+          Margins.Left = 155.000000000000000000
+          Position.X = 358.000000000000000000
           Sides = []
           Size.Width = 201.000000000000000000
           Size.Height = 25.000000000000000000
@@ -1887,7 +1888,36 @@ object frmMain: TfrmMain
             OnChange = chkTestModeChange
           end
         end
+        object cbLanguages: TComboBox
+          Align = Right
+          Margins.Left = 2.000000000000000000
+          Margins.Top = 2.000000000000000000
+          Margins.Right = 2.000000000000000000
+          Margins.Bottom = 2.000000000000000000
+          Position.X = 824.000000000000000000
+          Position.Y = 2.000000000000000000
+          Size.Width = 74.000000000000000000
+          Size.Height = 21.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 7
+          OnChange = cbLanguagesChange
+        end
+        object lblLanguages: TLabel
+          Align = Right
+          Position.X = 702.000000000000000000
+          Size.Width = 120.000000000000000000
+          Size.Height = 25.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Language'
+          TabOrder = 8
+        end
       end
     end
+  end
+  object Lang: TLang
+    StoreInForm = False
+    Lang = 'en'
+    Left = 440
+    Top = 304
   end
 end
