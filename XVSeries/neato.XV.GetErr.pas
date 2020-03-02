@@ -55,7 +55,6 @@ function tGetErrXV.ParseText(data: TStringList): Boolean;
 // this is a 3 field wide data set so things are differently done
 var
   IDX: integer;
-  name, value: string;
 begin
   try
     Reset;

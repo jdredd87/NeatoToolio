@@ -3,6 +3,14 @@ unit frame.DXV.Terminal;
 interface
 
 uses
+{$IFDEF ANDROID}
+  Androidapi.JNIBridge,
+  dmSerial.Android,
+{$ENDIF}
+{$IFDEF MSWINDOWS}
+  dmSerial.Windows,
+{$ENDIF}
+  dmSerial.TCPIP,
   frame.master,
   dmCommon,
   neato.Helpers, FMX.TabControl,
@@ -20,16 +28,20 @@ type
     btnDebugTerminalClear: TButton;
     btnDebugTerminalHelp: TButton;
     memoDebugTerminal: TMemo;
+    timerSend: TTimer;
     procedure btnDebugTerminalClearClick(Sender: TObject);
     procedure btnDebugTerminalHelpClick(Sender: TObject);
     procedure btnDebugTerminalSendClick(Sender: TObject);
     procedure edDebugTerminalSendKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
     procedure timer_GetDataTimer(Sender: TObject);
+    procedure timerSendTimer(Sender: TObject);
   private
     { Private declarations }
   public
     procedure check;
+{$IFDEF MSWINDOWS}
     procedure FComPortRxChar(Sender: TObject);
+{$ENDIF}
     procedure FComPortEOL(Sender: TObject);
     constructor Create(AOwner: TComponent; Rect: trectangle); reintroduce; overload;
   end;
@@ -42,10 +54,9 @@ constructor TframeDXVTerminal.Create(AOwner: TComponent; Rect: trectangle);
 begin
   inherited Create(AOwner, Rect);
   lblFrameTitle.Visible := false;
-  {$ifdef android}
+{$IFDEF android}
   pnlDebugTerminalBottom.Scale.Y := 2;
-  {$endif}
-
+{$ENDIF}
 end;
 
 procedure TframeDXVTerminal.check;
@@ -75,24 +86,29 @@ var
   Value: string;
 begin
 
-  dm.COM.OnRxChar := FComPortRxChar;
-
+{$IFDEF MSWINDOWS}
+  if dm.COM is TdmSerialWindows then
+    TdmSerialWindows(dm.COM).setonrxchar(FComPortRxChar);
+{$ENDIF}
   Value := trim(uppercase(edDebugTerminalSend.Text));
 
   if edDebugTerminalSend.Items.IndexOf(edDebugTerminalSend.Text) = -1 then
     if trim(edDebugTerminalSend.Text) <> '' then
-
       edDebugTerminalSend.Items.Insert(0, edDebugTerminalSend.Text);
 
   memoDebugTerminal.Lines.Add('');
   memoDebugTerminal.GoToTextEnd;
-
   edDebugTerminalSend.Text := '';
 
-  {$IFDEF MSWINDOWS}
+{$IFDEF MSWINDOWS}
   edDebugTerminalSend.SetFocus; // we only need to set focus for windows
-  {$ENDIF}
+{$ENDIF}
+  if dm.COM is TdmSerialTCPIP then
+    timerSend.Enabled := true;
 
+{$IFDEF ANDROID}
+  timerSend.Enabled := true;
+{$ENDIF}
   dm.COM.SendCommandOnly(Value);
   resetfocus;
 end;
@@ -118,9 +134,9 @@ end;
 
 procedure TframeDXVTerminal.FComPortRxChar(Sender: TObject);
 var
-  Text: AnsiString;
+  Text: String;
 begin
-  // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
+
   memoDebugTerminal.BeginUpdate;
   try
     Text := dm.COM.ReadString;
@@ -142,33 +158,41 @@ begin
   memoDebugTerminal.EndUpdate;
 end;
 {$ENDIF}
-{$IFDEF ANDROID}
 
-procedure TframeDXVTerminal.FComPortRxChar(Sender: TObject);
+procedure TframeDXVTerminal.timerSendTimer(Sender: TObject);
 begin
-  { // beginupdate/endupdate fixes jumping of the memo box as each new text/line is added!!
-    memoDebugTerminal.BeginUpdate;
-    try
-    Text := dm.COM.ReadString;
-    text := stringreplace(text,#10,'',[rfreplaceall]);
-    except
-    on E: Exception do
+  inherited;
+
+  if dm.COM is TdmSerialTCPIP then
+  begin
+    // I really don't like using a timer!
+    // TODO : Try and get Android Serial and TCPIP modes to work similar to Windows Serial events
+    if pos(^Z, TdmSerialTCPIP(dm.COM).ReadBuffer) > 0 then
     begin
-    Text := #10#13 + #10#13 + AnsiString(E.Message) + #10#13 + #1013;
+      timerSend.Enabled := false;
+      memoDebugTerminal.BeginUpdate;
+      memoDebugTerminal.Text := memoDebugTerminal.Text + TdmSerialTCPIP(dm.COM).ReadBuffer;
+      memoDebugTerminal.GoToTextEnd;
+      memoDebugTerminal.EndUpdate;
     end;
+  end
+  else
+  begin
 
+{$IFDEF ANDROID}
+    // I really don't like using a timer!
+    // TODO : Try and get Android Serial and TCPIP modes to work similar to Windows Serial events
+    if pos(^Z, TdmSerialAndroid(dm.COM).ReadBuffer) > 0 then
+    begin
+      timerSend.Enabled := false;
+      memoDebugTerminal.BeginUpdate;
+      memoDebugTerminal.Text := memoDebugTerminal.Text + TdmSerialAndroid(dm.COM).ReadBuffer;
+      memoDebugTerminal.GoToTextEnd;
+      memoDebugTerminal.EndUpdate;
     end;
-
-    if pos(^Z, string(Text)) > 0 then
-    FComPortEOL(Sender);
-
-    memoDebugTerminal.Text := memoDebugTerminal.Text + string(Text);
-    memoDebugTerminal.GoToTextEnd;
-
-    memoDebugTerminal.EndUpdate;
-  }
-end;
 {$ENDIF}
+  end;
+end;
 
 procedure TframeDXVTerminal.timer_GetDataTimer(Sender: TObject);
 begin

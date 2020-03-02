@@ -91,6 +91,7 @@ end;
 
 function Tdm.isComSerial: boolean;
 begin
+  result := true;
   if assigned(dm.COM) then
 {$IFDEF MSWINDOWS}
     result := dm.COM.ClassType = TdmSerialWindows;
@@ -101,6 +102,7 @@ end;
 
 function Tdm.GetNeatoType: integer;
 begin
+  result := -1;
 
   case NeatoType of
     XV:
@@ -151,9 +153,6 @@ begin
 end;
 
 procedure StopTimers(NILEvent: boolean = false);
-var
-  idx: integer;
-  i: integer;
 begin
   timerCS.Enter;
 

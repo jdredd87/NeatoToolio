@@ -36,7 +36,7 @@ type
     procedure IdTelnet1Connected(Sender: TObject);
     procedure IdTelnet1Disconnected(Sender: TObject);
   protected
-    procedure SetOnRxChar(value: TNotifyEvent); override;
+    procedure SetOnRxChar(value: TNotifyEvent);
   public
     onError: TNotifyEvent;
     fmemoDebug: tmemo;
@@ -51,7 +51,7 @@ type
     FComSignalCNX: TColorBox;
 
     constructor Create;
-    destructor destroy; override;
+    destructor Destroy; override;
     Function Open: boolean; override;
     procedure Close; override;
     function SendCommand(cmd: string; const readtimeout: integer = 5000; const waitfor: integer = 100): string;
@@ -61,12 +61,13 @@ type
       const count: byte = 1): string; override;
 
     function ReadString: String; override;
-    function active: boolean; override;
+    function Active: boolean; override;
+    function ReadBuffer: String;
 
-    procedure PurgeInput;
-    procedure PurgeOutput;
-    procedure WaitForWriteCompletion;
-    procedure WaitForReadCompletion;
+    procedure PurgeInput; override;
+    procedure PurgeOutput; override;
+    procedure WaitForWriteCompletion; override;
+    procedure WaitForReadCompletion; override;
 
     property Error: String read fError;
     property ErrorCode: integer read fErrorCode;
@@ -94,7 +95,7 @@ begin
   FComSignalCNX := nil;
 end;
 
-Destructor TdmSerialTCPIP.destroy;
+Destructor TdmSerialTCPIP.Destroy;
 begin
   Serial.Free;
   cs.Free;
@@ -104,6 +105,22 @@ end;
 procedure TdmSerialTCPIP.SetOnRxChar(value: TNotifyEvent);
 begin
   // Serial.OnRxChar := value;
+end;
+
+function TdmSerialTCPIP.ReadBuffer: String;
+begin
+  try
+    cs.Enter;
+    try
+      Result := fDataBuffer;
+    except
+      on E: Exception do
+      begin
+      end;
+    end;
+  finally
+    cs.Leave;
+  end;
 end;
 
 Function TdmSerialTCPIP.Open: boolean;
@@ -122,11 +139,11 @@ begin
     Serial.ConnectTimeout := 4000;
     Serial.readtimeout := 4000;
     Serial.Connect;
-    result := true;
+    Result := true;
   except
     on E: Exception do
     begin
-      result := false;
+      Result := false;
       fError := E.Message;
       if assigned(onError) then
         onError(self);
@@ -157,8 +174,6 @@ end;
 
 function TdmSerialTCPIP.SendCommandOnly(cmd: string): String;
 var
-  ToSend2: TIdBytes;
-  ToSend1: TBytes;
   sw: tstopwatch;
 begin
   tthread.CreateAnonymousThread(
@@ -177,9 +192,9 @@ begin
   cs.Leave;
 
   try
-    result := cmd;
+    Result := cmd;
     try
-      result := '';
+      Result := '';
       Serial.readtimeout := 5000; // 1 second is all we allow
 
       if assigned(fmemoDebug) then
@@ -201,7 +216,7 @@ begin
           sleep(1);
       until (pos(^Z, fDataBuffer) > 0) or (sw.ElapsedMilliseconds >= Serial.readtimeout);
       sw.Stop;
-      result := trim(fDataBuffer);
+      Result := trim(fDataBuffer);
 
     except
       on E: Exception do
@@ -236,16 +251,12 @@ function TdmSerialTCPIP.SendCommand(cmd: string; const readtimeout: integer = 50
 const waitfor: integer = 100): string;
 var
   sw: tstopwatch;
-  ToSend1: TBytes;
-  ToSend2: TIdBytes;
-  readdone: boolean;
-  Buffer: TIdBytes;
   fixData: TStringList;
   idx: integer;
 
   breakFound: integer;
   timedout: boolean;
-  s: string;
+
 begin
 
   tthread.CreateAnonymousThread(
@@ -267,7 +278,7 @@ begin
   try
     try
       sw := tstopwatch.Create;
-      result := '';
+      Result := '';
       Serial.readtimeout := readtimeout * 2;
 
       if assigned(fmemoDebug) then
@@ -276,9 +287,6 @@ begin
       Serial.SendString(cmd + #13);
       sw := tstopwatch.Create;
       sw.Start;
-
-      breakFound := 0;
-      timedout := false;
 
       repeat // This is blocking so beware
         sleep(10);
@@ -300,16 +308,16 @@ begin
         if trim(fixData[idx]) = '' then
           fixData.Delete(idx);
 
-      result := trim(fixData.Text);
+      Result := trim(fixData.Text);
 
       fixData.Free;
-      if pos('Help', result) > 0 then
+      if pos('Help', Result) > 0 then
         sw.Stop;
 
       if assigned(fmemoDebug) then
       begin
         fmemoDebug.BeginUpdate;
-        fmemoDebug.Lines.Add(result);
+        fmemoDebug.Lines.Add(Result);
         fmemoDebug.GoToTextEnd;
         fmemoDebug.EndUpdate;
       end;
@@ -344,7 +352,7 @@ end;
 
 function TdmSerialTCPIP.ReadString: String;
 begin
-  result := Serial.Socket.ReadLn;
+  Result := Serial.Socket.ReadLn;
 end;
 
 function TdmSerialTCPIP.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 5000;
@@ -352,8 +360,8 @@ const waitfor: string = ''; const count: byte = 1): string;
 
 var
   sw: tstopwatch;
-  ToSend2: TIdBytes;
-  ToSend1: TBytes;
+  // ToSend2: TIdBytes;
+  // ToSend1: TBytes;
 
 begin
 
@@ -374,7 +382,7 @@ begin
     fDataBuffer := '';
     cs.Leave;
 
-    result := '';
+    Result := '';
     if assigned(fmemoDebug) then
       fmemoDebug.Lines.Add(cmd);
 
@@ -385,16 +393,16 @@ begin
     repeat // This is blocking so beware
       if Serial.Socket.InputBufferIsEmpty = false then
         sleep(1);
-    until (OccurrencesOfChar(result, ^Z) = count) or (sw.ElapsedMilliseconds >= Serial.readtimeout);
+    until (OccurrencesOfChar(Result, ^Z) = count) or (sw.ElapsedMilliseconds >= Serial.readtimeout);
 
     sw.Stop;
 
-    result := trim(fDataBuffer);
+    Result := trim(fDataBuffer);
 
     if assigned(fmemoDebug) then
     begin
       fmemoDebug.BeginUpdate;
-      fmemoDebug.Lines.Add(result);
+      fmemoDebug.Lines.Add(Result);
       fmemoDebug.GoToTextEnd;
       fmemoDebug.EndUpdate;
     end;
@@ -426,15 +434,15 @@ begin
 
 end;
 
-function TdmSerialTCPIP.active: boolean;
+function TdmSerialTCPIP.Active: boolean;
 begin
   try
-    result := Serial.Connected;
+    Result := Serial.Connected;
   except
     on E: Exception do
     begin
       self.fError := E.Message;
-      result := false;
+      Result := false;
     end;
   end;
 end;

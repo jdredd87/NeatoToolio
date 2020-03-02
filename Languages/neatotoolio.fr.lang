@@ -1,476 +1,476 @@
-&Serial=&Serial
-Settings=Settings
-Auto Detect Neato=Auto Detect Neato
-COM Port=COM Port
-IP Address=IP Address
-Serial Connect=Connexion série
-TCPIP Connect=Connexion TCPIP
-RobotName=RobotName
-Model Name=Model Name
-Debug=Debug
-Terminal=Terminal
-Raw Data=Raw Data
-Clear=Clear
-Scripts=Scripts
-Power=Power
-GetCharger=GetCharger
-SetFuelGauge=SetFuelGauge
-SetSystemMode=SetSystemMode
-SetBatteryTest=SetBatteryTest
-&Sensors=&Sensors
-GetSensor=GetSensor
-This is not supported by this model...=This is not supported by this model...
-GetAccel=GetAccel
-GetAnalogSensors=GetAnalogSensors
-GetDigitalSensors=GetDigitalSensors
-GetCalInfo=GetCalInfo
-SetWallFollower=SetWallFollower
-SetDistanceCal=SetDistanceCal
-Buttons=Buttons
-GetButtons=GetButtons
-SetButton=SetButton
-SetLCD=SetLCD
-SetLED=SetLED
-Motors=Motors
-GetMotors=GetMotors
-SetMotor=SetMotor
-Lidar=Lidar
-GetLDSScan=GetLDSScan
-LIDAR View=LIDAR View
-TestLDS=TestLDS
-Info=Info
-GetWarranty=GetWarranty
-GetErr=GetErr
-GetVersion=GetVersion
-GetUsage=GetUsage
-GetUserSettings=GetUserSettings
-SetUsage=SetUsage
-GetLifeStatLog=GetLifeStatLog
-Tools=Tools
-ClearFiles=ClearFiles
-RestoreDefaults=RestoreDefaults
-Clean=Clean
-DiagTest=DiagTest
-SetIEC=SetIEC
-SetNavigationMode=SetNavigationMode
-PlaySound=PlaySound
-SetLanguage=SetLanguage
-WiFi=WiFi
-GetWifiInfo=GetWifiInfo
-GetWifiStatus=GetWifiStatus
-Time=Time
-GetTime=GetTime
-SetTime=SetTime
-GetSchedule=GetSchedule
-SetSchedule=SetSchedule
-SetNTPTime=SetNTPTime
-About=About
-0.00=0
-RX=RX
-TX=TX
-CNX=CNX
-   TestMode=   TestMode
-Experimental. This is very temperamental.=Experimental. This is very temperamental.
-AutoCycle=AutoCycle
-Explore=Explore
-House=House
-Persistent=Persistent
-Spot=Spot
-Stop=Stop
-Clean Forever=Clean Forever
-Height in CM=Height in CM
-Max Number of Cycles=Max Number of Cycles
-Width in CM=Width in CM
-Option=Option
- ( BB ) - Clears Managed Logs in BlackBox Directory.= ( BB ) - Clears Managed Logs in BlackBox Directory.
- ( ALL ) - Additionally clears unmanaged files (Crash, ...) in the specified directories.= ( ALL ) - Additionally clears unmanaged files (Crash, ...) in the specified directories.
-AccelerometerX=AccelerometerX
-0=0
-AccelerometerY=AccelerometerY
-AccelerometerZ=AccelerometerZ
-BatteryCurrent=BatteryCurrent
-BatteryTemperature=BatteryTemperature
-BatteryVoltage=BatteryVoltage
-CompassmeterX=CompassmeterX
-CompassmeterY=CompassmeterY
-CompassmeterZ=CompassmeterZ
-DropSensorLeft=DropSensorLeft
-DropSensorRight=DropSensorRight
-ExternalVoltage=ExternalVoltage
-GyroscopeX=GyroscopeX
-GyroscopeY=GyroscopeY
-GyroscopeZ=GyroscopeZ
-IMUAccelerometerX=IMUAccelerometerX
-IMUAccelerometerY=IMUAccelerometerY
-IMUAccelerometerZ=IMUAccelerometerZ
-MagSensorLeft=MagSensorLeft
-MagSensorRight=MagSensorRight
-SideBrushCurrent=SideBrushCurrent
-VacuumCurrent=VacuumCurrent
-WallSensor=WallSensor
-0 mA=0 mA
-19216 mC=19216 mC
-12288 mV=12288 mV
-BTN_BACK=BTN_BACK
-BTN_SCROLL_DOWN=BTN_SCROLL_DOWN
-BTN_SCROLL_UP=BTN_SCROLL_UP
-BTN_SOFT_KEY=BTN_SOFT_KEY
-BTN_SPOT=BTN_SPOT
-BTN_START=BTN_START
-IR_BTN_DOWN=IR_BTN_DOWN
-IR_BTN_ECO=IR_BTN_ECO
-IR_BTN_HOME=IR_BTN_HOME
-IR_BTN_LEFT=IR_BTN_LEFT
-IR_BTN_LEFT_ARC=IR_BTN_LEFT_ARC
-IR_BTN_RIGHT=IR_BTN_RIGHT
-IR_BTN_RIGHT_ARC=IR_BTN_RIGHT_ARC
-IR_BTN_SPOT=IR_BTN_SPOT
-IR_BTN_START=IR_BTN_START
-IR_BTN_UP=IR_BTN_UP
-CleaningTestCarpetDistance=CleaningTestCarpetDistance
-CleaningTestCarpetSpeed=CleaningTestCarpetSpeed
-CleaningTestHardDistance=CleaningTestHardDistance
-CleaningTestHardSpeed=CleaningTestHardSpeed
-CleaningTestMode=CleaningTestMode
-CleaningTestSurface=CleaningTestSurface
-LDSOffset=LDSOffset
-LeftDropSensor_CalibrationData=LeftDropSensor_CalibrationData
-QAState=QAState
-RightDropSensor_CalibrationData=RightDropSensor_CalibrationData
-RTCOffset=RTCOffset
-SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX=SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX
-SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX=SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX
-SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX=SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX
-SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX=SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX
-SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX=SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX
-SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX=SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX
-SNSRCAL_WALL_NDX.SNSRCAL_MAX_DISTANCE_NDX=SNSRCAL_WALL_NDX.SNSRCAL_MAX_DISTANCE_NDX
-SNSRCAL_WALL_NDX.SNSRCAL_MID_DISTANCE_NDX=SNSRCAL_WALL_NDX.SNSRCAL_MID_DISTANCE_NDX
-SNSRCAL_WALL_NDX.SNSRCAL_MIN_DISTANCE_NDX=SNSRCAL_WALL_NDX.SNSRCAL_MIN_DISTANCE_NDX
-SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX=SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX
-SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX=SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX
-SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX=SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX
-WallSensor_CalibrationData=WallSensor_CalibrationData
-WheelDropSensor_CalibrationData=WheelDropSensor_CalibrationData
-XAccel=XAccel
-YAccel=YAccel
-ZAccel=ZAccel
-BatteryFailure=BatteryFailure
-BatteryOverTemp=BatteryOverTemp
-BattTempCAvg=BattTempCAvg
-Charger mAH=Charger mAH
-ChargingActive=ChargingActive
-ChargingEnabled=ChargingEnabled
-ConfidentOnFuel=ConfidentOnFuel
-Discharger mAH=Discharger mAH
-EmptyFuel=EmptyFuel
-ExtPwrPresent=ExtPwrPresent
-FuelPercent=FuelPercent
-OnReservedFuel=OnReservedFuel
-ThermistorPresent=ThermistorPresent
-VBattV=VBattV
-VExtV=VExtV
-55*=55*
-2096=2096
-50%=50%
-12v=12v
-LFRONTBIT=LFRONTBIT
-LLDSBIT=LLDSBIT
-LSIDEBIT=LSIDEBIT
-RFRONTBIT=RFRONTBIT
-RLDSBIT=RLDSBIT
-RSIDEBIT=RSIDEBIT
-SNSR_DC_JACK_IS_IN=SNSR_DC_JACK_IS_IN
-SNSR_DUSTBIN_IS_IN=SNSR_DUSTBIN_IS_IN
-SNSR_LEFT_WHEEL_EXTENDED=SNSR_LEFT_WHEEL_EXTENDED
-SNSR_RIGHT_WHEEL_EXTENDED=SNSR_RIGHT_WHEEL_EXTENDED
-Brush_mA=Brush_mA
-Brush_RPM=Brush_RPM
-LeftWheel_direction=LeftWheel_direction
-LeftWheel_Load=LeftWheel_Load
-LeftWheel_PositionInMM=LeftWheel_PositionInMM
-LeftWheel_RPM=LeftWheel_RPM
-LeftWheel_Speed=LeftWheel_Speed
-RightWheel_direction=RightWheel_direction
-RightWheel_Load%=RightWheel_Load%
-RightWheel_PositionInMM=RightWheel_PositionInMM
-RightWheel_RPM=RightWheel_RPM
-RightWheel_Speed=RightWheel_Speed
-ROTATION_SPEED=ROTATION_SPEED
-SideBrush_mA=SideBrush_mA
-Vacuum_mA=Vacuum_mA
-Vacuum_RPM=Vacuum_RPM
-Brush RPM (Yellow) Brush mA (Green)=Brush RPM (Yellow) Brush mA (Green)
-Vacuum RPM=Vacuum RPM
-Vacuum mA=Vacuum mA
-Left Wheel RPM (Yellow) Right Wheel RPM  (Green)=Left Wheel RPM (Yellow) Right Wheel RPM  (Green)
-Drop Sensors=Drop Sensors
-IMU Accel X=IMU Accel X
-IMU Accel Y=IMU Accel Y
-IMU Accel Z=IMU Accel Z
-Left Drop mm=Left Drop mm
-Left Drop Status=Left Drop Status
-Right Drop mm=Right Drop mm
-Right Drop Status=Right Drop Status
-Sensors Status=Sensors Status
-Ultra Sound=Ultra Sound
-Wall Follower=Wall Follower
-Wall Right mm=Wall Right mm
-Wall Right Status=Wall Right Status
-Wheel Drop mm=Wheel Drop mm
-Wheel Drop Status=Wheel Drop Status
-DirtbinRunTimeinSec=DirtbinRunTimeinSec
-FilterTimeinSec=FilterTimeinSec
-MainBrushRunTimeinSec=MainBrushRunTimeinSec
-SideBrushRunTimeinSec=SideBrushRunTimeinSec
-Total Cleaned Area=Total Cleaned Area
-Total Cleaning Time=Total Cleaning Time
-Sunday=Sunday
-Monday=Monday
-Tuesday=Tuesday
-Wednesday=Wednesday
-Thursday=Thursday
-Friday=Friday
-Saturday=Saturday
-Bin Full Detect=Bin Full Detect
-Brush Change Time (seconds)=Brush Change Time (seconds)
-ClickSounds=ClickSounds
-Current Dirt Bin Alert Time is=Current Dirt Bin Alert Time is
-Dirt Bin Alert Reminder Interval (minutes)=Dirt Bin Alert Reminder Interval (minutes)
-Eco Mode=Eco Mode
-Filter Change Time (seconds)=Filter Change Time (seconds)
-IntenseClean=IntenseClean
-Language=Language
-LED=LED
-Melody Sounds=Melody Sounds
-Number of Cleanings where Dust Bin was full is=Number of Cleanings where Dust Bin was full is
-Schedule is=Schedule is
-Wall Enable=Wall Enable
-Warning Sounds=Warning Sounds
-CumulativeBatteryCycles=CumulativeBatteryCycles
-CumulativeCleaningTimeInSecs=CumulativeCleaningTimeInSecs
-ValidationCode=ValidationCode
-Scan WiFi Networks=Scan WiFi Networks
-AP Desired=AP Desired
-AP Shutoff in=AP Shutoff in
-Beehive URL=Beehive URL
-BSSID=BSSID
-Enabled=Enabled
-EZ-Connect Message=EZ-Connect Message
-IPADDR=IPADDR
-Linked to Beehive=Linked to Beehive
-NTP URL=NTP URL
-Nucleo Connected=Nucleo Connected
-Nucleo URL=Nucleo URL
-Robot Name=Robot Name
-Scanning=Scanning
-Signal Strength=Signal Strength
-SSID=SSID
-Time Zone=Time Zone
-UTC Offset=UTC Offset
-Wifi Mode=Wifi Mode
-Wifi On Init=Wifi On Init
-back=back
-down=down
-soft=soft
-spot=spot
-start=start
-up=up
-IRback=IRback
-IReco=IReco
-IRfront=IRfront
-IRhome=IRhome
-IRleft=IRleft
-IRright=IRright
-IRspot=IRspot
-IRstart=IRstart
-home=home
-info=info
-wifi=wifi
-battery=battery
-Normal=Normal
-Gentle=Gentle
-Deep=Deep
-Quick=Quick
-SetNTPTime Brief=SetNTPTime Brief
-MainBrush=MainBrush
-SideBrush=SideBrush
-Dustbin=Dustbin
-Life time in seconds=Life time in seconds
-PitchInDegrees=PitchInDegrees
-RollInDegrees=RollInDegrees
-SumInG=SumInG
-XInG=XInG
-YInG=YInG
-ZInG=ZInG
-Reset Mapping=Reset Mapping
-Degree=Degree
-Distance mm=Distance mm
-Error Code=Error Code
-Intensity=Intensity
-Speed=Speed
-Auto Scale=Auto Scale
-Max Distance in MM=Max Distance in MM
-Plotter XY=Plotter XY
-Polar Degrees=Polar Degrees
-Calculations=Calculations
-PlaySound ID #=PlaySound ID #
-Test Sound ID=Test Sound ID
-Test all Sound ID Codes=Test all Sound ID Codes
-Abort=Abort
-Disabled=Disabled
-Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode=Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode
-These commands take a few seconds to complete.=These commands take a few seconds to complete.
-DropMinimum=DropMinimum
-WallCalA2DMid=WallCalA2DMid
-WallCalA2DMax=WallCalA2DMax
-RDropCalA2DMid=RDropCalA2DMid
-RDropCalA2DMax=RDropCalA2DMax
-LDropCalA2DMin=LDropCalA2DMin
-LDropCalA2DMid=LDropCalA2DMid
-DropMiddle=DropMiddle
-DropMaximum=DropMaximum
-WallMinimum=WallMinimum
-WallMiddle=WallMiddle
-WallMaximum=WallMaximum
-RDropCalA2DMin=RDropCalA2DMin
-LDropCalA2DMax=LDropCalA2DMax
-WallCalA2DMin=WallCalA2DMin
-Fuel 0%=Fuel 0%
-CarpetSpeed=CarpetSpeed
-HardSpeed=HardSpeed
-Distance=Distance
-None=None
-German=German
-Italian=Italian
-Dutch=Dutch
-Czech=Czech
-Danish=Danish
-English=English
-Finnish=Finnish
-French=French
-Japanese=Japanese
-Portuguese=Portuguese
-SChinese=SChinese
-Spanish=Spanish
-Swedish=Swedish
-TChinese=TChinese
-Contrast 0%=Contrast 0%
-BGBlack=BGBlack
-BGWhite=BGWhite
-HLine=HLine
-VLine=VLine
-HBars=HBars
-VBars=VBars
-FGWhite=FGWhite
-FGBlack=FGBlack
-HBars 2=HBars 2
-Disable=Disable
-Enable=Enable
-STOP=STOP
-?=?
-?=?
-?=?
-?=?
-?=?
-?=?
-D=D
-Left Wheel=Left Wheel
-Main Brush=Main Brush
-Main Brush RPM=Main Brush RPM
-Right Wheel=Right Wheel
-Side Brush=Side Brush
-Side Brush maximum power in milliwatts=Side Brush maximum power in milliwatts
-Vacuum=Vacuum
- Vacuum speed in percent= Vacuum speed in percent
-Speed and Distance in millimeters =Speed and Distance in millimeters 
-Use PlotterXY Lidar View=Use PlotterXY Lidar View
-Hibernate=Hibernate
-PowerCycle=PowerCycle
-Shutdown=Shutdown
-Standby=Standby
-Apply=Apply
-Hour=Hour
-Minutes=Minutes
-Seconds=Seconds
-Enables/Disables wall follower=Enables/Disables wall follower
-Command=Command
-Send=Send
-Help=Help
-Loader=Loader
-CPU=CPU
-Serial=Serial
-LastCal=LastCal
-Runtime=Runtime
-This call takes a few momments to gather data. It is also some what temperamental and may require a hardware reboot.=This call takes a few momments to gather data. It is also some what temperamental and may require a hardware reboot.
-Available Scripts=Available Scripts
-Open to Edit=Open to Edit
-Run Script=Run Script
-Create NEW Script=Create NEW Script
-Script Editor=Script Editor
-Save=Save
-Run=Run
------=-----
-IDE=IDE
-lblScriptDescription=lblScriptDescription
-Clean House=Clean House
-Clean Spot=Clean Spot
-Clean STOP=Clean STOP
-ChargeVoltInmV=ChargeVoltInmV
-CurrentInmA=CurrentInmA
-AccelXInmG=AccelXInmG
-AccelYInmG=AccelYInmG
-AccelZInmG=AccelZInmG
-BatteryTemp0InC=BatteryTemp0InC
-BatteryTemp1InC=BatteryTemp1InC
-BatteryVoltageInmV=BatteryVoltageInmV
-LeftDropInMM=LeftDropInMM
-LeftMagSensor=LeftMagSensor
-RightDropInMM=RightDropInMM
-RightMagSensor=RightMagSensor
-WallSensorInMM=WallSensorInMM
-SideBrushCurrentInmA=SideBrushCurrentInmA
-UIButtonInmV=UIButtonInmV
-VacuumCurrentInmA=VacuumCurrentInmA
-VoltageReferenceInmV=VoltageReferenceInmV
-0 *C=0 *C
-500 mA=500 mA
-12288 mA=12288 mA
-LCDContrast=LCDContrast
-LDropMax=LDropMax
-LDropMid=LDropMid
-LDropMin=LDropMin
-RDropMax=RDropMax
-RDropMid=RDropMid
-RDropMin=RDropMin
-WallMax=WallMax
-WallMid=WallMid
-WallMin=WallMin
-BattTempCAvg[0]=BattTempCAvg[0]
-BattTempCAvg[1]=BattTempCAvg[1]
-ThermistorPresent[0]=ThermistorPresent[0]
-ThermistorPresent[1]=ThermistorPresent[1]
-Charger_mAH=Charger_mAH
-LeftWheel_Load%=LeftWheel_Load%
-00:00 AM=12:00 AM
-Sunday 00:00:00=Sunday 00:00:00
-CumulativeBatteryCycles?=CumulativeBatteryCycles?
-CumulativeCleaningTimeInSecs?=CumulativeCleaningTimeInSecs?
-ValidationCode?=ValidationCode?
-Restore Defaults=Restore Defaults
-OFF=OFF
-ON=ON
-Select Day=Select Day
-Set Schedule Mode=Set Schedule Mode
-BacklightOn=BacklightOn
-BacklightOff=BacklightOff
-BlinkOff=BlinkOff
-BlinkOn=BlinkOn
-ButtonAmber=ButtonAmber
-ButtonAmberDim=ButtonAmberDim
-ButtonGreen=ButtonGreen
-ButtonGreenDim=ButtonGreenDim
-ButtonOff=ButtonOff
-LEDGreen=LEDGreen
-LEDRed=LEDRed
-Source=Source
+&Serial	&Serial
+Settings	Settings
+Auto Detect Neato	Auto Detect Neato
+COM Port	COM Port
+IP Address	IP Address
+Serial Connect	Connexion série
+TCPIP Connect	Connexion TCPIP
+RobotName	RobotName
+Model Name	Model Name
+Debug	Debug
+Terminal	Terminal
+Raw Data	Raw Data
+Clear	Clear
+Scripts	Scripts
+Power	Power
+GetCharger	GetCharger
+SetFuelGauge	SetFuelGauge
+SetSystemMode	SetSystemMode
+SetBatteryTest	SetBatteryTest
+&Sensors	&Sensors
+GetSensor	GetSensor
+This is not supported by this model...	This is not supported by this model...
+GetAccel	GetAccel
+GetAnalogSensors	GetAnalogSensors
+GetDigitalSensors	GetDigitalSensors
+GetCalInfo	GetCalInfo
+SetWallFollower	SetWallFollower
+SetDistanceCal	SetDistanceCal
+Buttons	Buttons
+GetButtons	GetButtons
+SetButton	SetButton
+SetLCD	SetLCD
+SetLED	SetLED
+Motors	Motors
+GetMotors	GetMotors
+SetMotor	SetMotor
+Lidar	Lidar
+GetLDSScan	GetLDSScan
+LIDAR View	LIDAR View
+TestLDS	TestLDS
+Info	Info
+GetWarranty	GetWarranty
+GetErr	GetErr
+GetVersion	GetVersion
+GetUsage	GetUsage
+GetUserSettings	GetUserSettings
+SetUsage	SetUsage
+GetLifeStatLog	GetLifeStatLog
+Tools	Tools
+ClearFiles	ClearFiles
+RestoreDefaults	RestoreDefaults
+Clean	Clean
+DiagTest	DiagTest
+SetIEC	SetIEC
+SetNavigationMode	SetNavigationMode
+PlaySound	PlaySound
+SetLanguage	SetLanguage
+WiFi	WiFi
+GetWifiInfo	GetWifiInfo
+GetWifiStatus	GetWifiStatus
+Time	Time
+GetTime	GetTime
+SetTime	SetTime
+GetSchedule	GetSchedule
+SetSchedule	SetSchedule
+SetNTPTime	SetNTPTime
+About	About
+0.00	0
+RX	RX
+TX	TX
+CNX	CNX
+   TestMode	   TestMode
+Experimental. This is very temperamental.	Experimental. This is very temperamental.
+AutoCycle	AutoCycle
+Explore	Explore
+House	House
+Persistent	Persistent
+Spot	Spot
+Stop	Stop
+Clean Forever	Clean Forever
+Height in CM	Height in CM
+Max Number of Cycles	Max Number of Cycles
+Width in CM	Width in CM
+Option	Option
+ ( BB ) - Clears Managed Logs in BlackBox Directory.	 ( BB ) - Clears Managed Logs in BlackBox Directory.
+ ( ALL ) - Additionally clears unmanaged files (Crash, ...) in the specified directories.	 ( ALL ) - Additionally clears unmanaged files (Crash, ...) in the specified directories.
+AccelerometerX	AccelerometerX
+0	0
+AccelerometerY	AccelerometerY
+AccelerometerZ	AccelerometerZ
+BatteryCurrent	BatteryCurrent
+BatteryTemperature	BatteryTemperature
+BatteryVoltage	BatteryVoltage
+CompassmeterX	CompassmeterX
+CompassmeterY	CompassmeterY
+CompassmeterZ	CompassmeterZ
+DropSensorLeft	DropSensorLeft
+DropSensorRight	DropSensorRight
+ExternalVoltage	ExternalVoltage
+GyroscopeX	GyroscopeX
+GyroscopeY	GyroscopeY
+GyroscopeZ	GyroscopeZ
+IMUAccelerometerX	IMUAccelerometerX
+IMUAccelerometerY	IMUAccelerometerY
+IMUAccelerometerZ	IMUAccelerometerZ
+MagSensorLeft	MagSensorLeft
+MagSensorRight	MagSensorRight
+SideBrushCurrent	SideBrushCurrent
+VacuumCurrent	VacuumCurrent
+WallSensor	WallSensor
+0 mA	0 mA
+19216 mC	19216 mC
+12288 mV	12288 mV
+BTN_BACK	BTN_BACK
+BTN_SCROLL_DOWN	BTN_SCROLL_DOWN
+BTN_SCROLL_UP	BTN_SCROLL_UP
+BTN_SOFT_KEY	BTN_SOFT_KEY
+BTN_SPOT	BTN_SPOT
+BTN_START	BTN_START
+IR_BTN_DOWN	IR_BTN_DOWN
+IR_BTN_ECO	IR_BTN_ECO
+IR_BTN_HOME	IR_BTN_HOME
+IR_BTN_LEFT	IR_BTN_LEFT
+IR_BTN_LEFT_ARC	IR_BTN_LEFT_ARC
+IR_BTN_RIGHT	IR_BTN_RIGHT
+IR_BTN_RIGHT_ARC	IR_BTN_RIGHT_ARC
+IR_BTN_SPOT	IR_BTN_SPOT
+IR_BTN_START	IR_BTN_START
+IR_BTN_UP	IR_BTN_UP
+CleaningTestCarpetDistance	CleaningTestCarpetDistance
+CleaningTestCarpetSpeed	CleaningTestCarpetSpeed
+CleaningTestHardDistance	CleaningTestHardDistance
+CleaningTestHardSpeed	CleaningTestHardSpeed
+CleaningTestMode	CleaningTestMode
+CleaningTestSurface	CleaningTestSurface
+LDSOffset	LDSOffset
+LeftDropSensor_CalibrationData	LeftDropSensor_CalibrationData
+QAState	QAState
+RightDropSensor_CalibrationData	RightDropSensor_CalibrationData
+RTCOffset	RTCOffset
+SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX	SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX
+SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX	SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX
+SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX	SNSRCAL_LEFT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX
+SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX	SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX
+SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX	SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX
+SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX	SNSRCAL_RIGHT_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX
+SNSRCAL_WALL_NDX.SNSRCAL_MAX_DISTANCE_NDX	SNSRCAL_WALL_NDX.SNSRCAL_MAX_DISTANCE_NDX
+SNSRCAL_WALL_NDX.SNSRCAL_MID_DISTANCE_NDX	SNSRCAL_WALL_NDX.SNSRCAL_MID_DISTANCE_NDX
+SNSRCAL_WALL_NDX.SNSRCAL_MIN_DISTANCE_NDX	SNSRCAL_WALL_NDX.SNSRCAL_MIN_DISTANCE_NDX
+SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX	SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MAX_DISTANCE_NDX
+SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX	SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MID_DISTANCE_NDX
+SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX	SNSRCAL_WHEEL_DROP_NDX.SNSRCAL_MIN_DISTANCE_NDX
+WallSensor_CalibrationData	WallSensor_CalibrationData
+WheelDropSensor_CalibrationData	WheelDropSensor_CalibrationData
+XAccel	XAccel
+YAccel	YAccel
+ZAccel	ZAccel
+BatteryFailure	BatteryFailure
+BatteryOverTemp	BatteryOverTemp
+BattTempCAvg	BattTempCAvg
+Charger mAH	Charger mAH
+ChargingActive	ChargingActive
+ChargingEnabled	ChargingEnabled
+ConfidentOnFuel	ConfidentOnFuel
+Discharger mAH	Discharger mAH
+EmptyFuel	EmptyFuel
+ExtPwrPresent	ExtPwrPresent
+FuelPercent	FuelPercent
+OnReservedFuel	OnReservedFuel
+ThermistorPresent	ThermistorPresent
+VBattV	VBattV
+VExtV	VExtV
+55*	55*
+2096	2096
+50%	50%
+12v	12v
+LFRONTBIT	LFRONTBIT
+LLDSBIT	LLDSBIT
+LSIDEBIT	LSIDEBIT
+RFRONTBIT	RFRONTBIT
+RLDSBIT	RLDSBIT
+RSIDEBIT	RSIDEBIT
+SNSR_DC_JACK_IS_IN	SNSR_DC_JACK_IS_IN
+SNSR_DUSTBIN_IS_IN	SNSR_DUSTBIN_IS_IN
+SNSR_LEFT_WHEEL_EXTENDED	SNSR_LEFT_WHEEL_EXTENDED
+SNSR_RIGHT_WHEEL_EXTENDED	SNSR_RIGHT_WHEEL_EXTENDED
+Brush_mA	Brush_mA
+Brush_RPM	Brush_RPM
+LeftWheel_direction	LeftWheel_direction
+LeftWheel_Load	LeftWheel_Load
+LeftWheel_PositionInMM	LeftWheel_PositionInMM
+LeftWheel_RPM	LeftWheel_RPM
+LeftWheel_Speed	LeftWheel_Speed
+RightWheel_direction	RightWheel_direction
+RightWheel_Load%	RightWheel_Load%
+RightWheel_PositionInMM	RightWheel_PositionInMM
+RightWheel_RPM	RightWheel_RPM
+RightWheel_Speed	RightWheel_Speed
+ROTATION_SPEED	ROTATION_SPEED
+SideBrush_mA	SideBrush_mA
+Vacuum_mA	Vacuum_mA
+Vacuum_RPM	Vacuum_RPM
+Brush RPM (Yellow) Brush mA (Green)	Brush RPM (Yellow) Brush mA (Green)
+Vacuum RPM	Vacuum RPM
+Vacuum mA	Vacuum mA
+Left Wheel RPM (Yellow) Right Wheel RPM  (Green)	Left Wheel RPM (Yellow) Right Wheel RPM  (Green)
+Drop Sensors	Drop Sensors
+IMU Accel X	IMU Accel X
+IMU Accel Y	IMU Accel Y
+IMU Accel Z	IMU Accel Z
+Left Drop mm	Left Drop mm
+Left Drop Status	Left Drop Status
+Right Drop mm	Right Drop mm
+Right Drop Status	Right Drop Status
+Sensors Status	Sensors Status
+Ultra Sound	Ultra Sound
+Wall Follower	Wall Follower
+Wall Right mm	Wall Right mm
+Wall Right Status	Wall Right Status
+Wheel Drop mm	Wheel Drop mm
+Wheel Drop Status	Wheel Drop Status
+DirtbinRunTimeinSec	DirtbinRunTimeinSec
+FilterTimeinSec	FilterTimeinSec
+MainBrushRunTimeinSec	MainBrushRunTimeinSec
+SideBrushRunTimeinSec	SideBrushRunTimeinSec
+Total Cleaned Area	Total Cleaned Area
+Total Cleaning Time	Total Cleaning Time
+Sunday	Sunday
+Monday	Monday
+Tuesday	Tuesday
+Wednesday	Wednesday
+Thursday	Thursday
+Friday	Friday
+Saturday	Saturday
+Bin Full Detect	Bin Full Detect
+Brush Change Time (seconds)	Brush Change Time (seconds)
+ClickSounds	ClickSounds
+Current Dirt Bin Alert Time is	Current Dirt Bin Alert Time is
+Dirt Bin Alert Reminder Interval (minutes)	Dirt Bin Alert Reminder Interval (minutes)
+Eco Mode	Eco Mode
+Filter Change Time (seconds)	Filter Change Time (seconds)
+IntenseClean	IntenseClean
+Language	Language
+LED	LED
+Melody Sounds	Melody Sounds
+Number of Cleanings where Dust Bin was full is	Number of Cleanings where Dust Bin was full is
+Schedule is	Schedule is
+Wall Enable	Wall Enable
+Warning Sounds	Warning Sounds
+CumulativeBatteryCycles	CumulativeBatteryCycles
+CumulativeCleaningTimeInSecs	CumulativeCleaningTimeInSecs
+ValidationCode	ValidationCode
+Scan WiFi Networks	Scan WiFi Networks
+AP Desired	AP Desired
+AP Shutoff in	AP Shutoff in
+Beehive URL	Beehive URL
+BSSID	BSSID
+Enabled	Enabled
+EZ-Connect Message	EZ-Connect Message
+IPADDR	IPADDR
+Linked to Beehive	Linked to Beehive
+NTP URL	NTP URL
+Nucleo Connected	Nucleo Connected
+Nucleo URL	Nucleo URL
+Robot Name	Robot Name
+Scanning	Scanning
+Signal Strength	Signal Strength
+SSID	SSID
+Time Zone	Time Zone
+UTC Offset	UTC Offset
+Wifi Mode	Wifi Mode
+Wifi On Init	Wifi On Init
+back	back
+down	down
+soft	soft
+spot	spot
+start	start
+up	up
+IRback	IRback
+IReco	IReco
+IRfront	IRfront
+IRhome	IRhome
+IRleft	IRleft
+IRright	IRright
+IRspot	IRspot
+IRstart	IRstart
+home	home
+info	info
+wifi	wifi
+battery	battery
+Normal	Normal
+Gentle	Gentle
+Deep	Deep
+Quick	Quick
+SetNTPTime Brief	SetNTPTime Brief
+MainBrush	MainBrush
+SideBrush	SideBrush
+Dustbin	Dustbin
+Life time in seconds	Life time in seconds
+PitchInDegrees	PitchInDegrees
+RollInDegrees	RollInDegrees
+SumInG	SumInG
+XInG	XInG
+YInG	YInG
+ZInG	ZInG
+Reset Mapping	Reset Mapping
+Degree	Degree
+Distance mm	Distance mm
+Error Code	Error Code
+Intensity	Intensity
+Speed	Speed
+Auto Scale	Auto Scale
+Max Distance in MM	Max Distance in MM
+Plotter XY	Plotter XY
+Polar Degrees	Polar Degrees
+Calculations	Calculations
+PlaySound ID #	PlaySound ID #
+Test Sound ID	Test Sound ID
+Test all Sound ID Codes	Test all Sound ID Codes
+Abort	Abort
+Disabled	Disabled
+Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode	Sets California Energy Commission 10-CFR-430 Battery Charging System Test mode
+These commands take a few seconds to complete.	These commands take a few seconds to complete.
+DropMinimum	DropMinimum
+WallCalA2DMid	WallCalA2DMid
+WallCalA2DMax	WallCalA2DMax
+RDropCalA2DMid	RDropCalA2DMid
+RDropCalA2DMax	RDropCalA2DMax
+LDropCalA2DMin	LDropCalA2DMin
+LDropCalA2DMid	LDropCalA2DMid
+DropMiddle	DropMiddle
+DropMaximum	DropMaximum
+WallMinimum	WallMinimum
+WallMiddle	WallMiddle
+WallMaximum	WallMaximum
+RDropCalA2DMin	RDropCalA2DMin
+LDropCalA2DMax	LDropCalA2DMax
+WallCalA2DMin	WallCalA2DMin
+Fuel 0%	Fuel 0%
+CarpetSpeed	CarpetSpeed
+HardSpeed	HardSpeed
+Distance	Distance
+None	None
+German	German
+Italian	Italian
+Dutch	Dutch
+Czech	Czech
+Danish	Danish
+English	English
+Finnish	Finnish
+French	French
+Japanese	Japanese
+Portuguese	Portuguese
+SChinese	SChinese
+Spanish	Spanish
+Swedish	Swedish
+TChinese	TChinese
+Contrast 0%	Contrast 0%
+BGBlack	BGBlack
+BGWhite	BGWhite
+HLine	HLine
+VLine	VLine
+HBars	HBars
+VBars	VBars
+FGWhite	FGWhite
+FGBlack	FGBlack
+HBars 2	HBars 2
+Disable	Disable
+Enable	Enable
+STOP	STOP
+?	?
+?	?
+?	?
+?	?
+?	?
+?	?
+D	D
+Left Wheel	Left Wheel
+Main Brush	Main Brush
+Main Brush RPM	Main Brush RPM
+Right Wheel	Right Wheel
+Side Brush	Side Brush
+Side Brush maximum power in milliwatts	Side Brush maximum power in milliwatts
+Vacuum	Vacuum
+ Vacuum speed in percent	 Vacuum speed in percent
+Speed and Distance in millimeters 	Speed and Distance in millimeters 
+Use PlotterXY Lidar View	Use PlotterXY Lidar View
+Hibernate	Hibernate
+PowerCycle	PowerCycle
+Shutdown	Shutdown
+Standby	Standby
+Apply	Apply
+Hour	Hour
+Minutes	Minutes
+Seconds	Seconds
+Enables/Disables wall follower	Enables/Disables wall follower
+Command	Command
+Send	Send
+Help	Help
+Loader	Loader
+CPU	CPU
+Serial	Serial
+LastCal	LastCal
+Runtime	Runtime
+This call takes a few momments to gather data. It is also some what temperamental and may require a hardware reboot.	This call takes a few momments to gather data. It is also some what temperamental and may require a hardware reboot.
+Available Scripts	Available Scripts
+Open to Edit	Open to Edit
+Run Script	Run Script
+Create NEW Script	Create NEW Script
+Script Editor	Script Editor
+Save	Save
+Run	Run
+-----	-----
+IDE	IDE
+lblScriptDescription	lblScriptDescription
+Clean House	Clean House
+Clean Spot	Clean Spot
+Clean STOP	Clean STOP
+ChargeVoltInmV	ChargeVoltInmV
+CurrentInmA	CurrentInmA
+AccelXInmG	AccelXInmG
+AccelYInmG	AccelYInmG
+AccelZInmG	AccelZInmG
+BatteryTemp0InC	BatteryTemp0InC
+BatteryTemp1InC	BatteryTemp1InC
+BatteryVoltageInmV	BatteryVoltageInmV
+LeftDropInMM	LeftDropInMM
+LeftMagSensor	LeftMagSensor
+RightDropInMM	RightDropInMM
+RightMagSensor	RightMagSensor
+WallSensorInMM	WallSensorInMM
+SideBrushCurrentInmA	SideBrushCurrentInmA
+UIButtonInmV	UIButtonInmV
+VacuumCurrentInmA	VacuumCurrentInmA
+VoltageReferenceInmV	VoltageReferenceInmV
+0 *C	0 *C
+500 mA	500 mA
+12288 mA	12288 mA
+LCDContrast	LCDContrast
+LDropMax	LDropMax
+LDropMid	LDropMid
+LDropMin	LDropMin
+RDropMax	RDropMax
+RDropMid	RDropMid
+RDropMin	RDropMin
+WallMax	WallMax
+WallMid	WallMid
+WallMin	WallMin
+BattTempCAvg[0]	BattTempCAvg[0]
+BattTempCAvg[1]	BattTempCAvg[1]
+ThermistorPresent[0]	ThermistorPresent[0]
+ThermistorPresent[1]	ThermistorPresent[1]
+Charger_mAH	Charger_mAH
+LeftWheel_Load%	LeftWheel_Load%
+00:00 AM	12:00 AM
+Sunday 00:00:00	Sunday 00:00:00
+CumulativeBatteryCycles?	CumulativeBatteryCycles?
+CumulativeCleaningTimeInSecs?	CumulativeCleaningTimeInSecs?
+ValidationCode?	ValidationCode?
+Restore Defaults	Restore Defaults
+OFF	OFF
+ON	ON
+Select Day	Select Day
+Set Schedule Mode	Set Schedule Mode
+BacklightOn	BacklightOn
+BacklightOff	BacklightOff
+BlinkOff	BlinkOff
+BlinkOn	BlinkOn
+ButtonAmber	ButtonAmber
+ButtonAmberDim	ButtonAmberDim
+ButtonGreen	ButtonGreen
+ButtonGreenDim	ButtonGreenDim
+ButtonOff	ButtonOff
+LEDGreen	LEDGreen
+LEDRed	LEDRed
+Source	Source

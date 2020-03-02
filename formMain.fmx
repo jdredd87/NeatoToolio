@@ -1917,7 +1917,7 @@ object frmMain: TfrmMain
   object Lang: TLang
     StoreInForm = False
     Lang = 'en'
-    Left = 440
-    Top = 304
+    Left = 792
+    Top = 8
   end
 end

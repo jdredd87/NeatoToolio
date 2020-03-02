@@ -64,7 +64,8 @@ var
   LSearchOption: TSearchOption;
   S: String;
 begin
-  searchPath := System.ioutils.TPath.GetHomePath + '\NeatoToolio\Scripts\*.NTO';
+  searchPath := System.ioutils.TPath.GetPublicPath + '\NeatoToolio\Scripts\*.NTO';
+  setlength(filelist,0);
   filelist := TDirectory.GetFiles(searchPath, 'NTO', LSearchOption);
   lbScripts.BeginUpdate;
   lbScripts.Clear;

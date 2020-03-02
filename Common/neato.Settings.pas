@@ -22,7 +22,7 @@ Type
     property AutoDetectNeato: boolean read fAutoDetectNeato write fAutoDetectNeato;
     property IP: String read fIP write fIP;
     property PORT: Integer read fPort write fPort;
-    property Language : String read fLanguage write fLanguage;
+    property Language: String read fLanguage write fLanguage;
   end;
 
 var
@@ -69,7 +69,7 @@ begin
     end;
   finally
     if NeatoSettings.fLanguage = '' then
-     NeatoSettings.fLanguage := GetOSLangID;
+      NeatoSettings.fLanguage := GetOSLangID;
     loadSettingsFile.Free;
   end;
 end;

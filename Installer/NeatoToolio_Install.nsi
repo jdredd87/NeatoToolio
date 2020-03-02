@@ -50,7 +50,8 @@ file "NeatoToolio.exe"
 file "ssleay32.dll"
 file "libeay32.dll"
 
-SetOutPath "$0\NeatoToolio"
+SetOutPath "$0\NeatoToolio\\Languages"
+file "..\Languages\*.lang"
   
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\App Paths\NeatoToolio.exe" "PATH" "$INSTDIR\"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\NeatoToolio" "DisplayName" "NeatoToolio"

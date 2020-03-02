@@ -199,7 +199,6 @@ inherited frameDClean: TframeDClean
     end
   end
   inherited LangFrame: TLang
-    Lang = 'en'
     Left = 464
     Top = 376
   end

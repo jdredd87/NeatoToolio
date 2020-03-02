@@ -21,35 +21,35 @@ type
     fError: String;
     fErrorCode: integer;
     fComFailure: boolean;
-    fOnRxChar: TNotifyEvent;
+//    fOnRxChar: TNotifyEvent;
   protected
-    procedure SetOnRxChar(value:TNotifyEvent); virtual; Abstract;
+    //procedure SetOnRxChar(value: TNotifyEvent); virtual; Abstract;
   public
     onError: TNotifyEvent;
     fmemoDebug: tmemo;
 
     constructor Create;
-    destructor destroy; override;
+    destructor Destroy; override;
 
-    procedure Close; virtual;
-    function Open: boolean; virtual;
-    function Active: boolean; virtual;
+    procedure Close; virtual; abstract;
+    function Open: boolean; virtual; abstract;
+    function Active: boolean; virtual; abstract;
+    function ReadString: String; Virtual; abstract;
 
-    function ReadString: String; Virtual;
-
-    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string; virtual;
-    function SendCommandOnly(cmd: string): String; virtual;
+    function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
+      virtual; abstract;
+    function SendCommandOnly(cmd: string): String; virtual; abstract;
     function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
-      const count: byte = 1): string; virtual;
-    procedure PurgeInput;
-    procedure PurgeOutput;
-    procedure WaitForReadCompletion;
-    procedure WaitForWriteCompletion;
+      const count: byte = 1): string; virtual; abstract;
+    procedure PurgeInput; virtual; abstract;
+    procedure PurgeOutput; virtual; abstract;
+    procedure WaitForReadCompletion; virtual; abstract;
+    procedure WaitForWriteCompletion; virtual; abstract;
 
     property Error: String read fError;
     property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
-    property OnRXChar: TNotifyEvent read fOnRxChar write SetOnRxChar;
+    //property OnRXChar: TNotifyEvent read fOnRxChar write SetOnRxChar;
 
   end;
 
@@ -63,51 +63,6 @@ end;
 Destructor TdmSerialBase.destroy;
 begin
   inherited;
-end;
-
-Function TdmSerialBase.Open: boolean;
-begin
-end;
-
-procedure TdmSerialBase.Close;
-begin
-end;
-
-function TdmSerialBase.ReadString: String;
-begin
-end;
-
-function TdmSerialBase.SendCommandOnly(cmd: string): String;
-begin
-end;
-
-function TdmSerialBase.SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string;
-begin
-end;
-
-function TdmSerialBase.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
-  const waitfor: string = ''; const count: byte = 1): string;
-begin
-end;
-
-function TdmSerialBase.Active: boolean;
-begin
-end;
-
-procedure TdmSerialBase.PurgeInput;
-begin
-end;
-
-procedure TdmSerialBase.PurgeOutput;
-begin
-end;
-
-procedure TdmSerialBase.WaitForReadCompletion;
-begin
-end;
-
-procedure TdmSerialBase.WaitForWriteCompletion;
-begin
 end;
 
 end.

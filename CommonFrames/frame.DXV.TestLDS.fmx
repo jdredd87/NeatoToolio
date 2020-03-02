@@ -2,9 +2,6 @@ inherited frameDXVTestLDS: TframeDXVTestLDS
   ClientHeight = 297
   ClientWidth = 576
   DesignerMasterStyle = 0
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-  end
   inherited Layout: TScaledLayout
     OriginalWidth = 576.000000000000000000
     OriginalHeight = 297.000000000000000000

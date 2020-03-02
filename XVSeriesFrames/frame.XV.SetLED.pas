@@ -62,7 +62,6 @@ var
   pSetLED: tSetLEDXV;
   pReadData: TStringList;
   r: Boolean;
-  idx: integer;
 begin
   cmd := '';
 

@@ -30,12 +30,12 @@ type
     fDataBuffer: String;
     fTimerPermission: TTimer;
     cs: TCriticalSection;
-    fdidPermissionRequest : boolean;
-    fHasPermission: Boolean;
+    fdidPermissionRequest: boolean;
+    fHasPermission: boolean;
     procedure OnReceivedData(Data: TJavaArray<Byte>);
     procedure fTimerPermissionTimer(Sender: TObject);
   protected
-    procedure SetOnRxChar(value: TNotifyEvent); override;
+    //
   public
     onError: TNotifyEvent;
 
@@ -54,6 +54,7 @@ type
     destructor destroy; override;
     Function Open: boolean; override;
     procedure Close; override;
+    procedure SetOnRxChar(value: TOnReceivedData);
     function SendCommand(cmd: string; const readtimeout: integer = 5000; const waitfor: integer = 100): string;
       override;
     function SendCommandOnly(cmd: string): String; override; // Just send command and move on
@@ -62,7 +63,6 @@ type
 
     function ReadString: String; override;
     function active: boolean; override;
-
     procedure RefreshDevices(var idx: integer; var devicelist: tstringlist);
 
     procedure PurgeInput;
@@ -70,15 +70,19 @@ type
     procedure WaitForWriteCompletion;
     procedure WaitForReadCompletion;
 
+    function ReadBuffer: String;
+
     procedure OnDeviceAttached(Device: JUsbDevice);
     procedure OnDeviceDetached(Device: JUsbDevice);
 
     property Error: String read fError;
     property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
-    property didPermissionRequest : boolean read fdidPermissionRequest;
-    property HasPermission : boolean read fHasPermission;
+    property didPermissionRequest: boolean read fdidPermissionRequest;
+    property HasPermission: boolean read fHasPermission;
   end;
+
+function ByteArrayToString(Data: TJavaArray<Byte>): string;
 
 implementation
 
@@ -116,7 +120,6 @@ begin
   Serial.OnReceivedData := OnReceivedData;
   Serial.OnDeviceAttached := OnDeviceAttached;
   Serial.OnDeviceDetached := OnDeviceDetached;
-
 
   FComSignalRX := nil;
   FComSignalTX := nil;
@@ -181,9 +184,25 @@ begin // Idea here is, TCP is a stream of data. So you will get the data possibl
 
 end;
 
-procedure TdmSerialAndroid.SetOnRxChar(value: TNotifyEvent);
+procedure TdmSerialAndroid.SetOnRxChar(value: TOnReceivedData);
 begin
-  // Serial.OnRxChar := value;
+  Serial.OnReceivedData := value;
+end;
+
+function TdmSerialAndroid.ReadBuffer: String;
+begin
+  try
+    cs.Enter;
+    try
+      Result := fDataBuffer;
+    except
+      on E: Exception do
+      begin
+      end;
+    end;
+  finally
+    cs.Leave;
+  end;
 end;
 
 procedure TdmSerialAndroid.RefreshDevices(var idx: integer; var devicelist: tstringlist);
@@ -221,12 +240,12 @@ begin
 
     fError := '';
     fErrorCode := 0;
-    fComFailure := False;
-    fTimerPermission.Enabled := False;
+    fComFailure := false;
+    fTimerPermission.Enabled := false;
     fdidPermissionRequest := false;
     fHasPermission := false;
 
-    Result := False;
+    Result := false;
 
     Device := UsbDevices[Comport];
 
@@ -259,11 +278,11 @@ begin
       end).Start;
 
     Result := True;
-    fHasPermission := true;
+    fHasPermission := True;
   except
     on E: Exception do
     begin
-      Result := False;
+      Result := false;
       fError := E.Message;
       if assigned(onError) then
         onError(Self);
@@ -274,7 +293,7 @@ end;
 procedure TdmSerialAndroid.Close;
 begin
   try
-    fTimerPermission.Enabled := False;
+    fTimerPermission.Enabled := false;
     Serial.Close;
     Serial.Disconnect;
   except
@@ -311,12 +330,12 @@ procedure TdmSerialAndroid.fTimerPermissionTimer(Sender: TObject);
 var
   Device: JUsbDevice;
 begin
-  fdidPermissionRequest := true;
+  fdidPermissionRequest := True;
   Device := UsbDevices[Comport];
   if Serial.HasPermission(Device) then
-   begin
-     //Open;  // for now do nothing
-   end;
+  begin
+    // Open;  // for now do nothing
+  end;
 end;
 
 function TdmSerialAndroid.SendCommandOnly(cmd: string): String;
@@ -435,7 +454,7 @@ begin
       sw.Start;
 
       breakFound := 0;
-      timedout := False;
+      timedout := false;
 
       repeat // This is blocking so beware
         cs.Enter;
@@ -591,7 +610,7 @@ begin
     on E: Exception do
     begin
       Self.fError := E.Message;
-      Result := False;
+      Result := false;
     end;
   end;
 end;

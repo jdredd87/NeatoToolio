@@ -23,8 +23,7 @@ type
     fComFailure: boolean;
     procedure FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
   protected
-    procedure SetOnRxChar(value: TNotifyEvent); override;
-    procedure onAfterClose(ComPort: TFComPort);
+       procedure onAfterClose(ComPort: TFComPort);
     procedure onAfterOpen(ComPort: TFComPort);
   public
     FComSignalCNX: TColorBox;
@@ -35,16 +34,17 @@ type
     FComSignalTX: TFComSignal;
     ComPort: String;
     constructor Create;
-    destructor destroy; override;
+    destructor Destroy; override;
     Function Open: boolean; override;
     procedure Close; override;
+    procedure SetOnRxChar(value: TNotifyEvent);
     function SendCommand(cmd: string; const readtimeout: integer = 500; const waitfor: integer = 100): string; override;
     function SendCommandOnly(cmd: string): String; override; // Just send command and move on
     function SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500; const waitfor: string = '';
       const count: byte = 1): string; override;
 
     function ReadString: String; override;
-    function active: boolean; override;
+    function Active: boolean; override;
 
     property Error: String read fError;
     property ErrorCode: integer read fErrorCode;
@@ -248,7 +248,7 @@ end;
 
 function TdmSerialWindows.ReadString: String;
 begin
-  result := Serial.ReadAnsiString;
+  result := String(Serial.ReadAnsiString);
 end;
 
 function TdmSerialWindows.SendCommandAndWaitForValue(cmd: string; const readtimeout: integer = 500;
@@ -270,7 +270,7 @@ begin
     sw := tstopwatch.Create;
     sw.Start;
     repeat
-      result := result + Serial.ReadAnsiString;
+      result := result + String(Serial.ReadAnsiString);
       if sw.ElapsedMilliseconds > readtimeout then
         timeout := true;
     until (not Serial.active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);

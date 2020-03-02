@@ -48,7 +48,6 @@ procedure TframeDXVTestLDS.Timer_GetDataTimer(Sender: TObject);
 var
   pTestLDS: tTestLDS;
   pReadData: TStringList;
-  v: double;
   r: Boolean;
 begin
 

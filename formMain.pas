@@ -250,26 +250,6 @@ type
     tabButtons: TTabItem;
     tabsButtonOptions: TTabControl;
     tabGetButtons: TTabItem;
-    tabsSerialOptions: TTabControl;
-    tabSerialSettings: TTabItem;
-    pnlSerialTop: trectangle;
-    lblSetupComPort: TLabel;
-    cbCOM: TComboBox;
-    chkAutoDetect: TCheckBox;
-    imgRobot: TImage;
-    shadowBotImage: TShadowEffect;
-    lblSetupRobotName: TLabel;
-    GlowEffect1: TGlowEffect;
-    lblRobotModel: TLabel;
-    ShadowEffect2: TShadowEffect;
-    tabDebug: TTabItem;
-    tabsDebuggerOptions: TTabControl;
-    tabDebugTerminal: TTabItem;
-    tabDebugRawData: TTabItem;
-    memoDebug: TMemo;
-    pnlDebugTerminalTop: trectangle;
-    btnDebugRawDataClear: TButton;
-    tabScripts: TTabItem;
     tabTime: TTabItem;
     tabsTimeOptions: TTabControl;
     tabSetTime: TTabItem;
@@ -288,21 +268,15 @@ type
     tabSetWallFollower: TTabItem;
     tabSetDistanceCal: TTabItem;
     tabGetLifeStatLog: TTabItem;
-
-    edIPAddress: TEdit;
-    lblConnectIP: TLabel;
-    edIPPort: TSpinBox;
     tabAbout: TTabItem;
     ShadowEffectmemoAbout: TShadowEffect;
     RectangleaboutMemo: trectangle;
     memoAbout: TMemo;
     tabSetLanguage: TTabItem;
-    aniConnect: TAniIndicator;
     ColorBoxCNX: TColorBox;
     LabelCNX: TLabel;
     lblVersion: TLabel;
     RectGetCharger: trectangle;
-    rectTerminal: trectangle;
     rectSetFuelGauge: trectangle;
     rectSetSystemMode: trectangle;
     rectSetBatteryTest: trectangle;
@@ -344,15 +318,40 @@ type
     rectGetSchedule: trectangle;
     rectSetSchedule: trectangle;
     rectSetNTPTime: trectangle;
-    rectSerialConnect: trectangle;
-    ckSerialConnect: TCheckBox;
-    rectTCPConnect: trectangle;
-    ckTCPIPConnect: TCheckBox;
     rectTestMode: trectangle;
     VertScrollBox: TVertScrollBox;
     Lang: TLang;
     cbLanguages: TComboBox;
     lblLanguages: TLabel;
+    tabsSerialOptions: TTabControl;
+    tabSerialSettings: TTabItem;
+    pnlSerialTop: trectangle;
+    cbCOM: TComboBox;
+    chkAutoDetect: TCheckBox;
+    edIPAddress: TEdit;
+    edIPPort: TSpinBox;
+    aniConnect: TAniIndicator;
+    lblSetupComPort: TLabel;
+    lblConnectIP: TLabel;
+    rectSerialConnect: trectangle;
+    ckSerialConnect: TCheckBox;
+    rectTCPConnect: trectangle;
+    ckTCPIPConnect: TCheckBox;
+    imgRobot: TImage;
+    shadowBotImage: TShadowEffect;
+    lblSetupRobotName: TLabel;
+    GlowEffect1: TGlowEffect;
+    lblRobotModel: TLabel;
+    ShadowEffect2: TShadowEffect;
+    tabDebug: TTabItem;
+    tabsDebuggerOptions: TTabControl;
+    tabDebugTerminal: TTabItem;
+    rectTerminal: trectangle;
+    tabDebugRawData: TTabItem;
+    memoDebug: TMemo;
+    pnlDebugTerminalTop: trectangle;
+    btnDebugRawDataClear: TButton;
+    tabScripts: TTabItem;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -375,8 +374,6 @@ type
     procedure cbLanguagesChange(Sender: TObject);
 
   private
-
-    fPlaySoundAborted: Boolean;
 
 {$IFDEF ANDROID}
     // virtual keyboard stuff
@@ -495,6 +492,7 @@ implementation
 {$R *.fmx}
 
 procedure TfrmMain.FormCreate(Sender: TObject);
+
   procedure FindLanguages;
 
   var
@@ -505,9 +503,17 @@ procedure TfrmMain.FormCreate(Sender: TObject);
     idx: Integer;
   begin
 
+
     cbLanguages.clear;
+
+    if directoryexists(System.IOUtils.TPath.GetPublicPath + '\NeatoToolio\Languages\') = false then
+    begin
+      cbLanguages.enabled := false;
+      exit;
+    end;
+
     LSearchOption := TSearchOption.soTopDirectoryOnly;
-    LList := TDirectory.GetFiles(System.IOUtils.TPath.GetHomePath + '\NeatoToolio\Languages\', '*.lang', LSearchOption);
+    LList := TDirectory.GetFiles(System.IOUtils.TPath.GetPublicPath + '\NeatoToolio\Languages\', '*.lang', LSearchOption);
 
     for I := 0 to Length(LList) - 1 do
     begin
@@ -535,9 +541,10 @@ var
   idx: Integer;
 begin
 
-  FindLanguages;
-
 {$IFDEF ANDROID}
+  self.cbLanguages.Visible := false; // turn this off for now until mappings are done
+  cbLanguages.OnChange := nil;
+  lblLanguages.Visible := false;
   ScaledLayoutMain.Align := talignlayout.Client;
   VKAutoShowMode := TVKAutoShowMode.Always;
   VertScrollBox.OnCalcContentBounds := CalcContentBoundsProc;
@@ -685,6 +692,9 @@ begin
         end);
     end).start;
 
+{$IFDEF MSWINDOWS}
+  FindLanguages;
+{$ENDIF}
 end;
 
 {$IFDEF ANDROID}
@@ -784,8 +794,7 @@ begin
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-var
-  idx: Integer;
+
 begin
   if Assigned(dm.COM) then
   begin
@@ -935,11 +944,11 @@ end;
 procedure TfrmMain.cbLanguagesChange(Sender: TObject);
 var
   l: string;
-  languageFN: string;
+  languageFN: String;
 begin
-  l := cbLanguages.items[cbLanguages.itemindex];
 
-  languageFN := System.IOUtils.TPath.GetHomePath + '\NeatoToolio\Languages\neatotoolio.' + l + '.lang';
+  l := cbLanguages.items[cbLanguages.itemindex];
+  languageFN := System.IOUtils.TPath.GetPublicPath + '\NeatoToolio\Languages\neatotoolio.' + l + '.lang';
 
   if fileexists(languageFN) then
   begin
@@ -1394,8 +1403,6 @@ begin
 end;
 
 procedure TfrmMain.tabControlChange(Sender: TObject);
-var
-  tabItem: TTabItem;
 
   procedure SetNotSupported;
   begin

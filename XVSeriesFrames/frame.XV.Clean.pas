@@ -42,7 +42,7 @@ end;
 procedure TframeXVClean.timer_getdataTimer(Sender: TObject);
 begin
   inherited;
-//
+  //
 end;
 
 procedure TframeXVClean.btnCleanClick(Sender: TObject);
@@ -66,7 +66,8 @@ begin
 
   r := pCleanXV.ParseText(pReadData);
 
-  lblCleanError.Text := pCleanXV.Error;
+  if r then
+    lblCleanError.Text := pCleanXV.Error;
 
   freeandnil(pCleanXV);
   freeandnil(pReadData);
