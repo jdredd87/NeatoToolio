@@ -1,6 +1,11 @@
 # NeatoToolio
 Neato Toolio - Diagnostic tool for Neato Botvacs
 
+Current Version Builds
+
+Android 1.01.02
+Windows 1.0.0.29
+
 Slowly adding support for calls for the XV, BotVac and BotVac Connected / D3-D7 models.
 
 NeatoToolio is "Ready" to download and play with... I think... At least to a point where can start
@@ -37,7 +42,13 @@ Business logic code... GUI look and feel... More error catching... ect.
 
 Anyways..
 
-Can download and run @ https://github.com/jdredd87/NeatoToolio/raw/master/Installer/NeatoToolio_Install.exe
+You can download the Windows Installer @ https://github.com/jdredd87/NeatoToolio/raw/master/Installer/NeatoToolio_Install.exe
+
+ANDROID Builds are now on the Google Play Store!
+https://play.google.com/store/apps/details?id=com.chesser.NeatoToolio&hl=en_US
+
+
+
 
 Everything that isn't a paid for 3rd party that I own licenses to is posted to this repository... 
 Hopefully as time allows, ill be cleaning up source and improving.  Please let me know and please don't hammer me to badly :)
