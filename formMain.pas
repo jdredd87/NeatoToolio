@@ -29,6 +29,7 @@ uses
   {Common neato units}
   Neato.Helpers,
   Neato.Settings,
+  frame.UserHelp,
 
   {D3-D7, DSeries Units}
   Neato.D.GetCharger,
@@ -165,7 +166,6 @@ uses
   FMX.Colors,
   FMX.StdCtrls,
   FMX.Memo,
-  FMX.TMSChart,
   FMX.Edit,
   FMX.EditBox,
   FMX.SpinBox,
@@ -179,6 +179,7 @@ uses
   FMX.Layouts,
   FMX.Forms,
   FMX.DateTimeCtrls,
+  FMX.Platform,
   FMXTee.Engine,
   FMXTee.Series,
   FMXTee.Procs,
@@ -352,6 +353,9 @@ type
     pnlDebugTerminalTop: trectangle;
     btnDebugRawDataClear: TButton;
     tabScripts: TTabItem;
+    btnSerialHelp: TButton;
+    lblConnectPort: TLabel;
+    btnTCPHelp: TButton;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -372,6 +376,8 @@ type
     procedure rectTCPConnectClick(Sender: TObject);
     procedure rectTestModeClick(Sender: TObject);
     procedure cbLanguagesChange(Sender: TObject);
+    procedure btnSerialHelpClick(Sender: TObject);
+    procedure btnTCPHelpClick(Sender: TObject);
 
   private
 
@@ -482,6 +488,11 @@ type
     procedure PopulateCOMPorts; // repopulate drop down with active com ports
     procedure toggleComs(disable: Boolean); // connect/disconnect basically
 
+{$IFNDEF MSWINDOWS}
+{$IFNDEF LINUX}
+    function HandleAppEvent(AAppEvent: TApplicationEvent; AContext: TObject): Boolean; // handle mobile event
+{$ENDIF}
+{$ENDIF}
   end;
 
 var
@@ -503,7 +514,6 @@ procedure TfrmMain.FormCreate(Sender: TObject);
     idx: Integer;
   begin
 
-
     cbLanguages.clear;
 
     if directoryexists(System.IOUtils.TPath.GetPublicPath + '\NeatoToolio\Languages\') = false then
@@ -513,7 +523,8 @@ procedure TfrmMain.FormCreate(Sender: TObject);
     end;
 
     LSearchOption := TSearchOption.soTopDirectoryOnly;
-    LList := TDirectory.GetFiles(System.IOUtils.TPath.GetPublicPath + '\NeatoToolio\Languages\', '*.lang', LSearchOption);
+    LList := TDirectory.GetFiles(System.IOUtils.TPath.GetPublicPath + '\NeatoToolio\Languages\', '*.lang',
+      LSearchOption);
 
     for I := 0 to Length(LList) - 1 do
     begin
@@ -539,8 +550,17 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 
 var
   idx: Integer;
+  aFMXApplicationEventService: IFMXApplicationEventService;
+
 begin
 
+{$IFNDEF MSWINDOWS} // we really only want this for mobile guys
+{$IFNDEF LINUX}
+  if TPlatformServices.Current.SupportsPlatformService(IFMXApplicationEventService,
+    IInterface(aFMXApplicationEventService)) then
+    aFMXApplicationEventService.SetApplicationEventHandler(HandleAppEvent);
+{$ENDIF}
+{$ENDIF}
 {$IFDEF ANDROID}
   self.cbLanguages.Visible := false; // turn this off for now until mappings are done
   cbLanguages.OnChange := nil;
@@ -697,6 +717,60 @@ begin
 {$ENDIF}
 end;
 
+{$IFNDEF MSWINDOWS}
+{$IFNDEF LINUX}
+
+function TfrmMain.HandleAppEvent(AAppEvent: TApplicationEvent; AContext: TObject): Boolean;
+begin
+  case AAppEvent OF
+
+    TApplicationEvent.BecameActive:;
+
+    TApplicationEvent.EnteredBackground : ;
+
+    TApplicationEvent.FinishedLaunching:
+      begin
+        // possibly move the onCreate code to this event
+        // that way user can get to the MAIN UI quickly and then
+        // kick off code to do everything needed.
+        // Desktop is fine, but mobile is more picky
+      end;
+
+    TApplicationEvent.LowMemory:
+      ;
+
+{$IFDEF IOS}
+    TApplicationEvent.OpenURL:
+      ;
+    TApplicationEvent.TimeChange:
+      ;
+{$ENDIF}
+    TApplicationEvent.WillBecomeForeground:
+      begin
+       if NOT dm.COM.Active then
+         PopulateCOMPorts;
+      end;
+
+    TApplicationEvent.WillBecomeInactive,TApplicationEvent.WillTerminate:
+      begin
+        tthread.CreateAnonymousThread(
+          procedure
+          begin
+            if dm.COM.Active then
+            begin
+              dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+              dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+              dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+              dm.COM.Close;
+            end;
+          end).start;
+      end;
+
+  end;
+  Result := True;
+end;
+{$ENDIF}
+{$ENDIF}
 {$IFDEF ANDROID}
 
 procedure TfrmMain.CalcContentBoundsProc(Sender: TObject; var ContentBounds: TRectF);
@@ -827,16 +901,16 @@ begin
   end;
 
   try
-    COMTCPIP.close;
+    COMTCPIP.Close;
   finally
   end;
 
   try
 {$IFDEF MSWINDOWS}
-    COMWin32.close;
+    COMWin32.Close;
 {$ENDIF}
 {$IFDEF ANDROID}
-    COMAndroid.close;
+    COMAndroid.Close;
 {$ENDIF}
   finally
   end;
@@ -917,7 +991,7 @@ begin
     showmessage('COM Issue #' + dm.COM.errorcode.ToString + ' : ' + dm.COM.Error);
 
   try
-    dm.COM.close;
+    dm.COM.Close;
   finally
   end;
 
@@ -939,6 +1013,24 @@ begin
   dm.COM := COMTCPIP; // default as this will be the most use case
   stoptimers;
   toggleComs(ckTCPIPConnect.IsChecked);
+end;
+
+procedure TfrmMain.btnSerialHelpClick(Sender: TObject);
+var
+  URL: String;
+begin
+{$IFDEF MSWINDOWS}
+  URL := 'https://www.youtube.com/embed/Ka_HVPrXIfU?&autoplay=0&rel=0&enablejsapi=1';
+{$ENDIF}
+{$IFDEF ANDROID}
+  URL := 'https://www.youtube.com/embed/kicMsbnoJng?&autoplay=0rel=0&enablejsapi=1';
+{$ENDIF}
+  OpenURL(URL);
+end;
+
+procedure TfrmMain.btnTCPHelpClick(Sender: TObject);
+begin
+  showmessage('Use your desired IP Address and Port to connect to your USB Serial to Network Adapter');
 end;
 
 procedure TfrmMain.cbLanguagesChange(Sender: TObject);
@@ -1107,7 +1199,7 @@ begin
               break;
             end;
             try
-              dm.COM.close;
+              dm.COM.Close;
             finally
             end;
 
@@ -1344,7 +1436,7 @@ begin
         dm.COM.SendCommand('TESTMODE OFF');
         dm.COM.SendCommand('TESTMODE OFF');
         dm.COM.SendCommand('TESTMODE OFF');
-        dm.COM.close;
+        dm.COM.Close;
       end;
     end;
   except
@@ -1379,9 +1471,11 @@ var
   comList: TStringList;
   idx: Integer;
 begin
+
   idx := -1;
   try
     ckSerialConnect.IsChecked := false;
+    ckTCPIPConnect.IsChecked := false;
     stoptimers;
     toggleComs(false);
   except
@@ -2049,7 +2143,7 @@ end;
 procedure TfrmMain.StageTabs;
 begin
   // create a whole bunch of tabs!
-  dm.log := self.memoDebug;
+  dm.Log := self.memoDebug;
 
   DGetCharger := TframeDGetCharger.Create(tabGetCharger, RectGetCharger);
   DXVGetAccel := TframeDXVGetAccel.Create(tabGetAccel, rectGetAccel);

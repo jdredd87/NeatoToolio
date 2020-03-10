@@ -23,7 +23,7 @@ type
     fComFailure: boolean;
     procedure FComPort1Error(ComPort: TFComPort; E: EComError; var Action: TComAction);
   protected
-       procedure onAfterClose(ComPort: TFComPort);
+    procedure onAfterClose(ComPort: TFComPort);
     procedure onAfterOpen(ComPort: TFComPort);
   public
     FComSignalCNX: TColorBox;
@@ -45,6 +45,11 @@ type
 
     function ReadString: String; override;
     function Active: boolean; override;
+
+    procedure PurgeInput; override;
+    procedure PurgeOutput; override;
+    procedure WaitForReadCompletion; override;
+    procedure WaitForWriteCompletion; override;
 
     property Error: String read fError;
     property ErrorCode: integer read fErrorCode;
@@ -76,7 +81,7 @@ begin
   FComSignalTX.ComPort := Serial;
 end;
 
-Destructor TdmSerialWindows.destroy;
+Destructor TdmSerialWindows.Destroy;
 begin
   FComSignalRX.Free;
   FComSignalTX.Free;
@@ -126,7 +131,7 @@ begin
     except
     end;
     Serial.DeviceName := '\\.\' + ComPort;
-    Serial.active := true;
+    Serial.Active := true;
     result := true;
   except
     on E: Exception do
@@ -217,7 +222,7 @@ begin
 
       repeat
         sleep(waitfor);
-      until (not Serial.ReadPending) or (not Serial.active);
+      until (not Serial.ReadPending) or (not Serial.Active);
 
       result := string(Serial.ReadAnsiString);
 
@@ -273,7 +278,7 @@ begin
       result := result + String(Serial.ReadAnsiString);
       if sw.ElapsedMilliseconds > readtimeout then
         timeout := true;
-    until (not Serial.active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
+    until (not Serial.Active) or (OccurrencesOfChar(result, ^z) = count) or (timeout);
 
     result := trim(result);
 
@@ -299,9 +304,31 @@ begin
   end;
 end;
 
-function TdmSerialWindows.active: boolean;
+function TdmSerialWindows.Active: boolean;
 begin
-  result := Serial.active;
+  result := Serial.Active;
 end;
+
+procedure TdmSerialWindows.PurgeInput;
+begin
+ serial.PurgeInput;
+end;
+
+procedure TdmSerialWindows.PurgeOutput;
+begin
+ serial.PurgeOutput;
+end;
+
+procedure TdmSerialWindows.WaitForReadCompletion;
+begin
+ Serial.WaitForReadCompletion;
+end;
+
+procedure TdmSerialWindows.WaitForWriteCompletion;
+begin
+ serial.WaitForWriteCompletion;
+end;
+
+
 
 end.

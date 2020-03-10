@@ -137,7 +137,8 @@ uses
   frame.D.SetNavigationMode in 'DSeriesFrames\frame.D.SetNavigationMode.pas' {frameDSetNavigationMode: TFrame},
   neato.D.SetNavigationMode in 'DSeries\neato.D.SetNavigationMode.pas',
   neato.D.SetUsage in 'DSeries\neato.D.SetUsage.pas',
-  frame.D.SetUsage in 'DSeriesFrames\frame.D.SetUsage.pas' {frameDSetUsage: TFrame};
+  frame.D.SetUsage in 'DSeriesFrames\frame.D.SetUsage.pas' {frameDSetUsage: TFrame},
+  frame.UserHelp in 'CommonFrames\frame.UserHelp.pas' {frmUserHelp};
 
 {$R *.res}
 
@@ -146,5 +147,6 @@ begin
   Application.FormFactor.Orientations := [TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmUserHelp, frmUserHelp);
   Application.Run;
 end.

@@ -95,9 +95,10 @@ begin
   if assigned(dm.COM) then
 {$IFDEF MSWINDOWS}
     result := dm.COM.ClassType = TdmSerialWindows;
-{$ELSE}
+{$endif}
+{$ifdef ANDROID}
     result := dm.COM.ClassType = TdmSerialAndroid;
-{$ENDIF}
+{$endif}
 end;
 
 function Tdm.GetNeatoType: integer;

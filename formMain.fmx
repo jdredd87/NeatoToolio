@@ -96,7 +96,7 @@ object frmMain: TfrmMain
             Size.PlatformDefault = False
             TabHeight = 49.000000000000000000
             TabIndex = 0
-            TabOrder = 63
+            TabOrder = 62
             TabPosition = PlatformDefault
             Sizes = (
               900s
@@ -190,13 +190,12 @@ object frmMain: TfrmMain
                 end
                 object lblConnectIP: TLabel
                   Position.X = 368.000000000000000000
-                  Position.Y = 40.000000000000000000
+                  Position.Y = 8.000000000000000000
                   Size.Width = 137.000000000000000000
                   Size.Height = 25.000000000000000000
                   Size.PlatformDefault = False
                   TextSettings.HorzAlign = Trailing
                   Text = 'IP Address'
-                  Visible = False
                   TabOrder = 5
                 end
                 object rectSerialConnect: TRectangle
@@ -320,6 +319,38 @@ object frmMain: TfrmMain
                   Opacity = 0.600000023841857900
                   ShadowColor = claBlack
                 end
+              end
+              object btnSerialHelp: TButton
+                Position.X = 40.000000000000000000
+                Position.Y = 72.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'helpbutton'
+                TabOrder = 32
+                Text = 'btnSerialHelp'
+                OnClick = btnSerialHelpClick
+              end
+              object lblConnectPort: TLabel
+                Position.X = 368.000000000000000000
+                Position.Y = 48.000000000000000000
+                Size.Width = 137.000000000000000000
+                Size.Height = 25.000000000000000000
+                Size.PlatformDefault = False
+                TextSettings.HorzAlign = Trailing
+                Text = 'Port'
+                TabOrder = 5
+              end
+              object btnTCPHelp: TButton
+                Position.X = 848.000000000000000000
+                Position.Y = 8.000000000000000000
+                Size.Width = 40.000000000000000000
+                Size.Height = 40.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'helpbutton'
+                TabOrder = 31
+                Text = 'btnSerialHelp'
+                OnClick = btnTCPHelpClick
               end
             end
             object tabDebug: TTabItem
@@ -802,7 +833,7 @@ object frmMain: TfrmMain
             Size.Height = 564.000000000000000000
             Size.PlatformDefault = False
             TabHeight = 49.000000000000000000
-            TabIndex = 3
+            TabIndex = 0
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
@@ -818,7 +849,7 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = False
+              IsSelected = True
               Size.Width = 101.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
@@ -884,7 +915,7 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = True
+              IsSelected = False
               Size.Width = 71.000000000000000000
               Size.Height = 49.000000000000000000
               Size.PlatformDefault = False
@@ -1917,7 +1948,7 @@ object frmMain: TfrmMain
   object Lang: TLang
     StoreInForm = False
     Lang = 'en'
-    Left = 792
-    Top = 8
+    Left = 744
+    Top = 304
   end
 end
