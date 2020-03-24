@@ -3,11 +3,14 @@ unit frame.DXV.LidarView;
 interface
 
 uses
+{$IFDEF android}
+  FMX.Helpers.Android,
+{$ENDIF}
   frame.master,
   system.diagnostics,
   dmCommon,
   neato.DXV.GetLDSScan,
-  neato.helpers, FMX.TabControl,
+  neato.Helpers, FMX.TabControl,
   system.SysUtils, system.Types, system.UITypes, system.Classes, system.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls, system.Math.Vectors, FMX.Types3D,
   FMX.Controls3D, FMX.Objects3D, FMX.Viewport3D, FMX.MaterialSources, FMX.Controls.Presentation, FMX.Layers3D,
@@ -36,7 +39,7 @@ type
     plotLidar: TChart;
     seriesPlotterXY: TPointSeries;
     tablidarpolar: TTabItem;
-    Rectangle2: trectangle;
+    rectPolar: trectangle;
     Circle1: TCircle;
     polarLidar: TChart;
     seriesPolar: TPolarBarSeries;
@@ -72,6 +75,7 @@ type
     lblFPS: TLabel;
     lblDroppedPackets: TLabel;
     lblTotalFrames: TLabel;
+    Layout1: TLayout;
     procedure Timer_GetDataTimer(Sender: TObject);
 
     procedure sgGetLDSScanDrawColumnCell(Sender: TObject; const Canvas: TCanvas; const Column: TColumn;
@@ -81,6 +85,9 @@ type
     procedure ckAutoScaleGraphsChange(Sender: TObject);
     procedure sbMaxDistanceChange(Sender: TObject);
     procedure sbResetLIDARMappingChange(Sender: TObject);
+    procedure Layout1Resize(Sender: TObject);
+    procedure Layout1Resized(Sender: TObject);
+
   private
     PlotPoints: array [0 .. 359] of TPlotPoint;
 
@@ -88,9 +95,9 @@ type
     fActivePoint: trectangle;
     fMaxDistance: Integer;
     fFPS: TStopWatch;
-    fFPSCount: integer;
-    fFPSDroppedPacketCount: integer;
-    fTotalFrames: integer;
+    fFPSCount: Integer;
+    fFPSDroppedPacketCount: Integer;
+    fTotalFrames: Integer;
     fGoodPointSize: byte;
     fBadPointSize: byte;
     procedure rectPlotPointsMouseEnter(Sender: TObject);
@@ -165,14 +172,26 @@ begin
   GoodPointSize := 4;
 
 {$IFDEF ANDROID}
-  BadPointSize := BadPointSize +1;  // make just a tad bigger
-  GoodPointSize := GoodPointSize +1;
+  BadPointSize := BadPointSize + 1; // make just a tad bigger
+  GoodPointSize := GoodPointSize + 1;
 {$ENDIF}
 end;
 
 destructor TframeDXVLidarView.destroy;
 begin
   inherited;
+end;
+
+procedure TframeDXVLidarView.Layout1Resize(Sender: TObject);
+begin
+  inherited;
+  Layout1.RecalcUpdateRect;
+end;
+
+procedure TframeDXVLidarView.Layout1Resized(Sender: TObject);
+begin
+  inherited;
+  Layout1.RecalcUpdateRect;
 end;
 
 procedure TframeDXVLidarView.ckAutoScaleGraphsChange(Sender: TObject);
@@ -563,7 +582,7 @@ begin
 
   if (dm.com.Active = false) or (dm.ActiveTab <> Tab) then
   begin
-    timer_getdata.Enabled := false;
+    timer_getdata.enabled := false;
     exit;
   end;
 

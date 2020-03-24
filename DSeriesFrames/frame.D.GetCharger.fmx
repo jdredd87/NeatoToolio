@@ -1,18 +1,17 @@
 inherited frameDGetCharger: TframeDGetCharger
-  ClientHeight = 385
+  ClientHeight = 473
   ClientWidth = 535
   DesignerMasterStyle = 3
   inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
     Left = 136
   end
   inherited Layout: TScaledLayout
     OriginalWidth = 535.000000000000000000
-    OriginalHeight = 385.000000000000000000
+    OriginalHeight = 473.000000000000000000
     Size.Width = 535.000000000000000000
-    Size.Height = 385.000000000000000000
+    Size.Height = 473.000000000000000000
     inherited lblFrameTitle: TLabel
-      Position.Y = 354.000000000000000000
+      Position.Y = 442.000000000000000000
       Size.Width = 515.000000000000000000
     end
     object lblGetChargerBatteryFailure: TLabel

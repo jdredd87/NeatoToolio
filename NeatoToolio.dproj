@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>NeatoToolio.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>38111</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -207,10 +207,6 @@
         <AUP_CALL_PHONE>false</AUP_CALL_PHONE>
         <AUP_CAMERA>false</AUP_CAMERA>
         <DCC_UnitSearchPath>C:\delphi projects\NeatoToolio\DummyFiles;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <PF_KeyStore>certs\neatotoolio.keystore</PF_KeyStore>
-        <PF_KeyStorePass>852647C75F9E079BCF64E53CA4457BBA819E0544A01C97EF97BC0FF08E723CD8DB42A384E34B1C30C1EA5730FA9DC338BAE2360A044B22FC162B45DFE5E522CFC948F34CD576FAD0BFE4AF4607021D58F78A</PF_KeyStorePass>
-        <PF_AliasKey>neatotoolio</PF_AliasKey>
-        <PF_AliasKeyPass>54E50DFE644355A9A301713BD13FE36081DA0549A057979297EE0FB48E3E3CD9DB5DA38CE3371C4DC1B0577DFADEC37ABAF93641045722CE16654589E5A6228C18CBB93BEE80A8D0D3C73B1E72348582F78A</PF_AliasKeyPass>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_iOSDevice32)'!=''">
         <DCC_UsePackage>DBXSqliteDriver;RESTComponents;DBXInterBaseDriver;emsclientfiredac;DataSnapFireDAC;tethering;bindcompfmx;FireDACIBDriver;fmx;FireDACDBXDriver;dbexpress;IndyCore;dsnap;DataSnapCommon;emsclient;FireDACCommon;RESTBackendComponents;soapserver;bindengine;CloudService;FireDACCommonDriver;DataSnapClient;inet;bindcompdbx;IndyIPCommon;IndyIPServer;IndySystem;fmxFireDAC;FireDAC;FireDACSqliteDriver;ibmonitor;soaprtl;DbxCommonDriver;ibxpress;xmlrtl;soapmidas;DataSnapNativeClient;ibxbindings;rtl;DbxClientDriver;FireDACDSDriver;CustomIPTransport;bindcomp;IndyIPClient;dbxcds;dsnapxml;DataSnapProviderClient;dbrtl;IndyProtocols;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
@@ -432,7 +428,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android64)'!=''">
         <VerInfo_Build>1</VerInfo_Build>
-        <PF_KeyStorePass>852647C7645855D8A342711DD129E36881D0051BA043979397B40FAB8E363C94DB04A3D7E3401C39C1CC5752FACFC338BAF83613042722C3164B45C2E5BA22DBC90AF35DEE80A8D0D3C73B1E72348582F78A</PF_KeyStorePass>
+        <Debugger_RunParams>-cleaninstall</Debugger_RunParams>
         <BT_BuildType>AppStore</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
@@ -444,8 +440,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Build>29</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=NeatoToolio;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.29;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.chesser.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=OpenS ource on Github</VerInfo_Keys>
+        <VerInfo_Build>33</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=NeatoToolio;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.33;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.chesser.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=OpenS ource on Github</VerInfo_Keys>
         <Icon_MainIcon>NeatoToolio_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
@@ -461,19 +457,24 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android)'!=''">
-        <VerInfo_Build>10104</VerInfo_Build>
+        <VerInfo_Build>10105</VerInfo_Build>
         <Debugger_RunParams>-cleaninstall</Debugger_RunParams>
         <BT_BuildType>AppStore</BT_BuildType>
-        <VerInfo_Keys>package=com.chesser.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=10104;versionName=1.01.04;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.chesser.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=10105;versionName=1.01.05;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <AUP_WAKE_LOCK>true</AUP_WAKE_LOCK>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Android64)'!=''">
-        <VerInfo_Build>10104</VerInfo_Build>
+        <VerInfo_Build>10106</VerInfo_Build>
         <DCC_GenerateAndroidAppBundleFile>true</DCC_GenerateAndroidAppBundleFile>
-        <VerInfo_Keys>package=com.chesser.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=10104;versionName=1.01.04;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
+        <VerInfo_Keys>package=com.chesser.$(MSBuildProjectName);label=$(MSBuildProjectName);versionCode=10106;versionName=1.01.06;persistent=True;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
         <AUP_READ_PHONE_STATE>false</AUP_READ_PHONE_STATE>
         <PF_KeyStore>Android64\certs\neatotoolio.keystore</PF_KeyStore>
-        <PF_KeyStorePass>852647C75F9E079BCF64E53CD171E33F81850535A05F97C997AA0FF88E783C8ADB56A385E3111C2FC1E2577DFAC4C363BA95367E043722D3163A459DE5E4229DC938F341D558FA9BBFF8AF1172348582F78A</PF_KeyStorePass>
+        <PF_KeyStorePass>852647C75F9E5585A304712AD15DE33A81940557A005978797B40FAA8E6D3CD0DB48A3D6E3181C3AC1B85752FAB3C36BBABA361304262290166845ECE5BA2290C95DF35DD544A8D0D3C73B1E72348582F78A</PF_KeyStorePass>
+        <PF_AliasKeyPass>852647C75F9E5585A304712AD15DE33A81940557A005978797B40FAA8E6D3CD0DB48A3D6E3181C3AC1B85752FAB3C36BBABA361304262290166845ECE5BA2290C95DF35DD544A8D0D3C73B1E72348582F78A</PF_AliasKeyPass>
+        <AUP_WAKE_LOCK>true</AUP_WAKE_LOCK>
+        <Debugger_RunParams>-cleaninstall</Debugger_RunParams>
         <BT_BuildType>AppStore</BT_BuildType>
+        <PF_AliasKey>neatotoolio</PF_AliasKey>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Linux64)'!=''">
         <DCC_UnitSearchPath>C:\delphi projects\NeatoToolio\DummyFiles;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
@@ -799,7 +800,6 @@
         </DCCReference>
         <DCCReference Include="CommonFrames\frame.UserHelp.pas">
             <Form>frmUserHelp</Form>
-            <FormType>fmx</FormType>
         </DCCReference>
         <RcItem Include="Images\house.png">
             <ResourceType>RCDATA</ResourceType>
@@ -900,12 +900,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\notification-24x24.png" Configuration="Release" Class="Android_NotificationIcon24">
-                    <Platform Name="Android64">
-                        <RemoteName>ic_notification.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Images\spot.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
                         <RemoteDir>.\assets\internal\</RemoteDir>
@@ -924,15 +918,21 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="Images\neato+logo.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Images\Neato.D4.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android64">
                         <RemoteDir>.\assets\internal\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Images\neato+logo.png" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Android">
-                        <RemoteDir>.\assets\internal\</RemoteDir>
+                <DeployFile LocalName="Images\notification-24x24.png" Configuration="Release" Class="Android_NotificationIcon24">
+                    <Platform Name="Android64">
+                        <RemoteName>ic_notification.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1057,6 +1057,11 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="Android\Debug\strings.xml" Configuration="Debug" Class="Android_Strings">
+                    <Platform Name="Android">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Images\Neato.D7.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Android">
                         <RemoteDir>.\assets\internal\</RemoteDir>
@@ -1066,11 +1071,6 @@
                 <DeployFile LocalName="Images\Neato.D5.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Android\Debug\strings.xml" Configuration="Debug" Class="Android_Strings">
-                    <Platform Name="Android">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

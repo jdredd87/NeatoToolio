@@ -1,4 +1,15 @@
 {
+  Try 32bit android wifi compile?
+
+  XV16 works fine on android but not the botvac basic
+
+  Basically redo the whole conneciton process for android.
+
+  Split the calls up totally for Windows / Linux / Android to connect.
+  It is to much of a damn mess
+
+
+  {
 
   Possibly make a new TFrame that the rest of the frames can inherit from.
   In said new Frame, create a new create constructor to handle the staging up.
@@ -22,12 +33,19 @@ uses
 {$IFDEF ANDROID}
   dmSerial.Android,
   Winsoft.Android.Usb,
+  Androidapi.Jni.App,
+  Androidapi.Jni.JavaTypes,
+  Androidapi.helpers,
+  Androidapi.Jni.Widget,
+  Androidapi.Jni.Os,
+  FMX.helpers.Android,
+  Androidapi.Jni,
 {$ENDIF}
   frame.Master,
   dmSerial.Base,
   dmSerial.TCPIP,
   {Common neato units}
-  Neato.Helpers,
+  Neato.helpers,
   Neato.Settings,
   frame.UserHelp,
 
@@ -356,6 +374,7 @@ type
     btnSerialHelp: TButton;
     lblConnectPort: TLabel;
     btnTCPHelp: TButton;
+    timerMakeAvailable: TTimer;
 
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -378,6 +397,7 @@ type
     procedure cbLanguagesChange(Sender: TObject);
     procedure btnSerialHelpClick(Sender: TObject);
     procedure btnTCPHelpClick(Sender: TObject);
+    procedure timerMakeAvailableTimer(Sender: TObject);
 
   private
 
@@ -410,7 +430,7 @@ type
 
     procedure comConnect; // serial connect
     procedure comDisconnect; // serial disconnect
-
+    procedure stopAniConnect(showBoth: Boolean);
   public
 
     // DSeries Frames
@@ -474,6 +494,8 @@ type
 
     ///
 
+    LidarTabFix: Boolean; // paint issue for mobile work around
+
 {$IFDEF MSWINDOWS}
     Scripts: TframeScriptEngine; // currently just want this for windows until its "done"
     COMWin32: TdmSerialWindows;
@@ -483,11 +505,17 @@ type
 {$ENDIF}
     COMTCPIP: TdmSerialTCPIP;
 
-    Procedure StageTabs; // create and place our tabs depending on model
+    procedure StageTabs; // create and place our tabs depending on model
     procedure ResetTabs; // Reset tab states
     procedure PopulateCOMPorts; // repopulate drop down with active com ports
     procedure toggleComs(disable: Boolean); // connect/disconnect basically
 
+{$IFDEF MSWINDOWS}
+    Function HelpCheck: Boolean;
+{$ENDIF}
+{$IFDEF android}
+    procedure OnPermission(Device: JUsbDevice; Granted: Boolean);
+{$ENDIF}
 {$IFNDEF MSWINDOWS}
 {$IFNDEF LINUX}
     function HandleAppEvent(AAppEvent: TApplicationEvent; AContext: TObject): Boolean; // handle mobile event
@@ -574,6 +602,8 @@ begin
 {$ENDIF}
   dm.chkTestMode := chkTestMode;
 
+  memoAbout.font.Size := memoAbout.font.Size * 1.25;
+
   memoAbout.Lines.add('Neato Toolio Version : ' + GetAppVersionStr);
   memoAbout.Lines.add('');
   memoAbout.Lines.add('Created by Steven Chesser');
@@ -658,13 +688,14 @@ begin
 
   TdmSerialAndroid(COMAndroid).onError := FComPortError;
   self.chkAutoDetect.Visible := false; // just remove it for Android. Should have only 1 device anyways if any.
-  cbCOM.Width := cbCOM.Width * 2; // big com port driver names it appears
+  cbCOM.Width := cbCOM.Width * 1.8; // big com port driver names it appears
   cbCOM.Position.Y := self.chkAutoDetect.Position.Y; // move it up so have some room to click
 
   lblSetupComPort.Position.Y := cbCOM.Position.Y;
 
   COMAndroid.Serial.OnDeviceAttached := OnDeviceAttached;
   COMAndroid.Serial.OnDeviceDetached := OnDeviceDetached;
+  COMAndroid.Serial.OnPermission := OnPermission;
 
   COMAndroid.FComSignalRX := self.ColorBoxRX;
   COMAndroid.FComSignalTX := self.ColorBoxTX;
@@ -691,6 +722,12 @@ begin
       TTabControl(components[idx]).TabHeight := TTabControl(components[idx]).TabHeight * 1.25;
 {$ENDIF}
     end;
+
+{$IFNDEF ANDROID}
+    aniConnect.margins.right := 75;
+    aniConnect.Scale.X := 0.5;
+    aniConnect.Scale.Y := 0.5;
+{$ENDIF}
   end;
 
   dmCommon.onTabChangeEvent := tabControlChange; // so frames with tabs can piggy back off this
@@ -724,9 +761,11 @@ function TfrmMain.HandleAppEvent(AAppEvent: TApplicationEvent; AContext: TObject
 begin
   case AAppEvent OF
 
-    TApplicationEvent.BecameActive:;
+    TApplicationEvent.BecameActive:
+      ;
 
-    TApplicationEvent.EnteredBackground : ;
+    TApplicationEvent.EnteredBackground:
+      ;
 
     TApplicationEvent.FinishedLaunching:
       begin
@@ -747,23 +786,49 @@ begin
 {$ENDIF}
     TApplicationEvent.WillBecomeForeground:
       begin
-       if NOT dm.COM.Active then
-         PopulateCOMPorts;
+        try
+          if assigned(dm.COM) then
+          begin
+            if NOT dm.COM.Active then
+            begin
+{$IFDEF android}
+              if COMAndroid.requestingPermission then
+                exit;
+{$ENDIF}
+              PopulateCOMPorts;
+            end;
+          end;
+        finally
+          // ick
+        end;
       end;
 
-    TApplicationEvent.WillBecomeInactive,TApplicationEvent.WillTerminate:
+    TApplicationEvent.WillBecomeInactive, TApplicationEvent.WillTerminate:
       begin
-        tthread.CreateAnonymousThread(
-          procedure
+        try
+
+          if assigned(dm.COM) then
           begin
-            if dm.COM.Active then
-            begin
-              dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
-              dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
-              dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
-              dm.COM.Close;
-            end;
-          end).start;
+{$IFDEF android}
+            if COMAndroid.requestingPermission then
+              exit;
+{$ENDIF}
+            tthread.CreateAnonymousThread(
+              procedure
+              begin
+                if dm.COM.Active then
+                begin
+                  dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+                  dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+                  dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+                  dm.COM.Close;
+                end;
+              end).start;
+          end;
+
+        finally
+          // ick
+        end;
       end;
 
   end;
@@ -794,7 +859,7 @@ var
   LFocusRect: TRectF;
 begin
   FNeedOffset := false;
-  if Assigned(Focused) then
+  if assigned(Focused) then
   begin
     LFocused := TControl(Focused.GetObject);
     LFocusRect := LFocused.AbsoluteRect;
@@ -837,7 +902,7 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   // LoadImageID('NeatoLogo', self.imgRobot);
-  lblVersion.Text := Neato.Helpers.GetAppVersionStr;
+  lblVersion.Text := Neato.helpers.GetAppVersionStr;
 end;
 
 procedure TfrmMain.memoDebugChange(Sender: TObject);
@@ -870,7 +935,7 @@ end;
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 
 begin
-  if Assigned(dm.COM) then
+  if assigned(dm.COM) then
   begin
     if dm.COM.Active then
     begin
@@ -893,7 +958,8 @@ begin
   if dm.COM.Active then
   begin
     try
-      dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
+      dm.COM.SendCommand('testmode OFF');
+      // make sure to turn this off when close app
       dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
       dm.COM.SendCommand('testmode OFF'); // make sure to turn this off when close app
     finally
@@ -970,13 +1036,21 @@ end;
 {$IFDEF ANDROID}
 
 procedure TfrmMain.OnDeviceAttached(Device: JUsbDevice);
+var
+  idx: Integer;
 begin
   COMAndroid.OnDeviceAttached(Device);
   PopulateCOMPorts;
+
+  // most likely.. only going to have 1 device , so just pre select it!
+  if cbCOM.count > 0 then
+    cbCOM.itemindex := 0;
+
 end;
 
 procedure TfrmMain.OnDeviceDetached(Device: JUsbDevice);
 begin
+  comDisconnect;
   COMAndroid.OnDeviceDetached(Device);
   PopulateCOMPorts;
 end;
@@ -1002,7 +1076,8 @@ end;
 
 procedure TfrmMain.ckSerialConnectChange(Sender: TObject);
 begin
-  dm.COM := {$IFDEF MSWindows} COMWin32; {$ENDIF} {$IFDEF ANDROID} COMAndroid; {$ENDIF}
+  dm.COM := {$IFDEF MSWindows} COMWin32;
+{$ENDIF} {$IFDEF ANDROID} COMAndroid; {$ENDIF}
   // default as this will be the most use case
   stoptimers;
   toggleComs(ckSerialConnect.IsChecked);
@@ -1010,7 +1085,8 @@ end;
 
 procedure TfrmMain.ckTCPIPConnectChange(Sender: TObject);
 begin
-  dm.COM := COMTCPIP; // default as this will be the most use case
+  dm.COM := COMTCPIP;
+  // default as this will be the most use case
   stoptimers;
   toggleComs(ckTCPIPConnect.IsChecked);
 end;
@@ -1066,7 +1142,7 @@ end;
 
 procedure TfrmMain.chkTestModeChange(Sender: TObject);
 begin
-  if Assigned(CurrentTimer) then
+  if assigned(CurrentTimer) then
     CurrentTimer.enabled := false;
 
   case chkTestMode.IsChecked of
@@ -1076,7 +1152,7 @@ begin
       dm.COM.SendCommand('TestMode OFF');
   end;
 
-  if Assigned(CurrentTimer) then
+  if assigned(CurrentTimer) then
     CurrentTimer.enabled := True;
 end;
 
@@ -1092,29 +1168,150 @@ end;
 
 procedure TfrmMain.toggleComs(disable: Boolean);
 begin
-  chkAutoDetect.enabled := not disable;
-  cbCOM.enabled := not disable;
-  chkTestMode.enabled := false;
-  chkTestMode.IsChecked := false;
 
-  edIPAddress.enabled := not disable;
-  edIPPort.enabled := not disable;
+  // turn controls off while waiting
+  aniConnect.Visible := True;
+  aniConnect.enabled := True;
+
+  chkAutoDetect.enabled := false;
+  cbCOM.enabled := false;
+  self.ckSerialConnect.enabled := false;
+  edIPAddress.enabled := false;
+  edIPPort.enabled := false;
+  self.ckTCPIPConnect.enabled := false;
+  chkTestMode.enabled := false;
 
   if disable then
     comConnect
   else
     comDisconnect;
+
 end;
 
-procedure TfrmMain.comConnect;
+procedure TfrmMain.stopAniConnect(showBoth: Boolean);
 begin
+  tthread.Synchronize(tthread.CurrentThread,
+    procedure
+    begin
+      if showBoth then
+      begin
+        ckSerialConnect.enabled := True;
+        ckTCPIPConnect.enabled := True;
+      end
+      else
+      begin
+
+        if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF} {$IFDEF ANDROID} TdmSerialAndroid{$ENDIF}) then
+        begin
+          ckSerialConnect.enabled := True;
+          if dm.COM.Active then
+            ckTCPIPConnect.enabled := false;
+        end;
+
+        if (dm.COM is TdmSerialTCPIP) then
+        begin
+          ckTCPIPConnect.enabled := True;
+          if dm.COM.Active then
+            ckSerialConnect.enabled := false;
+        end;
+
+      end;
+      aniConnect.Visible := false;
+      aniConnect.enabled := false;
+    end);
+end;
+
+{$IFDEF MSWINDOWS}
+
+Function TfrmMain.HelpCheck: Boolean;
+var
+  idx: Integer;
+  R: String;
+begin
+  Result := false;
+  if chkAutoDetect.IsChecked then
+  begin
+    dm.COM.onError := nil;
+    for idx := 0 to cbCOM.items.count - 1 do
+    begin
+      COMWin32.ComPort := cbCOM.items[idx];
+
+      if not dm.COM.Open then
+        continue;
+
+      R := dm.COM.SendCommand('HELP');
+      memoDebug.Lines.add(^M^M);
+      memoDebug.Lines.add('HELP Response : ' + R);
+
+      if pos('Help', R) > 0 then
+      begin
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            cbCOM.itemindex := idx;
+          end);
+        break;
+      end;
+      try
+        dm.COM.Close;
+      finally
+      end;
+
+    end;
+    dm.COM.onError := FComPortError;
+  end;
+
+  if cbCOM.itemindex = -1 then
+  begin
+    Result := false;
+  end
+  else
+  begin
+    Result := True;
+    COMWin32.ComPort := cbCOM.items[cbCOM.itemindex];
+    Result := dm.COM.Open;
+  end;
+end;
+{$ENDIF}
+{$IFDEF android}
+
+procedure TfrmMain.OnPermission(Device: JUsbDevice; Granted: Boolean);
+begin
+  if Granted then
+  begin
+    if COMAndroid.Serial.HasPermission(Device) then
+      CallInUIThread(
+        procedure
+        begin
+          comConnect;
+        end);
+  end
+  else
+  begin
+    CallInUIThread(
+      procedure
+      begin
+        COMAndroid.requestingPermission := false; // make sure to flip it back
+        comDisconnect;
+      end);
+  end;
+
+  COMAndroid.requestingPermission := false; // make sure to flip it back
+end;
+{$ENDIF}
+
+procedure TfrmMain.comConnect;
+
+begin
+
   ResetTabs;
   lblSetupRobotName.Text := '';
   lblRobotModel.Text := '';
+
   aniConnect.Visible := True;
   aniConnect.enabled := True;
-  ckSerialConnect.enabled := false;
-  ckTCPIPConnect.enabled := false;
+
+  LidarTabFix := false;
 
   tthread.CreateAnonymousThread(
     procedure
@@ -1127,159 +1324,77 @@ begin
       gGetVersionXV: tGetVersionXV;
       ReadData: TStringList;
       botFound: Boolean;
-
-      procedure stopAniConnect(showBoth: Boolean);
-      begin
-        tthread.Synchronize(tthread.CurrentThread,
-          procedure
-          begin
-            if showBoth then
-            begin
-              ckSerialConnect.enabled := True;
-              ckTCPIPConnect.enabled := True;
-            end
-            else
-            begin
-
-              if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF} {$IFDEF ANDROID} TdmSerialAndroid{$ENDIF}) then
-              begin
-                ckSerialConnect.enabled := True;
-                if dm.COM.Active then
-                  ckTCPIPConnect.enabled := false;
-              end;
-
-              if (dm.COM is TdmSerialTCPIP) then
-              begin
-                ckTCPIPConnect.enabled := True;
-                if dm.COM.Active then
-                  ckSerialConnect.enabled := false;
-              end;
-
-            end;
-            aniConnect.Visible := false;
-            aniConnect.enabled := false;
-          end);
-      end;
+      ComConnected: Boolean;
 
     begin
       botFound := false;
+      ComConnected := True; // assume all good to start the checking process
+
       if (dm.COM is TdmSerialTCPIP) then // if we are TCPIP, simple, set host and port
       begin
         COMTCPIP.Serial.ConnectTimeout := 10000;
         COMTCPIP.IP := self.edIPAddress.Text;
         COMTCPIP.PORT := ROUND(self.edIPPort.Value);
-      end
-      else if (dm.COM is {$IFDEF MSWINDOWS}TdmSerialWindows{$ENDIF} {$IFDEF ANDROID}TdmSerialAndroid{$ENDIF}) then
-      // if we are serial, then we can hunt down a port or go directly to one
-      begin
-        if chkAutoDetect.IsChecked then
+        ComConnected := dm.COM.Open;
+
+        if ComConnected = false then
         begin
-          dm.COM.onError := nil;
-          for idx := 0 to cbCOM.items.count - 1 do
-          begin
-{$IFDEF MSWINDOWS}
-            COMWin32.ComPort := cbCOM.items[idx];
-{$ENDIF}
-{$IFDEF ANDORID}
-            // if not COMAndroid.CheckPermission then
-            // COMAndroid.RequestPermission;
-            COMAndroid.ComPort := idx; // auto detect is off for android, but just in case i forget this
-{$ENDIF}
-            if not dm.COM.Open then
-              continue;
-
-            R := dm.COM.SendCommand('HELP');
-            if pos('Help', R) > 0 then
-            begin
-              tthread.Synchronize(tthread.CurrentThread,
-                procedure
-                begin
-                  cbCOM.itemindex := idx;
-                end);
-              break;
-            end;
-            try
-              dm.COM.Close;
-            finally
-            end;
-
-          end;
-          dm.COM.onError := FComPortError;
-        end;
-
-        if cbCOM.itemindex = -1 then
-        begin
-          stopAniConnect(True);
           tthread.Synchronize(tthread.CurrentThread,
             procedure
             begin
-              ckSerialConnect.IsChecked := false;
-              ckSerialConnectChange(nil);
-              showmessage('No COM Port selected');
+              showmessage('Unable to TCP connect. ' + dm.COM.Error);
+              toggleComs(false); // make sure to reset everything!
+              timerMakeAvailable.enabled := True;
             end);
           exit;
-        end
-        else
-        begin
-{$IFDEF MSWINDOWS}
-          COMWin32.ComPort := cbCOM.items[cbCOM.itemindex];
-{$ENDIF}
-{$IFDEF ANDROID}
-          COMAndroid.ComPort := cbCOM.itemindex; // should have access by now
-{$ENDIF}
         end;
-      end;
 
-      if not dm.COM.Open then // by now we have serial or tcpip COM object assigned
+      end
+      else
       begin
 
-        stopAniConnect(True);
-
-{$IFDEF android}
-        // since we have to deal with permissions  and for Serial only do we care about
-        if dm.COM = COMAndroid then
+{$IFDEF ANDROID}
+        COMAndroid.ComPort := cbCOM.itemindex;
+        ComConnected := dm.COM.Open; // can we open
+        if (ComConnected = false) and (COMAndroid.requestingPermission) then
         begin
-          if (NOT COMAndroid.HasPermission) then
-          begin
-            tthread.CreateAnonymousThread(
-              procedure
-              begin
-                sleep(250);
-                tthread.Queue(nil,
-                  procedure
-                  begin
-                    comConnect; // lets call this again
-                  end);
-              end).start;
-            exit; // and oh make sure to exit!
-          end;
+          sleep(1000);
+          exit;
         end;
-
+{$ELSE}
+        if ComConnected = false then
+        begin
+          tthread.Synchronize(tthread.CurrentThread,
+            procedure
+            begin
+              showmessage('Unable to open Serial Port. ' + dm.COM.Error);
+              toggleComs(false); // make sure to reset everything!
+              timerMakeAvailable.enabled := True
+            end);
+          exit;
+        end;
 {$ENDIF}
-        tthread.Synchronize(tthread.CurrentThread,
-          procedure
-          begin
-            ckSerialConnect.IsChecked := false;
-            ckTCPIPConnect.IsChecked := false;
-            showmessage('Unable to open communications. ' + dm.COM.Error);
-          end);
-        exit;
+{$IFDEF MSWINDOWS}
+        ComConnected := HelpCheck; // lets find a comport
+        if ComConnected = false then
+        begin
+          tthread.Synchronize(tthread.CurrentThread,
+            procedure
+            begin
+              showmessage('Serial Port open but failed communications. ' + dm.COM.Error);
+              toggleComs(false); // make sure to reset everything!
+              timerMakeAvailable.enabled := True
+            end);
+          exit;
+        end;
+{$ENDIF}
       end;
 
       ReadData := TStringList.Create;
 
-      tthread.Synchronize(tthread.CurrentThread,
-        procedure
-        begin
-          if (dm.COM is TdmSerialTCPIP) then
-            ckSerialConnect.enabled := false;
-
-          if (dm.COM is {$IFDEF MSWINDOWS} TdmSerialWindows{$ENDIF}{$IFDEF ANDROID} TdmSerialAndroid{$ENDIF} ) then
-            ckTCPIPConnect.enabled := false;
-
-        end);
-
       R := dm.COM.SendCommandAndWaitForValue(sGetVersion, 6000, ^Z, 1);
+
+      memoDebug.Lines.add(^M^M);
 
       if pos('BotVac', R) > 0 then
       begin
@@ -1299,6 +1414,8 @@ begin
       begin
         R := dm.COM.SendCommandAndWaitForValue(sGetWifiStatus, 5000, ^Z, 1);
 
+        memoDebug.Lines.add(^M^M);
+
         gGetWifiStatusD := tGetWifiStatusD.Create;
         ReadData.Text := R;
 
@@ -1315,6 +1432,7 @@ begin
         dm.COM.PurgeOutput;
 
         R := dm.COM.SendCommandAndWaitForValue(sGetVersion, 5000, ^Z, 1);
+        memoDebug.Lines.add(^M^M);
 
         gGetVersionD := tGetVersionD.Create;
         ReadData.Text := R;
@@ -1377,16 +1495,13 @@ begin
           tthread.Synchronize(tthread.CurrentThread,
             procedure
             begin
-
               lblRobotModel.Text := gGetVersionXV.ModelID.Minor;
-
               if pos('XV16', gGetVersionXV.ModelID.Minor) > 0 then
               begin
                 LoadImageID('XV16', imgRobot);
               end
               else
                 LoadImageID('NeatoXV', DXVGetAccel._3DGetAccel); // generic model
-
             end);
         end;
 
@@ -1407,15 +1522,10 @@ begin
 
             if not dm.isComSerial then
               showmessage('No Neato Found on this IP / Port');
-
-            ckSerialConnect.IsChecked := false;
-            ckTCPIPConnect.IsChecked := false;
-
-            chkAutoDetect.enabled := True;
-            cbCOM.enabled := True;
-          end;
-          chkTestMode.enabled := dm.COM.Active;
-          ResetTabs;
+            timerMakeAvailable.enabled := True;
+          end
+          else
+            chkTestMode.enabled := True;
         end);
 
       freeandnil(ReadData);
@@ -1425,35 +1535,45 @@ end;
 
 procedure TfrmMain.comDisconnect;
 begin
-  aniConnect.enabled := True;
-  aniConnect.Visible := True;
 
-  try
-    if Assigned(dm.COM) then
+{$IFDEF android}
+  // we do this so we don't goof up the UI while trying to get permissions
+
+  if assigned(dm.COM) then
+  begin
+    if dm.COM is TdmSerialAndroid then
     begin
-      if dm.COM.Active then
-      begin
-        dm.COM.SendCommand('TESTMODE OFF');
-        dm.COM.SendCommand('TESTMODE OFF');
-        dm.COM.SendCommand('TESTMODE OFF');
-        dm.COM.Close;
-      end;
-    end;
-  except
-    on e: Exception do
-    begin
-      showmessage('Error on disconnect : ' + e.message);
+      if COMAndroid.requestingPermission then
+        exit;
     end;
   end;
 
-  aniConnect.enabled := false;
-  aniConnect.Visible := false;
-  lblSetupRobotName.Text := '';
-  lblRobotModel.Text := '';
-  LoadImageID('NeatoLogo', imgRobot);
-  ckSerialConnect.enabled := True;
-  ckTCPIPConnect.enabled := True;
-  ResetTabs;
+{$ENDIF}
+  tthread.CreateAnonymousThread(
+    procedure
+    begin
+      try
+        tthread.Synchronize(tthread.CurrentThread,
+          procedure
+          begin
+            timerMakeAvailable.enabled := True;
+          end);
+
+        if assigned(dm.COM) then
+        begin
+          if dm.COM.Active then
+          begin
+            dm.COM.SendCommandOnly('');
+            dm.COM.SendCommandOnly('TESTMODE OFF');
+            dm.COM.Close;
+          end;
+        end;
+      finally
+        // ick
+      end;
+
+    end).start;
+
 end;
 
 procedure TfrmMain.edIPAddressChange(Sender: TObject);
@@ -1480,6 +1600,7 @@ begin
     toggleComs(false);
   except
   end;
+
   comList := TStringList.Create;
 
 {$IFDEF MSWINDOWS}
@@ -1494,6 +1615,15 @@ begin
   cbCOM.EndUpdate;
   comList.Free;
   tabsMain.enabled := True;
+  timerMakeAvailable.enabled := True;
+
+{$IFDEF android}
+  // most likely.. only going to have 1 device , so just pre select it!
+  if cbCOM.count > 0 then
+  begin
+    cbCOM.itemindex := 0;
+  end;
+{$ENDIF}
 end;
 
 procedure TfrmMain.tabControlChange(Sender: TObject);
@@ -1958,7 +2088,7 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetMotor then
-    if Assigned(DXVSetMotor) then
+    if assigned(DXVSetMotor) then
     begin
       DXVSetMotor.check;
       DXVSetMotor.Layout.Visible := True;
@@ -1972,10 +2102,45 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabLidarView then
-    if Assigned(DXVLidarView) then
+    if assigned(DXVLidarView) then
     begin
-      DXVLidarView.check;
+
+{$IFDEF ANDROID}
+      // odd issue for android side of things where the tChart renders wrong
+      // this "fixes" it at a small visual/time cost to ender user.
+
+      if tabsLidarOptions.ActiveTab = tabLidarView then
+      begin
+        if not LidarTabFix then
+        begin
+          LidarTabFix := True;
+          tabsLidarOptions.enabled := false;
+          tthread.CreateAnonymousThread(
+            procedure
+            begin
+              sleep(10);
+              tthread.Synchronize(tthread.CurrentThread,
+                procedure
+                begin
+                  tabsLidarOptions.TabIndex := -1;
+                end);
+
+              sleep(10);
+
+              tthread.Synchronize(tthread.CurrentThread,
+                procedure
+                begin
+                  tabsLidarOptions.ActiveTab := tabLidarView;
+                  tabsLidarOptions.enabled := True;
+                  LidarTabFix := false;
+                end);
+
+            end).start;
+        end;
+      end;
+{$ENDIF}
       DXVLidarView.Layout.Visible := True;
+      DXVLidarView.check;
       SetTimer(DXVLidarView.timer_getdata);
     end;
 
@@ -1987,7 +2152,7 @@ begin
   end;
 
   if TTabControl(Sender).ActiveTab = tabSetBatteryTest then
-    if Assigned(DXVSetBatteryTest) then
+    if assigned(DXVSetBatteryTest) then
     begin
       DXVSetBatteryTest.check;
       DXVSetBatteryTest.Layout.Visible := True;
@@ -2056,10 +2221,10 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabDebugTerminal then
   begin
-    if Assigned(DXVTerminal) then
+    if assigned(DXVTerminal) then
     begin
       DXVTerminal.Layout.Visible := True;
-      if DXVTerminal.edDebugTerminalSend.CanFocus then
+      if DXVTerminal.edDebugTerminalSend.canfocus then
         DXVTerminal.edDebugTerminalSend.SetFocus;
       SetTimer(DXVTerminal.timer_getdata);
     end;
@@ -2081,7 +2246,8 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetButton then
     case neatoType of
-      BotVac, BotVacConnected: // maybe the connected ?
+      BotVac, BotVacConnected:
+        // maybe the connected ?
         begin
           DSetButton.check;
           DSetButton.Layout.Visible := True;
@@ -2095,7 +2261,8 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetNTPTime then
     case neatoType of
-      BotVacConnected: // maybe the connected ?
+      BotVacConnected:
+        // maybe the connected ?
         begin
           DSetNTPTime.check;
           DSetNTPTime.Layout.Visible := True;
@@ -2109,7 +2276,8 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetNavigationMode then
     case neatoType of
-      BotVacConnected: // maybe the connected ?
+      BotVacConnected:
+        // maybe the connected ?
         begin
           DSetNavigationMode.check;
           DSetNavigationMode.Layout.Visible := True;
@@ -2123,7 +2291,8 @@ begin
 
   if TTabControl(Sender).ActiveTab = tabSetUsage then
     case neatoType of
-      BotVacConnected: // maybe the connected ?
+      BotVacConnected:
+        // maybe the connected ?
         begin
           DSetUsage.check;
           DSetUsage.Layout.Visible := True;
@@ -2138,6 +2307,41 @@ begin
   StartTimer;
 
   TTabControl(Sender).EndUpdate;
+end;
+
+procedure TfrmMain.timerMakeAvailableTimer(Sender: TObject);
+begin
+  memoDebug.Lines.add('timerMakeAvailableTimer');
+
+  timerMakeAvailable.enabled := false;
+  try
+    lblSetupRobotName.Text := '';
+    lblRobotModel.Text := '';
+
+    chkTestMode.enabled := false;
+    chkTestMode.IsChecked := false;
+
+    chkAutoDetect.enabled := True;
+    ckSerialConnect.enabled := True;
+    ckTCPIPConnect.enabled := True;
+    cbCOM.enabled := True;
+    self.edIPAddress.enabled := True;
+    self.edIPPort.enabled := True;
+
+    ckSerialConnect.IsChecked := false;
+    ckTCPIPConnect.IsChecked := false;
+
+    aniConnect.enabled := false;
+    aniConnect.Visible := false;
+    ResetTabs;
+
+    LoadImageID('NeatoLogo', imgRobot);
+  except
+    on e: Exception do
+    begin
+      showmessage('MakeControlsAvailable Fatal Error : ' + e.message);
+    end;
+  end;
 end;
 
 procedure TfrmMain.StageTabs;

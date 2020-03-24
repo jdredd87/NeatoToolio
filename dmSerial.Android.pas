@@ -28,12 +28,8 @@ type
     fErrorCode: integer;
     fComFailure: boolean;
     fDataBuffer: String;
-    fTimerPermission: TTimer;
     cs: TCriticalSection;
-    fdidPermissionRequest: boolean;
-    fHasPermission: boolean;
     procedure OnReceivedData(Data: TJavaArray<Byte>);
-    procedure fTimerPermissionTimer(Sender: TObject);
   protected
     //
   public
@@ -50,6 +46,7 @@ type
     FComSignalTX: TColorBox;
     FComSignalCNX: TColorBox;
 
+    requestingPermission: boolean;
     constructor Create;
     destructor destroy; override;
     Function Open: boolean; override;
@@ -65,10 +62,10 @@ type
     function active: boolean; override;
     procedure RefreshDevices(var idx: integer; var devicelist: tstringlist);
 
-    procedure PurgeInput;
-    procedure PurgeOutput;
-    procedure WaitForWriteCompletion;
-    procedure WaitForReadCompletion;
+    procedure PurgeInput; override;
+    procedure PurgeOutput; override;
+    procedure WaitForWriteCompletion; override;
+    procedure WaitForReadCompletion; override;
 
     function ReadBuffer: String;
 
@@ -78,8 +75,6 @@ type
     property Error: String read fError;
     property ErrorCode: integer read fErrorCode;
     property Failure: boolean read fComFailure;
-    property didPermissionRequest: boolean read fdidPermissionRequest;
-    property HasPermission: boolean read fHasPermission;
   end;
 
 function ByteArrayToString(Data: TJavaArray<Byte>): string;
@@ -113,8 +108,6 @@ constructor TdmSerialAndroid.Create;
 begin
   inherited;
   cs := TCriticalSection.Create;
-  fTimerPermission := TTimer.Create(nil);
-  fTimerPermission.OnTimer := fTimerPermissionTimer;
 
   Serial := TUsbSerial.Create;
   Serial.OnReceivedData := OnReceivedData;
@@ -125,15 +118,13 @@ begin
   FComSignalTX := nil;
   FComSignalCNX := nil;
 
-  fdidPermissionRequest := false;
-  fHasPermission := false;
+  requestingPermission := false;
 end;
 
 Destructor TdmSerialAndroid.destroy;
 begin
   Serial.Free;
   cs.Free;
-  fTimerPermission.Free;
   inherited;
 end;
 
@@ -142,7 +133,11 @@ var
   idx: integer;
   devices: tstringlist;
 begin
-  RefreshDevices(idx, devices);
+  CallInUIThread(
+    procedure
+    begin
+      RefreshDevices(idx, devices);
+    end);
 end;
 
 procedure TdmSerialAndroid.OnDeviceDetached(Device: JUsbDevice);
@@ -150,7 +145,11 @@ var
   idx: integer;
   devices: tstringlist;
 begin
-  RefreshDevices(idx, devices);
+  CallInUIThread(
+    procedure
+    begin
+      RefreshDevices(idx, devices);
+    end);
 end;
 
 procedure TdmSerialAndroid.OnReceivedData(Data: TJavaArray<Byte>);
@@ -232,6 +231,7 @@ var
   Device: JUsbDevice;
 begin
   try
+    requestingPermission := false;
 
     try
       Serial.Disconnect;
@@ -241,9 +241,6 @@ begin
     fError := '';
     fErrorCode := 0;
     fComFailure := false;
-    fTimerPermission.Enabled := false;
-    fdidPermissionRequest := false;
-    fHasPermission := false;
 
     Result := false;
 
@@ -254,13 +251,9 @@ begin
 
     if not Serial.HasPermission(Device) then
     begin
-      fHasPermission := false;
+      requestingPermission := true;
       Serial.RequestPermission(Device);
-      if not Serial.HasPermission(Device) then
-      begin
-        fTimerPermission.Enabled := True;
-        Exit;
-      end;
+      Exit;
     end;
 
     Serial.Connect(Device);
@@ -277,8 +270,8 @@ begin
           end);
       end).Start;
 
-    Result := True;
-    fHasPermission := True;
+    Result := true;
+
   except
     on E: Exception do
     begin
@@ -293,7 +286,7 @@ end;
 procedure TdmSerialAndroid.Close;
 begin
   try
-    fTimerPermission.Enabled := false;
+    requestingPermission := false;
     Serial.Close;
     Serial.Disconnect;
   except
@@ -324,18 +317,6 @@ begin
         end);
     end).Start;
 
-end;
-
-procedure TdmSerialAndroid.fTimerPermissionTimer(Sender: TObject);
-var
-  Device: JUsbDevice;
-begin
-  fdidPermissionRequest := True;
-  Device := UsbDevices[Comport];
-  if Serial.HasPermission(Device) then
-  begin
-    // Open;  // for now do nothing
-  end;
 end;
 
 function TdmSerialAndroid.SendCommandOnly(cmd: string): String;
@@ -372,7 +353,9 @@ begin
         fmemoDebug.EndUpdate;
       end;
 
-      Serial.write(TEncoding.ANSI.GetBytes(cmd + LineBreak), 5000);
+      if Serial.Connected then
+        Serial.write(TEncoding.ANSI.GetBytes(cmd + LineBreak), 5000);
+
       sw := tstopwatch.Create;
       sw.Start;
 
@@ -448,7 +431,8 @@ begin
       if assigned(fmemoDebug) then
         fmemoDebug.Lines.Add(cmd);
 
-      Serial.write(TEncoding.ANSI.GetBytes(cmd + #13), readtimeout * 2);
+      if Serial.Connected then
+        Serial.write(TEncoding.ANSI.GetBytes(cmd + #13), readtimeout * 2);
 
       sw := tstopwatch.Create;
       sw.Start;
@@ -555,13 +539,15 @@ begin
     if assigned(fmemoDebug) then
       fmemoDebug.Lines.Add(cmd);
 
-    Serial.write(TEncoding.ANSI.GetBytes(cmd + LineBreak), 5000);
+    if Serial.Connected then
+      Serial.write(TEncoding.ANSI.GetBytes(cmd + LineBreak), 5000);
+
     sw := tstopwatch.Create;
     sw.Start;
 
     repeat // This is blocking so beware
       sleep(0);
-    until (OccurrencesOfChar(Result, ^Z) = count) or (sw.ElapsedMilliseconds >= readtimeout);
+    until (OccurrencesOfChar(fDataBuffer, ^Z) = count) or (sw.ElapsedMilliseconds >= readtimeout);
 
     sw.Stop;
 
@@ -627,20 +613,9 @@ end;
 
 procedure TdmSerialAndroid.PurgeInput;
 var
-  Data: Byte;
-  idx: integer;
-  r: Byte;
-  count: Byte;
+  Buffer: TJavaArray<Byte>;
 begin
-  count := 0;
-  for idx := 1 to 1024 * 32 do
-  begin
-    r := Serial.Read(Data, 100);
-    if r = 0 then
-      inc(count);
-    if count >= 16 then
-      Exit;
-  end;
+  sleep(10);
 end;
 
 procedure TdmSerialAndroid.PurgeOutput;

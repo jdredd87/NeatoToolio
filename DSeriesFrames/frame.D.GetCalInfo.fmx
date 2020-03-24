@@ -1,17 +1,14 @@
 inherited frameDGetCalInfo: TframeDGetCalInfo
-  ClientHeight = 522
+  ClientHeight = 557
   ClientWidth = 857
   DesignerMasterStyle = 3
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-  end
   inherited Layout: TScaledLayout
     OriginalWidth = 857.000000000000000000
-    OriginalHeight = 522.000000000000000000
+    OriginalHeight = 557.000000000000000000
     Size.Width = 857.000000000000000000
-    Size.Height = 522.000000000000000000
+    Size.Height = 557.000000000000000000
     inherited lblFrameTitle: TLabel
-      Position.Y = 491.000000000000000000
+      Position.Y = 526.000000000000000000
       Size.Width = 837.000000000000000000
       TabOrder = 57
     end

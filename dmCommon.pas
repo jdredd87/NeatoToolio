@@ -95,10 +95,10 @@ begin
   if assigned(dm.COM) then
 {$IFDEF MSWINDOWS}
     result := dm.COM.ClassType = TdmSerialWindows;
-{$endif}
-{$ifdef ANDROID}
-    result := dm.COM.ClassType = TdmSerialAndroid;
-{$endif}
+{$ENDIF}
+{$IFDEF ANDROID}
+  result := dm.COM.ClassType = TdmSerialAndroid;
+{$ENDIF}
 end;
 
 function Tdm.GetNeatoType: integer;
@@ -131,6 +131,7 @@ begin
 
   if assigned(ftimerStarter) then
   begin
+
     tthread.CreateAnonymousThread(
       procedure
       begin
@@ -139,7 +140,12 @@ begin
           procedure
           begin
             try
-              ftimerStarter.Enabled := true;
+              if assigned(ftimerStarter) then
+                if ftimerStarter <> nil then // icky
+                begin
+                  if ftimerStarter.enabled = false then
+                    ftimerStarter.enabled := true;
+                end;
             except
               on e: exception do
               begin
@@ -165,7 +171,8 @@ begin
           if NILEvent then
             ftimerStarter.OnTimer := nil;
 
-          ftimerStarter.Enabled := false;
+          ftimerStarter.enabled := false;
+          ftimerStarter := nil;
         end;
   except
     on e: exception do

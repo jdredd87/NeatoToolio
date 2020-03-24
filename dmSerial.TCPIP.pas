@@ -131,9 +131,11 @@ begin
     fErrorCode := 0;
     fComFailure := false;
     try
-      Serial.Disconnect; // make sure to disconnect if let open
-    except
+      if Serial.Connected then
+        Serial.Disconnect(true); // make sure to disconnect if let open
+    finally
     end;
+
     Serial.Host := IP;
     Serial.Port := Port;
     Serial.ConnectTimeout := 4000;
@@ -154,21 +156,26 @@ end;
 procedure TdmSerialTCPIP.Close;
 begin
   try
-    Serial.Disconnect;
-  except
-    on E: Exception do
-    begin
-      fError := E.Message;
-      if assigned(onError) then
-      begin
-        tthread.Queue(nil, // Queue Syncronize
-          procedure
-          begin
-            if assigned(onError) then
-              onError(self);
-          end);
-      end;
+    Serial.readtimeout := 5000;
+    Serial.Disconnect(true);
+  finally
+
+    try
+      // I don't like this!
+      // But oddly the disconnect above never fully disconnects randomly????
+      // Wni32/Android been able to get it so disconnect just doesn't disconnect it thinks.
+      // SOOOO... just kill and recreate everytime sadly for now
+      // Spent a bunch of time trying to track down, need to push on
+      Freeandnil(Serial);
+    finally
     end;
+
+    Serial := TIdTelnet.Create(nil);
+    Serial.ThreadedEvent := true;
+    Serial.OnConnected := IdTelnet1Connected;
+    Serial.OnDisconnected := IdTelnet1Disconnected;
+    Serial.OnDataAvailable := IdTelnet1DataAvailable;
+
   end;
 end;
 
@@ -199,15 +206,25 @@ begin
 
       if assigned(fmemoDebug) then
       begin
-        fmemoDebug.BeginUpdate;
-        fmemoDebug.Lines.Add(cmd);
-        fmemoDebug.Lines.Add('');
-        fmemoDebug.Lines.Add('< Call does not check response >');
-        fmemoDebug.GoToTextEnd;
-        fmemoDebug.EndUpdate;
+        tthread.CreateAnonymousThread(
+          procedure
+          begin
+            sleep(500);
+            tthread.Synchronize(tthread.currentthread,
+              procedure
+              begin
+                fmemoDebug.BeginUpdate;
+                fmemoDebug.Lines.Add(cmd);
+                fmemoDebug.Lines.Add('');
+                fmemoDebug.Lines.Add('< Call does not check response >');
+                fmemoDebug.GoToTextEnd;
+                fmemoDebug.EndUpdate;
+              end);
+          end).Start;
       end;
 
-      Serial.SendString(cmd + LineBreak);
+      if Serial.Connected then
+        Serial.SendString(cmd + LineBreak);
       sw := tstopwatch.Create;
       sw.Start;
 
@@ -257,6 +274,8 @@ var
   breakFound: integer;
   timedout: boolean;
 
+  data: string;
+
 begin
 
   tthread.CreateAnonymousThread(
@@ -282,9 +301,26 @@ begin
       Serial.readtimeout := readtimeout * 2;
 
       if assigned(fmemoDebug) then
-        fmemoDebug.Lines.Add(cmd);
+      begin
+        tthread.CreateAnonymousThread(
+          procedure
+          begin
+            sleep(500);
+            tthread.Synchronize(tthread.currentthread,
+              procedure
+              begin
+                fmemoDebug.BeginUpdate;
+                fmemoDebug.Lines.Add(cmd);
+                fmemoDebug.Lines.Add('');
+                fmemoDebug.GoToTextEnd;
+                fmemoDebug.EndUpdate;
+              end);
+          end).Start;
+      end;
 
-      Serial.SendString(cmd + #13);
+      if Serial.Connected then
+        Serial.SendString(cmd + #13);
+
       sw := tstopwatch.Create;
       sw.Start;
 
@@ -316,10 +352,24 @@ begin
 
       if assigned(fmemoDebug) then
       begin
-        fmemoDebug.BeginUpdate;
-        fmemoDebug.Lines.Add(Result);
-        fmemoDebug.GoToTextEnd;
-        fmemoDebug.EndUpdate;
+        data := Result;
+        tthread.CreateAnonymousThread(
+          procedure
+          var
+            r: string;
+          begin
+            r := data;
+            sleep(500);
+            tthread.Synchronize(tthread.currentthread,
+              procedure
+              begin
+                fmemoDebug.BeginUpdate;
+                fmemoDebug.Lines.Add(r);
+                fmemoDebug.Lines.Add('');
+                fmemoDebug.GoToTextEnd;
+                fmemoDebug.EndUpdate;
+              end);
+          end).Start;
       end;
 
     except
@@ -360,6 +410,7 @@ const waitfor: string = ''; const count: byte = 1): string;
 
 var
   sw: tstopwatch;
+  data: string;
   // ToSend2: TIdBytes;
   // ToSend1: TBytes;
 
@@ -383,10 +434,28 @@ begin
     cs.Leave;
 
     Result := '';
-    if assigned(fmemoDebug) then
-      fmemoDebug.Lines.Add(cmd);
 
-    Serial.SendString(cmd + LineBreak);
+    if assigned(fmemoDebug) then
+    begin
+      tthread.CreateAnonymousThread(
+        procedure
+        begin
+          sleep(500);
+          tthread.Synchronize(tthread.currentthread,
+            procedure
+            begin
+              fmemoDebug.BeginUpdate;
+              fmemoDebug.Lines.Add(cmd);
+              fmemoDebug.Lines.Add('');
+              fmemoDebug.GoToTextEnd;
+              fmemoDebug.EndUpdate;
+            end);
+        end).Start;
+    end;
+
+    if Serial.Connected then
+      Serial.SendString(cmd + LineBreak);
+
     sw := tstopwatch.Create;
     sw.Start;
 
@@ -399,12 +468,27 @@ begin
 
     Result := trim(fDataBuffer);
 
+    data := Result;
+
     if assigned(fmemoDebug) then
     begin
-      fmemoDebug.BeginUpdate;
-      fmemoDebug.Lines.Add(Result);
-      fmemoDebug.GoToTextEnd;
-      fmemoDebug.EndUpdate;
+      tthread.CreateAnonymousThread(
+        procedure
+        var
+          r: string;
+        begin
+          r := data;
+          sleep(500);
+          tthread.Synchronize(tthread.currentthread,
+            procedure
+            begin
+              fmemoDebug.BeginUpdate;
+              fmemoDebug.Lines.Add(r);
+              fmemoDebug.Lines.Add('');
+              fmemoDebug.GoToTextEnd;
+              fmemoDebug.EndUpdate;
+            end);
+        end).Start;
     end;
 
   except

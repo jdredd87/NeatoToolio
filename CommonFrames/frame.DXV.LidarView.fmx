@@ -4,7 +4,8 @@ inherited frameDXVLidarView: TframeDXVLidarView
   DesignerMasterStyle = 0
   inherited timer_getdata: TTimer
     Interval = 100
-    Left = 24
+    Left = 320
+    Top = 176
   end
   inherited Layout: TScaledLayout
     OriginalWidth = 816.000000000000000000
@@ -247,89 +248,100 @@ inherited frameDXVLidarView: TframeDXVLidarView
       Size.Width = 663.000000000000000000
       Size.Height = 518.000000000000000000
       Size.PlatformDefault = False
+      TabHeight = 40.000000000000000000
       TabIndex = 0
       TabOrder = 55
-      TabPosition = PlatformDefault
+      TabPosition = Top
       Sizes = (
         663s
-        488s
+        478s
         663s
-        488s
+        478s
         663s
-        488s)
+        478s)
       object tabLidarPlotXY: TTabItem
         CustomIcon = <
           item
           end>
         IsSelected = True
         Size.Width = 91.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Plotter XY'
         ExplicitSize.cx = 86.000000000000000000
         ExplicitSize.cy = 30.000000000000000000
-        object plotLidar: TChart
-          Foot.Font.StyleExt = {00040000000200000004000000}
-          Legend.Title.Font.StyleExt = {00070000000000000004000000}
-          Legend.Visible = False
-          MarginBottom = 2
-          MarginLeft = 2
-          MarginRight = 2
-          MarginTop = 2
-          PrintProportional = False
-          ScrollMouseButton = mbLeft
-          SubFoot.Font.StyleExt = {00040000000200000004000000}
-          SubTitle.Visible = False
-          Title.Text.Strings = (
-            'Lidar')
-          Title.Visible = False
-          BottomAxis.Automatic = False
-          BottomAxis.AutomaticMaximum = False
-          BottomAxis.AutomaticMinimum = False
-          BottomAxis.Maximum = 8000.000000000000000000
-          BottomAxis.Minimum = -8000.000000000000000000
-          LeftAxis.Automatic = False
-          LeftAxis.AutomaticMaximum = False
-          LeftAxis.AutomaticMinimum = False
-          LeftAxis.Maximum = 8000.000000000000000000
-          LeftAxis.Minimum = -8000.000000000000000000
-          Panning.MouseWheel = pmwNone
-          View3D = False
-          View3DOptions.Elevation = 294
-          View3DOptions.Orthogonal = False
-          View3DOptions.Perspective = 100
-          View3DOptions.Rotation = 360
-          View3DOptions.Zoom = 80
-          Zoom.Animated = True
-          Zoom.Brush.Kind = None
-          Zoom.KeepAspectRatio = True
-          Zoom.MouseButton = mbRight
-          Zoom.MouseWheel = pmwNormal
-          Zoom.Pen.Fill.Color = claSilver
-          Align = Center
-          TabOrder = 0
-          Size.Width = 490.000000000000000000
-          Size.Height = 450.000000000000000000
+        object Layout1: TLayout
+          Align = Client
+          Size.Width = 663.000000000000000000
+          Size.Height = 478.000000000000000000
           Size.PlatformDefault = False
-          ColorPaletteIndex = 13
-          object seriesPlotterXY: TPointSeries
-            HoverElement = [heCurrent]
+          TabOrder = 0
+          OnResize = Layout1Resize
+          OnResized = Layout1Resized
+          object plotLidar: TChart
+            Position.X = 58.000000000000000000
+            Position.Y = 34.000000000000000000
+            Foot.Font.StyleExt = {00040000000200000004000000}
+            Legend.Title.Font.StyleExt = {00070000000000000004000000}
             Legend.Visible = False
-            OnGetPointerStyle = seriesPlotterXYGetPointerStyle
-            Marks.Style = smsXY
-            Marks.Angle = 25
-            Marks.Callout.ArrowHead = ahLine
-            ShowInLegend = False
-            ClickableLine = False
-            Pointer.Draw3D = False
-            Pointer.InflateMargins = True
-            Pointer.Style = psRectangle
-            XValues.Name = 'X'
-            XValues.Order = loNone
-            YValues.Name = 'Y'
-            YValues.Order = loNone
+            MarginBottom = 2
+            MarginLeft = 2
+            MarginRight = 2
+            MarginTop = 2
+            PrintProportional = False
+            ScrollMouseButton = mbLeft
+            SubFoot.Font.StyleExt = {00040000000200000004000000}
+            SubTitle.Visible = False
+            Title.Text.Strings = (
+              'Lidar')
+            Title.Visible = False
+            BottomAxis.Automatic = False
+            BottomAxis.AutomaticMaximum = False
+            BottomAxis.AutomaticMinimum = False
+            BottomAxis.Maximum = 8000.000000000000000000
+            BottomAxis.Minimum = -8000.000000000000000000
+            LeftAxis.Automatic = False
+            LeftAxis.AutomaticMaximum = False
+            LeftAxis.AutomaticMinimum = False
+            LeftAxis.Maximum = 8000.000000000000000000
+            LeftAxis.Minimum = -8000.000000000000000000
+            Panning.MouseWheel = pmwNone
+            View3D = False
+            View3DOptions.Elevation = 294
+            View3DOptions.Orthogonal = False
+            View3DOptions.Perspective = 100
+            View3DOptions.Rotation = 360
+            View3DOptions.Zoom = 80
+            Zoom.Animated = True
+            Zoom.Brush.Kind = None
+            Zoom.KeepAspectRatio = True
+            Zoom.MouseButton = mbRight
+            Zoom.MouseWheel = pmwNormal
+            Zoom.Pen.Fill.Color = claSilver
+            TabOrder = 0
+            Size.Width = 547.000000000000000000
+            Size.Height = 420.000000000000000000
+            Size.PlatformDefault = False
+            ColorPaletteIndex = 13
+            object seriesPlotterXY: TPointSeries
+              HoverElement = [heCurrent]
+              Legend.Visible = False
+              OnGetPointerStyle = seriesPlotterXYGetPointerStyle
+              Marks.Style = smsXY
+              Marks.Angle = 25
+              Marks.Callout.ArrowHead = ahLine
+              ShowInLegend = False
+              ClickableLine = False
+              Pointer.Draw3D = False
+              Pointer.InflateMargins = True
+              Pointer.Style = psRectangle
+              XValues.Name = 'X'
+              XValues.Order = loNone
+              YValues.Name = 'Y'
+              YValues.Order = loNone
+            end
           end
         end
       end
@@ -339,15 +351,14 @@ inherited frameDXVLidarView: TframeDXVLidarView
           end>
         IsSelected = False
         Size.Width = 120.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
         Text = 'Polar Degrees'
         ExplicitSize.cx = 86.000000000000000000
         ExplicitSize.cy = 30.000000000000000000
-        object Rectangle2: TRectangle
-          Align = Client
+        object rectPolar: TRectangle
           Fill.Color = claNull
           Sides = []
           Size.Width = 663.000000000000000000
@@ -408,7 +419,6 @@ inherited frameDXVLidarView: TframeDXVLidarView
             Zoom.Brush.Kind = None
             Zoom.MouseButton = mbRight
             Zoom.Pen.Fill.Color = claSilver
-            Align = Client
             BevelOuter = bvNone
             Color = claNull
             TabOrder = 0
@@ -466,7 +476,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
           end>
         IsSelected = False
         Size.Width = 107.000000000000000000
-        Size.Height = 30.000000000000000000
+        Size.Height = 40.000000000000000000
         Size.PlatformDefault = False
         StyleLookup = ''
         TabOrder = 0
@@ -482,7 +492,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
           Margins.Right = 5.000000000000000000
           Margins.Bottom = 5.000000000000000000
           Size.Width = 653.000000000000000000
-          Size.Height = 478.000000000000000000
+          Size.Height = 468.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'gridstyle'
           TextSettings.Font.Size = 10.000000000000000000
@@ -490,7 +500,7 @@ inherited frameDXVLidarView: TframeDXVLidarView
           TabOrder = 1
           Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
           Viewport.Width = 633.000000000000000000
-          Viewport.Height = 437.000000000000000000
+          Viewport.Height = 427.000000000000000000
           object StringColumn1: TStringColumn
             Header = 'AngleDegree'
             Size.Width = 85.000000000000000000
@@ -534,5 +544,8 @@ inherited frameDXVLidarView: TframeDXVLidarView
         end
       end
     end
+  end
+  inherited LangFrame: TLang
+    Top = 328
   end
 end

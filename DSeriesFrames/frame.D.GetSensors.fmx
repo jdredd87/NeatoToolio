@@ -2,9 +2,6 @@ inherited frameDGetSensors: TframeDGetSensors
   ClientHeight = 409
   ClientWidth = 634
   DesignerMasterStyle = 0
-  inherited timer_getdata: TTimer
-    OnTimer = timer_getdataTimer
-  end
   inherited Layout: TScaledLayout
     OriginalWidth = 634.000000000000000000
     OriginalHeight = 409.000000000000000000

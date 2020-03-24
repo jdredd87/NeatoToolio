@@ -25618,6 +25618,7 @@ object frameMaster: TframeMaster
     end
   end
   object LangFrame: TLang
+    Lang = 'en'
     Left = 368
     Top = 248
   end

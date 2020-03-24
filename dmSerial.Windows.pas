@@ -182,9 +182,12 @@ begin
         fmemoDebug.EndUpdate;
       end;
 
-      Serial.WriteAnsiString(AnsiString(cmd) + #13);
-      Serial.WaitForWriteCompletion;
-      Serial.WaitForReadCompletion;
+      if Serial.Active then
+      begin
+        Serial.WriteAnsiString(AnsiString(cmd) + #13);
+        Serial.WaitForWriteCompletion;
+        Serial.WaitForReadCompletion;
+      end;
     except
       on E: Exception do
       begin
@@ -216,9 +219,13 @@ begin
       if assigned(fmemoDebug) then
         fmemoDebug.Lines.Add(cmd);
 
-      Serial.WriteAnsiString(AnsiString(cmd) + #13);
-      Serial.WaitForWriteCompletion;
-      Serial.WaitForReadCompletion;
+      if Serial.Active then
+      begin
+
+        Serial.WriteAnsiString(AnsiString(cmd) + #13);
+        Serial.WaitForWriteCompletion;
+        Serial.WaitForReadCompletion;
+      end;
 
       repeat
         sleep(waitfor);
@@ -268,7 +275,9 @@ begin
     if assigned(fmemoDebug) then
       fmemoDebug.Lines.Add(cmd);
 
-    Serial.WriteAnsiString(AnsiString(cmd) + #13);
+    if Serial.Active then
+      Serial.WriteAnsiString(AnsiString(cmd) + #13);
+
     Serial.Timeouts.ReadInterval := readtimeout;
     timeout := false;
 
@@ -311,24 +320,22 @@ end;
 
 procedure TdmSerialWindows.PurgeInput;
 begin
- serial.PurgeInput;
+  Serial.PurgeInput;
 end;
 
 procedure TdmSerialWindows.PurgeOutput;
 begin
- serial.PurgeOutput;
+  Serial.PurgeOutput;
 end;
 
 procedure TdmSerialWindows.WaitForReadCompletion;
 begin
- Serial.WaitForReadCompletion;
+  Serial.WaitForReadCompletion;
 end;
 
 procedure TdmSerialWindows.WaitForWriteCompletion;
 begin
- serial.WaitForWriteCompletion;
+  Serial.WaitForWriteCompletion;
 end;
-
-
 
 end.

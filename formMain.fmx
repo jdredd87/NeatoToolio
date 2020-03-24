@@ -35,41 +35,41 @@ object frmMain: TfrmMain
         Size.Width = 900.000000000000000000
         Size.Height = 613.000000000000000000
         Size.PlatformDefault = False
-        TabHeight = 49.000000000000000000
+        TabHeight = 45.000000000000000000
         TabIndex = 0
         TabOrder = 0
         TabPosition = PlatformDefault
         OnChange = tabControlChange
         Sizes = (
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s
+          568s
           900s
-          564s)
+          568s)
         object tabSetup: TTabItem
           CustomIcon = <
             item
             end>
           IsSelected = True
           Size.Width = 60.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -86,23 +86,23 @@ object frmMain: TfrmMain
             Margins.Bottom = 15.000000000000000000
             Sides = []
             Size.Width = 870.000000000000000000
-            Size.Height = 534.000000000000000000
+            Size.Height = 538.000000000000000000
             Size.PlatformDefault = False
           end
           object tabsSerialOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 0
             TabOrder = 62
             TabPosition = PlatformDefault
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
               553s)
             object tabSerialSettings: TTabItem
@@ -111,7 +111,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = True
               Size.Width = 79.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -147,7 +147,7 @@ object frmMain: TfrmMain
                 object edIPAddress: TEdit
                   Touch.InteractiveGestures = [LongTap, DoubleTap]
                   TabOrder = 2
-                  Text = '192.168.50.59'
+                  Text = '1.1.1.1'
                   Position.X = 512.000000000000000000
                   Position.Y = 8.000000000000000000
                   Size.Width = 265.000000000000000000
@@ -176,7 +176,6 @@ object frmMain: TfrmMain
                   Size.Height = 121.000000000000000000
                   Size.PlatformDefault = False
                   Style = Circular
-                  Visible = False
                 end
                 object lblSetupComPort: TLabel
                   Position.X = 8.000000000000000000
@@ -195,7 +194,7 @@ object frmMain: TfrmMain
                   Size.Height = 25.000000000000000000
                   Size.PlatformDefault = False
                   TextSettings.HorzAlign = Trailing
-                  Text = 'IP Address'
+                  Text = 'Host Address'
                   TabOrder = 5
                 end
                 object rectSerialConnect: TRectangle
@@ -273,7 +272,7 @@ object frmMain: TfrmMain
                 Margins.Right = 25.000000000000000000
                 Margins.Bottom = 25.000000000000000000
                 Size.Width = 550.000000000000000000
-                Size.Height = 314.000000000000000000
+                Size.Height = 322.000000000000000000
                 Size.PlatformDefault = False
                 object shadowBotImage: TShadowEffect
                   Distance = 35.000000000000000000
@@ -306,7 +305,7 @@ object frmMain: TfrmMain
                 Position.Y = 151.000000000000000000
                 RotationAngle = -45.000000000000000000
                 Size.Width = 300.000000000000000000
-                Size.Height = 364.000000000000000000
+                Size.Height = 372.000000000000000000
                 Size.PlatformDefault = False
                 TextSettings.Font.Size = 48.000000000000000000
                 TextSettings.HorzAlign = Center
@@ -338,7 +337,7 @@ object frmMain: TfrmMain
                 Size.Height = 25.000000000000000000
                 Size.PlatformDefault = False
                 TextSettings.HorzAlign = Trailing
-                Text = 'Port'
+                Text = 'Host Port'
                 TabOrder = 5
               end
               object btnTCPHelp: TButton
@@ -359,7 +358,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 69.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -369,25 +368,25 @@ object frmMain: TfrmMain
               object tabsDebuggerOptions: TTabControl
                 Align = Client
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
-                TabHeight = 49.000000000000000000
-                TabIndex = 0
+                TabHeight = 45.000000000000000000
+                TabIndex = 1
                 TabOrder = 0
                 TabPosition = PlatformDefault
                 OnChange = tabControlChange
                 Sizes = (
                   900s
-                  466s
+                  478s
                   900s
-                  466s)
+                  478s)
                 object tabDebugTerminal: TTabItem
                   CustomIcon = <
                     item
                     end>
-                  IsSelected = True
+                  IsSelected = False
                   Size.Width = 81.000000000000000000
-                  Size.Height = 49.000000000000000000
+                  Size.Height = 45.000000000000000000
                   Size.PlatformDefault = False
                   StyleLookup = ''
                   TabOrder = 0
@@ -399,7 +398,7 @@ object frmMain: TfrmMain
                     Fill.Color = claNull
                     Sides = []
                     Size.Width = 900.000000000000000000
-                    Size.Height = 466.000000000000000000
+                    Size.Height = 478.000000000000000000
                     Size.PlatformDefault = False
                   end
                 end
@@ -407,9 +406,9 @@ object frmMain: TfrmMain
                   CustomIcon = <
                     item
                     end>
-                  IsSelected = False
+                  IsSelected = True
                   Size.Width = 88.000000000000000000
-                  Size.Height = 49.000000000000000000
+                  Size.Height = 45.000000000000000000
                   Size.PlatformDefault = False
                   StyleLookup = ''
                   TabOrder = 0
@@ -427,11 +426,11 @@ object frmMain: TfrmMain
                     Margins.Right = 10.000000000000000000
                     Margins.Bottom = 10.000000000000000000
                     Size.Width = 880.000000000000000000
-                    Size.Height = 376.000000000000000000
+                    Size.Height = 388.000000000000000000
                     Size.PlatformDefault = False
                     TabOrder = 0
                     Viewport.Width = 876.000000000000000000
-                    Viewport.Height = 372.000000000000000000
+                    Viewport.Height = 384.000000000000000000
                   end
                   object pnlDebugTerminalTop: TRectangle
                     Align = Top
@@ -465,7 +464,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 69.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -482,7 +481,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 65.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -492,28 +491,28 @@ object frmMain: TfrmMain
           object tabsPowerOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 0
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetCharger: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = True
               Size.Width = 103.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -525,7 +524,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -535,7 +534,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 119.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -547,7 +546,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -557,7 +556,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 136.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -569,7 +568,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -579,7 +578,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 121.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -591,7 +590,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -603,7 +602,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 76.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -613,35 +612,35 @@ object frmMain: TfrmMain
           object tabsSensorsOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
-            TabIndex = 6
+            TabHeight = 45.000000000000000000
+            TabIndex = 0
             TabOrder = 1
             TabPosition = PlatformDefault
             OnChange = tabControlChange
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetSensor: TTabItem
               CustomIcon = <
                 item
                 end>
-              IsSelected = False
+              IsSelected = True
               Size.Width = 94.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -676,7 +675,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -686,7 +685,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 84.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -698,7 +697,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -708,7 +707,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 151.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -720,7 +719,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -730,7 +729,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 147.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -742,7 +741,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -752,7 +751,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 96.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -764,7 +763,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -774,7 +773,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 134.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -786,7 +785,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -794,9 +793,9 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = True
+              IsSelected = False
               Size.Width = 126.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -808,7 +807,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -820,7 +819,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 76.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -830,28 +829,28 @@ object frmMain: TfrmMain
           object tabsButtonOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 0
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetButtons: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = True
               Size.Width = 101.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -863,7 +862,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -873,7 +872,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 92.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -885,7 +884,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -895,7 +894,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 72.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -907,7 +906,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -917,7 +916,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 71.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -929,7 +928,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -941,7 +940,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 73.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -951,24 +950,24 @@ object frmMain: TfrmMain
           object tabsMotorOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 1
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetMotors: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = False
               Size.Width = 97.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -980,7 +979,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -990,7 +989,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = True
               Size.Width = 88.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1002,7 +1001,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1014,7 +1013,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 56.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -1024,26 +1023,26 @@ object frmMain: TfrmMain
           object tabsLidarOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
-            TabIndex = 2
+            TabHeight = 45.000000000000000000
+            TabIndex = 0
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetLDSScan: TTabItem
               CustomIcon = <
                 item
                 end>
-              IsSelected = False
+              IsSelected = True
               Size.Width = 107.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1055,7 +1054,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1065,7 +1064,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 102.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1077,7 +1076,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1085,9 +1084,9 @@ object frmMain: TfrmMain
               CustomIcon = <
                 item
                 end>
-              IsSelected = True
+              IsSelected = False
               Size.Width = 76.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1099,7 +1098,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1111,7 +1110,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 50.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -1121,35 +1120,35 @@ object frmMain: TfrmMain
           object tabsInfoOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 6
             TabOrder = 0
             TabPosition = PlatformDefault
             OnChange = tabControlChange
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetWarranty: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = False
               Size.Width = 111.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1161,7 +1160,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1171,7 +1170,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 66.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1183,7 +1182,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1193,7 +1192,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 99.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1205,7 +1204,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1215,7 +1214,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 90.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1227,7 +1226,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1237,7 +1236,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 135.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1249,7 +1248,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1259,7 +1258,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 88.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1271,7 +1270,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1281,7 +1280,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = True
               Size.Width = 125.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1293,7 +1292,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1305,7 +1304,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 58.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -1315,37 +1314,37 @@ object frmMain: TfrmMain
           object tabsToolOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 0
             TabOrder = 0
             TabPosition = PlatformDefault
             OnChange = tabControlChange
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabClearFiles: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = True
               Size.Width = 88.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1357,7 +1356,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1367,7 +1366,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 133.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1379,7 +1378,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1389,7 +1388,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 61.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1401,7 +1400,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1411,7 +1410,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 82.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1423,7 +1422,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1433,7 +1432,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 66.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1445,7 +1444,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1455,7 +1454,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 163.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1467,7 +1466,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1477,7 +1476,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 96.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1494,7 +1493,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1504,7 +1503,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 113.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1516,7 +1515,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1528,7 +1527,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 52.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -1538,25 +1537,25 @@ object frmMain: TfrmMain
           object tabsWifiOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 1
             TabOrder = 0
             TabPosition = PlatformDefault
             OnChange = tabControlChange
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetWifiInfo: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = False
               Size.Width = 102.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1568,7 +1567,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1578,7 +1577,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = True
               Size.Width = 117.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1590,7 +1589,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1602,7 +1601,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 56.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -1612,30 +1611,30 @@ object frmMain: TfrmMain
           object tabsTimeOptions: TTabControl
             Align = Client
             Size.Width = 900.000000000000000000
-            Size.Height = 564.000000000000000000
+            Size.Height = 568.000000000000000000
             Size.PlatformDefault = False
-            TabHeight = 49.000000000000000000
+            TabHeight = 45.000000000000000000
             TabIndex = 4
             TabOrder = 0
             TabPosition = PlatformDefault
             Sizes = (
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s
+              523s
               900s
-              515s)
+              523s)
             object tabGetTime: TTabItem
               CustomIcon = <
                 item
                 end>
               IsSelected = False
               Size.Width = 81.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1647,7 +1646,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1657,7 +1656,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 79.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1669,7 +1668,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1679,7 +1678,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 111.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1691,7 +1690,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1701,7 +1700,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = False
               Size.Width = 108.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1713,7 +1712,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1723,7 +1722,7 @@ object frmMain: TfrmMain
                 end>
               IsSelected = True
               Size.Width = 108.000000000000000000
-              Size.Height = 49.000000000000000000
+              Size.Height = 45.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = ''
               TabOrder = 0
@@ -1735,7 +1734,7 @@ object frmMain: TfrmMain
                 Fill.Color = claNull
                 Sides = []
                 Size.Width = 900.000000000000000000
-                Size.Height = 515.000000000000000000
+                Size.Height = 523.000000000000000000
                 Size.PlatformDefault = False
               end
             end
@@ -1747,7 +1746,7 @@ object frmMain: TfrmMain
             end>
           IsSelected = False
           Size.Width = 65.000000000000000000
-          Size.Height = 49.000000000000000000
+          Size.Height = 45.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = ''
           TabOrder = 0
@@ -1769,7 +1768,7 @@ object frmMain: TfrmMain
             Margins.Right = 100.000000000000000000
             Margins.Bottom = 25.000000000000000000
             Size.Width = 700.000000000000000000
-            Size.Height = 497.000000000000000000
+            Size.Height = 501.000000000000000000
             Size.PlatformDefault = False
             object memoAbout: TMemo
               Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -1785,17 +1784,17 @@ object frmMain: TfrmMain
               Margins.Bottom = 15.000000000000000000
               Opacity = 0.800000011920929000
               Size.Width = 670.000000000000000000
-              Size.Height = 467.000000000000000000
+              Size.Height = 471.000000000000000000
               Size.PlatformDefault = False
               StyleLookup = 'memostyle'
               TabOrder = 0
               Viewport.Width = 666.000000000000000000
-              Viewport.Height = 463.000000000000000000
+              Viewport.Height = 467.000000000000000000
             end
           end
           object lblVersion: TLabel
             Align = Bottom
-            Position.Y = 547.000000000000000000
+            Position.Y = 551.000000000000000000
             Size.Width = 900.000000000000000000
             Size.Height = 17.000000000000000000
             Size.PlatformDefault = False
@@ -1949,6 +1948,13 @@ object frmMain: TfrmMain
     StoreInForm = False
     Lang = 'en'
     Left = 744
+    Top = 304
+  end
+  object timerMakeAvailable: TTimer
+    Enabled = False
+    Interval = 2000
+    OnTimer = timerMakeAvailableTimer
+    Left = 440
     Top = 304
   end
 end

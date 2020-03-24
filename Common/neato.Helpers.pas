@@ -163,11 +163,18 @@ begin
     LongRec(FixedPtr.dwFileVersionLS).Hi, // release
     LongRec(FixedPtr.dwFileVersionLS).Lo]) // build
 end;
-{$ELSE}
+{$ENDIF}
+{$IFDEF ANDROID}
 
 function GetAppVersionStr: string;
+var
+  PackageManager: JPackageManager;
+  PackageInfo: JPackageInfo;
 begin
-  Result := '0.0.0';
+  PackageManager := SharedActivity.getPackageManager;
+  PackageInfo := PackageManager.getPackageInfo(SharedActivityContext.getPackageName(),
+    TJPackageManager.JavaClass.GET_ACTIVITIES);
+  Result := JStringToString(PackageInfo.versionName);
 end;
 
 {$ENDIF}

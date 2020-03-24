@@ -55,6 +55,7 @@ begin
   Layout.Position.Y := 0;
   Layout.Align := talignlayout.Client;
   Layout.Parent := Rect;
+  Layout.Visible := true;
   Layout.Visible := false;
 
   {

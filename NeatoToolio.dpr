@@ -15,6 +15,7 @@ uses
   dmSerial.TCPIP in 'dmSerial.TCPIP.pas' {dmSerialTCP: TDataModule},
   {$IFDEF android}
   dmSerial.Android in 'dmSerial.Android.pas',
+  Android.JNI.PowerManager in 'Android.JNI.PowerManager.pas',
   {$ENDIF }
   {$IFDEF MSWINDOWS}
   dmSerial.Windows in 'dmSerial.Windows.pas',
@@ -140,6 +141,7 @@ uses
   frame.D.SetUsage in 'DSeriesFrames\frame.D.SetUsage.pas' {frameDSetUsage: TFrame},
   frame.UserHelp in 'CommonFrames\frame.UserHelp.pas' {frmUserHelp};
 
+
 {$R *.res}
 
 begin
@@ -147,6 +149,6 @@ begin
   Application.FormFactor.Orientations := [TFormOrientation.Landscape, TFormOrientation.InvertedLandscape];
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmUserHelp, frmUserHelp);
   Application.Run;
 end.
+
