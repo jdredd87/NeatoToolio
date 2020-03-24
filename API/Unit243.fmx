@@ -1,0 +1,231 @@
+object Form243: TForm243
+  Left = 0
+  Top = 0
+  Caption = 'Form243'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object TabControl1: TTabControl
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 448.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 2
+    TabOrder = 0
+    TabPosition = PlatformDefault
+    Sizes = (
+      640s
+      422s
+      640s
+      422s
+      640s
+      422s
+      640s
+      422s
+      640s
+      422s
+      640s
+      422s)
+    object TabItem1: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 114.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Authorize Implicit'
+      ExplicitSize.cx = 72.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object WebBrowser1: TWebBrowser
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 357.000000000000000000
+        Size.PlatformDefault = False
+        OnDidFinishLoad = WebBrowser1DidFinishLoad
+      end
+      object btnAuthorizeImplicit: TButton
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Authorize Implicit'
+        OnClick = btnAuthorizeImplicitClick
+      end
+    end
+    object TabItem6: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 103.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Authorize Code'
+      object Button1: TButton
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Authorize Code'
+        OnClick = Button1Click
+      end
+      object Memo5: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 357.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 636.000000000000000000
+        Viewport.Height = 353.000000000000000000
+      end
+    end
+    object TabItem2: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 70.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'GetToken'
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object btnGetToken: TButton
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'btnGetToken'
+        OnClick = btnGetTokenClick
+      end
+      object Memo2: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 357.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 636.000000000000000000
+        Viewport.Height = 353.000000000000000000
+      end
+    end
+    object TabItem3: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 69.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'TabItem3'
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object RevokeToken: TButton
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'RevokeToken'
+        OnClick = RevokeTokenClick
+      end
+      object Memo3: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 357.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 636.000000000000000000
+        Viewport.Height = 353.000000000000000000
+      end
+    end
+    object TabItem4: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 69.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'TabItem4'
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object Button2: TButton
+        Align = Top
+        Size.Width = 640.000000000000000000
+        Size.Height = 65.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'RefreshToken'
+        OnClick = Button2Click
+      end
+      object Memo4: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 357.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 636.000000000000000000
+        Viewport.Height = 353.000000000000000000
+      end
+    end
+    object TabItem5: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 69.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'TabItem5'
+      ExplicitSize.cx = 69.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object Memo1: TMemo
+        Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+        DataDetectorTypes = []
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 422.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 636.000000000000000000
+        Viewport.Height = 418.000000000000000000
+      end
+    end
+  end
+  object lblCode: TLabel
+    Align = Bottom
+    Position.Y = 448.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+  end
+end
